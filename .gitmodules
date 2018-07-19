@@ -1,0 +1,3 @@
+[submodule "Dependencies/libigl"]
+	path = Dependencies/libigl
+	url = https://github.com/ithron/libigl.git
