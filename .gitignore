@@ -34,3 +34,4 @@
 # Build dir
 build/
 
+compile_commands.json
