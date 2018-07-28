@@ -3,24 +3,24 @@ cmake_minimum_required(VERSION 3.8)
 ############################
 # Targets
 
-add_library(LibCortidQCT
+add_library(Core
   CortidQCT.cpp
 )
 
-add_library(CortidQCT::Core ALIAS LibCortidQCT)
+add_library(CortidQCT::Core ALIAS Core)
 
-target_compile_features(LibCortidQCT
+target_compile_features(Core
   PUBLIC
     cxx_std_17
 )
-target_include_directories(LibCortidQCT
+target_include_directories(Core
   PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/../include>
     $<INSTALL_INTERFACE:include>
 )
 
 set_property(
-  TARGET LibCortidQCT
+  TARGET Core
   PROPERTY CXX_EXTENSIONS OFF
 )
 
@@ -37,7 +37,7 @@ hunter_add_package(libigl)
 find_package(libigl CONFIG REQUIRED)
 
 # Add to target
-target_link_libraries(LibCortidQCT
+target_link_libraries(Core
   PUBLIC
     Microsoft.GSL::GSL
     Eigen3::Eigen
@@ -55,7 +55,7 @@ if (WITH_OPENCL)
   find_package(OpenCL CONFIG REQUIRED)
 
   # Add to targets
-  target_link_libraries(LibCortidQCT
+  target_link_libraries(Core
     PRIVATE
       OpenCL::OpenCL
   )
@@ -65,16 +65,16 @@ endif()
 ############################
 # Exports
 
-install(TARGETS LibCortidQCT EXPORT LibCortidQCTConfig
+install(TARGETS Core EXPORT CortidQCTConfig
   PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
   LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
   RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
   ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
 )
 
-install(EXPORT LibCortidQCTConfig NAMESPACE CortidQCT::
+install(EXPORT CortidQCTConfig NAMESPACE CortidQCT::
   DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/igl/cmake
 )
 
-export(TARGETS ${ALL_MODULES} NAMESPACE CortidQCT:: FILE LibCortidQCTConfig.cmake)
+export(TARGETS ${ALL_MODULES} NAMESPACE CortidQCT:: FILE CortidQCTConfig.cmake)
 
