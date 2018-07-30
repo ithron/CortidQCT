@@ -56,3 +56,21 @@ if (BUILD_TOOLS)
   add_subdirectory(tools)
 endif()
 
+############################
+# Documentation
+
+option(BUILD_DOC "Build documentation" OFF)
+if (BUILD_DOC)
+  find_package(Doxygen 1.8.3 REQUIRED OPTIONAL_COMPONENTS dot)
+
+  set(DOXYGEN_USE_MDFILE_AS_MAINPAGE README.md)
+  doxygen_add_docs(
+    doc
+    README.md
+    ${PROJECT_SOURCE_DIR}/include
+    ${PROJECT_SOURCE_DIR}/lib
+    ${PROJECT_SOURCE_DIR}/common
+    COMMENT "Generating documentation"
+  )
+endif()
+
