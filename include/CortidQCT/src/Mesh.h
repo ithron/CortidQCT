@@ -12,6 +12,7 @@
 #pragma once
 
 #include <stdexcept>
+#include <string>
 #include <type_traits>
 #include <vector>
 
@@ -38,6 +39,22 @@ public:
 
   /// Size type
   using Size = std::size_t;
+
+private:
+  /// Type of vertex data storage
+  using VertexData = std::vector<Scalar>;
+  /// Type of index data storage
+  using IndexData = std::vector<Index>;
+
+public:
+  /// @name Construction
+  /// @{
+
+  /// Constructs an empty mesh
+  inline Mesh() noexcept(noexcept(VertexData()) &&
+                         noexcept(IndexData())) = default;
+
+  // @}
 
   /// @name Accessors
   /// @{
@@ -88,9 +105,9 @@ public:
 
 private:
   /// Stores vertex coordinates in column major order
-  std::vector<Scalar> vertexData_;
+  VertexData vertexData_;
   /// Stores per triangle vertex indices in column major oder
-  std::vector<Index> indexData_;
+  IndexData indexData_;
 };
 
 } // namespace CortidQCT
