@@ -39,10 +39,10 @@ find_package(libigl CONFIG REQUIRED)
 # Add to target
 target_link_libraries(Core
   PUBLIC
-    Microsoft.GSL::GSL
-    Eigen3::Eigen
   PRIVATE
     igl::core
+    Microsoft.GSL::GSL
+    Eigen3::Eigen
 )
 
 
