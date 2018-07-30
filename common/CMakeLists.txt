@@ -38,7 +38,7 @@ target_compile_options(Common INTERFACE
   $<BUILD_INTERFACE:-Werror>
 )
 
-if($<CXX_COMPILER_ID:Clang>)
+if($<CXX_COMPILER_ID:Clang> OR <CXX_COMPILER_ID:AppleClang>)
   target_compile_options(Common INTERFACE
     -Weverything
     -Wno-c++98-compat
