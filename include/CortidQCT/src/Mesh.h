@@ -110,4 +110,11 @@ private:
   IndexData indexData_;
 };
 
+/*************************************
+ * Explicit template instanciations
+ */
+
+extern template class Mesh<float>;
+extern template class Mesh<double>;
+
 } // namespace CortidQCT
