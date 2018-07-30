@@ -1,5 +1,5 @@
 /**
- * @file      CortidQCT.h.
+ * @file      CortidQCT.h
  *
  * @brief     Main header file for CortidQCT library
  *
