@@ -25,7 +25,7 @@ if (NOT CLANG_TIDY_EXE AND WITH_CLANG_TIDY)
   message(WARNING "clang-tidy not found. Disable it.")
   set(CortiQCT_WITH_CLANG_TIDY OFF)
 else()
-  set(DO_CLANG_TIDY "${CLANG_TIDY_EXE}" "-checks=*")
+  set(DO_CLANG_TIDY "${CLANG_TIDY_EXE}" "-checks=*,-fuchsia-*")
 endif()
 
 ############################
