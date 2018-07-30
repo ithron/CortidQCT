@@ -1,3 +1,9 @@
+option(CortidQCT_GIT_SELF "Turn of if building examples or tools as stand-alone project" OFF)
+
+if (CortidQCT_GIT_SELF)
+  hunter_config(CortidQCT GIT_SELF)
+endif()
+
 hunter_config(libigl
   GIT_SUBMODULE "Dependencies/libigl"
   CMAKE_ARGS

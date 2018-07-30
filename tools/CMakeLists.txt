@@ -5,8 +5,15 @@ project(
   VERSION 1.0.0
 )
 
-############################
+i############################
 # Required Dependencies
+
+option(CortidQCT_GIT_SELF "Turn of if building examples or tools as stand-alone project" ON)
+
+if (NOT TARGET CortidQCT::Core)
+  hunter_add_package(CortidQCT)
+  find_package(CortidQCT CONFIG REQUIRED)
+endif()
 
 hunter_add_package(Microsoft.GSL)
 find_package(Microsoft.GSL CONFIG REQUIRED)
@@ -30,4 +37,8 @@ if (WITH_OPENCL)
       Microsoft.GSL::GSL
   )
 endif()
+
+
+############################
+# Targets
 

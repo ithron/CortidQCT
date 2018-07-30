@@ -1,5 +1,16 @@
 cmake_minimum_required(VERSION 3.8)
 
+include(${CMAKE_CURRENT_LIST_DIR}/../cmake/Init.cmake)
+
+############################
+# Project
+
+project(
+  LibCortidQCT
+  VERSION 1.0.0
+  LANGUAGES CXX
+)
+
 ############################
 # Targets
 
@@ -7,22 +18,10 @@ add_library(Core
   CortidQCT.cpp
 )
 
+target_link_libraries(Core PUBLIC Common)
+
 add_library(CortidQCT::Core ALIAS Core)
 
-target_compile_features(Core
-  PUBLIC
-    cxx_std_17
-)
-target_include_directories(Core
-  PUBLIC
-    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/../include>
-    $<INSTALL_INTERFACE:include>
-)
-
-set_property(
-  TARGET Core
-  PROPERTY CXX_EXTENSIONS OFF
-)
 
 ############################
 # Required Dependencies
@@ -65,16 +64,12 @@ endif()
 ############################
 # Exports
 
-install(TARGETS Core EXPORT CortidQCTConfig
+include(GNUInstallDirs)
+
+install(TARGETS Core EXPORT CortidQCTExport
   PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
   LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
   RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
   ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
 )
-
-install(EXPORT CortidQCTConfig NAMESPACE CortidQCT::
-  DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/igl/cmake
-)
-
-export(TARGETS ${ALL_MODULES} NAMESPACE CortidQCT:: FILE CortidQCTConfig.cmake)
 
