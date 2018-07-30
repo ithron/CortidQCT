@@ -19,6 +19,7 @@ add_library(Core
 )
 
 target_link_libraries(Core PUBLIC Common)
+set_target_properties(Core PROPERTIES OUTPUT_NAME "CortidQCT-Core")
 
 add_library(CortidQCT::Core ALIAS Core)
 
