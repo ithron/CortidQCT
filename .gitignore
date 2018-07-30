@@ -39,3 +39,4 @@ hunter/
 
 # Vim related
 .lvimrc
+*.swp
