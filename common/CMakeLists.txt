@@ -36,8 +36,15 @@ target_include_directories(Common
 target_compile_options(Common INTERFACE
   -Wall
   $<BUILD_INTERFACE:-Werror>
-  $<IF:$<CXX_COMPILER_ID:Clang>,-Weverything,>
 )
+
+if($<CXX_COMPILER_ID:Clang>)
+  target_compile_options(Common INTERFACE
+    -Weverything
+    -Wno-c++98-compat
+    -fcomment-block-commands=nosubgrouping
+  )
+endif()
 
 set_property(
   TARGET Common
