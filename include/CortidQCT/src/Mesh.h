@@ -39,12 +39,17 @@ public:
 
   /// Size type
   using Size = std::size_t;
+  
+  /// Label type
+  using Label = unsigned int;
 
 private:
   /// Type of vertex data storage
   using VertexData = std::vector<Scalar>;
   /// Type of index data storage
   using IndexData = std::vector<Index>;
+  /// Tyep of per vertex label storage
+  using LabelData = std::vector<Label>;
 
 public:
   /// @name Construction
@@ -108,6 +113,8 @@ private:
   VertexData vertexData_;
   /// Stores per triangle vertex indices in column major oder
   IndexData indexData_;
+  /// Stores per vertex labels
+  LabelData labelData_;
 };
 
 /*************************************
