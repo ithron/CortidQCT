@@ -5,7 +5,7 @@ project(
   VERSION 1.0.0
 )
 
-i############################
+############################
 # Required Dependencies
 
 option(CortidQCT_GIT_SELF "Turn of if building examples or tools as stand-alone project" ON)
