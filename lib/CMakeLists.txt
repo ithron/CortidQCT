@@ -12,14 +12,37 @@ project(
 )
 
 ############################
+# Options
+
+
+option(WITH_CLANG_TIDY "Use clang-tidy linter" OFF)
+find_program(
+  CLANG_TIDY_EXE
+  NAMES "clang-tidy"
+  DOC "Path to clang-tidy executable"
+)
+if (NOT CLANG_TIDY_EXE AND WITH_CLANG_TIDY)
+  message(WARNING "clang-tidy not found. Disable it.")
+  set(CortiQCT_WITH_CLANG_TIDY OFF)
+else()
+  set(DO_CLANG_TIDY "${CLANG_TIDY_EXE}" "-checks=*")
+endif()
+
+############################
 # Targets
 
 add_library(Core
   CortidQCT.cpp
+  Mesh.cpp
 )
 
 target_link_libraries(Core PUBLIC Common)
 set_target_properties(Core PROPERTIES OUTPUT_NAME "CortidQCT-Core")
+target_include_directories(Core PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/../include/CortidQCT/src")
+
+if (WITH_CLANG_TIDY)
+  set_target_properties(Core PROPERTIES CXX_CLANG_TIDY "${DO_CLANG_TIDY}")
+endif()
 
 add_library(CortidQCT::Core ALIAS Core)
 
