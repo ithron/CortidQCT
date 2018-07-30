@@ -35,3 +35,4 @@
 build/
 
 compile_commands.json
+hunter/
