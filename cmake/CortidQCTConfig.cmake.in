@@ -1,7 +1,7 @@
 
 @PACKAGE_INIT@
 
-include(${CMAKE_CURRENT_LIST_DIR}/CortidQCTExports.cmake)
+include(${CMAKE_CURRENT_LIST_DIR}/CortidQCTExport.cmake)
 
 if (TARGET CortidQCT::Core)
   set(CortifQCT_Core_FOUND TRUE)

@@ -36,6 +36,14 @@ install(EXPORT CortidQCTExport NAMESPACE CortidQCT::
   DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/CortidQCT/cmake
 )
 
+install(
+  FILES
+    "${CMAKE_BINARY_DIR}/CortidQCTExport.cmake"
+    "${CMAKE_BINARY_DIR}/CortidQCTConfig.cmake"
+  DESTINATION
+    ${CMAKE_INSTALL_DATADIR}/CortidQCT/cmake
+)
+
 ############################
 # Optional Sub-projects
 
