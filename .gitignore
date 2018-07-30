@@ -36,3 +36,6 @@ build/
 
 compile_commands.json
 hunter/
+
+# Vim related
+.lvimrc
