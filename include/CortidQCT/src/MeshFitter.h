@@ -3,7 +3,7 @@
 #include "MeasurementModel.h"
 #include "Mesh.h"
 
-#include "porpagate_const.h"
+#include "propagate_const.h"
 
 #include <memory>
 
