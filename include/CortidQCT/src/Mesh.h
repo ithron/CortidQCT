@@ -71,7 +71,7 @@ public:
   }
 
   /// Number of triangles
-  inline std::size_t triangleCount() noexcept {
+  inline Size triangleCount() noexcept {
     assert(indexData_.size() % 3 == 0);
     return indexData_.size() / 3;
   }
