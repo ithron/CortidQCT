@@ -18,10 +18,35 @@
 #include <igl/read_triangle_mesh.h>
 #include <igl/write_triangle_mesh.h>
 
+#include <algorithm>
+#include <cctype>
 #include <fstream>
 #include <limits>
 
 namespace CortidQCT {
+
+namespace Detail {
+
+std::string extension(std::string const &filename) {
+  return std::filesystem::path(filename).extension().string();
+}
+
+template <class Extensions>
+bool checkExtensions(std::string const &filename, Extensions &&extensions) {
+  using std::begin;
+  using std::end;
+  using std::find;
+
+  auto const ext = extension(filename);
+
+  return find_if(begin(extensions), end(extensions), [&ext](auto const &rhs) {
+           std::string query = rhs;
+           std::transform(begin(query), end(query), tolower);
+           return query == rhs;
+         }) != end(extensions);
+}
+
+} // namespace Detail
 
 template <class T>
 Mesh<T> &Mesh<T>::loadFromFile(std::string const &meshFilename,
@@ -32,6 +57,15 @@ Mesh<T> &Mesh<T>::loadFromFile(std::string const &meshFilename,
   using Eigen::MatrixXd;
   using Eigen::MatrixXi;
   using gsl::narrow;
+
+  // Check file format since igl does only print an error
+  std::string const supportedFormats[] = {"obj", "off", "stl",
+                                          "wrl", "ply", "mesh"};
+
+  if (!Detail::checkExtensions(meshFilename, supportedFormats)) {
+    throw std::invalid_argument("Unsupported file format '" +
+                                Detail::extension(meshFilename) + "'");
+  }
 
   MatrixXd vertices;
   MatrixXi indices;
@@ -99,6 +133,14 @@ Mesh<T> &Mesh<T>::loadFromFile(std::string const &meshFilename,
   using Eigen::MatrixXi;
   using gsl::narrow;
 
+  // Check file format since igl does only print an error
+  std::string const supportedFormats[] = {"off", "coff"};
+
+  if (!Detail::checkExtensions(meshFilename, supportedFormats)) {
+    throw std::invalid_argument("Unsupported file format '" +
+                                Detail::extension(meshFilename) + "'");
+  }
+
   MatrixXd vertices, colors;
   MatrixXi indices;
 
@@ -146,6 +188,15 @@ void Mesh<T>::writeToFile(std::string const &meshFilename,
   using Eigen::Map;
   using Eigen::Matrix;
   using gsl::narrow;
+
+  // Check file format since igl does only print an error
+  std::string const supportedFormats[] = {"obj", "off", "stl",
+                                          "wrl", "ply", "mesh"};
+
+  if (!Detail::checkExtensions(meshFilename, supportedFormats)) {
+    throw std::invalid_argument("Unsupported file format '" +
+                                Detail::extension(meshFilename) + "'");
+  }
 
   // Convert vertex and index data to a format igl understads
   Map<Matrix<Scalar, Dynamic, Dynamic> const> const Vmap{

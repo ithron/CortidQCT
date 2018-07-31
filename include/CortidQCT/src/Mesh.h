@@ -105,6 +105,8 @@ public:
   /// @return Reference to the loaded mesh
   /// @throws std::invalid_argument if the mesh or the labels could not be
   /// loaded from the given filename
+  /// @throws std::invalid_argument if the file file format could not be
+  /// recognized
   Mesh &loadFromFile(std::string const &meshFilename,
                      std::string const &labelFilename);
 
@@ -122,6 +124,8 @@ public:
   /// @return Reference to the loaded mesh
   /// @throws std::invalid_argument if the mesh could not be loaded from the
   /// given filename
+  /// @throws std::invalid_argument if the file file format could not be
+  /// recognized
   Mesh &loadFromFile(std::string const &meshFilename,
                      ColorToLabelMap<Label, double> const &colorMap =
                          ColorToLabelMaps::defaultMap<Label, double>);
@@ -137,6 +141,8 @@ public:
   /// @param labelFilename path to the file to write the labels to
   /// @throws std::invalid_argument if the mesh or the labels could not be
   /// writted to the given file
+  /// @throws std::invalid_argument if the file file format could not be
+  /// recognized
   void writeToFile(std::string const &meshFilename,
                    std::string const &labelFilename) const;
 
@@ -154,6 +160,8 @@ public:
   /// to `LabelToColorMaps::defaultMap()`.
   /// @throws std::invalid_argument if the mesh could not be
   /// writted to the given file
+  /// @throws std::invalid_argument if the file file format could not be
+  /// recognized
   void writeToFile(std::string const &meshFilename,
                    LabelToColorMap<double, Label> const &labelMap =
                        LabelToColorMaps::defaultMap<double, Label>) const;
