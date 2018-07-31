@@ -16,6 +16,7 @@
 #include <gsl/gsl>
 #include <igl/readOFF.h>
 #include <igl/read_triangle_mesh.h>
+#include <igl/writeOFF.h>
 #include <igl/write_triangle_mesh.h>
 
 #include <algorithm>
@@ -227,6 +228,50 @@ void Mesh<T>::writeToFile(std::string const &meshFilename,
   Map<Matrix<Label, Dynamic, 1> const> const labelMap{
       labelData_.data(), narrow<Eigen::Index>(vertexCount())};
   labelStream << labelMap;
+}
+
+template <class T>
+void Mesh<T>::writeToFile(
+    std::string const &meshFilename,
+    LabelToColorMap<double, Label> const &labelMap) const {
+
+  using Eigen::Dynamic;
+  using Eigen::Map;
+  using Eigen::Matrix;
+  using gsl::narrow;
+
+  // Check file format since igl does only print an error
+  std::string const supportedFormats[] = {"off", "coff"};
+
+  if (!Detail::checkExtensions(meshFilename, supportedFormats)) {
+    throw std::invalid_argument("Unsupported file format '" +
+                                Detail::extension(meshFilename) + "'");
+  }
+
+  // Convert vertex and index data to a format igl understads
+  Map<Matrix<Scalar, Dynamic, Dynamic> const> const Vmap{
+      vertexData_.data(), narrow<Eigen::Index>(vertexCount()), 3};
+  Map<Matrix<Index, Dynamic, Dynamic> const> const Fmap{
+      indexData_.data(), narrow<Eigen::Index>(triangleCount()), 3};
+
+  Eigen::MatrixXd const V = Vmap.template cast<double>();
+  Eigen::MatrixXi const F = Fmap.template cast<int>();
+  Eigen::MatrixXd C(V.rows(), 3);
+
+  // convert labels to colors
+  for (auto i = 0; i < V.rows(); ++i) {
+    auto const label = labelData_[narrow<Size>(i)];
+    auto const color = labelMap(label);
+
+    C(i, 0) = color[0];
+    C(i, 1) = color[1];
+    C(i, 2) = color[2];
+  }
+
+  if (!igl::writeOFF(meshFilename, V, F, C)) {
+    throw std::invalid_argument("Failed to write mesh to file '" +
+                                meshFilename + "'");
+  }
 }
 
 /*************************************
