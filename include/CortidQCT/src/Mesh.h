@@ -11,6 +11,8 @@
 
 #pragma once
 
+#include "ColorToLabelMap.h"
+
 #include <stdexcept>
 #include <string>
 #include <type_traits>
@@ -39,7 +41,7 @@ public:
 
   /// Size type
   using Size = std::size_t;
-  
+
   /// Label type
   using Label = unsigned int;
 
@@ -87,15 +89,39 @@ public:
   /// @name IO
   /// @{
 
-  /// @brief Load mesh from ASCII file using format auto detecttion
+  /// @brief Load mesh and labels from ASCII file using format auto detection
   ///
   /// Supported file formats are: obj, off, stl, wrl, ply, mesh.
+  /// If a .off file with color data (COFF) is given and the labels should be
+  /// extracted from the color data, use the overload
+  /// `loadFromFile(std::string const &, ColorToLabelMap const &)`.
   ///
-  /// @param filename Path to the file to load the mesh from
+  /// @param meshFilename Path to the file to load the mesh from
+  /// @param labelFilename Optional path to the file to load the vertex labels
+  /// from.
+  /// @return Reference to the loaded mesh
+  /// @throws std::invalid_argument if the mesh or the labels could not be
+  /// loaded from the given filename
+  Mesh &loadFromFile(std::string const &meshFilename,
+                     std::string const &labelFilename);
+
+  /// @brief Load mesh from ASCII file using format auto detection and extract
+  /// labels from per-vertex colors
+  ///
+  /// Supported file formats are: off (COFF).
+  /// Per-vertex colors are converted to labels using the given colormap.
+  /// For other formats use the overload
+  /// `loadFromFile(std::string const &, std::string const &)`
+  ///
+  /// @param meshFilename Path to the file to load the mesh from
+  /// @param colorMap Mapping from RGB colorspace to labels.
+  /// Defaults to `ColorToLabelMaps::defaultMap()`.
   /// @return Reference to the loaded mesh
   /// @throws std::invalid_argument if the mesh could not be loaded from the
   /// given filename
-  Mesh &loadFromFile(std::string const &filename);
+  Mesh &loadFromFile(std::string const &meshFilename,
+                     ColorToLabelMap<Label, double> const &colorMap =
+                         ColorToLabelMaps::defaultMap<Label, double>);
 
   /// @brief Writes mesh to ASCII file using format auto detection
   ///
