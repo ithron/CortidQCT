@@ -12,7 +12,9 @@
 #pragma once
 
 #include "ColorToLabelMap.h"
+#include "LabelToColorMap.h"
 
+#include <array>
 #include <stdexcept>
 #include <string>
 #include <type_traits>
@@ -67,13 +69,13 @@ public:
   /// @{
 
   /// Number of vertices
-  inline Size vertexCount() noexcept {
+  inline Size vertexCount() const noexcept {
     assert(vertexData_.size() % 3 == 0);
     return vertexData_.size() / 3;
   }
 
   /// Number of triangles
-  inline Size triangleCount() noexcept {
+  inline Size triangleCount() const noexcept {
     assert(indexData_.size() % 3 == 0);
     return indexData_.size() / 3;
   }
@@ -81,7 +83,7 @@ public:
   /// @brief true iff the mesh is empty
   ///
   /// The mesh is empty iff the triangle or the vertex count is zero
-  inline bool isEmpty() noexcept {
+  inline bool isEmpty() const noexcept {
     return triangleCount() == 0 || vertexCount() == 0;
   }
   /// @}
@@ -94,7 +96,8 @@ public:
   /// Supported file formats are: obj, off, stl, wrl, ply, mesh.
   /// If a .off file with color data (COFF) is given and the labels should be
   /// extracted from the color data, use the overload
-  /// `loadFromFile(std::string const &, ColorToLabelMap const &)`.
+  /// `loadFromFile(std::string const &, ColorToLabelMap<Label, double> const
+  /// &)`.
   ///
   /// @param meshFilename Path to the file to load the mesh from
   /// @param labelFilename Optional path to the file to load the vertex labels
@@ -125,12 +128,35 @@ public:
 
   /// @brief Writes mesh to ASCII file using format auto detection
   ///
-  /// Supported file formats are: obj, off, stl, wrl, ply, mesh
+  /// Supported file formats are: obj, off, stl, wrl, ply, mesh.
+  /// Labels are written rowwise to `labelFilename`.
+  /// For encoding the labels in the color attribute use the overload
+  /// `writeToFile(std::string const &, LabelToColorMap<double, Label> const &)`.
   ///
-  /// @param filename to the file to write the mesh to
-  /// @throws std::invalid_argument if the mesh could nto be writted to the
-  /// given file
-  void writeToFile(std::string const &filename) const;
+  /// @param meshFilename path to the file to write the mesh to
+  /// @param labelFilename path to the file to write the labels to
+  /// @throws std::invalid_argument if the mesh or the labels could not be
+  /// writted to the given file
+  void writeToFile(std::string const &meshFilename,
+                   std::string const &labelFilename) const;
+
+  /// @brief Writes mesh to ASCII file using format auto detection and encode
+  /// labels as colors.
+  ///
+  /// Supported file formats are: off (coff).
+  /// The labels are encoded in per-vertex colors using the given label to
+  /// color map.
+  /// For storing the labels in a separate file use the overload
+  /// `writeToFile(std::string const &, std::string const &)`.
+  ///
+  /// @param meshFilename path to the file to write the mesh to
+  /// @param labelMap function that maps labels to RGB color values. Defaults
+  /// to `LabelToColorMaps::defaultMap()`.
+  /// @throws std::invalid_argument if the mesh could not be
+  /// writted to the given file
+  void writeToFile(std::string const &meshFilename,
+                   LabelToColorMap<double, Label> const &labelMap =
+                       LabelToColorMaps::defaultMap<double, Label>) const;
 
   /// @}
 
