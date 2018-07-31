@@ -11,6 +11,7 @@
 
 #include "Mesh.h"
 #include "MatrixIO.h"
+#include "filesystem.h"
 
 #include <gsl/gsl>
 #include <igl/readOFF.h>
@@ -138,7 +139,44 @@ Mesh<T> &Mesh<T>::loadFromFile(std::string const &meshFilename,
 }
 
 template <class T>
-void Mesh<T>::writeToFile(std::string const & /*unused*/) const {}
+void Mesh<T>::writeToFile(std::string const &meshFilename,
+                          std::string const &labelFilename) const {
+
+  using Eigen::Dynamic;
+  using Eigen::Map;
+  using Eigen::Matrix;
+  using gsl::narrow;
+
+  // Convert vertex and index data to a format igl understads
+  Map<Matrix<Scalar, Dynamic, Dynamic> const> const Vmap{
+      vertexData_.data(), narrow<Eigen::Index>(vertexCount()), 3};
+  Map<Matrix<Index, Dynamic, Dynamic> const> const Fmap{
+      indexData_.data(), narrow<Eigen::Index>(triangleCount()), 3};
+
+  Eigen::MatrixXd const V = Vmap.template cast<double>();
+  Eigen::MatrixXi const F = Fmap.template cast<int>();
+
+  if (!igl::write_triangle_mesh(meshFilename, V, F)) {
+    throw std::invalid_argument("Failed to write mesh to file '" +
+                                meshFilename + "'");
+  }
+
+  // Write lables
+  std::ofstream labelStream{labelFilename};
+
+  if (!labelStream) {
+    // delte mesh file to undo previous steps
+    std::error_code errorCode;
+    std::filesystem::remove(meshFilename, errorCode);
+
+    throw std::invalid_argument("Failed to write per-vertex labels to file '" +
+                                labelFilename + "'");
+  }
+
+  Map<Matrix<Label, Dynamic, 1> const> const labelMap{
+      labelData_.data(), narrow<Eigen::Index>(vertexCount())};
+  labelStream << labelMap;
+}
 
 /*************************************
  * Explicit template instanciations
