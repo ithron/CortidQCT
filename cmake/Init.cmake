@@ -9,3 +9,19 @@ HunterGate(
   FILEPATH "${CMAKE_CURRENT_LIST_DIR}/Hunter/config.cmake"
 )
 
+set(CPP_STANDARD_LIBRARY "stdc++" CACHE STRING
+  "Standard library used (e.g. stdc++ or c++)"
+)
+
+set_property(CACHE CPP_STANDARD_LIBRARY PROPERTY STRINGS c++ stdc++)
+
+if ("${CPP_STANDARD_LIBRARY}" STREQUAL "c++")
+  if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang" AND "${CMAKE_CXX_COMPILER_VERSION}" VERSION_LESS "7")
+    set(CortidQCT_FILESYSTEM_LIBRARY c++experimental)
+  else()
+    set(CortidQCT_FILESYSTEM_LIBRARY c++fs)
+  endif()
+else()
+    set(CortidQCT_FILESYSTEM_LIBRARY stdc++fs)
+endif()
+
