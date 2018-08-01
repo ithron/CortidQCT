@@ -29,7 +29,7 @@ namespace CortidQCT {
 namespace Detail {
 
 std::string extension(std::string const &filename) {
-  return std::filesystem::path(filename).extension().string();
+  return std::filesystem::path(filename).extension().string().substr(1);
 }
 
 template <class Extensions>
