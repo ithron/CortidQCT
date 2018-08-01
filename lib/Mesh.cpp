@@ -42,8 +42,8 @@ bool checkExtensions(std::string const &filename, Extensions &&extensions) {
 
   return find_if(begin(extensions), end(extensions), [&ext](auto const &rhs) {
            std::string query = rhs;
-           std::transform(begin(query), end(query), tolower);
-           return query == rhs;
+           std::transform(begin(query), end(query), begin(query), tolower);
+           return query == ext;
          }) != end(extensions);
 }
 
