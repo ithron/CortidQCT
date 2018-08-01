@@ -27,11 +27,15 @@ find_package(GTest CONFIG REQUIRED)
 ############################
 # Targets
 
-add_executable(TestFitMesh FitMesh.cpp)
-target_link_libraries(TestFitMesh
   PRIVATE
     GTest::main
     CortidQCT::Core
 )
-add_test(TestFitMesh TestFitMesh)
+# add_executable(TestFitMesh FitMesh.cpp)
+# target_link_libraries(TestFitMesh
+#   PRIVATE
+#     GTest::main
+#     CortidQCT::Core
+# )
+# add_test(TestFitMesh TestFitMesh)
 
