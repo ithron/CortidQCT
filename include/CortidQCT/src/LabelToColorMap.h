@@ -61,7 +61,7 @@ inline std::array<Scalar, 3> defaultMap(Label label) {
   auto const green = static_cast<Scalar>(greenScaled) / Scalar{255};
   auto const blue = static_cast<Scalar>(blueScaled) / Scalar{255};
 
-  return std::array<Scalar, 3>{{red, green.blue}};
+  return std::array<Scalar, 3>{{red, green, blue}};
 }
 
 } // namespace LabelToColorMaps
