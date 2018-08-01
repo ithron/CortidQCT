@@ -39,8 +39,8 @@ add_library(Core
 target_link_libraries(Core
   PUBLIC
     Common
-  PRIVATE
     ${CortidQCT_FILESYSTEM_LIBRARY}
+  PRIVATE
 )
 set_target_properties(Core PROPERTIES OUTPUT_NAME "CortidQCT-Core")
 target_include_directories(Core PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/../include/CortidQCT/src")
