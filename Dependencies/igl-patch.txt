@@ -1,0 +1,14 @@
+--- include/igl/ply.h	2018-07-30 08:57:17.592768263 +0200
++++ include/igl/ply.h	2018-08-01 12:24:30.197606064 +0200
+@@ -1119,7 +1119,10 @@
+ 
+   /* set return values about the elements */
+ 
+-  elist = (char **) myalloc (sizeof (char *) * plyfile->nelems);
++  if (plyfile->nelems > 0)
++    elist = (char **) myalloc (sizeof (char *) * plyfile->nelems);
++  else
++    elist = NULL;
+   for (i = 0; i < plyfile->nelems; i++)
+     elist[i] = strdup (plyfile->elems[i]->name);
+ 
