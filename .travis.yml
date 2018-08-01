@@ -15,90 +15,98 @@ matrix:
   include:
     - os: linux
       addons:
-        sources:
-          - ubuntu-toolchain-r-test
-          - llvm-toolchain-trusty-6.0
-        packages:
-          - g++-5
-          - clang-tidy-6.0
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+            - llvm-toolchain-trusty-6.0
+          packages:
+            - g++-5
+            - clang-tidy-6.0
       env:
         - MATRIX_EVAL="CC=gcc-5 && CXX=g++-5"
         - BUILD_TYPE=Debug
 
     - os: linux
       addons:
-        sources:
-          - ubuntu-toolchain-r-test
-          - llvm-toolchain-trusty-6.0
-        packages:
-          - g++-5
-          - clang-tidy-6.0
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+            - llvm-toolchain-trusty-6.0
+          packages:
+            - g++-5
+            - clang-tidy-6.0
       env:
         - MATRIX_EVAL="CC=gcc-5 && CXX=g++-5"
         - BUILD_TYPE=Release
 
     - os: linux
       addons:
-        sources:
-          - ubuntu-toolchain-r-test
-        packages:
-          - g++-6
-          - clang-tidy-6.0
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-6
+            - clang-tidy-6.0
       env:
         - MATRIX_EVAL="CC=gcc-6 && CXX=g++-6"
         - BUILD_TYPE=Debug
 
     - os: linux
       addons:
-        sources:
-          - ubuntu-toolchain-r-test
-        packages:
-          - g++-6
-          - clang-tidy-6.0
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-6
+            - clang-tidy-6.0
       env:
         - MATRIX_EVAL="CC=gcc-6 && CXX=g++-6"
         - BUILD_TYPE=Release
 
     - os: linux
       addons:
-        sources:
-          - llvm-toolchain-trusty-5.0
-        packages:
-          - clang-5.0
-          - clang-tidy-6.0
+        apt:
+          sources:
+            - llvm-toolchain-trusty-5.0
+          packages:
+            - clang-5.0
+            - clang-tidy-6.0
       env:
         - MATRIX_EVAL="CC=clang-5.0 && CXX=clang++-5.0"
         - BUILD_TYPE=Debug
 
     - os: linux
       addons:
-        sources:
-          - llvm-toolchain-trusty-5.0
-        packages:
-          - clang-5.0
-          - clang-tidy-6.0
+        apt:
+          sources:
+            - llvm-toolchain-trusty-5.0
+          packages:
+            - clang-5.0
+            - clang-tidy-6.0
       env:
         - MATRIX_EVAL="CC=clang-5.0 && CXX=clang++-5.0"
         - BUILD_TYPE=Release
 
     - os: linux
       addons:
-        sources:
-          - llvm-toolchain-trusty-6.0
-        packages:
-          - clang-6.0
-          - clang-tidy-6.0
+        apt:
+          sources:
+            - llvm-toolchain-trusty-6.0
+          packages:
+            - clang-6.0
+            - clang-tidy-6.0
       env:
         - MATRIX_EVAL="CC=clang-6.0 && CXX=clang++-6.0"
         - BUILD_TYPE=Debug
 
     - os: linux
       addons:
-        sources:
-          - llvm-toolchain-trusty-6.0
-        packages:
-          - clang-6.0
-          - clang-tidy-6.0
+        apt:
+          sources:
+            - llvm-toolchain-trusty-6.0
+          packages:
+            - clang-6.0
+            - clang-tidy-6.0
       env:
         - MATRIX_EVAL="CC=clang-6.0 && CXX=clang++-6.0"
         - BUILD_TYPE=Release
