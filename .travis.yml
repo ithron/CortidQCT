@@ -21,7 +21,7 @@ matrix:
             - llvm-toolchain-trusty-6.0
           packages:
             - g++-5
-            - clang-tidy-6.0
+            - clang-tidy
       env:
         - MATRIX_EVAL="CC=gcc-5 && CXX=g++-5"
         - BUILD_TYPE=Debug
@@ -34,7 +34,7 @@ matrix:
             - llvm-toolchain-trusty-6.0
           packages:
             - g++-5
-            - clang-tidy-6.0
+            - clang-tidy
       env:
         - MATRIX_EVAL="CC=gcc-5 && CXX=g++-5"
         - BUILD_TYPE=Release
@@ -46,7 +46,7 @@ matrix:
             - ubuntu-toolchain-r-test
           packages:
             - g++-6
-            - clang-tidy-6.0
+            - clang-tidy
       env:
         - MATRIX_EVAL="CC=gcc-6 && CXX=g++-6"
         - BUILD_TYPE=Debug
@@ -58,7 +58,7 @@ matrix:
             - ubuntu-toolchain-r-test
           packages:
             - g++-6
-            - clang-tidy-6.0
+            - clang-tidy
       env:
         - MATRIX_EVAL="CC=gcc-6 && CXX=g++-6"
         - BUILD_TYPE=Release
@@ -70,7 +70,7 @@ matrix:
             - llvm-toolchain-trusty-5.0
           packages:
             - clang-5.0
-            - clang-tidy-6.0
+            - clang-tidy
       env:
         - MATRIX_EVAL="CC=clang-5.0 && CXX=clang++-5.0"
         - BUILD_TYPE=Debug
@@ -82,7 +82,7 @@ matrix:
             - llvm-toolchain-trusty-5.0
           packages:
             - clang-5.0
-            - clang-tidy-6.0
+            - clang-tidy
       env:
         - MATRIX_EVAL="CC=clang-5.0 && CXX=clang++-5.0"
         - BUILD_TYPE=Release
@@ -94,7 +94,7 @@ matrix:
             - llvm-toolchain-trusty-6.0
           packages:
             - clang-6.0
-            - clang-tidy-6.0
+            - clang-tidy
       env:
         - MATRIX_EVAL="CC=clang-6.0 && CXX=clang++-6.0"
         - BUILD_TYPE=Debug
@@ -106,7 +106,7 @@ matrix:
             - llvm-toolchain-trusty-6.0
           packages:
             - clang-6.0
-            - clang-tidy-6.0
+            - clang-tidy
       env:
         - MATRIX_EVAL="CC=clang-6.0 && CXX=clang++-6.0"
         - BUILD_TYPE=Release
