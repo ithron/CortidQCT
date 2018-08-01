@@ -11,7 +11,7 @@
 
 #pragma once
 
-#include "src/MeshFitter.h"
+#include "src/Mesh.h"
 
 /**
  * @brief Name namespace for CortidQCT library
