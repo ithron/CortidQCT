@@ -23,6 +23,10 @@ endif()
 hunter_add_package(GTest)
 find_package(GTest CONFIG REQUIRED)
 
+set(CortidQCT_DATADIR "${CMAKE_CURRENT_LIST_DIR}/../data")
+
+configure_file(tests_config.h.in tests_config.h @ONLY)
+
 
 ############################
 # Targets
@@ -33,6 +37,7 @@ target_link_libraries(TestMesh
     GTest::main
     CortidQCT::Core
 )
+target_include_directories(TestMesh PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
 add_test(TestMesh TestMesh)
 
 # add_executable(TestFitMesh FitMesh.cpp)

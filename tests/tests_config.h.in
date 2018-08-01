@@ -1,0 +1,4 @@
+#pragma once
+
+#cmakedefine CortidQCT_DATADIR "@CortidQCT_DATADIR@"
+

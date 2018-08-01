@@ -1,3 +1,5 @@
+#include "tests_config.h"
+
 #include <CortidQCT/CortidQCT.h>
 
 #include <gtest/gtest.h>
