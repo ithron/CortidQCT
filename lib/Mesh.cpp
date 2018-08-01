@@ -253,17 +253,20 @@ void Mesh<T>::writeToFile(
   }
 
   // Convert vertex and index data to a format igl understads
-  Map<Matrix<Scalar, Dynamic, Dynamic> const> const Vmap{
-      vertexData_.data(), narrow<Eigen::Index>(vertexCount()), 3};
-  Map<Matrix<Index, Dynamic, Dynamic> const> const Fmap{
-      indexData_.data(), narrow<Eigen::Index>(triangleCount()), 3};
+  Map<Matrix<Scalar, 3, Dynamic> const> const Vmap{
+      vertexData_.data(), 3, narrow<Eigen::Index>(vertexCount())};
+  Map<Matrix<Index, 3, Dynamic> const> const Fmap{
+      indexData_.data(), 3, narrow<Eigen::Index>(triangleCount())};
 
-  Eigen::MatrixXd const V = Vmap.template cast<double>();
-  Eigen::MatrixXi const F = Fmap.template cast<int>();
-  Eigen::MatrixXd C(V.rows(), 3);
+  Matrix<double, Dynamic, 3> const V = Vmap.template cast<double>().transpose();
+  Matrix<int, Dynamic, 3> const F = Fmap.template cast<int>().transpose();
+  Matrix<double, Dynamic, 3> C(Vmap.cols(), 3);
+
+  Ensures(V.rows() > 0 & F.rows() > 0);
+  Ensures(C.rows() == V.rows());
 
   // convert labels to colors
-  for (auto i = 0; i < V.rows(); ++i) {
+  for (auto i = 0; i < C.rows(); ++i) {
     auto const label = labelData_[narrow<Size>(i)];
     auto const color = labelMap(label);
 
@@ -271,6 +274,14 @@ void Mesh<T>::writeToFile(
     C(i, 1) = color[1];
     C(i, 2) = color[2];
   }
+
+  // clang-format off
+  // This assertion is to silence clang-tidy linter, somehow it does not
+  // recognize that C was allocated before and complains about null pointer
+  // dereferenceing when igl::writeOFF() calls C.maxCoeff().
+  // NOLINTNEXTLINE(cppcoreguidelines-pro-bounds-array-to-pointer-decay, hicpp-no-array-decay)
+  assert(C.data() != nullptr);
+  // clang-format on
 
   if (!igl::writeOFF(meshFilename, V, F, C)) {
     throw std::invalid_argument("Failed to write mesh to file '" +
