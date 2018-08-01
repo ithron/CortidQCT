@@ -113,8 +113,8 @@ Mesh<T> &Mesh<T>::loadFromFile(std::string const &meshFilename,
   Map<Matrix<Scalar, 3, Dynamic>>{vertexData.data(), 3, vertices.rows()} =
       vertices.cast<Scalar>().transpose();
   Map<Matrix<Index, 3, Dynamic>>{indexData.data(), 3, indices.rows()} =
-      vertices.cast<Index>().transpose();
-  Map<Matrix<Label, Dynamic, 1>>{labelData.data(), 1, vertices.rows()} = labels;
+      indices.cast<Index>().transpose();
+  Map<Matrix<Label, Dynamic, 1>>{labelData.data(), vertices.rows(), 1} = labels;
 
   Ensures(vertexData.size() == 3 * lVertexCount);
   Ensures(indexData.size() == 3 * lTriangleCount);
@@ -168,7 +168,7 @@ Mesh<T> &Mesh<T>::loadFromFile(std::string const &meshFilename,
   Map<Matrix<Scalar, 3, Dynamic>>{vertexData.data(), 3, vertices.rows()} =
       vertices.cast<Scalar>().transpose();
   Map<Matrix<Index, 3, Dynamic>>{indexData.data(), 3, indices.rows()} =
-      vertices.cast<Index>().transpose();
+      indices.cast<Index>().transpose();
 
   // Convert colors to labels
   for (auto i = 0; i < colors.rows(); ++i) {
