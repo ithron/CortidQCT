@@ -1,5 +1,8 @@
 language: cpp
 
+git:
+  submodules: false
+
 env:
   global:
     - HUNTER_ROOT=${HOME}/hunter
@@ -102,6 +105,7 @@ matrix:
 
 before_install:
   - eval "${MATRIX_EVAL}"
+  - git submodule update --init
 
 script:
   - cmake -DCMAKE_BUILD_TYPE=${BUILD_TYPE} -DBUILD_TOOLS=ON -DBUILD_TESTS=ON -DCMAKE_EXPORT_COMPILE_COMMANDS-ON -DWITH_CLANG_TIDY=ON -DBUILD_DOC-OFF .
