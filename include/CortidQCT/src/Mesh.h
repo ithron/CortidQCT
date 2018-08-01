@@ -135,7 +135,8 @@ public:
   /// Supported file formats are: obj, off, stl, wrl, ply, mesh.
   /// Labels are written rowwise to `labelFilename`.
   /// For encoding the labels in the color attribute use the overload
-  /// `writeToFile(std::string const &, LabelToColorMap<double, Label> const &)`.
+  /// `writeToFile(std::string const &, LabelToColorMap<double, Label> const
+  /// &)`.
   ///
   /// @param meshFilename path to the file to write the mesh to
   /// @param labelFilename path to the file to write the labels to
@@ -168,6 +169,69 @@ public:
 
   /// @}
 
+  /**
+   * @name Raw Data Access
+   * The methods in this section all call a functional with a pointer to raw
+   * data as its argument. The pointer only guaranteed to be valid within the
+   * call to the given functional.
+   *
+   * @attention Do not return the raw data pointer or save it in any other way!
+   * @{
+   */
+
+  /**
+   * @brief Calls the given functional with an unsafe pointer to the raw
+   * vertex storage.
+   *
+   * Vertices are stored contiguously in memory: [x_0, y_0, z_0, x_1, y_1, z_1,
+   * ...].
+   *
+   * @tparam F Function that accepts a `Scalar const *` pointer as the only
+   * argument.
+   * @throws noexcept(conditional) iff `f(Scalar const *)` is noexcept.
+   * @return The return value of the functional
+   */
+  template <class F>
+  inline std::invoke_result_t<F, Scalar const *> withUnsafeVertexPointer(F &&f) const
+      noexcept(noexcept(f(vertexData_.data()))) {
+    return f(vertexData_.data());
+  }
+
+  /**
+   * @brief Calls the given functional with an unsafe pointer to the raw
+   * index storage.
+   *
+   * Indices are stored contiguously in memory: [i_0, i_1, ...].
+   *
+   * @tparam F Function that accepts a `Index const *` pointer as the only
+   * argument.
+   * @throws noexcept(conditional) iff `f(Index const *)` is noexcept.
+   * @return The return value of the functional
+   */
+  template <class F>
+  inline std::invoke_result_t<F, Index const *> withUnsafeIndexPointer(F &&f) const
+      noexcept(noexcept(f(indexData_.data()))) {
+    return f(indexData_.data());
+  }
+
+  /**
+   * @brief Calls the given functional with an unsafe pointer to the raw
+   * label storage.
+   *
+   * Labels are stored contiguously in memory: [l_0, l_1, ...].
+   *
+   * @tparam F Function that accepts a `Label const *` pointer as the only
+   * argument.
+   * @throws noexcept(conditional) iff `f(Label const *)` is noexcept.
+   * @return The return value of the functional
+   */
+  template <class F>
+  inline std::invoke_result_t<F, Label const *> withUnsafeLabelPointer(F &&f) const
+      noexcept(noexcept(f(labelData_.data()))) {
+    return f(labelData_.data());
+  }
+
+  /// @}
 private:
   /// Stores vertex coordinates in column major order
   VertexData vertexData_;
