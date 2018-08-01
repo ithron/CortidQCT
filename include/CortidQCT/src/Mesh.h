@@ -144,6 +144,7 @@ public:
   /// writted to the given file
   /// @throws std::invalid_argument if the file file format could not be
   /// recognized
+  /// @note Does nothing on empty meshes
   void writeToFile(std::string const &meshFilename,
                    std::string const &labelFilename) const;
 
@@ -163,6 +164,7 @@ public:
   /// writted to the given file
   /// @throws std::invalid_argument if the file file format could not be
   /// recognized
+  /// @note Does nothing on empty meshes
   void writeToFile(std::string const &meshFilename,
                    LabelToColorMap<double, Label> const &labelMap =
                        LabelToColorMaps::defaultMap<double, Label>) const;

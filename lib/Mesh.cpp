@@ -190,6 +190,8 @@ void Mesh<T>::writeToFile(std::string const &meshFilename,
   using Eigen::Matrix;
   using gsl::narrow;
 
+  if (isEmpty()) { return; }
+
   // Check file format since igl does only print an error
   std::string const supportedFormats[] = {"obj", "off", "stl",
                                           "wrl", "ply", "mesh"};
@@ -239,6 +241,8 @@ void Mesh<T>::writeToFile(
   using Eigen::Map;
   using Eigen::Matrix;
   using gsl::narrow;
+
+  if (isEmpty()) { return; };
 
   // Check file format since igl does only print an error
   std::string const supportedFormats[] = {"off", "coff"};
