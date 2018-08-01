@@ -73,7 +73,10 @@ Mesh<T> &Mesh<T>::loadFromFile(std::string const &meshFilename,
 
   constexpr auto magicLabel = std::numeric_limits<Label>::max();
 
-  if (!igl::read_triangle_mesh(meshFilename, vertices, indices)) {
+  // Ensure the file exists and is readable, otherwise
+  // igl::read_triangle_mesh() might SEGFAULT.
+  if (!std::ifstream{meshFilename} ||
+      !igl::read_triangle_mesh(meshFilename, vertices, indices)) {
     throw std::invalid_argument("Failed to read mesh from file '" +
                                 meshFilename + "'");
   }
@@ -145,7 +148,10 @@ Mesh<T> &Mesh<T>::loadFromFile(std::string const &meshFilename,
   MatrixXd vertices, colors;
   MatrixXi indices;
 
-  if (!igl::readOFF(meshFilename, vertices, indices, colors)) {
+  // Ensure the file exists and is readable, otherwise
+  // igl::readOFF() might SEGFAULT.
+  if (!std::ifstream{meshFilename} ||
+      !igl::readOFF(meshFilename, vertices, indices, colors)) {
     throw std::invalid_argument("Failed to read mesh from file '" +
                                 meshFilename + "'");
   }
