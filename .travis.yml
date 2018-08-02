@@ -11,69 +11,161 @@ cache:
   directories:
     - ${HUNTER_ROOT}
 
+#################
+# BUILD MATRIX
+#
 matrix:
   include:
+    ##########
+    # Linux
+
+    ##########
+    # GCC-7
+
+    # Debug
     - os: linux
       addons:
         apt:
           sources:
             - ubuntu-toolchain-r-test
           packages:
-            - g++-6
+            - g++-7
       env:
-        - MATRIX_EVAL="CC=gcc-6 && CXX=g++-6"
+        - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
         - BUILD_TYPE=Debug
 
+    # Release
     - os: linux
       addons:
         apt:
           sources:
             - ubuntu-toolchain-r-test
           packages:
-            - g++-6
+            - g++-7
       env:
-        - MATRIX_EVAL="CC=gcc-6 && CXX=g++-6"
+        - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
         - BUILD_TYPE=Release
 
+    ##########
+    # GCC-8
+
+    # Debug
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-8
+      env:
+        - MATRIX_EVAL="CC=gcc-8 && CXX=g++-8"
+        - BUILD_TYPE=Debug
+
+    # Release
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-8
+      env:
+        - MATRIX_EVAL="CC=gcc-8 && CXX=g++-8"
+        - BUILD_TYPE=Release
+
+    ##############
+    # Clang 3.9
+
+    # Debug
+    - os: linux
+      addons:
+        apt:
+          packages:
+            - clang-3.9
+      env:
+        - MATRIX_EVAL="CC=clang-3.9 && CXX=clang++-3.9"
+        - BUILD_TYPE=Debug
+
+    # Release
+    - os: linux
+      addons:
+        apt:
+          packages:
+            - clang-3.9
+      env:
+        - MATRIX_EVAL="CC=clang-3.9 && CXX=clang++-3.9"
+        - BUILD_TYPE=Release
+
+    ##############
+    # Clang 4.0
+
+    # Debug
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - llvm-toolchain-trusty-4.0
+          packages:
+            - clang-4.0
+      env:
+        - MATRIX_EVAL="CC=clang-4.0 && CXX=clang++-4.0"
+        - BUILD_TYPE=Debug
+
+    # Debug
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - llvm-toolchain-trusty-4.0
+          packages:
+            - clang-4.0
+      env:
+        - MATRIX_EVAL="CC=clang-4.0 && CXX=clang++-4.0"
+        - BUILD_TYPE=Release
+
+    ##############
+    # Clang 5.0
+
+    # Debug
     - os: linux
       addons:
         apt:
           sources:
             - llvm-toolchain-trusty-5.0
-            - ubuntu-toolchain-r-test
           packages:
-            - g++-6
             - clang-5.0
       env:
         - MATRIX_EVAL="CC=clang-5.0 && CXX=clang++-5.0"
         - BUILD_TYPE=Debug
 
+    # Debug
     - os: linux
       addons:
         apt:
           sources:
-            - ubuntu-toolchain-r-test
             - llvm-toolchain-trusty-5.0
           packages:
-            - g++-6
             - clang-5.0
       env:
         - MATRIX_EVAL="CC=clang-5.0 && CXX=clang++-5.0"
         - BUILD_TYPE=Release
 
+    ##############
+    # Clang 6.0
+
+    # Debug
     - os: linux
       addons:
         apt:
           sources:
-            - ubuntu-toolchain-r-test
             - llvm-toolchain-trusty-6.0
           packages:
-            - g++-6
             - clang-6.0
       env:
         - MATRIX_EVAL="CC=clang-6.0 && CXX=clang++-6.0"
         - BUILD_TYPE=Debug
 
+    # Debug
     - os: linux
       addons:
         apt:
@@ -91,6 +183,5 @@ before_install:
 
 script:
   - cmake -DCMAKE_BUILD_TYPE=${BUILD_TYPE} -DBUILD_TOOLS=ON -DBUILD_TESTS=ON -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DWITH_CLANG_TIDY=OFF -DBUILD_DOC=OFF .
-  - make all
-  - make test
+  - make all && make test
 
