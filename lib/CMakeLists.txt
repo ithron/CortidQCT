@@ -39,7 +39,6 @@ add_library(Core
 target_link_libraries(Core
   PUBLIC
     Common
-    ${CortidQCT_FILESYSTEM_LIBRARY}
   PRIVATE
 )
 set_target_properties(Core PROPERTIES OUTPUT_NAME "CortidQCT-Core")

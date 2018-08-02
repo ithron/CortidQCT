@@ -11,7 +11,6 @@
 
 #include "Mesh.h"
 #include "MatrixIO.h"
-#include "filesystem.h"
 
 #include <gsl/gsl>
 #include <igl/readOFF.h>
@@ -29,7 +28,12 @@ namespace CortidQCT {
 namespace Detail {
 
 std::string extension(std::string const &filename) {
-  return std::filesystem::path(filename).extension().string().substr(1);
+
+  if (auto const dotPos = filename.find_last_of('.');
+      dotPos != std::string::npos) {
+    return filename.substr(dotPos + 1);
+  }
+  return "";
 }
 
 template <class Extensions>
@@ -225,10 +229,6 @@ void Mesh<T>::writeToFile(std::string const &meshFilename,
   std::ofstream labelStream{labelFilename};
 
   if (!labelStream) {
-    // delte mesh file to undo previous steps
-    std::error_code errorCode;
-    std::filesystem::remove(meshFilename, errorCode);
-
     throw std::invalid_argument("Failed to write per-vertex labels to file '" +
                                 labelFilename + "'");
   }
