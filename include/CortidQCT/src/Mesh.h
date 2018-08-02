@@ -31,7 +31,7 @@ namespace CortidQCT {
  */
 template <class T> class Mesh {
 
-  static_assert(std::is_floating_point_v<T>,
+  static_assert(std::is_floating_point<T>::value,
                 "Scalar must be a floating point type");
 
 public:
