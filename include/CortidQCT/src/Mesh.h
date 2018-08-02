@@ -69,14 +69,10 @@ public:
   /// @{
 
   /// Number of vertices
-  inline Size vertexCount() const noexcept {
-    return vertexData_.size() / 3;
-  }
+  inline Size vertexCount() const noexcept { return vertexData_.size() / 3; }
 
   /// Number of triangles
-  inline Size triangleCount() const noexcept {
-    return indexData_.size() / 3;
-  }
+  inline Size triangleCount() const noexcept { return indexData_.size() / 3; }
 
   /// @brief true iff the mesh is empty
   ///
@@ -192,8 +188,9 @@ public:
    * @return The return value of the functional
    */
   template <class F>
-  inline std::invoke_result_t<F, Scalar const *> withUnsafeVertexPointer(F &&f) const
-      noexcept(noexcept(f(vertexData_.data()))) {
+  inline std::invoke_result_t<F, Scalar const *>
+  withUnsafeVertexPointer(F &&f) const
+      noexcept(noexcept(f(VertexData().data()))) {
     return f(vertexData_.data());
   }
 
@@ -209,8 +206,9 @@ public:
    * @return The return value of the functional
    */
   template <class F>
-  inline std::invoke_result_t<F, Index const *> withUnsafeIndexPointer(F &&f) const
-      noexcept(noexcept(f(indexData_.data()))) {
+  inline std::invoke_result_t<F, Index const *>
+  withUnsafeIndexPointer(F &&f) const
+      noexcept(noexcept(f(IndexData().data()))) {
     return f(indexData_.data());
   }
 
@@ -226,14 +224,14 @@ public:
    * @return The return value of the functional
    */
   template <class F>
-  inline std::invoke_result_t<F, Label const *> withUnsafeLabelPointer(F &&f) const
-      noexcept(noexcept(f(labelData_.data()))) {
+  inline std::invoke_result_t<F, Label const *>
+  withUnsafeLabelPointer(F &&f) const
+      noexcept(noexcept(f(LabelData().data()))) {
     return f(labelData_.data());
   }
 
   /// @}
 private:
-
   /// Ensures validility of the mesh
   void ensurePostconditions() const;
 
