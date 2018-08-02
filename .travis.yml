@@ -24,7 +24,6 @@ matrix:
 
     # Debug
     - os: linux
-      dist: xenial
       addons:
         apt:
           sources:
@@ -37,7 +36,6 @@ matrix:
 
     # Release
     - os: linux
-      dist: xenial
       addons:
         apt:
           sources:
@@ -53,7 +51,6 @@ matrix:
 
     # Debug
     - os: linux
-      dist: xenial
       addons:
         apt:
           sources:
@@ -66,7 +63,6 @@ matrix:
 
     # Release
     - os: linux
-      dist: xenial
       addons:
         apt:
           sources:
@@ -82,10 +78,12 @@ matrix:
 
     # Debug
     - os: linux
-      dist: xenial
       addons:
         apt:
+          sources:
+            - ubuntu-toolchain-r-test
           packages:
+            - libstdc++-5-dev
             - clang-3.9
       env:
         - MATRIX_EVAL="CC=clang-3.9 && CXX=clang++-3.9"
@@ -93,10 +91,12 @@ matrix:
 
     # Release
     - os: linux
-      dist: xenial
       addons:
         apt:
+          sources:
+            - ubuntu-toolchain-r-test
           packages:
+            - libstdc++-5-dev
             - clang-3.9
       env:
         - MATRIX_EVAL="CC=clang-3.9 && CXX=clang++-3.9"
@@ -107,11 +107,10 @@ matrix:
 
     # Debug
     - os: linux
-      dist: xenial
       addons:
         apt:
           sources:
-            - llvm-toolchain-xenial-4.0
+            - llvm-toolchain-trusty-4.0
           packages:
             - clang-4.0
       env:
@@ -120,11 +119,10 @@ matrix:
 
     # Debug
     - os: linux
-      dist: xenial
       addons:
         apt:
           sources:
-            - llvm-toolchain-xenial-4.0
+            - llvm-toolchain-trusty-4.0
           packages:
             - clang-4.0
       env:
@@ -136,11 +134,10 @@ matrix:
 
     # Debug
     - os: linux
-      dist: xenial
       addons:
         apt:
           sources:
-            - llvm-toolchain-xenial-5.0
+            - llvm-toolchain-trusty-5.0
           packages:
             - clang-5.0
       env:
@@ -149,11 +146,10 @@ matrix:
 
     # Debug
     - os: linux
-      dist: xenial
       addons:
         apt:
           sources:
-            - llvm-toolchain-xenial-5.0
+            - llvm-toolchain-trusty-5.0
           packages:
             - clang-5.0
       env:
@@ -165,11 +161,10 @@ matrix:
 
     # Debug
     - os: linux
-      dist: xenial
       addons:
         apt:
           sources:
-            - llvm-toolchain-xenial-6.0
+            - llvm-toolchain-trusty-6.0
           packages:
             - clang-6.0
       env:
@@ -178,11 +173,10 @@ matrix:
 
     # Debug
     - os: linux
-      dist: xenial
       addons:
         apt:
           sources:
-            - llvm-toolchain-xenial-6.0
+            - llvm-toolchain-trusty-6.0
           packages:
             - clang-6.0
       env:
