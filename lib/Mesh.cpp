@@ -279,7 +279,7 @@ void Mesh<T>::writeToFile(
   Matrix<int, Dynamic, 3> const F = Fmap.template cast<int>().transpose();
   Matrix<double, Dynamic, 3> C(Vmap.cols(), 3);
 
-  Ensures(V.rows() > 0 & F.rows() > 0);
+  Ensures(V.rows() > 0 && F.rows() > 0);
   Ensures(C.rows() == V.rows());
 
   // convert labels to colors

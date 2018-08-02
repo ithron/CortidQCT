@@ -69,14 +69,10 @@ public:
   /// @{
 
   /// Number of vertices
-  inline Size vertexCount() const noexcept {
-    return vertexData_.size() / 3;
-  }
+  inline Size vertexCount() const noexcept { return vertexData_.size() / 3; }
 
   /// Number of triangles
-  inline Size triangleCount() const noexcept {
-    return indexData_.size() / 3;
-  }
+  inline Size triangleCount() const noexcept { return indexData_.size() / 3; }
 
   /// @brief true iff the mesh is empty
   ///
@@ -193,7 +189,7 @@ public:
    */
   template <class F>
   inline auto withUnsafeVertexPointer(F &&f) const
-      noexcept(noexcept(f(vertexData_.data()))) {
+      noexcept(noexcept(f(VertexData().data()))) {
     return f(vertexData_.data());
   }
 
@@ -210,7 +206,7 @@ public:
    */
   template <class F>
   inline auto withUnsafeIndexPointer(F &&f) const
-      noexcept(noexcept(f(indexData_.data()))) {
+      noexcept(noexcept(f(IndexData().data()))) {
     return f(indexData_.data());
   }
 
@@ -227,13 +223,12 @@ public:
    */
   template <class F>
   inline auto withUnsafeLabelPointer(F &&f) const
-      noexcept(noexcept(f(labelData_.data()))) {
+      noexcept(noexcept(f(LabelData().data()))) {
     return f(labelData_.data());
   }
 
   /// @}
 private:
-
   /// Ensures validility of the mesh
   void ensurePostconditions() const;
 
