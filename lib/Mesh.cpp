@@ -53,6 +53,13 @@ bool checkExtensions(std::string const &filename, Extensions &&extensions) {
 
 } // namespace Detail
 
+template<class T>
+void Mesh<T>::ensurePostconditions() const {
+  Ensures(vertexData_.size() % 3 == 0);
+  Ensures(indexData_.size() % 3 == 0);
+  Ensures(labelData_.size() == vertexData_.size() / 3);
+}
+
 template <class T>
 Mesh<T> &Mesh<T>::loadFromFile(std::string const &meshFilename,
                                std::string const &labelFilename) {
@@ -128,6 +135,8 @@ Mesh<T> &Mesh<T>::loadFromFile(std::string const &meshFilename,
   indexData_ = std::move(indexData);
   labelData_ = std::move(labelData);
 
+  ensurePostconditions();
+
   return *this;
 }
 
@@ -187,6 +196,8 @@ Mesh<T> &Mesh<T>::loadFromFile(std::string const &meshFilename,
   vertexData_ = std::move(vertexData);
   indexData_ = std::move(indexData);
   labelData_ = std::move(labelData);
+
+  ensurePostconditions();
 
   return *this;
 }
@@ -286,7 +297,7 @@ void Mesh<T>::writeToFile(
   // recognize that C was allocated before and complains about null pointer
   // dereferenceing when igl::writeOFF() calls C.maxCoeff().
   // NOLINTNEXTLINE(cppcoreguidelines-pro-bounds-array-to-pointer-decay, hicpp-no-array-decay)
-  assert(C.data() != nullptr);
+  Ensures(C.data() != nullptr);
   // clang-format on
 
   if (!igl::writeOFF(meshFilename, V, F, C)) {

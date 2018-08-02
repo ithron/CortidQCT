@@ -70,13 +70,11 @@ public:
 
   /// Number of vertices
   inline Size vertexCount() const noexcept {
-    assert(vertexData_.size() % 3 == 0);
     return vertexData_.size() / 3;
   }
 
   /// Number of triangles
   inline Size triangleCount() const noexcept {
-    assert(indexData_.size() % 3 == 0);
     return indexData_.size() / 3;
   }
 
@@ -235,6 +233,10 @@ public:
 
   /// @}
 private:
+
+  /// Ensures validility of the mesh
+  void ensurePostconditions() const;
+
   /// Stores vertex coordinates in column major order
   VertexData vertexData_;
   /// Stores per triangle vertex indices in column major oder
