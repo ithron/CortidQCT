@@ -24,6 +24,7 @@ matrix:
 
     # Debug
     - os: linux
+      dist: trusty
       addons:
         apt:
           sources:
@@ -36,6 +37,7 @@ matrix:
 
     # Release
     - os: linux
+      dist: trusty
       addons:
         apt:
           sources:
@@ -51,6 +53,7 @@ matrix:
 
     # Debug
     - os: linux
+      dist: trusty
       addons:
         apt:
           sources:
@@ -63,6 +66,7 @@ matrix:
 
     # Release
     - os: linux
+      dist: trusty
       addons:
         apt:
           sources:
@@ -78,6 +82,7 @@ matrix:
 
     # Debug
     - os: linux
+      dist: trusty
       addons:
         apt:
           packages:
@@ -88,6 +93,7 @@ matrix:
 
     # Release
     - os: linux
+      dist: trusty
       addons:
         apt:
           packages:
@@ -101,6 +107,7 @@ matrix:
 
     # Debug
     - os: linux
+      dist: trusty
       addons:
         apt:
           sources:
@@ -113,6 +120,7 @@ matrix:
 
     # Debug
     - os: linux
+      dist: trusty
       addons:
         apt:
           sources:
@@ -128,6 +136,7 @@ matrix:
 
     # Debug
     - os: linux
+      dist: trusty
       addons:
         apt:
           sources:
@@ -140,6 +149,7 @@ matrix:
 
     # Debug
     - os: linux
+      dist: trusty
       addons:
         apt:
           sources:
@@ -155,6 +165,7 @@ matrix:
 
     # Debug
     - os: linux
+      dist: trusty
       addons:
         apt:
           sources:
@@ -167,6 +178,7 @@ matrix:
 
     # Debug
     - os: linux
+      dist: trusty
       addons:
         apt:
           sources:
