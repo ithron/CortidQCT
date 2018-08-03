@@ -63,6 +63,9 @@ find_package(Eigen3 CONFIG REQUIRED)
 hunter_add_package(libigl)
 find_package(libigl CONFIG REQUIRED)
 
+hunter_add_package(ImageStack)
+find_package(ImageStack CONFIG REQUIRED)
+
 # Add to target
 target_link_libraries(Core
   PUBLIC
@@ -70,6 +73,7 @@ target_link_libraries(Core
     igl::core
     Microsoft.GSL::GSL
     Eigen3::Eigen
+    ImageStack::ImageStack
 )
 
 
