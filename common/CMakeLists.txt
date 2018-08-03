@@ -38,7 +38,7 @@ target_compile_options(Common INTERFACE
   $<BUILD_INTERFACE:$<IF:$<CXX_COMPILER_ID:MSVC>,,-Werror>>
 )
 
-if($<CXX_COMPILER_ID:Clang> OR <CXX_COMPILER_ID:AppleClang>)
+if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang" OR "${CMAKE_CXX_COMPILER_ID}" STREQUAL "AppleClang")
   target_compile_options(Common INTERFACE
     -Weverything
     -Wno-c++98-compat
