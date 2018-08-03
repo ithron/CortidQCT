@@ -42,6 +42,7 @@ if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang" OR "${CMAKE_CXX_COMPILER_ID}" STR
   target_compile_options(Common INTERFACE
     -Weverything
     -Wno-c++98-compat
+    -Wno-c++98-compat-pedantic
     -fcomment-block-commands=nosubgrouping
   )
 endif()
