@@ -53,8 +53,7 @@ bool checkExtensions(std::string const &filename, Extensions &&extensions) {
 
 } // namespace Detail
 
-template<class T>
-void Mesh<T>::ensurePostconditions() const {
+template <class T> void Mesh<T>::ensurePostconditions() const {
   Ensures(vertexData_.size() % 3 == 0);
   Ensures(indexData_.size() % 3 == 0);
   Ensures(labelData_.size() == vertexData_.size() / 3);
@@ -223,13 +222,13 @@ void Mesh<T>::writeToFile(std::string const &meshFilename,
   }
 
   // Convert vertex and index data to a format igl understads
-  Map<Matrix<Scalar, Dynamic, Dynamic> const> const Vmap{
-      vertexData_.data(), narrow<Eigen::Index>(vertexCount()), 3};
-  Map<Matrix<Index, Dynamic, Dynamic> const> const Fmap{
-      indexData_.data(), narrow<Eigen::Index>(triangleCount()), 3};
+  Map<Matrix<Scalar, 3, Dynamic> const> const Vmap{
+      vertexData_.data(), 3, narrow<Eigen::Index>(vertexCount())};
+  Map<Matrix<Index, 3, Dynamic> const> const Fmap{
+      indexData_.data(), 3, narrow<Eigen::Index>(triangleCount())};
 
-  Eigen::MatrixXd const V = Vmap.template cast<double>();
-  Eigen::MatrixXi const F = Fmap.template cast<int>();
+  Eigen::Matrix<double, Dynamic, 3> const V = Vmap.template cast<double>().transpose();
+  Eigen::Matrix<int, Dynamic, 3> const F = Fmap.template cast<int>().transpose();
 
   if (!igl::write_triangle_mesh(meshFilename, V, F)) {
     throw std::invalid_argument("Failed to write mesh to file '" +
