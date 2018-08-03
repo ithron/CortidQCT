@@ -61,7 +61,7 @@ public:
 
   /// Constructs an empty mesh
   inline Mesh() noexcept(noexcept(VertexData()) && noexcept(IndexData()) &&
-                         noexcept(LabelData())){};
+                         noexcept(LabelData())) {}
 
   // @}
 
