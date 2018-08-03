@@ -46,6 +46,12 @@ if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang" OR "${CMAKE_CXX_COMPILER_ID}" STR
     )
   endif()
 
+  if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "AppleClang")
+    target_compile_options(TestCommon INTERFACE
+      -Wno-deprecated-declarations
+    )
+endif()
+
 endif()
 
 
