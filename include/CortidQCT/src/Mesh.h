@@ -27,7 +27,7 @@ namespace CortidQCT {
  *
  * @tparam T Scalar type of the vector space of the embedding, must be a
  * floating point type
- * @nosubgrouping
+ * @nosubgrouping .
  */
 template <class T> class Mesh {
 
@@ -61,7 +61,7 @@ public:
 
   /// Constructs an empty mesh
   inline Mesh() noexcept(noexcept(VertexData()) && noexcept(IndexData()) &&
-                         noexcept(LabelData())){};
+                         noexcept(LabelData())) {}
 
   // @}
 

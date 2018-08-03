@@ -31,11 +31,22 @@ configure_file(tests_config.h.in tests_config.h @ONLY)
 ############################
 # Targets
 
+add_library(TestCommon INTERFACE)
+if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang" OR "${CMAKE_CXX_COMPILER_ID}" STREQUAL "AppleClang")
+  target_compile_options(TestCommon INTERFACE
+    -Wno-exit-time-destructors
+    -Wno-global-constructors
+    -Wno-zero-as-null-pointer-constant
+  )
+endif()
+
+
 add_executable(TestMesh Mesh.cpp)
 target_link_libraries(TestMesh
   PRIVATE
     GTest::main
     CortidQCT::Core
+    TestCommon
 )
 target_include_directories(TestMesh PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
 add_test(TestMesh TestMesh)
