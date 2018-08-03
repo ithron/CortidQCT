@@ -185,7 +185,7 @@ Mesh<T> &Mesh<T>::loadFromFile(std::string const &meshFilename,
 
   // Convert colors to labels
   for (auto i = 0; i < colors.rows(); ++i) {
-    labelData_[gsl::narrow_cast<std::size_t>(i)] =
+    labelData[gsl::narrow_cast<std::size_t>(i)] =
         colorMap(colors(i, 0), colors(i, 1), colors(i, 2));
   }
 
