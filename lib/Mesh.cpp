@@ -27,7 +27,7 @@ namespace CortidQCT {
 
 namespace Detail {
 
-std::string extension(std::string const &filename) {
+inline std::string extension(std::string const &filename) {
 
   if (auto const dotPos = filename.find_last_of('.');
       dotPos != std::string::npos) {
