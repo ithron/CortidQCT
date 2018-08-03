@@ -8,6 +8,6 @@ if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
 
 else
 
-  make & make test
+  make && make test
 
 fi
