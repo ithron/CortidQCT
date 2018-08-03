@@ -4,11 +4,11 @@ set -eu
 
 if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
 
-  set GENERATOR="Xcode"
+  GENERATOR="Xcode"
 
 else
 
-  set GENERATOR="Unix Makefiles"
+  GENERATOR="Unix Makefiles"
 
 fi
 
