@@ -57,6 +57,8 @@ TEST(Mesh, MeshLoadSaveLoadPreservesMesh) {
   using namespace std::string_literals;
   using gsl::make_span;
 
+  using IdxType = typename gsl::span<double>::index_type;
+
   Mesh<double> meshA, meshB;
 
   // load meshes
@@ -85,7 +87,7 @@ TEST(Mesh, MeshLoadSaveLoadPreservesMesh) {
   ASSERT_EQ(meshA.vertexCount(), meshD.vertexCount());
 
   // assert equality of vertices
-  auto const nFloats = 3 * meshA.vertexCount();
+  auto const nFloats = gsl::narrow_cast<IdxType>(3 * meshA.vertexCount());
   meshC.withUnsafeVertexPointer([&meshA, nFloats](auto const pV) {
     meshA.withUnsafeVertexPointer([pV, nFloats](auto const pU) {
       auto pvi = pV;
