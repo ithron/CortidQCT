@@ -35,7 +35,7 @@ target_include_directories(Common
 
 target_compile_options(Common INTERFACE
   -Wall
-  $<BUILD_INTERFACE:-Werror>
+  $<BUILD_INTERFACE:$<IF:$<CXX_COMPILER_ID:MSVC>,,-Werror>>
 )
 
 if($<CXX_COMPILER_ID:Clang> OR <CXX_COMPILER_ID:AppleClang>)
