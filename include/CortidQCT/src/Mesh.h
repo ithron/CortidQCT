@@ -31,7 +31,7 @@ namespace CortidQCT {
  */
 template <class T> class Mesh {
 
-  static_assert(std::is_floating_point_v<T>,
+  static_assert(std::is_floating_point<T>::value,
                 "Scalar must be a floating point type");
 
 public:
@@ -188,8 +188,7 @@ public:
    * @return The return value of the functional
    */
   template <class F>
-  inline std::invoke_result_t<F, Scalar const *>
-  withUnsafeVertexPointer(F &&f) const
+  inline auto withUnsafeVertexPointer(F &&f) const
       noexcept(noexcept(f(VertexData().data()))) {
     return f(vertexData_.data());
   }
@@ -206,8 +205,7 @@ public:
    * @return The return value of the functional
    */
   template <class F>
-  inline std::invoke_result_t<F, Index const *>
-  withUnsafeIndexPointer(F &&f) const
+  inline auto withUnsafeIndexPointer(F &&f) const
       noexcept(noexcept(f(IndexData().data()))) {
     return f(indexData_.data());
   }
@@ -224,8 +222,7 @@ public:
    * @return The return value of the functional
    */
   template <class F>
-  inline std::invoke_result_t<F, Label const *>
-  withUnsafeLabelPointer(F &&f) const
+  inline auto withUnsafeLabelPointer(F &&f) const
       noexcept(noexcept(f(LabelData().data()))) {
     return f(labelData_.data());
   }
