@@ -23,193 +23,180 @@ matrix:
     # GCC-7
 
     # Debug
-    # - os: linux
-    #   addons:
-    #     apt:
-    #       sources:
-    #         - ubuntu-toolchain-r-test
-    #       packages:
-    #         - g++-7
-    #   env:
-    #     - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
-    #     - BUILD_TYPE=Debug
-    #
-    # # Release
-    # - os: linux
-    #   addons:
-    #     apt:
-    #       sources:
-    #         - ubuntu-toolchain-r-test
-    #       packages:
-    #         - g++-7
-    #   env:
-    #     - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
-    #     - BUILD_TYPE=Release
-    #
-    # ##########
-    # # GCC-8
-    #
-    # # Debug
-    # - os: linux
-    #   addons:
-    #     apt:
-    #       sources:
-    #         - ubuntu-toolchain-r-test
-    #       packages:
-    #         - g++-8
-    #   env:
-    #     - MATRIX_EVAL="CC=gcc-8 && CXX=g++-8"
-    #     - BUILD_TYPE=Debug
-    #
-    # # Release
-    # - os: linux
-    #   addons:
-    #     apt:
-    #       sources:
-    #         - ubuntu-toolchain-r-test
-    #       packages:
-    #         - g++-8
-    #   env:
-    #     - MATRIX_EVAL="CC=gcc-8 && CXX=g++-8"
-    #     - BUILD_TYPE=Release
-    #
-    # ##############
-    # # Clang 3.9
-    #
-    # # Debug
-    # - os: linux
-    #   addons:
-    #     apt:
-    #       sources:
-    #         - ubuntu-toolchain-r-test
-    #       packages:
-    #         - libstdc++-5-dev
-    #         - clang-3.9
-    #   env:
-    #     - MATRIX_EVAL="CC=clang-3.9 && CXX=clang++-3.9"
-    #     - BUILD_TYPE=Debug
-    #
-    # # Release
-    # - os: linux
-    #   addons:
-    #     apt:
-    #       sources:
-    #         - ubuntu-toolchain-r-test
-    #       packages:
-    #         - libstdc++-5-dev
-    #         - clang-3.9
-    #   env:
-    #     - MATRIX_EVAL="CC=clang-3.9 && CXX=clang++-3.9"
-    #     - BUILD_TYPE=Release
-    #
-    # ##############
-    # # Clang 4.0
-    #
-    # # Debug
-    # - os: linux
-    #   addons:
-    #     apt:
-    #       sources:
-    #         - ubuntu-toolchain-r-test
-    #         - llvm-toolchain-trusty-4.0
-    #       packages:
-    #         - libstdc++-5-dev
-    #         - clang-4.0
-    #   env:
-    #     - MATRIX_EVAL="CC=clang-4.0 && CXX=clang++-4.0"
-    #     - BUILD_TYPE=Debug
-    #
-    # # Debug
-    # - os: linux
-    #   addons:
-    #     apt:
-    #       sources:
-    #         - ubuntu-toolchain-r-test
-    #         - llvm-toolchain-trusty-4.0
-    #       packages:
-    #         - libstdc++-5-dev
-    #         - clang-4.0
-    #   env:
-    #     - MATRIX_EVAL="CC=clang-4.0 && CXX=clang++-4.0"
-    #     - BUILD_TYPE=Release
-    #
-    # ##############
-    # # Clang 5.0
-    #
-    # # Debug
-    # - os: linux
-    #   addons:
-    #     apt:
-    #       sources:
-    #         - ubuntu-toolchain-r-test
-    #         - llvm-toolchain-trusty-5.0
-    #       packages:
-    #         - libstdc++-6-dev
-    #         - clang-5.0
-    #   env:
-    #     - MATRIX_EVAL="CC=clang-5.0 && CXX=clang++-5.0"
-    #     - BUILD_TYPE=Debug
-    #
-    # # Debug
-    # - os: linux
-    #   addons:
-    #     apt:
-    #       sources:
-    #         - ubuntu-toolchain-r-test
-    #         - llvm-toolchain-trusty-5.0
-    #       packages:
-    #         - libstdc++-6-dev
-    #         - clang-5.0
-    #   env:
-    #     - MATRIX_EVAL="CC=clang-5.0 && CXX=clang++-5.0"
-    #     - BUILD_TYPE=Release
-    #
-    # ##############
-    # # Clang 6.0
-    #
-    # # Debug
-    # - os: linux
-    #   addons:
-    #     apt:
-    #       sources:
-    #         - ubuntu-toolchain-r-test
-    #         - llvm-toolchain-trusty-6.0
-    #       packages:
-    #         - libstdc++-6-dev
-    #         - clang-6.0
-    #   env:
-    #     - MATRIX_EVAL="CC=clang-6.0 && CXX=clang++-6.0"
-    #     - BUILD_TYPE=Debug
-    #
-    # # Debug
-    # - os: linux
-    #   addons:
-    #     apt:
-    #       sources:
-    #         - ubuntu-toolchain-r-test
-    #         - llvm-toolchain-trusty-6.0
-    #       packages:
-    #         - libstdc++-6-dev
-    #         - clang-6.0
-    #   env:
-    #     - MATRIX_EVAL="CC=clang-6.0 && CXX=clang++-6.0"
-    #     - BUILD_TYPE=Release
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-7
+      env:
+        - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
+        - BUILD_TYPE=Debug
+
+    # Release
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-7
+      env:
+        - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
+        - BUILD_TYPE=Release
+
+    ##########
+    # GCC-8
+
+    # Debug
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-8
+      env:
+        - MATRIX_EVAL="CC=gcc-8 && CXX=g++-8"
+        - BUILD_TYPE=Debug
+
+    # Release
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-8
+      env:
+        - MATRIX_EVAL="CC=gcc-8 && CXX=g++-8"
+        - BUILD_TYPE=Release
+
+    ##############
+    # Clang 3.9
+
+    # Debug
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - libstdc++-5-dev
+            - clang-3.9
+      env:
+        - MATRIX_EVAL="CC=clang-3.9 && CXX=clang++-3.9"
+        - BUILD_TYPE=Debug
+
+    # Release
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - libstdc++-5-dev
+            - clang-3.9
+      env:
+        - MATRIX_EVAL="CC=clang-3.9 && CXX=clang++-3.9"
+        - BUILD_TYPE=Release
+
+    ##############
+    # Clang 4.0
+
+    # Debug
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+            - llvm-toolchain-trusty-4.0
+          packages:
+            - libstdc++-5-dev
+            - clang-4.0
+      env:
+        - MATRIX_EVAL="CC=clang-4.0 && CXX=clang++-4.0"
+        - BUILD_TYPE=Debug
+
+    # Debug
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+            - llvm-toolchain-trusty-4.0
+          packages:
+            - libstdc++-5-dev
+            - clang-4.0
+      env:
+        - MATRIX_EVAL="CC=clang-4.0 && CXX=clang++-4.0"
+        - BUILD_TYPE=Release
+
+    ##############
+    # Clang 5.0
+
+    # Debug
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+            - llvm-toolchain-trusty-5.0
+          packages:
+            - libstdc++-6-dev
+            - clang-5.0
+      env:
+        - MATRIX_EVAL="CC=clang-5.0 && CXX=clang++-5.0"
+        - BUILD_TYPE=Debug
+
+    # Debug
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+            - llvm-toolchain-trusty-5.0
+          packages:
+            - libstdc++-6-dev
+            - clang-5.0
+      env:
+        - MATRIX_EVAL="CC=clang-5.0 && CXX=clang++-5.0"
+        - BUILD_TYPE=Release
+
+    ##############
+    # Clang 6.0
+
+    # Debug
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+            - llvm-toolchain-trusty-6.0
+          packages:
+            - libstdc++-6-dev
+            - clang-6.0
+      env:
+        - MATRIX_EVAL="CC=clang-6.0 && CXX=clang++-6.0"
+        - BUILD_TYPE=Debug
+
+    # Debug
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+            - llvm-toolchain-trusty-6.0
+          packages:
+            - libstdc++-6-dev
+            - clang-6.0
+      env:
+        - MATRIX_EVAL="CC=clang-6.0 && CXX=clang++-6.0"
+        - BUILD_TYPE=Release
 
     ##########
     # macOS
-
-    ##############
-    # Xcode 8.3
-
-    # Debug
-    - os: osx
-      osx_image: xcode8.3
-      env: BUILD_TYPE=Debug
-
-    # Debug
-    - os: osx
-      osx_image: xcode8.3
-      env: BUILD_TYPE=Release
 
     ##############
     # Xcode 9.0
@@ -222,6 +209,58 @@ matrix:
     # Debug
     - os: osx
       osx_image: xcode9
+      env: BUILD_TYPE=Release
+
+    ##############
+    # Xcode 9.1
+
+    # Debug
+    - os: osx
+      osx_image: xcode9.1
+      env: BUILD_TYPE=Debug
+
+    # Debug
+    - os: osx
+      osx_image: xcode9.1
+      env: BUILD_TYPE=Release
+
+    ##############
+    # Xcode 9.2
+
+    # Debug
+    - os: osx
+      osx_image: xcode9.2
+      env: BUILD_TYPE=Debug
+
+    # Debug
+    - os: osx
+      osx_image: xcode9.2
+      env: BUILD_TYPE=Release
+
+    ##############
+    # Xcode 9.3
+
+    # Debug
+    - os: osx
+      osx_image: xcode9.3
+      env: BUILD_TYPE=Debug
+
+    # Debug
+    - os: osx
+      osx_image: xcode9.3
+      env: BUILD_TYPE=Release
+
+    ##############
+    # Xcode 9.4
+
+    # Debug
+    - os: osx
+      osx_image: xcode9.4
+      env: BUILD_TYPE=Debug
+
+    # Debug
+    - os: osx
+      osx_image: xcode9.4
       env: BUILD_TYPE=Release
 
 before_install:
