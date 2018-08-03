@@ -4,3 +4,6 @@
   branch = hunterization-eigen3.3-ply-patch
   shallow = true
   fetchRecurseSubmodules = false
+[submodule "Dependencies/GSL"]
+	path = Dependencies/GSL
+	url = https://github.com/ithron/GSL.git
