@@ -38,8 +38,8 @@ if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang" OR "${CMAKE_CXX_COMPILER_ID}" STR
     -Wno-global-constructors
   )
 
-  # -Wzero-as-null-pointer-constant is available since clang 4.0
-  if (("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang" AND "${CMAKE_CXX_COMPILER_VERSION}" VERSION_GREATER_EQUAL "4.0") OR
+  # -Wzero-as-null-pointer-constant is available since clang 5.0
+  if (("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang" AND "${CMAKE_CXX_COMPILER_VERSION}" VERSION_GREATER_EQUAL "5.0") OR
       ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "AppleClang" AND "${CMAKE_CXX_COMPILER_VERSION}" VERSION_GREATER_EQUAL "9.1"))
     target_compile_options(TestCommon INTERFACE
       -Wno-zero-as-null-pointer-constant
