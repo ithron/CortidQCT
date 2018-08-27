@@ -11,6 +11,7 @@
 
 #pragma once
 
+#include "VolumeSize.h"
 #include "VoxelSize.h"
 
 #include <cassert>
@@ -105,6 +106,9 @@ private:
 
   /// The raw voxel data
   VoxelData voxelData_;
+
+  /// The volume size
+  VolumeSize volumeSize_;
 
   /// The voxel size
   VoxelSize voxelSize_;
