@@ -34,6 +34,7 @@ endif()
 add_library(Core
   CortidQCT.cpp
   Mesh.cpp
+  VoxelVolume.cpp
 )
 
 target_link_libraries(Core

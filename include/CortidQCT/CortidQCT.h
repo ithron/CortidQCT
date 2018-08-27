@@ -12,6 +12,7 @@
 #pragma once
 
 #include "src/Mesh.h"
+#include "src/VoxelVolume.h"
 
 /**
  * @brief Name namespace for CortidQCT library
