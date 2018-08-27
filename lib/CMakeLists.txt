@@ -90,6 +90,24 @@ if (WITH_OPENCL)
 
 endif()
 
+option(CORTIDQCT_WITH_IMAGESTACK "Build with ImageStack support (.bst images)" ON)
+if (CORTIDQCT_WITH_IMAGESTACK)
+  hunter_add_package(ImageStack)
+  find_package(ImageStack CONFIG REQUIRED)
+
+  # Add to targets
+  target_link_libraries(Core
+    PRIVATE
+      ImageStack::ImageStack
+  )
+endif()
+
+############################
+# Configuration Header
+
+configure_file(lib_config.h.in lib_config.h @ONLY)
+target_include_directories(Core PRIVATE $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>)
+
 ############################
 # Exports
 

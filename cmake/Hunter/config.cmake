@@ -26,3 +26,10 @@ hunter_config(libigl
     LIBIGL_WITH_XML=OFF
 )
 
+hunter_config(ImageStack
+  GIT_SUBMODULE "Dependencies/ImageStack"
+  CMAKE_ARGS
+    BUILD_TESTING=OFF
+    BUILD_EXAMPLES=OFF
+)
+

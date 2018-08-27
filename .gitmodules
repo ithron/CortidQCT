@@ -7,3 +7,6 @@
 [submodule "Dependencies/GSL"]
 	path = Dependencies/GSL
 	url = https://github.com/ithron/GSL.git
+[submodule "Dependencies/ImageStack"]
+	path = Dependencies/ImageStack
+	url = git@github.com:ithron/ImageStack.git
