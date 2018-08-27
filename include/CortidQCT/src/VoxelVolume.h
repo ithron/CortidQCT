@@ -67,7 +67,14 @@ public:
   /// @name Accessors
   /// @{
 
+  /// Returns the volume size
+  inline VolumeSize const &volumeSize() const noexcept { return volumeSize_; }
+
+  /// Returns the voxel size
   inline VoxelSize const &voxelSize() const noexcept { return voxelSize_; }
+
+  /// Returns true iff the volume is empty
+  inline bool isEmpty() const noexcept { return volumeSize_.linear() == 0; }
 
   /// @}
 
