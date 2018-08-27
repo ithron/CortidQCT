@@ -10,6 +10,7 @@
  */
 
 #include "Mesh.h"
+#include "CheckExtension.h"
 #include "MatrixIO.h"
 
 #include <gsl/gsl>
@@ -24,34 +25,6 @@
 #include <limits>
 
 namespace CortidQCT {
-
-namespace Detail {
-
-inline std::string extension(std::string const &filename) {
-
-  if (auto const dotPos = filename.find_last_of('.');
-      dotPos != std::string::npos) {
-    return filename.substr(dotPos + 1);
-  }
-  return "";
-}
-
-template <class Extensions>
-bool checkExtensions(std::string const &filename, Extensions &&extensions) {
-  using std::begin;
-  using std::end;
-  using std::find;
-
-  auto const ext = extension(filename);
-
-  return find_if(begin(extensions), end(extensions), [&ext](auto const &rhs) {
-           std::string query = rhs;
-           std::transform(begin(query), end(query), begin(query), tolower);
-           return query == ext;
-         }) != end(extensions);
-}
-
-} // namespace Detail
 
 template <class T> void Mesh<T>::ensurePostconditions() const {
   Ensures(vertexData_.size() % 3 == 0);
@@ -73,9 +46,9 @@ Mesh<T> &Mesh<T>::loadFromFile(std::string const &meshFilename,
   std::string const supportedFormats[] = {"obj", "off", "stl",
                                           "wrl", "ply", "mesh"};
 
-  if (!Detail::checkExtensions(meshFilename, supportedFormats)) {
+  if (!IO::checkExtensions(meshFilename, supportedFormats)) {
     throw std::invalid_argument("Unsupported file format '" +
-                                Detail::extension(meshFilename) + "'");
+                                IO::extension(meshFilename) + "'");
   }
 
   MatrixXd vertices;
@@ -152,9 +125,9 @@ Mesh<T> &Mesh<T>::loadFromFile(std::string const &meshFilename,
   // Check file format since igl does only print an error
   std::string const supportedFormats[] = {"off", "coff"};
 
-  if (!Detail::checkExtensions(meshFilename, supportedFormats)) {
+  if (!IO::checkExtensions(meshFilename, supportedFormats)) {
     throw std::invalid_argument("Unsupported file format '" +
-                                Detail::extension(meshFilename) + "'");
+                                IO::extension(meshFilename) + "'");
   }
 
   MatrixXd vertices, colors;
@@ -216,9 +189,9 @@ void Mesh<T>::writeToFile(std::string const &meshFilename,
   std::string const supportedFormats[] = {"obj", "off", "stl",
                                           "wrl", "ply", "mesh"};
 
-  if (!Detail::checkExtensions(meshFilename, supportedFormats)) {
+  if (!IO::checkExtensions(meshFilename, supportedFormats)) {
     throw std::invalid_argument("Unsupported file format '" +
-                                Detail::extension(meshFilename) + "'");
+                                IO::extension(meshFilename) + "'");
   }
 
   // Convert vertex and index data to a format igl understads
@@ -227,8 +200,10 @@ void Mesh<T>::writeToFile(std::string const &meshFilename,
   Map<Matrix<Index, 3, Dynamic> const> const Fmap{
       indexData_.data(), 3, narrow<Eigen::Index>(triangleCount())};
 
-  Eigen::Matrix<double, Dynamic, 3> const V = Vmap.template cast<double>().transpose();
-  Eigen::Matrix<int, Dynamic, 3> const F = Fmap.template cast<int>().transpose();
+  Eigen::Matrix<double, Dynamic, 3> const V =
+      Vmap.template cast<double>().transpose();
+  Eigen::Matrix<int, Dynamic, 3> const F =
+      Fmap.template cast<int>().transpose();
 
   if (!igl::write_triangle_mesh(meshFilename, V, F)) {
     throw std::invalid_argument("Failed to write mesh to file '" +
@@ -263,9 +238,9 @@ void Mesh<T>::writeToFile(
   // Check file format since igl does only print an error
   std::string const supportedFormats[] = {"off", "coff"};
 
-  if (!Detail::checkExtensions(meshFilename, supportedFormats)) {
+  if (!IO::checkExtensions(meshFilename, supportedFormats)) {
     throw std::invalid_argument("Unsupported file format '" +
-                                Detail::extension(meshFilename) + "'");
+                                IO::extension(meshFilename) + "'");
   }
 
   // Convert vertex and index data to a format igl understads
