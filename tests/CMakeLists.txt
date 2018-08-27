@@ -65,6 +65,17 @@ target_link_libraries(TestMesh
 target_include_directories(TestMesh PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
 add_test(TestMesh TestMesh)
 
+
+add_executable(TestVoxelVolume VoxelVolume.cpp)
+target_link_libraries(TestVoxelVolume
+  PRIVATE
+    GTest::main
+    CortidQCT::Core
+    TestCommon
+)
+target_include_directories(TestVoxelVolume PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
+add_test(TestVoxelVolume TestVoxelVolume)
+
 # add_executable(TestFitMesh FitMesh.cpp)
 # target_link_libraries(TestFitMesh
 #   PRIVATE
