@@ -42,15 +42,15 @@ VoxelVolume &VoxelVolume::loadFromFile(std::string const &filename) {
 
   auto const extension = IO::extension(filename);
 
-  auto closure = [*this](float const *data, VolumeSize const &volumeSize,
-                         VoxelSize const &voxelSize) mutable {
+  auto closure = [this](float const *data, VolumeSize const &volumeSize,
+                        VoxelSize const &voxelSize) mutable {
     using std::copy;
     auto const linearSize = volumeSize.linear();
-    std::vector<float> destData(linearSize);
+
     auto const dataSpan =
         gsl::make_span(data, gsl::narrow<std::ptrdiff_t>(linearSize));
 
-    copy(dataSpan.begin(), dataSpan.end(), destData.begin());
+    auto destData = std::vector<float>(dataSpan.begin(), dataSpan.end());
 
     voxelData_ = std::move(destData);
     volumeSize_ = volumeSize;
