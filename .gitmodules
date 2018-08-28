@@ -9,4 +9,4 @@
 	url = https://github.com/ithron/GSL.git
 [submodule "Dependencies/ImageStack"]
 	path = Dependencies/ImageStack
-	url = git@github.com:ithron/ImageStack.git
+	url = https://891bc7a4ef6b9320d34955d5e2180a89c0b65bc0@github.com/ithron/ImageStack.git
