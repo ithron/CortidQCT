@@ -68,7 +68,7 @@ public:
   /// @{
 
   /// Returns the volume size
-  inline VolumeSize const &volumeSize() const noexcept { return volumeSize_; }
+  inline VolumeSize const &size() const noexcept { return volumeSize_; }
 
   /// Returns the voxel size
   inline VoxelSize const &voxelSize() const noexcept { return voxelSize_; }

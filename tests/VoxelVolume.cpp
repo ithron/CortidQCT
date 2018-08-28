@@ -32,9 +32,9 @@ TEST(VoxelVolume, EmptyVolumeIsEmpty) {
   VoxelVolume const emptyVolume;
 
   ASSERT_TRUE(emptyVolume.isEmpty());
-  ASSERT_EQ(0, emptyVolume.volumeSize().width);
-  ASSERT_EQ(0, emptyVolume.volumeSize().height);
-  ASSERT_EQ(0, emptyVolume.volumeSize().depth);
+  ASSERT_EQ(0, emptyVolume.size().width);
+  ASSERT_EQ(0, emptyVolume.size().height);
+  ASSERT_EQ(0, emptyVolume.size().depth);
 }
 
 TEST(VoxelVolume, LoadBST) {
@@ -44,14 +44,14 @@ TEST(VoxelVolume, LoadBST) {
 
   ASSERT_FALSE(volume.isEmpty());
 
-  ASSERT_EQ(volumeSize1, volume.volumeSize());
+  ASSERT_EQ(volumeSize1, volume.size());
 
   ASSERT_FLOAT_EQ(voxelSize1.width, volume.voxelSize().width);
   ASSERT_FLOAT_EQ(voxelSize1.height, volume.voxelSize().height);
   ASSERT_FLOAT_EQ(voxelSize1.depth, volume.voxelSize().depth);
 
   volume.withUnsafeDataPointer([&](float const *dataPtr) {
-    auto const size = volume.volumeSize();
+    auto const size = volume.size();
     auto const data =
         gsl::make_span(dataPtr, gsl::narrow<std::ptrdiff_t>(size.linear()));
 
@@ -79,7 +79,5 @@ TEST(VoxelVolume, LoadFromFileThrowsOnUnknownFormat) {
 
 TEST(VoxelVolume, LoadFromFileThrowsOnNonExistentFile) {
 
-  ASSERT_THROW(VoxelVolume{"non-existant-file.bst"},
-               std::invalid_argument);
+  ASSERT_THROW(VoxelVolume{"non-existant-file.bst"}, std::invalid_argument);
 }
-
