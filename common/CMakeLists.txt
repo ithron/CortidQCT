@@ -45,6 +45,10 @@ if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang" OR "${CMAKE_CXX_COMPILER_ID}" STR
     -Wno-c++98-compat-pedantic
     -fcomment-block-commands=nosubgrouping
   )
+elseif("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
+  target_compile_options(Common INTERFACE
+    -Wno-unknown-pragmas
+  )
 endif()
 
 set_property(
