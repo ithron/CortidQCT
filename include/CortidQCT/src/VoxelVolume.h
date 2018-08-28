@@ -34,6 +34,11 @@ public:
   /// Voxel value type
   using ValueType = float;
 
+private:
+  /// Voxel data type
+  using VoxelData = std::vector<ValueType>;
+
+public:
   /// @name Construction
   /// @{
 
@@ -108,9 +113,6 @@ public:
   /// @}
 
 private:
-  /// Voxel data type
-  using VoxelData = std::vector<ValueType>;
-
   /// The raw voxel data
   VoxelData voxelData_;
 

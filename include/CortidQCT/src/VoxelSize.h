@@ -38,7 +38,7 @@ struct VoxelSize {
   /// @pre `idx >= 0 && idx < 3`
   /// @return value of the indexed dimension
   inline constexpr float operator[](std::size_t idx) const noexcept {
-    assert(idx >= 0 && idx < 3 && "Index out of bounds");
+    assert(idx < 3 && "Index out of bounds");
     switch (idx) {
       case 0:
         return width;
@@ -62,7 +62,7 @@ struct VoxelSize {
   /// @pre `idx >= 0 && idx < 3`
   /// @return reference to indexed dimension
   inline float &operator[](std::size_t idx) noexcept {
-    assert(idx >= 0 && idx < 3 && "Index out of bounds");
+    assert(idx < 3 && "Index out of bounds");
     switch (idx) {
       case 0:
         return width;
