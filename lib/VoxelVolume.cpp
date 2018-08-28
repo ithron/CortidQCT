@@ -61,7 +61,7 @@ VoxelVolume &VoxelVolume::loadFromFile(std::string const &filename) {
   try {
     // Use a dummy if here to make it possible all following if statements can
     // use `else if(...)`
-    if (numSupportedTypes > 0) {
+    if (numSupportedTypes == 0) {
     }
 
     // Now check for each supported file type
