@@ -79,6 +79,19 @@ struct VolumeSize {
   inline constexpr std::size_t linear() const noexcept {
     return width * height * depth;
   }
+
+  /// @name Comparison operators
+  /// @{
+
+  inline constexpr bool operator==(VolumeSize const &rhs) const {
+    return width == rhs.width && height == rhs.height && depth == rhs.depth;
+  }
+
+  inline constexpr bool operator!=(VolumeSize const &rhs) const {
+    return !(*this == rhs);
+  }
+
+  /// @}
 };
 
 } // namespace CortidQCT
