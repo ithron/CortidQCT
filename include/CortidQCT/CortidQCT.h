@@ -13,6 +13,7 @@
 
 #include "src/Mesh.h"
 #include "src/VoxelVolume.h"
+#include "src/MeasurementModel.h"
 
 /**
  * @brief Name namespace for CortidQCT library
