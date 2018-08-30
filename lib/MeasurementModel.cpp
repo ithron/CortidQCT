@@ -94,12 +94,24 @@ MeasurementModel &MeasurementModel::loadFromFile(std::string const &filename) {
     auto const binaryData = dataNode.as<YAML::Binary>();
     auto const nSamples = binaryData.size() / sizeof(double);
 
+    auto const nRequiredSamples = samplingRange_.numElements() *
+                                  densityRange_.numElements() *
+                                  angleRange_.numElements();
+
+    if (nSamples != nRequiredSamples) {
+      throw std::invalid_argument(
+          "Inconsistent data. Got "s + std::to_string(nSamples) +
+          " samples but required "s + std::to_string(nRequiredSamples));
+    }
+
     // Note: C++ core guideline forbids the use of reinterpret_cast, but since
     // here is no way around it, disable linter for the specific line.
     auto const dataSpan = gsl::make_span(
         reinterpret_cast<double const *>(binaryData.data()), // NOLINT
         gsl::narrow<std::ptrdiff_t>(nSamples));
     auto dataStorage = DataStorage(dataSpan.begin(), dataSpan.end());
+
+    Ensures(dataStorage.size() == nRequiredSamples);
 
     std::optional<std::string> name_, description_, author_;
     std::optional<std::string> creationDate_;
