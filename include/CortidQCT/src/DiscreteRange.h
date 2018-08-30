@@ -14,6 +14,7 @@
 
 #include <limits>
 #include <type_traits>
+#include <cmath>
 
 namespace CortidQCT {
 
@@ -45,6 +46,13 @@ template <class T> struct DiscreteRange {
       : min{min_}, max{max_}, stride{1} {
     static_assert(std::is_integral<value_type>::value,
                   "Default stride is only defined for integral types.");
+  }
+
+  /// Returns the number of elements in the range
+  inline constexpr std::size_t numElements() const noexcept {
+    using std::ceil;
+    auto const length = max - min + T{1};
+    return static_cast<std::size_t>(ceil(length / stride));
   }
 };
 
