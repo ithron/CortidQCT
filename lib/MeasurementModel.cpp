@@ -11,7 +11,6 @@
 
 #include "MeasurementModel.h"
 
-#include <date/date.h>
 #include <gsl/gsl>
 #include <yaml-cpp/yaml.h>
 
@@ -103,8 +102,7 @@ MeasurementModel &MeasurementModel::loadFromFile(std::string const &filename) {
     auto dataStorage = DataStorage(dataSpan.begin(), dataSpan.end());
 
     std::optional<std::string> name_, description_, author_;
-    std::optional<std::chrono::time_point<std::chrono::system_clock>>
-        creationDate_;
+    std::optional<std::string> creationDate_;
 
     if (auto const &nameNode = node["name"]) {
       name_ = nameNode.as<std::string>();
@@ -119,17 +117,7 @@ MeasurementModel &MeasurementModel::loadFromFile(std::string const &filename) {
     }
 
     if (auto const dateNode = node["creationDate"]) {
-      auto const dateString = dateNode.as<std::string>();
-      std::istringstream iss{dateString};
-      date::sys_time<std::chrono::seconds> timePoint;
-      iss >> date::parse("%F%t%T%t%z", timePoint);
-
-      if (iss.fail()) {
-        throw std::invalid_argument("Failed to parse date '" + dateString +
-                                    "' in file " + filename);
-      }
-
-      creationDate_ = timePoint;
+      creationDate_ = dateNode.as<std::string>();
     }
 
     // write loaded data to *this

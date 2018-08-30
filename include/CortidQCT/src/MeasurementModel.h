@@ -43,8 +43,8 @@ public:
   /// Optional model author
   std::optional<std::string> author;
   /// Optional model creation date
-  std::optional<std::chrono::time_point<std::chrono::system_clock>>
-      creationDate;
+  /// @note Date is saved as a string. This may change is the future.
+  std::optional<std::string> creationDate;
 
   /// in-plane kernel width (σ of gaussian kernel)
   float kernelSigma = 1.f;

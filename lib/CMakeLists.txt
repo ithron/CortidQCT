@@ -68,9 +68,6 @@ find_package(libigl CONFIG REQUIRED)
 hunter_add_package(yaml-cpp)
 find_package(yaml-cpp CONFIG REQUIRED)
 
-hunter_add_package(date)
-find_package(date CONFIG REQUIRED)
-
 # Add to target
 target_link_libraries(Core
   PUBLIC
@@ -79,7 +76,6 @@ target_link_libraries(Core
     Microsoft.GSL::GSL
     Eigen3::Eigen
     yaml-cpp::yaml-cpp
-    date_interface
 )
 
 
