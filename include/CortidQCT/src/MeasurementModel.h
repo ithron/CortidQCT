@@ -54,7 +54,7 @@ public:
   /// sampling range for the line sampling
   DiscreteRange<float> samplingRange{-2.f, 2.f, 0.1f};
   /// range for the density sampling
-  DiscreteRange<float> densityRange{-1000.f, 2000.f, 10.f};
+  DiscreteRange<float> densityRange{-1000.f, 2000.f, 1.f};
   /// range for the angle sampling
   DiscreteRange<float> angleRange{0.f, 90.f, 1.f};
 
@@ -68,7 +68,7 @@ public:
   /// - `kernelSigma` defaults to 1,
   /// - `sliceSpacing` default to 1,
   /// - `samplingRange` defaults to [-2, 2] with a stride of 0.1,
-  /// - `densityRange` defaults to [-1000, 3000] with a stride of 10
+  /// - `densityRange` defaults to [-1000, 3000] with a stride of 1
   /// - `angleRange` defaults to [0, 90] with a stride of 1.
   ///
   /// @throws noexcept iff `noexcept(DataStorage())`
