@@ -12,9 +12,9 @@
 #pragma once
 
 #include "DiscreteRange.h"
+#include "Optional.h"
 
 #include <chrono>
-#include <optional>
 #include <string>
 #include <vector>
 
