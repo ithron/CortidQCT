@@ -34,7 +34,7 @@ template <class T> DiscreteRange<T> parseRange(YAML::Node const &node) {
   auto const max = maxNode.as<T>();
   auto const stride = strideNode.as<T>();
 
-  return DiscreteRange(min, max, stride);
+  return discreteRange(min, max, stride);
 }
 
 } // anonymous namespace

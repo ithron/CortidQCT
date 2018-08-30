@@ -35,13 +35,13 @@ template <class T> struct DiscreteRange {
 
   /// Constructs a discrete range
   inline constexpr DiscreteRange(value_type min_, value_type max_,
-                                 value_type stride_)
+                                 value_type stride_) noexcept
       : min{min_}, max{max_}, stride{stride_} {}
 
   /// Constructs a discreate range with an default stride of 1
   ///
   /// @note Only implemented for integral types
-  inline constexpr DiscreteRange(value_type min_, value_type max_)
+  inline constexpr DiscreteRange(value_type min_, value_type max_) noexcept
       : min{min_}, max{max_}, stride{1} {
     static_assert(std::is_integral<value_type>::value,
                   "Default stride is only defined for integral types.");
@@ -55,5 +55,18 @@ using DiscreteRanged = DiscreteRange<double>;
 
 /// Alias for integer value ranges
 using DiescreteRangei = DiscreteRange<int>;
+
+/// Convenient creator function
+template <class T>
+inline constexpr DiscreteRange<T> discreteRange(T min, T max,
+                                                T stride) noexcept {
+  return DiscreteRange<T>(min, max, stride);
+}
+
+/// Convenient creator function
+template <class T>
+inline constexpr DiscreteRange<T> discreteRange(T min, T max) noexcept {
+  return DiscreteRange<T>(min, max);
+}
 
 } // namespace CortidQCT
