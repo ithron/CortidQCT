@@ -75,7 +75,7 @@ target_link_libraries(Core
     igl::core
     Microsoft.GSL::GSL
     Eigen3::Eigen
-    yaml-cpp::yaml-cpp
+    yaml-cpp
 )
 
 
