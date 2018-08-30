@@ -1,0 +1,32 @@
+---
+version: 1.0.0
+name: Test Model
+description: |-
+  A simple test model
+author: Stefan Reinhold
+creationDate: 2018-08-30 15:37:00 +02
+kernel:
+  sigma: !!float 0.68
+sliceSpacing: !!float 0.7
+samplingRange:
+  min: !!float -4
+  max: !!float 4
+  stride: !!float 4
+densityRange:
+  min: !!float -500
+  max: !!float 1500
+  stride: !!float 600
+angleRange:
+  min: !!float 10
+  max: !!float 85
+  stride: !!float 18
+data: !binary |-
+  w/UoXI/C8T/hehSuR+EAQOF6FK5H4QhAXI/C9Shc8z+uR+F6FK4BQK5H4XoUrglA9ihcj8L1
+  9D96FK5H4XoCQHoUrkfhegpAj8L1KFyP9j9H4XoUrkcDQEfhehSuRwtA7FG4HoXr8T/2KFyP
+  wvUAQPYoXI/C9QhAhetRuB6F8z/D9Shcj8IBQMP1KFyPwglAH4XrUbge9T+PwvUoXI8CQI/C
+  9ShcjwpAuB6F61G49j9cj8L1KFwDQFyPwvUoXAtAFa5H4XoU8j8K16NwPQoBQArXo3A9CglA
+  rkfhehSu8z/Xo3A9CtcBQNejcD0K1wlASOF6FK5H9T+jcD0K16MCQKNwPQrXowpA4XoUrkfh
+  9j9wPQrXo3ADQHA9CtejcAtAPgrXo3A98j8fhetRuB4BQB+F61G4HglA16NwPQrX8z/sUbge
+  hesBQOxRuB6F6wlAcT0K16Nw9T+4HoXrUbgCQLgehetRuApACtejcD0K9z+F61G4HoUDQIXr
+  UbgehQtAZ2ZmZmZm8j8zMzMzMzMBQDMzMzMzMwlAAAAAAAAA9D8AAAAAAAACQAAAAAAAAApA
+  mpmZmZmZ9T/MzMzMzMwCQMzMzMzMzApAMzMzMzMz9z+ZmZmZmZkDQJmZmZmZmQtA
