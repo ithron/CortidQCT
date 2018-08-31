@@ -74,35 +74,6 @@ matrix:
         - BUILD_TYPE=Release
 
     ##############
-    # Clang 3.9
-
-    # Debug
-    - os: linux
-      addons:
-        apt:
-          sources:
-            - ubuntu-toolchain-r-test
-          packages:
-            - libstdc++-5-dev
-            - clang-3.9
-      env:
-        - MATRIX_EVAL="CC=clang-3.9 && CXX=clang++-3.9"
-        - BUILD_TYPE=Debug
-
-    # Release
-    - os: linux
-      addons:
-        apt:
-          sources:
-            - ubuntu-toolchain-r-test
-          packages:
-            - libstdc++-5-dev
-            - clang-3.9
-      env:
-        - MATRIX_EVAL="CC=clang-3.9 && CXX=clang++-3.9"
-        - BUILD_TYPE=Release
-
-    ##############
     # Clang 4.0
 
     # Debug
