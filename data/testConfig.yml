@@ -1,0 +1,13 @@
+---
+
+# Paths are relative the current file
+referenceMesh:
+  mesh:   SimpleVertebra.off
+  labels: SimpleVertebra-labels.txt
+
+measurementModel: testModel.yml
+
+sigmaE: 3.1415
+
+sigmaS: 1.5
+

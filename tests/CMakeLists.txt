@@ -86,6 +86,16 @@ target_link_libraries(TestMeasurementModel
 target_include_directories(TestMeasurementModel PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
 add_test(TestMeasurementModel TestMeasurementModel)
 
+add_executable(TestMeshFitterConfiguration MeshFitterConfiguration.cpp)
+target_link_libraries(TestMeshFitterConfiguration
+  PRIVATE
+    GTest::main
+    CortidQCT::Core
+    TestCommon
+)
+target_include_directories(TestMeshFitterConfiguration PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
+add_test(TestMeshFitterConfiguration TestMeshFitterConfiguration)
+
 # add_executable(TestFitMesh FitMesh.cpp)
 # target_link_libraries(TestFitMesh
 #   PRIVATE

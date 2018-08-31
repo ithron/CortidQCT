@@ -35,6 +35,7 @@ add_library(Core
   CortidQCT.cpp
   MeasurementModel.cpp
   Mesh.cpp
+  MeshFitterConfiguration.cpp
   VoxelVolume.cpp
 )
 
