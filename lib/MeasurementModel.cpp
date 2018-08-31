@@ -104,12 +104,11 @@ MeasurementModel &MeasurementModel::loadFromFile(std::string const &filename) {
           " samples but required "s + std::to_string(nRequiredSamples));
     }
 
-    // Note: C++ core guideline forbids the use of reinterpret_cast, but since
-    // here is no way around it, disable linter for the specific line.
-    auto const dataSpan = gsl::make_span(
-        reinterpret_cast<double const *>(binaryData.data()), // NOLINT
-        gsl::narrow<std::ptrdiff_t>(nSamples));
-    auto dataStorage = DataStorage(dataSpan.begin(), dataSpan.end());
+    auto dataStorage = DataStorage(nSamples);
+    // Copy binary data to storage, reinterpreting bytes as doubles.
+    // It'd probably better to use std::bit_cast here, but that's not available
+    // until c++20.
+    std::memcpy(dataStorage.data(), binaryData.data(), binaryData.size());
 
     Ensures(dataStorage.size() == nRequiredSamples);
 
