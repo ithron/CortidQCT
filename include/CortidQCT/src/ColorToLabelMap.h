@@ -108,8 +108,9 @@ struct CustomMap {
    * red, green, yellow, green, magenta, cyan to 0, 1, 2, 3, 4, 5,
    * respectively.
    */
-  Table table = {{{255, 0, 0}, 0}, {{0, 255, 0}, 1},   {{255, 255, 0}, 2},
-                 {{0, 0, 255}, 3}, {{255, 0, 255}, 4}, {{0, 255, 255}, 5}};
+  Table table = {{{{255, 0, 0}}, 0},   {{{0, 255, 0}}, 1},
+                 {{{255, 255, 0}}, 2}, {{{0, 0, 255}}, 3},
+                 {{{255, 0, 255}}, 4}, {{{0, 255, 255}}, 5}};
 
   /// The label that is returned when no matching entry in the table can be
   /// found
