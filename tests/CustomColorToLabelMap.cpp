@@ -28,8 +28,8 @@ static std::string const file2 =
     std::string(CortidQCT_DATADIR) + "/testColorMapExt.yml";
 
 constexpr static ColorRGB testColors[] = {
-    {0, 0, 0},   {255, 0, 0},   {0, 255, 0},   {255, 255, 0},
-    {0, 0, 255}, {255, 0, 255}, {0, 255, 255}, {255, 255, 255}};
+    {{0, 0, 0}},   {{255, 0, 0}},   {{0, 255, 0}},   {{255, 255, 0}},
+    {{0, 0, 255}}, {{255, 0, 255}}, {{0, 255, 255}}, {{255, 255, 255}}};
 
 inline constexpr std::array<float, 3> colorToFlt(ColorRGB const &c) {
   return {{static_cast<float>(c[0]) / 255.f, static_cast<float>(c[1]) / 255.f,
