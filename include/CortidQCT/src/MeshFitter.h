@@ -66,7 +66,11 @@ public:
 private:
   struct Impl;
 
+#ifndef CORTIDQCT_NO_PROPAGATE_CONST
   std::propagate_const<std::unique_ptr<Impl>> pImpl_;
+#else
+  std::unique_ptr<Impl> pImpl_;
+#endif
 };
 
 } // namespace CortidQCT
