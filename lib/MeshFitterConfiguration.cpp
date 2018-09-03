@@ -9,6 +9,7 @@
  *            the AFL 3.0 license; see LICENSE for full license details.
  */
 
+#include "ColorToLabelMapIO.h"
 #include "MeshFitter.h"
 
 #include <gsl/gsl>
@@ -64,10 +65,6 @@ MeshFitter::Configuration::loadFromFile(std::string const &filename) {
       throw std::invalid_argument("Missing 'referenceMesh.mesh' in " +
                                   filename);
     }
-    if (!referenceMeshNode["labels"]) {
-      throw std::invalid_argument("Missing 'referenceMesh.labels' in " +
-                                  filename);
-    }
 
     auto const meshFilename =
         composePath(filename, referenceMeshNode["mesh"].as<std::string>());
@@ -80,8 +77,37 @@ MeshFitter::Configuration::loadFromFile(std::string const &filename) {
       auto const labelFilename =
           composePath(filename, labelNode.as<std::string>());
       refMesh.loadFromFile(meshFilename, labelFilename);
+    } else if (auto const &colorMapNode =
+                   referenceMeshNode["colorToLabelMap"]) {
+
+      if (auto const &typeNode = colorMapNode["type"]) {
+        auto const type = typeNode.as<std::string>();
+
+        if (type == "default") {
+
+          refMesh.loadFromFile(meshFilename);
+        } else if (type == "custom") {
+
+          ColorToLabelMap<Mesh<float>::Label, double> const colorToLabelMap =
+              ColorToLabelMaps::IO::loadCustomMapFromYAMLNode(colorMapNode);
+
+          refMesh.loadFromFile(meshFilename, colorToLabelMap);
+
+        } else {
+          throw std::invalid_argument("Invalid color to label map type: '" +
+                                      type + "' in " + filename);
+        }
+      } else {
+        // custom type
+        ColorToLabelMap<Mesh<float>::Label, double> const colorToLabelMap =
+            ColorToLabelMaps::IO::loadCustomMapFromYAMLNode(colorMapNode);
+
+        refMesh.loadFromFile(meshFilename, colorToLabelMap);
+      }
     } else {
-      refMesh.loadFromFile(meshFilename);
+      throw std::invalid_argument("Missing 'referenceMesh.labels' or "
+                                  "'referenceMesh.colorToLabelMap' in " +
+                                  filename);
     }
 
     Ensures(!refMesh.isEmpty());

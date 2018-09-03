@@ -24,6 +24,8 @@ using namespace CortidQCT;
 
 static std::string const file1 =
     std::string(CortidQCT_DATADIR) + "/testConfig.yml";
+static std::string const file2 =
+    std::string(CortidQCT_DATADIR) + "/testConfig2.yml";
 
 TEST(MeshFitterConfiguration, DefaultParameters) {
   auto const config = MeshFitter::Configuration{};
@@ -46,4 +48,34 @@ TEST(MeshFitterConfiguration, LoadFromFile) {
 
   ASSERT_FALSE(config.model.isEmpty());
   ASSERT_FALSE(config.referenceMesh.isEmpty());
+}
+
+TEST(MeshFitterConfiguration, LoadFromFileWithColorMap) {
+
+  auto config = MeshFitter::Configuration{};
+
+  ASSERT_NO_THROW(config.loadFromFile(file2));
+
+  ASSERT_DOUBLE_EQ(3.1415, config.sigmaE);
+  ASSERT_DOUBLE_EQ(1.5, config.sigmaS);
+
+  ASSERT_FALSE(config.model.isEmpty());
+  ASSERT_FALSE(config.referenceMesh.isEmpty());
+
+  constexpr std::array<int, 5> refCounts{{1036, 1072, 392, 192, 0}};
+  std::array<int, 5> counts{{0, 0, 0, 0, 0}};
+
+  auto const mesh = config.referenceMesh;
+
+  mesh.withUnsafeLabelPointer([&mesh, &counts](auto const *pLabels) {
+    for (auto &&label : gsl::make_span(
+             pLabels, gsl::narrow<std::ptrdiff_t>(mesh.vertexCount()))) {
+      ASSERT_GE(label, 0);
+      ASSERT_LE(label, 4);
+
+      ++counts[gsl::narrow<std::size_t>(label)];
+    }
+  });
+
+  ASSERT_EQ(refCounts, counts);
 }

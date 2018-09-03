@@ -1,0 +1,20 @@
+---
+
+# Paths are relative the current file
+referenceMesh:
+  mesh:   SimpleVertebra.off
+  colorToLabelMap:
+    type: custom
+    map:
+      - [[255, 0, 0], 1]
+      - [[0, 255, 0], 0]
+      - [[0, 0, 255], 3]
+      - [[255, 255, 0], 2]
+    undefinedLabel: 4
+
+measurementModel: testModel.yml
+
+sigmaE: 3.1415
+
+sigmaS: 1.5
+
