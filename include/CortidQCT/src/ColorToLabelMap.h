@@ -12,8 +12,37 @@
 
 #pragma once
 
+#include <array>
 #include <functional>
 #include <cassert>
+#include <unordered_map>
+
+namespace CortidQCT {
+  
+/// 24-bit RGB color type
+using ColorRGB = std::array<std::uint8_t, 3>;
+  
+} // namespace CortidQCT
+
+namespace std {
+  
+template<> struct hash<CortidQCT::ColorRGB> {
+  
+  using argument_type = CortidQCT::ColorRGB;
+  using result_type = std::size_t;
+  
+  result_type operator()(argument_type const &comp) const noexcept {
+    auto const r = static_cast<std::uint32_t>(comp[0]);
+    auto const g = static_cast<std::uint32_t>(comp[1]);
+    auto const b = static_cast<std::uint32_t>(comp[2]);
+    auto const val = r << 16 | g << 8 | b;
+    
+    return hash<std::uint32_t>{}(val);
+  }
+  
+};
+
+} // namespace std
 
 namespace CortidQCT {
 
@@ -63,6 +92,58 @@ inline Label defaultMap(Scalar red, Scalar green, Scalar blue) {
 
   return static_cast<Label>(combined);
 }
+
+  /**
+   * @brief A customaizable color to label map
+   */
+struct CustomMap {
+
+  using LabelType = std::uint64_t;
+  
+  using Table = std::unordered_map<ColorRGB, LabelType>;
+  
+  /**
+   * @brief mapping table
+   *
+   * Maps RGB colors to labels. Defautl value maps the colors
+   * red, green, yellow, green, magenta, cyan to 0, 1, 2, 3, 4, 5,
+   * respectively.
+   */
+  Table table = {
+    {{255, 0, 0}, 0},
+    {{0, 255, 0}, 1},
+    {{255, 255, 0}, 2},
+    {{0, 0, 255}, 3},
+    {{255, 0, 255}, 4},
+    {{0, 255, 255}, 5}
+  };
+    
+  template<class Scalar, class Label>
+  inline operator ColorToLabelMap<Label, Scalar>() const {
+    return [map = *this](Scalar r, Scalar g, Scalar b) -> Label {
+      return map(r, g, b);
+    };
+  }
+  
+  template<class Scalar, class Label>
+  inline Label operator()(Scalar red, Scalar green, Scalar blue) const {
+    assert(red >= Scalar{0} && red <= Scalar{1});
+    assert(green >= Scalar{0} && green <= Scalar{1});
+    assert(blue >= Scalar{0} && blue <= Scalar{1});
+    
+    auto const redScaled = static_cast<std::uint8_t>(red * Scalar{255});
+    auto const greenScaled = static_cast<std::uint8_t>(green * Scalar{255});
+    auto const blueScaled = static_cast<std::uint8_t>(blue * Scalar{255});
+    
+    auto const components = ColorRGB{{redScaled, greenScaled, blueScaled}};
+    
+    if (auto const labelIt = table.find(components); labelIt != table.end()) {
+      return static_cast<Label>(labelIt->second);
+    }
+    
+    return Label{0};
+  }
+};
 
 } // namespace ColorToLabelMaps
 
