@@ -15,7 +15,9 @@
 #include "Optional.h"
 
 #include <chrono>
+#include <set>
 #include <string>
+#include <unordered_map>
 #include <vector>
 
 namespace CortidQCT {
@@ -29,8 +31,13 @@ namespace CortidQCT {
  * @nosubgrouping .
  */
 class MeasurementModel {
+public:
+  /// Label type
+  using Label = unsigned int;
+
+private:
   /// Type used to store data samples
-  using DataStorage = std::vector<double>;
+  using DataStorage = std::unordered_map<Label, std::vector<double>>;
 
 public:
   /// @name Properties
@@ -100,6 +107,17 @@ public:
   /// Returns true iff to model contains to data
   inline bool isEmpty() const noexcept { return data_.empty(); }
 
+  /// Returns all valid labels of the model
+  inline auto labels() const {
+    std::set<Label> labels;
+    for (auto &&entry : data_) { labels.insert(entry.first); }
+
+    return labels;
+  }
+
+  /// Returns the number of valid labels of the model
+  inline std::size_t labelCount() const noexcept { return data_.size(); }
+
   /// @}
 
   /**
@@ -120,13 +138,22 @@ public:
    *
    * @tparam F function that accepts a `double const *` pointer as the only
    * argument.
-   * @throws noexcept(conditional) iff `f(double const *)` is noexcept
+   * @param label Label to retrieve the data pointer for
+   * @param f functional that is called with the raw data pointer as an
+   * argument,
    * @return The return value of the functional
    */
   template <class F>
-  inline auto withUnsafeDataPointer(F &&f) const
-      noexcept(noexcept(f(std::declval<DataStorage>().data()))) {
-    return f(data_.data());
+  inline auto withUnsafeDataPointer(Label label, F &&f) const {
+    if (auto const store = data_.find(label); store != data_.end()) {
+      return f(store->second.data());
+    }
+
+    throw std::invalid_argument("Label " + std::to_string(label) +
+                                " not found");
+
+    // Should never be called, but GCC complains if nothing is returned.
+    return f(nullptr);
   }
 
   /// @}

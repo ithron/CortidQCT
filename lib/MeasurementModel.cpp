@@ -57,7 +57,7 @@ MeasurementModel &MeasurementModel::loadFromFile(std::string const &filename) {
     auto const &samplingRangeNode = node["samplingRange"];
     auto const &densityRangeNode = node["densityRange"];
     auto const &angleRangeNode = node["angleRange"];
-    auto const &dataNode = node["data"];
+    auto const &densityNode = node["density"];
 
     if (!kernelNode) {
       throw std::invalid_argument("Missing 'kernel' in " + filename);
@@ -74,8 +74,8 @@ MeasurementModel &MeasurementModel::loadFromFile(std::string const &filename) {
     if (!angleRangeNode) {
       throw std::invalid_argument("Missing 'angleRange' in " + filename);
     }
-    if (!dataNode) {
-      throw std::invalid_argument("Missing 'data' in " + filename);
+    if (!densityNode) {
+      throw std::invalid_argument("Missing 'density' in " + filename);
     }
     auto const &kernelSigmaNode = kernelNode["sigma"];
 
@@ -91,26 +91,44 @@ MeasurementModel &MeasurementModel::loadFromFile(std::string const &filename) {
     auto const angleRange_ = parseRange<float>(angleRangeNode);
 
     // load  data
-    auto const binaryData = dataNode.as<YAML::Binary>();
-    auto const nSamples = binaryData.size() / sizeof(double);
+    auto dataStorage = DataStorage{};
+    for (auto &&datNode : densityNode) {
+      auto const &labelNode = datNode["label"];
+      if (!labelNode) {
+        throw std::invalid_argument("Missing 'density.label' in " + filename);
+      }
+      auto const &dataNode = datNode["data"];
+      if (!dataNode) {
+        throw std::invalid_argument("Missing 'density.data' in " + filename);
+      }
 
-    auto const nRequiredSamples = samplingRange_.numElements() *
-                                  densityRange_.numElements() *
-                                  angleRange_.numElements();
+      auto const label = labelNode.as<unsigned int>();
+      auto const binaryData = dataNode.as<YAML::Binary>();
+      auto const nSamples = binaryData.size() / sizeof(double);
 
-    if (nSamples != nRequiredSamples) {
-      throw std::invalid_argument(
-          "Inconsistent data. Got "s + std::to_string(nSamples) +
-          " samples but required "s + std::to_string(nRequiredSamples));
+      auto const nRequiredSamples = samplingRange_.numElements() *
+                                    densityRange_.numElements() *
+                                    angleRange_.numElements();
+
+      if (nSamples != nRequiredSamples) {
+        throw std::invalid_argument(
+            "Inconsistent data. Got "s + std::to_string(nSamples) +
+            " samples but required "s + std::to_string(nRequiredSamples));
+      }
+
+      auto storage = std::vector<double>(nSamples);
+
+      // Copy binary data to storage, reinterpreting bytes as doubles.
+      // It'd probably better to use std::bit_cast here, but that's not
+      // available until c++20.
+      std::memcpy(storage.data(), binaryData.data(), binaryData.size());
+
+      Ensures(storage.size() == nRequiredSamples);
+
+      dataStorage.emplace(std::piecewise_construct,
+                          std::forward_as_tuple(label),
+                          std::forward_as_tuple(std::move(storage)));
     }
-
-    auto dataStorage = DataStorage(nSamples);
-    // Copy binary data to storage, reinterpreting bytes as doubles.
-    // It'd probably better to use std::bit_cast here, but that's not available
-    // until c++20.
-    std::memcpy(dataStorage.data(), binaryData.data(), binaryData.size());
-
-    Ensures(dataStorage.size() == nRequiredSamples);
 
     std::optional<std::string> name_, description_, author_;
     std::optional<std::string> creationDate_;

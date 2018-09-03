@@ -93,19 +93,23 @@ TEST(MeasurementModel, LoadFromFile) {
   auto const nDensities = model.densityRange.numElements();
   auto const nAngles = model.angleRange.numElements();
 
+  ASSERT_EQ(2, model.labelCount());
+
   // Check data
-  model.withUnsafeDataPointer([&](double const *ptr) {
-    double const *val = ptr;
-    for (auto z = 1u; z <= nAngles; ++z) {
-      for (auto y = 1u; y <= nDensities; ++y) {
-        for (auto x = 1u; x <= nSamples; ++x) {
-          auto const refVal = static_cast<double>(x) +
-                              static_cast<double>(y) * 0.1 +
-                              static_cast<double>(0.01) * z;
-          ASSERT_DOUBLE_EQ(refVal, *val);
-          ++val;
+  for (MeasurementModel::Label const label : {0u, 1u}) {
+    model.withUnsafeDataPointer(label, [&](double const *ptr) {
+      double const *val = ptr;
+      for (auto z = 1u; z <= nAngles; ++z) {
+        for (auto y = 1u; y <= nDensities; ++y) {
+          for (auto x = 1u; x <= nSamples; ++x) {
+            auto const refVal = static_cast<double>(x) +
+                                static_cast<double>(y) * 0.1 +
+                                static_cast<double>(0.01) * z;
+            ASSERT_DOUBLE_EQ(refVal, *val);
+            ++val;
+          }
         }
       }
-    }
-  });
+    });
+  }
 }
