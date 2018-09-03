@@ -33,6 +33,7 @@ endif()
 
 add_library(Core
   CortidQCT.cpp
+  ColorToLabelMapIO.cpp
   MeasurementModel.cpp
   Mesh.cpp
   MeshFitterConfiguration.cpp

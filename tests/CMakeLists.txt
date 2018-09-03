@@ -96,6 +96,16 @@ target_link_libraries(TestMeshFitterConfiguration
 target_include_directories(TestMeshFitterConfiguration PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
 add_test(TestMeshFitterConfiguration TestMeshFitterConfiguration)
 
+add_executable(TestCustomColorToLabelMap CustomColorToLabelMap.cpp)
+target_link_libraries(TestCustomColorToLabelMap
+  PRIVATE
+    GTest::main
+    CortidQCT::Core
+    TestCommon
+)
+target_include_directories(TestCustomColorToLabelMap PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
+add_test(TestCustomColorToLabelMap TestCustomColorToLabelMap)
+
 # add_executable(TestFitMesh FitMesh.cpp)
 # target_link_libraries(TestFitMesh
 #   PRIVATE
