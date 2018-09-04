@@ -6,8 +6,30 @@
 #include "propagate_const.h"
 
 #include <memory>
+#include <variant>
 
 namespace CortidQCT {
+
+struct Coordinate3D {
+  enum class Type { absolute, relative };
+
+  std::array<float, 3> xyz{{0, 0, 0}};
+  Type type{Type::absolute};
+};
+
+/**
+ * @nosubgrouping .
+ */
+class MeshFitter {
+public:
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wpadded"
+  /**
+   * @brief Configuration type for MeshFitter
+   */
+  struct Configuration {
+    enum class OriginType { untouched, centered };
+    using Origin = std::variant<OriginType, Coordinate3D>;
 
 /**
  * @nosubgrouping .
@@ -26,6 +48,17 @@ public:
     double sigmaE = 2.0;
     /// Scale parameter for the latent variable s
     double sigmaS = 2.0;
+
+    /**
+     * @brief Reference mesh origin
+     *
+     * There are N possible values:
+     *   - `OriginType::untouched` - do not change the origin of the mesh
+     *   - `OriginType::centered` - use the image center as the origin
+     *   - `absolute` - override the origin using absolute coordinates
+     *   - `relative` - override the origin using relative coordinates
+     */
+    Origin referenceMeshOrigin = OriginType::untouched;
 
     /**
      * @brief Load the configuration from a file

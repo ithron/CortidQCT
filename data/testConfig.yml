@@ -4,6 +4,7 @@
 referenceMesh:
   mesh:   SimpleVertebra.off
   labels: SimpleVertebra-labels.txt
+  origin: centered
 
 measurementModel: testModel.yml
 

@@ -35,6 +35,12 @@ TEST(MeshFitterConfiguration, DefaultParameters) {
 
   ASSERT_TRUE(config.model.isEmpty());
   ASSERT_TRUE(config.referenceMesh.isEmpty());
+
+  ASSERT_TRUE(std::holds_alternative<MeshFitter::Configuration::OriginType>(
+      config.referenceMeshOrigin));
+  ASSERT_EQ(MeshFitter::Configuration::OriginType::untouched,
+            std::get<MeshFitter::Configuration::OriginType>(
+                config.referenceMeshOrigin));
 }
 
 TEST(MeshFitterConfiguration, LoadFromFile) {
@@ -48,6 +54,12 @@ TEST(MeshFitterConfiguration, LoadFromFile) {
 
   ASSERT_FALSE(config.model.isEmpty());
   ASSERT_FALSE(config.referenceMesh.isEmpty());
+
+  ASSERT_TRUE(std::holds_alternative<MeshFitter::Configuration::OriginType>(
+      config.referenceMeshOrigin));
+  ASSERT_EQ(MeshFitter::Configuration::OriginType::centered,
+            std::get<MeshFitter::Configuration::OriginType>(
+                config.referenceMeshOrigin));
 }
 
 TEST(MeshFitterConfiguration, LoadFromFileWithColorMap) {
@@ -78,4 +90,15 @@ TEST(MeshFitterConfiguration, LoadFromFileWithColorMap) {
   });
 
   ASSERT_EQ(refCounts, counts);
+
+  ASSERT_TRUE(std::holds_alternative<Coordinate3D>(
+      config.referenceMeshOrigin));
+
+  auto const origin = std::get<Coordinate3D>(config.referenceMeshOrigin);
+
+  ASSERT_EQ(Coordinate3D::Type::relative, origin.type);
+
+  ASSERT_FLOAT_EQ(0.4, origin.xyz[0]);
+  ASSERT_FLOAT_EQ(0.5, origin.xyz[1]);
+  ASSERT_FLOAT_EQ(0.6, origin.xyz[2]);
 }

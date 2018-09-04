@@ -73,6 +73,55 @@ MeshFitter::Configuration::loadFromFile(std::string const &filename) {
 
     auto refMesh = Mesh<float>{};
 
+    auto meshOrigin = referenceMeshOrigin;
+
+    if (auto const &originNode = referenceMeshNode["origin"]) {
+      if (originNode.IsScalar()) {
+        if (originNode.as<std::string>() == "untouched") {
+          meshOrigin = OriginType::untouched;
+        } else if (originNode.as<std::string>() == "centered") {
+          meshOrigin = OriginType::centered;
+        } else {
+          throw std::invalid_argument("Invalid origin type '" +
+                                      originNode.as<std::string>() + "' in " +
+                                      filename);
+        }
+      } else {
+        auto const &typeNode = originNode["type"];
+        if (!typeNode || !typeNode.IsScalar()) {
+          throw std::invalid_argument("Missing or invalid origin.type in " +
+                                      filename);
+        }
+
+        if (typeNode.as<std::string>() == "untouched") {
+          meshOrigin = OriginType::untouched;
+        } else if (typeNode.as<std::string>() == "centered") {
+          meshOrigin = OriginType::centered;
+        } else if (typeNode.as<std::string>() == "absolute" ||
+                   typeNode.as<std::string>() == "relative") {
+          auto const &xyzNode = originNode["xyz"];
+          if (!xyzNode || !xyzNode.IsSequence() || xyzNode.size() != 3) {
+            throw std::invalid_argument("Missing or invalid origin.xyz in " +
+                                        filename);
+          }
+
+          Coordinate3D originXYZ;
+
+          originXYZ.xyz[0] = xyzNode.begin()->as<float>();
+          originXYZ.xyz[1] = (++xyzNode.begin())->as<float>();
+          originXYZ.xyz[2] = (++++xyzNode.begin())->as<float>();
+
+          if (typeNode.as<std::string>() == "relative") {
+            originXYZ.type = Coordinate3D::Type::relative;
+          }
+
+          meshOrigin = originXYZ;
+        }
+      }
+    }
+
+    referenceMeshOrigin = meshOrigin;
+
     if (auto const &labelNode = referenceMeshNode["labels"]) {
       auto const labelFilename =
           composePath(filename, labelNode.as<std::string>());
