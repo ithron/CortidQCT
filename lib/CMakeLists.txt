@@ -36,6 +36,7 @@ add_library(Core
   ColorToLabelMapIO.cpp
   MeasurementModel.cpp
   Mesh.cpp
+  MeshFitter.cpp
   MeshFitterConfiguration.cpp
   VoxelVolume.cpp
 )

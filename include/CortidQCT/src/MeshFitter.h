@@ -9,9 +9,11 @@
 
 namespace CortidQCT {
 
+/**
+ * @nosubgrouping .
+ */
 class MeshFitter {
 public:
-
   /**
    * @brief Configuration type for MeshFitter
    */
@@ -44,16 +46,26 @@ public:
   };
 
   /**
+   * @name Public Properties
+   * @{
+   */
+
+  /// The configuration
+  Configuration configuration;
+
+  /// @}
+
+  /**
    * @brief Constructs a MeshFitter object with given configuration
    * @param config Configuration object
    */
-  MeshFitter(Configuration const &config);
+  MeshFitter(Configuration config);
 
   ~MeshFitter();
   MeshFitter(MeshFitter const &);
-  MeshFitter(MeshFitter &&);
+  MeshFitter(MeshFitter &&) noexcept;
   MeshFitter &operator=(MeshFitter const &);
-  MeshFitter &operator=(MeshFitter &&);
+  MeshFitter &operator=(MeshFitter &&) noexcept;
 
   /**
    * @brief Convenience constructor that reads the configuration from the given
@@ -64,7 +76,7 @@ public:
       : MeshFitter(Configuration::fromFile(configFilename)) {}
 
 private:
-  struct Impl;
+  class Impl;
 
 #ifndef CORTIDQCT_NO_PROPAGATE_CONST
   std::propagate_const<std::unique_ptr<Impl>> pImpl_;
