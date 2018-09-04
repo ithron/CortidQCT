@@ -36,6 +36,8 @@ public:
       : fitter_(rhsFitter) {}
 
 protected:
+  MeshFitter::Result fit(VoxelVolume const &volume);
+
   MeshFitter &fitter_;
 };
 

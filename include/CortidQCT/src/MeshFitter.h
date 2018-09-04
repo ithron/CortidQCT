@@ -2,7 +2,9 @@
 
 #include "MeasurementModel.h"
 #include "Mesh.h"
+#include "VoxelVolume.h"
 
+#include "Optional.h"
 #include "propagate_const.h"
 
 #include <memory>
@@ -31,15 +33,6 @@ public:
     enum class OriginType { untouched, centered };
     using Origin = std::variant<OriginType, Coordinate3D>;
 
-/**
- * @nosubgrouping .
- */
-class MeshFitter {
-public:
-  /**
-   * @brief Configuration type for MeshFitter
-   */
-  struct Configuration {
     /// The measurement model
     MeasurementModel model;
     /// The reference mesh
@@ -77,6 +70,15 @@ public:
       return Configuration{}.loadFromFile(filename);
     }
   };
+#pragma clang diagnostic pop
+
+  /**
+   * @brief Result type
+   */
+  struct Result {
+    /// The deformed mesh or nullopt if fitting failed
+    std::optional<Mesh<float>> deformedMesh;
+  };
 
   /**
    * @name Public Properties
@@ -101,6 +103,7 @@ public:
   MeshFitter &operator=(MeshFitter &&) noexcept;
 
   void swap(MeshFitter &rhs) noexcept;
+
   /**
    * @brief Convenience constructor that reads the configuration from the given
    * configuration file
@@ -108,6 +111,14 @@ public:
    */
   inline MeshFitter(std::string const &configFilename)
       : MeshFitter(Configuration::fromFile(configFilename)) {}
+
+  /**
+   * @brief Fits the reference mesh to the given voxel volume
+   *
+   * @param volume VoxelVolume object representing the target scan
+   * @return A `Result` struct containing the deformed mesh
+   */
+  Result fit(VoxelVolume const &volume);
 
 private:
   class Impl;

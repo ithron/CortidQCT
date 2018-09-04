@@ -54,4 +54,9 @@ void MeshFitter::swap(MeshFitter &rhs) noexcept {
   rhs.pImpl_->fitter_ = rhs;
   pImpl_->fitter_ = *this;
 }
+
+MeshFitter::Result MeshFitter::fit(VoxelVolume const &volume) {
+  return pImpl_->fit(volume);
+}
+
 } // namespace CortidQCT
