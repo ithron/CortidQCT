@@ -189,7 +189,7 @@ public:
    */
   template <class F>
   inline auto withUnsafeVertexPointer(F &&f) const
-      noexcept(noexcept(f(VertexData().data()))) {
+      noexcept(noexcept(f(std::declval<const VertexData>().data()))) {
     return f(vertexData_.data());
   }
 
@@ -206,7 +206,7 @@ public:
    */
   template <class F>
   inline auto withUnsafeIndexPointer(F &&f) const
-      noexcept(noexcept(f(IndexData().data()))) {
+      noexcept(noexcept(f(std::declval<const IndexData>().data()))) {
     return f(indexData_.data());
   }
 
