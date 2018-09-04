@@ -100,6 +100,7 @@ public:
   MeshFitter &operator=(MeshFitter const &);
   MeshFitter &operator=(MeshFitter &&) noexcept;
 
+  void swap(MeshFitter &rhs) noexcept;
   /**
    * @brief Convenience constructor that reads the configuration from the given
    * configuration file

@@ -45,4 +45,13 @@ MeshFitter &MeshFitter::operator=(MeshFitter &&rhs) noexcept {
 MeshFitter::MeshFitter(Configuration config)
     : configuration(std::move(config)), pImpl_(std::make_unique<Impl>(*this)) {}
 
+void MeshFitter::swap(MeshFitter &rhs) noexcept {
+  using std::swap;
+
+  swap(configuration, rhs.configuration);
+  pImpl_.swap(rhs.pImpl_);
+
+  rhs.pImpl_->fitter_ = rhs;
+  pImpl_->fitter_ = *this;
+}
 } // namespace CortidQCT
