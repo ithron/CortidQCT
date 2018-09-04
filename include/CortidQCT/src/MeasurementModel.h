@@ -25,7 +25,7 @@ namespace CortidQCT {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wpadded"
 /**
- * Type representing the measurement model.
+ * @brief Type representing the measurement model.
  *
  * A MeasurementModel can currently only be loaded from file.
  * @nosubgrouping .
