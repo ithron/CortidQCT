@@ -3,7 +3,7 @@ A tool for automatic cortical shape identification for QCT scans
 
 ## Requirements
 
-A modern c++ compiler with C++17 support is required. These compiler are known
+A modern C++ compiler with C++17 support is required. These compiler are known
 to work:
   - gcc: version 7.3 or later
   - clang: version 4.0 or later (with libc++ or stdlibc++-7.3 or later)
