@@ -139,7 +139,7 @@ before_install:
   - git submodule update --init
 
 before_script:
-  - source script/travis-toolchain.sh
+  - source scripts/travis-toolchain.sh
 
 script:
   - ./scripts/travis-cmake.sh
