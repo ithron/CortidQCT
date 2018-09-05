@@ -78,30 +78,14 @@ matrix:
 
     # Debug
     - os: linux
-      addons:
-        apt:
-          sources:
-            - ubuntu-toolchain-r-test
-            - llvm-toolchain-trusty-4.0
-          packages:
-            - libstdc++-8-dev
-            - clang-4.0
       env:
-        - MATRIX_EVAL="CC=clang-4.0 && CXX=clang++-4.0"
+        - MATRIX_EVAL="CC=clang-4.0.1"
         - BUILD_TYPE=Debug
 
     # Debug
     - os: linux
-      addons:
-        apt:
-          sources:
-            - ubuntu-toolchain-r-test
-            - llvm-toolchain-trusty-4.0
-          packages:
-            - libstdc++-8-dev
-            - clang-4.0
       env:
-        - MATRIX_EVAL="CC=clang-4.0 && CXX=clang++-4.0"
+        - MATRIX_EVAL="CC=clang-4.0.1"
         - BUILD_TYPE=Release
 
     ##############
@@ -109,30 +93,14 @@ matrix:
 
     # Debug
     - os: linux
-      addons:
-        apt:
-          sources:
-            - ubuntu-toolchain-r-test
-            - llvm-toolchain-trusty-5.0
-          packages:
-            - libstdc++-8-dev
-            - clang-5.0
       env:
-        - MATRIX_EVAL="CC=clang-5.0 && CXX=clang++-5.0"
+        - MATRIX_EVAL="CC=clang-5.0.2"
         - BUILD_TYPE=Debug
 
     # Debug
     - os: linux
-      addons:
-        apt:
-          sources:
-            - ubuntu-toolchain-r-test
-            - llvm-toolchain-trusty-5.0
-          packages:
-            - libstdc++-8-dev
-            - clang-5.0
       env:
-        - MATRIX_EVAL="CC=clang-5.0 && CXX=clang++-5.0"
+        - MATRIX_EVAL="CC=clang-5.0.2"
         - BUILD_TYPE=Release
 
     ##############
@@ -140,30 +108,14 @@ matrix:
 
     # Debug
     - os: linux
-      addons:
-        apt:
-          sources:
-            - ubuntu-toolchain-r-test
-            - llvm-toolchain-trusty-6.0
-          packages:
-            - libstdc++-8-dev
-            - clang-6.0
       env:
-        - MATRIX_EVAL="CC=clang-6.0 && CXX=clang++-6.0"
+        - MATRIX_EVAL="CC=clang-6.0.1"
         - BUILD_TYPE=Debug
 
     # Debug
     - os: linux
-      addons:
-        apt:
-          sources:
-            - ubuntu-toolchain-r-test
-            - llvm-toolchain-trusty-6.0
-          packages:
-            - libstdc++-8-dev
-            - clang-6.0
       env:
-        - MATRIX_EVAL="CC=clang-6.0 && CXX=clang++-6.0"
+        - MATRIX_EVAL="CC=clang-6.0.1"
         - BUILD_TYPE=Release
 
     ##########
@@ -185,6 +137,9 @@ matrix:
 before_install:
   - eval "${MATRIX_EVAL}"
   - git submodule update --init
+
+before_script:
+  - source script/travis-toolchain.sh
 
 script:
   - ./scripts/travis-cmake.sh
