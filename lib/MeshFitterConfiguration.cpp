@@ -8,10 +8,13 @@
  *            You may use, distribute and modify this code under the terms of
  *            the AFL 3.0 license; see LICENSE for full license details.
  */
-
-#include "ColorToLabelMapIO.h"
 #include "MeshFitter.h"
 
+#include "ColorToLabelMapIO.h"
+#include "EigenAdaptors.h"
+#include "MeshHelpers.h"
+
+#include <Eigen/Core>
 #include <gsl/gsl>
 #include <yaml-cpp/yaml.h>
 
@@ -180,6 +183,64 @@ MeshFitter::Configuration::loadFromFile(std::string const &filename) {
   }
 
   return *this;
+}
+
+std::array<float, 3>
+MeshFitter::Configuration::meshTranslation(VoxelVolume const &volume) const {
+  using Eigen::Vector3f;
+  using std::get;
+  using std::holds_alternative;
+
+  auto const V = vertexMatrix(referenceMesh);
+
+  // compute centroid of original mesh
+  Vector3f const centroid = V.colwise().mean().transpose();
+
+  // compute volume size in mm
+  auto const volSize = volume.size();
+  auto const voxSize = volume.voxelSize();
+  Vector3f const realVolSize{static_cast<float>(volSize.width) * voxSize.width,
+                             static_cast<float>(volSize.height) *
+                                 voxSize.height,
+                             static_cast<float>(volSize.depth) * voxSize.depth};
+
+  Vector3f originTransform = Vector3f::Zero();
+  // parse config
+  if (holds_alternative<MeshFitter::Configuration::OriginType>(
+          referenceMeshOrigin)) {
+    // Automatic origin type: centered and untouched
+    switch (get<MeshFitter::Configuration::OriginType>(referenceMeshOrigin)) {
+      // for untouched do nothing
+      case MeshFitter::Configuration::OriginType::untouched:
+        break;
+        // centered, translate into volume center
+      case MeshFitter::Configuration::OriginType::centered: {
+
+        Vector3f const volCenter = 0.5f * realVolSize;
+
+        originTransform = volCenter - centroid;
+
+        break;
+      }
+    }
+  } else {
+    // Origin is either explicitly specified, either in absolute or in relative
+    // coordinates
+    auto const origin = get<Coordinate3D>(referenceMeshOrigin);
+    switch (origin.type) {
+      case Coordinate3D::Type::absolute:
+        originTransform = Adaptor::vec(origin.xyz) - centroid;
+        break;
+      case Coordinate3D::Type::relative: {
+        auto const targetOrigin = Adaptor::vec(origin.xyz);
+
+        originTransform = targetOrigin - centroid;
+        break;
+      }
+    }
+  }
+
+  return Adaptor::arr(originTransform);
 }
 
 } // namespace CortidQCT

@@ -7,6 +7,7 @@
 #include "Optional.h"
 #include "propagate_const.h"
 
+#include <array>
 #include <memory>
 #include <variant>
 
@@ -69,6 +70,16 @@ public:
     inline static Configuration fromFile(std::string const &filename) {
       return Configuration{}.loadFromFile(filename);
     }
+
+    /**
+     * @brief Returns a tranlation vector that translates the centroid of the
+     * reference mesh into the centroid as specified in the configuration
+     *
+     * @param volume voxel volume used for the computation of 'centered' or
+     * 'relatice' originsl
+     * @return  (x, y, z) translation vector
+     */
+    std::array<float, 3> meshTranslation(VoxelVolume const &volume) const;
   };
 #pragma clang diagnostic pop
 
