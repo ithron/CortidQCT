@@ -114,6 +114,17 @@ target_include_directories(TestCustomColorToLabelMap PRIVATE ${CMAKE_CURRENT_BIN
 add_test(TestCustomColorToLabelMap TestCustomColorToLabelMap)
 
 if (CortifQCT_BUILD_PRIVATE_TESTS)
+
+  add_executable(TestInternalSampler InternalSampler.cpp)
+  target_link_libraries(TestInternalSampler
+    PRIVATE
+      GTest::main
+      CortidQCT::Core
+      TestInternalCommon
+  )
+  target_include_directories(TestInternalSampler PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
+  add_test(TestInternalSampler TestInternalSampler)
+
 endif(CortifQCT_BUILD_PRIVATE_TESTS)
 
 # add_executable(TestFitMesh FitMesh.cpp)
