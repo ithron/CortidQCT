@@ -61,6 +61,15 @@ template <class T> struct ConstructionHelper<T, 0> {
   }
 };
 
+template <class T, std::size_t N>
+struct ConstructionHelper<std::array<T, N>, 0> {
+  template <class P, class... Args>
+  inline constexpr std::array<T, N> operator()(P &&, Args &&... args) const
+      noexcept(noexcept(std::array<T, N>{{std::forward<Args>(args)...}})) {
+    return std::array<T, N>{{std::forward<Args>(args)...}};
+  }
+};
+
 } // namespace Detail_
 
 /// Converts an std::array based vector into an Eigen vector
