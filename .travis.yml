@@ -79,13 +79,13 @@ matrix:
     # Debug
     - os: linux
       env:
-        - COMPILER=clang CLANG_VERSION=4.0.1
+        - COMPILER=clang CLANG_VERSION=4.0.0
         - BUILD_TYPE=Debug
 
     # Debug
     - os: linux
       env:
-        - COMPILER=clang CLANG_VERSION=4.0.1
+        - COMPILER=clang CLANG_VERSION=4.0.0
         - BUILD_TYPE=Release
 
     ##############
