@@ -15,6 +15,10 @@ project(
 
 option(CortidQCT_GIT_SELF "Turn of if building examples or tools as stand-alone project" ON)
 
+if (NOT CortidQCT_GIT_SELF)
+  option(CortifQCT_BUILD_PRIVATE_TESTS "Build private API tests" ON)
+endif()
+
 if (NOT TARGET CortidQCT::Core)
   hunter_add_package(CortidQCT)
   find_package(CortidQCT CONFIG REQUIRED)
@@ -53,6 +57,9 @@ if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang" OR "${CMAKE_CXX_COMPILER_ID}" STR
 endif()
 
 endif()
+
+add_library(TestInternalCommon INTERFACE)
+target_link_libraries(TestInternalCommon INTERFACE TestCommon PrivateAPI)
 
 
 add_executable(TestMesh Mesh.cpp)
@@ -105,6 +112,9 @@ target_link_libraries(TestCustomColorToLabelMap
 )
 target_include_directories(TestCustomColorToLabelMap PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
 add_test(TestCustomColorToLabelMap TestCustomColorToLabelMap)
+
+if (CortifQCT_BUILD_PRIVATE_TESTS)
+endif(CortifQCT_BUILD_PRIVATE_TESTS)
 
 # add_executable(TestFitMesh FitMesh.cpp)
 # target_link_libraries(TestFitMesh

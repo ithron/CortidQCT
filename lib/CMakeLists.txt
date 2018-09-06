@@ -40,6 +40,7 @@ add_library(Core
   MeshFitterConfiguration.cpp
   VoxelVolume.cpp
 )
+add_library(PrivateAPI INTERFACE)
 
 target_link_libraries(Core
   PUBLIC
@@ -48,6 +49,9 @@ target_link_libraries(Core
 )
 set_target_properties(Core PROPERTIES OUTPUT_NAME "CortidQCT-Core")
 target_include_directories(Core PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/../include/CortidQCT/src")
+
+target_include_directories(PrivateAPI INTERFACE "${CMAKE_CURRENT_SOURCE_DIR}/../include/CortidQCT/src")
+target_include_directories(PrivateAPI INTERFACE "${CMAKE_CURRENT_SOURCE_DIR}/../lib")
 
 if (WITH_CLANG_TIDY)
   set_target_properties(Core PROPERTIES CXX_CLANG_TIDY "${DO_CLANG_TIDY}")
@@ -80,6 +84,13 @@ target_link_libraries(Core
     Eigen3::Eigen
     yaml-cpp
 )
+target_link_libraries(PrivateAPI
+  INTERFACE
+    igl::core
+    Microsoft.GSL::GSL
+    Eigen3::Eigen
+    yaml-cpp
+)
 
 
 ############################
@@ -106,6 +117,10 @@ if (CORTIDQCT_WITH_IMAGESTACK)
   # Add to targets
   target_link_libraries(Core
     PRIVATE
+      ImageStack::ImageStack
+  )
+  target_link_libraries(PrivateAPI
+    INTERFACE
       ImageStack::ImageStack
   )
 endif()
