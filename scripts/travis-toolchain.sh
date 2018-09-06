@@ -1,6 +1,6 @@
 #!/bin/sh
 
-set -eu
+set -e
 
 if [[ "$TRAVIS_OS_NAME" = "linux" && "$COMPILER" = "clang" ]]
 then
