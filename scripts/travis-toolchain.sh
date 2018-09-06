@@ -1,8 +1,10 @@
 #!/bin/sh
 
-if [[ "$TRAVIS_OS_NAME" = "linux" && $CC == *clang* ]]
+set -eu
+
+if [[ "$TRAVIS_OS_NAME" = "linux" && "$COMPILER" = "clang" ]]
 then
-  CLANG_VERSION=`$CXX --version | grep -oe "version [0-9]\+\.[0-9]\+\.[0-9\]\+" | grep -oe "[0-9]\+\.[0-9]\+\.[0-9\]\+"`
+
   CLANG_DIR="${HOME}/clang-${CLANG_VERSION}"
   CLANG_URL="http://releases.llvm.org/${CLANG_VERSION}/clang+llvm-${CLANG_VERSION}-x86_64-linux-gnu-ubuntu-14.04.tar.xz"
 
@@ -15,5 +17,11 @@ then
 
   export CC=clang
   export CXX=clang++
+
+elif [[ "$TRAVIS_ON_NAME" = "linux" && "$COMPILER" = "gcc" ]]
+
+  export CC=gcc-${GCC_VERSION}
+  export CXX=g++-${GCC_VERSION}
+
 fi
 

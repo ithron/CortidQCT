@@ -31,7 +31,7 @@ matrix:
           packages:
             - g++-7
       env:
-        - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
+        - COMPILER=gcc GCC_VERSION=7
         - BUILD_TYPE=Debug
 
     # Release
@@ -43,7 +43,7 @@ matrix:
           packages:
             - g++-7
       env:
-        - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
+        - COMPILER=gcc GCC_VERSION=7
         - BUILD_TYPE=Release
 
     ##########
@@ -58,7 +58,7 @@ matrix:
           packages:
             - g++-8
       env:
-        - MATRIX_EVAL="CC=gcc-8 && CXX=g++-8"
+        - COMPILER=gcc GCC_VERSION=8
         - BUILD_TYPE=Debug
 
     # Release
@@ -70,7 +70,7 @@ matrix:
           packages:
             - g++-8
       env:
-        - MATRIX_EVAL="CC=gcc-8 && CXX=g++-8"
+        - COMPILER=gcc GCC_VERSION=8
         - BUILD_TYPE=Release
 
     ##############
@@ -79,13 +79,13 @@ matrix:
     # Debug
     - os: linux
       env:
-        - MATRIX_EVAL="CC=clang-4.0.1"
+        - COMPILER=clang CLANG_VERSION=4.0.1
         - BUILD_TYPE=Debug
 
     # Debug
     - os: linux
       env:
-        - MATRIX_EVAL="CC=clang-4.0.1"
+        - COMPILER=clang CLANG_VERSION=4.0.1
         - BUILD_TYPE=Release
 
     ##############
@@ -94,13 +94,13 @@ matrix:
     # Debug
     - os: linux
       env:
-        - MATRIX_EVAL="CC=clang-5.0.2"
+        - COMPILER=clang CLANG_VERSION=5.0.2
         - BUILD_TYPE=Debug
 
     # Debug
     - os: linux
       env:
-        - MATRIX_EVAL="CC=clang-5.0.2"
+        - COMPILER=clang CLANG_VERSION=5.0.2
         - BUILD_TYPE=Release
 
     ##############
@@ -135,11 +135,8 @@ matrix:
       env: BUILD_TYPE=Release
 
 before_install:
-  - eval "${MATRIX_EVAL}"
-  - git submodule update --init
-
-before_script:
   - source script/travis-toolchain.sh
+  - git submodule update --init
 
 script:
   - ./scripts/travis-cmake.sh
