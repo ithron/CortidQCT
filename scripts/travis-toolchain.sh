@@ -18,7 +18,7 @@ then
   export CC=clang
   export CXX=clang++
 
-elif [[ "$TRAVIS_ON_NAME" = "linux" && "$COMPILER" = "gcc" ]]
+elif [[ "$TRAVIS_OS_NAME" = "linux" && "$COMPILER" = "gcc" ]]
 then
 
   export CC=gcc-${GCC_VERSION}
