@@ -109,13 +109,13 @@ matrix:
     # Debug
     - os: linux
       env:
-        - MATRIX_EVAL="CC=clang-6.0.1"
+        - COMPILER=clang CLANG_VERSION=6.0.1
         - BUILD_TYPE=Debug
 
     # Debug
     - os: linux
       env:
-        - MATRIX_EVAL="CC=clang-6.0.1"
+        - COMPILER=clang CLANG_VERSION=6.0.1
         - BUILD_TYPE=Release
 
     ##########
