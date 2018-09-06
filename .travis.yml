@@ -122,7 +122,7 @@ matrix:
     # macOS
 
     # Disabled until macOS 10.14 is available in travis.
-    # Some C++17 features are not supported before 10.14, 
+    # Some C++17 features are not supported before 10.14,
     # independent of the xcode version.
 
     # ##############
