@@ -135,7 +135,7 @@ matrix:
       env: BUILD_TYPE=Release
 
 before_install:
-  - source script/travis-toolchain.sh
+  - source scripts/travis-toolchain.sh
   - git submodule update --init
 
 script:
