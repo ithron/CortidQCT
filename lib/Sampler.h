@@ -19,160 +19,215 @@
 
 namespace CortidQCT {
 
-template <class... Args> struct DisplayType;
-
-template <class T, class DerivedSampler> class SamplerBase {
+class VolumeSampler {
 
 public:
-  template <class Derived>
-  inline auto operator()(Eigen::MatrixBase<Derived> const &positions) const {
-    return interpolate(
-        static_cast<DerivedSampler const &>(*this).coordTransform(positions));
-  }
+  VoxelVolume::ValueType outside;
 
-protected:
-  template <class Val> inline auto valueTransform(Val &&x) const { return x; }
+  inline explicit VolumeSampler(
+      VoxelVolume const &vol,
+      VoxelVolume::ValueType outside_ = VoxelVolume::ValueType{0}) noexcept
+      : outside{outside_}, volume_{vol} {}
 
-  template <class Val> inline auto inverseValueTransform(Val &&x) const {
-    return x;
-  }
+  template <class Derived, class DerivedOut>
+  inline void operator()(Eigen::MatrixBase<Derived> const &positions,
+                         Eigen::MatrixBase<DerivedOut> &values) const {
+    using Eigen::Vector3f;
 
-  // Must be implemented by the derived class
-  // template <class Derived>
-  // inline auto outsideValue(Eigen::MatrixBase<Derived> const &pos) const;
+    Expects(values.rows() == positions.rows());
+    Expects(positions.cols() == 3);
 
-  // Must be implemented by the derived class
-  // template <class Derived>
-  // inline bool isOutside(Eigen::MatrixBase<Derived> const &pos) const ;
+    Vector3f const scale{1.f / volume_.voxelSize().width,
+                         1.f / volume_.voxelSize().height,
+                         1.f / volume_.voxelSize().depth};
 
-  template <class Derived>
-  inline decltype(auto) coordTransform(Eigen::MatrixBase<Derived> const &x) const {
-    return x;
-  }
-
-  template <class Derived, class ValType>
-  inline auto at(Eigen::MatrixBase<Derived> const &pos,
-                 ValType const *ptr) const {
-    Eigen::Matrix<int, Derived::RowsAtCompileTime, 1> linearIndices(pos.rows());
-
-    Eigen::Matrix<ValType, Derived::RowsAtCompileTime, 1> values(pos.rows());
+    volume_.withUnsafeDataPointer(
+        [this, &positions, &values, scale](auto const *ptr) {
 
 #pragma omp parallel for
-    for (auto i = 0; i < pos.rows(); ++i) {
-      ValType val;
-      if (!static_cast<DerivedSampler const &>(*this).isOutside(pos.row(i))) {
+          for (auto i = 0; i < positions.rows(); ++i) {
 
-        auto const linIndex =
-            static_cast<DerivedSampler const &>(*this).toLinear(
-                pos.template cast<int>().row(i));
-        val = ptr[linIndex];
-      } else {
-        val =
-            static_cast<DerivedSampler const &>(*this).outsideValue(pos.row(i));
-      }
+            values(i) = interpolate(
+                (positions.row(i).array() * scale.array().transpose()).matrix(),
+                gsl::make_not_null(ptr));
+          }
+        });
+  }
 
-      values(i) =
-          static_cast<DerivedSampler const &>(*this).inverseValueTransform(val);
-    }
+  template <class Derived>
+  inline Eigen::Matrix<VoxelVolume::ValueType, Eigen::Dynamic, 1>
+  operator()(Eigen::MatrixBase<Derived> const &positions) const {
+    Eigen::Matrix<VoxelVolume::ValueType, Eigen::Dynamic, 1> values(
+        positions.rows());
+
+    operator()(positions, values);
 
     return values;
   }
 
+private:
   template <class Derived>
-  inline auto interpolate(Eigen::MatrixBase<Derived> const &positions) const {
-    using std::ceil;
-    using std::floor;
+  inline VoxelVolume::ValueType
+  at(Eigen::MatrixBase<Derived> const &pos,
+     gsl::not_null<VoxelVolume::ValueType const *> ptr) const {
+    auto const &size = volume_.size();
 
-    using PosScalar = typename Derived::Scalar;
-    using PosMatrix = Eigen::Matrix<PosScalar, Derived::RowsAtCompileTime, 3>;
+    auto const isInside = (pos.array() > 0).all() && pos(0) < size.width &&
+                          pos(1) < size.height && pos(2) < size.depth;
 
-    return volume_.withUnsafeDataPointer([&positions, this](auto const *ptr) {
-      using ValueType =
-          std::remove_const_t<std::remove_pointer_t<decltype(ptr)>>;
-      using ValueVector =
-          Eigen::Matrix<ValueType, Derived::RowsAtCompileTime, 1>;
+    auto const index =
+        pos(2) * size.width * size.height + pos(1) * size.width + pos(0);
 
-      auto const N = positions.rows();
+    return isInside ? ptr.get()[index] : outside;
+  }
 
-      ValueVector samples(N, 1);
+  template <class Derived>
+  inline auto
+  interpolate(Eigen::MatrixBase<Derived> const &pos,
+              gsl::not_null<VoxelVolume::ValueType const *> ptr) const {
 
-      PosMatrix const X0 = positions.array().floor().matrix();
-      PosMatrix const X1 = positions.array().ceil().matrix();
-      PosMatrix const Xd = positions - X0;
+    using Value = VoxelVolume::ValueType;
+    using Eigen::Vector3f;
+    using Eigen::Vector3i;
+    using gsl::make_not_null;
 
-      // get values of lattice points
-      ValueVector const c000 = at(X0, ptr);
-      ValueVector const c001 = at(
-          (PosMatrix(N, 3) << X0.col(0), X0.col(1), X1.col(2)).finished(), ptr);
-      ValueVector const c010 = at(
-          (PosMatrix(N, 3) << X0.col(0), X1.col(1), X0.col(2)).finished(), ptr);
-      ValueVector const c011 = at(
-          (PosMatrix(N, 3) << X0.col(0), X1.col(1), X1.col(2)).finished(), ptr);
-      ValueVector const c100 = at(
-          (PosMatrix(N, 3) << X1.col(0), X0.col(1), X0.col(2)).finished(), ptr);
-      ValueVector const c101 = at(
-          (PosMatrix(N, 3) << X1.col(0), X0.col(1), X1.col(2)).finished(), ptr);
-      ValueVector const c110 = at(
-          (PosMatrix(N, 3) << X1.col(0), X1.col(1), X0.col(2)).finished(), ptr);
-      ValueVector const c111 = at(X1, ptr);
+    Vector3i const x0 = pos.array().floor().matrix().template cast<int>();
+    Vector3i const x1 = pos.array().ceil().matrix().template cast<int>();
+    Vector3f const xd = pos - x0.cast<float>();
+    Vector3f const xn = Vector3f::Ones() - xd;
 
-      ValueVector const c00 = (c000.array() * (1 - Xd.col(0).array()) +
-                               c100.array() * Xd.col(0).array())
-                                  .matrix();
-      ValueVector const c01 = (c001.array() * (1 - Xd.col(0).array()) +
-                               c101.array() * Xd.col(0).array())
-                                  .matrix();
-      ValueVector const c10 = (c010.array() * (1 - Xd.col(0).array()) +
-                               c110.array() * Xd.col(0).array())
-                                  .matrix();
-      ValueVector const c11 = (c011.array() * (1 - Xd.col(0).array()) +
-                               c111.array() * Xd.col(0).array())
-                                  .matrix();
+    // get values of lattice points
+    Value const c000 = at(x0, make_not_null(ptr));
+    Value const c001 = at(Vector3i{x0(0), x0(1), x1(2)}, make_not_null(ptr));
+    Value const c010 = at(Vector3i{x0(0), x1(1), x0(2)}, make_not_null(ptr));
+    Value const c011 = at(Vector3i{x0(0), x1(1), x1(2)}, make_not_null(ptr));
+    Value const c100 = at(Vector3i{x1(0), x0(1), x0(2)}, make_not_null(ptr));
+    Value const c101 = at(Vector3i{x1(0), x0(1), x1(2)}, make_not_null(ptr));
+    Value const c110 = at(Vector3i{x1(0), x1(1), x0(2)}, make_not_null(ptr));
+    Value const c111 = at(x1, make_not_null(ptr));
 
-      ValueVector const c0 = (c00.array() * (1 - Xd.col(1).array()) +
-                              c10.array() * Xd.col(1).array())
-                                 .matrix();
-      ValueVector const c1 = (c01.array() * (1 - Xd.col(1).array()) +
-                              c11.array() * Xd.col(1).array())
-                                 .matrix();
+    auto const c00 = c000 * xn(0) + c100 * xd(0);
+    auto const c01 = c001 * xn(0) + c101 * xd(0);
+    auto const c10 = c010 * xn(0) + c110 * xd(0);
+    auto const c11 = c011 * xn(0) + c111 * xd(0);
 
-      ValueVector const c =
-          (c0.array() * (1 - Xd.col(2).array()) +
-           c1.array() * Xd.col(2).array())
-              .matrix()
-              .unaryExpr([this](auto const &x) {
-                return static_cast<DerivedSampler const &>(*this)
-                    .valueTransform(x);
-              });
+    auto const c0 = c00 * xn(1) + c10 * xd(1);
+    auto const c1 = c01 * xn(1) + c11 * xd(1);
 
-      return c;
+    auto const c = c0 * xn(2) + c1 * xd(2);
+
+    return c;
+  }
+
+  VoxelVolume const &volume_;
+};
+
+class ModelSampler {
+
+public:
+  inline explicit ModelSampler(MeasurementModel const &model) noexcept
+      : model_(model) {}
+
+  template <class DerivedIn, class DerivedOut>
+  inline void operator()(Eigen::MatrixBase<DerivedIn> const &positions,
+                         MeasurementModel::Label label,
+                         Eigen::MatrixBase<DerivedOut> &values) const {
+    using Eigen::Dynamic;
+    using Eigen::Matrix;
+    using Eigen::Vector3f;
+
+    Expects(values.rows() == positions.rows());
+    Expects(positions.cols() == 3);
+    Expects(values.cols() == 1);
+
+    Vector3f const min{model_.samplingRange.min, model_.densityRange.min,
+                       model_.angleRange.min};
+    Vector3f const scale{1.f / model_.samplingRange.stride,
+                         1.f / model_.densityRange.stride,
+                         1.f / model_.angleRange.stride};
+
+    model_.withUnsafeDataPointer(label, [this, &positions, &values, min,
+                                         scale](double const *ptr) {
+      // #pragma omp parallel for
+      for (auto i = 0; i < positions.rows(); ++i) {
+
+        values(i) =
+            this->interpolate(((positions.row(i) - min.transpose()).array() *
+                               scale.array().transpose())
+                                  .matrix(),
+                              gsl::make_not_null(ptr));
+      }
     });
   }
 
-  inline SamplerBase(T const &volume) : volume_(volume) {}
+  template <class Derived>
+  inline Eigen::Matrix<double, Eigen::Dynamic, 1>
+  operator()(Eigen::MatrixBase<Derived> const &positions,
+             MeasurementModel::Label label) const {
+    Eigen::Matrix<double, Eigen::Dynamic, 1> values(positions.rows());
 
-  T const &volume_;
-};
+    operator()(positions, label, values);
 
-class VolumeSampler : public SamplerBase<VoxelVolume, VolumeSampler> {
-
-  using Base = SamplerBase<VoxelVolume, VolumeSampler>;
-
-  friend Base;
-
-public:
-  inline explicit VolumeSampler(VoxelVolume const &vol) : Base(vol) {}
+    return values;
+  }
 
 private:
   template <class Derived>
-  inline auto toLinear(Eigen::MatrixBase<Derived> const &x) const {
-    Expects(x.rows() == 1 && x.cols() == 3);
+  inline double at(Eigen::MatrixBase<Derived> const &pos,
+                   gsl::not_null<double const *> ptr) const {
+    using Eigen::Vector3f;
+    using Eigen::Vector3i;
+    using std::clamp;
 
-    auto const sliceSize = static_cast<std::ptrdiff_t>(volume_.size().width *
-                                                       volume_.size().height);
-    return x(2) * sliceSize +
-           x(1) * static_cast<std::ptrdiff_t>(volume_.size().width) + x(0);
+    Vector3f const size{static_cast<float>(model_.samplingRange.numElements()),
+                        static_cast<float>(model_.densityRange.numElements()),
+                        static_cast<float>(model_.angleRange.numElements())};
+
+    Vector3i const sizeI = size.cast<int>();
+
+    Vector3i const clampedPos = Vector3f{clamp(pos.x(), 0.f, size.x() - 1.f),
+                                         clamp(pos.y(), 0.f, size.y() - 1.f),
+                                         clamp(pos.z(), 0.f, size.z() - 1.f)}
+                                    .cast<int>();
+
+    return ptr.get()[clampedPos.z() * sizeI.x() * sizeI.y() +
+                     clampedPos.y() * sizeI.x() + clampedPos.x()];
   }
+
+  template <class Derived>
+  inline double interpolate(Eigen::MatrixBase<Derived> const &pos,
+                            gsl::not_null<double const *> ptr) const {
+    using Eigen::Vector2d;
+    using Eigen::Vector2i;
+    using Eigen::Vector3f;
+    using std::exp;
+    using std::log;
+    using std::round;
+
+    auto const x00 = round(pos(0));
+    Vector2i const x0 =
+        pos.template tail<2>().array().floor().template cast<int>();
+    Vector2i const x1 =
+        pos.template tail<2>().array().ceil().template cast<int>();
+    Vector2d const xd = (pos.template tail<2>().transpose() -
+                         x0.template cast<float>().template tail<2>())
+                            .template cast<double>();
+    Vector2d const xn = Vector2d::Ones() - xd;
+
+    auto const c00 = exp(at(Vector3f{x00, x0(0), x0(1)}.transpose(), ptr));
+    auto const c01 = exp(at(Vector3f{x00, x0(0), x1(1)}.transpose(), ptr));
+    auto const c10 = exp(at(Vector3f{x00, x1(0), x0(1)}.transpose(), ptr));
+    auto const c11 = exp(at(Vector3f{x00, x1(0), x1(1)}.transpose(), ptr));
+
+    auto const c0 = c00 * xn(0) + c10 * xd(0);
+    auto const c1 = c01 * xn(0) + c11 * xd(0);
+
+    auto const c = c0 * xn(1) + c1 * xd(1);
+
+    return log(c);
+  }
+
+  MeasurementModel const &model_;
 };
 
 } // namespace CortidQCT
