@@ -52,6 +52,43 @@ struct MockSampler : public SamplerBase<MockVolume, MockSampler> {
   MockSampler(MockVolume const &vol) : Base(vol) {}
 };
 
+struct MockSampler2 : public SamplerBase<MockVolume, MockSampler2> {
+
+  using Base = SamplerBase<MockVolume, MockSampler2>;
+
+  MockSampler2(MockVolume const &v) : Base(v) {}
+
+  float valueTransform(float x) const { return std::sqrt(x); }
+
+  float inverseValueTransform(float x) const { return x * x; }
+
+  template <class Derived>
+  int toLinear(Eigen::MatrixBase<Derived> const &x) const {
+    Expects(x.rows() == 1 && x.cols() == 3);
+
+    return x(2) * 4 + x(1) * 2 + x(0);
+  }
+
+  template <class Derived>
+  bool isOutside(Eigen::MatrixBase<Derived> const &x) const {
+    return !(x(0) >= 0 && x(0) <= 1 && x(1) >= 0 && x(1) <= 1 && x(2) >= 0 &&
+             x(2) <= 1);
+  }
+
+  template <class Derived>
+  float outsideValue(Eigen::MatrixBase<Derived> const & /*unused*/) const {
+    return std::numeric_limits<float>::quiet_NaN();
+  }
+
+  template <class Derived>
+  auto coordTransform(Eigen::MatrixBase<Derived> const &x) const {
+    return ((x.array().rowwise() *
+             Eigen::Vector3f{0.5f, 0.4f, 0.2f}.transpose().array())
+                .matrix())
+        .eval();
+  }
+};
+
 TEST(InternalSampler, NoInterpolation) {
   using Eigen::Vector3f;
   MockVolume const vol;
@@ -68,21 +105,32 @@ TEST(InternalSampler, NoInterpolation) {
 }
 
 TEST(InternalSampler, Interpolation) {
-  using Eigen::Vector3f;
+  using Eigen::VectorXf;
   MockVolume const vol;
   MockSampler const sampler(vol);
 
-  ASSERT_FLOAT_EQ(1.5f, sampler(Vector3f{0.5, 0, 0}.transpose())(0));
-  ASSERT_FLOAT_EQ(6.f, sampler(Vector3f{0, 0.5, 0}.transpose())(0));
-  ASSERT_FLOAT_EQ(11.5f, sampler(Vector3f{0.5, 1, 0}.transpose())(0));
-  ASSERT_FLOAT_EQ(6.5f, sampler(Vector3f{0.5, 0.5, 0}.transpose())(0));
+  Eigen::MatrixXf positions(9, 3);
+  positions << 0.5f, 0.f, 0.f, // pos 0
+      0.f, 0.5f, 0.f,          // pos 1
+      0.5f, 1.f, 0.f,          // pos 2
+      0.5f, 0.5f, 0.f,         // pos 3
+      0.5f, 0.f, 1.f,          // pos 4
+      0.f, 0.5f, 1.f,          // pos 5
+      0.5f, 1.f, 1.f,          // pos 6
+      0.5f, 0.5f, 1.f,         // pos 7
+      0.5f, 0.5f, 0.5f;        // pos 8
 
-  ASSERT_FLOAT_EQ(101.5f, sampler(Vector3f{0.5, 0, 1}.transpose())(0));
-  ASSERT_FLOAT_EQ(106.f, sampler(Vector3f{0, 0.5, 1}.transpose())(0));
-  ASSERT_FLOAT_EQ(111.5f, sampler(Vector3f{0.5, 1, 1}.transpose())(0));
-  ASSERT_FLOAT_EQ(106.5f, sampler(Vector3f{0.5, 0.5, 1}.transpose())(0));
+  VectorXf const values = sampler(positions);
 
-  ASSERT_FLOAT_EQ(56.5f, sampler(Vector3f{0.5, 0.5, 0.5}.transpose())(0));
+  ASSERT_FLOAT_EQ(1.5f, values(0));
+  ASSERT_FLOAT_EQ(6.f, values(1));
+  ASSERT_FLOAT_EQ(11.5f, values(2));
+  ASSERT_FLOAT_EQ(6.5f, values(3));
+  ASSERT_FLOAT_EQ(101.5f, values(4));
+  ASSERT_FLOAT_EQ(106.f, values(5));
+  ASSERT_FLOAT_EQ(111.5f, values(6));
+  ASSERT_FLOAT_EQ(106.5f, values(7));
+  ASSERT_FLOAT_EQ(56.5f, values(8));
 }
 
 TEST(InternalSampler, Outside) {
@@ -101,3 +149,12 @@ TEST(InternalSampler, Outside) {
   ASSERT_FALSE(isfinite(sampler(Vector3f{0, 0, -0.0001f}.transpose())(0)));
 }
 
+TEST(InternalSampler, CoordAndValueTransform) {
+  using Eigen::Vector3f;
+  using std::isfinite;
+  MockVolume const vol;
+  MockSampler2 const sampler(vol);
+
+  ASSERT_FLOAT_EQ(107.1167587262f,
+                  sampler(Vector3f{2.f, 1.25f, 5.f}.transpose())(0));
+}
