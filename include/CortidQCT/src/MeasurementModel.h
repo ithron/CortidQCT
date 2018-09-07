@@ -87,6 +87,12 @@ public:
   /// @see loadFromFile
   explicit MeasurementModel(std::string const &filename);
 
+  /// Returns a model loaded from file
+  /// @see loadFromFile
+  inline static MeasurementModel fromFile(std::string const &filename) {
+    return MeasurementModel(filename);
+  }
+
   /// @}
 
   /// @name IO
