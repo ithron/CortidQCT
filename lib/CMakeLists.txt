@@ -38,6 +38,7 @@ add_library(Core
   Mesh.cpp
   MeshFitter.cpp
   MeshFitterConfiguration.cpp
+  MeshFitterImpl.cpp
   VoxelVolume.cpp
 )
 add_library(PrivateAPI INTERFACE)
