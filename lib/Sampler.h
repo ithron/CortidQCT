@@ -97,14 +97,14 @@ private:
     Vector3f const xn = Vector3f::Ones() - xd;
 
     // get values of lattice points
-    Value const c000 = at(x0, make_not_null(ptr));
-    Value const c001 = at(Vector3i{x0(0), x0(1), x1(2)}, make_not_null(ptr));
-    Value const c010 = at(Vector3i{x0(0), x1(1), x0(2)}, make_not_null(ptr));
-    Value const c011 = at(Vector3i{x0(0), x1(1), x1(2)}, make_not_null(ptr));
-    Value const c100 = at(Vector3i{x1(0), x0(1), x0(2)}, make_not_null(ptr));
-    Value const c101 = at(Vector3i{x1(0), x0(1), x1(2)}, make_not_null(ptr));
-    Value const c110 = at(Vector3i{x1(0), x1(1), x0(2)}, make_not_null(ptr));
-    Value const c111 = at(x1, make_not_null(ptr));
+    Value const c000 = at(x0, ptr);
+    Value const c001 = at(Vector3i{x0(0), x0(1), x1(2)}, ptr);
+    Value const c010 = at(Vector3i{x0(0), x1(1), x0(2)}, ptr);
+    Value const c011 = at(Vector3i{x0(0), x1(1), x1(2)}, ptr);
+    Value const c100 = at(Vector3i{x1(0), x0(1), x0(2)}, ptr);
+    Value const c101 = at(Vector3i{x1(0), x0(1), x1(2)}, ptr);
+    Value const c110 = at(Vector3i{x1(0), x1(1), x0(2)}, ptr);
+    Value const c111 = at(x1, ptr);
 
     auto const c00 = c000 * xn(0) + c100 * xd(0);
     auto const c01 = c001 * xn(0) + c101 * xd(0);
