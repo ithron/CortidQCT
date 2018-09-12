@@ -21,6 +21,20 @@ namespace CortidQCT {
 
 namespace {
 
+template <class T>
+Eigen::Matrix<T, Eigen::Dynamic, 1>
+discreteRanteElementVector(DiscreteRange<T> const &range) {
+  using Vector = Eigen::Matrix<T, Eigen::Dynamic, 1>;
+
+  Vector t(gsl::narrow<Eigen::Index>(range.numElements()));
+
+  for (auto i = 0; i < t.rows(); ++i) {
+    t(i) = range.min + static_cast<T>(i) * range.stride;
+  }
+
+  return t;
+}
+
 template <class DerivedV, class DerivedN>
 Eigen::Matrix<typename DerivedV::Scalar, Eigen::Dynamic, 3>
 samplingPoints(Eigen::MatrixBase<DerivedV> const &V,
@@ -32,14 +46,8 @@ samplingPoints(Eigen::MatrixBase<DerivedV> const &V,
   using Eigen::Matrix;
   using gsl::narrow_cast;
 
-  Matrix<Scalar, Dynamic, 1> t(
-      narrow_cast<Index>(model.samplingRange.numElements()));
+  auto const t = discreteRanteElementVector(model.samplingRange);
   Matrix<Scalar, Dynamic, 3> samples(V.rows() * t.rows(), 3);
-
-  for (auto i = 0; i < t.rows(); ++i) {
-    t(i) = model.samplingRange.min +
-           static_cast<Scalar>(i) * model.samplingRange.stride;
-  }
 
   for (auto i = 0; i < V.rows(); ++i) {
     auto const iStart = i * t.rows();
