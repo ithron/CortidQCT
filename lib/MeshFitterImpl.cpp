@@ -51,6 +51,48 @@ samplingPoints(Eigen::MatrixBase<DerivedV> const &V,
   return samples;
 }
 
+/// @brief Convert per vertex normals to angles with z-axis in degrees
+template <class DerivedN>
+Eigen::VectorXf normalsToAngles(Eigen::MatrixBase<DerivedN> const &N) {
+  Expects(N.rows() > 0);
+  Expects(N.cols() == 3);
+  Eigen::VectorXf const angles =
+      (1.f - N.col(2).array()).abs() * static_cast<float>(M_PI) / 2.f;
+
+  return angles;
+}
+
+template <class DerivedN, class DerivedD, class DerivedOut>
+void updateModelSamplingPositions(MeasurementModel const &model,
+                                  Eigen::MatrixBase<DerivedN> const &N,
+                                  Eigen::MatrixBase<DerivedD> const &densities,
+                                  float offset,
+                                  Eigen::MatrixBase<DerivedOut> &positionsOut) {
+  using Eigen::VectorXf;
+
+  Expects(N.cols() == 3);
+  Expects(N.rows() > 0);
+  Expects(densities.rows() % N.rows() == 0);
+  Expects(positionsOut.rows() == densities.rows());
+  Expects(positionsOut.cols() == 3);
+
+  auto const numVertices = N.rows();
+  auto const numSamples = densities.rows() / N.rows();
+
+  VectorXf const t =
+      (discreteRanteElementVector(model.samplingRange).array() + offset)
+          .matrix();
+
+  auto const angles = normalsToAngles(N);
+
+  positionsOut.col(0) = t.replicate(numVertices, 1);
+  positionsOut.col(1) = densities;
+  for (auto i = 0; i < numVertices; ++i) {
+    positionsOut.col(2).segment(numSamples * i, numSamples).array() =
+        angles.array();
+  }
+}
+
 } // anonymous namespace
 
 MeshFitter::Result MeshFitter::Impl::fit(VoxelVolume const &volume) {
