@@ -33,6 +33,7 @@ static std::string const file1 =
 TEST(InternalSampler, ModelSampler) {
   using Eigen::MatrixXf;
   using Eigen::VectorXd;
+  using LabelVector = Eigen::Matrix<MeasurementModel::Label, Eigen::Dynamic, 1>;
   auto const model = MeasurementModel::fromFile(file1);
   auto const sampler = ModelSampler{model};
 
@@ -40,7 +41,8 @@ TEST(InternalSampler, ModelSampler) {
   positions << 0.f, 350.f, 14.5f, // pos 0
       4.f, 350.f, 14.5f;          // pos 1
 
-  VectorXd const values = sampler(positions, .0f, 0);
+  VectorXd const values =
+      sampler(positions, .0f, LabelVector::Zero(positions.rows()));
 
   ASSERT_DOUBLE_EQ(2.2553976242465152, values(0));
   ASSERT_DOUBLE_EQ(3.2553976242465152, values(1));

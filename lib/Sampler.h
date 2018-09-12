@@ -17,6 +17,8 @@
 #include <Eigen/Core>
 #include <gsl/gsl>
 
+#include <set>
+
 namespace CortidQCT {
 
 #pragma clang diagnostic push
@@ -136,9 +138,10 @@ public:
   inline explicit ModelSampler(MeasurementModel const &model) noexcept
       : model_(model) {}
 
-  template <class DerivedIn, class VectorOut>
+  template <class DerivedIn, class DerivedL, class VectorOut>
   inline void operator()(Eigen::MatrixBase<DerivedIn> const &positions,
-                         float offset, MeasurementModel::Label label,
+                         float offset,
+                         Eigen::MatrixBase<DerivedL> const &labels,
                          VectorOut &&values) const {
     using Eigen::Dynamic;
     using Eigen::Matrix;
@@ -154,27 +157,34 @@ public:
                          1.f / model_.densityRange.stride,
                          1.f / model_.angleRange.stride};
 
-    model_.withUnsafeDataPointer(label, [this, &positions, &values, min, scale,
-                                         offset](double const *ptr) {
-      // #pragma omp parallel for
-      for (auto i = 0; i < positions.rows(); ++i) {
+    std::set<typename DerivedL::Scalar> uniqueLabels;
+    for (auto i = 0; i < labels.rows(); ++i) { uniqueLabels.insert(labels(i)); }
 
-        Vector3f const position{positions(i, 0) + offset, positions(i, 1),
-                                positions(i, 2)};
-        values(i) = this->interpolate(
-            ((position - min).array() * scale.array()).matrix(),
-            gsl::make_not_null(ptr));
-      }
-    });
+    for (auto &&label : uniqueLabels) {
+      model_.withUnsafeDataPointer(label, [this, &positions, &values, min,
+                                           scale, offset, &labels,
+                                           label](double const *ptr) {
+        // #pragma omp parallel for
+        for (auto i = 0; i < positions.rows(); ++i) {
+          if (labels(i) != label) continue;
+
+          Vector3f const position{positions(i, 0) + offset, positions(i, 1),
+                                  positions(i, 2)};
+          values(i) = this->interpolate(
+              ((position - min).array() * scale.array()).matrix(),
+              gsl::make_not_null(ptr));
+        }
+      });
+    }
   }
 
-  template <class Derived>
+  template <class Derived, class DerivedL>
   inline Eigen::Matrix<double, Eigen::Dynamic, 1>
   operator()(Eigen::MatrixBase<Derived> const &positions, float offset,
-             MeasurementModel::Label label) const {
+             Eigen::MatrixBase<DerivedL> const &labels) const {
     Eigen::Matrix<double, Eigen::Dynamic, 1> values(positions.rows());
 
-    operator()(positions, offset, label, values);
+    operator()(positions, offset, labels, values);
 
     return values;
   }
