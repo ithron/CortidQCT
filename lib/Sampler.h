@@ -19,6 +19,8 @@
 
 namespace CortidQCT {
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wpadded"
 class VolumeSampler {
 
 public:
@@ -41,19 +43,19 @@ public:
                          1.f / volume_.voxelSize().height,
                          1.f / volume_.voxelSize().depth};
 
-    volume_.withUnsafeDataPointer([this, &positions, &values,
-                                   scale](auto const *ptr) {
+    volume_.withUnsafeDataPointer(
+        [this, &positions, &values, scale](auto const *ptr) {
 
 #pragma omp parallel for
-      for (auto i = 0; i < positions.rows(); ++i) {
+          for (auto i = 0; i < positions.rows(); ++i) {
 
-        values(i) =
-            interpolate((positions.row(i).array() * scale.array().transpose())
-                            .matrix()
-                            .transpose(),
-                        gsl::make_not_null(ptr));
-      }
-    });
+            values(i) = this->interpolate(
+                (positions.row(i).array() * scale.array().transpose())
+                    .matrix()
+                    .transpose(),
+                gsl::make_not_null(ptr));
+          }
+        });
   }
 
   template <class Derived>
@@ -74,11 +76,15 @@ private:
      gsl::not_null<VoxelVolume::ValueType const *> ptr) const {
     auto const &size = volume_.size();
 
-    auto const isInside = (pos.array() > 0).all() && pos(0) < size.width &&
-                          pos(1) < size.height && pos(2) < size.depth;
+    auto const isInside = (pos.array() > 0).all() &&
+                          pos(0) < gsl::narrow_cast<int>(size.width) &&
+                          pos(1) < gsl::narrow_cast<int>(size.height) &&
+                          pos(2) < gsl::narrow_cast<int>(size.depth);
 
     auto const index =
-        pos(2) * size.width * size.height + pos(1) * size.width + pos(0);
+        gsl::narrow_cast<std::size_t>(pos(2)) * size.width * size.height +
+        gsl::narrow_cast<std::size_t>(pos(1)) * size.width +
+        gsl::narrow_cast<std::size_t>(pos(0));
 
     return isInside ? ptr.get()[index] : outside;
   }
@@ -123,6 +129,7 @@ private:
 
   VoxelVolume const &volume_;
 };
+#pragma clang diagnostic pop
 
 class ModelSampler {
 
