@@ -129,7 +129,6 @@ private:
 
   VoxelVolume const &volume_;
 };
-#pragma clang diagnostic pop
 
 class ModelSampler {
 
@@ -239,5 +238,6 @@ private:
 
   MeasurementModel const &model_;
 };
+#pragma clang diagnostic pop
 
 } // namespace CortidQCT
