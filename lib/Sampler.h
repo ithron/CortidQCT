@@ -136,10 +136,10 @@ public:
   inline explicit ModelSampler(MeasurementModel const &model) noexcept
       : model_(model) {}
 
-  template <class DerivedIn, class DerivedOut>
+  template <class DerivedIn, class VectorOut>
   inline void operator()(Eigen::MatrixBase<DerivedIn> const &positions,
-                         MeasurementModel::Label label,
-                         Eigen::MatrixBase<DerivedOut> &values) const {
+                         float offset, MeasurementModel::Label label,
+                         VectorOut &&values) const {
     using Eigen::Dynamic;
     using Eigen::Matrix;
     using Eigen::Vector3f;
@@ -162,8 +162,7 @@ public:
         Vector3f const position{positions(i, 0) + offset, positions(i, 1),
                                 positions(i, 2)};
         values(i) = this->interpolate(
-            ((position - min.transpose()).array() * scale.array().transpose())
-                .matrix(),
+            ((position - min).array() * scale.array()).matrix(),
             gsl::make_not_null(ptr));
       }
     });
@@ -175,7 +174,7 @@ public:
              MeasurementModel::Label label) const {
     Eigen::Matrix<double, Eigen::Dynamic, 1> values(positions.rows());
 
-    operator()(positions, label, offset, values);
+    operator()(positions, offset, label, values);
 
     return values;
   }
@@ -218,9 +217,9 @@ private:
         pos.template tail<2>().array().floor().template cast<int>();
     Vector2i const x1 =
         pos.template tail<2>().array().ceil().template cast<int>();
-    Vector2d const xd = (pos.template tail<2>().transpose() -
-                         x0.template cast<float>().template tail<2>())
-                            .template cast<double>();
+    Vector2d const xd =
+        (pos.template tail<2>() - x0.template cast<float>().template tail<2>())
+            .template cast<double>();
     Vector2d const xn = Vector2d::Ones() - xd;
 
     auto const c00 = exp(at(Vector3f{x00, x0(0), x0(1)}.transpose(), ptr));
