@@ -41,17 +41,19 @@ public:
                          1.f / volume_.voxelSize().height,
                          1.f / volume_.voxelSize().depth};
 
-    volume_.withUnsafeDataPointer(
-        [this, &positions, &values, scale](auto const *ptr) {
+    volume_.withUnsafeDataPointer([this, &positions, &values,
+                                   scale](auto const *ptr) {
 
 #pragma omp parallel for
-          for (auto i = 0; i < positions.rows(); ++i) {
+      for (auto i = 0; i < positions.rows(); ++i) {
 
-            values(i) = interpolate(
-                (positions.row(i).array() * scale.array().transpose()).matrix(),
-                gsl::make_not_null(ptr));
-          }
-        });
+        values(i) =
+            interpolate((positions.row(i).array() * scale.array().transpose())
+                            .matrix()
+                            .transpose(),
+                        gsl::make_not_null(ptr));
+      }
+    });
   }
 
   template <class Derived>
@@ -146,27 +148,28 @@ public:
                          1.f / model_.densityRange.stride,
                          1.f / model_.angleRange.stride};
 
-    model_.withUnsafeDataPointer(label, [this, &positions, &values, min,
-                                         scale](double const *ptr) {
+    model_.withUnsafeDataPointer(label, [this, &positions, &values, min, scale,
+                                         offset](double const *ptr) {
       // #pragma omp parallel for
       for (auto i = 0; i < positions.rows(); ++i) {
 
-        values(i) =
-            this->interpolate(((positions.row(i) - min.transpose()).array() *
-                               scale.array().transpose())
-                                  .matrix(),
-                              gsl::make_not_null(ptr));
+        Vector3f const position{positions(i, 0) + offset, positions(i, 1),
+                                positions(i, 2)};
+        values(i) = this->interpolate(
+            ((position - min.transpose()).array() * scale.array().transpose())
+                .matrix(),
+            gsl::make_not_null(ptr));
       }
     });
   }
 
   template <class Derived>
   inline Eigen::Matrix<double, Eigen::Dynamic, 1>
-  operator()(Eigen::MatrixBase<Derived> const &positions,
+  operator()(Eigen::MatrixBase<Derived> const &positions, float offset,
              MeasurementModel::Label label) const {
     Eigen::Matrix<double, Eigen::Dynamic, 1> values(positions.rows());
 
-    operator()(positions, label, values);
+    operator()(positions, label, offset, values);
 
     return values;
   }
