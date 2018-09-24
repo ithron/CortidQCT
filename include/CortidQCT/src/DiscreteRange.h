@@ -12,9 +12,9 @@
 
 #pragma once
 
+#include <cmath>
 #include <limits>
 #include <type_traits>
-#include <cmath>
 
 namespace CortidQCT {
 
@@ -53,6 +53,14 @@ template <class T> struct DiscreteRange {
     using std::ceil;
     auto const length = max - min + T{1};
     return static_cast<std::size_t>(ceil(length / stride));
+  }
+
+  /// Returns the n-th element
+  ///
+  /// @param n n-th element marker (starts at 1)
+  /// @return The n-th element
+  inline constexpr value_type nThElement(std::size_t n) const noexcept {
+    return min + (static_cast<value_type>(n) - value_type{1}) * stride;
   }
 };
 
