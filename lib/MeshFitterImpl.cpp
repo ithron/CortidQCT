@@ -22,6 +22,9 @@ namespace CortidQCT {
 
 namespace {
 
+template <class T> inline auto square(T &&x) noexcept(noexcept(x *x)) {
+  return x * x;
+}
 template <class T>
 Eigen::Matrix<T, Eigen::Dynamic, 1>
 discreteRanteElementVector(DiscreteRange<T> const &range) {
