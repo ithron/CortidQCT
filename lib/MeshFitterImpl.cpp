@@ -25,6 +25,12 @@ namespace {
 template <class T> inline auto square(T &&x) noexcept(noexcept(x *x)) {
   return x * x;
 }
+
+/**
+ * @brief Returns all element of the given discrete range as a vector
+ * @param range DiscreteRange object
+ * @return An Eigen vector containing all element of `range`
+ */
 template <class T>
 Eigen::Matrix<T, Eigen::Dynamic, 1>
 discreteRanteElementVector(DiscreteRange<T> const &range) {
@@ -39,6 +45,19 @@ discreteRanteElementVector(DiscreteRange<T> const &range) {
   return t;
 }
 
+/**
+ * @brief Returns a matrix containing positions to sample a voxel volume at
+ *
+ * Let \f$N := |V|\f$ and let \f$M := |R|\f$, where \f$R\f$ represent
+ * `model.samplingRange`, then the returned NMx3 matrix contains N*M positions,
+ * where each M consecutive postitions represent a line through a vertex in `V`
+ * sampled along the surface normal in `N`.
+ *
+ * @param V Nx3 matrix with vertex positions
+ * @param N Nx3 matrix of per-vertex surface normals
+ * @param model MeasurementModel instance
+ * @return NMx3 matrix containing sampling positions
+ */
 template <class DerivedV, class DerivedN>
 Eigen::Matrix<typename DerivedV::Scalar, Eigen::Dynamic, 3>
 samplingPoints(Eigen::MatrixBase<DerivedV> const &V,
@@ -74,6 +93,19 @@ Eigen::VectorXf normalsToAngles(Eigen::MatrixBase<DerivedN> const &N) {
   return angles;
 }
 
+/**
+ * @brief Updates the given model sampling positions matrix with new values
+ *
+ * Updates sampling position based on offset, angles based on normals and
+ * densities.
+ *
+ * @param model MeasurementModel instance
+ * @param N per-vertex normal matrix
+ * @param densities densities sampled from input volume along lines through
+ * vertices along normals from `N`
+ * @param offset offset to add to the sampling positions
+ * @param positionsOut position matrix to update
+ */
 template <class DerivedN, class DerivedD, class DerivedOut>
 void updateModelSamplingPositions(MeasurementModel const &model,
                                   Eigen::MatrixBase<DerivedN> const &N,
