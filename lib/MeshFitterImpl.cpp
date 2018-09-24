@@ -118,7 +118,7 @@ void updateModelSamplingPositions(MeasurementModel const &model,
   Expects(N.rows() > 0);
   Expects(densities.rows() % N.rows() == 0);
   Expects(positionsOut.rows() == densities.rows());
-  Expects(positionsOut.cols() == 3);
+  Expects(positionsOut.cols() >= 3);
 
   auto const numVertices = N.rows();
   auto const numSamples = densities.rows() / N.rows();
