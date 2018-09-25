@@ -165,6 +165,7 @@ MeshFitter::Result MeshFitter::Impl::fit(VoxelVolume const &volume) {
       model.samplingRange.min * 2.f, model.samplingRange.max * 2.f,
       model.samplingRange.stride};
   auto const displacementVector = discreteRanteElementVector(displacementRange);
+  auto const numSamples = gsl::narrow<Index>(model.samplingRange.numElements());
 
   // Preparation step: Convert meshes into IGL compatible formats
   // Also tranlate the reference mesh according to the configured origin
@@ -173,23 +174,18 @@ MeshFitter::Result MeshFitter::Impl::fit(VoxelVolume const &volume) {
       vertexMatrix(conf.referenceMesh).rowwise() + translation.transpose();
   FacetMatrix const F = facetMatrix(conf.referenceMesh);
   LabelVector const labels = labelVector(conf.referenceMesh);
-
-  LabelVector const repLabels = labels.replicate(
-      gsl::narrow<Eigen::Index>(model.samplingRange.numElements()), 1);
-
   LaplacianMatrix<> const L = laplacianMatrix(V0, F);
 
   // 2. set deformed mesh = reference mesh
   VertexMatrix<> V = V0; // NOLINT
 
   // Pre-allocate vector for volume samples
-  VectorXf volumeSamples(
-      V.rows() * gsl::narrow<Eigen::Index>(model.samplingRange.numElements()));
+  VectorXf volumeSamples(V.rows() *
+                         gsl::narrow<Index>(model.samplingRange.numElements()));
 
   // Pre-allocate matrix of measurement model sampling positions
-  Matrix<float, Dynamic, 3> modelSamplingPositions(
-      V.rows() * gsl::narrow<Eigen::Index>(model.samplingRange.numElements()),
-      3);
+  Matrix<float, Dynamic, 4> modelSamplingPositions(
+      V.rows() * gsl::narrow<Index>(model.samplingRange.numElements()), 4);
 
   // Pre-allocate matrix for observation likelihood given displacement
   MatrixXd Lzs(V.rows(), displacementVector.rows());
