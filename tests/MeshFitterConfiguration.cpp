@@ -91,14 +91,11 @@ TEST(MeshFitterConfiguration, LoadFromFileWithColorMap) {
 
   ASSERT_EQ(refCounts, counts);
 
-  ASSERT_TRUE(std::holds_alternative<Coordinate3D>(
+  ASSERT_TRUE(std::holds_alternative<MeshFitter::Configuration::OriginType>(
       config.referenceMeshOrigin));
 
-  auto const origin = std::get<Coordinate3D>(config.referenceMeshOrigin);
+  auto const origin = std::get<MeshFitter::Configuration::OriginType>(
+      config.referenceMeshOrigin);
 
-  ASSERT_EQ(Coordinate3D::Type::relative, origin.type);
-
-  ASSERT_FLOAT_EQ(0.4, origin.xyz[0]);
-  ASSERT_FLOAT_EQ(0.5, origin.xyz[1]);
-  ASSERT_FLOAT_EQ(0.6, origin.xyz[2]);
+  ASSERT_EQ(MeshFitter::Configuration::OriginType::centered, origin);
 }
