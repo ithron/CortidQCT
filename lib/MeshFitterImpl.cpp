@@ -141,8 +141,11 @@ void updateModelSamplingPositions(MeasurementModel const &model,
 
 MeshFitter::Result MeshFitter::Impl::fit(VoxelVolume const &volume) {
   using Eigen::Dynamic;
+  using Eigen::Index;
+  using Eigen::Map;
   using Eigen::Matrix;
   using Eigen::MatrixXd;
+  using Eigen::VectorXd;
   using Eigen::VectorXf;
   // Step:
   // 1. Move reference mesh to center
@@ -203,12 +206,61 @@ MeshFitter::Result MeshFitter::Impl::fit(VoxelVolume const &volume) {
     updateModelSamplingPositions(model, N, volumeSamples, .0f,
                                  modelSamplingPositions);
 
-    // Compute observation log likelihood for each displacement
-#pragma omp parallel for
-    for (auto i = 0; i < displacementVector.rows(); ++i) {
-      modelSampler(modelSamplingPositions, displacementVector(i), repLabels,
-                   Lzs.col(i));
+    // Log likelihood vector of the gaussian displacement prior
+    VectorXd const displacementLL =
+        -0.5 * displacementVector.array().template cast<double>().square() /
+        square(conf.sigmaS);
+
+    // Compute conditional observation likelihood, conditioned on the
+    // displacement, for each displacement
+    {
+      VectorXd modelSamples(V.rows() * numSamples);
+#pragma omp parallel for private(modelSamples)
+      for (auto i = 0; i < displacementVector.rows(); ++i) {
+        modelSampler(modelSamplingPositions, displacementVector(i),
+                     modelSamples);
+
+        Lzs.col(i) =
+            -Map<MatrixXd const>{modelSamples.data(), numSamples, V.rows()}
+                 .colwise()
+                 .sum()
+                 .transpose();
+      }
     }
+
+    MatrixXd posteriorNominator = Lzs;
+    posteriorNominator.colwise() += displacementLL;
+    // Scale `posteriorNominator` so that the maxCoeff is 0 to avoid overflows
+    VectorXd const posteriorMaxCoeffs = posteriorNominator.rowwise().maxCoeff();
+    posteriorNominator.colwise() -= posteriorMaxCoeffs;
+
+    // The denominator of the posterior log likelihood contains an intergral
+    // over all displacements, which is approximated with a sum here.
+    VectorXd posteriorDenominator =
+        (posteriorNominator.array().exp().rowwise().sum() *
+         displacementRange.stride)
+            .log()
+            .matrix();
+    // Add `posteriorMaxCoeffs` to denominator term to invert the scaleing
+    posteriorDenominator += posteriorMaxCoeffs;
+
+    // Compose the posterior log likelihood term
+    MatrixXd posteriorLL = posteriorNominator;
+    posteriorLL.colwise() += posteriorMaxCoeffs - posteriorDenominator;
+
+    // Find the displacements that maximize the posterior log likelihood
+    VectorXf bestDisplacements(V.rows());
+#pragma omp parallel for
+    for (Index i = 0; i < V.rows(); ++i) {
+      Index idx;
+      posteriorLL.row(i).maxCoeff(&idx);
+      bestDisplacements(i) =
+          displacementRange.nThElement(gsl::narrow_cast<std::size_t>(idx) + 1);
+    }
+
+    // Compute weight vector γ
+    VectorXd γ = posteriorLL.rowwise().maxCoeff().array().exp().matrix();
+    γ.array() = γ.array().isFinite().select(γ, VectorXd::Zero(γ.rows()));
   }
 
   return MeshFitter::Result{};
