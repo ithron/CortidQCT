@@ -48,6 +48,10 @@ install(
 ############################
 # Optional Sub-projects
 
+if (BUILD_APP)
+  add_subdirectory(app)
+endif()
+
 if (BUILD_TESTS)
   enable_testing()
   add_subdirectory(tests)
