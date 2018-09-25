@@ -14,8 +14,9 @@ project(
 add_subdirectory(common)
 add_subdirectory(lib)
 
-OPTION(BUILD_TESTS "Build tests" OFF)
-OPTION(BUILD_TOOLS "Build tools" OFF)
+OPTION(BUILD_TESTS "Build tests" ON)
+OPTION(BUILD_TOOLS "Build tools" ON)
+OPTION(BUILD_APP "Build applications" ON)
 
 ############################
 # Exports
