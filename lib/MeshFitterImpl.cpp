@@ -128,12 +128,12 @@ void updateModelSamplingPositions(MeasurementModel const &model,
           .matrix();
 
   auto const angles = normalsToAngles(N);
+  Ensures(angles.rows() == N.rows());
 
   positionsOut.col(0) = t.replicate(numVertices, 1);
   positionsOut.col(1) = densities;
   for (auto i = 0; i < numVertices; ++i) {
-    positionsOut.col(2).segment(numSamples * i, numSamples).array() =
-        angles.array();
+    positionsOut.col(2).segment(numSamples * i, numSamples).array() = angles(i);
   }
 }
 
