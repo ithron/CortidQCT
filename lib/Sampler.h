@@ -17,8 +17,6 @@
 #include <Eigen/Core>
 #include <gsl/gsl>
 
-#include <set>
-
 namespace CortidQCT {
 
 #pragma clang diagnostic push
@@ -138,17 +136,15 @@ public:
   inline explicit ModelSampler(MeasurementModel const &model) noexcept
       : model_(model) {}
 
-  template <class DerivedIn, class DerivedL, class VectorOut>
+  template <class DerivedIn, class VectorOut>
   inline void operator()(Eigen::MatrixBase<DerivedIn> const &positions,
-                         float offset,
-                         Eigen::MatrixBase<DerivedL> const &labels,
-                         VectorOut &&values) const {
+                         float offset, VectorOut &&values) const {
     using Eigen::Dynamic;
     using Eigen::Matrix;
     using Eigen::Vector3f;
 
     Expects(values.rows() == positions.rows());
-    Expects(positions.cols() == 3);
+    Expects(positions.cols() == 4);
     Expects(values.cols() == 1);
 
     Vector3f const min{model_.samplingRange.min, model_.densityRange.min,
@@ -157,16 +153,15 @@ public:
                          1.f / model_.densityRange.stride,
                          1.f / model_.angleRange.stride};
 
-    std::set<typename DerivedL::Scalar> uniqueLabels;
-    for (auto i = 0; i < labels.rows(); ++i) { uniqueLabels.insert(labels(i)); }
-
-    for (auto &&label : uniqueLabels) {
+    for (auto &&label : model_.labels()) {
       model_.withUnsafeDataPointer(label, [this, &positions, &values, min,
-                                           scale, offset, &labels,
+                                           scale, offset,
                                            label](double const *ptr) {
         // #pragma omp parallel for
         for (auto i = 0; i < positions.rows(); ++i) {
-          if (labels(i) != label) continue;
+          if (static_cast<MeasurementModel::Label>(positions(i, 3)) != label) {
+            continue;
+          }
 
           Vector3f const position{positions(i, 0) + offset, positions(i, 1),
                                   positions(i, 2)};
@@ -178,13 +173,12 @@ public:
     }
   }
 
-  template <class Derived, class DerivedL>
+  template <class Derived>
   inline Eigen::Matrix<double, Eigen::Dynamic, 1>
-  operator()(Eigen::MatrixBase<Derived> const &positions, float offset,
-             Eigen::MatrixBase<DerivedL> const &labels) const {
+  operator()(Eigen::MatrixBase<Derived> const &positions, float offset) const {
     Eigen::Matrix<double, Eigen::Dynamic, 1> values(positions.rows());
 
-    operator()(positions, offset, labels, values);
+    operator()(positions, offset, values);
 
     return values;
   }
