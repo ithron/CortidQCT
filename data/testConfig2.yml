@@ -13,7 +13,7 @@ referenceMesh:
     undefinedLabel: 4
   origin: centered
 
-measurementModel: defaultModel.yml
+measurementModel: testModel.yml
 
 sigmaE: 3.1415
 sigmaS: 1.5
