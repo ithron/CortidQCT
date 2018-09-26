@@ -11,13 +11,10 @@ referenceMesh:
       - [[0, 0, 255], 3]
       - [[255, 255, 0], 2]
     undefinedLabel: 4
-  origin:
-    type: relative
-    xyz: [0.4, 0.5, 0.6]
+  origin: centered
 
-measurementModel: testModel.yml
+measurementModel: defaultModel.yml
 
 sigmaE: 3.1415
-
 sigmaS: 1.5
 
