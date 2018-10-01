@@ -23,6 +23,7 @@ angleRange:
 
 density: 
   - label: 0
+    scale: 0
     data: !binary |-
       w/UoXI/C8T/hehSuR+EAQOF6FK5H4QhAXI/C9Shc8z+uR+F6FK4BQK5H4XoUrglA9ihcj8L1
       9D96FK5H4XoCQHoUrkfhegpAj8L1KFyP9j9H4XoUrkcDQEfhehSuRwtA7FG4HoXr8T/2KFyP
@@ -35,6 +36,7 @@ density:
       mpmZmZmZ9T/MzMzMzMwCQMzMzMzMzApAMzMzMzMz9z+ZmZmZmZkDQJmZmZmZmQtA
 
   - label: 1
+    scale: 0
     data: !binary |-
       w/UoXI/C8T/hehSuR+EAQOF6FK5H4QhAXI/C9Shc8z+uR+F6FK4BQK5H4XoUrglA9ihcj8L1
       9D96FK5H4XoCQHoUrkfhegpAj8L1KFyP9j9H4XoUrkcDQEfhehSuRwtA7FG4HoXr8T/2KFyP

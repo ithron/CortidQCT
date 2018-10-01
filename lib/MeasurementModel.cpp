@@ -101,8 +101,13 @@ MeasurementModel &MeasurementModel::loadFromFile(std::string const &filename) {
       if (!dataNode) {
         throw std::invalid_argument("Missing 'density.data' in " + filename);
       }
+      auto const &scaleNode = datNode["scale"];
+      if (!scaleNode) {
+        throw std::invalid_argument("Missing 'density.scale' in " + filename);
+      }
 
       auto const label = labelNode.as<unsigned int>();
+      auto const scale = scaleNode.as<double>();
       auto const binaryData = dataNode.as<YAML::Binary>();
       auto const nSamples = binaryData.size() / sizeof(double);
 
@@ -125,9 +130,18 @@ MeasurementModel &MeasurementModel::loadFromFile(std::string const &filename) {
 
       Ensures(storage.size() == nRequiredSamples);
 
+      VOIData voiData;
+      voiData.label = label;
+      voiData.scale = scale;
+      voiData.data = std::move(storage);
+
+      if (auto const &voiNameNode = datNode["name"]) {
+        voiData.name = datNode.as<std::string>();
+      }
+
       dataStorage.emplace(std::piecewise_construct,
                           std::forward_as_tuple(label),
-                          std::forward_as_tuple(std::move(storage)));
+                          std::forward_as_tuple(std::move(voiData)));
     }
 
     std::optional<std::string> name_, description_, author_;

@@ -36,8 +36,15 @@ public:
   using Label = unsigned int;
 
 private:
+  /// VOI data structure
+  struct VOIData {
+    Label label;
+    double scale;
+    std::string name;
+    std::vector<double> data;
+  };
   /// Type used to store data samples
-  using DataStorage = std::unordered_map<Label, std::vector<double>>;
+  using DataStorage = std::unordered_map<Label, VOIData>;
 
 public:
   /// @name Properties
@@ -152,7 +159,7 @@ public:
   template <class F>
   inline auto withUnsafeDataPointer(Label label, F &&f) const {
     if (auto const store = data_.find(label); store != data_.end()) {
-      return f(store->second.data());
+      return f(store->second.data.data());
     }
 
     throw std::invalid_argument("Label " + std::to_string(label) +
