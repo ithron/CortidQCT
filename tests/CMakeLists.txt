@@ -24,6 +24,12 @@ if (NOT TARGET CortidQCT::Core)
   find_package(CortidQCT CONFIG REQUIRED)
 endif()
 
+hunter_add_package(libigl)
+find_package(libigl CONFIG REQUIRED)
+
+hunter_add_package(Eigen)
+find_package(Eigen3 CONFIG REQUIRED)
+
 hunter_add_package(GTest)
 find_package(GTest CONFIG REQUIRED)
 
@@ -67,6 +73,8 @@ target_link_libraries(TestMesh
   PRIVATE
     GTest::main
     CortidQCT::Core
+    igl::core
+    Eigen3::Eigen
     TestCommon
 )
 target_include_directories(TestMesh PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
