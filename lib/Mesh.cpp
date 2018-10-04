@@ -14,6 +14,8 @@
 #include "MatrixIO.h"
 
 #include <gsl/gsl>
+#include <igl/orient_outward.h>
+#include <igl/orientable_patches.h>
 #include <igl/readOFF.h>
 #include <igl/read_triangle_mesh.h>
 #include <igl/writeOFF.h>
@@ -25,6 +27,23 @@
 #include <limits>
 
 namespace CortidQCT {
+
+namespace {
+
+template <class DerivedV, class DerivedF>
+void orientOutwards(Eigen::MatrixBase<DerivedV> const &V,
+                    Eigen::MatrixBase<DerivedF> &F) {
+  DerivedF C;
+  Eigen::Matrix<bool, Eigen::Dynamic, 1> I;
+
+  Expects(V.rows() > 0);
+  Expects(F.rows() > 0);
+  igl::orientable_patches(F.derived(), C.derived());
+
+  igl::orient_outward(V.derived(), F.derived(), C, F.derived(), I);
+}
+
+} // anonymous namespace
 
 template <class T> void Mesh<T>::ensurePostconditions() const {
   Ensures(vertexData_.size() % 3 == 0);
@@ -87,6 +106,8 @@ Mesh<T> &Mesh<T>::loadFromFile(std::string const &meshFilename,
   auto const lVertexCount = narrow<Size>(vertices.rows());
   auto const lTriangleCount = narrow<Size>(indices.rows());
 
+  orientOutwards(vertices, indices);
+
   // Reserve storage for vertex and index data
   auto vertexData = VertexData(3 * lVertexCount);
   auto indexData = IndexData(3 * lTriangleCount);
@@ -143,6 +164,8 @@ Mesh<T> &Mesh<T>::loadFromFile(std::string const &meshFilename,
 
   auto const lVertexCount = narrow<Size>(vertices.rows());
   auto const lTriangleCount = narrow<Size>(indices.rows());
+
+  orientOutwards(vertices, indices);
 
   // Reserve storage for vertex and index data
   auto vertexData = VertexData(3 * lVertexCount);

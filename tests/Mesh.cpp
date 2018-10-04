@@ -2,8 +2,10 @@
 
 #include <CortidQCT/CortidQCT.h>
 
+#include <Eigen/Core>
 #include <gsl/gsl>
 #include <gtest/gtest.h>
+#include <igl/per_vertex_normals.h>
 
 #include <cstdio>
 
@@ -139,4 +141,42 @@ TEST(Mesh, MeshLoadSaveLoadPreservesMesh) {
           return std::equal(pI, pI + size, pJ);
         });
   }));
+}
+
+TEST(Mesh, NormalsOrientedOutwards) {
+  using Eigen::Index;
+  using Eigen::Map;
+  using Eigen::MatrixXf;
+  using Eigen::Vector3f;
+  using Eigen::VectorXf;
+  using FMatrix =
+      Eigen::Matrix<Mesh<float>::Index, Eigen::Dynamic, Eigen::Dynamic>;
+
+  Mesh<float> mesh;
+  ASSERT_NO_THROW(mesh.loadFromFile(mesh1));
+
+  MatrixXf const V = mesh.withUnsafeVertexPointer([&](float const *vPtr) {
+    return Map<MatrixXf const>{vPtr, 3, gsl::narrow<Index>(mesh.vertexCount())}
+        .transpose();
+  });
+
+  FMatrix const F = mesh.withUnsafeIndexPointer([&](auto const *iPtr) {
+    return Map<FMatrix const>{iPtr, 3, gsl::narrow<Index>(mesh.triangleCount())}
+        .transpose();
+  });
+
+  // compute centroid
+  Vector3f const centroid = V.transpose().rowwise().mean();
+
+  MatrixXf N;
+  igl::per_vertex_normals(V, F, igl::PER_VERTEX_NORMALS_WEIGHTING_TYPE_ANGLE,
+                          N);
+
+  MatrixXf const dotProductMatrix =
+      N.array() * (V.rowwise() - centroid.transpose()).array();
+  VectorXf const dotProducts =
+      dotProductMatrix.array().rowwise().sum() /
+      dotProductMatrix.array().square().rowwise().sum();
+
+  ASSERT_TRUE((dotProducts.array() > -0.25f).all());
 }

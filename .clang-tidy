@@ -2,10 +2,12 @@
 Checks:          'clang-diagnostic-*,clang-analyzer-*,*,-fuchsia-*'
 WarningsAsErrors: '*'
 HeaderFilterRegex: ''
+LineFilter:
+  - name: lib/Mesh.cpp
+  - lines: 41
 AnalyzeTemporaryDtors: false
 FormatStyle:     none
-User:            sreinhold
-CheckOptions:    
+CheckOptions:
   - key:             bugprone-argument-comment.StrictMode
     value:           '0'
   - key:             bugprone-assert-side-effect.AssertMacros
