@@ -232,7 +232,8 @@ MeshFitter::Configuration::meshTranslation(VoxelVolume const &volume) const {
         originTransform = Adaptor::vec(origin.xyz) - centroid;
         break;
       case Coordinate3D::Type::relative: {
-        auto const targetOrigin = Adaptor::vec(origin.xyz);
+        Vector3f const targetOrigin =
+            Adaptor::vec(origin.xyz).array() * realVolSize.array();
 
         originTransform = targetOrigin - centroid;
         break;
