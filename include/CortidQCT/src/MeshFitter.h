@@ -34,6 +34,8 @@ public:
     enum class OriginType { untouched, centered };
     using Origin = std::variant<OriginType, Coordinate3D>;
 
+    using ScaleVector = std::array<float, 3>;
+
     /// The measurement model
     MeasurementModel model;
     /// The reference mesh
@@ -53,6 +55,15 @@ public:
      *   - `relative` - override the origin using relative coordinates
      */
     Origin referenceMeshOrigin = OriginType::untouched;
+
+    /**
+     * @brief Reference mesh scale vector
+     *
+     * Three component vector containing the scale factors for the x-, y- and
+     * z-axis.
+     * Defaults to 1 for all axis.
+     */
+    ScaleVector referenceMeshScale = {{1.f, 1.f, 1.f}};
 
     /**
      * @brief Load the configuration from a file

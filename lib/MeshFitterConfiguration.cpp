@@ -123,6 +123,28 @@ MeshFitter::Configuration::loadFromFile(std::string const &filename) {
       }
     }
 
+    if (auto const &scaleNode = referenceMeshNode["scale"]) {
+      if (scaleNode.IsScalar()) {
+        // apply uniform scaling
+        auto const scale = scaleNode.as<float>();
+        referenceMeshScale = {{scale, scale, scale}};
+      } else if (scaleNode.IsSequence()) {
+        if (scaleNode.size() != 3) {
+          throw std::invalid_argument(
+              "refereceMesh.scale must either be a scalar or an sequence with "
+              "3 entries in " +
+              filename);
+        }
+
+        referenceMeshScale = {{scaleNode[0].as<float>(),
+                               scaleNode[1].as<float>(),
+                               scaleNode[2].as<float>()}};
+      } else {
+        throw std::invalid_argument("referenceMesh.scale has invalid type in " +
+                                    filename);
+      }
+    }
+
     referenceMeshOrigin = meshOrigin;
 
     if (auto const &labelNode = referenceMeshNode["labels"]) {
