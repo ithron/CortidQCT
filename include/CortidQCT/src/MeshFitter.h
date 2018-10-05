@@ -34,7 +34,7 @@ public:
     enum class OriginType { untouched, centered };
     using Origin = std::variant<OriginType, Coordinate3D>;
 
-    using ScaleVector = std::array<float, 3>;
+    using RotationVector = std::array<float, 3>;
 
     /// The measurement model
     MeasurementModel model;
@@ -57,13 +57,16 @@ public:
     Origin referenceMeshOrigin = OriginType::untouched;
 
     /**
-     * @brief Reference mesh scale vector
-     *
-     * Three component vector containing the scale factors for the x-, y- and
-     * z-axis.
-     * Defaults to 1 for all axis.
+     * @brief Reference mesh scale factor
      */
-    ScaleVector referenceMeshScale = {{1.f, 1.f, 1.f}};
+    float referenceMeshScale = 1.f;
+
+    /**
+     * @brief Reference mesh rotation angled.
+     *
+     * Rotation is performed in this order: z, y, x. Defaults to 0.
+     */
+    RotationVector referenceMeshRotation = {{0.f, 0.f, 0.f}};
 
     /**
      * @brief Load the configuration from a file
