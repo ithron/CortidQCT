@@ -3,7 +3,7 @@ Checks:          'clang-diagnostic-*,clang-analyzer-*,*,-fuchsia-*'
 WarningsAsErrors: '*'
 HeaderFilterRegex: ''
 AnalyzeTemporaryDtors: false
-FormatStyle:     none
+FormatStyle:     file
 CheckOptions:
   - key:             bugprone-argument-comment.StrictMode
     value:           '0'
