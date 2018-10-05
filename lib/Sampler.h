@@ -47,7 +47,7 @@ public:
         [this, &positions, &values, scale](auto const *ptr) {
 
 #pragma omp parallel for
-          for (auto i = 0; i < positions.rows(); ++i) {
+          for (Eigen::Index i = 0; i < positions.rows(); ++i) {
 
             values(i) = this->interpolate(
                 (positions.row(i).array() * scale.array().transpose())
