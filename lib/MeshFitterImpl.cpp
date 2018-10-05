@@ -11,39 +11,19 @@
 
 #include "MeshFitterImpl.h"
 
+#include "DiscreteRangeDecorators.h"
+#include "DisplacementOptimizer.h"
 #include "EigenAdaptors.h"
 #include "MeshHelpers.h"
 #include "Sampler.h"
 
 #include <Eigen/Core>
+#include <Eigen/Geometry>
 #include <gsl/gsl>
 
+#include <fstream>
+
 namespace CortidQCT {
-
-namespace {
-
-template <class T> inline auto square(T &&x) noexcept(noexcept(x *x)) {
-  return x * x;
-}
-
-/**
- * @brief Returns all element of the given discrete range as a vector
- * @param range DiscreteRange object
- * @return An Eigen vector containing all element of `range`
- */
-template <class T>
-Eigen::Matrix<T, Eigen::Dynamic, 1>
-discreteRanteElementVector(DiscreteRange<T> const &range) {
-  using Vector = Eigen::Matrix<T, Eigen::Dynamic, 1>;
-
-  Vector t(gsl::narrow<Eigen::Index>(range.numElements()));
-
-  for (auto i = 0; i < t.rows(); ++i) {
-    t(i) = range.min + static_cast<T>(i) * range.stride;
-  }
-
-  return t;
-}
 
 /**
  * @brief Returns a matrix containing positions to sample a voxel volume at
@@ -69,12 +49,12 @@ samplingPoints(Eigen::MatrixBase<DerivedV> const &V,
   using Eigen::Matrix;
   using gsl::narrow_cast;
 
-  auto const t = discreteRanteElementVector(model.samplingRange);
+  auto const t = Internal::discreteRangeElementVector(model.samplingRange);
   Matrix<Scalar, Dynamic, 3> samples(V.rows() * t.rows(), 3);
 
   for (auto i = 0; i < V.rows(); ++i) {
     auto const iStart = i * t.rows();
-    samples.block(iStart, 0, t.rows(), 3).colwise() = t;
+    samples.block(iStart, 0, t.rows(), 3).colwise() = -t;
     samples.block(iStart, 0, t.rows(), 3).array().rowwise() *= N.row(i).array();
     samples.block(iStart, 0, t.rows(), 3).rowwise() += V.row(i);
   }
@@ -82,69 +62,13 @@ samplingPoints(Eigen::MatrixBase<DerivedV> const &V,
   return samples;
 }
 
-/// @brief Convert per vertex normals to angles with z-axis in degrees
-template <class DerivedN>
-Eigen::VectorXf normalsToAngles(Eigen::MatrixBase<DerivedN> const &N) {
-  Expects(N.rows() > 0);
-  Expects(N.cols() == 3);
-  Eigen::VectorXf const angles =
-      (1.f - N.col(2).array()).abs() * static_cast<float>(M_PI) / 2.f;
-
-  return angles;
-}
-
-/**
- * @brief Updates the given model sampling positions matrix with new values
- *
- * Updates sampling position based on offset, angles based on normals and
- * densities.
- *
- * @param model MeasurementModel instance
- * @param N per-vertex normal matrix
- * @param densities densities sampled from input volume along lines through
- * vertices along normals from `N`
- * @param offset offset to add to the sampling positions
- * @param positionsOut position matrix to update
- */
-template <class DerivedN, class DerivedD, class DerivedOut>
-void updateModelSamplingPositions(MeasurementModel const &model,
-                                  Eigen::MatrixBase<DerivedN> const &N,
-                                  Eigen::MatrixBase<DerivedD> const &densities,
-                                  float offset,
-                                  Eigen::MatrixBase<DerivedOut> &positionsOut) {
-  using Eigen::VectorXf;
-
-  Expects(N.cols() == 3);
-  Expects(N.rows() > 0);
-  Expects(densities.rows() % N.rows() == 0);
-  Expects(positionsOut.rows() == densities.rows());
-  Expects(positionsOut.cols() >= 3);
-
-  auto const numVertices = N.rows();
-  auto const numSamples = densities.rows() / N.rows();
-
-  VectorXf const t =
-      (discreteRanteElementVector(model.samplingRange).array() + offset)
-          .matrix();
-
-  auto const angles = normalsToAngles(N);
-  Ensures(angles.rows() == N.rows());
-
-  positionsOut.col(0) = t.replicate(numVertices, 1);
-  positionsOut.col(1) = densities;
-  for (auto i = 0; i < numVertices; ++i) {
-    positionsOut.col(2).segment(numSamples * i, numSamples).array() = angles(i);
-  }
-}
-
-} // anonymous namespace
-
 MeshFitter::Result MeshFitter::Impl::fit(VoxelVolume const &volume) {
   using Eigen::Dynamic;
   using Eigen::Index;
   using Eigen::Map;
   using Eigen::Matrix;
   using Eigen::MatrixXd;
+  using Eigen::Vector3f;
   using Eigen::VectorXd;
   using Eigen::VectorXf;
   // Step:
@@ -162,19 +86,23 @@ MeshFitter::Result MeshFitter::Impl::fit(VoxelVolume const &volume) {
 
   auto const &conf = fitter_.configuration;
   auto const &model = fitter_.configuration.model;
-  auto const modelSampler = ModelSampler{model};
   auto const volumeSampler = VolumeSampler{volume};
-  auto const displacementRange = DiscreteRange<float>{
-      model.samplingRange.min * 2.f, model.samplingRange.max * 2.f,
-      model.samplingRange.stride};
-  auto const displacementVector = discreteRanteElementVector(displacementRange);
-  auto const numSamples = gsl::narrow<Index>(model.samplingRange.numElements());
+
+  auto displacementOptimizer = Internal::DisplacementOptimizer{conf};
 
   // Preparation step: Convert meshes into IGL compatible formats
   // Also tranlate the reference mesh according to the configured origin
   auto const translation = Adaptor::vec(conf.meshTranslation(volume));
+  Vector3f const rotInRad = Adaptor::vec(conf.referenceMeshRotation) *
+                            static_cast<float>(M_PI) / 180.f;
   VertexMatrix<> const V0 =
-      vertexMatrix(conf.referenceMesh).rowwise() + translation.transpose();
+      ((Eigen::Translation<float, 3>{translation} *
+        Eigen::Scaling(conf.referenceMeshScale) *
+        Eigen::AngleAxisf(rotInRad[0], Vector3f::UnitX()) *
+        Eigen::AngleAxisf(rotInRad[1], Vector3f::UnitY()) *
+        Eigen::AngleAxisf(rotInRad[2], Vector3f::UnitZ())) *
+       vertexMatrix(conf.referenceMesh).transpose())
+          .transpose();
   FacetMatrix const F = facetMatrix(conf.referenceMesh);
   LabelVector const labels = labelVector(conf.referenceMesh);
   LaplacianMatrix<> const L = laplacianMatrix(V0, F);
@@ -186,12 +114,8 @@ MeshFitter::Result MeshFitter::Impl::fit(VoxelVolume const &volume) {
   VectorXf volumeSamples(V.rows() *
                          gsl::narrow<Index>(model.samplingRange.numElements()));
 
-  // Pre-allocate matrix of measurement model sampling positions
-  Matrix<float, Dynamic, 4> modelSamplingPositions(
-      V.rows() * gsl::narrow<Index>(model.samplingRange.numElements()), 4);
-
-  // Pre-allocate matrix for observation likelihood given displacement
-  MatrixXd Lzs(V.rows(), displacementVector.rows());
+  VectorXd γ;
+  VectorXf optimalDisplacements;
 
   auto converged = false;
 
@@ -202,65 +126,13 @@ MeshFitter::Result MeshFitter::Impl::fit(VoxelVolume const &volume) {
     auto const samplingPositions = samplingPoints(V, N, model);
     volumeSampler(samplingPositions, volumeSamples);
 
-    // update model sampling positions
-    updateModelSamplingPositions(model, N, volumeSamples, .0f,
-                                 modelSamplingPositions);
+    // find optimal displacements
+    std::tie(optimalDisplacements, γ) =
+        displacementOptimizer(N, labels, volumeSamples);
 
-    // Log likelihood vector of the gaussian displacement prior
-    VectorXd const displacementLL =
-        -0.5 * displacementVector.array().template cast<double>().square() /
-        square(conf.sigmaS);
-
-    // Compute conditional observation likelihood, conditioned on the
-    // displacement, for each displacement
-    {
-      VectorXd modelSamples(V.rows() * numSamples);
-#pragma omp parallel for private(modelSamples)
-      for (auto i = 0; i < displacementVector.rows(); ++i) {
-        modelSampler(modelSamplingPositions, displacementVector(i),
-                     modelSamples);
-
-        Lzs.col(i) =
-            -Map<MatrixXd const>{modelSamples.data(), numSamples, V.rows()}
-                 .colwise()
-                 .sum()
-                 .transpose();
-      }
-    }
-
-    MatrixXd posteriorNominator = Lzs;
-    posteriorNominator.colwise() += displacementLL;
-    // Scale `posteriorNominator` so that the maxCoeff is 0 to avoid overflows
-    VectorXd const posteriorMaxCoeffs = posteriorNominator.rowwise().maxCoeff();
-    posteriorNominator.colwise() -= posteriorMaxCoeffs;
-
-    // The denominator of the posterior log likelihood contains an intergral
-    // over all displacements, which is approximated with a sum here.
-    VectorXd posteriorDenominator =
-        (posteriorNominator.array().exp().rowwise().sum() *
-         displacementRange.stride)
-            .log()
-            .matrix();
-    // Add `posteriorMaxCoeffs` to denominator term to invert the scaleing
-    posteriorDenominator += posteriorMaxCoeffs;
-
-    // Compose the posterior log likelihood term
-    MatrixXd posteriorLL = posteriorNominator;
-    posteriorLL.colwise() += posteriorMaxCoeffs - posteriorDenominator;
-
-    // Find the displacements that maximize the posterior log likelihood
-    VectorXf bestDisplacements(V.rows());
-#pragma omp parallel for
-    for (Index i = 0; i < V.rows(); ++i) {
-      Index idx;
-      posteriorLL.row(i).maxCoeff(&idx);
-      bestDisplacements(i) =
-          displacementRange.nThElement(gsl::narrow_cast<std::size_t>(idx) + 1);
-    }
-
-    // Compute weight vector γ
-    VectorXd γ = posteriorLL.rowwise().maxCoeff().array().exp().matrix();
-    γ.array() = γ.array().isFinite().select(γ, VectorXd::Zero(γ.rows()));
+    std::ofstream{"gamma.mat"} << γ;
+    std::ofstream{"displacements.mat"} << optimalDisplacements;
+    converged = true;
   }
 
   return MeshFitter::Result{};
