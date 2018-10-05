@@ -11,6 +11,11 @@ project(
   LANGUAGES CXX
 )
 
+find_package(OpenMP)
+if (OpenMP_FOUND)
+  option(CortidQCT_WITH_OPENMP "Build with OpenMP support" ON)
+endif()
+
 add_subdirectory(common)
 add_subdirectory(lib)
 

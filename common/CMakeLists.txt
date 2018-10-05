@@ -56,6 +56,11 @@ set_property(
   PROPERTY INTERFACE_CXX_EXTENSIONS OFF
 )
 
+if (CortidQCT_WITH_OPENMP)
+  target_compile_options(Common INTERFACE ${OpenMP_CXX_FLAGS})
+  target_link_libraries(Common INTERFACE ${OpenMP_CXX_LIBRARIES})
+endif()
+
 add_library(CortidQCT::Common ALIAS Common)
 
 ############################
