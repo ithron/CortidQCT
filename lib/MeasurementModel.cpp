@@ -136,7 +136,7 @@ MeasurementModel &MeasurementModel::loadFromFile(std::string const &filename) {
       voiData.data = std::move(storage);
 
       if (auto const &voiNameNode = datNode["name"]) {
-        voiData.name = datNode.as<std::string>();
+        voiData.name = voiNameNode.as<std::string>();
       }
 
       dataStorage.emplace(std::piecewise_construct,
