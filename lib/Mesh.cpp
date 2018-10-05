@@ -12,6 +12,7 @@
 #include "Mesh.h"
 #include "CheckExtension.h"
 #include "MatrixIO.h"
+#include "MeshHelpers.h"
 
 #include <gsl/gsl>
 #include <igl/orient_outward.h>
@@ -43,12 +44,42 @@ void orientOutwards(Eigen::MatrixBase<DerivedV> const &V,
   igl::orient_outward(V.derived(), F.derived(), C, F.derived(), I);
 }
 
+template <class DerivedV, class DerivedF>
+bool isOutwardOriented(Eigen::MatrixBase<DerivedV> const &V,
+                       Eigen::MatrixBase<DerivedF> const &F) {
+  using Scalar = typename DerivedV::Scalar;
+  using Eigen::Dynamic;
+  using Eigen::Matrix;
+
+  NormalMatrix<Scalar> const N = perVertexNormalMatrix(V, F);
+  Matrix<Scalar, 3, 1> const centroid = V.colwise().mean().transpose();
+
+  Matrix<Scalar, Dynamic, 3> const Vcentered =
+      V.rowwise() - centroid.transpose();
+
+  auto const outwardsCount =
+      ((Vcentered.array() * N.array()).rowwise().sum() > 0)
+          .template cast<Eigen::Index>()
+          .sum();
+
+  return outwardsCount > V.rows() / 2;
+}
+
 } // anonymous namespace
 
 template <class T> void Mesh<T>::ensurePostconditions() const {
+  using Eigen::Dynamic;
+  using Eigen::Map;
+  using Eigen::Matrix;
+
   Ensures(vertexData_.size() % 3 == 0);
   Ensures(indexData_.size() % 3 == 0);
   Ensures(labelData_.size() == vertexData_.size() / 3);
+
+  VertexMatrix<T> const V = vertexMatrix(*this);
+  FacetMatrix const F = facetMatrix(*this);
+
+  Ensures(isOutwardOriented(V, F));
 }
 
 template <class T>
