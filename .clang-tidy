@@ -2,9 +2,6 @@
 Checks:          'clang-diagnostic-*,clang-analyzer-*,*,-fuchsia-*'
 WarningsAsErrors: '*'
 HeaderFilterRegex: ''
-LineFilter:
-  - name: lib/Mesh.cpp
-  - lines: 41
 AnalyzeTemporaryDtors: false
 FormatStyle:     none
 CheckOptions:
