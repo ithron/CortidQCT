@@ -34,6 +34,7 @@ endif()
 add_library(Core
   CortidQCT.cpp
   ColorToLabelMapIO.cpp
+  DisplacementOptimizer.cpp
   MeasurementModel.cpp
   Mesh.cpp
   MeshFitter.cpp
