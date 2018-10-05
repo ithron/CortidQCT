@@ -65,7 +65,7 @@ inline NormalMatrix<typename DerivedV::Scalar>
 perVertexNormalMatrix(Eigen::MatrixBase<DerivedV> const &V,
                       Eigen::MatrixBase<DerivedF> const &F) {
   // output matrix
-  Eigen::Matrix<typename DerivedV::Scalar, Eigen::Dynamic, 3> normals;
+  NormalMatrix<typename DerivedV::Scalar> normals;
 
   igl::per_vertex_normals(V, F, igl::PER_VERTEX_NORMALS_WEIGHTING_TYPE_ANGLE,
                           normals);
