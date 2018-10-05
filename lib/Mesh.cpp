@@ -37,8 +37,8 @@ void orientOutwards(Eigen::MatrixBase<DerivedV> const &V,
   DerivedF C;
   Eigen::Matrix<bool, Eigen::Dynamic, 1> I;
 
-  Expects(V.rows() > 0);
-  Expects(F.rows() > 0);
+  Expects(V.rows() > 0 && V.cols() == 3);
+  Expects(F.rows() > 0 && F.cols() == 3);
   igl::orientable_patches(F.derived(), C.derived());
 
   igl::orient_outward(V.derived(), F.derived(), C, F.derived(), I);
