@@ -127,10 +127,17 @@ MeshFitter::Configuration::loadFromFile(std::string const &filename) {
       if (scaleNode.IsScalar()) {
         // apply uniform scaling
         auto const scale = scaleNode.as<float>();
-        referenceMeshScale = scale;
-      } else {
+        referenceMeshScale = {{scale, scale, scale}};
+      } else if (scaleNode.IsSequence() && scaleNode.size() == 3) {
+        auto const scaleX = scaleNode[0].as<float>();
+        auto const scaleY = scaleNode[1].as<float>();
+        auto const scaleZ = scaleNode[2].as<float>();
+
+        referenceMeshScale = {{scaleX, scaleY, scaleZ}};
+      }
+        else {
         throw std::invalid_argument(
-            "refereceMesh.scale must either be a scalar" + filename);
+            "refereceMesh.scale must either be a scalar or a 3 element vector" + filename);
       }
     }
 

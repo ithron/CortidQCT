@@ -33,6 +33,7 @@ public:
   struct Configuration {
     enum class OriginType { untouched, centered };
     using Origin = std::variant<OriginType, Coordinate3D>;
+    using ScaleVector = std::array<float, 3>;
 
     using RotationVector = std::array<float, 3>;
 
@@ -59,7 +60,7 @@ public:
     /**
      * @brief Reference mesh scale factor
      */
-    float referenceMeshScale = 1.f;
+    ScaleVector referenceMeshScale = {{1.f, 1.f, 1.f}};
 
     /**
      * @brief Reference mesh rotation angled.

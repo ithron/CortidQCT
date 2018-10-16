@@ -233,10 +233,10 @@ MeshFitter::Result MeshFitter::Impl::fit(VoxelVolume const &volume) {
                             static_cast<float>(M_PI) / 180.f;
   VertexMatrix<> const V0 =
       ((Eigen::Translation<float, 3>{translation} *
-        Eigen::Scaling(conf.referenceMeshScale) *
         Eigen::AngleAxisf(rotInRad[0], Vector3f::UnitX()) *
         Eigen::AngleAxisf(rotInRad[1], Vector3f::UnitY()) *
         Eigen::AngleAxisf(rotInRad[2], Vector3f::UnitZ())) *
+       Adaptor::vec(conf.referenceMeshScale).asDiagonal() *
        vertexMatrix(conf.referenceMesh).transpose())
           .transpose();
   FacetMatrix const F = facetMatrix(conf.referenceMesh);
