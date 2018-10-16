@@ -245,7 +245,7 @@ MeshFitter::Result MeshFitter::Impl::fit(VoxelVolume const &volume) {
       laplacianMatrix(V0.template cast<double>(), F);
 
   // 2. set deformed mesh = reference mesh
-  VertexMatrix<> V = V0; // NOLINT
+  VertexMatrix<> V = V0;
 
   // Pre-allocate vector for volume samples
   VectorXf volumeSamples(V.rows() *
@@ -271,32 +271,18 @@ MeshFitter::Result MeshFitter::Impl::fit(VoxelVolume const &volume) {
 
     // Copmute dispaced vertices
     VertexMatrix<> const Y =
-        V + (N.array().colwise() * optimalDisplacements.array()).matrix();
+        V - (N.array().colwise() * optimalDisplacements.array()).matrix();
 
-    // std::ofstream{"V.mat"} << V;
-
-    // γ *= square(conf.sigmaE) / 2.0;
-    // γ = (γ.array() > 0.5).template cast<double>();
-
-    // V = weightedARAPDeformation(
-    //         V.template cast<double>(), N.template cast<double>(), L,
-    //         Y.template cast<double>(), γ.template cast<double>(), 1.f)
-    //         .template cast<float>();
     V = weightedARAPDeformation(
-            V.template cast<double>(), N.template cast<double>(), L,
+            V0.template cast<double>(), N.template cast<double>(), L,
             Y.template cast<double>(), γ.template cast<double>(),
             gsl::narrow_cast<float>(conf.sigmaE))
             .template cast<float>();
 
-    // std::ofstream{"gamma.mat"} << γ;
-    // std::ofstream{"displacements.mat"} << optimalDisplacements;
-    // std::ofstream{"V1.mat"} << V;
-    // std::ofstream{"Y.mat"} << Y;
-    // std::ofstream{"N.mat"} << N;
-    converged = iterations > 10;
+    converged = iterations > 50;
+    std::cout << "Converged after iteration " << iterations << ": "
+              << std::boolalpha << converged << std::endl;
   }
-
-  std::ofstream{"Vres.mat"} << V;
 
   return MeshFitter::Result{};
 }
