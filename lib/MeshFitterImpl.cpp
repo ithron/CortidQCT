@@ -279,7 +279,7 @@ MeshFitter::Result MeshFitter::Impl::fit(VoxelVolume const &volume) {
             gsl::narrow_cast<float>(conf.sigmaE))
             .template cast<float>();
 
-    converged = iterations > 50;
+    converged = iterations >= conf.maxIterations;
     std::cout << "Converged after iteration " << iterations << ": "
               << std::boolalpha << converged << std::endl;
   }

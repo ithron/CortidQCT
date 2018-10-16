@@ -203,6 +203,10 @@ MeshFitter::Configuration::loadFromFile(std::string const &filename) {
       sigmaS = sigmaSNode.as<double>(sigmaS);
     }
 
+    if (auto maxIterNode = node["maxIterations"]) {
+      maxIterations = maxIterNode.as<std::size_t>();
+    }
+
     model = std::move(model_);
     referenceMesh = std::move(refMesh);
 

@@ -45,6 +45,8 @@ public:
     double sigmaE = 2.0;
     /// Scale parameter for the latent variable s
     double sigmaS = 2.0;
+    /// Maximum number of iterations
+    std::size_t maxIterations = 100;
 
     /**
      * @brief Reference mesh origin
