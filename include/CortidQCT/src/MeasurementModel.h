@@ -131,6 +131,14 @@ public:
   /// Returns the number of valid labels of the model
   inline std::size_t labelCount() const noexcept { return data_.size(); }
 
+  /// Returns the density scale parameter of the given VOI
+  inline double densityScale(Label const &label) const {
+    if (auto const voiIt = data_.find(label); voiIt != data_.end()) {
+      return voiIt->second.scale;
+    }
+    return std::numeric_limits<double>::quiet_NaN();
+  }
+
   /// @}
 
   /**
