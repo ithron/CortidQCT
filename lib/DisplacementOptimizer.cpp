@@ -151,7 +151,8 @@ operator()(Eigen::MatrixBase<DerivedN> const &N,
           .matrix();
   // // Add `posteriorMaxCoeffs` to denominator term to invert the scaleing
   // posteriorDenominator += posteriorMaxCoeffs;
-  posteriorDenominator.array() += 2 * log(static_cast<double>(displacementLL.size()));
+  posteriorDenominator.array() +=
+      2 * log(static_cast<double>(displacementLL.size()));
 
   // Compose the posterior log likelihood term
   // Note that the scaling factor (from the model normalization) is canceled
@@ -173,6 +174,10 @@ operator()(Eigen::MatrixBase<DerivedN> const &N,
   VectorXd γ = posteriorLL.rowwise().maxCoeff().array().exp().matrix();
   // Set all non-finite weights to 0
   γ.array() = γ.array().isFinite().select(γ, VectorXd::Zero(γ.rows()));
+  γ.array() /= labels.array().unaryExpr([this](auto const l) {
+    auto const scale = exp(this->model_.densityScale(l));
+    return std::isfinite(scale) ? scale : 1.0;
+  });
 
   return {-bestDisplacements, γ};
 }
