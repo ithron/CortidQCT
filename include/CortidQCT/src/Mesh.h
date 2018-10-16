@@ -193,6 +193,12 @@ public:
     return f(vertexData_.data());
   }
 
+  template <class F>
+  inline auto withUnsafeVertexPointer(F &&f) noexcept(
+      noexcept(f(std::declval<VertexData>().data()))) {
+    return f(vertexData_.data());
+  }
+
   /**
    * @brief Calls the given functional with an unsafe pointer to the raw
    * index storage.
