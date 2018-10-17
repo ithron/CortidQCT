@@ -255,7 +255,7 @@ MeshFitter::Result MeshFitter::Impl::fit(VoxelVolume const &volume) {
   VectorXf optimalDisplacements;
 
   auto converged = false;
-  auto iterations = 0;
+  auto iterations = std::size_t{0};
 
   while (!converged) {
     ++iterations;
@@ -284,7 +284,13 @@ MeshFitter::Result MeshFitter::Impl::fit(VoxelVolume const &volume) {
               << std::boolalpha << converged << std::endl;
   }
 
-  return MeshFitter::Result{};
+  auto resultMesh = conf.referenceMesh;
+
+  resultMesh.withUnsafeVertexPointer([&V](auto *vPtr) {
+    Map<Matrix<float, 3, Dynamic>>{vPtr, 3, V.rows()} = V.transpose();
+  });
+
+  return MeshFitter::Result{resultMesh};
 }
 
 } // namespace CortidQCT
