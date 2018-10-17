@@ -41,6 +41,7 @@ add_library(Core
   MeshFitterConfiguration.cpp
   MeshFitterImpl.cpp
   VoxelVolume.cpp
+  WeightedARAPFitter.cpp
 )
 add_library(PrivateAPI INTERFACE)
 

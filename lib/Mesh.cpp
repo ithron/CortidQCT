@@ -29,6 +29,8 @@
 
 namespace CortidQCT {
 
+using namespace Internal;
+
 namespace {
 
 template <class DerivedV, class DerivedF>

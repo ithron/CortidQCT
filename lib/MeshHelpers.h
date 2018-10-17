@@ -20,6 +20,8 @@
 
 namespace CortidQCT {
 
+namespace Internal {
+
 template <class T = float>
 using VertexMatrix = Eigen::Matrix<T, Eigen::Dynamic, 3>;
 template <class T = float> using NormalMatrix = VertexMatrix<T>;
@@ -99,4 +101,5 @@ inline LaplacianMatrix<T> laplacianMatrix(Mesh<T> const &mesh) {
   return laplacianMatrix(vertexMatrix(mesh), facetMatrix(mesh));
 }
 
+} // namespace Internal
 } // namespace CortidQCT

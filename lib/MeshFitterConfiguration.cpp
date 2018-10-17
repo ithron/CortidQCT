@@ -20,6 +20,8 @@
 
 namespace CortidQCT {
 
+using namespace Internal;
+
 namespace {
 
 inline std::string basePath(std::string const &path) {
@@ -134,10 +136,10 @@ MeshFitter::Configuration::loadFromFile(std::string const &filename) {
         auto const scaleZ = scaleNode[2].as<float>();
 
         referenceMeshScale = {{scaleX, scaleY, scaleZ}};
-      }
-        else {
+      } else {
         throw std::invalid_argument(
-            "refereceMesh.scale must either be a scalar or a 3 element vector" + filename);
+            "refereceMesh.scale must either be a scalar or a 3 element vector" +
+            filename);
       }
     }
 
