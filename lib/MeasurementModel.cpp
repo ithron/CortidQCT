@@ -133,7 +133,9 @@ MeasurementModel &MeasurementModel::loadFromFile(std::string const &filename) {
       VOIData voiData;
       voiData.label = label;
       voiData.scale = scale;
-      voiData.data = std::move(storage);
+      voiData.data = std::vector<float>(storage.size());
+      std::transform(storage.begin(), storage.end(), voiData.data.begin(),
+                     [](auto &&x) { return static_cast<float>(x); });
 
       if (auto const &voiNameNode = datNode["name"]) {
         voiData.name = voiNameNode.as<std::string>();
@@ -174,6 +176,7 @@ MeasurementModel &MeasurementModel::loadFromFile(std::string const &filename) {
     densityRange = densityRange_;
     angleRange = angleRange_;
     data_ = std::move(dataStorage);
+    reorderData();
 
   } catch (YAML::Exception const &e) {
     throw std::invalid_argument("Failed to load model file: "s + e.what());
@@ -183,6 +186,40 @@ MeasurementModel &MeasurementModel::loadFromFile(std::string const &filename) {
   }
 
   return *this;
+}
+
+void MeasurementModel::reorderData() {
+  auto dest = DataStorage{};
+
+  auto const nSamples = samplingRange.numElements();
+  auto const nDensities = densityRange.numElements();
+  auto const nAngles = angleRange.numElements();
+
+  for (auto &&keyVal : data_) {
+    auto const key = keyVal.first;
+    auto const &value = keyVal.second;
+
+    auto destValue = value;
+
+    // The original data layout is distance - density - angle.
+    // Since distance is not going to be interpolated, it should be moved to
+    // the last dimension. Reoder to density - angle - distance
+    for (auto i = 0u; i < nSamples; ++i) {
+      for (auto j = 0u; j < nAngles; ++j) {
+        for (auto k = 0u; k < nDensities; ++k) {
+          auto const srcIndex = j * (nSamples * nDensities) + k * nSamples + i;
+          auto const destIndex =
+              i * (nDensities * nAngles) + j * nDensities + k;
+
+          destValue.data[destIndex] = value.data[srcIndex];
+        }
+      }
+    }
+
+    dest.emplace(key, destValue);
+  }
+
+  data_ = std::move(dest);
 }
 
 } // namespace CortidQCT
