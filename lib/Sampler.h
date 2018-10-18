@@ -202,8 +202,9 @@ private:
                                          clamp(pos.z(), 0.f, size.z() - 1.f)}
                                     .cast<int>();
 
-    return ptr.get()[clampedPos.z() * sizeI.x() * sizeI.y() +
-                     clampedPos.y() * sizeI.x() + clampedPos.x()];
+    auto const index = clampedPos.x() * sizeI.y() * sizeI.z() +
+                       clampedPos.z() * sizeI.y() + clampedPos.y();
+    return ptr.get()[index];
   }
 
   template <class Derived>
@@ -226,9 +227,9 @@ private:
     Vector2d const xn = Vector2d::Ones() - xd;
 
     auto const c00 = at(Vector3f{x00, x0(0), x0(1)}.transpose(), ptr);
-    auto const c01 = at(Vector3f{x00, x0(0), x1(1)}.transpose(), ptr);
     auto const c10 = at(Vector3f{x00, x1(0), x0(1)}.transpose(), ptr);
     auto const c11 = at(Vector3f{x00, x1(0), x1(1)}.transpose(), ptr);
+    auto const c01 = at(Vector3f{x00, x0(0), x1(1)}.transpose(), ptr);
 
     auto const c0 = c00 * xn(0) + c10 * xd(0);
     auto const c1 = c01 * xn(0) + c11 * xd(0);

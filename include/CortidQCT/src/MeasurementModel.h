@@ -180,6 +180,10 @@ public:
   /// @}
 
 private:
+
+  /// Reorders data to optimize cache locality
+  void reorderData();
+
   /// Storage for data samples
   DataStorage data_;
 };
