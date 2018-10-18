@@ -212,7 +212,6 @@ private:
     using Eigen::Vector2d;
     using Eigen::Vector2i;
     using Eigen::Vector3f;
-    using std::exp;
     using std::log;
     using std::round;
 
@@ -226,10 +225,10 @@ private:
             .template cast<double>();
     Vector2d const xn = Vector2d::Ones() - xd;
 
-    auto const c00 = exp(at(Vector3f{x00, x0(0), x0(1)}.transpose(), ptr));
-    auto const c01 = exp(at(Vector3f{x00, x0(0), x1(1)}.transpose(), ptr));
-    auto const c10 = exp(at(Vector3f{x00, x1(0), x0(1)}.transpose(), ptr));
-    auto const c11 = exp(at(Vector3f{x00, x1(0), x1(1)}.transpose(), ptr));
+    auto const c00 = at(Vector3f{x00, x0(0), x0(1)}.transpose(), ptr);
+    auto const c01 = at(Vector3f{x00, x0(0), x1(1)}.transpose(), ptr);
+    auto const c10 = at(Vector3f{x00, x1(0), x0(1)}.transpose(), ptr);
+    auto const c11 = at(Vector3f{x00, x1(0), x1(1)}.transpose(), ptr);
 
     auto const c0 = c00 * xn(0) + c10 * xd(0);
     auto const c1 = c01 * xn(0) + c11 * xd(0);

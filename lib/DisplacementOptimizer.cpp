@@ -175,7 +175,7 @@ operator()(Eigen::MatrixBase<DerivedN> const &N,
   // Set all non-finite weights to 0
   γ.array() = γ.array().isFinite().select(γ, VectorXd::Zero(γ.rows()));
   γ.array() /= labels.array().unaryExpr([this](auto const l) {
-    auto const scale = exp(this->model_.densityScale(l));
+    auto const scale = this->model_.densityScale(l);
     return std::isfinite(scale) ? scale : 1.0;
   });
 
