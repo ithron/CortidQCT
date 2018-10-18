@@ -91,7 +91,8 @@ template <class DerivedN, class DerivedL, class DerivedM>
 DisplacementOptimizer::DisplacementsWeightsPair DisplacementOptimizer::
 operator()(Eigen::MatrixBase<DerivedN> const &N,
            Eigen::MatrixBase<DerivedL> const &labels,
-           Eigen::MatrixBase<DerivedM> const &measurements) {
+           Eigen::MatrixBase<DerivedM> const &measurements,
+           std::size_t nonDecrease) {
   using Eigen::Index;
   using Eigen::Map;
   using Eigen::MatrixXd;
@@ -130,10 +131,18 @@ operator()(Eigen::MatrixBase<DerivedN> const &N,
   // To compute the posterior, the displacement prior log likelihood and the
   // total log lokelihood of observations must be computed, first.
 
+  auto const σ =
+      std::pow(config_.decay,
+               nonDecrease > config_.minNonDecreasing
+                   ? static_cast<double>(nonDecrease - config_.minNonDecreasing)
+                   : 0.0) *
+      square(config_.sigmaS);
+
+  std::cout << "σ = " << σ << std::endl;
+
   // Log likelihood vector of the gaussian displacement prior
   VectorXd const displacementLL =
-      -0.5 * displacements.array().template cast<double>().square() /
-      square(config_.sigmaS);
+      -0.5 * displacements.array().template cast<double>().square() / σ;
 
   // Copmute the nomnator term: conditional LL + prior LL
   MatrixXd posteriorNominator = Lzs;
@@ -186,7 +195,7 @@ template DisplacementOptimizer::DisplacementsWeightsPair DisplacementOptimizer::
 operator()<NormalMatrix<>, LabelVector, Eigen::VectorXf>(
     Eigen::MatrixBase<NormalMatrix<>> const &,
     Eigen::MatrixBase<LabelVector> const &,
-    Eigen::MatrixBase<Eigen::VectorXf> const &);
+    Eigen::MatrixBase<Eigen::VectorXf> const &, std::size_t);
 
 } // namespace Internal
 

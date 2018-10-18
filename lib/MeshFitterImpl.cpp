@@ -130,6 +130,10 @@ MeshFitter::Result MeshFitter::Impl::fit(VoxelVolume const &volume) {
 
   auto converged = false;
   auto iterations = std::size_t{0};
+  auto nonDecreasing = std::size_t{0};
+  auto minDisNorm = std::numeric_limits<float>::max();
+
+  auto Vlast = V;
 
   while (!converged) {
     ++iterations;
@@ -141,7 +145,14 @@ MeshFitter::Result MeshFitter::Impl::fit(VoxelVolume const &volume) {
 
     // find optimal displacements
     std::tie(optimalDisplacements, γ) =
-        displacementOptimizer(N, labels, volumeSamples);
+        displacementOptimizer(N, labels, volumeSamples, nonDecreasing);
+
+    auto disNorm = optimalDisplacements.norm();
+    if (disNorm < minDisNorm) {
+      minDisNorm = disNorm;
+    } else {
+      ++nonDecreasing;
+    }
 
     // Copmute dispaced vertices
     VertexMatrix<> const Y =
@@ -151,11 +162,16 @@ MeshFitter::Result MeshFitter::Impl::fit(VoxelVolume const &volume) {
             .fit(Y.cast<double>(), N.cast<double>(), γ.template cast<double>())
             .cast<float>();
 
-    std::ofstream{"V" + std::to_string(iterations) + ".mat"} << V;
+    // std::ofstream{"V" + std::to_string(iterations) + ".mat"} << V;
 
-    converged = iterations >= conf.maxIterations;
+    auto const diff = (V - Vlast).norm();
+    Vlast = V;
+
+    converged = iterations >= conf.maxIterations ||
+                (optimalDisplacements.norm() < 1e-3f);
     std::cout << "Converged after iteration " << iterations << ": "
-              << std::boolalpha << converged << std::endl;
+              << std::boolalpha << converged << " (" << diff << " | " << disNorm
+              << " | " << nonDecreasing << ")" << std::endl;
   }
 
   auto resultMesh = conf.referenceMesh;

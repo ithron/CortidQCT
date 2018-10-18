@@ -43,7 +43,8 @@ public:
   DisplacementsWeightsPair
   operator()(Eigen::MatrixBase<DerivedN> const &N,
              Eigen::MatrixBase<DerivedL> const &labels,
-             Eigen::MatrixBase<DerivedM> const &measurements);
+             Eigen::MatrixBase<DerivedM> const &measurements,
+             std::size_t nonDecrease);
 
 private:
   using ModelSamplingPositionMatrix = Eigen::Matrix<float, Eigen::Dynamic, 4>;
@@ -58,7 +59,7 @@ extern template DisplacementOptimizer::DisplacementsWeightsPair
 DisplacementOptimizer::operator()<NormalMatrix<>, LabelVector, Eigen::VectorXf>(
     Eigen::MatrixBase<NormalMatrix<>> const &,
     Eigen::MatrixBase<LabelVector> const &,
-    Eigen::MatrixBase<Eigen::VectorXf> const &);
+    Eigen::MatrixBase<Eigen::VectorXf> const &, std::size_t);
 
 } // namespace Internal
 

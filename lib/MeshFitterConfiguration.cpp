@@ -209,6 +209,12 @@ MeshFitter::Configuration::loadFromFile(std::string const &filename) {
       maxIterations = maxIterNode.as<std::size_t>();
     }
 
+    if (auto minNonDecreasingNode = node["minNonDecreasing"]) {
+      minNonDecreasing = minNonDecreasingNode.as<std::size_t>();
+    }
+
+    if (auto decayNode = node["decay"]) { decay = decayNode.as<float>(); }
+
     model = std::move(model_);
     referenceMesh = std::move(refMesh);
 

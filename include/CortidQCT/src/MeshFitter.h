@@ -47,6 +47,10 @@ public:
     double sigmaS = 2.0;
     /// Maximum number of iterations
     std::size_t maxIterations = 100;
+    /// Minimum number of non decreasing iterations before starting decay
+    std::size_t minNonDecreasing = 10;
+    /// Decay factor
+    float decay = 0.9f;
 
     /**
      * @brief Reference mesh origin
