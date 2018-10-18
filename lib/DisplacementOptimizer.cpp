@@ -115,7 +115,7 @@ operator()(Eigen::MatrixBase<DerivedN> const &N,
   MatrixXf tmp(N.rows() * numSamples, displacements.rows());
 
   VectorXf modelSamples(N.rows() * numSamples);
-  // #pragma omp parallel for firstprivate(modelSamples)
+  #pragma omp parallel for firstprivate(modelSamples)
   for (Index i = 0; i < displacements.size(); ++i) {
 
     modelSampler_(modelSamplingPositions_, displacements(i), modelSamples);
@@ -162,7 +162,7 @@ operator()(Eigen::MatrixBase<DerivedN> const &N,
 
   // Find the displacements that maximize the posterior log likelihood
   VectorXf bestDisplacements(N.rows());
-  // #pragma omp parallel for
+  #pragma omp parallel for
   for (Index i = 0; i < N.rows(); ++i) {
     Index idx;
     posteriorLL.row(i).maxCoeff(&idx);
