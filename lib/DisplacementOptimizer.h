@@ -32,7 +32,7 @@ namespace Internal {
  */
 class DisplacementOptimizer {
 public:
-  using DisplacementsWeightsPair = std::pair<Eigen::VectorXf, Eigen::VectorXd>;
+  using DisplacementsWeightsPair = std::pair<Eigen::VectorXf, Eigen::VectorXf>;
 
   explicit DisplacementOptimizer(MeshFitter::Configuration const &config);
 

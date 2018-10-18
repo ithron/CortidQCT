@@ -156,7 +156,7 @@ public:
     for (auto &&label : model_.labels()) {
       model_.withUnsafeDataPointer(label, [this, &positions, &values, min,
                                            scale, offset,
-                                           label](double const *ptr) {
+                                           label](float const *ptr) {
         // #pragma omp parallel for
         for (auto i = 0; i < positions.rows(); ++i) {
           if (static_cast<MeasurementModel::Label>(positions(i, 3)) != label) {
@@ -174,9 +174,9 @@ public:
   }
 
   template <class Derived>
-  inline Eigen::Matrix<double, Eigen::Dynamic, 1>
+  inline Eigen::Matrix<float, Eigen::Dynamic, 1>
   operator()(Eigen::MatrixBase<Derived> const &positions, float offset) const {
-    Eigen::Matrix<double, Eigen::Dynamic, 1> values(positions.rows());
+    Eigen::Matrix<float, Eigen::Dynamic, 1> values(positions.rows());
 
     operator()(positions, offset, values);
 
@@ -185,8 +185,8 @@ public:
 
 private:
   template <class Derived>
-  inline double at(Eigen::MatrixBase<Derived> const &pos,
-                   gsl::not_null<double const *> ptr) const {
+  inline float at(Eigen::MatrixBase<Derived> const &pos,
+                  gsl::not_null<float const *> ptr) const {
     using Eigen::Vector3f;
     using Eigen::Vector3i;
     using std::clamp;
@@ -208,9 +208,9 @@ private:
   }
 
   template <class Derived>
-  inline double interpolate(Eigen::MatrixBase<Derived> const &pos,
-                            gsl::not_null<double const *> ptr) const {
-    using Eigen::Vector2d;
+  inline float interpolate(Eigen::MatrixBase<Derived> const &pos,
+                           gsl::not_null<float const *> ptr) const {
+    using Eigen::Vector2f;
     using Eigen::Vector2i;
     using Eigen::Vector3f;
     using std::log;
@@ -221,10 +221,9 @@ private:
         pos.template tail<2>().array().floor().template cast<int>();
     Vector2i const x1 =
         pos.template tail<2>().array().ceil().template cast<int>();
-    Vector2d const xd =
-        (pos.template tail<2>() - x0.template cast<float>().template tail<2>())
-            .template cast<double>();
-    Vector2d const xn = Vector2d::Ones() - xd;
+    Vector2f const xd =
+        pos.template tail<2>() - x0.template cast<float>().template tail<2>();
+    Vector2f const xn = Vector2f::Ones() - xd;
 
     auto const c00 = at(Vector3f{x00, x0(0), x0(1)}.transpose(), ptr);
     auto const c10 = at(Vector3f{x00, x1(0), x0(1)}.transpose(), ptr);

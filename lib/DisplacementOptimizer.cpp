@@ -95,6 +95,7 @@ operator()(Eigen::MatrixBase<DerivedN> const &N,
   using Eigen::Index;
   using Eigen::Map;
   using Eigen::MatrixXd;
+  using Eigen::MatrixXf;
   using Eigen::VectorXd;
   using Eigen::VectorXf;
 
@@ -109,19 +110,19 @@ operator()(Eigen::MatrixBase<DerivedN> const &N,
                                modelSamplingPositions_);
 
   // Pre-allocate matrix for observation likelihood given displacement
-  MatrixXd Lzs(N.rows(), displacements.rows());
+  MatrixXf Lzs(N.rows(), displacements.rows());
 
-  MatrixXd tmp(N.rows() * numSamples, displacements.rows());
+  MatrixXf tmp(N.rows() * numSamples, displacements.rows());
 
-  VectorXd modelSamples(N.rows() * numSamples);
-#pragma omp parallel for firstprivate(modelSamples)
+  VectorXf modelSamples(N.rows() * numSamples);
+  // #pragma omp parallel for firstprivate(modelSamples)
   for (Index i = 0; i < displacements.size(); ++i) {
 
     modelSampler_(modelSamplingPositions_, displacements(i), modelSamples);
 
     // interpret modelSamples as 2K+1 x N matrix, then the observation
     // log likelihood is the colwise sum of that matrix
-    Lzs.col(i) = Map<MatrixXd const>{modelSamples.data(), numSamples, N.rows()}
+    Lzs.col(i) = Map<MatrixXf const>{modelSamples.data(), numSamples, N.rows()}
                      .colwise()
                      .sum()
                      .transpose();
@@ -131,20 +132,19 @@ operator()(Eigen::MatrixBase<DerivedN> const &N,
   // total log lokelihood of observations must be computed, first.
 
   // Log likelihood vector of the gaussian displacement prior
-  VectorXd const displacementLL =
-      -0.5 * displacements.array().template cast<double>().square() /
-      square(config_.sigmaS);
+  VectorXf const displacementLL =
+      -0.5f * displacements.array().square() / square(config_.sigmaS);
 
   // Copmute the nomnator term: conditional LL + prior LL
-  MatrixXd posteriorNominator = Lzs;
+  MatrixXf posteriorNominator = Lzs;
   posteriorNominator.rowwise() += displacementLL.transpose();
   // Scale `posteriorNominator` so that the maxCoeff is 0 to avoid overflows
-  VectorXd const posteriorMaxCoeffs = posteriorNominator.rowwise().maxCoeff();
+  VectorXf const posteriorMaxCoeffs = posteriorNominator.rowwise().maxCoeff();
   posteriorNominator.colwise() -= posteriorMaxCoeffs;
 
   // The denominator of the posterior log likelihood contains an intergral
   // over all displacements, which is approximated with a sum here.
-  VectorXd posteriorDenominator =
+  VectorXf posteriorDenominator =
       (posteriorNominator.array().exp().rowwise().sum() *
        displacementRange.stride)
           .log()
@@ -152,17 +152,17 @@ operator()(Eigen::MatrixBase<DerivedN> const &N,
   // // Add `posteriorMaxCoeffs` to denominator term to invert the scaleing
   // posteriorDenominator += posteriorMaxCoeffs;
   posteriorDenominator.array() +=
-      2 * log(static_cast<double>(displacementLL.size()));
+      2 * log(static_cast<float>(displacementLL.size()));
 
   // Compose the posterior log likelihood term
   // Note that the scaling factor (from the model normalization) is canceled
   // out here.
-  MatrixXd posteriorLL = posteriorNominator;
+  MatrixXf posteriorLL = posteriorNominator;
   posteriorLL.colwise() -= posteriorDenominator;
 
   // Find the displacements that maximize the posterior log likelihood
   VectorXf bestDisplacements(N.rows());
-#pragma omp parallel for
+  // #pragma omp parallel for
   for (Index i = 0; i < N.rows(); ++i) {
     Index idx;
     posteriorLL.row(i).maxCoeff(&idx);
@@ -171,12 +171,12 @@ operator()(Eigen::MatrixBase<DerivedN> const &N,
   }
 
   // Compute weight vector γ
-  VectorXd γ = posteriorLL.rowwise().maxCoeff().array().exp().matrix();
+  VectorXf γ = posteriorLL.rowwise().maxCoeff().array().exp().matrix();
   // Set all non-finite weights to 0
   γ.array() = γ.array().isFinite().select(γ, VectorXd::Zero(γ.rows()));
   γ.array() /= labels.array().unaryExpr([this](auto const l) {
-    auto const scale = this->model_.densityScale(l);
-    return std::isfinite(scale) ? scale : 1.0;
+    auto const scale = static_cast<float>(this->model_.densityScale(l));
+    return std::isfinite(scale) ? scale : 1.0f;
   });
 
   return {-bestDisplacements, γ};

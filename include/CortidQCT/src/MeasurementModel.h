@@ -41,7 +41,7 @@ private:
     Label label;
     double scale;
     std::string name;
-    std::vector<double> data;
+    std::vector<float> data;
   };
   /// Type used to store data samples
   using DataStorage = std::unordered_map<Label, VOIData>;

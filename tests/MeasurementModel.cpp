@@ -97,14 +97,14 @@ TEST(MeasurementModel, LoadFromFile) {
 
   // Check data
   for (MeasurementModel::Label const label : {0u, 1u}) {
-    model.withUnsafeDataPointer(label, [&](double const *ptr) {
-      double const *val = ptr;
+    model.withUnsafeDataPointer(label, [&](float const *ptr) {
+      float const *val = ptr;
       for (auto z = 1u; z <= nAngles; ++z) {
         for (auto y = 1u; y <= nDensities; ++y) {
           for (auto x = 1u; x <= nSamples; ++x) {
-            auto const refVal = static_cast<double>(x) +
-                                static_cast<double>(y) * 0.1 +
-                                static_cast<double>(0.01) * z;
+            auto const refVal = static_cast<float>(x) +
+                                static_cast<float>(y) * 0.1f +
+                                static_cast<float>(0.01f) * z;
             ASSERT_DOUBLE_EQ(refVal, *val);
             ++val;
           }

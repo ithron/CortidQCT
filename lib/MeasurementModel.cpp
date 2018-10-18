@@ -133,7 +133,9 @@ MeasurementModel &MeasurementModel::loadFromFile(std::string const &filename) {
       VOIData voiData;
       voiData.label = label;
       voiData.scale = scale;
-      voiData.data = std::move(storage);
+      voiData.data = std::vector<float>(storage.size());
+      std::transform(storage.begin(), storage.end(), voiData.data.begin(),
+                     [](auto &&x) { return static_cast<float>(x); });
 
       if (auto const &voiNameNode = datNode["name"]) {
         voiData.name = voiNameNode.as<std::string>();

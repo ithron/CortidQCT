@@ -122,7 +122,7 @@ MeshFitter::Result MeshFitter::Impl::fit(VoxelVolume const &volume) {
   VectorXf volumeSamples(V.rows() *
                          gsl::narrow<Index>(model.samplingRange.numElements()));
 
-  VectorXd γ;
+  VectorXf γ;
   VectorXf optimalDisplacements;
 
   auto meshFitter = WeightedARAPFitter<double>(
@@ -151,7 +151,7 @@ MeshFitter::Result MeshFitter::Impl::fit(VoxelVolume const &volume) {
             .fit(Y.cast<double>(), N.cast<double>(), γ.template cast<double>())
             .cast<float>();
 
-    std::ofstream{"V" + std::to_string(iterations) + ".mat"} << V;
+    // std::ofstream{"V" + std::to_string(iterations) + ".mat"} << V;
 
     converged = iterations >= conf.maxIterations;
     std::cout << "Converged after iteration " << iterations << ": "
