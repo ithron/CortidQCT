@@ -183,26 +183,10 @@ public:
   }
 
 private:
-  template <class Derived>
-  inline float at(Eigen::MatrixBase<Derived> const &pos,
+  inline float at(int x, int y, int z, Eigen::Vector3i const &sizeI,
                   float const *ptr) const {
-    using Eigen::Vector3f;
-    using Eigen::Vector3i;
-    using std::clamp;
 
-    Vector3f const size{static_cast<float>(model_.samplingRange.numElements()),
-                        static_cast<float>(model_.densityRange.numElements()),
-                        static_cast<float>(model_.angleRange.numElements())};
-
-    Vector3i const sizeI = size.cast<int>();
-
-    Vector3i const clampedPos = Vector3f{clamp(pos.x(), 0.f, size.x() - 1.f),
-                                         clamp(pos.y(), 0.f, size.y() - 1.f),
-                                         clamp(pos.z(), 0.f, size.z() - 1.f)}
-                                    .cast<int>();
-
-    auto const index = clampedPos.x() * sizeI.y() * sizeI.z() +
-                       clampedPos.z() * sizeI.y() + clampedPos.y();
+    auto const index = x * sizeI.y() * sizeI.z() + z * sizeI.y() + y;
     return ptr[index];
   }
 
@@ -210,17 +194,23 @@ private:
   inline float interpolate(Eigen::MatrixBase<Derived> const &pos,
                            float const *ptr) const {
     using Eigen::Vector3f;
+    using Eigen::Vector3i;
+    using std::clamp;
     using std::log;
 
-    auto const x00 = pos(0);
-    auto const x01 = pos(2) + 0.5f;
+    Vector3i const sizeI{static_cast<int>(model_.samplingRange.numElements()),
+                         static_cast<int>(model_.densityRange.numElements()),
+                         static_cast<int>(model_.angleRange.numElements())};
+
+    auto const x00 = clamp(static_cast<int>(pos(0)), 0, sizeI.x() - 1);
+    auto const x01 = clamp(static_cast<int>(pos(2) + 0.5f), 0, sizeI.z() - 1);
     auto const x0 = static_cast<int>(pos(1));
     auto const x1 = x0 + 1;
     auto const xd = pos(1) - static_cast<float>(x0);
     auto const xn = 1.f - xd;
 
-    auto const c0 = at(Vector3f{x00, x0, x01}.transpose(), ptr);
-    auto const c1 = at(Vector3f{x00, x1, x01}.transpose(), ptr);
+    auto const c0 = at(x00, clamp(x0, 0, sizeI.y() - 1), x01, sizeI, ptr);
+    auto const c1 = at(x00, clamp(x1, 0, sizeI.y() - 1), x01, sizeI, ptr);
 
     auto const c = c0 * xn + c1 * xd;
 
