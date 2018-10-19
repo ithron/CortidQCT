@@ -24,6 +24,7 @@
 #include <Eigen/Sparse>
 #include <gsl/gsl>
 
+#include <chrono>
 #include <fstream>
 
 namespace CortidQCT {
@@ -143,9 +144,11 @@ MeshFitter::Result MeshFitter::Impl::fit(VoxelVolume const &volume) {
     auto const samplingPositions = samplingPoints(V, N, model);
     volumeSampler(samplingPositions, volumeSamples);
 
+    auto const t0 = std::chrono::steady_clock::now();
     // find optimal displacements
     std::tie(optimalDisplacements, γ) =
         displacementOptimizer(N, labels, volumeSamples, nonDecreasing);
+    auto const tDisOpt = std::chrono::steady_clock::now() - t0;
 
     auto disNorm = optimalDisplacements.norm();
     if (disNorm < minDisNorm) {
@@ -158,7 +161,9 @@ MeshFitter::Result MeshFitter::Impl::fit(VoxelVolume const &volume) {
     VertexMatrix<> const Y =
         V - (N.array().colwise() * optimalDisplacements.array()).matrix();
 
+    auto const t1 = std::chrono::steady_clock::now();
     V = meshFitter.fit(Y, N, γ);
+    auto const tMeshFit = std::chrono::steady_clock::now() - t1;
 
     // std::ofstream{"V" + std::to_string(iterations) + ".mat"} << V;
 
@@ -170,6 +175,13 @@ MeshFitter::Result MeshFitter::Impl::fit(VoxelVolume const &volume) {
     std::cout << "Converged after iteration " << iterations << ": "
               << std::boolalpha << converged << " (" << diff << " | " << disNorm
               << " | " << nonDecreasing << ")" << std::endl;
+    std::cout << "OptDiplacement: "
+              << std::chrono::duration_cast<std::chrono::milliseconds>(tDisOpt)
+                     .count()
+              << "ms, MeshFit: "
+              << std::chrono::duration_cast<std::chrono::milliseconds>(tMeshFit)
+                     .count()
+              << "ms" << std::endl;
   }
 
   auto resultMesh = conf.referenceMesh;
