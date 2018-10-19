@@ -17,11 +17,6 @@ namespace Internal {
 
 namespace {
 
-template <class T>
-inline constexpr auto square(T &&x) noexcept(noexcept(x *x)) {
-  return x * x;
-}
-
 /// @brief Convert per vertex normals to angles with z-axis in degrees
 template <class DerivedN>
 Eigen::VectorXf normalsToAngles(Eigen::MatrixBase<DerivedN> const &N) {
@@ -84,7 +79,8 @@ void updateModelSamplingPositions(MeasurementModel const &model,
 
 DisplacementOptimizer::DisplacementOptimizer(
     MeshFitter::Configuration const &config)
-    : config_{config}, model_{config.model}, modelSampler_{config.model} {}
+    : config_{config}, model_{config.model}, modelSampler_{config.model},
+      currentSigma_{static_cast<float>(config.sigmaS * config.sigmaS)} {}
 
 template <class DerivedN, class DerivedL, class DerivedM>
 DisplacementOptimizer::DisplacementsWeightsPair DisplacementOptimizer::
@@ -130,14 +126,10 @@ operator()(Eigen::MatrixBase<DerivedN> const &N,
   // To compute the posterior, the displacement prior log likelihood and the
   // total log lokelihood of observations must be computed, first.
 
-  auto const σ =
-      std::pow(config_.decay,
-               nonDecrease > config_.minNonDecreasing
-                   ? static_cast<double>(nonDecrease - config_.minNonDecreasing)
-                   : 0.0) *
-      square(config_.sigmaS);
-
-  std::cout << "σ = " << σ << std::endl;
+  if (nonDecrease >= config_.minNonDecreasing) {
+    currentSigma_ *= config_.decay;
+  }
+  auto const σ = currentSigma_;
 
   // Log likelihood vector of the gaussian displacement prior
   VectorXf const displacementLL = -0.5f * displacements.array().square() / σ;

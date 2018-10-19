@@ -23,6 +23,8 @@ namespace CortidQCT {
 
 namespace Internal {
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wpadded"
 /**
  * This class encapuslates the algorithm that estimates the optimal
  * displacments.
@@ -53,7 +55,9 @@ private:
   MeasurementModel const &model_;
   ModelSampler modelSampler_;
   ModelSamplingPositionMatrix modelSamplingPositions_;
+  float currentSigma_;
 };
+#pragma clang diagnostic pop
 
 extern template DisplacementOptimizer::DisplacementsWeightsPair
 DisplacementOptimizer::operator()<NormalMatrix<>, LabelVector, Eigen::VectorXf>(

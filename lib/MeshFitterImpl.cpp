@@ -158,9 +158,10 @@ MeshFitter::Result MeshFitter::Impl::fit(VoxelVolume const &volume) {
     std::tie(optimalDisplacements, γ) =
         displacementOptimizer(N, labels, volumeSamples, nonDecreasing);
 
-    auto disNorm = optimalDisplacements.norm();
+    auto disNorm = optimalDisplacements.norm() / V.rows();
     if (disNorm < minDisNorm) {
       minDisNorm = disNorm;
+      nonDecreasing = 0;
     } else {
       ++nonDecreasing;
     }
@@ -173,7 +174,7 @@ MeshFitter::Result MeshFitter::Impl::fit(VoxelVolume const &volume) {
 
     // std::ofstream{"V" + std::to_string(iterations) + ".mat"} << V;
 
-    auto const diff = (V - Vlast).norm();
+    auto const diff = (V - Vlast).norm() / V.norm();
     Vlast = V;
 
     converged = iterations >= conf.maxIterations ||
