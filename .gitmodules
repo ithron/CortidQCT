@@ -10,8 +10,3 @@
 [submodule "Dependencies/yaml-cpp"]
 	path = Dependencies/yaml-cpp
 	url = https://github.com/jbeder/yaml-cpp.git
-[submodule "Dependencies/Microsoft.GSL"]
-	path = Dependencies/Microsoft.GSL
-	url = https://github.com/ithron/GSL.git
-  branch = hunterization
-  shallow = true
