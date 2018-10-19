@@ -16,7 +16,7 @@
 #include <limits>
 #include <vector>
 
-#include <Eigen/KroneckerProduct>
+#include <unsupported/Eigen/KroneckerProduct>
 
 namespace CortidQCT {
 namespace Internal {
