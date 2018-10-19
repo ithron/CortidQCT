@@ -215,11 +215,10 @@ private:
     using std::log;
     using std::round;
 
-    auto const x00 = round(pos(0));
-    Vector2i const x0 =
-        pos.template tail<2>().array().floor().template cast<int>();
+    auto const x00 = pos(0);
+    Vector2i const x0 = pos.template tail<2>().array().template cast<int>();
     Vector2i const x1 =
-        pos.template tail<2>().array().ceil().template cast<int>();
+        (pos.template tail<2>().array() + 0.5f).template cast<int>();
     Vector2f const xd =
         pos.template tail<2>() - x0.template cast<float>().template tail<2>();
     Vector2f const xn = Vector2f::Ones() - xd;
