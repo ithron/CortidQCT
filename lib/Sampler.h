@@ -166,8 +166,7 @@ public:
           Vector3f const position{positions(i, 0) + offset, positions(i, 1),
                                   positions(i, 2)};
           values(i) = this->interpolate(
-              ((position - min).array() * scale.array()).matrix(),
-              gsl::make_not_null(ptr));
+              ((position - min).array() * scale.array()).matrix(), ptr);
         }
       });
     }
@@ -186,7 +185,7 @@ public:
 private:
   template <class Derived>
   inline float at(Eigen::MatrixBase<Derived> const &pos,
-                  gsl::not_null<float const *> ptr) const {
+                  float const *ptr) const {
     using Eigen::Vector3f;
     using Eigen::Vector3i;
     using std::clamp;
@@ -204,12 +203,12 @@ private:
 
     auto const index = clampedPos.x() * sizeI.y() * sizeI.z() +
                        clampedPos.z() * sizeI.y() + clampedPos.y();
-    return ptr.get()[index];
+    return ptr[index];
   }
 
   template <class Derived>
   inline float interpolate(Eigen::MatrixBase<Derived> const &pos,
-                           gsl::not_null<float const *> ptr) const {
+                           float const *ptr) const {
     using Eigen::Vector2f;
     using Eigen::Vector2i;
     using Eigen::Vector3f;
