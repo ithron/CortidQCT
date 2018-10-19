@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.8)
+cmake_minimum_required(VERSION 3.9)
 
 include(${CMAKE_CURRENT_LIST_DIR}/../cmake/Init.cmake)
 
@@ -10,6 +10,16 @@ project(
   VERSION 1.0.0
   LANGUAGES CXX
 )
+
+include(CheckIPOSupported)
+check_ipo_supported(RESULT supported OUTPUT error)
+
+if (supported)
+  option(CortidQCT_LINK_TIME_OPTIMIZATION "Enable link time optimization if supported by compiler" OFF)
+  message(STATUS "Link time optimization is supported by compiler")
+else()
+  message(STATUS "Link time optimization is NOT supported by compiler")
+endif()
 
 ############################
 # Targets
@@ -26,6 +36,10 @@ target_compile_features(Common
   INTERFACE
     cxx_std_17
 )
+
+if (CortidQCT_LINK_TIME_OPTIMIZATION)
+  set_property(TARGET Common PROPERTY INTERPROCEDURAL_OPTIMIZATION TRUE)
+endif()
 
 target_include_directories(Common
   INTERFACE
