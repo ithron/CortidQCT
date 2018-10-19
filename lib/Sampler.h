@@ -209,29 +209,20 @@ private:
   template <class Derived>
   inline float interpolate(Eigen::MatrixBase<Derived> const &pos,
                            float const *ptr) const {
-    using Eigen::Vector2f;
-    using Eigen::Vector2i;
     using Eigen::Vector3f;
     using std::log;
-    using std::round;
 
     auto const x00 = pos(0);
-    Vector2i const x0 = pos.template tail<2>().array().template cast<int>();
-    Vector2i const x1 =
-        (pos.template tail<2>().array() + 0.5f).template cast<int>();
-    Vector2f const xd =
-        pos.template tail<2>() - x0.template cast<float>().template tail<2>();
-    Vector2f const xn = Vector2f::Ones() - xd;
+    auto const x01 = pos(2) + 0.5f;
+    auto const x0 = static_cast<int>(pos(1));
+    auto const x1 = x0 + 1;
+    auto const xd = pos(1) - static_cast<float>(x0);
+    auto const xn = 1.f - xd;
 
-    auto const c00 = at(Vector3f{x00, x0(0), x0(1)}.transpose(), ptr);
-    auto const c10 = at(Vector3f{x00, x1(0), x0(1)}.transpose(), ptr);
-    auto const c11 = at(Vector3f{x00, x1(0), x1(1)}.transpose(), ptr);
-    auto const c01 = at(Vector3f{x00, x0(0), x1(1)}.transpose(), ptr);
+    auto const c0 = at(Vector3f{x00, x0, x01}.transpose(), ptr);
+    auto const c1 = at(Vector3f{x00, x1, x01}.transpose(), ptr);
 
-    auto const c0 = c00 * xn(0) + c10 * xd(0);
-    auto const c1 = c01 * xn(0) + c11 * xd(0);
-
-    auto const c = c0 * xn(1) + c1 * xd(1);
+    auto const c = c0 * xn + c1 * xd;
 
     return log(c);
   }
