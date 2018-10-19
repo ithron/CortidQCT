@@ -72,12 +72,11 @@ void updateModelSamplingPositions(MeasurementModel const &model,
   auto const angles = normalsToAngles(N);
   Ensures(angles.rows() == N.rows());
 
-  positionsOut.col(0) = t.replicate(numVertices, 1);
   positionsOut.col(1) = densities;
-  for (auto i = 0; i < numVertices; ++i) {
-    positionsOut.col(2).segment(numSamples * i, numSamples).array() = angles(i);
-    positionsOut.col(3).segment(numSamples * i, numSamples).array() =
-        static_cast<float>(labels(i));
+  positionsOut.col(2) = angles.replicate(numSamples, 1);
+  positionsOut.col(3) = labels.template cast<float>().replicate(numSamples, 1);
+  for (auto i = 0; i < numSamples; ++i) {
+    positionsOut.col(0).segment(numVertices * i, numVertices).array() = t(i);
   }
 }
 
@@ -123,10 +122,9 @@ operator()(Eigen::MatrixBase<DerivedN> const &N,
 
     // interpret modelSamples as 2K+1 x N matrix, then the observation
     // log likelihood is the colwise sum of that matrix
-    Lzs.col(i) = Map<MatrixXf const>{modelSamples.data(), numSamples, N.rows()}
-                     .colwise()
-                     .sum()
-                     .transpose();
+    Lzs.col(i) = Map<MatrixXf const>{modelSamples.data(), N.rows(), numSamples}
+                     .rowwise()
+                     .sum();
   }
 
   // To compute the posterior, the displacement prior log likelihood and the
