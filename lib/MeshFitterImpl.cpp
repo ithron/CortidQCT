@@ -74,6 +74,7 @@ MeshFitter::Result MeshFitter::Impl::fit(VoxelVolume const &volume) {
   using Eigen::Map;
   using Eigen::Matrix;
   using Eigen::MatrixXd;
+  using Eigen::MatrixXf;
   using Eigen::Vector3f;
   using Eigen::VectorXd;
   using Eigen::VectorXf;
@@ -122,6 +123,8 @@ MeshFitter::Result MeshFitter::Impl::fit(VoxelVolume const &volume) {
   // Pre-allocate vector for volume samples
   VectorXf volumeSamples(V.rows() *
                          gsl::narrow<Index>(model.samplingRange.numElements()));
+  MatrixXf volumeSamplesMatrix(
+      gsl::narrow<Index>(model.samplingRange.numElements()), V.rows());
 
   VectorXf γ;
   VectorXf optimalDisplacements;
@@ -143,6 +146,14 @@ MeshFitter::Result MeshFitter::Impl::fit(VoxelVolume const &volume) {
     // sample volume
     auto const samplingPositions = samplingPoints(V, N, model);
     volumeSampler(samplingPositions, volumeSamples);
+
+    // Reoder volume samples
+    volumeSamplesMatrix =
+        Map<MatrixXf const>{volumeSamples.data(),
+                            volumeSamples.rows() / V.rows(), V.rows()}
+            .transpose();
+    volumeSamples = Map<VectorXf const>{volumeSamplesMatrix.data(),
+                                        volumeSamples.rows(), 1};
 
     auto const t0 = std::chrono::steady_clock::now();
     // find optimal displacements
