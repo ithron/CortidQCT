@@ -20,11 +20,7 @@
 
 #include <Eigen/Core>
 #include <Eigen/Geometry>
-#include <Eigen/KroneckerProduct>
-#include <Eigen/Sparse>
 #include <gsl/gsl>
-
-#include <fstream>
 
 namespace CortidQCT {
 
