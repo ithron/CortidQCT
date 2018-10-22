@@ -23,16 +23,16 @@ namespace Internal {
 
 namespace {
 
-template <class DerivedN, class Derivedγ>
+template <class DerivedN, class DerivedGamma>
 Eigen::Matrix<typename DerivedN::Scalar, 3, Eigen::Dynamic>
 constructNNMatrix(Eigen::MatrixBase<DerivedN> const &N,
-                  Eigen::MatrixBase<Derivedγ> const &γ) {
+                  Eigen::MatrixBase<DerivedGamma> const &gamma) {
   using Scalar = typename DerivedN::Scalar;
 
   Eigen::Matrix<Scalar, 3, Eigen::Dynamic> NN(3, 3 * N.rows());
 
   for (auto i = 0; i < N.rows(); ++i) {
-    NN.template block<3, 3>(0, 3 * i) = γ(i) * N.row(i).transpose() * N.row(i);
+    NN.template block<3, 3>(0, 3 * i) = gamma(i) * N.row(i).transpose() * N.row(i);
   }
 
   return NN;
@@ -79,10 +79,10 @@ constructDVector(Eigen::MatrixBase<DerivedNN> const &NN,
 } // anonymous namespace
 
 template <class T>
-WeightedARAPFitter<T>::WeightedARAPFitter(Mesh<T> const &mesh, T σ) {
+WeightedARAPFitter<T>::WeightedARAPFitter(Mesh<T> const &mesh, T sigma) {
   V0_ = vertexMatrix(mesh);
   F_ = facetMatrix(mesh);
-  σSqInv_ = static_cast<Scalar>(1) / (σ * σ);
+  sigmaSqInv_ = static_cast<Scalar>(1) / (sigma * sigma);
   computeLaplacian();
 }
 
@@ -125,7 +125,7 @@ void WeightedARAPFitter<T>::optimizePositions(
     }
   }
 
-  Vector const rhs = 2 * σSqInv_ * cOut + d;
+  Vector const rhs = 2 * sigmaSqInv_ * cOut + d;
   Matrix<Scalar, 3, Dynamic> const Vtransposed = Vout.transpose();
 
   Vector const x = solver.solveWithGuess(
@@ -197,7 +197,7 @@ T WeightedARAPFitter<T>::rigidityEnergy(VertexMatrix<Scalar> const &V) const {
 template <class T>
 VertexMatrix<T>
 WeightedARAPFitter<T>::fit(VertexMatrix<T> const &Y, VertexMatrix<T> const &N,
-                           Eigen::Matrix<Scalar, Eigen::Dynamic, 1> const &γ) {
+                           Eigen::Matrix<Scalar, Eigen::Dynamic, 1> const &gamma) {
   using Eigen::Dynamic;
   using Eigen::Matrix;
   using Matrix3 = Eigen::Matrix<Scalar, 3, 3>;
@@ -211,11 +211,11 @@ WeightedARAPFitter<T>::fit(VertexMatrix<T> const &Y, VertexMatrix<T> const &N,
   VertexMatrix<Scalar> V = V0_;
   VertexMatrix<Scalar> Vbest = V;
 
-  auto const NN = constructNNMatrix(N, γ);
+  auto const NN = constructNNMatrix(N, gamma);
   auto const B = constructBMatrix(NN);
   auto const d = constructDVector(NN, Y);
   SparseMatrix const A =
-      2 * σSqInv_ * Eigen::kroneckerProduct(-L_, Matrix3::Identity()) + B;
+      2 * sigmaSqInv_ * Eigen::kroneckerProduct(-L_, Matrix3::Identity()) + B;
 
   Matrix<Scalar, Dynamic, 1> c(3 * n);
 

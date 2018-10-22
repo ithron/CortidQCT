@@ -38,7 +38,7 @@ public:
    * mesh
    * @param referenceMesh The reference mesh
    */
-  WeightedARAPFitter(Mesh<T> const &referenceMesh, T σ);
+  WeightedARAPFitter(Mesh<T> const &referenceMesh, T sigma);
 
   /**
    * @brief Constructs an object that can be used to fit the given reference
@@ -48,8 +48,8 @@ public:
    */
   template <class DerivedV, class DerivedF>
   inline WeightedARAPFitter(Eigen::MatrixBase<DerivedV> const &V,
-                            Eigen::MatrixBase<DerivedF> const &F, T σ)
-      : V0_(V), F_(F), σSqInv_(static_cast<T>(1) / (σ * σ)) {
+                            Eigen::MatrixBase<DerivedF> const &F, T sigma)
+      : V0_(V), F_(F), sigmaSqInv_(static_cast<T>(1) / (sigma * sigma)) {
     computeLaplacian();
   }
 
@@ -59,13 +59,13 @@ public:
    *
    * @param Y Target vertex matrix (Nx3)
    * @param N Target per-vertex normal matrix (Nx3)
-   * @param γ Weight vector (Nx1)
+   * @param gamma Weight vector (Nx1)
    * @return VertexMatrix (Nx3) representing the linear embedding of the
    * deformed mesh
    */
   VertexMatrix<Scalar> fit(VertexMatrix<Scalar> const &Y,
                            VertexMatrix<Scalar> const &N,
-                           Eigen::Matrix<Scalar, Eigen::Dynamic, 1> const &γ);
+                           Eigen::Matrix<Scalar, Eigen::Dynamic, 1> const &gamma);
 
 private:
   using RotationMatrix = Eigen::Matrix<Scalar, 3, Eigen::Dynamic>;
@@ -97,7 +97,7 @@ private:
   /// Facet matrix of the undeformed mesh
   FacetMatrix F_;
   /// Scale parameter
-  Scalar σSqInv_;
+  Scalar sigmaSqInv_;
   /// Laplacian matrix of the undeformed mesh
   LaplacianMatrix<Scalar> L_;
   /// Matrix containing all per-vertex rotations

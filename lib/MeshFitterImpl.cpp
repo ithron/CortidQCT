@@ -121,7 +121,7 @@ MeshFitter::Result MeshFitter::Impl::fit(VoxelVolume const &volume) {
   MatrixXf volumeSamplesMatrix(
       gsl::narrow<Index>(model.samplingRange.numElements()), V.rows());
 
-  VectorXf γ;
+  VectorXf gamma;
   VectorXf optimalDisplacements;
 
   auto meshFitter =
@@ -151,7 +151,7 @@ MeshFitter::Result MeshFitter::Impl::fit(VoxelVolume const &volume) {
                                         volumeSamples.rows(), 1};
 
     // find optimal displacements
-    std::tie(optimalDisplacements, γ) =
+    std::tie(optimalDisplacements, gamma) =
         displacementOptimizer(N, labels, volumeSamples, nonDecreasing);
 
     auto disNorm = optimalDisplacements.norm() / V.rows();
@@ -166,7 +166,7 @@ MeshFitter::Result MeshFitter::Impl::fit(VoxelVolume const &volume) {
     VertexMatrix<> const Y =
         V - (N.array().colwise() * optimalDisplacements.array()).matrix();
 
-    V = meshFitter.fit(Y, N, γ);
+    V = meshFitter.fit(Y, N, gamma);
 
     // std::ofstream{"V" + std::to_string(iterations) + ".mat"} << V;
 

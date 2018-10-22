@@ -60,7 +60,7 @@ public:
   /// @note Date is saved as a string. This may change is the future.
   std::optional<std::string> creationDate;
 
-  /// in-plane kernel width (σ of gaussian kernel)
+  /// in-plane kernel width (sigma of gaussian kernel)
   float kernelSigma = 1.f;
   /// slice thickness
   float sliceSpacing = 1.f;
@@ -155,7 +155,7 @@ public:
    * @brief Calls the given functional with an unsafe pointer to the raw sample
    * data storage.
    *
-   * Sample data are stored in order t, φ, ρ.
+   * Sample data are stored in order rho, phi, t.
    *
    * @tparam F function that accepts a `double const *` pointer as the only
    * argument.

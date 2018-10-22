@@ -135,10 +135,10 @@ operator()(Eigen::MatrixBase<DerivedN> const &N,
   if (nonDecrease >= config_.minNonDecreasing) {
     currentSigma_ *= config_.decay;
   }
-  auto const σ = currentSigma_;
+  auto const sigmaSq = currentSigma_;
 
   // Log likelihood vector of the gaussian displacement prior
-  VectorXf const displacementLL = -0.5f * displacements.array().square() / σ;
+  VectorXf const displacementLL = -0.5f * displacements.array().square() / sigmaSq;
 
   // Copmute the nomnator term: conditional LL + prior LL
   MatrixXf posteriorNominator = Lzs;
@@ -175,16 +175,16 @@ operator()(Eigen::MatrixBase<DerivedN> const &N,
         displacementRange.nThElement(gsl::narrow_cast<std::size_t>(idx) + 1);
   }
 
-  // Compute weight vector γ
-  VectorXf γ = posteriorLL.rowwise().maxCoeff().array().exp().matrix();
+  // Compute weight vector gamma
+  VectorXf gamma = posteriorLL.rowwise().maxCoeff().array().exp().matrix();
   // Set all non-finite weights to 0
-  γ.array() = γ.array().isFinite().select(γ, VectorXd::Zero(γ.rows()));
-  γ.array() /= labels.array().unaryExpr([this](auto const l) {
+  gamma.array() = gamma.array().isFinite().select(gamma, VectorXd::Zero(gamma.rows()));
+  gamma.array() /= labels.array().unaryExpr([this](auto const l) {
     auto const scale = static_cast<float>(this->model_.densityScale(l));
     return std::isfinite(scale) ? scale : 1.0f;
   });
 
-  return {-bestDisplacements, γ};
+  return {-bestDisplacements, gamma};
 }
 
 template DisplacementOptimizer::DisplacementsWeightsPair DisplacementOptimizer::
