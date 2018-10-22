@@ -32,6 +32,7 @@ static std::string const file1 =
 
 TEST(InternalSampler, ModelSampler) {
   using Eigen::MatrixXf;
+  using Eigen::Vector4f;
   using Eigen::VectorXf;
   auto const model = MeasurementModel::fromFile(file1);
   auto const sampler = ModelSampler{model};
@@ -42,6 +43,9 @@ TEST(InternalSampler, ModelSampler) {
 
   VectorXf const values = sampler(positions, .0f);
 
-  ASSERT_DOUBLE_EQ(2.2553976242465152, values(0));
-  ASSERT_DOUBLE_EQ(3.2553976242465152, values(1));
+  std::cout << values.transpose() << std::endl;
+  std::cout << sampler(Vector4f{.0f, 100.f, 10.f, .0f}.transpose(), .0f) << std::endl;
+
+  ASSERT_FLOAT_EQ(0.81167072, values(0));
+  ASSERT_FLOAT_EQ(1.17916775, values(1));
 }
