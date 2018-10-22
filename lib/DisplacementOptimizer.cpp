@@ -12,6 +12,12 @@
 #include "DisplacementOptimizer.h"
 #include "DiscreteRangeDecorators.h"
 
+#if defined(_MSC_VER)
+#  define _USE_MATH_DEFINES
+#endif
+
+#include <cmath>
+
 namespace CortidQCT {
 namespace Internal {
 
