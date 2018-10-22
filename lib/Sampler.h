@@ -157,8 +157,7 @@ public:
       model_.withUnsafeDataPointer(label, [this, &positions, &values, min,
                                            scale, offset,
                                            label](float const *ptr) {
-        // #pragma omp parallel for
-        for (auto i = 0; i < positions.rows(); ++i) {
+        for (Eigen::Index i = 0; i < positions.rows(); ++i) {
           if (static_cast<MeasurementModel::Label>(positions(i, 3)) != label) {
             continue;
           }
