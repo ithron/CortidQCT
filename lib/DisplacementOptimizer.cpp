@@ -18,6 +18,11 @@
 
 #include <cmath>
 
+#ifndef M_PI
+#  define M_PI                                                                 \
+    3.14159265358979323846264338327950288419716939937510582097494459230781640628620899862803482534211
+#endif
+
 namespace CortidQCT {
 namespace Internal {
 
@@ -138,7 +143,8 @@ operator()(Eigen::MatrixBase<DerivedN> const &N,
   auto const sigmaSq = currentSigma_;
 
   // Log likelihood vector of the gaussian displacement prior
-  VectorXf const displacementLL = -0.5f * displacements.array().square() / sigmaSq;
+  VectorXf const displacementLL =
+      -0.5f * displacements.array().square() / sigmaSq;
 
   // Copmute the nomnator term: conditional LL + prior LL
   MatrixXf posteriorNominator = Lzs;
@@ -178,7 +184,8 @@ operator()(Eigen::MatrixBase<DerivedN> const &N,
   // Compute weight vector gamma
   VectorXf gamma = posteriorLL.rowwise().maxCoeff().array().exp().matrix();
   // Set all non-finite weights to 0
-  gamma.array() = gamma.array().isFinite().select(gamma, VectorXd::Zero(gamma.rows()));
+  gamma.array() =
+      gamma.array().isFinite().select(gamma, VectorXd::Zero(gamma.rows()));
   gamma.array() /= labels.array().unaryExpr([this](auto const l) {
     auto const scale = static_cast<float>(this->model_.densityScale(l));
     return std::isfinite(scale) ? scale : 1.0f;
