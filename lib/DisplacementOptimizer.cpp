@@ -11,17 +11,8 @@
 
 #include "DisplacementOptimizer.h"
 #include "DiscreteRangeDecorators.h"
+#include "CommonMath.h"
 
-#if defined(_MSC_VER)
-#  define _USE_MATH_DEFINES
-#endif
-
-#include <cmath>
-
-#ifndef M_PI
-#  define M_PI                                                                 \
-    3.14159265358979323846264338327950288419716939937510582097494459230781640628620899862803482534211
-#endif
 
 namespace CortidQCT {
 namespace Internal {

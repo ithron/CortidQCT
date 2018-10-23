@@ -11,6 +11,7 @@
 
 #include "MeshFitterImpl.h"
 
+#include "CommonMath.h"
 #include "DiscreteRangeDecorators.h"
 #include "DisplacementOptimizer.h"
 #include "EigenAdaptors.h"
