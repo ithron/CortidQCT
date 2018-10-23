@@ -9,6 +9,12 @@ configuration:
   - Release
   - Debug
 
+environment:
+  - HUNTER_ROOT: C:\hunter
+
+cache:
+  - C:\hunter -> appveyor.yml
+
 install:
   - git submodule update --init
 
