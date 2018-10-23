@@ -10,7 +10,7 @@ configuration:
   - Debug
 
 environment:
-  - HUNTER_ROOT: C:\hunter
+  HUNTER_ROOT: C:\hunter
 
 cache:
   - C:\hunter -> appveyor.yml
