@@ -10,9 +10,8 @@
  */
 
 #include "DisplacementOptimizer.h"
-#include "DiscreteRangeDecorators.h"
 #include "CommonMath.h"
-
+#include "DiscreteRangeDecorators.h"
 
 namespace CortidQCT {
 namespace Internal {
@@ -25,7 +24,8 @@ Eigen::VectorXf normalsToAngles(Eigen::MatrixBase<DerivedN> const &N) {
   Expects(N.rows() > 0);
   Expects(N.cols() == 3);
   Eigen::VectorXf const angles =
-      N.col(2).array().abs().acos() * 180.f / static_cast<float>(M_PI);
+      N.col(2).array().abs().acos().template cast<float>() * 180.f /
+      static_cast<float>(M_PI);
 
   return angles;
 }
@@ -69,8 +69,8 @@ void updateModelSamplingPositions(MeasurementModel const &model,
   auto const angles = normalsToAngles(N);
   Ensures(angles.rows() == N.rows());
 
-  positionsOut.col(1) = densities;
-  positionsOut.col(2) = angles.replicate(numSamples, 1);
+  positionsOut.col(1) = densities.template cast<float>();
+  positionsOut.col(2) = angles.template cast<float>().replicate(numSamples, 1);
   positionsOut.col(3) = labels.template cast<float>().replicate(numSamples, 1);
   for (auto i = 0; i < numSamples; ++i) {
     positionsOut.col(0).segment(numVertices * i, numVertices).array() = t(i);
@@ -100,7 +100,8 @@ operator()(Eigen::MatrixBase<DerivedN> const &N,
   DiscreteRange<float> const displacementRange{model_.samplingRange.min * 2,
                                                model_.samplingRange.max * 2,
                                                model_.samplingRange.stride};
-  auto const displacements = discreteRangeElementVector(displacementRange);
+  auto const displacements =
+      discreteRangeElementVector(displacementRange).cast<float>();
   auto const numSamples =
       gsl::narrow<Index>(model_.samplingRange.numElements());
 
@@ -186,10 +187,16 @@ operator()(Eigen::MatrixBase<DerivedN> const &N,
 }
 
 template DisplacementOptimizer::DisplacementsWeightsPair DisplacementOptimizer::
-operator()<NormalMatrix<>, LabelVector, Eigen::VectorXf>(
-    Eigen::MatrixBase<NormalMatrix<>> const &,
+operator()<NormalMatrix<float>, LabelVector, Eigen::VectorXf>(
+    Eigen::MatrixBase<NormalMatrix<float>> const &,
     Eigen::MatrixBase<LabelVector> const &,
     Eigen::MatrixBase<Eigen::VectorXf> const &, std::size_t);
+
+template DisplacementOptimizer::DisplacementsWeightsPair DisplacementOptimizer::
+operator()<NormalMatrix<double>, LabelVector, Eigen::VectorXd>(
+    Eigen::MatrixBase<NormalMatrix<double>> const &,
+    Eigen::MatrixBase<LabelVector> const &,
+    Eigen::MatrixBase<Eigen::VectorXd> const &, std::size_t);
 
 } // namespace Internal
 

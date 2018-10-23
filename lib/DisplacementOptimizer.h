@@ -60,10 +60,18 @@ private:
 #pragma clang diagnostic pop
 
 extern template DisplacementOptimizer::DisplacementsWeightsPair
-DisplacementOptimizer::operator()<NormalMatrix<>, LabelVector, Eigen::VectorXf>(
-    Eigen::MatrixBase<NormalMatrix<>> const &,
+DisplacementOptimizer::
+operator()<NormalMatrix<float>, LabelVector, Eigen::VectorXf>(
+    Eigen::MatrixBase<NormalMatrix<float>> const &,
     Eigen::MatrixBase<LabelVector> const &,
     Eigen::MatrixBase<Eigen::VectorXf> const &, std::size_t);
+
+extern template DisplacementOptimizer::DisplacementsWeightsPair
+DisplacementOptimizer::
+operator()<NormalMatrix<double>, LabelVector, Eigen::VectorXd>(
+    Eigen::MatrixBase<NormalMatrix<double>> const &,
+    Eigen::MatrixBase<LabelVector> const &,
+    Eigen::MatrixBase<Eigen::VectorXd> const &, std::size_t);
 
 } // namespace Internal
 
