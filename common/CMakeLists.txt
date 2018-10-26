@@ -65,7 +65,7 @@ elseif("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
   )
 elseif(MSVC)
   target_compile_options(Common INTERFACE
-    /w /W0
+    /w /W0 /fp:strict
   )
 endif()
 
