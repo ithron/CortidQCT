@@ -16,7 +16,7 @@ For Windows build, the configuration steps (1 to 3) should be the same, but the 
   - gcc: version 7.3 or later
   - clang: version 4.0 or later (with libc++ or stdlibc++-7.3 or later)
   - AppleClang: version 10.0 or later (Xcode 10, since macOS 10.4 Mojave)
-  - MSVC++: version 14.1 or later (Visual Studio 2017 version 15.0 or later)
+  - ~~MSVC++: version 14.1 or later (Visual Studio 2017 version 15.0 or later)~~
 
 ### Configuration
 
