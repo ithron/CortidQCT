@@ -109,7 +109,7 @@ MeasurementModel &MeasurementModel::loadFromFile(std::string const &filename) {
       auto const label = labelNode.as<unsigned int>();
       auto const scale = scaleNode.as<double>();
       auto const binaryData = dataNode.as<YAML::Binary>();
-      auto const nSamples = binaryData.size() / sizeof(double);
+      auto const nSamples = binaryData.size() / sizeof(float);
 
       auto const nRequiredSamples = samplingRange_.numElements() *
                                     densityRange_.numElements() *
