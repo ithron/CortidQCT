@@ -4,6 +4,12 @@ function GTable = genGTable(s, sliceThickness)
 %    s - in-plane scale parameter
 %    sliceThickness - slice thickness in mm
 
+% This file is part of the 'CortidQCT' project.
+% Author: Stefan Reinhold
+% Copyright: Copyright (C) 2018 Stefan Reinhold  -- All Rights Reserved.¬
+%            You may use, distribute and modify this code under the terms of¬
+%            the AFL 3.0 license; see LICENSE for full license details.
+
 N = 1e4;
 
 % range = max(norminv(1 - 1e-12) * s, sliceThickness);

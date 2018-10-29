@@ -1,4 +1,12 @@
 function y = go(x)
+% GO evaluate the out-of-plane PSF.
+%    y = go(x) - evaluates the out-of-plane PSF at x.
+
+% This file is part of the 'CortidQCT' project.
+% Author: Stefan Reinhold
+% Copyright: Copyright (C) 2018 Stefan Reinhold  -- All Rights Reserved.¬
+%            You may use, distribute and modify this code under the terms of¬
+%            the AFL 3.0 license; see LICENSE for full license details.
 
 y0 = 2 * ( x + 1).^2;
 y1 = 1 - 2 * x.^2;

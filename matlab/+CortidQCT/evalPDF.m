@@ -5,6 +5,12 @@ function f = evalPDF(X, mu, s, muW, sigmaW, GTable)
 % First column represents the signed distance from cortex center, second column 
 % angle with z-axis (in rad) and third column density.
 
+% This file is part of the 'CortidQCT' project.
+% Author: Stefan Reinhold
+% Copyright: Copyright (C) 2018 Stefan Reinhold  -- All Rights Reserved.¬
+%            You may use, distribute and modify this code under the terms of¬
+%            the AFL 3.0 license; see LICENSE for full license details.
+
 N = size(X, 1);
 
 if size(X, 2) ~= 3

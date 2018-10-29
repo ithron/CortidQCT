@@ -11,6 +11,12 @@ function f = fZeta(z, Gp, Gn, mu1, mu2, mu3, sigma1, sigma2, sigma3)
 % sigma2 - cortex density std
 % sigma3 - trabecular density std
 
+% This file is part of the 'CortidQCT' project.
+% Author: Stefan Reinhold
+% Copyright: Copyright (C) 2018 Stefan Reinhold  -- All Rights Reserved.¬
+%            You may use, distribute and modify this code under the terms of¬
+%            the AFL 3.0 license; see LICENSE for full license details.
+
 mu = CortidQCT.muZeta(Gp, Gn, mu1, mu2, mu3);
 sigmaSq = CortidQCT.varZeta(Gp, Gn, sigma1, sigma2, sigma3);
 

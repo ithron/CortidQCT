@@ -1,4 +1,13 @@
 function y = gi(x, sigma)
+% GI evaluates the in-plane PSF
+%     y = gi(x, sigma) = evaluate the in-plane PSF at x given the scale
+%     parameter sigma
+
+% This file is part of the 'CortidQCT' project.
+% Author: Stefan Reinhold
+% Copyright: Copyright (C) 2018 Stefan Reinhold  -- All Rights Reserved.¬
+%            You may use, distribute and modify this code under the terms of¬
+%            the AFL 3.0 license; see LICENSE for full license details.
 
 
 if ~isvector(x)
