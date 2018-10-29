@@ -42,7 +42,7 @@ public:
     /// The reference mesh
     Mesh<float> referenceMesh;
     /// Scale parameter for ARAP energy term
-    double sigmaE = 2.0;
+    double sigmaE = 5.4;
     /// Scale parameter for the latent variable s
     double sigmaS = 2.0;
     /// Maximum number of iterations
