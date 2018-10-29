@@ -13,10 +13,12 @@
 
 #include <exception>
 #include <iostream>
+#include <string>
 
 using namespace CortidQCT;
 
 int main(int argc, char **argv) {
+  using namespace std::string_literals;
 
   if (argc != 4) {
     std::cerr << "Usage: " << argv[0]
@@ -32,8 +34,11 @@ int main(int argc, char **argv) {
 
     if (result.deformedMesh) {
       auto const &mesh = *result.deformedMesh;
+      auto outLabels = "/dev/null"s;
 
-      mesh.writeToFile(argv[3], "/dev/null");
+      if (argc == 5) { outLabels = argv[4]; }
+
+      mesh.writeToFile(argv[3], outLabels);
     } else {
       std::cerr << "Fitting failed with unknown error!" << std::endl;
       return EXIT_FAILURE;
