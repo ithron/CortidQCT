@@ -21,8 +21,10 @@ environment:
 
 cache:
   - C:\hunter -> appveyor.yml
+  - C:\projects\deps\ninja
 
 install:
+  - call "%APPVEYOR_BUILD_FOLDER%\\appveyor-reqs-install.cmd"
   - git submodule update --init
 
 build_script:
