@@ -67,6 +67,11 @@ for voiEl=model.VOIs
     voi = voiEl{1};
     fprintf(fileId, '  - name: %s\n', voi.name);
     fprintf(fileId, '    label: %d\n', voi.label);
+    fprintf(fileId, '    mean: [%d, %d, %d]\n', ...
+            voi.mean(1), voi.mean(2), voi.mean(2));
+    fprintf(fileId, '    std: [%d, %d, %d]\n', voi.std(1), voi.std(2), voi.std(2));
+    fprintf(fileId, '    muW: %d\n', voi.muW);
+    fprintf(fileId, '    sigmaW: %d\n', voi.sigmaW);
     fprintf(fileId, '    scale: %d\n', voi.scale);
     encDat = encodeData(voi.data);
     fprintf(fileId, '    data: !binary |-\n      %s\n', encDat);
