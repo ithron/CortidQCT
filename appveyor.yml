@@ -1,5 +1,8 @@
 version: '1.0.{build}'
 
+build:
+    verbosity: detailed
+
 image: Visual Studio 2017
 
 platform:
@@ -11,6 +14,10 @@ configuration:
 
 environment:
   HUNTER_ROOT: C:\hunter
+  CMAKE_OPTIONS: -DCMAKE_C_COMPILER=clang-cl.exe -DCMAKE_CXX_COMPILER=clang-cl.exe
+  GENERATOR: Ninja
+  MAKE_PROGRAM: ninja
+  APPVEYOR_SAVE_CACHE_ON_ERROR: true
 
 cache:
   - C:\hunter -> appveyor.yml
@@ -18,11 +25,18 @@ cache:
 install:
   - git submodule update --init
 
-before_build:
-  - cmake -G "Visual Studio 15 2017 Win64" .
-
-build:
-  project: $(APPVEYOR_BUILD_FOLDER)\$(APPVEYOR_PROJECT_NAME).sln
+build_script:
+  - cmake -G "%GENERATOR%" %CMAKE_OPTIONS% "-DCMAKE_BUILD_TYPE=%configuration%" %APPVEYOR_BUILD_FOLDER%
+  - "%MAKE_PROGRAM%"
 
 test_script:
-  - '%APPVEYOR_BUILD_FOLDER%\%CONFIGURATION%\tests.exe'
+  - "%MAKE_PROGRAM% test"
+
+on_failure:
+  - appveyor PushArtifact CMakeFiles/CMakeOutput.log
+  - appveyor PushArtifact CMakeFiles/CMakeError.log
+
+artifacts:
+  - path: '_build/CMakeFiles/*.log'
+    name: logs
+
