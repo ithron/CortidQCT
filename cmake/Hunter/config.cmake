@@ -12,6 +12,12 @@ if (CortidQCT_GIT_SELF)
   hunter_config(CortidQCT GIT_SELF)
 endif()
 
+hunter_config(GTest
+  GIT_SUBMODULE "Dependencies/googletest"
+  CMAKE_ARGS
+    BUILD_GMOCK=OFF 
+)
+
 hunter_config(libigl
   GIT_SUBMODULE "Dependencies/libigl"
   CMAKE_ARGS
@@ -32,5 +38,9 @@ hunter_config(ImageStack
   CMAKE_ARGS
     BUILD_TESTING=OFF
     BUILD_EXAMPLES=OFF
+)
+
+hunter_config(Microsoft.GSL
+  GIT_SUBMODULE "Dependencies/Microsoft.GSL"
 )
 

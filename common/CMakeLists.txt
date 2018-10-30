@@ -21,6 +21,8 @@ else()
   message(STATUS "Link time optimization is NOT supported by compiler")
 endif()
 
+option(CortidQCT_WITH_WERROR "Treat warnings as errors" ON)
+
 ############################
 # Targets
 
@@ -48,9 +50,15 @@ target_include_directories(Common
 )
 
 target_compile_options(Common INTERFACE
-  -Wall
-  $<BUILD_INTERFACE:$<IF:$<CXX_COMPILER_ID:MSVC>,,-Werror>>
+  $<BUILD_INTERFACE:$<IF:$<CXX_COMPILER_ID:MSVC>,,-Wall>>
 )
+
+if (CortidQCT_WITH_WERROR)
+  message(STATUS "Treating warnings as errors")
+  target_compile_options(Common INTERFACE
+    -Werror
+  )
+endif()
 
 if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang" OR "${CMAKE_CXX_COMPILER_ID}" STREQUAL "AppleClang")
   target_compile_options(Common INTERFACE
@@ -63,10 +71,14 @@ elseif("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
   target_compile_options(Common INTERFACE
     -Wno-unknown-pragmas
   )
-elseif(MSVC)
-  target_compile_options(Common INTERFACE
-    /w /W0
-  )
+endif()
+
+if(WIN32)
+  if (CMAKE_BUILD_TYPE MATCHES DEBUG)
+    target_compile_options(Common INTERFACE /w /W0 /MTd)
+  else()
+    target_compile_options(Common INTERFACE /w /W0 /MT)
+  endif()
 endif()
 
 set_property(
