@@ -16,7 +16,9 @@ For Windows build, the configuration steps (1 to 3) should be the same, but the 
 - *cmake* version 3.9 or newer
 - A modern C++ compiler with C++17 support is required. These compilers are known to work:
   - gcc: version 7.3 or later
-  - clang: version 4.0 or later (with libc++ or stdlibc++-7.3 or later)
+  - clang:
+    - version 4.0 or later (with libc++ or stdlibc++-7.3 or later)
+    - on Windows: version 7.0 with Visual Studio 2017 or later
   - AppleClang: version 10.0 or later (Xcode 10, since macOS 10.4 Mojave)
   - ~~MSVC++: version 14.1 or later (Visual Studio 2017 version 15.0 or later)~~
     <span style='color:red'>Due to a compiler bug MSVC 14.1 does currently not work</span>
