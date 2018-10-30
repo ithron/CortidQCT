@@ -8,7 +8,7 @@ This software is based on
 
 ## Building
 The build instructions below are for *NIX (Unix/Linux/macOS) systems only.
-For Windows build, the configuration steps (1 to 3) should be the same, but the compilation step might be different, dependent on the compiler used.
+For Windows build, the configuration steps (1 to 4) should be the same, but the compilation step might be different, dependent on the compiler used.
 
 ### C++ Library
 
@@ -32,17 +32,21 @@ This can be changed by setting the `HUNTER_ROOT` environment variable.
    ```bash
    git clone htts://github.com/ithron/CortidQCT.git
    ```
-2. Create build directory
+2. Init the submodules:
    ```bash
    cd CortidQCT
+   git submodule update --init
+   ```
+3. Create build directory
+   ```bash
    mkdir Build
    cd build
    ```
-3. Run `cmake`
+4. Run `cmake`
   ```bash
   cmake -DCMAKE_BUILD_TYPE=Release ../
   ```
-4. Run
+5. Run
   ```bash
   make
   ```
