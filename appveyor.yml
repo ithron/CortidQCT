@@ -10,7 +10,6 @@ platform:
 
 configuration:
   - Release
-  - Debug
 
 environment:
   HUNTER_ROOT: C:\hunter
