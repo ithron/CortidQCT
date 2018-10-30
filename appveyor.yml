@@ -59,9 +59,10 @@ artifacts:
     name: logs
 
 for:
-- matrix:
-  only:
-    - configuration: Release
-      on_success:
-        - appveyor PushArtifact app/CortidQCT_CLI.exe
+-
+  matrix:
+    only:
+      - configuration: Release
+  on_success:
+    - appveyor PushArtifact app/CortidQCT_CLI.exe
 
