@@ -40,3 +40,7 @@ hunter_config(ImageStack
     BUILD_EXAMPLES=OFF
 )
 
+hunter_config(Microsoft.GSL
+  GIT_SUBMODULE "Dependencies/Microsoft.GSL"
+)
+
