@@ -25,6 +25,9 @@ environment:
 cache:
   - C:\hunter -> appveyor.yml
 
+init:
+  - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+
 install:
   - call "%APPVEYOR_BUILD_FOLDER%\\appveyor-reqs-install.cmd"
   - git submodule update --init
