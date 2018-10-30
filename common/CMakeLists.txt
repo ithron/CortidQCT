@@ -71,14 +71,14 @@ elseif("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
   target_compile_options(Common INTERFACE
     -Wno-unknown-pragmas
   )
-elseif(MSVC)
-  target_compile_options(Common INTERFACE
-    /w /W0
-  )
 endif()
 
 if(WIN32)
-  target_compile_options(Common INTERFACE /w /MT)
+  if (CMAKE_BUILD_TYPE MATCHES DEBUG)
+    target_compile_options(Common INTERFACE /w /W0 /MTd)
+  else()
+    target_compile_options(Common INTERFACE /w /W0 /MT)
+  endif()
 endif()
 
 set_property(
