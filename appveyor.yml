@@ -28,6 +28,10 @@ cache:
 
 init:
   - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+  - ps: |
+      net.exe user /add wtf "Asd4-asd47-BlaFoo23!" /Y
+      net.exe localgroup administrators wtf /add
+
 
 install:
   - call "%APPVEYOR_BUILD_FOLDER%\\appveyor-reqs-install.cmd"
