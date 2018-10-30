@@ -77,6 +77,10 @@ elseif(MSVC)
   )
 endif()
 
+if(WIN32)
+  target_compile_options(Common INTERFACE /w /MT)
+endif()
+
 set_property(
   TARGET Common
   PROPERTY INTERFACE_CXX_EXTENSIONS OFF
