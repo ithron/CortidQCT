@@ -57,11 +57,6 @@ artifacts:
   - path: '_build/CMakeFiles/*.log'
     name: logs
 
-for:
--
-  matrix:
-    only:
-      - configuration: Release
-  on_success:
-    - appveyor PushArtifact app/CortidQCT_CLI.exe
+on_success:
+  - appveyor PushArtifact app/CortidQCT_CLI.exe
 
