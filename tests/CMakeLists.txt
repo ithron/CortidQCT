@@ -63,6 +63,11 @@ if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang" OR "${CMAKE_CXX_COMPILER_ID}" STR
 endif()
 
 endif()
+target_link_libraries(TestCommon
+  INTERFACE
+    CortidQCT::Core
+    GTest::main
+)
 
 add_library(TestInternalCommon INTERFACE)
 target_link_libraries(TestInternalCommon INTERFACE TestCommon PrivateAPI)
@@ -71,11 +76,9 @@ target_link_libraries(TestInternalCommon INTERFACE TestCommon PrivateAPI)
 add_executable(TestMesh Mesh.cpp)
 target_link_libraries(TestMesh
   PRIVATE
-    GTest::main
-    CortidQCT::Core
+    TestCommon
     igl::core
     Eigen3::Eigen
-    TestCommon
 )
 target_include_directories(TestMesh PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
 add_test(TestMesh TestMesh)
@@ -84,8 +87,6 @@ add_test(TestMesh TestMesh)
 add_executable(TestVoxelVolume VoxelVolume.cpp)
 target_link_libraries(TestVoxelVolume
   PRIVATE
-    GTest::main
-    CortidQCT::Core
     TestCommon
 )
 target_include_directories(TestVoxelVolume PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
@@ -94,8 +95,6 @@ add_test(TestVoxelVolume TestVoxelVolume)
 add_executable(TestMeasurementModel MeasurementModel.cpp)
 target_link_libraries(TestMeasurementModel
   PRIVATE
-    GTest::main
-    CortidQCT::Core
     TestCommon
 )
 target_include_directories(TestMeasurementModel PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
@@ -104,8 +103,6 @@ add_test(TestMeasurementModel TestMeasurementModel)
 add_executable(TestMeshFitterConfiguration MeshFitterConfiguration.cpp)
 target_link_libraries(TestMeshFitterConfiguration
   PRIVATE
-    GTest::main
-    CortidQCT::Core
     TestCommon
 )
 target_include_directories(TestMeshFitterConfiguration PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
@@ -114,8 +111,6 @@ add_test(TestMeshFitterConfiguration TestMeshFitterConfiguration)
 add_executable(TestCustomColorToLabelMap CustomColorToLabelMap.cpp)
 target_link_libraries(TestCustomColorToLabelMap
   PRIVATE
-    GTest::main
-    CortidQCT::Core
     TestCommon
 )
 target_include_directories(TestCustomColorToLabelMap PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
@@ -126,8 +121,6 @@ if (CortifQCT_BUILD_PRIVATE_TESTS)
   add_executable(TestInternalSampler InternalSampler.cpp)
   target_link_libraries(TestInternalSampler
     PRIVATE
-      GTest::main
-      CortidQCT::Core
       TestInternalCommon
   )
   target_include_directories(TestInternalSampler PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
