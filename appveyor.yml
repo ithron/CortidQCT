@@ -16,7 +16,6 @@ environment:
   HUNTER_ROOT: C:\hunter
   GENERATOR: Ninja
   MAKE_PROGRAM: ninja
-  APPVEYOR_SAVE_CACHE_ON_ERROR: true
   MSVC_SETUP_PATH: C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvarsall.bat
   MSVC_SETUP_ARG: x64
   USE_CLANG: ON
@@ -58,4 +57,11 @@ on_failure:
 artifacts:
   - path: '_build/CMakeFiles/*.log'
     name: logs
+
+for:
+- matrix:
+  only:
+    - configuration: Release
+  on_success:
+    - appveyor PushArtifact app/CortidQCT_CLI.exe
 
