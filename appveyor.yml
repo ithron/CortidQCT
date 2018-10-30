@@ -43,8 +43,9 @@ before_build:
 build_script:
   - IF DEFINED USE_CLANG set PATH="C:\Program Files\LLVM\bin";%PATH%
   - IF DEFINED USE_CLANG clang-cl -v
-  - IF DEFINED USE_CLANG set CMAKE_EXTRA_OPTIONS="-DCMAKE_C_COMPILER=clang-cl.exe -DCMAKE_CXX_COMPILER=clang-cl.exe"
-  - cmake -G "%GENERATOR%" %CMAKE_OPTIONS% -DCMAKE_BUILD_TYPE=%configuration% %CMAKE_EXTRA_OPTIONS% %APPVEYOR_BUILD_FOLDER%
+  - IF DEFINED USE_CLANG set CC=clang-cl
+    IF DEFINED USE_CLANG set CXX=clang-cl
+  - cmake -G "%GENERATOR%" %CMAKE_OPTIONS% -DCMAKE_BUILD_TYPE=%configuration% %APPVEYOR_BUILD_FOLDER%
   - "%MAKE_PROGRAM%"
 
 test_script:
