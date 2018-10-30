@@ -10,3 +10,6 @@
 [submodule "Dependencies/yaml-cpp"]
 	path = Dependencies/yaml-cpp
 	url = https://github.com/jbeder/yaml-cpp.git
+[submodule "Dependencies/googletest"]
+	path = Dependencies/googletest
+	url = https://github.com/google/googletest.git
