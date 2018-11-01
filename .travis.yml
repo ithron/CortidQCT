@@ -13,6 +13,7 @@ env:
 cache:
   directories:
     - ${HUNTER_ROOT}
+    - ${HOME}/MCR
 
 #################
 # BUILD MATRIX
@@ -147,6 +148,7 @@ matrix:
     #   env: BUILD_TYPE=Release
 
 before_install:
+  - ./scripts/setup-matlab.sh
   - source scripts/travis-toolchain.sh
   - git submodule update --init
 
