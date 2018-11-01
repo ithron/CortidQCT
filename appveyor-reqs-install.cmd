@@ -14,7 +14,7 @@ ninja --version
 if NOT EXIST C:\projects\deps\MCR (
   echo "Downloading MCR"
   appveyor DownloadFile http://ssd.mathworks.com/supportfiles/downloads/R2017b/deployment_files/R2017b/installers/win64/MCR_R2017b_win64_installer.exe -FileName MCR.zip
-  7z x MCR.zip -o C:\projects\deps\MCR-install
+  7z x MCR.zip -oC:\projects\deps\MCR-install
   echo "Installing MCR"
   cd C:\projects\deps\MCR-install
   dir
