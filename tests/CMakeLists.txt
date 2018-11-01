@@ -33,6 +33,12 @@ find_package(Eigen3 CONFIG REQUIRED)
 hunter_add_package(GTest)
 find_package(GTest CONFIG REQUIRED)
 
+if (NOT TARGET GTest::main)
+  add_library(gtest_main INTERFACE)
+  target_link_libraries(gtest_main INTERFACE GTest::gtest_main)
+  add_library(GTest::main ALIAS gtest_main)
+endif()
+
 set(CortidQCT_DATADIR "${CMAKE_CURRENT_LIST_DIR}/../data")
 
 configure_file(tests_config.h.in tests_config.h @ONLY)

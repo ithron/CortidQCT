@@ -1,4 +1,7 @@
-version: '1.0.{build}'
+version: '1.0.0.{build}'
+
+build:
+    verbosity: detailed
 
 image: Visual Studio 2017
 
@@ -7,22 +10,53 @@ platform:
 
 configuration:
   - Release
-  - Debug
 
 environment:
   HUNTER_ROOT: C:\hunter
+  GENERATOR: Ninja
+  MAKE_PROGRAM: ninja
+  MSVC_SETUP_PATH: C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvarsall.bat
+  MSVC_SETUP_ARG: x64
+  USE_CLANG: ON
+  CMAKE_OPTIONS: "-DCortidQCT_WITH_WERROR=OFF -DWITH_OPENCL=OFF"
+
 
 cache:
   - C:\hunter -> appveyor.yml
 
+# init:
+#   - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+#   - ps: |
+#       net.exe user /add wtf "Asd4-asd47-BlaFoo23!" /Y
+#       net.exe localgroup administrators wtf /add
+
+
 install:
+  - call "%APPVEYOR_BUILD_FOLDER%\\appveyor-reqs-install.cmd"
   - git submodule update --init
 
 before_build:
-  - cmake -G "Visual Studio 15 2017 Win64" .
+ - call "%MSVC_SETUP_PATH%" %MSVC_SETUP_ARG%
 
-build:
-  project: $(APPVEYOR_BUILD_FOLDER)\$(APPVEYOR_PROJECT_NAME).sln
+build_script:
+  - IF DEFINED USE_CLANG set PATH="C:\Program Files\LLVM\bin";%PATH%
+  - IF DEFINED USE_CLANG clang-cl -v
+  - IF DEFINED USE_CLANG set CC=clang-cl
+  - IF DEFINED USE_CLANG set CXX=clang-cl
+  - cmake -G "%GENERATOR%" %CMAKE_OPTIONS% -DCMAKE_BUILD_TYPE=%configuration% %APPVEYOR_BUILD_FOLDER%
+  - "%MAKE_PROGRAM%"
 
 test_script:
-  - '%APPVEYOR_BUILD_FOLDER%\%CONFIGURATION%\tests.exe'
+  - "%MAKE_PROGRAM% test"
+
+on_failure:
+  - appveyor PushArtifact CMakeFiles/CMakeOutput.log
+  - appveyor PushArtifact CMakeFiles/CMakeError.log
+
+artifacts:
+  - path: '_build/CMakeFiles/*.log'
+    name: logs
+
+on_success:
+  - appveyor PushArtifact app/CortidQCT_CLI.exe
+

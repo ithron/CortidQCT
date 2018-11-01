@@ -8,7 +8,7 @@ This software is based on
 
 ## Building
 The build instructions below are for *NIX (Unix/Linux/macOS) systems only.
-For Windows build, the configuration steps (1 to 3) should be the same, but the compilation step might be different, dependent on the compiler used.
+For Windows build, the configuration steps (1 to 4) should be the same, but the compilation step might be different, dependent on the compiler used.
 
 ### C++ Library
 
@@ -16,7 +16,9 @@ For Windows build, the configuration steps (1 to 3) should be the same, but the 
 - *cmake* version 3.9 or newer
 - A modern C++ compiler with C++17 support is required. These compilers are known to work:
   - gcc: version 7.3 or later
-  - clang: version 4.0 or later (with libc++ or stdlibc++-7.3 or later)
+  - clang:
+    - version 4.0 or later (with libc++ or stdlibc++-7.3 or later)
+    - on Windows: version 7.0 with Visual Studio 2017 or later
   - AppleClang: version 10.0 or later (Xcode 10, since macOS 10.4 Mojave)
   - ~~MSVC++: version 14.1 or later (Visual Studio 2017 version 15.0 or later)~~
     <span style='color:red'>Due to a compiler bug MSVC 14.1 does currently not work</span>
@@ -32,17 +34,21 @@ This can be changed by setting the `HUNTER_ROOT` environment variable.
    ```bash
    git clone htts://github.com/ithron/CortidQCT.git
    ```
-2. Create build directory
+2. Init the submodules:
    ```bash
    cd CortidQCT
+   git submodule update --init
+   ```
+3. Create build directory
+   ```bash
    mkdir Build
    cd build
    ```
-3. Run `cmake`
+4. Run `cmake`
   ```bash
   cmake -DCMAKE_BUILD_TYPE=Release ../
   ```
-4. Run
+5. Run
   ```bash
   make
   ```
