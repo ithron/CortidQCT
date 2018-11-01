@@ -5,7 +5,7 @@ set -e
 if [[ "$TRAVIS_OS_NAME" = "linux" ]]
 then
   MCR_URL="http://ssd.mathworks.com/supportfiles/downloads/R2017b/deployment_files/R2017b/installers/glnxa64/MCR_R2017b_glnxa64_installer.zip"
-if [[ "$TRAVIS_OS_NAME" = "osx" ]]
+elif [[ "$TRAVIS_OS_NAME" = "osx" ]]
   MCR_URL="http://ssd.mathworks.com/supportfiles/downloads/R2017b/deployment_files/R2017b/installers/maci64/MCR_R2017b_maci64_installer.dmg.zip"
 fi
 
