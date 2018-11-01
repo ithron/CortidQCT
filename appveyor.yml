@@ -19,10 +19,11 @@ environment:
   MSVC_SETUP_ARG: x64
   USE_CLANG: ON
   CMAKE_OPTIONS: "-DCortidQCT_WITH_WERROR=OFF -DWITH_OPENCL=OFF"
-
+  Matlab_MCR_ROOT: C:\projects\deps\MCR\v93
 
 cache:
   - C:\hunter -> appveyor.yml
+  - C:\projects\deps\MCR
 
 # init:
 #   - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
