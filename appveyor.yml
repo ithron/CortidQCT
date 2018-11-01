@@ -59,4 +59,4 @@ artifacts:
 
 on_success:
   - appveyor PushArtifact app/CortidQCT_CLI.exe
-
+  - appveyor PushArtifact matlab\floatVector2base64.mexw64
