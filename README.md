@@ -112,6 +112,9 @@ It requires at least three parameters:
 app/CortidQCT_CLI <configurationFile> <inputVolume> <outputMesh> [outputLabels]
 ```
 
+### C++ Library
+The [API Reference](https://ithron.github.io/CortidQCT/html/index.html) can be found [here](https://ithron.github.io/CortidQCT/html/index.html).
+
 ### Configuration File
 The main purpose of the configuration file is to specify the reference mesh and the model file.
 Additionally some parameters can be customized.

@@ -6,6 +6,9 @@ git:
 env:
   global:
     - HUNTER_ROOT=${HOME}/hunter
+    - GH_REPO_REF=github.com/ithron/CortidQCT.git
+    - GH_REPO_NAME=CortidQCT
+    - GENERATE_DOCS=no
 
 cache:
   directories:
@@ -82,7 +85,7 @@ matrix:
         - COMPILER=clang CLANG_VERSION=4.0.0
         - BUILD_TYPE=Debug
 
-    # Debug
+    # Relase
     - os: linux
       env:
         - COMPILER=clang CLANG_VERSION=4.0.0
@@ -97,7 +100,7 @@ matrix:
         - COMPILER=clang CLANG_VERSION=5.0.2
         - BUILD_TYPE=Debug
 
-    # Debug
+    # Relase
     - os: linux
       env:
         - COMPILER=clang CLANG_VERSION=5.0.2
@@ -112,11 +115,16 @@ matrix:
         - COMPILER=clang CLANG_VERSION=6.0.1
         - BUILD_TYPE=Debug
 
-    # Debug
+    # Relase
     - os: linux
+      addons:
+        apt:
+          packages:
+            - doxygen doxygen-latex graphviz
       env:
         - COMPILER=clang CLANG_VERSION=6.0.1
         - BUILD_TYPE=Release
+        - GENERATE_DOCS=yes
 
     ##########
     # macOS
@@ -145,4 +153,10 @@ before_install:
 script:
   - ./scripts/travis-cmake.sh
   - ./scripts/travis-build.sh
+
+after_success:
+  - |
+    if [ "${GENERATE_DOCS}" = "yes" ]; then
+      ./scripts/generateDocumentationAndDeploy.sh
+    fi
 

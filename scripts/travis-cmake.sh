@@ -12,6 +12,12 @@ else
 
 fi
 
+BUILD_DOC=OFF
+if [[ ${GENERATE_DOCS} = 'yes' ]]; then
+  BUILD_DOC=ON
+fi
+
+
 cmake \
   -G"${GENERATOR}" \
   -DCMAKE_BUILD_TYPE=${BUILD_TYPE} \
@@ -20,5 +26,5 @@ cmake \
   -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
   -DWITH_CLANG_TIDY=OFF \
   -DWITH_OPENCL=OFF \
-  -DBUILD_DOC=OFF .
+  -DBUILD_DOC=${BUILD_DOC} .
 
