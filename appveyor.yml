@@ -57,5 +57,5 @@ on_failure:
 
 on_success:
   - appveyor PushArtifact app/CortidQCT_CLI.exe
-  - if %APPVEYOR_REPO_TAG% ( appveyor PushArtifact matlab\floatVector2base64.mexw64 )
+  - call "%APPVEYOR_BUILD_FOLDER%\\scripts\\appveyor-create-release.cmd"
 
