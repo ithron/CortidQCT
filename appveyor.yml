@@ -56,6 +56,5 @@ on_failure:
   - appveyor PushArtifact CMakeFiles/CMakeError.log
 
 on_success:
-  - appveyor PushArtifact app/CortidQCT_CLI.exe
   - call "%APPVEYOR_BUILD_FOLDER%\\scripts\\appveyor-create-release.cmd"
 
