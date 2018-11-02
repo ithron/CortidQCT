@@ -14,7 +14,6 @@ env:
 cache:
   directories:
     - ${HUNTER_ROOT}
-    - ${HOME}/MCR
 
 #################
 # BUILD MATRIX
