@@ -6,6 +6,14 @@ This software is based on
 "**An Analysis by Synthesis Approach for Automatic Vertebral Shape Identification in Clinical QCT**" by
 *[Stefan Reinhold](https://orcid.org/0000-0003-3117-1569), [Timo Damm](https://orcid.org/0000-0002-5595-5205), Lukas Huber, [Reimer Andresen](https://orcid.org/0000-0002-1575-525X), Reinhard Barkmann, [Claus-C. Glüer](https://orcid.org/0000-0003-3539-8955) and [Reinhard Koch](https://orcid.org/0000-0003-4398-1569)*, accepted for publication in Springer LNCS, presented on "German Conference on Pattern Recognition 2018".
 
+## Binary Releases
+
+Version | File | Comment
+-------:|:-------:|:----
+**v1.0.1**  |  [CortidQCT_CLI-1.0.1-Windows-x64.zip](https://github.com/ithron/CortidQCT/releases/download/v1.0.0/CortidQCT_CLI-1.0.1-Windows-x64.zip) | Complete: CLI, library, headers, Matlab toolbox
+v1.0.0  | [CortidQCT_CLI-1.0.0-Windows-x64.zip](https://github.com/ithron/CortidQCT/releases/download/v1.0.0/CortidQCT_CLI-1.0.0-Windows-x64.zip) | CLI binary only
+
+
 ## Building
 The build instructions below are for *NIX (Unix/Linux/macOS) systems only.
 For Windows build, the configuration steps (1 to 4) should be the same, but the compilation step might be different, dependent on the compiler used.
