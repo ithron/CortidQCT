@@ -8,7 +8,7 @@ include(GNUInstallDirs)
 project(
   CortidQCT
   VERSION 1.0.0
-  LANGUAGES CXX
+  LANGUAGES C CXX
 )
 
 find_package(OpenMP)
@@ -18,6 +18,7 @@ endif()
 
 add_subdirectory(common)
 add_subdirectory(lib)
+add_subdirectory(bindings)
 
 OPTION(BUILD_TESTS "Build tests" ON)
 OPTION(BUILD_TOOLS "Build tools" ON)
