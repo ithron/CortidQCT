@@ -22,6 +22,7 @@ add_subdirectory(lib)
 OPTION(BUILD_TESTS "Build tests" ON)
 OPTION(BUILD_TOOLS "Build tools" ON)
 OPTION(BUILD_APP "Build applications" ON)
+OPTION(BUILD_MEX "Build MATLAB mex filed" ON)
 
 ############################
 # Exports
@@ -64,6 +65,10 @@ endif()
 
 if (BUILD_TOOLS)
   add_subdirectory(tools)
+endif()
+
+if (BUILD_MEX)
+  add_subdirectory(matlab)
 endif()
 
 ############################

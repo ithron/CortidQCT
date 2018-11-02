@@ -1,4 +1,4 @@
-version: '1.0.0.{build}'
+version: '1.0.1.{build}'
 
 build:
     verbosity: detailed
@@ -19,10 +19,11 @@ environment:
   MSVC_SETUP_ARG: x64
   USE_CLANG: ON
   CMAKE_OPTIONS: "-DCortidQCT_WITH_WERROR=OFF -DWITH_OPENCL=OFF"
-
+  Matlab_ROOT_DIR: C:\Program Files\MATLAB\MATLAB Runtime\v93
+  BUILD_MEX: OFF
 
 cache:
-  - C:\hunter -> appveyor.yml
+  - C:\hunter
 
 # init:
 #   - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
@@ -32,7 +33,7 @@ cache:
 
 
 install:
-  - call "%APPVEYOR_BUILD_FOLDER%\\appveyor-reqs-install.cmd"
+  - call "%APPVEYOR_BUILD_FOLDER%\\scripts\\appveyor-reqs-install.cmd"
   - git submodule update --init
 
 before_build:
@@ -43,7 +44,8 @@ build_script:
   - IF DEFINED USE_CLANG clang-cl -v
   - IF DEFINED USE_CLANG set CC=clang-cl
   - IF DEFINED USE_CLANG set CXX=clang-cl
-  - cmake -G "%GENERATOR%" %CMAKE_OPTIONS% -DCMAKE_BUILD_TYPE=%configuration% %APPVEYOR_BUILD_FOLDER%
+  - IF "%APPVEYOR_REPO_TAG%" == "true" ( set BUILD_MEX=ON )
+  - cmake -G "%GENERATOR%" %CMAKE_OPTIONS% -DCMAKE_BUILD_TYPE=%configuration% -DBUILD_MEX=%BUILD_MEX% %APPVEYOR_BUILD_FOLDER%
   - "%MAKE_PROGRAM%"
 
 test_script:
@@ -53,10 +55,6 @@ on_failure:
   - appveyor PushArtifact CMakeFiles/CMakeOutput.log
   - appveyor PushArtifact CMakeFiles/CMakeError.log
 
-artifacts:
-  - path: '_build/CMakeFiles/*.log'
-    name: logs
-
 on_success:
-  - appveyor PushArtifact app/CortidQCT_CLI.exe
+  - call "%APPVEYOR_BUILD_FOLDER%\\scripts\\appveyor-create-release.cmd"
 

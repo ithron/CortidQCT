@@ -9,6 +9,8 @@ env:
     - GH_REPO_REF=github.com/ithron/CortidQCT.git
     - GH_REPO_NAME=CortidQCT
     - GENERATE_DOCS=no
+    - Matlab_ROOT_DIR=${HOME}/MCR/v93
+    - BUILD_MEX=OFF
 
 cache:
   directories:
@@ -147,6 +149,12 @@ matrix:
     #   env: BUILD_TYPE=Release
 
 before_install:
+  - |
+    if ([ "$TRAVIS_BRANCH" == "master" ] || [ ! -z "$TRAVIS_TAG" ]) &&
+          [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
+      ./scripts/setup-matlab.sh
+      export BUILD_MEX=ON
+    fi
   - source scripts/travis-toolchain.sh
   - git submodule update --init
 

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -eu
+set -euvx
 
 if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
 
@@ -26,5 +26,7 @@ cmake \
   -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
   -DWITH_CLANG_TIDY=OFF \
   -DWITH_OPENCL=OFF \
+  -DBUILD_MEX=${BUILD_MEX} \
+  -DMatlab_ROOT_DIR=${Matlab_ROOT_DIR} \
   -DBUILD_DOC=${BUILD_DOC} .
 
