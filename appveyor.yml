@@ -44,6 +44,7 @@ build_script:
   - IF DEFINED USE_CLANG clang-cl -v
   - IF DEFINED USE_CLANG set CC=clang-cl
   - IF DEFINED USE_CLANG set CXX=clang-cl
+  - IF %APPVEYOR_REPO_TAG% ( set BUILD_MEX=ON )
   - cmake -G "%GENERATOR%" %CMAKE_OPTIONS% -DCMAKE_BUILD_TYPE=%configuration% -DBUILD_MEX=%BUILD_MEX% %APPVEYOR_BUILD_FOLDER%
   - "%MAKE_PROGRAM%"
 
@@ -56,20 +57,5 @@ on_failure:
 
 on_success:
   - appveyor PushArtifact app/CortidQCT_CLI.exe
-
--
-only:
-  appveyor_repo_tag: true
-
-  environment:
-    BUILD_MEX: ON
-
-  install:
-    - call "%APPVEYOR_BUILD_FOLDER%\\appveyor-reqs-install.cmd"
-    - call "%APPVEYOR_BUILD_FOLDER%\\appveyor-reqs-install-matlab.cmd"
-    - git submodule update --init
-
-  on_success:
-    - appveyor PushArtifact app/CortidQCT_CLI.exe
-    - appveyor PushArtifact matlab\floatVector2base64.mexw64
+  - if %APPVEYOR_REPO_TAG% ( appveyor PushArtifact matlab\floatVector2base64.mexw64 )
 
