@@ -20,6 +20,7 @@ environment:
   USE_CLANG: ON
   CMAKE_OPTIONS: "-DCortidQCT_WITH_WERROR=OFF -DWITH_OPENCL=OFF"
   Matlab_ROOT_DIR: C:\Program Files\MATLAB\MATLAB Runtime\v93
+  BUILD_MEX: OFF
 
 cache:
   - C:\hunter -> appveyor.yml
@@ -43,7 +44,7 @@ build_script:
   - IF DEFINED USE_CLANG clang-cl -v
   - IF DEFINED USE_CLANG set CC=clang-cl
   - IF DEFINED USE_CLANG set CXX=clang-cl
-  - cmake -G "%GENERATOR%" %CMAKE_OPTIONS% -DCMAKE_BUILD_TYPE=%configuration% %APPVEYOR_BUILD_FOLDER%
+  - cmake -G "%GENERATOR%" %CMAKE_OPTIONS% -DCMAKE_BUILD_TYPE=%configuration% -DBUILD_MEX=%BUILD_MEX% %APPVEYOR_BUILD_FOLDER%
   - "%MAKE_PROGRAM%"
 
 test_script:
@@ -53,10 +54,22 @@ on_failure:
   - appveyor PushArtifact CMakeFiles/CMakeOutput.log
   - appveyor PushArtifact CMakeFiles/CMakeError.log
 
-artifacts:
-  - path: '_build/CMakeFiles/*.log'
-    name: logs
-
 on_success:
   - appveyor PushArtifact app/CortidQCT_CLI.exe
-  - appveyor PushArtifact matlab\floatVector2base64.mexw64
+
+-
+only:
+  appveyor_repo_tag: true
+
+  environment:
+    BUILD_MEX: ON
+
+  install:
+    - call "%APPVEYOR_BUILD_FOLDER%\\appveyor-reqs-install.cmd"
+    - call "%APPVEYOR_BUILD_FOLDER%\\appveyor-reqs-install-matlab.cmd"
+    - git submodule update --init
+
+  on_success:
+    - appveyor PushArtifact app/CortidQCT_CLI.exe
+    - appveyor PushArtifact matlab\floatVector2base64.mexw64
+
