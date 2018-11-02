@@ -33,7 +33,7 @@ cache:
 
 
 install:
-  - call "%APPVEYOR_BUILD_FOLDER%\\appveyor-reqs-install.cmd"
+  - call "%APPVEYOR_BUILD_FOLDER%\\scripts\\appveyor-reqs-install.cmd"
   - git submodule update --init
 
 before_build:
