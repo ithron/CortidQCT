@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -eu
+set -euvx
 
 if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
 
