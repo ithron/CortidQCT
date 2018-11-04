@@ -13,7 +13,11 @@ project(
 # Targets
 
 add_library(C-Bindings
-  c-bindings.cpp
+  src/Error.cpp
+  src/Mesh.cpp
+  src/MeshFitter.cpp
+  src/ObjectBase.cpp
+  src/VoxelVolume.cpp
 )
 
 target_include_directories(C-Bindings
