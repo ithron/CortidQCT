@@ -33,7 +33,7 @@ target_include_directories(C-Bindings
 target_link_libraries(C-Bindings PRIVATE
   CortidQCT::Core
 )
-set_target_properties(C-Bindings PROPERTIES OUTPUT_NAME "CortidQCT-C-Bindings")
+set_target_properties(C-Bindings PROPERTIES OUTPUT_NAME "CortidQCT-C")
 
 if (NOT CLANG_TIDY_EXE AND WITH_CLANG_TIDY)
   message(WARNING "clang-tidy not found. Disable it.")
