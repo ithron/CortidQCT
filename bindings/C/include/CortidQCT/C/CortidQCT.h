@@ -3,9 +3,9 @@
 #ifdef __cplusplus
 extern "C" {
 
-#define CQCT_EXTERN extern "C"
+#  define CQCT_EXTERN extern "C"
 #else
-#define CQCT_EXTERN
+#  define CQCT_EXTERN
 #endif
 
 #include <stddef.h>
@@ -30,14 +30,14 @@ CQCT_EXTERN void CQCT_release(Id obj);
 CQCT_EXTERN Id CQCT_autorelease(Id obj);
 
 /// Adds a new autorelease pool to the stack
-CQCT_EXTERN void CQCT_autorelasePoolPush();
-  
+CQCT_EXTERN void CQCT_autoreleasePoolPush();
+
 /// Removes the current autorelease pool from the stack and releases all of
 /// its objects
 CQCT_EXTERN void CQCT_autoreleasePoolPop();
 
 /// @}
-  
+
 // MARK: -
 // MARK: Error Type
 /**
@@ -46,21 +46,18 @@ CQCT_EXTERN void CQCT_autoreleasePoolPop();
  */
 
 /// Error types/Ids
-enum CQCT_ErrorId {
-  CQCT_ErrorId_Unknown,
-  CQCT_ErrorId_InvalidArgument
-};
+enum CQCT_ErrorId { CQCT_ErrorId_Unknown, CQCT_ErrorId_InvalidArgument };
 
 struct CQCT_Error_t;
 /// Error type
 typedef struct CQCT_Error_t *CQCT_Error;
 
 /// Creates an error object
-CQCT_EXTERN CQCT_Error CQCT_createError(CQCT_ErrorId id,
+CQCT_EXTERN CQCT_Error CQCT_createError(enum CQCT_ErrorId id,
                                         const char *message);
 
 /// Returns the error id
-CQCT_EXTERN CQCT_ErrorId CQCT_errorType(CQCT_Error error);
+CQCT_EXTERN enum CQCT_ErrorId CQCT_errorType(CQCT_Error error);
 
 /// Returns the error message
 CQCT_EXTERN const char *CQCT_errorMessage(CQCT_Error error);
@@ -73,7 +70,7 @@ CQCT_EXTERN const char *CQCT_errorMessage(CQCT_Error error);
  * @name VoxelVolume type
  * @{
  */
-  
+
 /// VoxelVolume size
 typedef struct {
   size_t width, heigth, depth;
@@ -94,14 +91,15 @@ CQCT_EXTERN CQCT_VoxelVolume CQCT_createVoxelVolume(const char *filename,
 
 /// Returns the size of the voxel volume
 CQCT_EXTERN CQCT_VoxelVolumeSize CQCT_voxelVolumeSize(CQCT_VoxelVolume volume);
-  
+
 /// Returns the size of a voxel
-CQCT_EXTERN CQCT_VoxelVolumeVoxelSize CQCT_voxelVolumeVoxelSize(CQCT_VoxelVolume volume);
-  
+CQCT_EXTERN CQCT_VoxelVolumeVoxelSize
+CQCT_voxelVolumeVoxelSize(CQCT_VoxelVolume volume);
+
 /// Copies the voxel data to the given buffer
 CQCT_EXTERN size_t CQCT_voxelVolumeCopyVoxels(CQCT_VoxelVolume volume,
                                               float **buffer);
-  
+
 /// @}
 
 // MARK: -
@@ -146,15 +144,19 @@ CQCT_EXTERN CQCT_Mesh CQCT_meshAndLabelsFromFile(const char *meshFilename,
                                                  CQCT_Error *error);
 
 /// Loads a mesh from file
-CQCT_EXTERN bool CQCT_loadMesh(CQCT_Mesh mesh,
-                               const char *filename,
-                               CQCT_Error *error);
+CQCT_EXTERN int CQCT_loadMesh(CQCT_Mesh mesh, const char *filename,
+                              CQCT_Error *error);
 
 /// Loads a mesh from mesh and label file
-CQCT_EXTERN bool CQCT_loadMeshAndLabels(CQCT_Mesh mesh,
-                                        const char *meshFilename,
-                                        const char *labelFilename,
-                                        CQCT_Error *error);
+CQCT_EXTERN int CQCT_loadMeshAndLabels(CQCT_Mesh mesh, const char *meshFilename,
+                                       const char *labelFilename,
+                                       CQCT_Error *error);
+
+/// Writes mesh and labels to seperate files
+CQCT_EXTERN int CQCT_meshAndLabelsWriteToFile(CQCT_Mesh mesh,
+                                              const char *meshFilename,
+                                              const char *labelsFilename,
+                                              CQCT_Error *error);
 
 /// Return number of vertices of the given mesh
 CQCT_EXTERN size_t CQCT_meshVertexCount(CQCT_Mesh mesh);
@@ -167,9 +169,10 @@ CQCT_EXTERN size_t CQCT_meshTriangleCount(CQCT_Mesh mesh);
  *
  * If the pointer pointed to by bufferPtr (i.e. `*bufferPtr`) is NULL,
  * memory is allocated, otherwise the pointed to memory is used.
- 
+
  * @param mesh Mesh object to inspect
- * @param bufferPtr Pointer to a pointer to the start of a memory buffer, that is
+ * @param bufferPtr Pointer to a pointer to the start of a memory buffer, that
+ is
  * large enough to hold `3 * N * sizeof(float)` (N = number of verices) bytes.
  * Alternativly, bufferPtr can point to a NULL pointer. In that case the
  * required memory is allocated by the function.
@@ -184,13 +187,15 @@ CQCT_EXTERN size_t CQCT_meshCopyVertices(CQCT_Mesh mesh, float **bufferPtr);
  * @brief Copies the mesh's indices into the given buffer
  * @see CQCT_meshCopyVertices()
  */
-CQCT_EXTERN size_t CQCT_meshCopyTriangles(CQCT_Mesh mesh, ptrdiff_t **bufferPtr);
+CQCT_EXTERN size_t CQCT_meshCopyTriangles(CQCT_Mesh mesh,
+                                          ptrdiff_t **bufferPtr);
 
 /**
  * @brief Copies the mesh's labels into the given buffer
  * @see CQCT_meshCopyVertices()
  */
-CQCT_EXTERN size_t CQCT_meshCopyLabels(CQCT_Mesh mesh, unsigned int **bufferPtr);
+CQCT_EXTERN size_t CQCT_meshCopyLabels(CQCT_Mesh mesh,
+                                       unsigned int **bufferPtr);
 
 /// @}
 
@@ -204,7 +209,7 @@ CQCT_EXTERN size_t CQCT_meshCopyLabels(CQCT_Mesh mesh, unsigned int **bufferPtr)
 struct CQCT_MeshFitter_t;
 /// Mesh fitter handle type
 typedef struct CQCT_MeshFitter_t *CQCT_MeshFitter;
-  
+
 struct CQCT_MeshFitterResult_t;
 /// Mesh fitter result object
 typedef struct CQCT_MeshFitterResult_t *CQCT_MeshFitterResult;
@@ -212,14 +217,14 @@ typedef struct CQCT_MeshFitterResult_t *CQCT_MeshFitterResult;
 /// Creates a mesh fitter given the configuration file
 CQCT_EXTERN CQCT_MeshFitter CQCT_createMeshFitter(const char *filename,
                                                   CQCT_Error *error);
-  
+
 /// Returns the result mesh
-CQCT_EXTERN CQCT_Mesh CQCT_meshFitterResultGetMesh(CQCT_MeshFitterResult result);
-  
+CQCT_EXTERN CQCT_Mesh CQCT_meshFitterResultMesh(CQCT_MeshFitterResult result);
+
 /// Fits the reference mesh to the given voxel volume
 CQCT_EXTERN CQCT_MeshFitterResult CQCT_meshFitterFit(CQCT_MeshFitter meshFitter,
                                                      CQCT_VoxelVolume volume);
-  
+
 /// @}
 
 #ifdef __cplusplus
