@@ -1,3 +1,51 @@
+/**
+ * @file      bindings/C/include/CortidQCT/C/CortidQCT.h
+ *
+ * @brief     This file contains the C API definition.
+ *
+ * @author    Stefan Reinhold
+ * @copyright Copyright (C) 2018 Stefan Reinhold  -- All Rights Reserved.
+ *            You may use, distribute and modify this code under the terms of
+ *            the AFL 3.0 license; see LICENSE for full license details.
+ */
+
+/**
+ * @defgroup C-API C API
+ * @brief C API for CortidQCT.
+ *
+ * The C API uses a reference counting object concept. Each 'object' has a
+ * retain count. If the user wants to retain / keep an object the retain count
+ * have to be incremented by called `CQCT_retain()`. Once the object is no
+ * longer required, `CQCT_release()` should be called to decrement the retain
+ * count. Once the retain count reaces zero the object is destroyed and the
+ * allocated memory is released. THIS MECHANISM IS NOT THREAD SAFE!
+ *
+ * **Naming Conventions**
+ * * All API functions are prefixed with `CQCT_`.
+ * * Functions starting with `CQCT_create` transfer the ownership of the
+ * returned object to the caller, i.e. the caller is responsible to calling
+ * `CQCT_release()` on the object.
+ *
+ * **Memory Managfement**
+ * * `CQCT_autoreleasePoolPush()` must be called before any other API call.
+ * * `CQCT_autoreleasePoolPop()` must be called after the last API call.
+ * * If functions that create autoreleased objects are called rapidely (e.g. in
+ * a loop), those calls can be surrounded by an additional autorelease pool
+ * layer.
+ * * To keep and object around call `CQCT_retain()`.
+ * * If a retained object is no longer required release it by called
+ * `CQCT_release()`.
+ * * Objects returned from `CQCT_create*` functions are automatically owned by
+ * the caller, so no retain is required.
+ * * Release all owned object by calling `CQCT_release` when they are no longer
+ * needed.
+ *
+ * **Example**
+ *
+ * An example can be found in bindings/C/examples/cli.c:
+ * @include examples/cli.c
+ * @{
+ */
 #pragma once
 
 #ifdef __cplusplus
@@ -230,3 +278,6 @@ CQCT_EXTERN CQCT_MeshFitterResult CQCT_meshFitterFit(CQCT_MeshFitter meshFitter,
 #ifdef __cplusplus
 }
 #endif
+
+/// @}
+

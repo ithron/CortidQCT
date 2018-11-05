@@ -80,12 +80,14 @@ if (BUILD_DOC)
   find_package(Doxygen 1.8.3 REQUIRED OPTIONAL_COMPONENTS dot)
 
   set(DOXYGEN_USE_MDFILE_AS_MAINPAGE README.md)
+  set(DOXYGEN_EXAMPLE_PATH ${PROJECT_SOURCE_DIR}/bindings/C)
   doxygen_add_docs(
     doc
     README.md
     ${PROJECT_SOURCE_DIR}/include
     ${PROJECT_SOURCE_DIR}/lib
     ${PROJECT_SOURCE_DIR}/common
+    ${PROJECT_SOURCE_DIR}/bindings
     COMMENT "Generating documentation"
   )
 endif()
