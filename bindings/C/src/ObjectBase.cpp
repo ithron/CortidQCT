@@ -43,7 +43,7 @@ static AutoreleasePool *gPool = nullptr;
 /// Get the unique autorelease pool
 static AutoreleasePool &getPool() {
 
-  if (gPool != nullptr) { gPool = new AutoreleasePool; }
+  if (gPool == nullptr) { gPool = new AutoreleasePool; }
 
   return *gPool;
 }
