@@ -9,6 +9,8 @@ project(
   LANGUAGES CXX
 )
 
+option(CortidQCT_WITH_C_BINDINGS_EXAMPLES "Build C-Bindings exampled" ON)
+
 ############################
 # Targets
 
@@ -44,7 +46,14 @@ if (WITH_CLANG_TIDY)
   set_target_properties(C-Bindings PROPERTIES C_CLANG_TIDY "${DO_CLANG_TIDY}")
 endif()
 
-add_library(CortidQCT::Binding::C ALIAS C-Bindings)
+add_library(CortidQCT::Bindings::C ALIAS C-Bindings)
+
+
+############################
+# Examples
+if (CortidQCT_WITH_C_BINDINGS_EXAMPLES)
+  add_subdirectory(examples)
+endif()
 
 ############################
 # Exports
