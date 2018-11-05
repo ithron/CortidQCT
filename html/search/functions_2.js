@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['io',['io',['../namespaceCortidQCT.html#afdf585501b21f53665581106d1df5d8b',1,'CortidQCT::io(Eigen::MatrixBase&lt; MatrixType &gt; &amp;matrix)'],['../namespaceCortidQCT.html#a89f0eb5f9bbd32599158df42fe221056',1,'CortidQCT::io(Eigen::MatrixBase&lt; MatrixType &gt; const &amp;matrix)']]],
-  ['isempty',['isEmpty',['../classCortidQCT_1_1MeasurementModel.html#ad3730b9108fb265ca8185061046464e7',1,'CortidQCT::MeasurementModel::isEmpty()'],['../classCortidQCT_1_1Mesh.html#abb1637fc84ae7be14d674208085ef34b',1,'CortidQCT::Mesh::isEmpty()'],['../classCortidQCT_1_1VoxelVolume.html#aa0f63a796671e067fb367da4237920e6',1,'CortidQCT::VoxelVolume::isEmpty()']]]
+  ['fit',['fit',['../classCortidQCT_1_1MeshFitter.html#a1baf4e777cae078166fc5e624c081a7e',1,'CortidQCT::MeshFitter::fit()'],['../classCortidQCT_1_1Internal_1_1WeightedARAPFitter.html#a66ed245193254b10189008f44ba80023',1,'CortidQCT::Internal::WeightedARAPFitter::fit()']]],
+  ['fromfile',['fromFile',['../structCortidQCT_1_1ColorToLabelMaps_1_1CustomMap.html#a8229272fa15812867a7beffebd186285',1,'CortidQCT::ColorToLabelMaps::CustomMap::fromFile()'],['../classCortidQCT_1_1MeasurementModel.html#a8686e7f47fad84e491cdefe2ec588557',1,'CortidQCT::MeasurementModel::fromFile()'],['../structCortidQCT_1_1MeshFitter_1_1Configuration.html#a3644ef632c7c514015bb3dc4a6fa1e05',1,'CortidQCT::MeshFitter::Configuration::fromFile()']]]
 ];

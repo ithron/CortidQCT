@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['impl',['Impl',['../classCortidQCT_1_1MeshFitter_1_1Impl.html',1,'CortidQCT::MeshFitter']]],
-  ['index',['Index',['../classCortidQCT_1_1Mesh.html#a85ed47c4807bd85372175889555ed77c',1,'CortidQCT::Mesh']]],
-  ['io',['io',['../namespaceCortidQCT.html#afdf585501b21f53665581106d1df5d8b',1,'CortidQCT::io(Eigen::MatrixBase&lt; MatrixType &gt; &amp;matrix)'],['../namespaceCortidQCT.html#a89f0eb5f9bbd32599158df42fe221056',1,'CortidQCT::io(Eigen::MatrixBase&lt; MatrixType &gt; const &amp;matrix)']]],
-  ['isempty',['isEmpty',['../classCortidQCT_1_1MeasurementModel.html#ad3730b9108fb265ca8185061046464e7',1,'CortidQCT::MeasurementModel::isEmpty()'],['../classCortidQCT_1_1Mesh.html#abb1637fc84ae7be14d674208085ef34b',1,'CortidQCT::Mesh::isEmpty()'],['../classCortidQCT_1_1VoxelVolume.html#aa0f63a796671e067fb367da4237920e6',1,'CortidQCT::VoxelVolume::isEmpty()']]]
+  ['hash_3c_20cortidqct_3a_3acolorrgb_20_3e',['hash&lt; CortidQCT::ColorRGB &gt;',['../structstd_1_1hash_3_01CortidQCT_1_1ColorRGB_01_4.html',1,'std']]],
+  ['height',['height',['../structCortidQCT_1_1VolumeSize.html#a7558c3ad1e18ba8f3d1f490408bdf15a',1,'CortidQCT::VolumeSize::height()'],['../structCortidQCT_1_1VoxelSize.html#ada3d0014ba4585c8351ceb366ab3af93',1,'CortidQCT::VoxelSize::height()']]]
 ];

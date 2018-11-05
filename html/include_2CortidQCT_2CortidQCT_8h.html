@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>CortidQCT: lib/Mesh.cpp File Reference</title>
+<title>CortidQCT: include/CortidQCT/CortidQCT.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -38,6 +38,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="modules.html"><span>Modules</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
@@ -62,6 +63,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
 <!-- window showing the filter options -->
@@ -69,7 +71,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Friends</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Groups</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -80,35 +82,26 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_97aefd0d527b934f1d99a682da8fe6a9.html">lib</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_32d3d349a0cd85d1b7dafed9ef1b2cb4.html">CortidQCT</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#namespaces">Namespaces</a>  </div>
   <div class="headertitle">
-<div class="title">Mesh.cpp File Reference</div>  </div>
+<div class="title">CortidQCT.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Implementation for Mesh type.  
+<p>Main header file for <a class="el" href="namespaceCortidQCT.html" title="Name namespace for CortidQCT library. ">CortidQCT</a> library.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &quot;<a class="el" href="Mesh_8h_source.html">Mesh.h</a>&quot;</code><br/>
-<code>#include &quot;<a class="el" href="CheckExtension_8h_source.html">CheckExtension.h</a>&quot;</code><br/>
-<code>#include &quot;<a class="el" href="MatrixIO_8h_source.html">MatrixIO.h</a>&quot;</code><br/>
-<code>#include &quot;<a class="el" href="MeshHelpers_8h_source.html">MeshHelpers.h</a>&quot;</code><br/>
-<code>#include &lt;gsl/gsl&gt;</code><br/>
-<code>#include &lt;igl/orient_outward.h&gt;</code><br/>
-<code>#include &lt;igl/orientable_patches.h&gt;</code><br/>
-<code>#include &lt;igl/readOFF.h&gt;</code><br/>
-<code>#include &lt;igl/read_triangle_mesh.h&gt;</code><br/>
-<code>#include &lt;igl/writeOFF.h&gt;</code><br/>
-<code>#include &lt;igl/write_triangle_mesh.h&gt;</code><br/>
-<code>#include &lt;algorithm&gt;</code><br/>
-<code>#include &lt;cctype&gt;</code><br/>
-<code>#include &lt;fstream&gt;</code><br/>
-<code>#include &lt;limits&gt;</code><br/>
-</div><table class="memberdecls">
+<div class="textblock"><code>#include &quot;<a class="el" href="MeasurementModel_8h_source.html">src/MeasurementModel.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="Mesh_8h_source.html">src/Mesh.h</a>&quot;</code><br/>
+<code>#include &quot;src/MeshFitter.h&quot;</code><br/>
+<code>#include &quot;<a class="el" href="VoxelVolume_8h_source.html">src/VoxelVolume.h</a>&quot;</code><br/>
+</div>
+<p><a href="include_2CortidQCT_2CortidQCT_8h_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:namespaceCortidQCT"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCortidQCT.html">CortidQCT</a></td></tr>
@@ -116,13 +109,13 @@ Namespaces</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Implementation for Mesh type. </p>
+<div class="textblock"><p>Main header file for <a class="el" href="namespaceCortidQCT.html" title="Name namespace for CortidQCT library. ">CortidQCT</a> library. </p>
 <dl class="section author"><dt>Author</dt><dd>Stefan Reinhold </dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>Copyright (C) 2018 Stefan Reinhold &ndash; All Rights Reserved. You may use, distribute and modify this code under the terms of the AFL 3.0 license; see LICENSE for full license details. </dd></dl>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Nov 2 2018 16:45:08 for CortidQCT by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Nov 5 2018 15:26:54 for CortidQCT by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
