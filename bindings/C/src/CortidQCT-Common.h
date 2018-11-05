@@ -2,6 +2,8 @@
 
 #include "CortidQCT.h"
 
+#include <CortidQCT/CortidQCT.h>
+
 #include <cstddef>
 
 namespace CortidQCT {
@@ -43,3 +45,11 @@ template<class T, class ...Args> Id constructObject(Args &&...args) {
 } // namespace C
 } // namespace Internal
 } // namespace CortidQCT
+
+struct CQCT_VoxelVolume_t {
+  CortidQCT::Internal::C::GenericObjectWrapper<CortidQCT::VoxelVolume> impl;
+};
+
+struct CQCT_Mesh_t {
+  CortidQCT::Internal::C::GenericObjectWrapper<CortidQCT::Mesh<float>> impl;
+};

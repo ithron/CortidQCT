@@ -5,53 +5,74 @@
 using namespace CortidQCT;
 using namespace CortidQCT::Internal::C;
 
-struct CQCT_Mesh_t {
-  CortidQCT::Internal::C::GenericObjectWrapper<CortidQCT::Mesh<float>> impl;
-};
-
 CQCT_EXTERN CQCT_Mesh CQCT_createMesh() {
   return static_cast<CQCT_Mesh>(constructObject<Mesh<float>>());
 }
 
-CQCT_EXTERN bool CQCT_loadMeshFromFile(CQCT_Mesh mesh,
-                                       const char *filename,
-                                       CQCT_Error *error) {
+CQCT_EXTERN CQCT_Mesh CQCT_meshFromFile(const char *filename,
+                                        CQCT_Error *error) {
+  auto mesh = CQCT_createMesh();
+  CQCT_loadMesh(mesh, filename, error);
   
+  return static_cast<CQCT_Mesh>(CQCT_autorelease(mesh));
+}
+
+CQCT_EXTERN CQCT_Mesh CQCT_meshAndLabelsFromFile(const char *meshFilename,
+                                                 const char *labelFilename,
+                                                 CQCT_Error *error) {
+  auto mesh = CQCT_createMesh();
+  CQCT_loadMeshAndLabels(mesh, meshFilename, labelFilename, error);
+  
+  return static_cast<CQCT_Mesh>(CQCT_autorelease(mesh));
+}
+
+CQCT_EXTERN bool CQCT_loadMesh(CQCT_Mesh mesh,
+                               const char *filename,
+                               CQCT_Error *error) {
+  assert(mesh != nullptr);
   try {
     
     mesh->impl.objPtr->loadFromFile(filename);
     return true;
     
   } catch (std::invalid_argument const &e) {
-    
     if (error != nullptr) {
-      CQCT_release(*error);
       *error = CQCT_createError(CQCT_ErrorId_InvalidArgument, e.what());
+      CQCT_autorelease(*error);
     }
-    
-    return false;
+  } catch (std::exception const &e) {
+    if (error != nullptr) {
+      *error = CQCT_createError(CQCT_ErrorId_Unknown, e.what());
+      CQCT_autorelease(*error);
+    }
   }
+  
+  return false;
 }
 
-CQCT_EXTERN bool CQCT_loadMeshAndLabelsFromFile(CQCT_Mesh mesh,
-                                                const char *meshFilename,
-                                                const char *labelsFilename,
-                                                CQCT_Error *error) {
-  
+CQCT_EXTERN bool CQCT_loadMeshAndLabels(CQCT_Mesh mesh,
+                                        const char *meshFilename,
+                                        const char *labelsFilename,
+                                        CQCT_Error *error) {
+  assert(mesh != nullptr);
   try {
     
     mesh->impl.objPtr->loadFromFile(meshFilename, labelsFilename);
     return true;
     
   } catch (std::invalid_argument const &e) {
-    
     if (error != nullptr) {
-      CQCT_release(*error);
       *error = CQCT_createError(CQCT_ErrorId_InvalidArgument, e.what());
+      CQCT_autorelease(*error);
     }
-    
-    return false;
+  } catch (std::exception const &e) {
+    if (error != nullptr) {
+      *error = CQCT_createError(CQCT_ErrorId_Unknown, e.what());
+      CQCT_autorelease(*error);
+    }
   }
+  
+  return false;
 }
 
 CQCT_EXTERN size_t CQCT_meshVertexCount(CQCT_Mesh mesh) {
