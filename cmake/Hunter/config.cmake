@@ -6,6 +6,7 @@ hunter_config(yaml-cpp
     YAML_CPP_BUILD_TESTS=OFF
     YAML_CPP_BUILD_TOOLS=OFF
     YAML_CPP_BUILD_CONTRIB=OFF
+    CMAKE_POSITION_INDEPENDENT_CODE=ON
 )
 
 if (CortidQCT_GIT_SELF)
@@ -38,6 +39,7 @@ hunter_config(ImageStack
   CMAKE_ARGS
     BUILD_TESTING=OFF
     BUILD_EXAMPLES=OFF
+    CMAKE_POSITION_INDEPENDENT_CODE=ON
 )
 
 hunter_config(Microsoft.GSL

@@ -45,6 +45,8 @@ add_library(Core
 )
 add_library(PrivateAPI INTERFACE)
 
+set_property(TARGET Core PROPERTY POSITION_INDEPENDENT_CODE True)
+
 target_link_libraries(Core
   PUBLIC
     Common
