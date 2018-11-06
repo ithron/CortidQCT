@@ -46,7 +46,8 @@
  * @include examples/cli.c
  * @{
  */
-#pragma once
+#ifndef CORTIDQCT_C_BINDINGS_CORTIDQCT_H__
+#define CORTIDQCT_C_BINDINGS_CORTIDQCT_H__
 
 #ifdef __cplusplus
 extern "C" {
@@ -277,6 +278,8 @@ CQCT_EXTERN CQCT_MeshFitterResult CQCT_meshFitterFit(CQCT_MeshFitter meshFitter,
 
 #ifdef __cplusplus
 }
+#endif
+
 #endif
 
 /// @}
