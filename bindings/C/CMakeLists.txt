@@ -55,11 +55,11 @@ target_compile_features(C-Bindings-Objects
 
 if(WIN32)
   if (CMAKE_BUILD_TYPE MATCHES DEBUG)
-    target_compile_options(C-Bindings INTERFACE /w /W0 /MTd)
-    target_compile_options(C-Bindings-Objects INTERFACE /w /W0 /MTd)
+    target_compile_options(C-Bindings PUBLIC /w /W0 /MTd)
+    target_compile_options(C-Bindings-PUBLIC INTERFACE /w /W0 /MTd)
   else()
-    target_compile_options(C-Bindings INTERFACE /w /W0 /MT)
-    target_compile_options(C-Bindings-Objects INTERFACE /w /W0 /MT)
+    target_compile_options(C-Bindings PUBLIC /w /W0 /MT)
+    target_compile_options(C-Bindings-Objects PUBLIC /w /W0 /MT)
   endif()
 endif()
 
