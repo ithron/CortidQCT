@@ -53,6 +53,15 @@ target_compile_features(C-Bindings-Objects
     $<TARGET_PROPERTY:C-Bindings,COMPILE_FEATURES>
 )
 
+if(WIN32)
+  if (CMAKE_BUILD_TYPE MATCHES DEBUG)
+    target_compile_options(C-Bindings INTERFACE /w /W0 /MTd)
+  else()
+    target_compile_options(C-Bindings INTERFACE /w /W0 /MT)
+  endif()
+endif()
+
+
 set_target_properties(C-Bindings PROPERTIES OUTPUT_NAME "CortidQCT-C")
 
 set(CMAKE_C_VISIBILITY_PRESET hidden)
