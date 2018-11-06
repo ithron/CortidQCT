@@ -23,3 +23,15 @@ CQCT_EXTERN size_t CQCT_voxelVolumeDepth(CQCT_VoxelVolume volume) {
   return CQCT_voxelVolumeSize(volume).depth;
 }
 
+CQCT_EXTERN float CQCT_voxelVolumeVoxelWidth(CQCT_VoxelVolume volume) {
+  return CQCT_voxelVolumeVoxelSize(volume).width;
+}
+
+CQCT_EXTERN float CQCT_voxelVolumeVoxelHeight(CQCT_VoxelVolume volume) {
+  return CQCT_voxelVolumeVoxelSize(volume).height;
+}
+
+CQCT_EXTERN float CQCT_voxelVolumeVoxelDepth(CQCT_VoxelVolume volume) {
+  return CQCT_voxelVolumeVoxelSize(volume).depth;
+}
+

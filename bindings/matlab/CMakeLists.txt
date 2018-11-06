@@ -53,10 +53,10 @@ install(
   DESTINATION
     "${CMAKE_INSTALL_INCLUDEDIR}"
 )
-install(
-  FILES
-    "${CMAKE_CURRENT_BINARY_DIR}/cortidqct-matlab_export.h"
-  DESTINATION
-    "${CMAKE_INSTALL_INCLUDEDIR}/CortidQCT/Matlab"
-)
+# install(
+#   FILES
+#     "${CMAKE_CURRENT_BINARY_DIR}/cortidqct-matlab_export.h"
+#   DESTINATION
+#     "${CMAKE_INSTALL_INCLUDEDIR}/CortidQCT/Matlab"
+# )
 
