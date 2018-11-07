@@ -134,9 +134,13 @@ struct CQCT_VoxelVolume_t;
 /// Voxel volume handle type
 typedef struct CQCT_VoxelVolume_t *CQCT_VoxelVolume;
 
-/// Creates a voxel volume by loading from the given file
-CQCT_EXTERN CQCT_VoxelVolume CQCT_createVoxelVolume(const char *filename,
-                                                    CQCT_Error *error);
+/// Creates an empty voxel volume
+CQCT_EXTERN CQCT_VoxelVolume CQCT_createVoxelVolume();
+
+/// Loads the voxel volume from file
+CQCT_EXTERN int CQCT_voxelVolumeLoadFromFile(CQCT_VoxelVolume volume,
+                                             const char *filename,
+                                             CQCT_Error *error);
 
 /// Returns the size of the voxel volume
 CQCT_EXTERN CQCT_VoxelVolumeSize CQCT_voxelVolumeSize(CQCT_VoxelVolume volume);
@@ -286,7 +290,6 @@ CQCT_EXTERN size_t CQCT_meshCopyLabels(CQCT_Mesh mesh,
  * @name ColorToLabelMap object type
  * @{
  */
-
 
 /// Creates a default color to label map
 CQCT_EXTERN CQCT_ColorToLabelMap CQCT_createColorToLabelMap();

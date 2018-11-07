@@ -7,13 +7,19 @@
 using namespace CortidQCT;
 using namespace CortidQCT::Internal::C;
 
-CORTIDQCT_C_EXPORT CQCT_EXTERN CQCT_VoxelVolume
-CQCT_createVoxelVolume(const char *filename, CQCT_Error *error) {
+CORTIDQCT_C_EXPORT CQCT_EXTERN CQCT_VoxelVolume CQCT_createVoxelVolume() {
+  return static_cast<CQCT_VoxelVolume>(constructObject<VoxelVolume>());
+}
+
+CORTIDQCT_C_EXPORT CQCT_EXTERN int
+CQCT_voxelVolumeLoadFromFile(CQCT_VoxelVolume volume, const char *filename, CQCT_Error *error) {
+  assert(volume != nullptr);
 
   try {
 
-    return static_cast<CQCT_VoxelVolume>(
-        constructObject<VoxelVolume>(filename));
+    volume->impl.objPtr->loadFromFile(filename);
+
+    return true;
 
   } catch (std::invalid_argument const &e) {
     if (error != nullptr) {
@@ -33,7 +39,7 @@ CQCT_createVoxelVolume(const char *filename, CQCT_Error *error) {
     }
   }
 
-  return nullptr;
+  return false;
 }
 
 CORTIDQCT_C_EXPORT CQCT_EXTERN CQCT_VoxelVolumeSize
