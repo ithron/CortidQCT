@@ -82,7 +82,7 @@ classdef VoxelVolume < ObjectBase
     
     function obj = fromFile(filename)
       
-      obj = Mesh;
+      obj = VoxelVolume;
       obj.loadFromFile(filename);
       
     end
