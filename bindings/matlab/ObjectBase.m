@@ -2,19 +2,23 @@ classdef (Abstract) ObjectBase < handle
   
   properties (Access = protected)
     handle
+    autoreleased = false
   end
   
   methods
     function obj = ObjectBase(handle)
       obj.handle = handle;
+      obj.autoreleased = handle.isNull;
     end
     
     function delete(obj)
-      obj.release;
+      if not(obj.autoreleased)
+        obj.release;
+      end
     end
   end
   
-  methods(Access = private, Static)
+  methods(Access = protected, Static)
     
     function prepareLib()
       if not(libisloaded('CortidQCT'))
