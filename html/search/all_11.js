@@ -6,7 +6,7 @@ var searchData=
   ['volumesampler',['VolumeSampler',['../classCortidQCT_1_1VolumeSampler.html',1,'CortidQCT']]],
   ['volumesize',['VolumeSize',['../structCortidQCT_1_1VolumeSize.html',1,'CortidQCT']]],
   ['volumesize_2eh',['VolumeSize.h',['../VolumeSize_8h.html',1,'']]],
-  ['voxelsize',['VoxelSize',['../structVoxelSize.html',1,'VoxelSize'],['../classCortidQCT_1_1VoxelVolume.html#abaefe2a77728ffa149c0685055c3e8cd',1,'CortidQCT::VoxelVolume::voxelSize()']]],
+  ['voxelsize',['voxelSize',['../classCortidQCT_1_1VoxelVolume.html#abaefe2a77728ffa149c0685055c3e8cd',1,'CortidQCT::VoxelVolume']]],
   ['voxelsize',['VoxelSize',['../structCortidQCT_1_1VoxelSize.html',1,'CortidQCT']]],
   ['voxelsize_2eh',['VoxelSize.h',['../VoxelSize_8h.html',1,'']]],
   ['voxelvolume',['VoxelVolume',['../classCortidQCT_1_1VoxelVolume.html',1,'CortidQCT']]],
