@@ -1,7 +1,6 @@
 var searchData=
 [
   ['martrixiowrapper',['MartrixIOWrapper',['../structCortidQCT_1_1MartrixIOWrapper.html',1,'CortidQCT']]],
-  ['matlab_20api',['Matlab API',['../group__Matlab-API.html',1,'']]],
   ['matrixio_2eh',['MatrixIO.h',['../MatrixIO_8h.html',1,'']]],
   ['max',['max',['../structCortidQCT_1_1DiscreteRange.html#ad91b84986cb4089b00e72b3023e4786e',1,'CortidQCT::DiscreteRange']]],
   ['maxiterations',['maxIterations',['../structCortidQCT_1_1MeshFitter_1_1Configuration.html#a99d15229e561c8dd0d3cd3c283bdbf74',1,'CortidQCT::MeshFitter::Configuration']]],
