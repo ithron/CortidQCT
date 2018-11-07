@@ -219,6 +219,43 @@ CQCT_EXTERN size_t CQCT_meshCopyLabels(CQCT_Mesh mesh,
 /// @}
 
 // MARK: -
+// MARK: ColorToLabelMap Type
+
+/**
+ * @name ColorToLabelMap object type
+ * @{
+ */
+
+struct CQCT_ColorToLabelMap_t;
+/// ColorToLabelMap handle type
+typedef struct CQCT_ColorToLabelMap_t *CQCT_ColorToLabelMap;
+
+/// Creates a default color to label map
+CQCT_EXTERN CQCT_ColorToLabelMap CQCT_createColorToLabelMap();
+
+/// Loads the mapping from YAML file
+CQCT_EXTERN int CQCT_colorToLabelMapLoadFromFile(CQCT_ColorToLabelMap map,
+                                                 const char *filename,
+                                                 CQCT_Error *error);
+
+/// Returns number of entries of the map
+CQCT_EXTERN size_t CQCT_colorToLabelMapEntryCount(CQCT_ColorToLabelMap map);
+
+/// @brief Copies the entries of the map into the given buffer.
+///
+/// If `*bufferPtr == NULL` the memory for the buffer is allocated by the
+/// function and the caller is responisble for releasing it.
+/// Entries are in the follwing order: [R0, G0, B0, L0, R1, G1, B1, L1, ...].
+CQCT_EXTERN size_t CQCT_colorToLabelMapCopyEntries(CQCT_ColorToLabelMap map,
+                                                   unsigned int **bufferPtr);
+
+/// @brief Sets the entries of the mapping
+CQCT_EXTERN void CQCT_colorToLabelMapSetEntries(CQCT_ColorToLabelMap map,
+                                                size_t count,
+                                                const unsigned int *entries);
+/// @}
+
+// MARK: -
 // MARK: MeshFitter Type
 /**
  * @name MeshFitter object type

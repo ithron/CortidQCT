@@ -17,6 +17,7 @@ include(GenerateExportHeader)
 # Targets
 
 add_library(C-Bindings-Objects OBJECT
+  src/ColorToLabelMap.cpp
   src/Error.cpp
   src/Mesh.cpp
   src/MeshFitter.cpp
