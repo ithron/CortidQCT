@@ -1,11 +1,11 @@
 classdef (Abstract) ObjectBase < handle
   
-  properties (Access = public)
+  properties (Access = protected)
     handle
   end
   
   methods
-    function obj = CortidQCT_Object(handle)
+    function obj = ObjectBase(handle)
       obj.handle = handle;
     end
     
