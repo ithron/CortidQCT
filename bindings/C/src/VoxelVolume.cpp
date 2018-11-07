@@ -7,8 +7,8 @@
 using namespace CortidQCT;
 using namespace CortidQCT::Internal::C;
 
-CQCT_EXTERN CQCT_VoxelVolume CQCT_createVoxelVolume(const char *filename,
-                                                    CQCT_Error *error) {
+CORTIDQCT_C_EXPORT CQCT_EXTERN CQCT_VoxelVolume
+CQCT_createVoxelVolume(const char *filename, CQCT_Error *error) {
 
   try {
 
@@ -36,14 +36,15 @@ CQCT_EXTERN CQCT_VoxelVolume CQCT_createVoxelVolume(const char *filename,
   return nullptr;
 }
 
-CQCT_EXTERN CQCT_VoxelVolumeSize CQCT_voxelVolumeSize(CQCT_VoxelVolume volume) {
+CORTIDQCT_C_EXPORT CQCT_EXTERN CQCT_VoxelVolumeSize
+CQCT_voxelVolumeSize(CQCT_VoxelVolume volume) {
   assert(volume != nullptr);
 
   auto const size = volume->impl.objPtr->size();
   return CQCT_VoxelVolumeSize{size.width, size.height, size.depth};
 }
 
-CQCT_EXTERN CQCT_VoxelVolumeVoxelSize
+CORTIDQCT_C_EXPORT CQCT_EXTERN CQCT_VoxelVolumeVoxelSize
 CQCT_voxelVolumeVoxelSize(CQCT_VoxelVolume volume) {
   assert(volume != nullptr);
 
@@ -51,8 +52,8 @@ CQCT_voxelVolumeVoxelSize(CQCT_VoxelVolume volume) {
   return CQCT_VoxelVolumeVoxelSize{size.width, size.height, size.depth};
 }
 
-CQCT_EXTERN size_t CQCT_voxelVolumeCopyVoxels(CQCT_VoxelVolume volume,
-                                              float **buffer) {
+CORTIDQCT_C_EXPORT CQCT_EXTERN size_t
+CQCT_voxelVolumeCopyVoxels(CQCT_VoxelVolume volume, float **buffer) {
   assert(volume != nullptr);
   assert(buffer != nullptr);
 

@@ -31,6 +31,8 @@ set_target_properties(matlab-bindings PROPERTIES OUTPUT_NAME "CortidQCT-Matlab")
 add_library(CortidQCT::Bindings::Matlab ALIAS matlab-bindings)
 
 include(GenerateExportHeader)
+set(CMAKE_C_VISIBILITY_PRESET hidden)
+set(CMAKE_VISIBILITY_INLINES_HIDDEN 1)
 generate_export_header(matlab-bindings
   BASE_NAME cortidqct-matlab
 )

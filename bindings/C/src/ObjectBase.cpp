@@ -50,15 +50,17 @@ static AutoreleasePool &getPool() {
 
 } // anonymous namespace
 
-CQCT_EXTERN Id CQCT_autorelease(Id obj) {
+CORTIDQCT_C_EXPORT CQCT_EXTERN Id CQCT_autorelease(Id obj) {
   getPool().autorelease(obj);
 
   return obj;
 }
 
-CQCT_EXTERN void CQCT_autoreleasePoolPush() { getPool().push(); }
+CORTIDQCT_C_EXPORT CQCT_EXTERN void CQCT_autoreleasePoolPush() {
+  getPool().push();
+}
 
-CQCT_EXTERN void CQCT_autoreleasePoolPop() {
+CORTIDQCT_C_EXPORT CQCT_EXTERN void CQCT_autoreleasePoolPop() {
   auto &pool = getPool();
   if (pool.empty()) {
     delete gPool;
@@ -67,7 +69,7 @@ CQCT_EXTERN void CQCT_autoreleasePoolPop() {
   }
 }
 
-CQCT_EXTERN Id CQCT_retain(Id obj) {
+CORTIDQCT_C_EXPORT CQCT_EXTERN Id CQCT_retain(Id obj) {
   if (obj == nullptr) return obj;
 
   auto controlPtr = static_cast<CortidQCT::Internal::C::Control *>(obj);
@@ -77,7 +79,7 @@ CQCT_EXTERN Id CQCT_retain(Id obj) {
   return obj;
 }
 
-CQCT_EXTERN void CQCT_release(Id obj) {
+CORTIDQCT_C_EXPORT CQCT_EXTERN void CQCT_release(Id obj) {
   if (obj == nullptr) return;
 
   auto controlPtr = static_cast<CortidQCT::Internal::C::Control *>(obj);

@@ -5,29 +5,28 @@
 using namespace CortidQCT;
 using namespace CortidQCT::Internal::C;
 
-CQCT_EXTERN CQCT_Mesh CQCT_createMesh() {
+CORTIDQCT_C_EXPORT CQCT_EXTERN CQCT_Mesh CQCT_createMesh() {
   return static_cast<CQCT_Mesh>(constructObject<Mesh<float>>());
 }
 
-CQCT_EXTERN CQCT_Mesh CQCT_meshFromFile(const char *filename,
-                                        CQCT_Error *error) {
+CORTIDQCT_C_EXPORT CQCT_EXTERN CQCT_Mesh CQCT_meshFromFile(const char *filename,
+                                                           CQCT_Error *error) {
   auto mesh = CQCT_createMesh();
   CQCT_loadMesh(mesh, filename, error);
 
   return static_cast<CQCT_Mesh>(CQCT_autorelease(mesh));
 }
 
-CQCT_EXTERN CQCT_Mesh CQCT_meshAndLabelsFromFile(const char *meshFilename,
-                                                 const char *labelFilename,
-                                                 CQCT_Error *error) {
+CORTIDQCT_C_EXPORT CQCT_EXTERN CQCT_Mesh CQCT_meshAndLabelsFromFile(
+    const char *meshFilename, const char *labelFilename, CQCT_Error *error) {
   auto mesh = CQCT_createMesh();
   CQCT_loadMeshAndLabels(mesh, meshFilename, labelFilename, error);
 
   return static_cast<CQCT_Mesh>(CQCT_autorelease(mesh));
 }
 
-CQCT_EXTERN int CQCT_loadMesh(CQCT_Mesh mesh, const char *filename,
-                              CQCT_Error *error) {
+CORTIDQCT_C_EXPORT CQCT_EXTERN int
+CQCT_loadMesh(CQCT_Mesh mesh, const char *filename, CQCT_Error *error) {
   assert(mesh != nullptr);
   try {
 
@@ -55,9 +54,9 @@ CQCT_EXTERN int CQCT_loadMesh(CQCT_Mesh mesh, const char *filename,
   return false;
 }
 
-CQCT_EXTERN int CQCT_loadMeshAndLabels(CQCT_Mesh mesh, const char *meshFilename,
-                                       const char *labelsFilename,
-                                       CQCT_Error *error) {
+CORTIDQCT_C_EXPORT CQCT_EXTERN int
+CQCT_loadMeshAndLabels(CQCT_Mesh mesh, const char *meshFilename,
+                       const char *labelsFilename, CQCT_Error *error) {
   assert(mesh != nullptr);
   try {
 
@@ -85,10 +84,9 @@ CQCT_EXTERN int CQCT_loadMeshAndLabels(CQCT_Mesh mesh, const char *meshFilename,
   return false;
 }
 
-CQCT_EXTERN int CQCT_meshAndLabelsWriteToFile(CQCT_Mesh mesh,
-                                              const char *meshFilename,
-                                              const char *labelsFilename,
-                                              CQCT_Error *error) {
+CORTIDQCT_C_EXPORT CQCT_EXTERN int
+CQCT_meshAndLabelsWriteToFile(CQCT_Mesh mesh, const char *meshFilename,
+                              const char *labelsFilename, CQCT_Error *error) {
   assert(mesh != nullptr);
 
   try {
@@ -115,19 +113,20 @@ CQCT_EXTERN int CQCT_meshAndLabelsWriteToFile(CQCT_Mesh mesh,
   return false;
 }
 
-CQCT_EXTERN size_t CQCT_meshVertexCount(CQCT_Mesh mesh) {
+CORTIDQCT_C_EXPORT CQCT_EXTERN size_t CQCT_meshVertexCount(CQCT_Mesh mesh) {
   assert(mesh != nullptr);
 
   return mesh->impl.objPtr->vertexCount();
 }
 
-CQCT_EXTERN size_t CQCT_meshTriangleCount(CQCT_Mesh mesh) {
+CORTIDQCT_C_EXPORT CQCT_EXTERN size_t CQCT_meshTriangleCount(CQCT_Mesh mesh) {
   assert(mesh != nullptr);
 
   return mesh->impl.objPtr->triangleCount();
 }
 
-CQCT_EXTERN size_t CQCT_meshCopyVertices(CQCT_Mesh mesh, float **bufferPtr) {
+CORTIDQCT_C_EXPORT CQCT_EXTERN size_t CQCT_meshCopyVertices(CQCT_Mesh mesh,
+                                                            float **bufferPtr) {
   assert(mesh != nullptr);
   assert(bufferPtr != nullptr);
 
@@ -144,8 +143,8 @@ CQCT_EXTERN size_t CQCT_meshCopyVertices(CQCT_Mesh mesh, float **bufferPtr) {
   return size;
 }
 
-CQCT_EXTERN size_t CQCT_meshCopyTriangles(CQCT_Mesh mesh,
-                                          ptrdiff_t **bufferPtr) {
+CORTIDQCT_C_EXPORT CQCT_EXTERN size_t
+CQCT_meshCopyTriangles(CQCT_Mesh mesh, ptrdiff_t **bufferPtr) {
   assert(mesh != nullptr);
   assert(bufferPtr != nullptr);
 
@@ -163,8 +162,8 @@ CQCT_EXTERN size_t CQCT_meshCopyTriangles(CQCT_Mesh mesh,
   return size;
 }
 
-CQCT_EXTERN size_t CQCT_meshCopyLabels(CQCT_Mesh mesh,
-                                       unsigned int **bufferPtr) {
+CORTIDQCT_C_EXPORT CQCT_EXTERN size_t
+CQCT_meshCopyLabels(CQCT_Mesh mesh, unsigned int **bufferPtr) {
   assert(mesh != nullptr);
   assert(bufferPtr != nullptr);
 

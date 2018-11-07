@@ -57,8 +57,6 @@ extern "C" {
 #    define CQCT_EXTERN
 #  endif
 
-#  include "cortidqct-c_export.h"
-
 #  include <stddef.h>
 
 // MARK: -
@@ -70,22 +68,22 @@ extern "C" {
 typedef void *Id;
 
 /// Retains an object, i.e. increments its retain count
-CORTIDQCT_C_EXPORT CQCT_EXTERN Id CQCT_retain(Id obj);
+CQCT_EXTERN Id CQCT_retain(Id obj);
 
 /// Releases an object, i.e. decrements its retain count and releases
 /// the memory held by the object iff the retain count reaces zero.
-CORTIDQCT_C_EXPORT CQCT_EXTERN void CQCT_release(Id obj);
+CQCT_EXTERN void CQCT_release(Id obj);
 
 /// Adds the object to the current autorelease pool. It's released when the
 /// pool is released.
-CORTIDQCT_C_EXPORT CQCT_EXTERN Id CQCT_autorelease(Id obj);
+CQCT_EXTERN Id CQCT_autorelease(Id obj);
 
 /// Adds a new autorelease pool to the stack
-CORTIDQCT_C_EXPORT CQCT_EXTERN void CQCT_autoreleasePoolPush();
+CQCT_EXTERN void CQCT_autoreleasePoolPush();
 
 /// Removes the current autorelease pool from the stack and releases all of
 /// its objects
-CORTIDQCT_C_EXPORT CQCT_EXTERN void CQCT_autoreleasePoolPop();
+CQCT_EXTERN void CQCT_autoreleasePoolPop();
 
 /// @}
 
@@ -104,15 +102,14 @@ struct CQCT_Error_t;
 typedef struct CQCT_Error_t *CQCT_Error;
 
 /// Creates an error object
-CORTIDQCT_C_EXPORT CQCT_EXTERN CQCT_Error CQCT_createError(enum CQCT_ErrorId id,
-                                                           const char *message);
+CQCT_EXTERN CQCT_Error CQCT_createError(enum CQCT_ErrorId id,
+                                        const char *message);
 
 /// Returns the error id
-CORTIDQCT_C_EXPORT CQCT_EXTERN enum CQCT_ErrorId
-CQCT_errorType(CQCT_Error error);
+CQCT_EXTERN enum CQCT_ErrorId CQCT_errorType(CQCT_Error error);
 
 /// Returns the error message
-CORTIDQCT_C_EXPORT CQCT_EXTERN const char *CQCT_errorMessage(CQCT_Error error);
+CQCT_EXTERN const char *CQCT_errorMessage(CQCT_Error error);
 
 /// @}
 
@@ -138,20 +135,19 @@ struct CQCT_VoxelVolume_t;
 typedef struct CQCT_VoxelVolume_t *CQCT_VoxelVolume;
 
 /// Creates a voxel volume by loading from the given file
-CORTIDQCT_C_EXPORT CQCT_EXTERN CQCT_VoxelVolume
-CQCT_createVoxelVolume(const char *filename, CQCT_Error *error);
+CQCT_EXTERN CQCT_VoxelVolume CQCT_createVoxelVolume(const char *filename,
+                                                    CQCT_Error *error);
 
 /// Returns the size of the voxel volume
-CORTIDQCT_C_EXPORT CQCT_EXTERN CQCT_VoxelVolumeSize
-CQCT_voxelVolumeSize(CQCT_VoxelVolume volume);
+CQCT_EXTERN CQCT_VoxelVolumeSize CQCT_voxelVolumeSize(CQCT_VoxelVolume volume);
 
 /// Returns the size of a voxel
-CORTIDQCT_C_EXPORT CQCT_EXTERN CQCT_VoxelVolumeVoxelSize
+CQCT_EXTERN CQCT_VoxelVolumeVoxelSize
 CQCT_voxelVolumeVoxelSize(CQCT_VoxelVolume volume);
 
 /// Copies the voxel data to the given buffer
-CORTIDQCT_C_EXPORT CQCT_EXTERN size_t
-CQCT_voxelVolumeCopyVoxels(CQCT_VoxelVolume volume, float **buffer);
+CQCT_EXTERN size_t CQCT_voxelVolumeCopyVoxels(CQCT_VoxelVolume volume,
+                                              float **buffer);
 
 /// @}
 
@@ -166,7 +162,7 @@ struct CQCT_Mesh_t;
 typedef struct CQCT_Mesh_t *CQCT_Mesh;
 
 /// Creates an empty mesh
-CORTIDQCT_C_EXPORT CQCT_EXTERN CQCT_Mesh CQCT_createMesh();
+CQCT_EXTERN CQCT_Mesh CQCT_createMesh();
 
 /**
  * @brief Creates and loads a mesh from file.
@@ -178,8 +174,8 @@ CORTIDQCT_C_EXPORT CQCT_EXTERN CQCT_Mesh CQCT_createMesh();
  * @note The ownershop is NOT transfered to the caller.
  * @see CortidQCT::Mesh<float>::loadFromFile()
  */
-CORTIDQCT_C_EXPORT CQCT_EXTERN CQCT_Mesh CQCT_meshFromFile(const char *filename,
-                                                           CQCT_Error *error);
+CQCT_EXTERN CQCT_Mesh CQCT_meshFromFile(const char *filename,
+                                        CQCT_Error *error);
 
 /**
  * @brief Creates and loads a mesh from a mesh and a label file.
@@ -192,28 +188,30 @@ CORTIDQCT_C_EXPORT CQCT_EXTERN CQCT_Mesh CQCT_meshFromFile(const char *filename,
  * @note The ownershop is NOT transfered to the caller.
  * @see CortidQCT::Mesh<float>::loadFromFile()
  */
-CORTIDQCT_C_EXPORT CQCT_EXTERN CQCT_Mesh CQCT_meshAndLabelsFromFile(
-    const char *meshFilename, const char *labelFilename, CQCT_Error *error);
+CQCT_EXTERN CQCT_Mesh CQCT_meshAndLabelsFromFile(const char *meshFilename,
+                                                 const char *labelFilename,
+                                                 CQCT_Error *error);
 
 /// Loads a mesh from file
-CORTIDQCT_C_EXPORT CQCT_EXTERN int
-CQCT_loadMesh(CQCT_Mesh mesh, const char *filename, CQCT_Error *error);
+CQCT_EXTERN int CQCT_loadMesh(CQCT_Mesh mesh, const char *filename,
+                              CQCT_Error *error);
 
 /// Loads a mesh from mesh and label file
-CORTIDQCT_C_EXPORT CQCT_EXTERN int
-CQCT_loadMeshAndLabels(CQCT_Mesh mesh, const char *meshFilename,
-                       const char *labelFilename, CQCT_Error *error);
+CQCT_EXTERN int CQCT_loadMeshAndLabels(CQCT_Mesh mesh, const char *meshFilename,
+                                       const char *labelFilename,
+                                       CQCT_Error *error);
 
 /// Writes mesh and labels to seperate files
-CORTIDQCT_C_EXPORT CQCT_EXTERN int
-CQCT_meshAndLabelsWriteToFile(CQCT_Mesh mesh, const char *meshFilename,
-                              const char *labelsFilename, CQCT_Error *error);
+CQCT_EXTERN int CQCT_meshAndLabelsWriteToFile(CQCT_Mesh mesh,
+                                              const char *meshFilename,
+                                              const char *labelsFilename,
+                                              CQCT_Error *error);
 
 /// Return number of vertices of the given mesh
-CORTIDQCT_C_EXPORT CQCT_EXTERN size_t CQCT_meshVertexCount(CQCT_Mesh mesh);
+CQCT_EXTERN size_t CQCT_meshVertexCount(CQCT_Mesh mesh);
 
 /// Return number of triangles of the given mesh
-CORTIDQCT_C_EXPORT CQCT_EXTERN size_t CQCT_meshTriangleCount(CQCT_Mesh mesh);
+CQCT_EXTERN size_t CQCT_meshTriangleCount(CQCT_Mesh mesh);
 
 /**
  * @brief Copies the mesh's vertices into the given buffer.
@@ -232,22 +230,21 @@ CORTIDQCT_C_EXPORT CQCT_EXTERN size_t CQCT_meshTriangleCount(CQCT_Mesh mesh);
  * @note The caller is responsible to release the memory of the buffer, even if
  * the memory was allocated by the function (when `*bufferPtr == NULL`).
  */
-CORTIDQCT_C_EXPORT CQCT_EXTERN size_t CQCT_meshCopyVertices(CQCT_Mesh mesh,
-                                                            float **bufferPtr);
+CQCT_EXTERN size_t CQCT_meshCopyVertices(CQCT_Mesh mesh, float **bufferPtr);
 
 /**
  * @brief Copies the mesh's indices into the given buffer
  * @see CQCT_meshCopyVertices()
  */
-CORTIDQCT_C_EXPORT CQCT_EXTERN size_t
-CQCT_meshCopyTriangles(CQCT_Mesh mesh, ptrdiff_t **bufferPtr);
+CQCT_EXTERN size_t CQCT_meshCopyTriangles(CQCT_Mesh mesh,
+                                          ptrdiff_t **bufferPtr);
 
 /**
  * @brief Copies the mesh's labels into the given buffer
  * @see CQCT_meshCopyVertices()
  */
-CORTIDQCT_C_EXPORT CQCT_EXTERN size_t
-CQCT_meshCopyLabels(CQCT_Mesh mesh, unsigned int **bufferPtr);
+CQCT_EXTERN size_t CQCT_meshCopyLabels(CQCT_Mesh mesh,
+                                       unsigned int **bufferPtr);
 
 /// @}
 
@@ -267,16 +264,15 @@ struct CQCT_MeshFitterResult_t;
 typedef struct CQCT_MeshFitterResult_t *CQCT_MeshFitterResult;
 
 /// Creates a mesh fitter given the configuration file
-CORTIDQCT_C_EXPORT CQCT_EXTERN CQCT_MeshFitter
-CQCT_createMeshFitter(const char *filename, CQCT_Error *error);
+CQCT_EXTERN CQCT_MeshFitter CQCT_createMeshFitter(const char *filename,
+                                                  CQCT_Error *error);
 
 /// Returns the result mesh
-CORTIDQCT_C_EXPORT CQCT_EXTERN CQCT_Mesh
-CQCT_meshFitterResultMesh(CQCT_MeshFitterResult result);
+CQCT_EXTERN CQCT_Mesh CQCT_meshFitterResultMesh(CQCT_MeshFitterResult result);
 
 /// Fits the reference mesh to the given voxel volume
-CORTIDQCT_C_EXPORT CQCT_EXTERN CQCT_MeshFitterResult
-CQCT_meshFitterFit(CQCT_MeshFitter meshFitter, CQCT_VoxelVolume volume);
+CQCT_EXTERN CQCT_MeshFitterResult CQCT_meshFitterFit(CQCT_MeshFitter meshFitter,
+                                                     CQCT_VoxelVolume volume);
 
 /// @}
 

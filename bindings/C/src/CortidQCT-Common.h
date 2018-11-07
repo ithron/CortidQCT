@@ -1,6 +1,7 @@
 #pragma once
 
 #include "CortidQCT.h"
+#include "cortidqct-c_export.h"
 
 #include <CortidQCT/CortidQCT.h>
 

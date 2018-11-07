@@ -105,13 +105,6 @@ install(TARGETS C-Bindings EXPORT CortidQCTExport
 )
 
 install(
-  FILES
-    "${CMAKE_CURRENT_BINARY_DIR}/cortidqct-c_export.h"
-  DESTINATION
-    "${CMAKE_INSTALL_INCLUDEDIR}/CortidQCT/C"
-)
-
-install(
   DIRECTORY
     "${CMAKE_CURRENT_SOURCE_DIR}/include/CortidQCT"
   DESTINATION
