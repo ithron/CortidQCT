@@ -11,8 +11,13 @@ CORTIDQCT_C_EXPORT CQCT_EXTERN CQCT_Mesh CQCT_createMesh() {
 
 CORTIDQCT_C_EXPORT CQCT_EXTERN CQCT_Mesh CQCT_meshFromFile(const char *filename,
                                                            CQCT_Error *error) {
+  return CQCT_meshFromFileWithCustomMapping(filename, nullptr, error);
+}
+
+CORTIDQCT_C_EXPORT CQCT_EXTERN CQCT_Mesh CQCT_meshFromFileWithCustomMapping(
+    const char *filename, CQCT_ColorToLabelMap map, CQCT_Error *error) {
   auto mesh = CQCT_createMesh();
-  CQCT_loadMesh(mesh, filename, error);
+  CQCT_loadMeshWithCustomMapping(mesh, filename, map, error);
 
   return static_cast<CQCT_Mesh>(CQCT_autorelease(mesh));
 }
@@ -27,10 +32,20 @@ CORTIDQCT_C_EXPORT CQCT_EXTERN CQCT_Mesh CQCT_meshAndLabelsFromFile(
 
 CORTIDQCT_C_EXPORT CQCT_EXTERN int
 CQCT_loadMesh(CQCT_Mesh mesh, const char *filename, CQCT_Error *error) {
+  return CQCT_loadMeshWithCustomMapping(mesh, filename, nullptr, error);
+}
+
+CORTIDQCT_C_EXPORT CQCT_EXTERN int
+CQCT_loadMeshWithCustomMapping(CQCT_Mesh mesh, const char *filename,
+                               CQCT_ColorToLabelMap map, CQCT_Error *error) {
   assert(mesh != nullptr);
   try {
 
-    mesh->impl.objPtr->loadFromFile(filename);
+    if (map == nullptr) {
+      mesh->impl.objPtr->loadFromFile(filename);
+    } else {
+      mesh->impl.objPtr->loadFromFile(filename, *map->impl_.objPtr);
+    }
     return true;
 
   } catch (std::invalid_argument const &e) {

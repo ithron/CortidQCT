@@ -53,3 +53,9 @@ struct CQCT_VoxelVolume_t {
 struct CQCT_Mesh_t {
   CortidQCT::Internal::C::GenericObjectWrapper<CortidQCT::Mesh<float>> impl;
 };
+
+struct CQCT_ColorToLabelMap_t {
+  CortidQCT::Internal::C::GenericObjectWrapper<
+      CortidQCT::ColorToLabelMaps::CustomMap>
+      impl_;
+};

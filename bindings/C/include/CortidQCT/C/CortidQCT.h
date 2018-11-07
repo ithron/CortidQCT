@@ -151,6 +151,16 @@ CQCT_EXTERN size_t CQCT_voxelVolumeCopyVoxels(CQCT_VoxelVolume volume,
 
 /// @}
 
+/** @name Custom Color To Label Map
+ * @{
+ */
+
+struct CQCT_ColorToLabelMap_t;
+/// ColorToLabelMap handle type
+typedef struct CQCT_ColorToLabelMap_t *CQCT_ColorToLabelMap;
+
+/// @}
+
 // MARK: -
 // MARK: Mesh Type
 /**
@@ -178,6 +188,21 @@ CQCT_EXTERN CQCT_Mesh CQCT_meshFromFile(const char *filename,
                                         CQCT_Error *error);
 
 /**
+ * @brief Creates and loads a mesh from file using the given custom color to
+ * label mapping.
+ *
+ * @param[in] filename path to the file to load the mesh from
+ * @param[in] map custom color to label map object
+ * @param[out] error In case of an error, an error object is copied to `*error`.
+ *   NULL may be passed here to not get any error object.
+ * @return A newly created Mesh object.
+ * @note The ownershop is NOT transfered to the caller.
+ * @see CortidQCT::Mesh<float>::loadFromFile()
+ */
+CQCT_EXTERN CQCT_Mesh CQCT_meshFromFileWithCustomMapping(
+    const char *filename, CQCT_ColorToLabelMap map, CQCT_Error *error);
+
+/**
  * @brief Creates and loads a mesh from a mesh and a label file.
  *
  * @param[in] meshFilename path to the file to load the mesh from
@@ -195,6 +220,12 @@ CQCT_EXTERN CQCT_Mesh CQCT_meshAndLabelsFromFile(const char *meshFilename,
 /// Loads a mesh from file
 CQCT_EXTERN int CQCT_loadMesh(CQCT_Mesh mesh, const char *filename,
                               CQCT_Error *error);
+
+/// Loads a mesh from file using a custom color to label map
+CQCT_EXTERN int CQCT_loadMeshWithCustomMapping(CQCT_Mesh mesh,
+                                               const char *filename,
+                                               CQCT_ColorToLabelMap map,
+                                               CQCT_Error *error);
 
 /// Loads a mesh from mesh and label file
 CQCT_EXTERN int CQCT_loadMeshAndLabels(CQCT_Mesh mesh, const char *meshFilename,
@@ -256,9 +287,6 @@ CQCT_EXTERN size_t CQCT_meshCopyLabels(CQCT_Mesh mesh,
  * @{
  */
 
-struct CQCT_ColorToLabelMap_t;
-/// ColorToLabelMap handle type
-typedef struct CQCT_ColorToLabelMap_t *CQCT_ColorToLabelMap;
 
 /// Creates a default color to label map
 CQCT_EXTERN CQCT_ColorToLabelMap CQCT_createColorToLabelMap();

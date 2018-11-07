@@ -7,10 +7,6 @@
 using namespace CortidQCT;
 using namespace CortidQCT::Internal::C;
 
-struct CQCT_ColorToLabelMap_t {
-  GenericObjectWrapper<ColorToLabelMaps::CustomMap> impl_;
-};
-
 CORTIDQCT_C_EXPORT CQCT_EXTERN CQCT_ColorToLabelMap
 CQCT_createColorToLabelMap() {
   return static_cast<CQCT_ColorToLabelMap>(
