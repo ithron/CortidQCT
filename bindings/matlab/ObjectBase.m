@@ -34,18 +34,10 @@ classdef (Abstract) ObjectBase < handle
       ObjectBase.prepareLib;
       fullFunName = sprintf('CQCT_%s', funName);
       
-      if isempty(varargin)
-        if nargout > 0
-          varargout = calllib('CortidQCT', fullFunName);
-        else
-          calllib('CortidQCT', fullFunName);
-        end
+      if nargout > 0
+        varargout{1} = calllib('CortidQCT', fullFunName, varargin{:});
       else
-        if nargout > 0
-          varargout = calllib('CortidQCT', fullFunName, varargin);
-        else
-          calllib('CortidQCT', fullFunName, varargin);
-        end
+        calllib('CortidQCT', fullFunName, varargin{:});
       end
     end
     
