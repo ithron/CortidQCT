@@ -10,7 +10,8 @@ This software is based on
 
 Version | File | Comment
 -------:|:-------:|:----
-**v1.0.1**  |  [CortidQCT-1.0.1-Windows-x64.zip](https://github.com/ithron/CortidQCT/releases/download/v1.0.1/CortidQCT-v1.0.1-Windows-x64.zip) | Complete: CLI, library, headers, Matlab toolbox
+**v1.1.0**  |  [CortidQCT-1.1.0-Windows-x64.zip](https://github.com/ithron/CortidQCT/releases/download/v1.1.0/CortidQCT-v1.1.0-Windows-x64.zip) | Complete: CLI, C++ library, C bindings, headers, Matlab toolbox
+v1.0.1  |  [CortidQCT-1.0.1-Windows-x64.zip](https://github.com/ithron/CortidQCT/releases/download/v1.0.1/CortidQCT-v1.0.1-Windows-x64.zip) | Complete: CLI, library, headers, Matlab toolbox
 v1.0.0  | [CortidQCT_CLI-1.0.0-Windows-x64.zip](https://github.com/ithron/CortidQCT/releases/download/v1.0.0/CortidQCT_CLI-1.0.0-Windows-x64.zip) | CLI binary only
 
 

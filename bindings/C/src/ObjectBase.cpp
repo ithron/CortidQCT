@@ -64,6 +64,7 @@ CORTIDQCT_C_EXPORT CQCT_EXTERN void CQCT_autoreleasePoolPop() {
   auto &pool = getPool();
   if (pool.empty()) {
     delete gPool;
+    gPool = nullptr;
   } else {
     getPool().pop();
   }
