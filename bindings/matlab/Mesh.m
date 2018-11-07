@@ -12,8 +12,14 @@ classdef Mesh < ObjectBase
   methods
 
     % Constructor
-    function obj = Mesh()
-      handle = ObjectBase.call('createMesh');
+    function obj = Mesh(varargin)
+      
+      if nargin == 0
+        handle = ObjectBase.call('createMesh');
+      else
+        handle = varargin{1};
+      end
+      
       obj@ObjectBase(handle);
     end
 
@@ -72,6 +78,26 @@ classdef Mesh < ObjectBase
         error('Failed to load mesh: %s', err.message);
       end
       success = result == 1;
+    end
+    
+    function success = writeToFile(obj, meshFilename, varargin)
+      
+      if nargin == 2
+        labelsFilename = '/dev/null';
+      else
+        labelsFilename = varargin{1};
+      end
+      
+      err = Error;
+      
+      res = ObjectBase.call('meshAndLabelsWriteToFile', obj.handle, meshFilename, labelsFilename, err.pointer);
+      
+      if res == 0
+        error('Failed writing the mesh and label: %s', err.message);
+      end
+      
+      success = res == 1;
+      
     end
     
     function p = plot(obj, varargin)
