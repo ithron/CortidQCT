@@ -10,7 +10,8 @@ This software is based on
 
 Version | File | Comment
 -------:|:-------:|:----
-**v1.2.0**  |  [CortidQCT-1.2.0-Windows-x64.zip](https://github.com/ithron/CortidQCT/releases/download/v1.2.0/CortidQCT-v1.2.0-Windows-x64.zip) | Complete: CLI, C++ library, C bindings, MATLAB bindings, headers, Matlab toolbox
+**v1.2.1**  |  [CortidQCT-1.2.1-Windows-x64.zip](https://github.com/ithron/CortidQCT/releases/download/v1.2.1/CortidQCT-v1.2.1-Windows-x64.zip) | Complete: CLI, C++ library, C bindings, MATLAB bindings, headers, Matlab toolbox
+v1.2.0  |  [CortidQCT-1.2.0-Windows-x64.zip](https://github.com/ithron/CortidQCT/releases/download/v1.2.0/CortidQCT-v1.2.0-Windows-x64.zip) | Complete: CLI, C++ library, C bindings, MATLAB bindings, headers, Matlab toolbox
 v1.1.0  |  [CortidQCT-1.1.0-Windows-x64.zip](https://github.com/ithron/CortidQCT/releases/download/v1.1.0/CortidQCT-v1.1.0-Windows-x64.zip) | Complete: CLI, C++ library, C bindings, headers, Matlab toolbox
 v1.0.1  |  [CortidQCT-1.0.1-Windows-x64.zip](https://github.com/ithron/CortidQCT/releases/download/v1.0.1/CortidQCT-v1.0.1-Windows-x64.zip) | Complete: CLI, library, headers, Matlab toolbox
 v1.0.0  | [CortidQCT_CLI-1.0.0-Windows-x64.zip](https://github.com/ithron/CortidQCT/releases/download/v1.0.0/CortidQCT_CLI-1.0.0-Windows-x64.zip) | CLI binary only
@@ -72,13 +73,21 @@ This can be changed by setting the `HUNTER_ROOT` environment variable.
 - A CUDA compatible GPU
 - CUDA drivers
 
-#### Building
+#### Installation
 
-- Change the folder to `CortidQCT/matlab/+CortidQCT` and type
-```matlab
-mex floatVector2base64.c
-```
-- Add the `CortidQCT/matlab` to your MATLAB path
+When using the binary release open `matlab/CortidQCT.prj` in MATLAB. This opens
+the toolbox packaging dialog. Click 'Package' and close the dialog.
+Double click the new file `CortidQCT.mltbx` to install the toolbox.
+
+##### From Source
+
+Build the C++ library as describe above. To specify a non system path for
+installcation add `-DCMAKE_PREFIX_DIR=/path/to/install/dir` to the `cmake`
+command.
+After building run `make install` to install all required files to the
+installation directory.
+Open the installation directory and proceed as described above for the binary
+release.
 
 ## Usage
 Using *CortidQCT* is a two step process. First a model for each different protocol must be generated using the MATLAB toolbox.
