@@ -10,7 +10,8 @@ This software is based on
 
 Version | File | Comment
 -------:|:-------:|:----
-**v1.1.0**  |  [CortidQCT-1.1.0-Windows-x64.zip](https://github.com/ithron/CortidQCT/releases/download/v1.1.0/CortidQCT-v1.1.0-Windows-x64.zip) | Complete: CLI, C++ library, C bindings, headers, Matlab toolbox
+**v1.2.0**  |  [CortidQCT-1.2.0-Windows-x64.zip](https://github.com/ithron/CortidQCT/releases/download/v1.2.0/CortidQCT-v1.2.0-Windows-x64.zip) | Complete: CLI, C++ library, C bindings, MATLAB bindings, headers, Matlab toolbox
+v1.1.0  |  [CortidQCT-1.1.0-Windows-x64.zip](https://github.com/ithron/CortidQCT/releases/download/v1.1.0/CortidQCT-v1.1.0-Windows-x64.zip) | Complete: CLI, C++ library, C bindings, headers, Matlab toolbox
 v1.0.1  |  [CortidQCT-1.0.1-Windows-x64.zip](https://github.com/ithron/CortidQCT/releases/download/v1.0.1/CortidQCT-v1.0.1-Windows-x64.zip) | Complete: CLI, library, headers, Matlab toolbox
 v1.0.0  | [CortidQCT_CLI-1.0.0-Windows-x64.zip](https://github.com/ithron/CortidQCT/releases/download/v1.0.0/CortidQCT_CLI-1.0.0-Windows-x64.zip) | CLI binary only
 
@@ -123,6 +124,47 @@ app/CortidQCT_CLI <configurationFile> <inputVolume> <outputMesh> [outputLabels]
 
 ### C++ Library
 The [API Reference](https://ithron.github.io/CortidQCT/html/index.html) can be found [here](https://ithron.github.io/CortidQCT/html/index.html).
+
+### Matlab Interface
+
+Since version 1.2.0 CortidQCT also has MATLAB bindings, enabling the direct interaction with the library from within MATLAB.
+To use the MATLAB bindings set the `CortidQCT_ROOT` environment variable to the path where CortidQCT was installed / extracted to, e.g.:
+```matlab
+setenv('CortidQCT_ROOT', '/path/to/CortidQCT/base/folder');
+```
+An example implementation of the CLI interface can be found in `examples/CortidQCT_cli.m`, it's quite simple:
+```matlab
+function [resultMesh, volume] = CortidQCT_cli(configFilename, volumeFilename, outputMeshFilename, varargin)
+%CORTIDQCT-CLI Identifies the cortical shape of the given volume and writes
+%the output to the given file
+
+% Load volume
+volume = VoxelVolume.fromFile(volumeFilename);
+
+% Create MeshFitter using config file
+fitter = MeshFitter(configFilename);
+
+% fit
+result = fitter.fit(volume);
+
+% write output
+result.mesh.writeToFile(outputMeshFilename, varargin{:});
+
+% plot results
+volume.plot;
+h = result.mesh.plot;
+axis equal
+colormap gray
+
+h.FaceColor = 'g';
+h.FaceAlpha = 0.3;
+
+resultMesh = result.mesh;
+
+end
+```
+This function mimics the CLI application with additional visualization of the result:
+![Example matlab plot](images/matlab-example-output.png)
 
 ### Configuration File
 The main purpose of the configuration file is to specify the reference mesh and the model file.
