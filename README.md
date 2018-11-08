@@ -138,6 +138,8 @@ function [resultMesh, volume] = CortidQCT_cli(configFilename, volumeFilename, ou
 %CORTIDQCT-CLI Identifies the cortical shape of the given volume and writes
 %the output to the given file
 
+import CortidQCT.lib.*;
+
 % Load volume
 volume = VoxelVolume.fromFile(volumeFilename);
 
