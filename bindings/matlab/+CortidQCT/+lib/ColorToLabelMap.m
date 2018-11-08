@@ -1,4 +1,4 @@
-classdef ColorToLabelMap < ObjectBase
+classdef ColorToLabelMap < CortidQCT.lib.ObjectBase
   %COLORTOLABELMAP Custom color to label mapping
   
   properties (Dependent)
@@ -9,12 +9,15 @@ classdef ColorToLabelMap < ObjectBase
   methods
     function obj = ColorToLabelMap()
       %COLORTOLABELMAP Construct an color to label mapping
+      import CortidQCT.lib.ObjectBase;
       handle = ObjectBase.call('createColorToLabelMap');
-      obj@ObjectBase(handle);
+      obj@CortidQCT.lib.ObjectBase(handle);
     end
     
     function success = loadFromFile(obj,filename)
       %LOADFROMFILE load the color to label mapping from a YAML file
+      import CortidQCT.lib.ObjectBase;
+      import CortidQCT.lib.Error;
       
       err = Error;
       res = ObjectBase.call('loadColorToLabelMapFromFile', obj.handle, filename, err.pointer);
@@ -27,10 +30,13 @@ classdef ColorToLabelMap < ObjectBase
     end
     
     function entryCount = get.entryCount(obj)
+      import CortidQCT.lib.ObjectBase;
       entryCount = ObjectBase.call('colorToLabelMapEntryCount', obj.handle);
     end
     
     function Map = get.Map(obj)
+      
+      import CortidQCT.lib.ObjectBase;
       
       mapBuffer = libpointer('uint32Ptr', zeros(4, obj.entryCount, 'uint32'));
       res = ObjectBase.call('colorToLabelMapCopyEntries', obj.handle, mapBuffer);
@@ -41,6 +47,8 @@ classdef ColorToLabelMap < ObjectBase
     end
     
     function obj = set.Map(obj, newMap)
+      
+      import CortidQCT.lib.ObjectBase;
       
       if size(newMap, 2) ~= 4
         error('newMap muste be an Nx4 matrx');

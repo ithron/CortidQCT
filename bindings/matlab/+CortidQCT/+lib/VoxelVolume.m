@@ -1,4 +1,4 @@
-classdef VoxelVolume < ObjectBase
+classdef VoxelVolume < CortidQCT.lib.ObjectBase
   %VOXELVOLUME VoxelVolume class
   
   properties (Dependent)
@@ -10,12 +10,19 @@ classdef VoxelVolume < ObjectBase
   methods
     function obj = VoxelVolume()
       %VOXELVOLUME Construct an empty voxel volume
+      
+      import CortidQCT.lib.ObjectBase;
+      
       handle = ObjectBase.call('createVoxelVolume');
-      obj@ObjectBase(handle);
+      obj@CortidQCT.lib.ObjectBase(handle);
     end
     
     function success = loadFromFile(obj, filename)
       %LOADFROMFILE load the voxel volume from file
+      
+      import CortidQCT.lib.ObjectBase;
+      import CortidQCT.lib.Error;
+      
       err = Error;
       res = ObjectBase.call('voxelVolumeLoadFromFile', obj.handle, filename, err.pointer);
       if res ~= 1
@@ -26,6 +33,9 @@ classdef VoxelVolume < ObjectBase
     end
     
     function size = get.size(obj)
+      
+      import CortidQCT.lib.ObjectBase;
+      
       w = ObjectBase.call('voxelVolumeWidth', obj.handle);
       h = ObjectBase.call('voxelVolumeHeight', obj.handle);
       d = ObjectBase.call('voxelVolumeDepth', obj.handle);
@@ -34,6 +44,9 @@ classdef VoxelVolume < ObjectBase
     end
     
     function voxelSize = get.voxelSize(obj)
+      
+      import CortidQCT.lib.ObjectBase;
+      
       w = ObjectBase.call('voxelVolumeVoxelWidth', obj.handle);
       h = ObjectBase.call('voxelVolumeVoxelHeight', obj.handle);
       d = ObjectBase.call('voxelVolumeVoxelDepth', obj.handle);
@@ -42,6 +55,8 @@ classdef VoxelVolume < ObjectBase
     end
     
     function Voxels = get.Voxels(obj)
+      
+      import CortidQCT.lib.ObjectBase;
       
       s = obj.size;
       vBuffer = libpointer('singlePtr', zeros(s(1), s(2), s(3), 'single'));
@@ -81,6 +96,8 @@ classdef VoxelVolume < ObjectBase
   methods (Static)
     
     function obj = fromFile(filename)
+      
+      import CortidQCT.lib.VoxelVolume;
       
       obj = VoxelVolume;
       obj.loadFromFile(filename);

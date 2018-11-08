@@ -35,6 +35,8 @@ classdef (Abstract) ObjectBase < handle
   methods(Access = protected, Static)
     
     function varargout = call(funName, varargin)
+      import CortidQCT.lib.ObjectBase;
+      
       ObjectBase.prepareLib;
       fullFunName = sprintf('CQCT_%s', funName);
       
@@ -51,18 +53,18 @@ classdef (Abstract) ObjectBase < handle
   methods(Access = protected)
     
     function obj = retain(obj)
+      import CortidQCT.lib.ObjectBase;
       ObjectBase.call('retain', obj.handle);
-      fprintf('Retained\n');
     end
     
     function release(obj)
+      import CortidQCT.lib.ObjectBase;
       ObjectBase.call('release', obj.handle);
-      fprintf('Released\n');
     end
     
     function obj = autorelease(obj)
+      import CortidQCT.lib.ObjectBase;
       ObjectBase.call('autorelease', obj.handle);
-      fprintf('Autoreleased\n');
     end
     
   end

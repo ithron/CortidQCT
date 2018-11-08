@@ -1,4 +1,4 @@
-classdef Error < ObjectBase
+classdef Error < CortidQCT.lib.ObjectBase
   %ERROR Error class
   
   properties (Dependent)
@@ -10,6 +10,8 @@ classdef Error < ObjectBase
     function obj = Error(varargin)
       %ERROR Construct an error instance given the handle
       
+      import CortidQCT.lib.ObjectBase;
+      
       ObjectBase.prepareLib;
       
       if nargin == 0
@@ -18,11 +20,14 @@ classdef Error < ObjectBase
         handle = varargin{1};
       end
       
-      obj@ObjectBase(handle);
+      obj@CortidQCT.lib.ObjectBase(handle);
       
     end
     
     function message = get.message(obj)
+      
+      import CortidQCT.lib.ObjectBase;
+      
       if obj.handle.isNull
         message = [];
       else
