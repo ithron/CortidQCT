@@ -43,22 +43,20 @@ generate_export_header(matlab-bindings
 include(GNUInstallDirs)
 
 install(TARGETS matlab-bindings EXPORT CortidQCTExport
-  PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
-  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-  RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-  ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+  LIBRARY DESTINATION ${CortidQCT_Toolbox_ROOT}/toolbox/+CortidQCT/+lib/lib
 )
 
 install(
   DIRECTORY
     "${CMAKE_CURRENT_SOURCE_DIR}/include/CortidQCT"
   DESTINATION
-    "${CMAKE_INSTALL_INCLUDEDIR}"
+    "${CortidQCT_Toolbox_ROOT}/toolbox/+CortidQCT/+lib/include"
 )
-# install(
-#   FILES
-#     "${CMAKE_CURRENT_BINARY_DIR}/cortidqct-matlab_export.h"
-#   DESTINATION
-#     "${CMAKE_INSTALL_INCLUDEDIR}/CortidQCT/Matlab"
-# )
+
+install(
+  DIRECTORY
+    "${CMAKE_CURRENT_SOURCE_DIR}/+CortidQCT"
+  DESTINATION
+    "${CortidQCT_Toolbox_ROOT}/toolbox"
+)
 

@@ -26,3 +26,25 @@ matlab_add_mex(
 
 add_library(CortidQCT::matlab ALIAS matlab)
 
+############################
+# Exports
+
+include(GNUInstallDirs)
+
+install(TARGETS matlab EXPORT CortidQCTExport
+  LIBRARY DESTINATION ${CortidQCT_ROOT}/toolbox/+CortidQCT
+)
+
+install(
+  DIRECTORY
+    "${CMAKE_CURRENT_SOURCE_DIR}/+CortidQCT"
+  DESTINATION
+    "${CortidQCT_Toolbox_ROOT}/toolbox"
+)
+install(
+  FILES
+    "${CMAKE_CURRENT_SOURCE_DIR}/CortidQCT.prj"
+  DESTINATION
+    "${CortidQCT_Toolbox_ROOT}"
+)
+

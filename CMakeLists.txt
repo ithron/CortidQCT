@@ -25,6 +25,11 @@ OPTION(BUILD_TOOLS "Build tools" ON)
 OPTION(BUILD_APP "Build applications" ON)
 OPTION(BUILD_MEX "Build MATLAB mex filed" ON)
 
+set(CortidQCT_Toolbox_ROOT "${CMAKE_INSTALL_PREFIX}/matlab"
+  CACHE STRING
+  "Path to the root directory where the matlab files shoudl be placed into"
+)
+
 ############################
 # Exports
 

@@ -23,8 +23,15 @@ classdef (Abstract) ObjectBase < handle
     function prepareLib()
       if not(libisloaded('CortidQCT'))
         
-        hfile = sprintf('%s%s', getenv('CortidQCT_ROOT'), '/include/CortidQCT/Matlab/CortidQCT.h');
-        libfile = sprintf('%s%s',getenv('CortidQCT_ROOT'), '/lib/libCortidQCT-Matlab.so');
+        envRoot = getenv('CortidQCT_ROOT');
+        if envRoot
+          rootDir = envRoot;
+        else
+          [rootDir, ~, ~] = fileparts(mfilename('fullpath'));
+        end
+
+        hfile = sprintf('%s/include/CortidQCT/Matlab/CortidQCT.h', rootDir);
+        libfile = sprintf('%s/lib/libCortidQCT-Matlab.so', rootDir);
         
         loadlibrary(libfile, hfile, 'alias', 'CortidQCT');
       end
