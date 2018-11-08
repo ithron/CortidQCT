@@ -43,7 +43,7 @@ generate_export_header(matlab-bindings
 include(GNUInstallDirs)
 
 install(TARGETS matlab-bindings EXPORT CortidQCTExport
-  LIBRARY DESTINATION ${CortidQCT_Toolbox_ROOT}/toolbox/+CortidQCT/+lib/lib
+  LIBRARY DESTINATION "${CortidQCT_Toolbox_ROOT}/toolbox/+CortidQCT/+lib/lib"
 )
 
 install(

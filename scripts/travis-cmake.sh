@@ -28,5 +28,6 @@ cmake \
   -DWITH_OPENCL=OFF \
   -DBUILD_MEX=${BUILD_MEX} \
   -DMatlab_ROOT_DIR=${Matlab_ROOT_DIR} \
+  -DCMAKE_PREFIX_PATH=`pwd`/install \
   -DBUILD_DOC=${BUILD_DOC} .
 
