@@ -32,10 +32,10 @@ classdef (Abstract) ObjectBase < handle
 
         hfile = sprintf('%s/include/CortidQCT/Matlab/CortidQCT.h', rootDir);
 
-        if isunix
-          libfile = sprintf('%s/lib/libCortidQCT-Matlab.so', rootDir);
-        elseif ismac
+        if ismac
           libfile = sprintf('%s/lib/libCortidQCT-Matlab.dylib', rootDir);
+        elseif isunix
+          libfile = sprintf('%s/lib/libCortidQCT-Matlab.so', rootDir);
         elseif ispc
           libfile = sprintf('%s/lib/CortidQCT-Matlab.dll', rootDir);
         else
