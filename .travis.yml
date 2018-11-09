@@ -176,7 +176,7 @@ deploy:
   file: "${TRAVIS_BUILD_DIR}/CortidQCT-${TRAVIS_TAG}-x86_64-linux-gnu-ubuntu-18.04.tar.gz"
   skip_cleanup: true
   prerelease: true
+  overwrite: true
   on:
-    tags: true
     condition: $DEPLOY = true
 
