@@ -180,6 +180,7 @@ deploy:
   skip_cleanup: true
   prerelease: true
   overwrite: true
+  all_branches: true
   on:
     condition: $DEPLOY = true
 
