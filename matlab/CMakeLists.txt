@@ -32,7 +32,7 @@ add_library(CortidQCT::matlab ALIAS matlab)
 include(GNUInstallDirs)
 
 install(TARGETS matlab EXPORT CortidQCTExport
-  LIBRARY DESTINATION ${CortidQCT_ROOT}/toolbox/+CortidQCT
+  LIBRARY DESTINATION ${CortidQCT_Toolbox_ROOT}/toolbox/+CortidQCT
 )
 
 install(
