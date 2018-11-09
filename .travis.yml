@@ -170,6 +170,9 @@ after_success:
       ./scripts/generateDocumentationAndDeploy.sh
     fi
 
+before_deploy:
+  - ./scripts/generateDocumentationAndDeploy.sh
+
 deploy:
   provider: releases
   api_key: ${GH_REPO_TOKEN}

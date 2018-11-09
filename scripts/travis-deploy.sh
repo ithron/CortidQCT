@@ -27,4 +27,3 @@ if [[ -v TRAVIS_TAG ]]; then
 
 fi
 
-ls -lah ${TRAVIS_BUILD_DIR}
