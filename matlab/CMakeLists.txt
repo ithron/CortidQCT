@@ -9,31 +9,35 @@ project(
   LANGUAGES C
 )
 
-find_package(Matlab COMPONENTS MX_LIBRARY MAT_LIBRARY)
+if (BUILD_MEX)
+  find_package(Matlab COMPONENTS MX_LIBRARY MAT_LIBRARY)
 
-if (NOT MATLAB_FOUND)
-  message(FATAL_ERROR "MATLAB could not be found. Please install MATLAB MCR from https://www.mathworks.com/products/compiler/matlab-runtime.html")
+  if (NOT MATLAB_FOUND)
+    message(FATAL_ERROR "MATLAB could not be found. Please install MATLAB MCR from https://www.mathworks.com/products/compiler/matlab-runtime.html")
+  endif()
+
+  matlab_add_mex(
+    NAME
+      matlab
+    SRC
+      +CortidQCT/floatVector2base64.c
+    OUTPUT_NAME
+      floatVector2base64
+  )
+
+  add_library(CortidQCT::matlab ALIAS matlab)
 endif()
-
-matlab_add_mex(
-  NAME
-    matlab
-  SRC
-    +CortidQCT/floatVector2base64.c
-  OUTPUT_NAME
-    floatVector2base64
-)
-
-add_library(CortidQCT::matlab ALIAS matlab)
 
 ############################
 # Exports
 
 include(GNUInstallDirs)
 
-install(TARGETS matlab EXPORT CortidQCTExport
-  LIBRARY DESTINATION ${CortidQCT_Toolbox_ROOT}/toolbox/+CortidQCT
-)
+if (BUILD_MEX)
+  install(TARGETS matlab EXPORT CortidQCTExport
+    LIBRARY DESTINATION ${CortidQCT_Toolbox_ROOT}/toolbox/+CortidQCT
+  )
+endif()
 
 install(
   DIRECTORY

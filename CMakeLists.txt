@@ -18,7 +18,6 @@ endif()
 
 add_subdirectory(common)
 add_subdirectory(lib)
-add_subdirectory(bindings)
 
 OPTION(BUILD_TESTS "Build tests" ON)
 OPTION(BUILD_TOOLS "Build tools" ON)
@@ -73,9 +72,8 @@ if (BUILD_TOOLS)
   add_subdirectory(tools)
 endif()
 
-if (BUILD_MEX)
-  add_subdirectory(matlab)
-endif()
+add_subdirectory(matlab)
+add_subdirectory(bindings)
 
 ############################
 # Documentation
