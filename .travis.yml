@@ -168,3 +168,13 @@ after_success:
       ./scripts/generateDocumentationAndDeploy.sh
     fi
 
+deploy:
+  provider: releases
+  api_key: ${GH_REPO_TOKEN}
+  file: CortidQCT-${TRAVIS_TAG}-x86_64-linux-gnu-ubuntu-18.04.tar.gz
+  skip_cleanup: true
+  on:
+    tags: true
+    branch: master
+    condition: "${BUILD_TYPE}" = "Release" -a "${COMPILER}" = "gcc" -a "${GCC_VERSION}" = "7"
+
