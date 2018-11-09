@@ -11,6 +11,7 @@ env:
     - GENERATE_DOCS=no
     - Matlab_ROOT_DIR=${HOME}/MCR/v93
     - BUILD_MEX=OFF
+    - DEPLOY=false
 
 cache:
   directories:
@@ -176,5 +177,5 @@ deploy:
   skip_cleanup: true
   on:
     tags: true
-    condition: -v DEPLOY -a "${BUILD_TYPE}" = "Release" -a "${COMPILER}" = "gcc" -a "${GCC_VERSION}" = "7"
+    condition: $DEPLOY = true
 
