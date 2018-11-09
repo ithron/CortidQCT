@@ -31,7 +31,16 @@ classdef (Abstract) ObjectBase < handle
         end
 
         hfile = sprintf('%s/include/CortidQCT/Matlab/CortidQCT.h', rootDir);
-        libfile = sprintf('%s/lib/libCortidQCT-Matlab.so', rootDir);
+
+        if isunix
+          libfile = sprintf('%s/lib/libCortidQCT-Matlab.so', rootDir);
+        elseif ismac
+          libfile = sprintf('%s/lib/libCortidQCT-Matlab.dylib', rootDir);
+        elseif ispc
+          libfile = sprintf('%s/lib/CortidQCT-Matlab.dll', rootDir);
+        else
+          error("Unknown platform");
+        end
         
         loadlibrary(libfile, hfile, 'alias', 'CortidQCT');
       end

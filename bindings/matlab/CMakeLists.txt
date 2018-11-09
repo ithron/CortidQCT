@@ -44,7 +44,6 @@ include(GNUInstallDirs)
 
 install(TARGETS matlab-bindings EXPORT CortidQCTExport
   LIBRARY DESTINATION "${CortidQCT_Toolbox_ROOT}/toolbox/+CortidQCT/+lib/lib"
-  ARCHIVE DESTINATION "${CortidQCT_Toolbox_ROOT}/toolbox/+CortidQCT/+lib/lib"
   RUNTIME DESTINATION "${CortidQCT_Toolbox_ROOT}/toolbox/+CortidQCT/+lib/lib"
 )
 
