@@ -119,19 +119,24 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keyword">protected</span>:</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;  <a class="code" href="structCortidQCT_1_1MeshFitter_1_1Result.html">MeshFitter::Result</a> fit(<a class="code" href="classCortidQCT_1_1VoxelVolume.html">VoxelVolume</a> <span class="keyword">const</span> &amp;volume);</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;  <a class="code" href="classCortidQCT_1_1MeshFitter.html">MeshFitter</a> &amp;fitter_;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;};</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;} <span class="comment">// namespace CortidQCT</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;  <a class="code" href="structCortidQCT_1_1MeshFitter_1_1State.html">MeshFitter::State</a> init(<a class="code" href="classCortidQCT_1_1VoxelVolume.html">VoxelVolume</a> <span class="keyword">const</span> &amp;volume);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;  <span class="keywordtype">void</span> fitOneIteration(<a class="code" href="structCortidQCT_1_1MeshFitter_1_1State.html">MeshFitter::State</a> &amp;state);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;  <a class="code" href="classCortidQCT_1_1MeshFitter.html">MeshFitter</a> &amp;fitter_;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;  std::optional&lt;Result&gt; result_;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;};</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;} <span class="comment">// namespace CortidQCT</span></div>
 <div class="ttc" id="classCortidQCT_1_1MeshFitter_html"><div class="ttname"><a href="classCortidQCT_1_1MeshFitter.html">CortidQCT::MeshFitter</a></div><div class="ttdef"><b>Definition:</b> MeshFitter.h:26</div></div>
 <div class="ttc" id="classCortidQCT_1_1VoxelVolume_html"><div class="ttname"><a href="classCortidQCT_1_1VoxelVolume.html">CortidQCT::VoxelVolume</a></div><div class="ttdoc">Type representing a voxel volume. </div><div class="ttdef"><b>Definition:</b> VoxelVolume.h:32</div></div>
-<div class="ttc" id="structCortidQCT_1_1MeshFitter_1_1Result_html"><div class="ttname"><a href="structCortidQCT_1_1MeshFitter_1_1Result.html">CortidQCT::MeshFitter::Result</a></div><div class="ttdoc">Result type. </div><div class="ttdef"><b>Definition:</b> MeshFitter.h:110</div></div>
+<div class="ttc" id="structCortidQCT_1_1MeshFitter_1_1State_html"><div class="ttname"><a href="structCortidQCT_1_1MeshFitter_1_1State.html">CortidQCT::MeshFitter::State</a></div><div class="ttdoc">Optimization state type. </div><div class="ttdef"><b>Definition:</b> MeshFitter.h:145</div></div>
+<div class="ttc" id="structCortidQCT_1_1MeshFitter_1_1Result_html"><div class="ttname"><a href="structCortidQCT_1_1MeshFitter_1_1Result.html">CortidQCT::MeshFitter::Result</a></div><div class="ttdoc">Result type. </div><div class="ttdef"><b>Definition:</b> MeshFitter.h:112</div></div>
 <div class="ttc" id="classCortidQCT_1_1MeshFitter_1_1Impl_html"><div class="ttname"><a href="classCortidQCT_1_1MeshFitter_1_1Impl.html">CortidQCT::MeshFitter::Impl</a></div><div class="ttdef"><b>Definition:</b> MeshFitterImpl.h:18</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Nov 12 2018 14:09:36 for CortidQCT by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Nov 12 2018 17:42:41 for CortidQCT by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
