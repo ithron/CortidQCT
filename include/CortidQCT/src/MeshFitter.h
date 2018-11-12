@@ -104,13 +104,57 @@ public:
   };
 #pragma clang diagnostic pop
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wpadded"
   /**
    * @brief Result type
    */
   struct Result {
+    /// The reference mesh
+    Mesh<float> referenceMesh;
     /// The deformed mesh or nullopt if fitting failed
-    std::optional<Mesh<float>> deformedMesh;
+    Mesh<float> deformedMesh;
+    /// The displacement vector
+    std::vector<float> displacementVector;
+    /// the weght vector
+    std::vector<float> weights;
+    /// per-vertex normals
+    std::vector<std::array<float, 3>> vertexNormals;
+    /// Volume sampling positions
+    std::vector<std::array<float, 3>> volumeSamplingPositions;
+    /// Volume samples
+    std::vector<float> volumeSamples;
+    /// Minimum distacne norm
+    float minDisNorm = std::numeric_limits<float>::max();
+    /// Iteration count
+    std::size_t iteration = 1;
+    /// Converged?
+    bool converged = false;
+    /// Successfull?
+    bool success = false;
+    /// Number of non-decreasing iterations
+    std::size_t nonDecreasing = 0;
   };
+
+  struct HiddenState;
+  using HiddenStatePtr = std::unique_ptr<HiddenState>;
+
+  /**
+   * @brief Optimization state type
+   */
+  struct State {
+    Result result;
+    HiddenStatePtr hiddenState;
+
+    State() = default;
+    State(State const &);
+    State(State &&) = default;
+    ~State();
+    State &operator=(State const &);
+    State &operator=(State &&) = default;
+  
+  };
+#pragma clang diagnostic pop
 
   /**
    * @name Public Properties
@@ -151,6 +195,21 @@ public:
    * @return A `Result` struct containing the deformed mesh
    */
   Result fit(VoxelVolume const &volume);
+
+  /**
+   * @brief Initializes the fitting algorithm
+   *
+   * @param volume VoxelVolume object representing the target scan
+   * @return State object that must be passed to subsequent calls
+   * @see fit()
+   */
+  State init(VoxelVolume const &volume);
+
+  /**
+   * @brief Runs the fitting algorithm for a single iteration
+   * @param[in,out] state State object returned by `init`.
+   */
+  void fitOneIteration(State &state);
 
 private:
   class Impl;

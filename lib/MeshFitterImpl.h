@@ -37,8 +37,12 @@ public:
 
 protected:
   MeshFitter::Result fit(VoxelVolume const &volume);
+  MeshFitter::State init(VoxelVolume const &volume);
+  void fitOneIteration(MeshFitter::State &state);
 
   MeshFitter &fitter_;
+
+  std::optional<Result> result_;
 };
 
 } // namespace CortidQCT

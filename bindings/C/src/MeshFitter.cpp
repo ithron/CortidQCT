@@ -73,9 +73,9 @@ CQCT_meshFitterFit(CQCT_MeshFitter meshFitter, CQCT_VoxelVolume volume) {
   auto res = fitter.fit(vol);
 
   CQCT_Mesh mesh = nullptr;
-  if (res.deformedMesh) {
+  if (res.success) {
     mesh = CQCT_createMesh();
-    *(static_cast<CQCT_Mesh>(mesh)->impl.objPtr) = std::move(*res.deformedMesh);
+    *(static_cast<CQCT_Mesh>(mesh)->impl.objPtr) = std::move(res.deformedMesh);
   }
 
   auto result = static_cast<CQCT_MeshFitterResult>(

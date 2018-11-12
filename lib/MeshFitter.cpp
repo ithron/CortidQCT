@@ -59,4 +59,12 @@ MeshFitter::Result MeshFitter::fit(VoxelVolume const &volume) {
   return pImpl_->fit(volume);
 }
 
+MeshFitter::State MeshFitter::init(VoxelVolume const &volume) {
+  return pImpl_->init(volume);
+}
+
+void MeshFitter::fitOneIteration(MeshFitter::State &state) {
+  return pImpl_->fitOneIteration(state);
+}
+
 } // namespace CortidQCT
