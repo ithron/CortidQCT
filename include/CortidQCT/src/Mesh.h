@@ -216,6 +216,12 @@ public:
     return f(indexData_.data());
   }
 
+  template <class F>
+  inline auto withUnsafeIndexPointer(F &&f) noexcept(
+      noexcept(f(std::declval<IndexData>().data()))) {
+    return f(indexData_.data());
+  }
+
   /**
    * @brief Calls the given functional with an unsafe pointer to the raw
    * label storage.
@@ -230,6 +236,12 @@ public:
   template <class F>
   inline auto withUnsafeLabelPointer(F &&f) const
       noexcept(noexcept(f(LabelData().data()))) {
+    return f(labelData_.data());
+  }
+
+  template <class F>
+  inline auto
+  withUnsafeLabelPointer(F &&f) noexcept(noexcept(f(LabelData().data()))) {
     return f(labelData_.data());
   }
 
