@@ -83,14 +83,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="textblock"><p>A tool for automatic cortical shape identification for QCT scans.</p>
 <p>This software is based on "**An Analysis by Synthesis Approach for Automatic Vertebral Shape Identification in Clinical QCT**" by *<a href="https://orcid.org/0000-0003-3117-1569">Stefan Reinhold</a>, <a href="https://orcid.org/0000-0002-5595-5205">Timo Damm</a>, Lukas Huber, <a href="https://orcid.org/0000-0002-1575-525X">Reimer Andresen</a>, Reinhard Barkmann, <a href="https://orcid.org/0000-0003-3539-8955">Claus-C. Glüer</a> and <a href="https://orcid.org/0000-0003-4398-1569">Reinhard Koch</a>*, accepted for publication in Springer LNCS, presented on "German Conference on Pattern Recognition 2018".</p>
 <h2>Binary Releases</h2>
-<table class="doxtable">
-<tr>
-<th align="right">Version </th><th align="center">File </th><th align="left">Comment  </th></tr>
-<tr>
-<td align="right">**v1.2.0** </td><td align="center"><a href="https://github.com/ithron/CortidQCT/releases/download/v1.2.0/CortidQCT-v1.2.0-Windows-x64.zip">CortidQCT-v1.2.0-Windows-x64.zip</a> </td><td align="left">Complete: CLI, C++ library, C bindings, MATLAB bindings, headers, Matlab toolbox </td></tr>
-</table>
-<p>| <a href="https://github.com/ithron/CortidQCT/releases/download/v1.2.0/CortidQCT-x64.mltbx">CortidQCT-v1.2.0-x64.mltbx</a> | Complete MATLAB toolbox, 64bit (Windows, Linux, macOS) v1.1.0 | <a href="https://github.com/ithron/CortidQCT/releases/download/v1.1.0/CortidQCT-v1.1.0-Windows-x64.zip">CortidQCT-v1.1.0-Windows-x64.zip</a> | Complete: CLI, C++ library, C bindings, headers, Matlab toolbox v1.0.1 | <a href="https://github.com/ithron/CortidQCT/releases/download/v1.0.1/CortidQCT-v1.0.1-Windows-x64.zip">CortidQCT-v1.0.1-Windows-x64.zip</a> | Complete: CLI, library, headers, Matlab toolbox v1.0.0 | <a href="https://github.com/ithron/CortidQCT/releases/download/v1.0.0/CortidQCT_CLI-1.0.0-Windows-x64.zip">CortidQCT_CLI-1.0.0-Windows-x64.zip</a> | CLI binary only</p>
-<h2>Building</h2>
+<p>Version | File | OS | Comment ----&mdash;:|:----&mdash;:|:-&mdash; <b>v1.2.0</b> | <a href="https://github.com/ithron/CortidQCT/releases/download/v1.2.0/CortidQCT-v1.2.0-Windows-x64.zip">CortidQCT-v1.2.0-Windows-x64.zip</a> | Windows x64| CLI, C++ library, C bindings, MATLAB bindings, headers, Matlab toolbox |<a href="https://github.com/ithron/CortidQCT/releases/download/v1.2.0/CortidQCT-v1.2.0-macOS-Mojave.zip">CortidQCT-v1.2.0-macOS-Mojave.zip</a> | macOS Mojave | |<a href="https://github.com/ithron/CortidQCT/releases/download/v1.2.0/CortidQCT-v1.2.0-linux-gnu-ubuntu-18.04-x86_64.tar.gz">CortidQCT-v1.2.0-linux-gnu-ubuntu-18.04-x86_64.tar.gz</a> | Ubuntu Linux 18.04 x86_64 | |<a href="https://github.com/ithron/CortidQCT/releases/download/v1.2.0/CortidQCT-v1.2.0-x64.mltbx">CortidQCT-v1.2.0.mltbx</a> | Windows x64, Ubuntu Linux 18.04 x86_64, macOS Mojave | Ready to install MATLAB toolbox, 64bit v1.1.0 | <a href="https://github.com/ithron/CortidQCT/releases/download/v1.1.0/CortidQCT-v1.1.0-Windows-x64.zip">CortidQCT-v1.1.0-Windows-x64.zip</a> | Windows x64 | Complete: CLI, C++ library, C bindings, headers, Matlab toolbox v1.0.1 | <a href="https://github.com/ithron/CortidQCT/releases/download/v1.0.1/CortidQCT-v1.0.1-Windows-x64.zip">CortidQCT-v1.0.1-Windows-x64.zip</a> | Windows x64 | Complete: CLI, library, headers, Matlab toolbox v1.0.0 | <a href="https://github.com/ithron/CortidQCT/releases/download/v1.0.0/CortidQCT_CLI-1.0.0-Windows-x64.zip">CortidQCT_CLI-1.0.0-Windows-x64.zip</a> | Windows x64 | CLI binary only</p>
+<h2>Build from Source</h2>
 <p>The build instructions below are for *NIX (Unix/Linux/macOS) systems only. For Windows build, the configuration steps (1 to 4) should be the same, but the compilation step might be different, dependent on the compiler used.</p>
 <h3>C++ Library</h3>
 <h4>Requirements</h4>
@@ -110,12 +104,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </ul>
 <h4>Building</h4>
 <p><em><a class="el" href="namespaceCortidQCT.html" title="Name namespace for CortidQCT library. ">CortidQCT</a></em> uses the <a href="https://hunter.sh">Hunter</a> package manager to manage its dependencies. Therefore, it's not required to manually install any dependecies. Hunter builds and installs all dependencies automatically in the <code>${HOME}/.hunter</code> directory. This can be changed by setting the <code>HUNTER_ROOT</code> environment variable.</p>
+<p>It is strongly recommended to install <a class="el" href="namespaceCortidQCT.html" title="Name namespace for CortidQCT library. ">CortidQCT</a> to a custom location. For this, set the <code>CortidQCT_ROOT</code> environment to the desired path.</p>
 <ol type="1">
 <li>Clone the repository: ```bash git clone htts://github.com/ithron/CortidQCT.git ```</li>
 <li>Init the submodules: ```bash cd <a class="el" href="namespaceCortidQCT.html" title="Name namespace for CortidQCT library. ">CortidQCT</a> git submodule update &ndash;init ```</li>
 <li>Create build directory ```bash mkdir Build cd build ``<code></code></li>
-<li><code>Run</code>cmake<code> </code>``bash cmake -DCMAKE_BUILD_TYPE=Release ../ ```</li>
+<li><code>Run</code>cmake<code> </code>``bash cmake -DCMAKE_INSTALL_PREFIX=${CortidQCT_ROOT} -DCMAKE_BUILD_TYPE=Release ../ ```</li>
 <li>Run ```bash make ```</li>
+<li>installation ```bash make install ```</li>
 </ol>
 <h3>MATLAB Toolbox</h3>
 <h4>Requirements</h4>
@@ -127,13 +123,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>CUDA drivers</li>
 </ul>
 <h4>Installation</h4>
-<p>When using the binary release open <code>matlab/CortidQCT.prj</code> in MATLAB. This opens the toolbox packaging dialog. Click 'Package' and close the dialog. Double click the new file <code>CortidQCT.mltbx</code> to install the toolbox.</p>
-<h5>From Source</h5>
-<p>Build the C++ library as describe above. To specify a non system path for installcation add <code>-DCMAKE_PREFIX_DIR=/path/to/install/dir</code> to the <code>cmake</code> command. After building run <code>make install</code> to install all required files to the installation directory. Open the installation directory and proceed as described above for the binary release.</p>
+<p>Navigate to the installation folder in MATLAB, then open <code>matlab/CortidQCT.prj</code>. This opens the toolbox packaging dialog. Click 'Package' and close the dialog. Double click the new file <code>CortidQCT.mltbx</code> to install the toolbox.</p>
 <h2>Usage</h2>
-<p>Using <em><a class="el" href="namespaceCortidQCT.html" title="Name namespace for CortidQCT library. ">CortidQCT</a></em> is a two step process. First a model for each different protocol must be generated using the MATLAB toolbox. After that, either the <em>command line interface (CLI)</em> tool or the <em>C+++ library</em> can be used to identify the cortex using the generated model.</p>
+<p>Using <em><a class="el" href="namespaceCortidQCT.html" title="Name namespace for CortidQCT library. ">CortidQCT</a></em> is a two step process. First a model for each different protocol must be generated using the MATLAB toolbox. After that, either the <em>command line interface (CLI)</em> tool, the <em>C+++ library</em> or the MATLAB interface can be used to identify the cortex using the generated model.</p>
 <h2>Model Creation</h2>
-<p>Ensure that <code>CortidQCT/matlab</code> is in your MATLAB path.</p>
 <table class="doxtable">
 <tr>
 <th align="center"><div class="image">
@@ -146,10 +139,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <tr>
 <td align="center">General model parameters dialog </td><td align="center">Per VOI parameters dialog </td></tr>
 </table>
-<p>Run ```matlab CortidQCT.CreateModel ``` to start the model creation UI. On the first screen (general tab, see left screenshot above) meta and general information about the model can be entered. In the VOIs tab (see right screenshot above), per VOI prior parameters can be entered. Ensure that each VOI gets an unique label. Since the interpretation of the parameters of log-normally distributed cortex width parameter is not very intuituve, a plot of the current PDF is plotted in the bottom right. The red shaded region shows the 95% confidence interval.</p>
+<p>In MATLAB run ```matlab CortidQCT.CreateModel ``` to start the model creation UI. On the first screen (general tab, see left screenshot above) meta and general information about the model can be entered. In the VOIs tab (see right screenshot above), per VOI prior parameters can be entered. Ensure that each VOI gets an unique label. Since the interpretation of the parameters of log-normally distributed cortex width parameter is not very intuituve, a plot of the current PDF is plotted in the bottom right. The red shaded region shows the 95% confidence interval.</p>
 <p>After specifying all VOIs, click the <em>Generate Model</em> button start start the generation process. Depending on the hardware, this process may take a while. When the model generation completed, a green <em>Save Model</em> button will appear. Ensure to save the model before quitting the dialog.</p>
 <h2>Cortex Identification</h2>
-<p>You can either write your own program that uses the <em>C++ library</em> or use the built-in CLI tool.</p>
+<p>You can either write your own program that uses the <em>C++ library</em>, use the built-in CLI tool or use the MATLAB interface that comes with the toolbox.</p>
 <h3>Command Line interface</h3>
 <p>After compilation the <code>CortidQCT_CLI</code> executable can be found in <code>build/app</code>. It requires at least three parameters:</p>
 <ol type="1">
@@ -161,8 +154,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p>```bash app/CortidQCT_CLI &lt;configurationFile&gt; &lt;inputVolume&gt; &lt;outputMesh&gt; [outputLabels] ```</p>
 <h3>C++ Library</h3>
 <p>The <a href="https://ithron.github.io/CortidQCT/html/index.html">API Reference</a> can be found <a href="https://ithron.github.io/CortidQCT/html/index.html">here</a>.</p>
+<h3>C Bindings</h3>
+<p>Available since Version v1.1.0. See the <code>C-Bindings</code> module in the <a href="https://ithron.github.io/CortidQCT/html/index.html">API Reference</a> for details. An example can be found in <code><a class="el" href="cli_8c.html" title="This file contains an example C only implementation of the CLI to CortidQCT. ">bindings/C/examples/cli.c</a></code>.</p>
 <h3>Matlab Interface</h3>
-<p>Since version 1.2.0 <a class="el" href="namespaceCortidQCT.html" title="Name namespace for CortidQCT library. ">CortidQCT</a> also has MATLAB bindings, enabling the direct interaction with the library from within MATLAB. To use the MATLAB bindings set the <code>CortidQCT_ROOT</code> environment variable to the path where <a class="el" href="namespaceCortidQCT.html" title="Name namespace for CortidQCT library. ">CortidQCT</a> was installed / extracted to, e.g.: ```matlab setenv('CortidQCT_ROOT', '/path/to/CortidQCT/base/folder'); ``<code> An example implementation of the CLI interface can be found in</code>examples/CortidQCT_cli.m<code>, it's quite simple: </code>``matlab function [resultMesh, volume] = CortidQCT_cli(configFilename, volumeFilename, outputMeshFilename, varargin) CORTIDQCT-CLI Identifies the cortical shape of the given volume and writes the output to the given file</p>
+<p>Since version 1.2.0 <a class="el" href="namespaceCortidQCT.html" title="Name namespace for CortidQCT library. ">CortidQCT</a> also has MATLAB bindings, enabling the direct interaction with the library from within MATLAB.</p>
+<p>An example implementation of the CLI interface can be found in <code>examples/CortidQCT_cli.m</code>: ```matlab function [resultMesh, volume] = CortidQCT_cli(configFilename, volumeFilename, outputMeshFilename, varargin) CORTIDQCT-CLI Identifies the cortical shape of the given volume and writes the output to the given file</p>
 <p>import CortidQCT.lib.*;</p>
 <p>% Load volume volume = VoxelVolume.fromFile(volumeFilename);</p>
 <p>% Create MeshFitter using config file fitter = MeshFitter(configFilename);</p>
@@ -173,7 +169,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p>resultMesh = result.mesh;</p>
 <p>end ``` This function mimics the CLI application with additional visualization of the result: </p>
 <div class="image">
-<img src="images/matlab-example-output.png"  alt="Example matlab plot"/>
+<img src="images/matlab-example-output.gif"  alt="Example matlab plot"/>
 </div>
 <h3>Configuration File</h3>
 <p>The main purpose of the configuration file is to specify the reference mesh and the model file. Additionally some parameters can be customized. The configuration file must be in the <a href="http://yaml.org/start.html">YAML</a> format.</p>
@@ -217,7 +213,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Nov 9 2018 14:18:03 for CortidQCT by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Nov 12 2018 10:24:20 for CortidQCT by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
