@@ -33,7 +33,8 @@ int main(int argc, char **argv) {
   CQCT_Error error = NULL;
 
   // Load voxel volume from file
-  CQCT_VoxelVolume volume = CQCT_createVoxelVolume(argv[2], &error);
+  CQCT_VoxelVolume volume = CQCT_createVoxelVolume();
+  CQCT_voxelVolumeLoadFromFile(volume, argv[2], &error);
   if (volume == NULL) {
     fprintf(stderr, "Error: %s\n", CQCT_errorMessage(error));
     goto EXIT;

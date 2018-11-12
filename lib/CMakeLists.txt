@@ -7,7 +7,7 @@ include(${CMAKE_CURRENT_LIST_DIR}/../cmake/Init.cmake)
 
 project(
   LibCortidQCT
-  VERSION 1.1.0
+  VERSION 1.2.0
   LANGUAGES CXX
 )
 
@@ -44,6 +44,8 @@ add_library(Core
   WeightedARAPFitter.cpp
 )
 add_library(PrivateAPI INTERFACE)
+
+set_property(TARGET Core PROPERTY POSITION_INDEPENDENT_CODE True)
 
 target_link_libraries(Core
   PUBLIC

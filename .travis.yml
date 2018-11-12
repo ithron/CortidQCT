@@ -11,6 +11,7 @@ env:
     - GENERATE_DOCS=no
     - Matlab_ROOT_DIR=${HOME}/MCR/v93
     - BUILD_MEX=OFF
+    - DEPLOY=false
 
 cache:
   directories:
@@ -50,6 +51,7 @@ matrix:
       env:
         - COMPILER=gcc GCC_VERSION=7
         - BUILD_TYPE=Release
+        - DEPLOY=true
 
     ##########
     # GCC-8
@@ -167,4 +169,18 @@ after_success:
     if [ "${GENERATE_DOCS}" = "yes" ]; then
       ./scripts/generateDocumentationAndDeploy.sh
     fi
+
+# before_deploy:
+#   - ./scripts/generateDocumentationAndDeploy.sh
+
+# deploy:
+#   provider: releases
+#   api_key: ${GH_REPO_TOKEN}
+#   file: "${TRAVIS_BUILD_DIR}/CortidQCT-${TRAVIS_TAG}-x86_64-linux-gnu-ubuntu-18.04.tar.gz"
+#   skip_cleanup: true
+#   prerelease: true
+#   overwrite: true
+#   all_branches: true
+#   on:
+#     condition: $DEPLOY = true
 

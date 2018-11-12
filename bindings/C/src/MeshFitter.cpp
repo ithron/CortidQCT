@@ -31,8 +31,8 @@ struct CQCT_MeshFitterResult_t {
       impl;
 };
 
-CQCT_EXTERN CQCT_MeshFitter CQCT_createMeshFitter(const char *filename,
-                                                  CQCT_Error *error) {
+CORTIDQCT_C_EXPORT CQCT_EXTERN CQCT_MeshFitter
+CQCT_createMeshFitter(const char *filename, CQCT_Error *error) {
   try {
 
     return static_cast<CQCT_MeshFitter>(constructObject<MeshFitter>(filename));
@@ -56,13 +56,14 @@ CQCT_EXTERN CQCT_MeshFitter CQCT_createMeshFitter(const char *filename,
   return nullptr;
 }
 
-CQCT_EXTERN CQCT_Mesh CQCT_meshFitterResultMesh(CQCT_MeshFitterResult result) {
+CORTIDQCT_C_EXPORT CQCT_EXTERN CQCT_Mesh
+CQCT_meshFitterResultMesh(CQCT_MeshFitterResult result) {
   assert(result != nullptr);
   return result->impl.objPtr->mesh;
 }
 
-CQCT_EXTERN CQCT_MeshFitterResult CQCT_meshFitterFit(CQCT_MeshFitter meshFitter,
-                                                     CQCT_VoxelVolume volume) {
+CORTIDQCT_C_EXPORT CQCT_EXTERN CQCT_MeshFitterResult
+CQCT_meshFitterFit(CQCT_MeshFitter meshFitter, CQCT_VoxelVolume volume) {
   assert(meshFitter != nullptr);
   assert(volume != nullptr);
 

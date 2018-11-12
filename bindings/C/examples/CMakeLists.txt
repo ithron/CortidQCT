@@ -17,5 +17,7 @@ add_executable(C_CLI
   cli.c
 )
 
-target_link_libraries(C_CLI PRIVATE CortidQCT::Bindings::C)
+target_link_libraries(C_CLI PRIVATE
+  CortidQCT::Bindings::C
+)
 

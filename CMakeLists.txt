@@ -7,7 +7,7 @@ include(GNUInstallDirs)
 # Create project
 project(
   CortidQCT
-  VERSION 1.1.0
+  VERSION 1.2.0
   LANGUAGES C CXX
 )
 
@@ -18,12 +18,16 @@ endif()
 
 add_subdirectory(common)
 add_subdirectory(lib)
-add_subdirectory(bindings)
 
 OPTION(BUILD_TESTS "Build tests" ON)
 OPTION(BUILD_TOOLS "Build tools" ON)
 OPTION(BUILD_APP "Build applications" ON)
 OPTION(BUILD_MEX "Build MATLAB mex filed" ON)
+
+set(CortidQCT_Toolbox_ROOT "${CMAKE_INSTALL_PREFIX}/matlab"
+  CACHE STRING
+  "Path to the root directory where the matlab files shoudl be placed into"
+)
 
 ############################
 # Exports
@@ -68,9 +72,8 @@ if (BUILD_TOOLS)
   add_subdirectory(tools)
 endif()
 
-if (BUILD_MEX)
-  add_subdirectory(matlab)
-endif()
+add_subdirectory(matlab)
+add_subdirectory(bindings)
 
 ############################
 # Documentation

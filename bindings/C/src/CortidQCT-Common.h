@@ -1,6 +1,7 @@
 #pragma once
 
 #include "CortidQCT.h"
+#include "cortidqct-c_export.h"
 
 #include <CortidQCT/CortidQCT.h>
 
@@ -51,4 +52,10 @@ struct CQCT_VoxelVolume_t {
 
 struct CQCT_Mesh_t {
   CortidQCT::Internal::C::GenericObjectWrapper<CortidQCT::Mesh<float>> impl;
+};
+
+struct CQCT_ColorToLabelMap_t {
+  CortidQCT::Internal::C::GenericObjectWrapper<
+      CortidQCT::ColorToLabelMaps::CustomMap>
+      impl_;
 };

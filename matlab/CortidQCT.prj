@@ -1,0 +1,86 @@
+<deployment-project plugin="plugin.toolbox" plugin-version="1.0">
+  <configuration build-checksum="3799093198" file="CortidQCT.prj" location="" name="CortidQCT" target="target.toolbox" target-name="Package Toolbox">
+    <param.appname>CortidQCT</param.appname>
+    <param.authnamewatermark>Stefan Reinhold</param.authnamewatermark>
+    <param.email>sre@informatik.uni-kiel.de</param.email>
+    <param.company>Kiel Univerisy</param.company>
+    <param.summary>A toolbox for automatic cortical shape identification for QCT scans.</param.summary>
+    <param.description>his software is based on "An Analysis by Synthesis Approach for Automatic Vertebral Shape Identification in Clinical QCT" by Stefan Reinhold, Timo Damm, Lukas Huber, Reimer Andresen, Reinhard Barkmann, Claus-C. Glüer and Reinhard Koch, accepted for publication in Springer LNCS, presented on "German Conference on Pattern Recognition 2018".
+
+For details visit https://github.com/ithron/CortidQCT</param.description>
+    <param.screenshot />
+    <param.version>1.2.0</param.version>
+    <param.output>${PROJECT_ROOT}/CortidQCT.mltbx</param.output>
+    <param.products.name>
+      <item>MATLAB</item>
+      <item>Parallel Computing Toolbox</item>
+      <item>Statistics and Machine Learning Toolbox</item>
+    </param.products.name>
+    <param.products.id>
+      <item>1</item>
+      <item>80</item>
+      <item>19</item>
+    </param.products.id>
+    <param.products.version>
+      <item>9.3</item>
+      <item>6.11</item>
+      <item>11.2</item>
+    </param.products.version>
+    <param.platforms />
+    <param.guid>6cb226f8-03a1-4687-917b-3b0f553e1647</param.guid>
+    <param.exclude.filters />
+    <param.examples />
+    <param.demosxml />
+    <param.apps />
+    <param.registered.apps>
+      <file>${PROJECT_ROOT}/toolbox/+CortidQCT/CreateModel.mlapp</file>
+    </param.registered.apps>
+    <param.docs />
+    <param.getting.started.guide />
+    <param.matlabpath.excludes />
+    <param.javaclasspath.excludes />
+    <unset>
+      <param.authnamewatermark />
+      <param.email />
+      <param.company />
+      <param.screenshot />
+      <param.output />
+      <param.platforms />
+      <param.exclude.filters />
+      <param.examples />
+      <param.demosxml />
+      <param.apps />
+      <param.docs />
+      <param.getting.started.guide />
+      <param.matlabpath.excludes />
+      <param.javaclasspath.excludes />
+    </unset>
+    <fileset.rootdir>
+      <file>${PROJECT_ROOT}/toolbox</file>
+    </fileset.rootdir>
+    <fileset.rootfiles>
+      <file>${PROJECT_ROOT}/toolbox/+CortidQCT</file>
+      <file>${PROJECT_ROOT}/toolbox/DesktopToolset.xml</file>
+    </fileset.rootfiles>
+    <fileset.depfun.included />
+    <fileset.depfun.excluded />
+    <fileset.package />
+    <build-deliverables>
+      <file location="" name="CortidQCT.mltbx" optional="false">CortidQCT.mltbx</file>
+    </build-deliverables>
+    <workflow />
+    <platform>
+      <unix>true</unix>
+      <mac>true</mac>
+      <windows>true</windows>
+      <win2k>false</win2k>
+      <winxp>false</winxp>
+      <vista>false</vista>
+      <linux>true</linux>
+      <solaris>false</solaris>
+      <os32>false</os32>
+      <os64>true</os64>
+      <matlab>true</matlab>
+    </platform>
+  </configuration>
+</deployment-project>
