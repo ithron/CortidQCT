@@ -36,6 +36,7 @@ include(GNUInstallDirs)
 if (BUILD_MEX)
   install(TARGETS matlab EXPORT CortidQCTExport
     LIBRARY DESTINATION ${CortidQCT_Toolbox_ROOT}/toolbox/+CortidQCT
+    RUNTIME DESTINATION ${CortidQCT_Toolbox_ROOT}/toolbox/+CortidQCT
   )
 endif()
 
