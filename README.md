@@ -174,7 +174,7 @@ resultMesh = result.mesh;
 end
 ```
 This function mimics the CLI application with additional visualization of the result:
-<p align="center">![Example matlab plot](images/matlab-example-output.gif)</p>
+<p align="center"><img alt="Example matlab plot" src="images/matlab-example-output.gif"/></p>
 
 ### Configuration File
 The main purpose of the configuration file is to specify the reference mesh and the model file.
