@@ -10,7 +10,7 @@ This software is based on
 
 Version | File | OS | Comment
 -------:|:----:|:--:|:-------
-**v1.2.0**  |  [CortidQCT-v1.2.0-Windows-x64.zip](https://github.com/ithron/CortidQCT/releases/download/v1.2.0/CortidQCT-v1.2.0-Windows-x64.zip) | Windows x64| CLI, C++ library, C bindings, MATLAB bindings, headers, Matlab toolbox
+**v1.2.0**  |  [CortidQCT-v1.2.0-win64.zip](https://github.com/ithron/CortidQCT/releases/download/v1.2.0/CortidQCT-v1.2.0-win64.zip) | Windows x64| CLI, C++ library, C bindings, MATLAB bindings, headers, Matlab toolbox
  &nbsp;  | [CortidQCT-v1.2.0-macOS-Mojave.zip](https://github.com/ithron/CortidQCT/releases/download/v1.2.0/CortidQCT-v1.2.0-macOS-Mojave.zip) | macOS Mojave | 
 &nbsp; | [CortidQCT-v1.2.0-linux-gnu-ubuntu-18.04-x86_64.tar.gz](https://github.com/ithron/CortidQCT/releases/download/v1.2.0/CortidQCT-v1.2.0-linux-gnu-ubuntu-18.04-x86_64.tar.gz) | Ubuntu Linux 18.04 x86_64 | 
 &nbsp; | [CortidQCT-v1.2.0.mltbx](https://github.com/ithron/CortidQCT/releases/download/v1.2.0/CortidQCT-v1.2.0-x64.mltbx) | Windows x64, Ubuntu Linux 18.04 x86_64, macOS Mojave | Ready to install MATLAB toolbox, 64bit
