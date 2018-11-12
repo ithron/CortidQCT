@@ -73,6 +73,15 @@ operator()<NormalMatrix<double>, LabelVector, Eigen::VectorXd>(
     Eigen::MatrixBase<LabelVector> const &,
     Eigen::MatrixBase<Eigen::VectorXd> const &, std::size_t);
 
+extern template DisplacementOptimizer::DisplacementsWeightsPair
+DisplacementOptimizer::operator()<
+    Eigen::Transpose<Eigen::Map<Eigen::Matrix<float, 3, Eigen::Dynamic>>>,
+    Eigen::Map<LabelVector>, Eigen::Map<Eigen::VectorXf>>(
+    Eigen::MatrixBase<Eigen::Transpose<
+        Eigen::Map<Eigen::Matrix<float, 3, Eigen::Dynamic>>>> const &,
+    Eigen::MatrixBase<Eigen::Map<LabelVector>> const &,
+    Eigen::MatrixBase<Eigen::Map<Eigen::VectorXf>> const &, std::size_t);
+
 } // namespace Internal
 
 } // namespace CortidQCT
