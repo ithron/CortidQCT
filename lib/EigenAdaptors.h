@@ -17,6 +17,8 @@
 #include <array>
 
 namespace CortidQCT {
+namespace Internal {
+
 namespace Adaptor {
 
 namespace Detail_ {
@@ -95,5 +97,39 @@ arr(Eigen::MatrixBase<Derived> const &vec) noexcept {
   return Detail_::ConstructionHelper<Result, N>{}(vec);
 }
 
+template <class T>
+inline Eigen::Map<Eigen::Matrix<T, Eigen::Dynamic, 1> const>
+map(std::vector<T> const &v) {
+  return Eigen::Map<Eigen::Matrix<T, Eigen::Dynamic, 1> const>{
+      v.data(), gsl::narrow_cast<Eigen::Index>(v.size())};
+}
+
+template <class T>
+inline Eigen::Map<Eigen::Matrix<T, Eigen::Dynamic, 1>> map(std::vector<T> &v) {
+  return Eigen::Map<Eigen::Matrix<T, Eigen::Dynamic, 1>>{
+      v.data(), gsl::narrow_cast<Eigen::Index>(v.size())};
+}
+
+template <std::size_t N, class T>
+inline Eigen::Map<
+    Eigen::Matrix<T, static_cast<Eigen::Index>(N), Eigen::Dynamic> const>
+map(std::vector<std::array<T, N>> const &m) {
+  return Eigen::Map<
+      Eigen::Matrix<T, static_cast<Eigen::Index>(N), Eigen::Dynamic> const>{
+      reinterpret_cast<T const *>(m.data()), gsl::narrow_cast<Eigen::Index>(N),
+      gsl::narrow_cast<Eigen::Index>(m.size())};
+}
+
+template <std::size_t N, class T>
+inline Eigen::Map<
+    Eigen::Matrix<T, static_cast<Eigen::Index>(N), Eigen::Dynamic>>
+map(std::vector<std::array<T, N>> &m) {
+  return Eigen::Map<
+      Eigen::Matrix<T, static_cast<Eigen::Index>(N), Eigen::Dynamic>>{
+      reinterpret_cast<T *>(m.data()), gsl::narrow_cast<Eigen::Index>(N),
+      gsl::narrow_cast<Eigen::Index>(m.size())};
+}
+
 } // namespace Adaptor
+} // namespace Internal
 } // namespace CortidQCT
