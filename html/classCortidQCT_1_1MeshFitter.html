@@ -64,6 +64,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
+      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
@@ -89,7 +90,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="classCortidQCT_1_1MeshFitter-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -104,22 +104,14 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCortidQCT_1_1MeshFitter_1_1Configuration.html">Configuration</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structCortidQCT_1_1MeshFitter_1_1Configuration.html" title="Configuration type for MeshFitter. ">Configuration</a> type for <a class="el" href="classCortidQCT_1_1MeshFitter.html">MeshFitter</a>.  <a href="structCortidQCT_1_1MeshFitter_1_1Configuration.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCortidQCT_1_1MeshFitter_1_1HiddenState.html">HiddenState</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCortidQCT_1_1MeshFitter_1_1Impl.html">Impl</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCortidQCT_1_1MeshFitter_1_1Result.html">Result</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structCortidQCT_1_1MeshFitter_1_1Result.html" title="Result type. ">Result</a> type.  <a href="structCortidQCT_1_1MeshFitter_1_1Result.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCortidQCT_1_1MeshFitter_1_1State.html">State</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optimization state type.  <a href="structCortidQCT_1_1MeshFitter_1_1State.html#details">More...</a><br/></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal <a class="el" href="structCortidQCT_1_1MeshFitter_1_1State.html" title="Internal State type. ">State</a> type.  <a href="structCortidQCT_1_1MeshFitter_1_1State.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
-Public Types</h2></td></tr>
-<tr class="memitem:ac9725d641fa2ec198c7571a2bfb24157"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac9725d641fa2ec198c7571a2bfb24157"></a>
-using&#160;</td><td class="memItemRight" valign="bottom"><b>HiddenStatePtr</b> = std::unique_ptr&lt; <a class="el" href="structCortidQCT_1_1MeshFitter_1_1HiddenState.html">HiddenState</a> &gt;</td></tr>
-<tr class="separator:ac9725d641fa2ec198c7571a2bfb24157"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -262,7 +254,7 @@ Public Properties</h2></td></tr>
 <p>Runs the fitting algorithm for a single iteration. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">state</td><td><a class="el" href="structCortidQCT_1_1MeshFitter_1_1State.html" title="Optimization state type. ">State</a> object returned by <code>init</code>. </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">state</td><td><a class="el" href="structCortidQCT_1_1MeshFitter_1_1State.html" title="Internal State type. ">State</a> object returned by <code>init</code>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -290,7 +282,7 @@ Public Properties</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="structCortidQCT_1_1MeshFitter_1_1State.html" title="Optimization state type. ">State</a> object that must be passed to subsequent calls </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="structCortidQCT_1_1MeshFitter_1_1State.html" title="Internal State type. ">State</a> object that must be passed to subsequent calls </dd></dl>
 <dl class="section see"><dt>See Also</dt><dd><a class="el" href="classCortidQCT_1_1MeshFitter.html#a1baf4e777cae078166fc5e624c081a7e" title="Fits the reference mesh to the given voxel volume. ">fit()</a> </dd></dl>
 
 </div>
@@ -302,7 +294,7 @@ Public Properties</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Nov 13 2018 07:54:29 for CortidQCT by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Nov 13 2018 08:36:27 for CortidQCT by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
