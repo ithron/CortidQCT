@@ -467,9 +467,9 @@ No file _formulas.aux.
 [1] [2] [3] (./_formulas.aux) )
 Output written on _formulas.dvi (3 pages, 488 bytes).
 Transcript written on _formulas.log.
-/home/travis/build/ithron/CortidQCT/README.md:132: warning: Unsupported xml/html tag <configurationFile> found
-/home/travis/build/ithron/CortidQCT/README.md:132: warning: Unsupported xml/html tag <inputVolume> found
-/home/travis/build/ithron/CortidQCT/README.md:132: warning: Unsupported xml/html tag <outputMesh> found
+/home/travis/build/ithron/CortidQCT/README.md:136: warning: Unsupported xml/html tag <configurationFile> found
+/home/travis/build/ithron/CortidQCT/README.md:136: warning: Unsupported xml/html tag <inputVolume> found
+/home/travis/build/ithron/CortidQCT/README.md:136: warning: Unsupported xml/html tag <outputMesh> found
 CT::VoxelSize...
 Generating docs for compound CortidQCT::VoxelVolume...
 Generating docs for compound CortidQCT::MartrixIOWrapper...
