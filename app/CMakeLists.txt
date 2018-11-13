@@ -31,3 +31,15 @@ target_link_libraries(CortidQCT_CLI
     CortidQCT::Core
 )
 
+############################
+# Exports
+
+include(GNUInstallDirs)
+
+install(TARGETS CortidQCT_CLI EXPORT CortidQCTExport
+  PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
+  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+  RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+  ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+)
+
