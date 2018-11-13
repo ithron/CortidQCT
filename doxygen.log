@@ -55,8 +55,10 @@ Searching for files in directory /home/travis/build/ithron/CortidQCT/bindings/ma
 Searching for files in directory /home/travis/build/ithron/CortidQCT/bindings/matlab/include
 Searching for files in directory /home/travis/build/ithron/CortidQCT/bindings/matlab/include/CortidQCT
 Searching for files in directory /home/travis/build/ithron/CortidQCT/bindings/matlab/include/CortidQCT/Matlab
-Searching for files in directory /home/travis/build/ithron/CortidQCT/bindings//home/travis/build/ithron/CortidQCT/lib/DisplacementOptimizer.cpp:208: warning: Found ';' while parsing initializer list! (doxygen could be confused by a macro call without semicolon)
-/home/travis/build/ithron/CortidQCT/lib/DisplacementOptimizer.h:83: warning: Found ';' while parsing initializer list! (doxygen could be confused by a macro call without semicolon)
+Searching for files in directory /home/travis/build/ithron/CortidQCT/bindings//home/travis/build/ithron/CortidQCT/lib/DisplacementOptimizer.cpp:225: warning: Found ';' while parsing initializer list! (doxygen could be confused by a macro call without semicolon)
+/home/travis/build/ithron/CortidQCT/lib/DisplacementOptimizer.cpp:234: warning: Found ';' while parsing initializer list! (doxygen could be confused by a macro call without semicolon)
+/home/travis/build/ithron/CortidQCT/lib/DisplacementOptimizer.h:92: warning: Found ';' while parsing initializer list! (doxygen could be confused by a macro call without semicolon)
+/home/travis/build/ithron/CortidQCT/lib/DisplacementOptimizer.h:101: warning: Found ';' while parsing initializer list! (doxygen could be confused by a macro call without semicolon)
 matlab/src
 Reading and parsing tag files
 Parsing files
@@ -197,14 +199,16 @@ Please use a more specific name by including a (larger) part of the path!
 /home/travis/build/ithron/CortidQCT/bindings/C/src/Error.cpp:14: warning: Compound CortidQCT::Internal::C::Error is not documented.
 /home/travis/build/ithron/CortidQCT/lib/EigenAdaptors.h:58: warning: Compound CortidQCT::Internal::Adaptor::Detail_::ConstructionHelper< T, 0 > is not documented.
 /home/travis/build/ithron/CortidQCT/lib/Sampler.h:133: warning: Compound CortidQCT::ModelSampler is not documented.
-/home/travis/build/ithron/CortidQCT/lib/DisplacementOptimizer.cpp:189: warning: documented symbol `template DisplacementOptimizer::DisplacementsWeightsPair CortidQCT::Internal::DisplacementOptimizer::operator' was not declared or defined.
-/home/travis/build/ithron/CortidQCT/lib/DisplacementOptimizer.cpp:190: warning: documented symbol `template DisplacementOptimizer::DisplacementsWeightsPair CortidQCT::Internal::Eigen::VectorXf' was not declared or defined.
-/home/travis/build/ithron/CortidQCT/lib/DisplacementOptimizer.cpp:195: warning: documented symbol `template DisplacementOptimizer::DisplacementsWeightsPair CortidQCT::Internal::DisplacementOptimizer::operator' was not declared or defined.
-/home/travis/build/ithron/CortidQCT/lib/DisplacementOptimizer.cpp:196: warning: documented symbol `template DisplacementOptimizer::DisplacementsWeightsPair CortidQCT::Internal::Eigen::VectorXd' was not declared or defined.
-/home/travis/build/ithron/CortidQCT/lib/DisplacementOptimizer.h:63: warning: documented symbol `template DisplacementOptimizer::DisplacementsWeightsPair CortidQCT::Internal::DisplacementOptimizer::operator' was not declared or defined.
-/home/travis/build/ithron/CortidQCT/lib/DisplacementOptimizer.h:64: warning: documented symbol `template DisplacementOptimizer::DisplacementsWeightsPair CortidQCT::Internal::Eigen::VectorXf' was not declared or defined.
-/home/travis/build/ithron/CortidQCT/lib/DisplacementOptimizer.h:70: warning: documented symbol `template DisplacementOptimizer::DisplacementsWeightsPair CortidQCT::Internal::DisplacementOptimizer::operator' was not declared or defined.
-/home/travis/build/ithron/CortidQCT/lib/DisplacementOptimizer.h:71: warning: documented symbol `template DisplacementOptimizer::DisplacementsWeightsPair CortidQCT::Internal::Eigen::VectorXd' was not declared or defined.
+/home/travis/build/ithron/CortidQCT/lib/DisplacementOptimizer.cpp:206: warning: documented symbol `template DisplacementOptimizer::DisplacementsWeightsPair CortidQCT::Internal::DisplacementOptimizer::operator' was not declared or defined.
+/home/travis/build/ithron/CortidQCT/lib/DisplacementOptimizer.cpp:207: warning: documented symbol `template DisplacementOptimizer::DisplacementsWeightsPair CortidQCT::Internal::Eigen::VectorXf' was not declared or defined.
+/home/travis/build/ithron/CortidQCT/lib/DisplacementOptimizer.cpp:212: warning: documented symbol `template DisplacementOptimizer::DisplacementsWeightsPair CortidQCT::Internal::DisplacementOptimizer::operator' was not declared or defined.
+/home/travis/build/ithron/CortidQCT/lib/DisplacementOptimizer.cpp:213: warning: documented symbol `template DisplacementOptimizer::DisplacementsWeightsPair CortidQCT::Internal::Eigen::VectorXd' was not declared or defined.
+/home/travis/build/ithron/CortidQCT/lib/DisplacementOptimizer.cpp:236: warning: documented symbol `template DisplacementOptimizer::DisplacementsWeightsPair CortidQCT::Internal::DisplacementOptimizer::operator' was not declared or defined.
+/home/travis/build/ithron/CortidQCT/lib/DisplacementOptimizer.h:72: warning: documented symbol `template DisplacementOptimizer::DisplacementsWeightsPair CortidQCT::Internal::DisplacementOptimizer::operator' was not declared or defined.
+/home/travis/build/ithron/CortidQCT/lib/DisplacementOptimizer.h:73: warning: documented symbol `template DisplacementOptimizer::DisplacementsWeightsPair CortidQCT::Internal::Eigen::VectorXf' was not declared or defined.
+/home/travis/build/ithron/CortidQCT/lib/DisplacementOptimizer.h:79: warning: documented symbol `template DisplacementOptimizer::DisplacementsWeightsPair CortidQCT::Internal::DisplacementOptimizer::operator' was not declared or defined.
+/home/travis/build/ithron/CortidQCT/lib/DisplacementOptimizer.h:80: warning: documented symbol `template DisplacementOptimizer::DisplacementsWeightsPair CortidQCT::Internal::Eigen::VectorXd' was not declared or defined.
+/home/travis/build/ithron/CortidQCT/lib/DisplacementOptimizer.h:103: warning: documented symbol `template DisplacementOptimizer::DisplacementsWeightsPair CortidQCT::Internal::DisplacementOptimizer::operator' was not declared or defined.
 /home/travis/build/ithron/CortidQCT/bindings/matlab/include/CortidQCT/Matlab/CortidQCT.h:266: warning: member CQCT_ColorToLabelMap belongs to two different groups. The second one found here will be ignored.
 ithron/CortidQCT/bindings/matlab/+CortidQCT/+lib/Error.m...
 Preprocessing /home/travis/build/ithron/CortidQCT/bindings/matlab/+CortidQCT/+lib/Mesh.m...
@@ -332,11 +336,11 @@ Generating code for file include/CortidQCT/src/filesystem.h...
 /home/travis/build/ithron/CortidQCT/include/CortidQCT/src/MeshFitter.h:17: warning: Member Type (enumeration) of class CortidQCT::Coordinate3D is not documented.
 /home/travis/build/ithron/CortidQCT/include/CortidQCT/src/MeshFitter.h:19: warning: Member xyz (variable) of class CortidQCT::Coordinate3D is not documented.
 /home/travis/build/ithron/CortidQCT/include/CortidQCT/src/MeshFitter.h:20: warning: Member type (variable) of class CortidQCT::Coordinate3D is not documented.
-/home/travis/build/ithron/CortidQCT/include/CortidQCT/src/MeshFitter.h:177: warning: Member MeshFitter(MeshFitter const &) (function) of class CortidQCT::MeshFitter is not documented.
-/home/travis/build/ithron/CortidQCT/include/CortidQCT/src/MeshFitter.h:178: warning: Member MeshFitter(MeshFitter &&) noexcept (function) of class CortidQCT::MeshFitter is not documented.
-/home/travis/build/ithron/CortidQCT/include/CortidQCT/src/MeshFitter.h:179: warning: Member operator=(MeshFitter const &) (function) of class CortidQCT::MeshFitter is not documented.
-/home/travis/build/ithron/CortidQCT/include/CortidQCT/src/MeshFitter.h:180: warning: Member operator=(MeshFitter &&) noexcept (function) of class CortidQCT::MeshFitter is not documented.
-/home/travis/build/ithron/CortidQCT/include/CortidQCT/src/MeshFitter.h:182: warning: Member swap(MeshFitter &rhs) noexcept (function) of class CortidQCT::MeshFitter is not documented.
+/home/travis/build/ithron/CortidQCT/include/CortidQCT/src/MeshFitter.h:180: warning: Member MeshFitter(MeshFitter const &) (function) of class CortidQCT::MeshFitter is not documented.
+/home/travis/build/ithron/CortidQCT/include/CortidQCT/src/MeshFitter.h:181: warning: Member MeshFitter(MeshFitter &&) noexcept (function) of class CortidQCT::MeshFitter is not documented.
+/home/travis/build/ithron/CortidQCT/include/CortidQCT/src/MeshFitter.h:182: warning: Member operator=(MeshFitter const &) (function) of class CortidQCT::MeshFitter is not documented.
+/home/travis/build/ithron/CortidQCT/include/CortidQCT/src/MeshFitter.h:183: warning: Member operator=(MeshFitter &&) noexcept (function) of class CortidQCT::MeshFitter is not documented.
+/home/travis/build/ithron/CortidQCT/include/CortidQCT/src/MeshFitter.h:185: warning: Member swap(MeshFitter &rhs) noexcept (function) of class CortidQCT::MeshFitter is not documented.
 /home/travis/build/ithron/CortidQCT/include/CortidQCT/src/MeshFitter.h:25: warning: End of list marker found without any preceding list items
 Generating code for file include/CortidQCT/src/LabelToColorMap.h...
 Generating code for file include/CortidQCT/src/MeasurementModel.h...
@@ -414,10 +418,10 @@ Generating docs for compound CortidQCT::MeasurementModel...
 Generating docs for compound CortidQCT::Mesh...
 Generating docs for compound CortidQCT::Coordinate3D...
 Generating docs for compound CortidQCT::MeshFitter...
-Generating docs for nested compound CortidQCT::MeshFitter::Config/home/travis/build/ithron/CortidQCT/include/CortidQCT/src/MeshFitter.h:35: warning: Member OriginType (enumeration) of class CortidQCT::MeshFitter::Configuration is not documented.
-/home/travis/build/ithron/CortidQCT/include/CortidQCT/src/MeshFitter.h:36: warning: Member Origin (typedef) of class CortidQCT::MeshFitter::Configuration is not documented.
-/home/travis/build/ithron/CortidQCT/include/CortidQCT/src/MeshFitter.h:37: warning: Member ScaleVector (typedef) of class CortidQCT::MeshFitter::Configuration is not documented.
-/home/travis/build/ithron/CortidQCT/include/CortidQCT/src/MeshFitter.h:39: warning: Member RotationVector (typedef) of class CortidQCT::MeshFitter::Configuration is not documented.
+Generating docs for nested compound CortidQCT::MeshFitter::Config/home/travis/build/ithron/CortidQCT/include/CortidQCT/src/MeshFitter.h:36: warning: Member OriginType (enumeration) of class CortidQCT::MeshFitter::Configuration is not documented.
+/home/travis/build/ithron/CortidQCT/include/CortidQCT/src/MeshFitter.h:37: warning: Member Origin (typedef) of class CortidQCT::MeshFitter::Configuration is not documented.
+/home/travis/build/ithron/CortidQCT/include/CortidQCT/src/MeshFitter.h:38: warning: Member ScaleVector (typedef) of class CortidQCT::MeshFitter::Configuration is not documented.
+/home/travis/build/ithron/CortidQCT/include/CortidQCT/src/MeshFitter.h:40: warning: Member RotationVector (typedef) of class CortidQCT::MeshFitter::Configuration is not documented.
 /home/travis/build/ithron/CortidQCT/lib/MeshFitterImpl.h:23: warning: Member Impl(MeshFitter &meshFitter) (function) of class CortidQCT::MeshFitter::Impl is not documented.
 /home/travis/build/ithron/CortidQCT/lib/MeshFitterImpl.h:27: warning: Member Impl(Impl const &)=delete (function) of class CortidQCT::MeshFitter::Impl is not documented.
 /home/travis/build/ithron/CortidQCT/lib/MeshFitterImpl.h:28: warning: Member Impl(Impl &&) noexcept=delete (function) of class CortidQCT::MeshFitter::Impl is not documented.
@@ -425,15 +429,20 @@ Generating docs for nested compound CortidQCT::MeshFitter::Config/home/travis/bu
 /home/travis/build/ithron/CortidQCT/lib/MeshFitterImpl.h:31: warning: Member operator=(Impl &&)=delete (function) of class CortidQCT::MeshFitter::Impl is not documented.
 /home/travis/build/ithron/CortidQCT/lib/MeshFitterImpl.h:33: warning: Member Impl(Impl const &, MeshFitter &rhsFitter) (function) of class CortidQCT::MeshFitter::Impl is not documented.
 /home/travis/build/ithron/CortidQCT/lib/MeshFitterImpl.h:35: warning: Member Impl(Impl &&, MeshFitter &rhsFitter) noexcept (function) of class CortidQCT::MeshFitter::Impl is not documented.
-/home/travis/build/ithron/CortidQCT/lib/MeshFitterImpl.h:39: warning: Member fit(VoxelVolume const &volume) (function) of class CortidQCT::MeshFitter::Impl is not documented.
-/home/travis/build/ithron/CortidQCT/lib/MeshFitterImpl.h:40: warning: Member init(VoxelVolume const &volume) (function) of class CortidQCT::MeshFitter::Impl is not documented.
-/home/travis/build/ithron/CortidQCT/lib/MeshFitterImpl.h:41: warning: Member fitOneIteration(MeshFitter::State &state) (function) of class CortidQCT::MeshFitter::Impl is not documented.
-/home/travis/build/ithron/CortidQCT/lib/MeshFitterImpl.h:43: warning: Member fitter_ (variable) of class CortidQCT::MeshFitter::Impl is not documented.
-/home/travis/build/ithron/CortidQCT/lib/MeshFitterImpl.h:45: warning: Member result_ (variable) of class CortidQCT::MeshFitter::Impl is not documented.
-/home/travis/build/ithron/CortidQCT/include/CortidQCT/src/MeshFitter.h:143: warning: Member State(State const &) (function) of class CortidQCT::MeshFitter::State is not documented.
-/home/travis/build/ithron/CortidQCT/include/CortidQCT/src/MeshFitter.h:144: warning: Member State(State &&)=default (function) of class CortidQCT::MeshFitter::State is not documented.
-/home/travis/build/ithron/CortidQCT/include/CortidQCT/src/MeshFitter.h:146: warning: Member operator=(State const &) (function) of class CortidQCT::MeshFitter::State is not documented.
-/home/travis/build/ithron/CortidQCT/include/CortidQCT/src/MeshFitter.h:147: warning: Member operator=(State &&)=default (function) of class CortidQCT::MeshFitter::State is not documented.
+/home/travis/build/ithron/CortidQCT/lib/MeshFitterImpl.h:39: warning: Member fit(VoxelVolume const &volume) const  (function) of class CortidQCT::MeshFitter::Impl is not documented.
+/home/travis/build/ithron/CortidQCT/lib/MeshFitterImpl.h:40: warning: Member init(VoxelVolume const &volume) const  (function) of class CortidQCT::MeshFitter::Impl is not documented.
+/home/travis/build/ithron/CortidQCT/lib/MeshFitterImpl.h:41: warning: Member fitOneIteration(MeshFitter::State &state) const  (function) of class CortidQCT::MeshFitter::Impl is not documented.
+/home/travis/build/ithron/CortidQCT/lib/MeshFitterImpl.h:43: warning: Member findOptimalDisplacements(MeshFitter::State &state) const  (function) of class CortidQCT::MeshFitter::Impl is not documented.
+/home/travis/build/ithron/CortidQCT/lib/MeshFitterImpl.h:44: warning: Member findOptimalDeformation(MeshFitter::State &state) const  (function) of class CortidQCT::MeshFitter::Impl is not documented.
+/home/travis/build/ithron/CortidQCT/lib/MeshFitterImpl.h:45: warning: Member sampleVolume(MeshFitter::State &state) const  (function) of class CortidQCT::MeshFitter::Impl is not documented.
+/home/travis/build/ithron/CortidQCT/lib/MeshFitterImpl.h:46: warning: Member computeLogLikelihood(MeshFitter::State &state) const  (function) of class CortidQCT::MeshFitter::Impl is not documented.
+/home/travis/build/ithron/CortidQCT/lib/MeshFitterImpl.h:47: warning: Member checkConvergence(MeshFitter::State &state) const  (function) of class CortidQCT::MeshFitter::Impl is not documented.
+/home/travis/build/ithron/CortidQCT/lib/MeshFitterImpl.h:49: warning: Member fitter_ (variable) of class CortidQCT::MeshFitter::Impl is not documented.
+/home/travis/build/ithron/CortidQCT/lib/MeshFitterImpl.h:51: warning: Member result_ (variable) of class CortidQCT::MeshFitter::Impl is not documented.
+/home/travis/build/ithron/CortidQCT/include/CortidQCT/src/MeshFitter.h:146: warning: Member State(State const &) (function) of class CortidQCT::MeshFitter::State is not documented.
+/home/travis/build/ithron/CortidQCT/include/CortidQCT/src/MeshFitter.h:147: warning: Member State(State &&)=default (function) of class CortidQCT::MeshFitter::State is not documented.
+/home/travis/build/ithron/CortidQCT/include/CortidQCT/src/MeshFitter.h:149: warning: Member operator=(State const &) (function) of class CortidQCT::MeshFitter::State is not documented.
+/home/travis/build/ithron/CortidQCT/include/CortidQCT/src/MeshFitter.h:150: warning: Member operator=(State &&)=default (function) of class CortidQCT::MeshFitter::State is not documented.
 /home/travis/build/ithron/CortidQCT/lib/MeshFitterImpl.cpp:38: warning: Member HiddenState(VoxelVolume const &v, DisplacementOptimizer const &opt, WeightedARAPFitter< float > const &fitter, FacetMatrix const &f) (function) of class CortidQCT::MeshFitter::State::HiddenState is not documented.
 /home/travis/build/ithron/CortidQCT/lib/MeshFitterImpl.cpp:32: warning: Member volume (variable) of class CortidQCT::MeshFitter::State::HiddenState is not documented.
 /home/travis/build/ithron/CortidQCT/lib/MeshFitterImpl.cpp:33: warning: Member displacementOptimizer (variable) of class CortidQCT::MeshFitter::State::HiddenState is not documented.
@@ -540,7 +549,7 @@ Generating file index...
 Generating file member index...
 Generating example index...
 finalizing index lists...
-lookup cache used 755/65536 hits=4788 misses=896
+lookup cache used 766/65536 hits=4984 misses=907
 finished...
 make[3]: Leaving directory `/home/travis/build/ithron/CortidQCT'
 [100%] Built target doc
