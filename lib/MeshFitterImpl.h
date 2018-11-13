@@ -36,15 +36,15 @@ public:
       : fitter_(rhsFitter) {}
 
 protected:
-  MeshFitter::Result fit(VoxelVolume const &volume);
-  MeshFitter::State init(VoxelVolume const &volume);
-  void fitOneIteration(MeshFitter::State &state);
+  MeshFitter::Result fit(VoxelVolume const &volume) const;
+  MeshFitter::State init(VoxelVolume const &volume) const;
+  void fitOneIteration(MeshFitter::State &state) const;
 
-  void findOptimalDisplacements(MeshFitter::State &state);
-  void findOptimalDeformation(MeshFitter::State &state);
-  void sampleVolume(MeshFitter::State &state);
-  void computeLogLikelihood(MeshFitter::State &state);
-  void checkConvergence(MeshFitter::State &state);
+  void findOptimalDisplacements(MeshFitter::State &state) const;
+  void findOptimalDeformation(MeshFitter::State &state) const;
+  void sampleVolume(MeshFitter::State &state) const;
+  void computeLogLikelihood(MeshFitter::State &state) const;
+  void checkConvergence(MeshFitter::State &state) const;
 
   MeshFitter &fitter_;
 

@@ -25,6 +25,7 @@ struct Coordinate3D {
  */
 class MeshFitter {
   class Impl;
+
 public:
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wpadded"
@@ -197,25 +198,93 @@ public:
    * @param volume VoxelVolume object representing the target scan
    * @return A `Result` struct containing the deformed mesh
    */
-  Result fit(VoxelVolume const &volume);
+  Result fit(VoxelVolume const &volume) const;
 
   /**
    * @brief Initializes the fitting algorithm
+   *
+   * Initializes the state and performed the first volume sampling step by
+   * calling `volumeSamplingStep()`.
    *
    * @param volume VoxelVolume object representing the target scan
    * @return State object that must be passed to subsequent calls
    * @see fit()
    */
-  State init(VoxelVolume const &volume);
+  State init(VoxelVolume const &volume) const;
 
   /**
    * @brief Runs the fitting algorithm for a single iteration
+   *
+   * Performed the following steps:
+   *  1. optimalDisplacementStep()
+   *  2. optimalDeformationStep()
+   *  3. logLikelihoodStep()
+   *  4. convergenceTestStep()
+   *  5. increase interation count
+   *  6. volumeSamplingStep()
+   *
    * @param[in,out] state State object returned by `init`.
+   * @throw std::invalid_argument iff state was not initialized properly
+   * @see fit()
    */
-  void fitOneIteration(State &state);
+  void fitOneIteration(State &state) const;
+
+  /**
+   * @brief Samples the input volume at lines perpendicular to the vertices of
+   * the current deformed mesh.
+   *
+   * @param[in,out] state Optimization state
+   * @pre `state` has been initialized by calling `init()`.
+   * @throw std::invalid_argument iff state was not initialized properly
+   * @see fitOneIteration
+   */
+  void volumeSamplingStep(State &state) const;
+
+  /**
+   * @brief Finds the optimal displacements of the model and computes the
+   * per-vertex weights.
+   *
+   * @param[in,out] state Optimization state
+   * @pre `state` has been initialized by calling `init()`.
+   * @throw std::invalid_argument iff state was not initialized properly
+   * @see fitOneIteration
+   */
+  void optimalDisplacementStep(State &state) const;
+
+  /**
+   * @brief Find the deformation that minimizes the point-to-plane distance of
+   * the current deformed mesh to the displaced vertices with respect to the
+   * ARAP energy.
+   *
+   * @param[in,out] state Optimization state
+   * @pre `state` has been initialized by calling `init()`.
+   * @throw std::invalid_argument iff state was not initialized properly
+   * @see fitOneIteration
+   */
+  void optimalDeformationStep(State &state) const;
+
+  /**
+   * @brief Computes the log likelihood of the current deformed mesh given the
+   * input volume.
+   *
+   * @param[in,out] state Optimization state
+   * @pre `state` has been initialized by calling `init()`.
+   * @throw std::invalid_argument iff state was not initialized properly
+   * @see fitOneIteration
+   */
+  void logLikelihoodStep(State &state) const;
+
+  /**
+   * @brief Tests if the algorithm has converged.
+   *
+   * @param[in,out] state Optimization state
+   * @pre `state` has been initialized by calling `init()`.
+   * @throw std::invalid_argument iff state was not initialized properly
+   * @see fitOneIteration
+   */
+  void convergenceTestStep(State &state) const;
 
 private:
-
 #ifndef CORTIDQCT_NO_PROPAGATE_CONST
   std::propagate_const<std::unique_ptr<Impl>> pImpl_;
 #else

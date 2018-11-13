@@ -110,7 +110,7 @@ samplingPoints(Eigen::MatrixBase<DerivedV> const &V,
 // MARK: -
 // MARK: MeshFitter::Impl Implementation
 
-MeshFitter::Result MeshFitter::Impl::fit(VoxelVolume const &volume) {
+MeshFitter::Result MeshFitter::Impl::fit(VoxelVolume const &volume) const {
 
   auto state = init(volume);
 
@@ -139,7 +139,7 @@ MeshFitter::Result MeshFitter::Impl::fit(VoxelVolume const &volume) {
   return state;
 }
 
-MeshFitter::State MeshFitter::Impl::init(VoxelVolume const &volume) {
+MeshFitter::State MeshFitter::Impl::init(VoxelVolume const &volume) const {
   using Eigen::Dynamic;
   using Eigen::Index;
   using Eigen::Map;
@@ -206,7 +206,7 @@ MeshFitter::State MeshFitter::Impl::init(VoxelVolume const &volume) {
   return state;
 } // namespace CortidQCT
 
-void MeshFitter::Impl::fitOneIteration(MeshFitter::State &state) {
+void MeshFitter::Impl::fitOneIteration(MeshFitter::State &state) const {
 
   if (state.hiddenState_ == nullptr) {
     throw std::invalid_argument("Invalid state argument, call init() first!");
@@ -221,7 +221,8 @@ void MeshFitter::Impl::fitOneIteration(MeshFitter::State &state) {
   ++state.iteration;
 }
 
-void MeshFitter::Impl::findOptimalDisplacements(MeshFitter::State &state) {
+void MeshFitter::Impl::findOptimalDisplacements(
+    MeshFitter::State &state) const {
   if (state.hiddenState_ == nullptr) {
     throw std::invalid_argument("Invalid state argument, call init() first!");
   }
@@ -239,7 +240,7 @@ void MeshFitter::Impl::findOptimalDisplacements(MeshFitter::State &state) {
           N.transpose(), labels, volumeSamples, state.nonDecreasing);
 }
 
-void MeshFitter::Impl::findOptimalDeformation(MeshFitter::State &state) {
+void MeshFitter::Impl::findOptimalDeformation(MeshFitter::State &state) const {
   if (state.hiddenState_ == nullptr) {
     throw std::invalid_argument("Invalid state argument, call init() first!");
   }
@@ -258,7 +259,7 @@ void MeshFitter::Impl::findOptimalDeformation(MeshFitter::State &state) {
   V = state.hiddenState_->meshFitter.fit(Y, N.transpose(), gamma).transpose();
 }
 
-void MeshFitter::Impl::sampleVolume(MeshFitter::State &state) {
+void MeshFitter::Impl::sampleVolume(MeshFitter::State &state) const {
 
   using Eigen::Map;
   using Eigen::MatrixXf;
@@ -296,7 +297,7 @@ void MeshFitter::Impl::sampleVolume(MeshFitter::State &state) {
       state.hiddenState_->volumeSamplesMatrix.data(), volumeSamples.rows()};
 }
 
-void MeshFitter::Impl::computeLogLikelihood(MeshFitter::State &state) {
+void MeshFitter::Impl::computeLogLikelihood(MeshFitter::State &state) const {
   if (state.hiddenState_ == nullptr) {
     throw std::invalid_argument("Invalid state argument, call init() first!");
   }
@@ -311,7 +312,7 @@ void MeshFitter::Impl::computeLogLikelihood(MeshFitter::State &state) {
   state.logLikelihood = LL;
 }
 
-void MeshFitter::Impl::checkConvergence(MeshFitter::State &state) {
+void MeshFitter::Impl::checkConvergence(MeshFitter::State &state) const {
   if (state.hiddenState_ == nullptr) {
     throw std::invalid_argument("Invalid state argument, call init() first!");
   }
