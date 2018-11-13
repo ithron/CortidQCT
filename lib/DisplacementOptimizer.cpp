@@ -186,6 +186,23 @@ operator()(Eigen::MatrixBase<DerivedN> const &N,
   return {-bestDisplacements, gamma};
 }
 
+template <class DerivedN, class DerivedL, class DerivedM>
+float DisplacementOptimizer::logLikelihood(
+    Eigen::MatrixBase<DerivedN> const &N,
+    Eigen::MatrixBase<DerivedL> const &labels,
+    Eigen::MatrixBase<DerivedM> const &measurements) {
+
+  using Eigen::VectorXf;
+
+  updateModelSamplingPositions(model_, N, labels, measurements,
+                               modelSamplingPositions_);
+
+  VectorXf modelSamples(measurements.size());
+  modelSampler_(modelSamplingPositions_, .0f, modelSamples);
+
+  return modelSamples.sum();
+}
+
 template DisplacementOptimizer::DisplacementsWeightsPair DisplacementOptimizer::
 operator()<NormalMatrix<float>, LabelVector, Eigen::VectorXf>(
     Eigen::MatrixBase<NormalMatrix<float>> const &,
@@ -200,12 +217,29 @@ operator()<NormalMatrix<double>, LabelVector, Eigen::VectorXd>(
 
 template DisplacementOptimizer::DisplacementsWeightsPair DisplacementOptimizer::
 operator()<
+    Eigen::Transpose<const Eigen::Map<Eigen::Matrix<float, 3, Eigen::Dynamic>>>,
+    Eigen::Map<LabelVector>, Eigen::Map<Eigen::VectorXf>>(
+    Eigen::MatrixBase<Eigen::Transpose<
+        const Eigen::Map<Eigen::Matrix<float, 3, Eigen::Dynamic>>>> const &,
+    Eigen::MatrixBase<Eigen::Map<LabelVector>> const &,
+    Eigen::MatrixBase<Eigen::Map<Eigen::VectorXf>> const &, std::size_t);
+
+template DisplacementOptimizer::DisplacementsWeightsPair DisplacementOptimizer::
+operator()<
     Eigen::Transpose<Eigen::Map<Eigen::Matrix<float, 3, Eigen::Dynamic>>>,
     Eigen::Map<LabelVector>, Eigen::Map<Eigen::VectorXf>>(
     Eigen::MatrixBase<Eigen::Transpose<
         Eigen::Map<Eigen::Matrix<float, 3, Eigen::Dynamic>>>> const &,
     Eigen::MatrixBase<Eigen::Map<LabelVector>> const &,
     Eigen::MatrixBase<Eigen::Map<Eigen::VectorXf>> const &, std::size_t);
+
+template float DisplacementOptimizer::logLikelihood<
+    Eigen::Transpose<const Eigen::Map<Eigen::Matrix<float, 3, Eigen::Dynamic>>>,
+    Eigen::Map<LabelVector>, Eigen::Map<Eigen::VectorXf>>(
+    Eigen::MatrixBase<Eigen::Transpose<
+        const Eigen::Map<Eigen::Matrix<float, 3, Eigen::Dynamic>>>> const &,
+    Eigen::MatrixBase<Eigen::Map<LabelVector>> const &,
+    Eigen::MatrixBase<Eigen::Map<Eigen::VectorXf>> const &);
 
 } // namespace Internal
 

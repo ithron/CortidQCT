@@ -127,6 +127,8 @@ public:
     std::vector<float> volumeSamples;
     /// Minimum distacne norm
     float minDisNorm = std::numeric_limits<float>::max();
+    /// Log likeihood of deformedMesh
+    float logLikelihood = -std::numeric_limits<float>::max();
     /// Iteration count
     std::size_t iteration = 1;
     /// Converged?

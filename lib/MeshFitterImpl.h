@@ -40,6 +40,12 @@ protected:
   MeshFitter::State init(VoxelVolume const &volume);
   void fitOneIteration(MeshFitter::State &state);
 
+  void findOptimalDisplacements(MeshFitter::State &state);
+  void findOptimalDeformation(MeshFitter::State &state);
+  void sampleVolume(MeshFitter::State &state);
+  void computeLogLikelihood(MeshFitter::State &state);
+  void checkConvergence(MeshFitter::State &state);
+
   MeshFitter &fitter_;
 
   std::optional<Result> result_;
