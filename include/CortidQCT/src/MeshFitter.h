@@ -104,6 +104,9 @@ public:
   };
 #pragma clang diagnostic pop
 
+  struct HiddenState;
+  using HiddenStatePtr = std::unique_ptr<HiddenState>;
+
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wpadded"
   /**
@@ -136,15 +139,10 @@ public:
     std::size_t nonDecreasing = 0;
   };
 
-  struct HiddenState;
-  using HiddenStatePtr = std::unique_ptr<HiddenState>;
+  struct State : public Result {
 
-  /**
-   * @brief Optimization state type
-   */
-  struct State {
-    Result result;
-    HiddenStatePtr hiddenState;
+    /// For internal use only, do not touch!
+    HiddenStatePtr hiddenState_;
 
     State() = default;
     State(State const &);
@@ -152,8 +150,8 @@ public:
     ~State();
     State &operator=(State const &);
     State &operator=(State &&) = default;
-  
   };
+
 #pragma clang diagnostic pop
 
   /**
