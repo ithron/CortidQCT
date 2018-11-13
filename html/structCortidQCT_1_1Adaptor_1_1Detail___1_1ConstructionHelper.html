@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>CortidQCT: CortidQCT::Internal::Adaptor::Detail_::ConstructionHelper&lt; std::array&lt; T, N &gt;, 0 &gt; Struct Template Reference</title>
+<title>CortidQCT: CortidQCT::Adaptor::Detail_::ConstructionHelper&lt; T, N &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">CortidQCT
-   &#160;<span id="projectnumber">1.2.0</span>
+   &#160;<span id="projectnumber">1.2.1</span>
    </div>
   </td>
  </tr>
@@ -64,7 +64,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
-      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
@@ -84,24 +83,24 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="namespaceCortidQCT.html">CortidQCT</a></li><li class="navelem"><b>Internal</b></li><li class="navelem"><b>Adaptor</b></li><li class="navelem"><b>Detail_</b></li><li class="navelem"><a class="el" href="structCortidQCT_1_1Internal_1_1Adaptor_1_1Detail___1_1ConstructionHelper_3_01std_1_1array_3_01T_00_01N_01_4_00_010_01_4.html">ConstructionHelper< std::array< T, N >, 0 ></a></li>  </ul>
+<li class="navelem"><a class="el" href="namespaceCortidQCT.html">CortidQCT</a></li><li class="navelem"><b>Adaptor</b></li><li class="navelem"><b>Detail_</b></li><li class="navelem"><a class="el" href="structCortidQCT_1_1Adaptor_1_1Detail___1_1ConstructionHelper.html">ConstructionHelper</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="structCortidQCT_1_1Internal_1_1Adaptor_1_1Detail___1_1ConstructionHelper_3_01std_1_1array_3_01T_00_01N_01_4_00_010_01_4-members.html">List of all members</a>  </div>
+<a href="structCortidQCT_1_1Adaptor_1_1Detail___1_1ConstructionHelper-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">CortidQCT::Internal::Adaptor::Detail_::ConstructionHelper&lt; std::array&lt; T, N &gt;, 0 &gt; Struct Template Reference</div>  </div>
+<div class="title">CortidQCT::Adaptor::Detail_::ConstructionHelper&lt; T, N &gt; Struct Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a2959b1ba994e072b6b66b123b17d7590"><td class="memTemplParams" colspan="2"><a class="anchor" id="a2959b1ba994e072b6b66b123b17d7590"></a>
+<tr class="memitem:a4e1e914b874527ddc4a8784b972ddc9f"><td class="memTemplParams" colspan="2"><a class="anchor" id="a4e1e914b874527ddc4a8784b972ddc9f"></a>
 template&lt;class P , class... Args&gt; </td></tr>
-<tr class="memitem:a2959b1ba994e072b6b66b123b17d7590"><td class="memTemplItemLeft" align="right" valign="top">constexpr std::array&lt; T, N &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator()</b> (P &amp;&amp;, Args &amp;&amp;...args) const noexcept(noexcept(std::array&lt; T, N &gt;{{std::forward&lt; Args &gt;(args)...}}))</td></tr>
-<tr class="separator:a2959b1ba994e072b6b66b123b17d7590"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e1e914b874527ddc4a8784b972ddc9f"><td class="memTemplItemLeft" align="right" valign="top">constexpr T&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator()</b> (P &amp;&amp;param, Args &amp;&amp;...args) const noexcept(noexcept(<a class="el" href="structCortidQCT_1_1Adaptor_1_1Detail___1_1ConstructionHelper.html">ConstructionHelper</a>&lt; T, N-1 &gt;{}(std::forward&lt; P &gt;(param), subscript(param, N-1), std::forward&lt; Args &gt;(args)...)))</td></tr>
+<tr class="separator:a4e1e914b874527ddc4a8784b972ddc9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this struct was generated from the following file:<ul>
 <li>lib/<a class="el" href="EigenAdaptors_8h_source.html">EigenAdaptors.h</a></li>
@@ -109,7 +108,7 @@ template&lt;class P , class... Args&gt; </td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Nov 13 2018 11:58:42 for CortidQCT by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Nov 13 2018 15:49:44 for CortidQCT by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

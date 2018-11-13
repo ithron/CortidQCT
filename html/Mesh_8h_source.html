@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">CortidQCT
-   &#160;<span id="projectnumber">1.2.0</span>
+   &#160;<span id="projectnumber">1.2.1</span>
    </div>
   </td>
  </tr>
@@ -173,40 +173,28 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;    <span class="keywordflow">return</span> f(indexData_.data());</div>
 <div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;  }</div>
 <div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;</div>
-<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;  <span class="keyword">template</span> &lt;<span class="keyword">class</span> F&gt;</div>
-<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;  <span class="keyword">inline</span> <span class="keyword">auto</span> <a class="code" href="classCortidQCT_1_1Mesh.html#ac6334c55d0c95f19bc6214983ba4dc29">withUnsafeIndexPointer</a>(F &amp;&amp;f) noexcept(</div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;      noexcept(f(std::declval&lt;IndexData&gt;().data()))) {</div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;    <span class="keywordflow">return</span> f(indexData_.data());</div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;  }</div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;</div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;  <span class="keyword">template</span> &lt;<span class="keyword">class</span> F&gt;</div>
-<div class="line"><a name="l00237"></a><span class="lineno"><a class="line" href="classCortidQCT_1_1Mesh.html#a8173d354feb4ca374319272687f1f427">  237</a></span>&#160;  <span class="keyword">inline</span> <span class="keyword">auto</span> <a class="code" href="classCortidQCT_1_1Mesh.html#a8173d354feb4ca374319272687f1f427">withUnsafeLabelPointer</a>(F &amp;&amp;f) const</div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;      noexcept(noexcept(f(LabelData().data()))) {</div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;    <span class="keywordflow">return</span> f(labelData_.data());</div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;  }</div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;</div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;  <span class="keyword">template</span> &lt;<span class="keyword">class</span> F&gt;</div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;  <span class="keyword">inline</span> <span class="keyword">auto</span></div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;  <a class="code" href="classCortidQCT_1_1Mesh.html#a8173d354feb4ca374319272687f1f427">withUnsafeLabelPointer</a>(F &amp;&amp;f) noexcept(noexcept(f(LabelData().data()))) {</div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;    <span class="keywordflow">return</span> f(labelData_.data());</div>
-<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;  }</div>
-<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;</div>
-<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;  <span class="keywordtype">void</span> ensurePostconditions() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;  <span class="keyword">template</span> &lt;<span class="keyword">class</span> F&gt;</div>
+<div class="line"><a name="l00231"></a><span class="lineno"><a class="line" href="classCortidQCT_1_1Mesh.html#a8173d354feb4ca374319272687f1f427">  231</a></span>&#160;  <span class="keyword">inline</span> <span class="keyword">auto</span> <a class="code" href="classCortidQCT_1_1Mesh.html#a8173d354feb4ca374319272687f1f427">withUnsafeLabelPointer</a>(F &amp;&amp;f) const</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;      noexcept(noexcept(f(LabelData().data()))) {</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;    <span class="keywordflow">return</span> f(labelData_.data());</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;  }</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;  <span class="keywordtype">void</span> ensurePostconditions() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;  VertexData vertexData_;</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;  IndexData indexData_;</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;  LabelData labelData_;</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;};</div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;<span class="comment">/*************************************</span></div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;<span class="comment"> * Explicit template instanciations</span></div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;</div>
-<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;  VertexData vertexData_;</div>
-<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;  IndexData indexData_;</div>
-<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;  LabelData labelData_;</div>
-<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;};</div>
-<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;</div>
-<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;<span class="comment">/*************************************</span></div>
-<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;<span class="comment"> * Explicit template instanciations</span></div>
-<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;</div>
-<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;<span class="keyword">extern</span> <span class="keyword">template</span> <span class="keyword">class </span>Mesh&lt;float&gt;;</div>
-<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;<span class="keyword">extern</span> <span class="keyword">template</span> <span class="keyword">class </span>Mesh&lt;double&gt;;</div>
-<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;</div>
-<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;} <span class="comment">// namespace CortidQCT</span></div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;<span class="keyword">extern</span> <span class="keyword">template</span> <span class="keyword">class </span>Mesh&lt;float&gt;;</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;<span class="keyword">extern</span> <span class="keyword">template</span> <span class="keyword">class </span>Mesh&lt;double&gt;;</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;</div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;} <span class="comment">// namespace CortidQCT</span></div>
 <div class="ttc" id="classCortidQCT_1_1Mesh_html_ac6334c55d0c95f19bc6214983ba4dc29"><div class="ttname"><a href="classCortidQCT_1_1Mesh.html#ac6334c55d0c95f19bc6214983ba4dc29">CortidQCT::Mesh::withUnsafeIndexPointer</a></div><div class="ttdeci">auto withUnsafeIndexPointer(F &amp;&amp;f) const noexcept(noexcept(f(std::declval&lt; const IndexData &gt;().data())))</div><div class="ttdoc">Calls the given functional with an unsafe pointer to the raw index storage. </div><div class="ttdef"><b>Definition:</b> Mesh.h:214</div></div>
 <div class="ttc" id="ColorToLabelMap_8h_html"><div class="ttname"><a href="ColorToLabelMap_8h.html">ColorToLabelMap.h</a></div><div class="ttdoc">This finle contains definitions for color to index map types. </div></div>
 <div class="ttc" id="classCortidQCT_1_1Mesh_html_a85ed47c4807bd85372175889555ed77c"><div class="ttname"><a href="classCortidQCT_1_1Mesh.html#a85ed47c4807bd85372175889555ed77c">CortidQCT::Mesh&lt; float &gt;::Index</a></div><div class="ttdeci">std::ptrdiff_t Index</div><div class="ttdoc">Index type. </div><div class="ttdef"><b>Definition:</b> Mesh.h:42</div></div>
@@ -223,12 +211,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="classCortidQCT_1_1Mesh_html_a0aa13bb1e91743e14be3869f29a6b6d3"><div class="ttname"><a href="classCortidQCT_1_1Mesh.html#a0aa13bb1e91743e14be3869f29a6b6d3">CortidQCT::Mesh::triangleCount</a></div><div class="ttdeci">Size triangleCount() const noexcept</div><div class="ttdoc">Number of triangles. </div><div class="ttdef"><b>Definition:</b> Mesh.h:75</div></div>
 <div class="ttc" id="structSize_html"><div class="ttname"><a href="structSize.html">Size</a></div><div class="ttdef"><b>Definition:</b> matlab-addons.c:4</div></div>
 <div class="ttc" id="classCortidQCT_1_1Mesh_html_a00230e71237643779b241188e7acd84d"><div class="ttname"><a href="classCortidQCT_1_1Mesh.html#a00230e71237643779b241188e7acd84d">CortidQCT::Mesh::vertexCount</a></div><div class="ttdeci">Size vertexCount() const noexcept</div><div class="ttdoc">Number of vertices. </div><div class="ttdef"><b>Definition:</b> Mesh.h:72</div></div>
-<div class="ttc" id="classCortidQCT_1_1Mesh_html_a8173d354feb4ca374319272687f1f427"><div class="ttname"><a href="classCortidQCT_1_1Mesh.html#a8173d354feb4ca374319272687f1f427">CortidQCT::Mesh::withUnsafeLabelPointer</a></div><div class="ttdeci">auto withUnsafeLabelPointer(F &amp;&amp;f) const noexcept(noexcept(f(LabelData().data())))</div><div class="ttdoc">Calls the given functional with an unsafe pointer to the raw label storage. </div><div class="ttdef"><b>Definition:</b> Mesh.h:237</div></div>
+<div class="ttc" id="classCortidQCT_1_1Mesh_html_a8173d354feb4ca374319272687f1f427"><div class="ttname"><a href="classCortidQCT_1_1Mesh.html#a8173d354feb4ca374319272687f1f427">CortidQCT::Mesh::withUnsafeLabelPointer</a></div><div class="ttdeci">auto withUnsafeLabelPointer(F &amp;&amp;f) const noexcept(noexcept(f(LabelData().data())))</div><div class="ttdoc">Calls the given functional with an unsafe pointer to the raw label storage. </div><div class="ttdef"><b>Definition:</b> Mesh.h:231</div></div>
 <div class="ttc" id="classCortidQCT_1_1Mesh_html_abb1637fc84ae7be14d674208085ef34b"><div class="ttname"><a href="classCortidQCT_1_1Mesh.html#abb1637fc84ae7be14d674208085ef34b">CortidQCT::Mesh::isEmpty</a></div><div class="ttdeci">bool isEmpty() const noexcept</div><div class="ttdoc">true iff the mesh is empty </div><div class="ttdef"><b>Definition:</b> Mesh.h:80</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Nov 13 2018 11:58:42 for CortidQCT by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Nov 13 2018 15:49:43 for CortidQCT by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

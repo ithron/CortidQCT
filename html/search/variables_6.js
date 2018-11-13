@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['loglikelihood',['logLikelihood',['../structCortidQCT_1_1MeshFitter_1_1Result.html#a38dd74f9400812a7e22bf858df755bd4',1,'CortidQCT::MeshFitter::Result']]]
+  ['name',['name',['../classCortidQCT_1_1MeasurementModel.html#a4d4b9998422f75d2b01eb11fcce3b5ca',1,'CortidQCT::MeasurementModel']]]
 ];

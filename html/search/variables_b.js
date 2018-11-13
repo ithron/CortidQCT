@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['table',['table',['../structCortidQCT_1_1ColorToLabelMaps_1_1CustomMap.html#a393d58298cf53c2167c55164c1294e1f',1,'CortidQCT::ColorToLabelMaps::CustomMap']]]
+  ['width',['width',['../structCortidQCT_1_1VolumeSize.html#a7176a12ff140b49ee018c3274eab0b35',1,'CortidQCT::VolumeSize::width()'],['../structCortidQCT_1_1VoxelSize.html#ad811515fb765c11a0e12ffaef5241471',1,'CortidQCT::VoxelSize::width()']]]
 ];
