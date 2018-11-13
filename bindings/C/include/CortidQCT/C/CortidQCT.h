@@ -358,6 +358,10 @@ CQCT_meshFitterResultCopyWeights(CQCT_MeshFitterResult result, float **buffer);
 CQCT_EXTERN size_t CQCT_meshFitterResultCopyVertexNormals(
     CQCT_MeshFitterResult result, float **buffer);
 
+/// Returns the number of volume sampling positions
+CQCT_EXTERN size_t
+CQCT_meshFitterResultVolumeSamplingPositionsCount(CQCT_MeshFitterResult result);
+
 /// Copies the volume sampling positions
 CQCT_EXTERN size_t CQCT_meshFitterResultCopyVolumeSamplingPositions(
     CQCT_MeshFitterResult result, float **buffer);

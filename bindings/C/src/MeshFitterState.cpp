@@ -118,6 +118,13 @@ CORTIDQCT_C_EXPORT CQCT_EXTERN size_t CQCT_meshFitterResultCopyVertexNormals(
 }
 
 CORTIDQCT_C_EXPORT CQCT_EXTERN size_t
+CQCT_meshFitterResultVolumeSamplingPositionsCount(CQCT_MeshFitterResult result) {
+  assert(result != nullptr);
+
+  return result->impl.objPtr->state.volumeSamplingPositions.size();
+}
+
+CORTIDQCT_C_EXPORT CQCT_EXTERN size_t
 CQCT_meshFitterResultCopyVolumeSamplingPositions(CQCT_MeshFitterResult result,
                                                  float **buffer) {
   assert(result != nullptr);
