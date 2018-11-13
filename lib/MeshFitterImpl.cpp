@@ -28,7 +28,7 @@ namespace CortidQCT {
 
 using namespace Internal;
 
-struct MeshFitter::HiddenState {
+struct MeshFitter::State::HiddenState {
   VoxelVolume volume;
   DisplacementOptimizer displacementOptimizer;
   WeightedARAPFitter<float> meshFitter;
@@ -189,7 +189,7 @@ MeshFitter::State MeshFitter::Impl::init(VoxelVolume const &volume) {
   N = perVertexNormalMatrix(conf.referenceMesh).transpose();
 
   // Init hidden state
-  state.hiddenState_ = std::make_unique<HiddenState>(
+  state.hiddenState_ = std::make_unique<State::HiddenState>(
       volume, DisplacementOptimizer{conf},
       WeightedARAPFitter<float>{V0.transpose(), facetMatrix(conf.referenceMesh),
                                 narrow_cast<float>(conf.sigmaE)},

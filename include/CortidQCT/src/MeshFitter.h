@@ -24,6 +24,7 @@ struct Coordinate3D {
  * @nosubgrouping .
  */
 class MeshFitter {
+  class Impl;
 public:
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wpadded"
@@ -104,9 +105,6 @@ public:
   };
 #pragma clang diagnostic pop
 
-  struct HiddenState;
-  using HiddenStatePtr = std::unique_ptr<HiddenState>;
-
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wpadded"
   /**
@@ -139,17 +137,22 @@ public:
     std::size_t nonDecreasing = 0;
   };
 
+  /// Internal State type
   struct State : public Result {
-
-    /// For internal use only, do not touch!
-    HiddenStatePtr hiddenState_;
-
     State() = default;
     State(State const &);
     State(State &&) = default;
     ~State();
     State &operator=(State const &);
     State &operator=(State &&) = default;
+
+  private:
+    friend class Impl;
+    struct HiddenState;
+    using HiddenStatePtr = std::unique_ptr<HiddenState>;
+
+    /// For internal use only, do not touch!
+    HiddenStatePtr hiddenState_;
   };
 
 #pragma clang diagnostic pop
@@ -210,7 +213,6 @@ public:
   void fitOneIteration(State &state);
 
 private:
-  class Impl;
 
 #ifndef CORTIDQCT_NO_PROPAGATE_CONST
   std::propagate_const<std::unique_ptr<Impl>> pImpl_;
