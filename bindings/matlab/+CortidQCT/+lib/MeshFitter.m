@@ -34,6 +34,36 @@ classdef MeshFitter < CortidQCT.lib.ObjectBase
       result = MeshFitterResult(resultHandle).retain;
       
     end
+
+    function state = init(obj, volume)
+      import CortidQCT.lib.MeshFitterState;
+      
+      if not(isa(volume, 'CortidQCT.lib.VoxelVolume'))
+        error('volume must be an instance of VoxelVolume')
+      end
+
+      state = MeshFitterState(obj.handle, volume.pointer);
+    end
+
+    function success = fitOneIteration(obj, state)
+      if not(isa(state, 'CortidQCT.lib.MeshFitterState'))
+        error('State must be an instance of MeshFitterState. Call init() first!');
+      end
+
+      import CortidQCT.lib.ObjectBase;
+      import CortidQCT.lib.Error;
+
+      err = Error;
+
+      res = ObjectBase.call('meshFitterFitOneIteration', obj.handle, state.pointer);
+
+      if res == 0
+        error('fitOneIteration failed: %s', err.message);
+        success = false;
+      else
+        success = true;
+      end
+    end
     
   end
 end
