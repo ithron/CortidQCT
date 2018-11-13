@@ -50,6 +50,12 @@ MeshFitter::State::State(State const &rhs)
     : Result(rhs), hiddenState_{
                        std::make_unique<HiddenState>(*rhs.hiddenState_)} {}
 
+MeshFitter::State::State(Result const &rhs)
+    : Result(rhs), hiddenState_{nullptr} {}
+
+MeshFitter::State::State(Result &&rhs)
+    : Result(std::move(rhs)), hiddenState_{nullptr} {}
+
 MeshFitter::State::~State() = default;
 
 MeshFitter::State &MeshFitter::State::operator=(State const &rhs) {

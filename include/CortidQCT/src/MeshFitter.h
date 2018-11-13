@@ -145,6 +145,8 @@ public:
     State() = default;
     State(State const &);
     State(State &&) = default;
+    State(Result const &);
+    State(Result &&);
     ~State();
     State &operator=(State const &);
     State &operator=(State &&) = default;
