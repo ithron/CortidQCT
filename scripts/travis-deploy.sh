@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/local/bin/bash
 
 set -eu
 
@@ -14,7 +14,7 @@ if [[ -v TRAVIS_TAG ]]; then
   if [[ "${TRAVIS_OS_NAME}" = "linux" ]]; then
     REL_DIR=CortidQCT-${TRAVIS_TAG}-x86_64-linux-gnu-ubuntu-18.04
   elif [[ "${TRAVIS_OS_NAME}" = "osx" ]]; then
-    REL_DIR=CortidQCT-${TRAVIS_TAG}-x86_64-macOS-10.14
+    REL_DIR=CortidQCT-${TRAVIS_TAG}-macOS-Mojave
   fi
 
   mv install ${REL_DIR}
