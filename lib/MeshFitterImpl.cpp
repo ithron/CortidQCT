@@ -111,157 +111,33 @@ samplingPoints(Eigen::MatrixBase<DerivedV> const &V,
 // MARK: MeshFitter::Impl Implementation
 
 MeshFitter::Result MeshFitter::Impl::fit(VoxelVolume const &volume) {
-  using Eigen::Dynamic;
-  using Eigen::Index;
-  using Eigen::Map;
-  using Eigen::Matrix;
-  using Eigen::MatrixXd;
-  using Eigen::MatrixXf;
-  using Eigen::Vector3f;
-  using Eigen::VectorXd;
-  using Eigen::VectorXf;
-  using gsl::narrow_cast;
 
-  // Step:
-  // 1. Move reference mesh to center
-  // 2. Set deformedMesh = refMesh
-  // 3. Compute normals of deformedMesh
-  // 4. Sample volume along lines through the vertices of refMesh along
-  // surface
-  //    normals
-  // 5. For every displacement s in [-s0, +s0] compute the log likelihood
-  // using
-  //    trilinear sampling of the measurement PDF
-  // 6. Find optimal displacements
-  // 7. Copmute target vertex positions using optimal displacements
-  // 8. Fit mesh to target vertices
-  // 9. Check for convergence, if not converged go to 3.
+  auto state = init(volume);
 
-  auto const &conf = fitter_.configuration;
-  auto const &model = fitter_.configuration.model;
-  auto const volumeSampler = VolumeSampler{volume};
+  VertexMatrix<float> Vlast =
+      Adaptor::vertexMap(state.result.deformedMesh).transpose();
 
-  auto displacementOptimizer = Internal::DisplacementOptimizer{conf};
+  while (!state.result.converged) {
 
-  // Preparation step: Convert meshes into IGL compatible formats
-  // Also tranlate the reference mesh according to the configured origin
-  auto const translation = Adaptor::vec(conf.meshTranslation(volume));
-  Vector3f const rotInRad = Adaptor::vec(conf.referenceMeshRotation) *
-                            static_cast<float>(M_PI) / 180.f;
-  VertexMatrix<> const V0 =
-      ((Eigen::Translation<float, 3>{translation} *
-        Eigen::AngleAxisf(rotInRad[0], Vector3f::UnitX()) *
-        Eigen::AngleAxisf(rotInRad[1], Vector3f::UnitY()) *
-        Eigen::AngleAxisf(rotInRad[2], Vector3f::UnitZ())) *
-       Adaptor::vec(conf.referenceMeshScale).asDiagonal() *
-       vertexMatrix(conf.referenceMesh).transpose())
-          .transpose();
-  FacetMatrix const F = facetMatrix(conf.referenceMesh);
-  LabelVector const labels = labelVector(conf.referenceMesh);
-  LaplacianMatrix<double> const L =
-      laplacianMatrix(V0.template cast<double>(), F);
+    fitOneIteration(state);
 
-  // 2. set deformed mesh = reference mesh
-  VertexMatrix<> V = V0;
+    auto V = Adaptor::vertexMap(state.result.deformedMesh);
 
-  // Pre-allocate vector for volume samples
-  VectorXf volumeSamples(V.rows() *
-                         gsl::narrow<Index>(model.samplingRange.numElements()));
-  MatrixXf volumeSamplesMatrix(
-      gsl::narrow<Index>(model.samplingRange.numElements()), V.rows());
+    auto const diff = (V.transpose() - Vlast).norm() / V.norm();
+    Vlast = V.transpose();
 
-  VectorXf gamma;
-  VectorXf optimalDisplacements;
+    auto disNorm = Adaptor::map(state.result.displacementVector).norm() /
+                   static_cast<float>(state.result.displacementVector.size());
 
-  auto meshFitter =
-      WeightedARAPFitter<float>(V, F, static_cast<float>(conf.sigmaE));
-
-  auto converged = false;
-  auto iterations = std::size_t{0};
-  auto nonDecreasing = std::size_t{0};
-  auto minDisNorm = std::numeric_limits<float>::max();
-
-  auto Vlast = V;
-
-  MeshFitter::Result result;
-
-  while (!converged) {
-    ++iterations;
-    NormalMatrix<> const N = perVertexNormalMatrix(V, F);
-
-    // sample volume
-    auto const samplingPositions = samplingPoints(V, N, model);
-    volumeSampler(samplingPositions, volumeSamples);
-
-    // Reoder volume samples
-    volumeSamplesMatrix =
-        Map<MatrixXf const>{volumeSamples.data(),
-                            volumeSamples.rows() / V.rows(), V.rows()}
-            .transpose();
-    volumeSamples = Map<VectorXf const>{volumeSamplesMatrix.data(),
-                                        volumeSamples.rows(), 1};
-
-    // find optimal displacements
-    std::tie(optimalDisplacements, gamma) =
-        displacementOptimizer(N, labels, volumeSamples, nonDecreasing);
-
-    auto disNorm = optimalDisplacements.norm() / V.rows();
-    if (disNorm < minDisNorm) {
-      minDisNorm = disNorm;
-      nonDecreasing = 0;
-    } else {
-      ++nonDecreasing;
-    }
-
-    // Copmute dispaced vertices
-    VertexMatrix<> const Y =
-        V - (N.array().colwise() * optimalDisplacements.array()).matrix();
-
-    V = meshFitter.fit(Y, N, gamma);
-
-    // std::ofstream{"V" + std::to_string(iterations) + ".mat"} << V;
-
-    auto const diff = (V - Vlast).norm() / V.norm();
-    Vlast = V;
-
-    converged = iterations >= conf.maxIterations ||
-                (optimalDisplacements.norm() < 1e-3f);
-    std::cout << "Converged after iteration " << iterations << ": "
-              << std::boolalpha << converged << " (" << diff << " | " << disNorm
-              << " | " << nonDecreasing << ")" << std::endl;
-
-    if (converged) {
-      auto resultMesh = conf.referenceMesh;
-
-      resultMesh.withUnsafeVertexPointer([&V](auto *vPtr) {
-        Map<Matrix<float, 3, Dynamic>>{vPtr, 3, V.rows()} = V.transpose();
-      });
-      result.deformedMesh = resultMesh;
-
-      // Copy displacements
-      result.displacementVector = std::vector<float>(
-          narrow_cast<std::size_t>(optimalDisplacements.size()));
-      Map<VectorXf>{result.displacementVector.data(),
-                    optimalDisplacements.size()} = optimalDisplacements;
-
-      result.weights =
-          std::vector<float>(narrow_cast<std::size_t>(gamma.size()));
-      Map<VectorXf>{result.weights.data(), gamma.size()} = gamma;
-
-      result.vertexNormals =
-          std::vector<std::array<float, 3>>(narrow_cast<std::size_t>(N.rows()));
-      Map<Matrix<float, 3, Dynamic>>{
-          reinterpret_cast<float *>(result.vertexNormals.data()), 3, N.rows()} =
-          N.transpose();
-
-      result.iteration = iterations;
-      result.converged = converged;
-    }
+    std::cout << "Converged after iteration " << state.result.iteration << ": "
+              << std::boolalpha << state.result.converged << " (" << diff
+              << " | " << disNorm << " | " << state.result.nonDecreasing << ")"
+              << std::endl;
   }
 
-  result.success = true;
+  state.result.success = true;
 
-  return result;
+  return state.result;
 }
 
 MeshFitter::State MeshFitter::Impl::init(VoxelVolume const &volume) {
