@@ -374,6 +374,10 @@ CQCT_EXTERN size_t CQCT_meshFitterResultCopyVolumeSamples(
 CQCT_EXTERN float
 CQCT_meshFitterResultMinimumDisplacementNorm(CQCT_MeshFitterResult result);
 
+/// Returns the current log likelihood of the model given the input volume
+CQCT_EXTERN float
+CQCT_meshFitterResultLogLikelihood(CQCT_MeshFitterResult result);
+
 /// Returns the iteration count
 CQCT_EXTERN size_t
 CQCT_meshFitterResultIterationCount(CQCT_MeshFitterResult result);

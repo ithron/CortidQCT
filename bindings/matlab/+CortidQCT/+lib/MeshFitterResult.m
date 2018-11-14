@@ -12,6 +12,7 @@ classdef MeshFitterResult < CortidQCT.lib.ObjectBase
     volumeSamplingPositions
     volumeSamples
     minimumDisplacementNorm
+    logLikelihood
     iteration
     converged
     success
@@ -87,6 +88,11 @@ classdef MeshFitterResult < CortidQCT.lib.ObjectBase
     function minimumDisplacementNorm = get.minimumDisplacementNorm(obj)
       import CortidQCT.lib.ObjectBase;
       minimumDisplacementNorm = ObjectBase.call('meshFitterResultMinimumDisplacementNorm', obj.handle);
+    end
+
+    function logLikelihood = get.logLikelihood(obj)
+      import CortidQCT.lib.ObjectBase;
+      logLikelihood = ObjectBase.call('meshFitterResultLogLikelihood', obj.handle);
     end
 
     function iteration = get.iteration(obj)

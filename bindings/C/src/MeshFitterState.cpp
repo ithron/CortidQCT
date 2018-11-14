@@ -168,6 +168,14 @@ CQCT_meshFitterResultMinimumDisplacementNorm(CQCT_MeshFitterResult result) {
   return state.minDisNorm;
 }
 
+CORTIDQCT_C_EXPORT CQCT_EXTERN float
+CQCT_meshFitterResultLogLikelihood(CQCT_MeshFitterResult result) {
+  assert(result != nullptr);
+  auto const &state = result->impl.objPtr->state;
+
+  return state.logLikelihood;
+}
+
 CORTIDQCT_C_EXPORT CQCT_EXTERN size_t
 CQCT_meshFitterResultIterationCount(CQCT_MeshFitterResult result) {
   assert(result != nullptr);
