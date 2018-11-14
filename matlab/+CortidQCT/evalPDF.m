@@ -20,8 +20,8 @@ end
 X_gpu = gpuArray(single(X));
 
     function val = toBeIntegrated(wi)
-        Gp = CortidQCT.G(X_gpu(:, 1) + wi, X_gpu(:, 2), GTable);
-        Gn = CortidQCT.G(X_gpu(:, 1) - wi, X_gpu(:, 2), GTable);
+        Gp = CortidQCT.gPrimitive(X_gpu(:, 1) + wi, X_gpu(:, 2), GTable);
+        Gn = CortidQCT.gPrimitive(X_gpu(:, 1) - wi, X_gpu(:, 2), GTable);
         
         val = double(gather(...
             CortidQCT.fZeta(X_gpu(:, 3), Gp, Gn, mu(1), mu(2), mu(3), s(1), s(2), s(3)))) .* ...

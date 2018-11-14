@@ -1,5 +1,5 @@
-function y = G(t, theta, GTable)
-% G Evaluates the primitive function of the angle dependend PSF g using a
+function y = gPrimitive(t, theta, GTable)
+% gPrimitive Evaluates the primitive function of the angle dependend PSF g using a
 % pre-computed lookup table.
 %   t - evaluation points
 %   theta - angle(s) with z axis in rad

@@ -13,6 +13,7 @@
 #include "CheckExtension.h"
 #include "MatrixIO.h"
 #include "MeshHelpers.h"
+#include "SIMesh.h"
 
 #include <gsl/gsl>
 #include <igl/orient_outward.h>
@@ -36,7 +37,7 @@ namespace {
 template <class DerivedV, class DerivedF>
 void orientOutwards(Eigen::MatrixBase<DerivedV> const &V,
                     Eigen::MatrixBase<DerivedF> &F) {
-  DerivedF C;
+  Eigen::Matrix<typename DerivedF::Scalar, Eigen::Dynamic, Eigen::Dynamic> C;
   Eigen::Matrix<bool, Eigen::Dynamic, 1> I;
 
   Expects(V.rows() > 0 && V.cols() == 3);
@@ -95,12 +96,34 @@ Mesh<T> &Mesh<T>::loadFromFile(std::string const &meshFilename,
   using gsl::narrow;
 
   // Check file format since igl does only print an error
-  std::string const supportedFormats[] = {"obj", "off", "stl",
-                                          "wrl", "ply", "mesh"};
+  std::string const supportedFormats[] = {"obj", "off",  "stl",   "wrl",
+                                          "ply", "mesh", "simesh"};
 
   if (!IO::checkExtensions(meshFilename, supportedFormats)) {
     throw std::invalid_argument("Unsupported file format '" +
                                 IO::extension(meshFilename) + "'");
+  }
+
+  Size lVertexCount{0};
+
+  bool meshLoaded = false;
+  if (IO::extension(meshFilename, true) == "simesh") {
+    *this = readFromSIMesh<T>(meshFilename, false);
+    meshLoaded = true;
+
+    Map<Matrix<T, 3, Dynamic>> vertices{vertexData_.data(), 3,
+                                        narrow<Eigen::Index>(vertexCount())};
+    Map<Matrix<Index, 3, Dynamic>> indices{
+        indexData_.data(), 3, narrow<Eigen::Index>(triangleCount())};
+
+    VertexMatrix<T> V = vertices.transpose();
+    FacetMatrix F = indices.transpose();
+    orientOutwards(V, F);
+
+    vertices = V.transpose();
+    indices = F.transpose();
+
+    lVertexCount = vertexCount();
   }
 
   MatrixXd vertices;
@@ -108,12 +131,14 @@ Mesh<T> &Mesh<T>::loadFromFile(std::string const &meshFilename,
 
   constexpr auto magicLabel = std::numeric_limits<Label>::max();
 
-  // Ensure the file exists and is readable, otherwise
-  // igl::read_triangle_mesh() might SEGFAULT.
-  if (!std::ifstream{meshFilename} ||
-      !igl::read_triangle_mesh(meshFilename, vertices, indices)) {
-    throw std::invalid_argument("Failed to read mesh from file '" +
-                                meshFilename + "'");
+  if (!meshLoaded) {
+    // Ensure the file exists and is readable, otherwise
+    // igl::read_triangle_mesh() might SEGFAULT.
+    if (!std::ifstream{meshFilename} ||
+        !igl::read_triangle_mesh(meshFilename, vertices, indices)) {
+      throw std::invalid_argument("Failed to read mesh from file '" +
+                                  meshFilename + "'");
+    }
   }
 
   // load labels. Fill labels vector with prefined value to be able to check if
@@ -136,30 +161,37 @@ Mesh<T> &Mesh<T>::loadFromFile(std::string const &meshFilename,
         std::to_string(vertices.rows()) + ")");
   }
 
-  auto const lVertexCount = narrow<Size>(vertices.rows());
-  auto const lTriangleCount = narrow<Size>(indices.rows());
+  VertexData vertexData;
+  IndexData indexData;
+  if (!meshLoaded) {
+    lVertexCount = narrow<Size>(vertices.rows());
+    auto const lTriangleCount = narrow<Size>(indices.rows());
 
-  orientOutwards(vertices, indices);
+    orientOutwards(vertices, indices);
 
-  // Reserve storage for vertex and index data
-  auto vertexData = VertexData(3 * lVertexCount);
-  auto indexData = IndexData(3 * lTriangleCount);
+    // Reserve storage for vertex and index data
+    vertexData = VertexData(3 * lVertexCount);
+    indexData = IndexData(3 * lTriangleCount);
+
+    // Copy data from eigen matrix into vectors
+    Map<Matrix<Scalar, 3, Dynamic>>{vertexData.data(), 3, vertices.rows()} =
+        vertices.cast<Scalar>().transpose();
+    Map<Matrix<Index, 3, Dynamic>>{indexData.data(), 3, indices.rows()} =
+        indices.cast<Index>().transpose();
+
+    Ensures(vertexData.size() == 3 * lVertexCount);
+    Ensures(indexData.size() == 3 * lTriangleCount);
+  }
+
   auto labelData = LabelData(lVertexCount);
-
-  // Copy data from eigen matrix into vectors
-  Map<Matrix<Scalar, 3, Dynamic>>{vertexData.data(), 3, vertices.rows()} =
-      vertices.cast<Scalar>().transpose();
-  Map<Matrix<Index, 3, Dynamic>>{indexData.data(), 3, indices.rows()} =
-      indices.cast<Index>().transpose();
   Map<Matrix<Label, Dynamic, 1>>{labelData.data(), vertices.rows(), 1} = labels;
-
-  Ensures(vertexData.size() == 3 * lVertexCount);
-  Ensures(indexData.size() == 3 * lTriangleCount);
   Ensures(labelData.size() == lVertexCount);
-
-  vertexData_ = std::move(vertexData);
-  indexData_ = std::move(indexData);
   labelData_ = std::move(labelData);
+
+  if (!meshLoaded) {
+    vertexData_ = std::move(vertexData);
+    indexData_ = std::move(indexData);
+  }
 
   ensurePostconditions();
 
@@ -177,11 +209,29 @@ Mesh<T> &Mesh<T>::loadFromFile(std::string const &meshFilename,
   using gsl::narrow;
 
   // Check file format since igl does only print an error
-  std::string const supportedFormats[] = {"off", "coff"};
+  std::string const supportedFormats[] = {"off", "coff", "simesh"};
 
   if (!IO::checkExtensions(meshFilename, supportedFormats)) {
     throw std::invalid_argument("Unsupported file format '" +
                                 IO::extension(meshFilename) + "'");
+  }
+
+  if (IO::extension(meshFilename, true) == "simesh") {
+    *this = readFromSIMesh<T>(meshFilename, true);
+    Map<Matrix<T, 3, Dynamic>> vertices{vertexData_.data(), 3,
+                                        narrow<Eigen::Index>(vertexCount())};
+    Map<Matrix<Index, 3, Dynamic>> indices{
+        indexData_.data(), 3, narrow<Eigen::Index>(triangleCount())};
+
+    VertexMatrix<T> V = vertices.transpose();
+    FacetMatrix F = indices.transpose();
+    orientOutwards(V, F);
+
+    vertices = V.transpose();
+    indices = F.transpose();
+
+    ensurePostconditions();
+    return *this;
   }
 
   MatrixXd vertices, colors;
@@ -242,28 +292,34 @@ void Mesh<T>::writeToFile(std::string const &meshFilename,
   if (isEmpty()) { return; }
 
   // Check file format since igl does only print an error
-  std::string const supportedFormats[] = {"obj", "off", "stl",
-                                          "wrl", "ply", "mesh"};
+  std::string const supportedFormats[] = {"obj", "off",  "stl",   "wrl",
+                                          "ply", "mesh", "simesh"};
 
   if (!IO::checkExtensions(meshFilename, supportedFormats)) {
     throw std::invalid_argument("Unsupported file format '" +
                                 IO::extension(meshFilename) + "'");
   }
 
-  // Convert vertex and index data to a format igl understads
-  Map<Matrix<Scalar, 3, Dynamic> const> const Vmap{
-      vertexData_.data(), 3, narrow<Eigen::Index>(vertexCount())};
-  Map<Matrix<Index, 3, Dynamic> const> const Fmap{
-      indexData_.data(), 3, narrow<Eigen::Index>(triangleCount())};
+  // check for SIMEsh format
+  if (IO::extension(meshFilename, true) == "simesh") {
+    writeToSIMesh(*this, meshFilename);
+  } else {
 
-  Eigen::Matrix<double, Dynamic, 3> const V =
-      Vmap.template cast<double>().transpose();
-  Eigen::Matrix<int, Dynamic, 3> const F =
-      Fmap.template cast<int>().transpose();
+    // Convert vertex and index data to a format igl understads
+    Map<Matrix<Scalar, 3, Dynamic> const> const Vmap{
+        vertexData_.data(), 3, narrow<Eigen::Index>(vertexCount())};
+    Map<Matrix<Index, 3, Dynamic> const> const Fmap{
+        indexData_.data(), 3, narrow<Eigen::Index>(triangleCount())};
 
-  if (!igl::write_triangle_mesh(meshFilename, V, F)) {
-    throw std::invalid_argument("Failed to write mesh to file '" +
-                                meshFilename + "'");
+    Eigen::Matrix<double, Dynamic, 3> const V =
+        Vmap.template cast<double>().transpose();
+    Eigen::Matrix<int, Dynamic, 3> const F =
+        Fmap.template cast<int>().transpose();
+
+    if (!igl::write_triangle_mesh(meshFilename, V, F)) {
+      throw std::invalid_argument("Failed to write mesh to file '" +
+                                  meshFilename + "'");
+    }
   }
 
   // Write lables
@@ -292,47 +348,53 @@ void Mesh<T>::writeToFile(
   if (isEmpty()) { return; };
 
   // Check file format since igl does only print an error
-  std::string const supportedFormats[] = {"off", "coff"};
+  std::string const supportedFormats[] = {"off", "coff", "simesh"};
 
   if (!IO::checkExtensions(meshFilename, supportedFormats)) {
     throw std::invalid_argument("Unsupported file format '" +
                                 IO::extension(meshFilename) + "'");
   }
 
-  // Convert vertex and index data to a format igl understads
-  Map<Matrix<Scalar, 3, Dynamic> const> const Vmap{
-      vertexData_.data(), 3, narrow<Eigen::Index>(vertexCount())};
-  Map<Matrix<Index, 3, Dynamic> const> const Fmap{
-      indexData_.data(), 3, narrow<Eigen::Index>(triangleCount())};
+  // check for SIMEsh format
+  if (IO::extension(meshFilename, true) == "simesh") {
+    writeToSIMesh(*this, meshFilename, true);
+  } else {
+    // Convert vertex and index data to a format igl understads
+    Map<Matrix<Scalar, 3, Dynamic> const> const Vmap{
+        vertexData_.data(), 3, narrow<Eigen::Index>(vertexCount())};
+    Map<Matrix<Index, 3, Dynamic> const> const Fmap{
+        indexData_.data(), 3, narrow<Eigen::Index>(triangleCount())};
 
-  Matrix<double, Dynamic, 3> const V = Vmap.template cast<double>().transpose();
-  Matrix<int, Dynamic, 3> const F = Fmap.template cast<int>().transpose();
-  Matrix<double, Dynamic, 3> C(Vmap.cols(), 3);
+    Matrix<double, Dynamic, 3> const V =
+        Vmap.template cast<double>().transpose();
+    Matrix<int, Dynamic, 3> const F = Fmap.template cast<int>().transpose();
+    Matrix<double, Dynamic, 3> C(Vmap.cols(), 3);
 
-  Ensures(V.rows() > 0 && F.rows() > 0);
-  Ensures(C.rows() == V.rows());
+    Ensures(V.rows() > 0 && F.rows() > 0);
+    Ensures(C.rows() == V.rows());
 
-  // convert labels to colors
-  for (auto i = 0; i < C.rows(); ++i) {
-    auto const label = labelData_[narrow<Size>(i)];
-    auto const color = labelMap(label);
+    // convert labels to colors
+    for (auto i = 0; i < C.rows(); ++i) {
+      auto const label = labelData_[narrow<Size>(i)];
+      auto const color = labelMap(label);
 
-    C(i, 0) = color[0];
-    C(i, 1) = color[1];
-    C(i, 2) = color[2];
-  }
+      C(i, 0) = color[0];
+      C(i, 1) = color[1];
+      C(i, 2) = color[2];
+    }
 
-  // clang-format off
+    // clang-format off
   // This assertion is to silence clang-tidy linter, somehow it does not
   // recognize that C was allocated before and complains about null pointer
   // dereferenceing when igl::writeOFF() calls C.maxCoeff().
   // NOLINTNEXTLINE(cppcoreguidelines-pro-bounds-array-to-pointer-decay, hicpp-no-array-decay)
   Ensures(C.data() != nullptr);
-  // clang-format on
+    // clang-format on
 
-  if (!igl::writeOFF(meshFilename, V, F, C)) {
-    throw std::invalid_argument("Failed to write mesh to file '" +
-                                meshFilename + "'");
+    if (!igl::writeOFF(meshFilename, V, F, C)) {
+      throw std::invalid_argument("Failed to write mesh to file '" +
+                                  meshFilename + "'");
+    }
   }
 }
 
