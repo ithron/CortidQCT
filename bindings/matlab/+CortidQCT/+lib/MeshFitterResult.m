@@ -13,6 +13,7 @@ classdef MeshFitterResult < CortidQCT.lib.ObjectBase
     volumeSamples
     minimumDisplacementNorm
     logLikelihood
+    effectiveSigmaS
     iteration
     converged
     success
@@ -93,6 +94,11 @@ classdef MeshFitterResult < CortidQCT.lib.ObjectBase
     function logLikelihood = get.logLikelihood(obj)
       import CortidQCT.lib.ObjectBase;
       logLikelihood = ObjectBase.call('meshFitterResultLogLikelihood', obj.handle);
+    end
+
+    function effectiveSigmaS = get.effectiveSigmaS(obj)
+      import CortidQCT.lib.ObjectBase;
+      effectiveSigmaS = ObjectBase.call('meshFitterResultEffectiveSigmaS', obj.handle);
     end
 
     function iteration = get.iteration(obj)

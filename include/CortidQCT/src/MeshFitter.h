@@ -130,6 +130,8 @@ public:
     float minDisNorm = std::numeric_limits<float>::max();
     /// Log likeihood of deformedMesh
     float logLikelihood = -std::numeric_limits<float>::max();
+    /// Effective sigmaS
+    float effectiveSigmaS = .0f;
     /// Iteration count
     std::size_t iteration = 1;
     /// Converged?

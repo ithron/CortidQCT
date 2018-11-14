@@ -243,7 +243,8 @@ void MeshFitter::Impl::findOptimalDisplacements(
   // Find optimal displacements
   std::tie(optimalDisplacements, gamma) =
       state.hiddenState_->displacementOptimizer(
-          N.transpose(), labels, volumeSamples, state.nonDecreasing);
+          N.transpose(), labels, volumeSamples, state.nonDecreasing,
+          state.effectiveSigmaS);
 }
 
 void MeshFitter::Impl::findOptimalDeformation(MeshFitter::State &state) const {

@@ -351,6 +351,10 @@ CQCT_meshFitterResultMinimumDisplacementNorm(CQCT_MeshFitterResult result);
 CQCT_EXTERN float
 CQCT_meshFitterResultLogLikelihood(CQCT_MeshFitterResult result);
 
+/// Returns the current effective sigmaS (after applying decay)
+CQCT_EXTERN float
+CQCT_meshFitterResultEffectiveSigmaS(CQCT_MeshFitterResult result);
+
 /// Returns the iteration count
 CQCT_EXTERN size_t
 CQCT_meshFitterResultIterationCount(CQCT_MeshFitterResult result);

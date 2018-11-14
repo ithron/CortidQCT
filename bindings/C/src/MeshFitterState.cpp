@@ -193,6 +193,15 @@ CQCT_meshFitterResultLogLikelihood(CQCT_MeshFitterResult result) {
   return state.logLikelihood;
 }
 
+/// Returns the current effective sigmaS (after applying decay)
+CORTIDQCT_C_EXPORT CQCT_EXTERN float
+CQCT_meshFitterResultEffectiveSigmaS(CQCT_MeshFitterResult result) {
+  assert(result != nullptr);
+  auto const &state = result->impl.objPtr->state;
+
+  return state.effectiveSigmaS;
+}
+
 CORTIDQCT_C_EXPORT CQCT_EXTERN size_t
 CQCT_meshFitterResultIterationCount(CQCT_MeshFitterResult result) {
   assert(result != nullptr);
