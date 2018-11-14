@@ -42,3 +42,6 @@ endif()
 ############################
 # Targets
 
+add_executable(MeshConvert meshConvert.cpp)
+target_link_libraries(MeshConvert PRIVATE CortidQCT::Core PrivateAPI)
+
