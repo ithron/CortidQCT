@@ -61,6 +61,7 @@ CQCT_meshFitterFitOneIteration(CQCT_MeshFitter meshFitter,
   try {
 
     fitter.fitOneIteration(stateRef);
+    state->impl.objPtr->updateMesh();
     return true;
 
   } catch (std::invalid_argument const &e) {
@@ -165,6 +166,9 @@ CQCT_EXTERN int CQCT_meshFitterOptimalDeformationStep(
   try {
 
     fitter.optimalDeformationStep(stateRef);
+
+    state->impl.objPtr->updateMesh();
+
     return true;
 
   } catch (std::invalid_argument const &e) {

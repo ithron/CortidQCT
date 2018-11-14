@@ -52,6 +52,8 @@ struct MeshFitterState {
 
   CortidQCT::MeshFitter::State state;
 
+  void updateMesh();
+
   ~MeshFitterState() {
     CQCT_release(deformedMesh);
     CQCT_release(referenceMesh);

@@ -23,6 +23,22 @@ createMeshFitterState(CQCT_MeshFitter meshFitter,
   return stateObj;
 }
 
+void MeshFitterState::updateMesh() {
+  assert(deformedMesh != nullptr);
+  using std::copy;
+
+  auto &targetMesh = *deformedMesh->impl.objPtr;
+
+  targetMesh.withUnsafeVertexPointer([this](float *destPtr) {
+    this->state.deformedMesh.withUnsafeVertexPointer(
+        [this, destPtr](float const *srcPtr) {
+          auto const size = static_cast<std::ptrdiff_t>(
+              this->state.deformedMesh.vertexCount() * 3);
+          copy(srcPtr, srcPtr + size, destPtr);
+        });
+  });
+}
+
 } // namespace C
 } // namespace Internal
 } // namespace CortidQCT
@@ -118,7 +134,8 @@ CORTIDQCT_C_EXPORT CQCT_EXTERN size_t CQCT_meshFitterResultCopyVertexNormals(
 }
 
 CORTIDQCT_C_EXPORT CQCT_EXTERN size_t
-CQCT_meshFitterResultVolumeSamplingPositionsCount(CQCT_MeshFitterResult result) {
+CQCT_meshFitterResultVolumeSamplingPositionsCount(
+    CQCT_MeshFitterResult result) {
   assert(result != nullptr);
 
   return result->impl.objPtr->state.volumeSamplingPositions.size();
