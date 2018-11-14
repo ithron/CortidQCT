@@ -9,7 +9,7 @@ var searchData=
   ['measurementmodel',['MeasurementModel',['../classCortidQCT_1_1MeasurementModel.html',1,'CortidQCT']]],
   ['measurementmodel_2ecpp',['MeasurementModel.cpp',['../MeasurementModel_8cpp.html',1,'']]],
   ['measurementmodel_2eh',['MeasurementModel.h',['../MeasurementModel_8h.html',1,'']]],
-  ['mesh',['Mesh',['../classCortidQCT_1_1Mesh.html#abdb35d44b64d63cffaad5ae61b5b547d',1,'CortidQCT::Mesh']]],
+  ['mesh',['Mesh',['../classCortidQCT_1_1Mesh.html#abdb35d44b64d63cffaad5ae61b5b547d',1,'CortidQCT::Mesh::Mesh() noexcept(noexcept(VertexData())&amp;&amp;noexcept(IndexData())&amp;&amp;noexcept(LabelData()))'],['../classCortidQCT_1_1Mesh.html#aa528a27520798cb236bb0130e9a97b1f',1,'CortidQCT::Mesh::Mesh(std::size_t nVertices, std::size_t nTriangles) noexcept(noexcept(VertexData(3 *nVertices, T{0}))&amp;&amp;noexcept(IndexData(3 *nTriangles, Index{0}))&amp;&amp;noexcept(LabelData(nVertices, Label{0})))']]],
   ['mesh',['Mesh',['../classCortidQCT_1_1Mesh.html',1,'CortidQCT']]],
   ['mesh_2eh',['Mesh.h',['../Mesh_8h.html',1,'']]],
   ['mesh_3c_20float_20_3e',['Mesh&lt; float &gt;',['../classCortidQCT_1_1Mesh.html',1,'CortidQCT']]],

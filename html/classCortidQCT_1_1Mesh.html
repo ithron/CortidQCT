@@ -125,6 +125,10 @@ Construction</h2></td></tr>
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCortidQCT_1_1Mesh.html#abdb35d44b64d63cffaad5ae61b5b547d">Mesh</a> () noexcept(noexcept(VertexData())&amp;&amp;noexcept(IndexData())&amp;&amp;noexcept(LabelData()))</td></tr>
 <tr class="memdesc:abdb35d44b64d63cffaad5ae61b5b547d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an empty mesh. <br/></td></tr>
 <tr class="separator:abdb35d44b64d63cffaad5ae61b5b547d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa528a27520798cb236bb0130e9a97b1f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa528a27520798cb236bb0130e9a97b1f"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCortidQCT_1_1Mesh.html#aa528a27520798cb236bb0130e9a97b1f">Mesh</a> (std::size_t nVertices, std::size_t nTriangles) noexcept(noexcept(VertexData(3 *nVertices, T{0}))&amp;&amp;noexcept(IndexData(3 *nTriangles, <a class="el" href="classCortidQCT_1_1Mesh.html#a85ed47c4807bd85372175889555ed77c">Index</a>{0}))&amp;&amp;noexcept(LabelData(nVertices, <a class="el" href="classCortidQCT_1_1Mesh.html#ab29bc2956971579d646fc291c73a28a6">Label</a>{0})))</td></tr>
+<tr class="memdesc:aa528a27520798cb236bb0130e9a97b1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an uninitialized mesh with the given vertex and triangle count. <br/></td></tr>
+<tr class="separator:aa528a27520798cb236bb0130e9a97b1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="member-group"></a>
 Accessors</h2></td></tr>
@@ -172,10 +176,18 @@ template&lt;class F &gt; </td></tr>
 <tr class="memitem:ac6334c55d0c95f19bc6214983ba4dc29"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classCortidQCT_1_1Mesh.html#ac6334c55d0c95f19bc6214983ba4dc29">withUnsafeIndexPointer</a> (F &amp;&amp;f) const noexcept(noexcept(f(std::declval&lt; const IndexData &gt;().data())))</td></tr>
 <tr class="memdesc:ac6334c55d0c95f19bc6214983ba4dc29"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calls the given functional with an unsafe pointer to the raw index storage.  <a href="#ac6334c55d0c95f19bc6214983ba4dc29">More...</a><br/></td></tr>
 <tr class="separator:ac6334c55d0c95f19bc6214983ba4dc29"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a151ead43dfb82ba7fc56ea51b560abfa"><td class="memTemplParams" colspan="2"><a class="anchor" id="a151ead43dfb82ba7fc56ea51b560abfa"></a>
+template&lt;class F &gt; </td></tr>
+<tr class="memitem:a151ead43dfb82ba7fc56ea51b560abfa"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>withUnsafeIndexPointer</b> (F &amp;&amp;f) noexcept(noexcept(f(std::declval&lt; IndexData &gt;().data())))</td></tr>
+<tr class="separator:a151ead43dfb82ba7fc56ea51b560abfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8173d354feb4ca374319272687f1f427"><td class="memTemplParams" colspan="2">template&lt;class F &gt; </td></tr>
 <tr class="memitem:a8173d354feb4ca374319272687f1f427"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classCortidQCT_1_1Mesh.html#a8173d354feb4ca374319272687f1f427">withUnsafeLabelPointer</a> (F &amp;&amp;f) const noexcept(noexcept(f(LabelData().data())))</td></tr>
 <tr class="memdesc:a8173d354feb4ca374319272687f1f427"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calls the given functional with an unsafe pointer to the raw label storage.  <a href="#a8173d354feb4ca374319272687f1f427">More...</a><br/></td></tr>
 <tr class="separator:a8173d354feb4ca374319272687f1f427"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b21a9d409d54cdeb48bb5e605b48775"><td class="memTemplParams" colspan="2"><a class="anchor" id="a8b21a9d409d54cdeb48bb5e605b48775"></a>
+template&lt;class F &gt; </td></tr>
+<tr class="memitem:a8b21a9d409d54cdeb48bb5e605b48775"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>withUnsafeLabelPointer</b> (F &amp;&amp;f) noexcept(noexcept(f(LabelData().data())))</td></tr>
+<tr class="separator:a8b21a9d409d54cdeb48bb5e605b48775"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><h3>template&lt;class T&gt;<br/>
@@ -244,7 +256,7 @@ template&lt;class T &gt; </div>
 </div><div class="memdoc">
 
 <p>Load mesh and labels from ASCII file using format auto detection. </p>
-<p>Supported file formats are: obj, off, stl, wrl, ply, mesh. If a .off file with color data (COFF) is given and the labels should be extracted from the color data, use the overload <code>loadFromFile(std::string const &amp;, ColorToLabelMap&lt;Label, double&gt; const &amp;)</code>.</p>
+<p>Supported file formats are: obj, off, stl, wrl, ply, mesh, SIMesh. If a .off file with color data (COFF) is given and the labels should be extracted from the color data, use the overload <code>loadFromFile(std::string const &amp;, ColorToLabelMap&lt;Label, double&gt; const &amp;)</code>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">meshFilename</td><td>Path to the file to load the mesh from </td></tr>
@@ -290,7 +302,7 @@ template&lt;class T &gt; </div>
 </div><div class="memdoc">
 
 <p>Load mesh from ASCII file using format auto detection and extract labels from per-vertex colors. </p>
-<p>Supported file formats are: off (COFF). Per-vertex colors are converted to labels using the given colormap. For other formats use the overload <code><a class="el" href="classCortidQCT_1_1Mesh.html#af30f2e1fad4041986c2b3d680112ffab" title="Load mesh and labels from ASCII file using format auto detection. ">loadFromFile(std::string const &amp;, std::string const &amp;)</a></code></p>
+<p>Supported file formats are: off (COFF), SIMesh. Per-vertex colors are converted to labels using the given colormap. For SIMesh format, the labels are directly read from the file. For other formats use the overload <code><a class="el" href="classCortidQCT_1_1Mesh.html#af30f2e1fad4041986c2b3d680112ffab" title="Load mesh and labels from ASCII file using format auto detection. ">loadFromFile(std::string const &amp;, std::string const &amp;)</a></code></p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">meshFilename</td><td>Path to the file to load the mesh from </td></tr>
@@ -468,7 +480,7 @@ template&lt;class T &gt; </div>
 </div><div class="memdoc">
 
 <p>Writes mesh to ASCII file using format auto detection. </p>
-<p>Supported file formats are: obj, off, stl, wrl, ply, mesh. Labels are written rowwise to <code>labelFilename</code>. For encoding the labels in the color attribute use the overload <code>writeToFile(std::string const &amp;, LabelToColorMap&lt;double, Label&gt; const &amp;)</code>.</p>
+<p>Supported file formats are: obj, off, stl, wrl, ply, mesh, SIMesh. Labels are written rowwise to <code>labelFilename</code>. For encoding the labels in the color attribute use the overload <code>writeToFile(std::string const &amp;, LabelToColorMap&lt;double, Label&gt; const &amp;)</code>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">meshFilename</td><td>path to the file to write the mesh to </td></tr>
@@ -514,7 +526,7 @@ template&lt;class T &gt; </div>
 </div><div class="memdoc">
 
 <p>Writes mesh to ASCII file using format auto detection and encode labels as colors. </p>
-<p>Supported file formats are: off (coff). The labels are encoded in per-vertex colors using the given label to color map. For storing the labels in a separate file use the overload <code>writeToFile(std::string const &amp;, std::string const &amp;)</code>.</p>
+<p>Supported file formats are: off (coff), SIMesh. The labels are encoded in per-vertex colors using the given label to color map. For the 'SIMesh' format the labels are written directly into the mesh file, ignoring the color encoding. For storing the labels in a separate file use the overload <code>writeToFile(std::string const &amp;, std::string const &amp;)</code>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">meshFilename</td><td>path to the file to write the mesh to </td></tr>
@@ -540,7 +552,7 @@ template&lt;class T &gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Nov 13 2018 18:24:29 for CortidQCT by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Nov 14 2018 11:57:31 for CortidQCT by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

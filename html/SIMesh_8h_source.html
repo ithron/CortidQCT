@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>CortidQCT: include/CortidQCT/src/LabelToColorMap.h File Reference</title>
+<title>CortidQCT: lib/SIMesh.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -82,53 +82,40 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_7355fbfbfa7f6e435369ec1f11454ea0.html">include</a></li><li class="navelem"><a class="el" href="dir_14570be8796fdece73eb5b36aa65d509.html">CortidQCT</a></li><li class="navelem"><a class="el" href="dir_44c85f056228ee06fe00fc9469a85f08.html">src</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_4c550ca0e4a98d4c430d2c1d62bdb7c0.html">lib</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
-  <div class="summary">
-<a href="#namespaces">Namespaces</a> &#124;
-<a href="#typedef-members">Typedefs</a> &#124;
-<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">LabelToColorMap.h File Reference</div>  </div>
+<div class="title">SIMesh.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-
-<p>This finle contains definitions for label to color map types.  
-<a href="#details">More...</a></p>
-<div class="textblock"><code>#include &lt;functional&gt;</code><br/>
-</div>
-<p><a href="LabelToColorMap_8h_source.html">Go to the source code of this file.</a></p>
-<table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
-Namespaces</h2></td></tr>
-<tr class="memitem:namespaceCortidQCT"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCortidQCT.html">CortidQCT</a></td></tr>
-<tr class="memdesc:namespaceCortidQCT"><td class="mdescLeft">&#160;</td><td class="mdescRight">Name namespace for <a class="el" href="namespaceCortidQCT.html" title="Name namespace for CortidQCT library. ">CortidQCT</a> library. <br/></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:namespaceCortidQCT_1_1LabelToColorMaps"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCortidQCT_1_1LabelToColorMaps.html">CortidQCT::LabelToColorMaps</a></td></tr>
-<tr class="memdesc:namespaceCortidQCT_1_1LabelToColorMaps"><td class="mdescLeft">&#160;</td><td class="mdescRight">Namespace containing label to color maps. <br/></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
-Typedefs</h2></td></tr>
-<tr class="memitem:a04ddf5259cabc1e1238ae30285564dfc"><td class="memTemplParams" colspan="2">template&lt;class Scalar , class Label &gt; </td></tr>
-<tr class="memitem:a04ddf5259cabc1e1238ae30285564dfc"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceCortidQCT.html#a04ddf5259cabc1e1238ae30285564dfc">CortidQCT::LabelToColorMap</a> = std::function&lt; std::array&lt; Scalar, 3 &gt;(Label)&gt;</td></tr>
-<tr class="memdesc:a04ddf5259cabc1e1238ae30285564dfc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Label to color map.  <a href="#a04ddf5259cabc1e1238ae30285564dfc">More...</a><br/></td></tr>
-<tr class="separator:a04ddf5259cabc1e1238ae30285564dfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
-Functions</h2></td></tr>
-<tr class="memitem:a2fa866efe763cce246044753efbce53b"><td class="memTemplParams" colspan="2">template&lt;class Scalar , class Label &gt; </td></tr>
-<tr class="memitem:a2fa866efe763cce246044753efbce53b"><td class="memTemplItemLeft" align="right" valign="top">std::array&lt; Scalar, 3 &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceCortidQCT_1_1LabelToColorMaps.html#a2fa866efe763cce246044753efbce53b">CortidQCT::LabelToColorMaps::defaultMap</a> (Label label)</td></tr>
-<tr class="memdesc:a2fa866efe763cce246044753efbce53b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default label to color map.  <a href="#a2fa866efe763cce246044753efbce53b">More...</a><br/></td></tr>
-<tr class="separator:a2fa866efe763cce246044753efbce53b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>This finle contains definitions for label to color map types. </p>
-<dl class="section author"><dt>Author</dt><dd>Stefan Reinhold </dd></dl>
-<dl class="section copyright"><dt>Copyright</dt><dd>Copyright (C) 2018 Stefan Reinhold &ndash; All Rights Reserved. You may use, distribute and modify this code under the terms of the AFL 3.0 license; see LICENSE for full license details. </dd></dl>
-</div></div><!-- contents -->
+<a href="SIMesh_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Mesh_8h.html">Mesh.h</a>&quot;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">namespace </span>CortidQCT {</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">namespace </span>Internal {</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keywordtype">void</span> writeToSIMesh(Mesh&lt;T&gt; <span class="keyword">const</span> &amp;mesh, std::string <span class="keyword">const</span> &amp;filename,</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;                   <span class="keywordtype">bool</span> includeLabels = <span class="keyword">false</span>);</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;Mesh&lt;T&gt; readFromSIMesh(std::string <span class="keyword">const</span> &amp;filename, <span class="keywordtype">bool</span> withLabels = <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keyword">extern</span> <span class="keyword">template</span> <span class="keywordtype">void</span> writeToSIMesh&lt;float&gt;(Mesh&lt;float&gt; <span class="keyword">const</span> &amp;,</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                                          std::string <span class="keyword">const</span> &amp;, bool);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keyword">extern</span> <span class="keyword">template</span> <span class="keywordtype">void</span> writeToSIMesh&lt;double&gt;(Mesh&lt;double&gt; <span class="keyword">const</span> &amp;,</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                                           std::string <span class="keyword">const</span> &amp;, bool);</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="keyword">extern</span> <span class="keyword">template</span> Mesh&lt;float&gt; readFromSIMesh&lt;float&gt;(std::string <span class="keyword">const</span> &amp;, bool);</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keyword">extern</span> <span class="keyword">template</span> Mesh&lt;double&gt; readFromSIMesh&lt;double&gt;(std::string <span class="keyword">const</span> &amp;, bool);</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;} <span class="comment">// namespace Internal</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;} <span class="comment">// namespace CortidQCT</span></div>
+<div class="ttc" id="Mesh_8h_html"><div class="ttname"><a href="Mesh_8h.html">Mesh.h</a></div><div class="ttdoc">Include file defining the Mesh data type. </div></div>
+</div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated on Wed Nov 14 2018 11:57:31 for CortidQCT by &#160;<a href="http://www.doxygen.org/index.html">
