@@ -55,7 +55,8 @@ classdef MeshFitter < CortidQCT.lib.ObjectBase
 
       err = Error;
 
-      res = ObjectBase.call('meshFitterFitOneIteration', obj.handle, state.pointer);
+      res = ObjectBase.call('meshFitterFitOneIteration', ...
+        obj.handle, state.pointer, err.pointer);
 
       if res == 0
         error('fitOneIteration failed: %s', err.message);
