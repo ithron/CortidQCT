@@ -100,6 +100,19 @@ CQCT_meshFitterResultCopyDisplacementVector(CQCT_MeshFitterResult result,
   return size;
 }
 
+CORTIDQCT_C_EXPORT CQCT_EXTERN void
+CQCT_meshFitterResultSetDisplacementVector(CQCT_MeshFitterResult result,
+                                           float const *buffer) {
+  assert(result != nullptr);
+  assert(buffer != nullptr);
+
+  auto &state = result->impl.objPtr->state;
+
+  auto const size = state.displacementVector.size();
+
+  std::copy(buffer, buffer + size, state.displacementVector.begin());
+}
+
 CORTIDQCT_C_EXPORT CQCT_EXTERN size_t
 CQCT_meshFitterResultCopyWeights(CQCT_MeshFitterResult result, float **buffer) {
   assert(result != nullptr);
@@ -114,6 +127,19 @@ CQCT_meshFitterResultCopyWeights(CQCT_MeshFitterResult result, float **buffer) {
   std::copy(state.weights.cbegin(), state.weights.cend(), *buffer);
 
   return size;
+}
+
+CORTIDQCT_C_EXPORT CQCT_EXTERN void
+CQCT_meshFitterResultSetWeights(CQCT_MeshFitterResult result,
+                                float const *buffer) {
+  assert(result != nullptr);
+  assert(buffer != nullptr);
+
+  auto &state = result->impl.objPtr->state;
+
+  auto const size = state.weights.size();
+
+  std::copy(buffer, buffer + size, state.weights.begin());
 }
 
 CORTIDQCT_C_EXPORT CQCT_EXTERN size_t CQCT_meshFitterResultCopyVertexNormals(
@@ -193,6 +219,14 @@ CQCT_meshFitterResultLogLikelihood(CQCT_MeshFitterResult result) {
   return state.logLikelihood;
 }
 
+CORTIDQCT_C_EXPORT CQCT_EXTERN void
+CQCT_meshFitterResultSetLogLikelihood(CQCT_MeshFitterResult result, float ll) {
+  assert(result != nullptr);
+  auto &state = result->impl.objPtr->state;
+
+  state.logLikelihood = ll;
+}
+
 /// Returns the current effective sigmaS (after applying decay)
 CORTIDQCT_C_EXPORT CQCT_EXTERN float
 CQCT_meshFitterResultEffectiveSigmaS(CQCT_MeshFitterResult result) {
@@ -211,6 +245,15 @@ CQCT_meshFitterResultIterationCount(CQCT_MeshFitterResult result) {
   return state.iteration;
 }
 
+CORTIDQCT_C_EXPORT CQCT_EXTERN void
+CQCT_meshFitterResultSetIterationCount(CQCT_MeshFitterResult result, size_t count) {
+  assert(result != nullptr);
+
+  auto &state = result->impl.objPtr->state;
+
+  state.iteration = count;
+}
+
 CORTIDQCT_C_EXPORT CQCT_EXTERN int
 CQCT_meshFitterResultHasConverged(CQCT_MeshFitterResult result) {
   assert(result != nullptr);
@@ -218,6 +261,16 @@ CQCT_meshFitterResultHasConverged(CQCT_MeshFitterResult result) {
   auto const &state = result->impl.objPtr->state;
 
   return state.converged;
+}
+
+CORTIDQCT_C_EXPORT CQCT_EXTERN void
+CQCT_meshFitterResultSetHasConverged(CQCT_MeshFitterResult result,
+                                     int converged) {
+  assert(result != nullptr);
+
+  auto &state = result->impl.objPtr->state;
+
+  state.converged = converged != 0;
 }
 
 CORTIDQCT_C_EXPORT CQCT_EXTERN int
@@ -229,6 +282,15 @@ CQCT_meshFitterResultSuccess(CQCT_MeshFitterResult result) {
   return state.success;
 }
 
+CORTIDQCT_C_EXPORT CQCT_EXTERN void
+CQCT_meshFitterResultSetSuccess(CQCT_MeshFitterResult result, int success) {
+  assert(result != nullptr);
+
+  auto &state = result->impl.objPtr->state;
+
+  state.success = success != 0;
+}
+
 CORTIDQCT_C_EXPORT CQCT_EXTERN size_t
 CQCT_meshFitterResultNonDecreasingCount(CQCT_MeshFitterResult result) {
   assert(result != nullptr);
@@ -236,5 +298,15 @@ CQCT_meshFitterResultNonDecreasingCount(CQCT_MeshFitterResult result) {
   auto const &state = result->impl.objPtr->state;
 
   return state.nonDecreasing;
+}
+
+CORTIDQCT_C_EXPORT CQCT_EXTERN void
+CQCT_meshFitterResultSetNonDecreasingCount(CQCT_MeshFitterResult result,
+                                           size_t count) {
+  assert(result != nullptr);
+
+  auto &state = result->impl.objPtr->state;
+
+  state.nonDecreasing = count;
 }
 

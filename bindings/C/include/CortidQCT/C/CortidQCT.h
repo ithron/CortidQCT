@@ -350,9 +350,18 @@ CQCT_EXTERN CQCT_Mesh CQCT_meshFitterResultMesh(CQCT_MeshFitterResult result);
 CQCT_EXTERN size_t CQCT_meshFitterResultCopyDisplacementVector(
     CQCT_MeshFitterResult result, float **buffer);
 
+/// Sets the displacement vector
+CQCT_EXTERN void
+CQCT_meshFitterResultSetDisplacementVector(CQCT_MeshFitterResult result,
+                                           float const *buffer);
+
 /// Copies the weight vector
 CQCT_EXTERN size_t
 CQCT_meshFitterResultCopyWeights(CQCT_MeshFitterResult result, float **buffer);
+
+/// Sets the weight vector
+CQCT_EXTERN void CQCT_meshFitterResultSetWeights(CQCT_MeshFitterResult result,
+                                                 float const *buffer);
 
 /// Copies the vertex normals
 CQCT_EXTERN size_t CQCT_meshFitterResultCopyVertexNormals(
@@ -378,6 +387,10 @@ CQCT_meshFitterResultMinimumDisplacementNorm(CQCT_MeshFitterResult result);
 CQCT_EXTERN float
 CQCT_meshFitterResultLogLikelihood(CQCT_MeshFitterResult result);
 
+/// Sets the current log likelihood of the model given the input volume
+CQCT_EXTERN void
+CQCT_meshFitterResultSetLogLikelihood(CQCT_MeshFitterResult result, float ll);
+
 /// Returns the current effective sigmaS (after applying decay)
 CQCT_EXTERN float
 CQCT_meshFitterResultEffectiveSigmaS(CQCT_MeshFitterResult result);
@@ -386,15 +399,34 @@ CQCT_meshFitterResultEffectiveSigmaS(CQCT_MeshFitterResult result);
 CQCT_EXTERN size_t
 CQCT_meshFitterResultIterationCount(CQCT_MeshFitterResult result);
 
+/// Sets the iteration count
+CQCT_EXTERN void
+CQCT_meshFitterResultSetIterationCount(CQCT_MeshFitterResult result,
+                                       size_t count);
+
 /// Returns whether the optimization has converged
 CQCT_EXTERN int CQCT_meshFitterResultHasConverged(CQCT_MeshFitterResult result);
+
+/// Sets whether the optimization has converged
+CQCT_EXTERN void
+CQCT_meshFitterResultSetHasConverged(CQCT_MeshFitterResult result,
+                                     int converged);
 
 /// Returns whether the optimization was successfull
 CQCT_EXTERN int CQCT_meshFitterResultSuccess(CQCT_MeshFitterResult result);
 
+/// Sets whether the optimization was successfull
+CQCT_EXTERN void CQCT_meshFitterResultSetSuccess(CQCT_MeshFitterResult result,
+                                                 int success);
+
 /// Returns the current non decreasing count
 CQCT_EXTERN size_t
 CQCT_meshFitterResultNonDecreasingCount(CQCT_MeshFitterResult result);
+
+/// Sets the current non decreasing count
+CQCT_EXTERN void
+CQCT_meshFitterResultSetNonDecreasingCount(CQCT_MeshFitterResult result,
+                                           size_t count);
 
 /// @}
 
