@@ -134,35 +134,69 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;  <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span><a class="code" href="group__C-API.html#ga3b68cd9dda6620fb2575e8f511b5de7f">Id</a><span class="keyword">&gt;</span>(wrapperPtr);</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;}</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;} <span class="comment">// namespace C</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;} <span class="comment">// namespace Internal</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;} <span class="comment">// namespace CortidQCT</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<a class="code" href="structCQCT__MeshFitterState__t.html">CQCT_MeshFitterState</a></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;createMeshFitterState(<a class="code" href="structCQCT__MeshFitter__t.html">CQCT_MeshFitter</a> meshFitter,</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;                      ::<a class="code" href="structCortidQCT_1_1MeshFitter_1_1State.html">CortidQCT::MeshFitter::State</a> <span class="keyword">const</span> &amp;state);</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
-<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="structCQCT__VoxelVolume__t.html">   49</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structCQCT__VoxelVolume__t.html">CQCT_VoxelVolume_t</a> {</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;  <a class="code" href="structCortidQCT_1_1Internal_1_1C_1_1GenericObjectWrapper.html">CortidQCT::Internal::C::GenericObjectWrapper&lt;CortidQCT::VoxelVolume&gt;</a> impl;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;};</div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="structCortidQCT_1_1Internal_1_1C_1_1MeshFitterState.html">   49</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structCortidQCT_1_1Internal_1_1C_1_1MeshFitterState.html">MeshFitterState</a> {</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;  <a class="code" href="structCQCT__Mesh__t.html">CQCT_Mesh</a> deformedMesh = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;  <a class="code" href="structCQCT__Mesh__t.html">CQCT_Mesh</a> referenceMesh = <span class="keyword">nullptr</span>;</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
-<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="structCQCT__Mesh__t.html">   53</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structCQCT__Mesh__t.html">CQCT_Mesh_t</a> {</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;  <a class="code" href="structCortidQCT_1_1Internal_1_1C_1_1GenericObjectWrapper.html">CortidQCT::Internal::C::GenericObjectWrapper&lt;CortidQCT::Mesh&lt;float&gt;</a>&gt; impl;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;};</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;  <a class="code" href="structCortidQCT_1_1MeshFitter_1_1State.html">CortidQCT::MeshFitter::State</a> state;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;  <span class="keywordtype">void</span> updateMesh();</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
-<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="structCQCT__ColorToLabelMap__t.html">   57</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structCQCT__ColorToLabelMap__t.html">CQCT_ColorToLabelMap_t</a> {</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;  <a class="code" href="structCortidQCT_1_1Internal_1_1C_1_1GenericObjectWrapper.html">CortidQCT::Internal::C::GenericObjectWrapper</a>&lt;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;      <a class="code" href="structCortidQCT_1_1ColorToLabelMaps_1_1CustomMap.html">CortidQCT::ColorToLabelMaps::CustomMap</a>&gt;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;      impl_;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;  ~<a class="code" href="structCortidQCT_1_1Internal_1_1C_1_1MeshFitterState.html">MeshFitterState</a>() {</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <a class="code" href="group__C-API.html#gaece70c037de46f4b30cc6f426a470c30">CQCT_release</a>(deformedMesh);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <a class="code" href="group__C-API.html#gaece70c037de46f4b30cc6f426a470c30">CQCT_release</a>(referenceMesh);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;  }</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;};</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;} <span class="comment">// namespace C</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;} <span class="comment">// namespace Internal</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;} <span class="comment">// namespace CortidQCT</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
+<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="structCQCT__MeshFitterState__t.html">   67</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structCQCT__MeshFitterState__t.html">CQCT_MeshFitterState_t</a> {</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;  <a class="code" href="structCortidQCT_1_1Internal_1_1C_1_1GenericObjectWrapper.html">CortidQCT::Internal::C::GenericObjectWrapper</a>&lt;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;      <a class="code" href="structCortidQCT_1_1Internal_1_1C_1_1MeshFitterState.html">CortidQCT::Internal::C::MeshFitterState</a>&gt;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;      impl;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;};</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
+<div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="structCQCT__VoxelVolume__t.html">   73</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structCQCT__VoxelVolume__t.html">CQCT_VoxelVolume_t</a> {</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;  <a class="code" href="structCortidQCT_1_1Internal_1_1C_1_1GenericObjectWrapper.html">CortidQCT::Internal::C::GenericObjectWrapper&lt;CortidQCT::VoxelVolume&gt;</a> impl;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;};</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
+<div class="line"><a name="l00077"></a><span class="lineno"><a class="line" href="structCQCT__Mesh__t.html">   77</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structCQCT__Mesh__t.html">CQCT_Mesh_t</a> {</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;  <a class="code" href="structCortidQCT_1_1Internal_1_1C_1_1GenericObjectWrapper.html">CortidQCT::Internal::C::GenericObjectWrapper&lt;CortidQCT::Mesh&lt;float&gt;</a>&gt; impl;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;};</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div>
+<div class="line"><a name="l00081"></a><span class="lineno"><a class="line" href="structCQCT__ColorToLabelMap__t.html">   81</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structCQCT__ColorToLabelMap__t.html">CQCT_ColorToLabelMap_t</a> {</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;  <a class="code" href="structCortidQCT_1_1Internal_1_1C_1_1GenericObjectWrapper.html">CortidQCT::Internal::C::GenericObjectWrapper</a>&lt;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;      <a class="code" href="structCortidQCT_1_1ColorToLabelMaps_1_1CustomMap.html">CortidQCT::ColorToLabelMaps::CustomMap</a>&gt;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;      impl_;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;};</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div>
+<div class="line"><a name="l00087"></a><span class="lineno"><a class="line" href="structCQCT__MeshFitter__t.html">   87</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structCQCT__MeshFitter__t.html">CQCT_MeshFitter_t</a> {</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;  <a class="code" href="structCortidQCT_1_1Internal_1_1C_1_1GenericObjectWrapper.html">CortidQCT::Internal::C::GenericObjectWrapper&lt;CortidQCT::MeshFitter&gt;</a> impl;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;};</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;</div>
+<div class="ttc" id="structCortidQCT_1_1Internal_1_1C_1_1MeshFitterState_html"><div class="ttname"><a href="structCortidQCT_1_1Internal_1_1C_1_1MeshFitterState.html">CortidQCT::Internal::C::MeshFitterState</a></div><div class="ttdef"><b>Definition:</b> CortidQCT-Common.h:49</div></div>
 <div class="ttc" id="structCortidQCT_1_1Internal_1_1C_1_1Control_html"><div class="ttname"><a href="structCortidQCT_1_1Internal_1_1C_1_1Control.html">CortidQCT::Internal::C::Control</a></div><div class="ttdef"><b>Definition:</b> CortidQCT-Common.h:17</div></div>
 <div class="ttc" id="include_2CortidQCT_2CortidQCT_8h_html"><div class="ttname"><a href="include_2CortidQCT_2CortidQCT_8h.html">CortidQCT.h</a></div><div class="ttdoc">Main header file for CortidQCT library. </div></div>
-<div class="ttc" id="structCQCT__ColorToLabelMap__t_html"><div class="ttname"><a href="structCQCT__ColorToLabelMap__t.html">CQCT_ColorToLabelMap_t</a></div><div class="ttdef"><b>Definition:</b> CortidQCT-Common.h:57</div></div>
+<div class="ttc" id="structCQCT__ColorToLabelMap__t_html"><div class="ttname"><a href="structCQCT__ColorToLabelMap__t.html">CQCT_ColorToLabelMap_t</a></div><div class="ttdef"><b>Definition:</b> CortidQCT-Common.h:81</div></div>
+<div class="ttc" id="structCortidQCT_1_1MeshFitter_1_1State_html"><div class="ttname"><a href="structCortidQCT_1_1MeshFitter_1_1State.html">CortidQCT::MeshFitter::State</a></div><div class="ttdoc">Internal State type. </div><div class="ttdef"><b>Definition:</b> MeshFitter.h:146</div></div>
+<div class="ttc" id="structCQCT__MeshFitterState__t_html"><div class="ttname"><a href="structCQCT__MeshFitterState__t.html">CQCT_MeshFitterState_t</a></div><div class="ttdef"><b>Definition:</b> CortidQCT-Common.h:67</div></div>
 <div class="ttc" id="structCortidQCT_1_1Internal_1_1C_1_1GenericObjectWrapper_html"><div class="ttname"><a href="structCortidQCT_1_1Internal_1_1C_1_1GenericObjectWrapper.html">CortidQCT::Internal::C::GenericObjectWrapper</a></div><div class="ttdef"><b>Definition:</b> CortidQCT-Common.h:22</div></div>
 <div class="ttc" id="group__C-API_html_ga3b68cd9dda6620fb2575e8f511b5de7f"><div class="ttname"><a href="group__C-API.html#ga3b68cd9dda6620fb2575e8f511b5de7f">Id</a></div><div class="ttdeci">void * Id</div><div class="ttdoc">Generic &#39;object&#39; type. </div><div class="ttdef"><b>Definition:</b> CortidQCT.h:68</div></div>
+<div class="ttc" id="group__C-API_html_gaece70c037de46f4b30cc6f426a470c30"><div class="ttname"><a href="group__C-API.html#gaece70c037de46f4b30cc6f426a470c30">CQCT_release</a></div><div class="ttdeci">CQCT_EXTERN void CQCT_release(Id obj)</div><div class="ttdef"><b>Definition:</b> ObjectBase.cpp:83</div></div>
+<div class="ttc" id="structCQCT__MeshFitter__t_html"><div class="ttname"><a href="structCQCT__MeshFitter__t.html">CQCT_MeshFitter_t</a></div><div class="ttdef"><b>Definition:</b> CortidQCT-Common.h:87</div></div>
 <div class="ttc" id="structCortidQCT_1_1ColorToLabelMaps_1_1CustomMap_html"><div class="ttname"><a href="structCortidQCT_1_1ColorToLabelMaps_1_1CustomMap.html">CortidQCT::ColorToLabelMaps::CustomMap</a></div><div class="ttdoc">A customaizable color to label map. </div><div class="ttdef"><b>Definition:</b> ColorToLabelMap.h:98</div></div>
-<div class="ttc" id="structCQCT__VoxelVolume__t_html"><div class="ttname"><a href="structCQCT__VoxelVolume__t.html">CQCT_VoxelVolume_t</a></div><div class="ttdef"><b>Definition:</b> CortidQCT-Common.h:49</div></div>
-<div class="ttc" id="structCQCT__Mesh__t_html"><div class="ttname"><a href="structCQCT__Mesh__t.html">CQCT_Mesh_t</a></div><div class="ttdef"><b>Definition:</b> CortidQCT-Common.h:53</div></div>
+<div class="ttc" id="structCQCT__VoxelVolume__t_html"><div class="ttname"><a href="structCQCT__VoxelVolume__t.html">CQCT_VoxelVolume_t</a></div><div class="ttdef"><b>Definition:</b> CortidQCT-Common.h:73</div></div>
+<div class="ttc" id="structCQCT__Mesh__t_html"><div class="ttname"><a href="structCQCT__Mesh__t.html">CQCT_Mesh_t</a></div><div class="ttdef"><b>Definition:</b> CortidQCT-Common.h:77</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Nov 14 2018 12:18:00 for CortidQCT by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Nov 14 2018 15:32:52 for CortidQCT by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

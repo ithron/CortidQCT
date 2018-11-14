@@ -260,28 +260,147 @@ CQCT_EXTERN void&#160;</td><td class="memItemRight" valign="bottom"><a class="el
 <tr class="separator:ga218895df804f27795a9da96931eb66f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="member-group"></a>
-MeshFitter object type</h2></td></tr>
+MeshFitterState object type</h2></td></tr>
 <tr class="memitem:gab05b3b71393719099ff08d8417005cdf"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gab05b3b71393719099ff08d8417005cdf"></a>
 typedef struct <a class="el" href="structCQCT__MeshFitter__t.html">CQCT_MeshFitter_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#gab05b3b71393719099ff08d8417005cdf">CQCT_MeshFitter</a></td></tr>
 <tr class="memdesc:gab05b3b71393719099ff08d8417005cdf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mesh fitter handle type. <br/></td></tr>
 <tr class="separator:gab05b3b71393719099ff08d8417005cdf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga291818d1b742b936e4bfaa28eed06099"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga291818d1b742b936e4bfaa28eed06099"></a>
+<tr class="memitem:gac84b6d0c342bb66add36810e422053b6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gac84b6d0c342bb66add36810e422053b6"></a>
 typedef struct <br class="typebreak"/>
-<a class="el" href="structCQCT__MeshFitterResult__t.html">CQCT_MeshFitterResult_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#ga291818d1b742b936e4bfaa28eed06099">CQCT_MeshFitterResult</a></td></tr>
-<tr class="memdesc:ga291818d1b742b936e4bfaa28eed06099"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mesh fitter result object. <br/></td></tr>
-<tr class="separator:ga291818d1b742b936e4bfaa28eed06099"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<a class="el" href="structCQCT__MeshFitterState__t.html">CQCT_MeshFitterState_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#gac84b6d0c342bb66add36810e422053b6">CQCT_MeshFitterState</a></td></tr>
+<tr class="memdesc:gac84b6d0c342bb66add36810e422053b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mesh fitter state handle type. <br/></td></tr>
+<tr class="separator:gac84b6d0c342bb66add36810e422053b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3d8d73b8c1ab47b7271307105eca3f1d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga3d8d73b8c1ab47b7271307105eca3f1d"></a>
+typedef <a class="el" href="group__C-API.html#gac84b6d0c342bb66add36810e422053b6">CQCT_MeshFitterState</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#ga3d8d73b8c1ab47b7271307105eca3f1d">CQCT_MeshFitterResult</a></td></tr>
+<tr class="memdesc:ga3d8d73b8c1ab47b7271307105eca3f1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mesh fitter result object. <br/></td></tr>
+<tr class="separator:ga3d8d73b8c1ab47b7271307105eca3f1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga20e55b2914e9a937da92c42701e164b1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga20e55b2914e9a937da92c42701e164b1"></a>
+CQCT_EXTERN <a class="el" href="group__C-API.html#gac84b6d0c342bb66add36810e422053b6">CQCT_MeshFitterState</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#ga20e55b2914e9a937da92c42701e164b1">CQCT_createMeshFitterState</a> (<a class="el" href="group__C-API.html#gab05b3b71393719099ff08d8417005cdf">CQCT_MeshFitter</a> fitter, <a class="el" href="group__C-API.html#gad69cbc780e25804265d6a8574fa84c4c">CQCT_VoxelVolume</a> volume)</td></tr>
+<tr class="memdesc:ga20e55b2914e9a937da92c42701e164b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an MeshFitter optimization state object. <br/></td></tr>
+<tr class="separator:ga20e55b2914e9a937da92c42701e164b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3b54ab64f90db1edfc2472f924285975"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga3b54ab64f90db1edfc2472f924285975"></a>
+CQCT_EXTERN <a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#ga3b54ab64f90db1edfc2472f924285975">CQCT_meshFitterResultReferenceMesh</a> (<a class="el" href="group__C-API.html#ga3d8d73b8c1ab47b7271307105eca3f1d">CQCT_MeshFitterResult</a> result)</td></tr>
+<tr class="memdesc:ga3b54ab64f90db1edfc2472f924285975"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the result reference mesh. <br/></td></tr>
+<tr class="separator:ga3b54ab64f90db1edfc2472f924285975"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad1f6feb7598f0e51cc785bf0a0b3cf85"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gad1f6feb7598f0e51cc785bf0a0b3cf85"></a>
+CQCT_EXTERN <a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#gad1f6feb7598f0e51cc785bf0a0b3cf85">CQCT_meshFitterResultMesh</a> (<a class="el" href="group__C-API.html#ga3d8d73b8c1ab47b7271307105eca3f1d">CQCT_MeshFitterResult</a> result)</td></tr>
+<tr class="memdesc:gad1f6feb7598f0e51cc785bf0a0b3cf85"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the result mesh. <br/></td></tr>
+<tr class="separator:gad1f6feb7598f0e51cc785bf0a0b3cf85"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf4d79e76e6b83ae99f66d354982091c1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gaf4d79e76e6b83ae99f66d354982091c1"></a>
+CQCT_EXTERN size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#gaf4d79e76e6b83ae99f66d354982091c1">CQCT_meshFitterResultCopyDisplacementVector</a> (<a class="el" href="group__C-API.html#ga3d8d73b8c1ab47b7271307105eca3f1d">CQCT_MeshFitterResult</a> result, float **buffer)</td></tr>
+<tr class="memdesc:gaf4d79e76e6b83ae99f66d354982091c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies the displacement vector. <br/></td></tr>
+<tr class="separator:gaf4d79e76e6b83ae99f66d354982091c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga03dc6a45149562dc02a11a6307d65370"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga03dc6a45149562dc02a11a6307d65370"></a>
+CQCT_EXTERN void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#ga03dc6a45149562dc02a11a6307d65370">CQCT_meshFitterResultSetDisplacementVector</a> (<a class="el" href="group__C-API.html#ga3d8d73b8c1ab47b7271307105eca3f1d">CQCT_MeshFitterResult</a> result, float const *buffer)</td></tr>
+<tr class="memdesc:ga03dc6a45149562dc02a11a6307d65370"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the displacement vector. <br/></td></tr>
+<tr class="separator:ga03dc6a45149562dc02a11a6307d65370"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga42fc17fa4c388cc0d4063eb6df8b94a8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga42fc17fa4c388cc0d4063eb6df8b94a8"></a>
+CQCT_EXTERN size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#ga42fc17fa4c388cc0d4063eb6df8b94a8">CQCT_meshFitterResultCopyWeights</a> (<a class="el" href="group__C-API.html#ga3d8d73b8c1ab47b7271307105eca3f1d">CQCT_MeshFitterResult</a> result, float **buffer)</td></tr>
+<tr class="memdesc:ga42fc17fa4c388cc0d4063eb6df8b94a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies the weight vector. <br/></td></tr>
+<tr class="separator:ga42fc17fa4c388cc0d4063eb6df8b94a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga29fb7c72e8b2ceb3eaa5a66b17e31c96"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga29fb7c72e8b2ceb3eaa5a66b17e31c96"></a>
+CQCT_EXTERN void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#ga29fb7c72e8b2ceb3eaa5a66b17e31c96">CQCT_meshFitterResultSetWeights</a> (<a class="el" href="group__C-API.html#ga3d8d73b8c1ab47b7271307105eca3f1d">CQCT_MeshFitterResult</a> result, float const *buffer)</td></tr>
+<tr class="memdesc:ga29fb7c72e8b2ceb3eaa5a66b17e31c96"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the weight vector. <br/></td></tr>
+<tr class="separator:ga29fb7c72e8b2ceb3eaa5a66b17e31c96"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0f4a6186ebb386ef351e9e90f322ad89"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga0f4a6186ebb386ef351e9e90f322ad89"></a>
+CQCT_EXTERN size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#ga0f4a6186ebb386ef351e9e90f322ad89">CQCT_meshFitterResultCopyVertexNormals</a> (<a class="el" href="group__C-API.html#ga3d8d73b8c1ab47b7271307105eca3f1d">CQCT_MeshFitterResult</a> result, float **buffer)</td></tr>
+<tr class="memdesc:ga0f4a6186ebb386ef351e9e90f322ad89"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies the vertex normals. <br/></td></tr>
+<tr class="separator:ga0f4a6186ebb386ef351e9e90f322ad89"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8accf25991ddf8e809f7d00c795a8173"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga8accf25991ddf8e809f7d00c795a8173"></a>
+CQCT_EXTERN size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#ga8accf25991ddf8e809f7d00c795a8173">CQCT_meshFitterResultVolumeSamplingPositionsCount</a> (<a class="el" href="group__C-API.html#ga3d8d73b8c1ab47b7271307105eca3f1d">CQCT_MeshFitterResult</a> result)</td></tr>
+<tr class="memdesc:ga8accf25991ddf8e809f7d00c795a8173"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of volume sampling positions. <br/></td></tr>
+<tr class="separator:ga8accf25991ddf8e809f7d00c795a8173"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga03b98f4fb4dabae1ebf37942dc226d9d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga03b98f4fb4dabae1ebf37942dc226d9d"></a>
+CQCT_EXTERN size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#ga03b98f4fb4dabae1ebf37942dc226d9d">CQCT_meshFitterResultCopyVolumeSamplingPositions</a> (<a class="el" href="group__C-API.html#ga3d8d73b8c1ab47b7271307105eca3f1d">CQCT_MeshFitterResult</a> result, float **buffer)</td></tr>
+<tr class="memdesc:ga03b98f4fb4dabae1ebf37942dc226d9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies the volume sampling positions. <br/></td></tr>
+<tr class="separator:ga03b98f4fb4dabae1ebf37942dc226d9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga939a37a31319d71d57528277af4d1f87"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga939a37a31319d71d57528277af4d1f87"></a>
+CQCT_EXTERN size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#ga939a37a31319d71d57528277af4d1f87">CQCT_meshFitterResultCopyVolumeSamples</a> (<a class="el" href="group__C-API.html#ga3d8d73b8c1ab47b7271307105eca3f1d">CQCT_MeshFitterResult</a> result, float **buffer)</td></tr>
+<tr class="memdesc:ga939a37a31319d71d57528277af4d1f87"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies the volume samples. <br/></td></tr>
+<tr class="separator:ga939a37a31319d71d57528277af4d1f87"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4b9fabb5bac7d063e9491865a8406ee6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga4b9fabb5bac7d063e9491865a8406ee6"></a>
+CQCT_EXTERN float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#ga4b9fabb5bac7d063e9491865a8406ee6">CQCT_meshFitterResultMinimumDisplacementNorm</a> (<a class="el" href="group__C-API.html#ga3d8d73b8c1ab47b7271307105eca3f1d">CQCT_MeshFitterResult</a> result)</td></tr>
+<tr class="memdesc:ga4b9fabb5bac7d063e9491865a8406ee6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the minimum norm of the displacement vector. <br/></td></tr>
+<tr class="separator:ga4b9fabb5bac7d063e9491865a8406ee6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaec4e4e9bb072f0d9203b31e835086e5e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gaec4e4e9bb072f0d9203b31e835086e5e"></a>
+CQCT_EXTERN float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#gaec4e4e9bb072f0d9203b31e835086e5e">CQCT_meshFitterResultLogLikelihood</a> (<a class="el" href="group__C-API.html#ga3d8d73b8c1ab47b7271307105eca3f1d">CQCT_MeshFitterResult</a> result)</td></tr>
+<tr class="memdesc:gaec4e4e9bb072f0d9203b31e835086e5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the current log likelihood of the model given the input volume. <br/></td></tr>
+<tr class="separator:gaec4e4e9bb072f0d9203b31e835086e5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6c39d0919c8ad22a63aa87d6547b4680"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga6c39d0919c8ad22a63aa87d6547b4680"></a>
+CQCT_EXTERN void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#ga6c39d0919c8ad22a63aa87d6547b4680">CQCT_meshFitterResultSetLogLikelihood</a> (<a class="el" href="group__C-API.html#ga3d8d73b8c1ab47b7271307105eca3f1d">CQCT_MeshFitterResult</a> result, float ll)</td></tr>
+<tr class="memdesc:ga6c39d0919c8ad22a63aa87d6547b4680"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the current log likelihood of the model given the input volume. <br/></td></tr>
+<tr class="separator:ga6c39d0919c8ad22a63aa87d6547b4680"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga785ce299b2dd505405384de5f3ac00db"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga785ce299b2dd505405384de5f3ac00db"></a>
+CQCT_EXTERN float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#ga785ce299b2dd505405384de5f3ac00db">CQCT_meshFitterResultEffectiveSigmaS</a> (<a class="el" href="group__C-API.html#ga3d8d73b8c1ab47b7271307105eca3f1d">CQCT_MeshFitterResult</a> result)</td></tr>
+<tr class="memdesc:ga785ce299b2dd505405384de5f3ac00db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the current effective sigmaS (after applying decay) <br/></td></tr>
+<tr class="separator:ga785ce299b2dd505405384de5f3ac00db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga75722474c959c6ca819785fe5ca4117b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga75722474c959c6ca819785fe5ca4117b"></a>
+CQCT_EXTERN size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#ga75722474c959c6ca819785fe5ca4117b">CQCT_meshFitterResultIterationCount</a> (<a class="el" href="group__C-API.html#ga3d8d73b8c1ab47b7271307105eca3f1d">CQCT_MeshFitterResult</a> result)</td></tr>
+<tr class="memdesc:ga75722474c959c6ca819785fe5ca4117b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the iteration count. <br/></td></tr>
+<tr class="separator:ga75722474c959c6ca819785fe5ca4117b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaca5a3e895356dd6e3875452aeea32aea"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gaca5a3e895356dd6e3875452aeea32aea"></a>
+CQCT_EXTERN void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#gaca5a3e895356dd6e3875452aeea32aea">CQCT_meshFitterResultSetIterationCount</a> (<a class="el" href="group__C-API.html#ga3d8d73b8c1ab47b7271307105eca3f1d">CQCT_MeshFitterResult</a> result, size_t count)</td></tr>
+<tr class="memdesc:gaca5a3e895356dd6e3875452aeea32aea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the iteration count. <br/></td></tr>
+<tr class="separator:gaca5a3e895356dd6e3875452aeea32aea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga001833fd8be5a42021ead391c438261e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga001833fd8be5a42021ead391c438261e"></a>
+CQCT_EXTERN int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#ga001833fd8be5a42021ead391c438261e">CQCT_meshFitterResultHasConverged</a> (<a class="el" href="group__C-API.html#ga3d8d73b8c1ab47b7271307105eca3f1d">CQCT_MeshFitterResult</a> result)</td></tr>
+<tr class="memdesc:ga001833fd8be5a42021ead391c438261e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether the optimization has converged. <br/></td></tr>
+<tr class="separator:ga001833fd8be5a42021ead391c438261e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1c05c22403962afda6b98e204fcacc30"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga1c05c22403962afda6b98e204fcacc30"></a>
+CQCT_EXTERN void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#ga1c05c22403962afda6b98e204fcacc30">CQCT_meshFitterResultSetHasConverged</a> (<a class="el" href="group__C-API.html#ga3d8d73b8c1ab47b7271307105eca3f1d">CQCT_MeshFitterResult</a> result, int converged)</td></tr>
+<tr class="memdesc:ga1c05c22403962afda6b98e204fcacc30"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets whether the optimization has converged. <br/></td></tr>
+<tr class="separator:ga1c05c22403962afda6b98e204fcacc30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga88830dc8a9be73b2c70c07726544bfa1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga88830dc8a9be73b2c70c07726544bfa1"></a>
+CQCT_EXTERN int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#ga88830dc8a9be73b2c70c07726544bfa1">CQCT_meshFitterResultSuccess</a> (<a class="el" href="group__C-API.html#ga3d8d73b8c1ab47b7271307105eca3f1d">CQCT_MeshFitterResult</a> result)</td></tr>
+<tr class="memdesc:ga88830dc8a9be73b2c70c07726544bfa1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether the optimization was successfull. <br/></td></tr>
+<tr class="separator:ga88830dc8a9be73b2c70c07726544bfa1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab80821dedffa35b6370f1cc1fe48f538"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gab80821dedffa35b6370f1cc1fe48f538"></a>
+CQCT_EXTERN void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#gab80821dedffa35b6370f1cc1fe48f538">CQCT_meshFitterResultSetSuccess</a> (<a class="el" href="group__C-API.html#ga3d8d73b8c1ab47b7271307105eca3f1d">CQCT_MeshFitterResult</a> result, int success)</td></tr>
+<tr class="memdesc:gab80821dedffa35b6370f1cc1fe48f538"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets whether the optimization was successfull. <br/></td></tr>
+<tr class="separator:gab80821dedffa35b6370f1cc1fe48f538"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga15bca6ae4dd3aa1d19681f7aaaa2bbaf"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga15bca6ae4dd3aa1d19681f7aaaa2bbaf"></a>
+CQCT_EXTERN size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#ga15bca6ae4dd3aa1d19681f7aaaa2bbaf">CQCT_meshFitterResultNonDecreasingCount</a> (<a class="el" href="group__C-API.html#ga3d8d73b8c1ab47b7271307105eca3f1d">CQCT_MeshFitterResult</a> result)</td></tr>
+<tr class="memdesc:ga15bca6ae4dd3aa1d19681f7aaaa2bbaf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the current non decreasing count. <br/></td></tr>
+<tr class="separator:ga15bca6ae4dd3aa1d19681f7aaaa2bbaf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa4a287c1a53b418d5114386db0bb2080"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gaa4a287c1a53b418d5114386db0bb2080"></a>
+CQCT_EXTERN void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#gaa4a287c1a53b418d5114386db0bb2080">CQCT_meshFitterResultSetNonDecreasingCount</a> (<a class="el" href="group__C-API.html#ga3d8d73b8c1ab47b7271307105eca3f1d">CQCT_MeshFitterResult</a> result, size_t count)</td></tr>
+<tr class="memdesc:gaa4a287c1a53b418d5114386db0bb2080"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the current non decreasing count. <br/></td></tr>
+<tr class="separator:gaa4a287c1a53b418d5114386db0bb2080"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="member-group"></a>
+MeshFitter object type</h2></td></tr>
 <tr class="memitem:gadc93d3bbf65d43752337481a502ce4a6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gadc93d3bbf65d43752337481a502ce4a6"></a>
 CQCT_EXTERN <a class="el" href="group__C-API.html#gab05b3b71393719099ff08d8417005cdf">CQCT_MeshFitter</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#gadc93d3bbf65d43752337481a502ce4a6">CQCT_createMeshFitter</a> (const char *filename, <a class="el" href="group__C-API.html#ga18408ad6c19d73790930b59068bc0d72">CQCT_Error</a> *error)</td></tr>
 <tr class="memdesc:gadc93d3bbf65d43752337481a502ce4a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a mesh fitter given the configuration file. <br/></td></tr>
 <tr class="separator:gadc93d3bbf65d43752337481a502ce4a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gad1f6feb7598f0e51cc785bf0a0b3cf85"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gad1f6feb7598f0e51cc785bf0a0b3cf85"></a>
-CQCT_EXTERN <a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#gad1f6feb7598f0e51cc785bf0a0b3cf85">CQCT_meshFitterResultMesh</a> (<a class="el" href="group__C-API.html#ga291818d1b742b936e4bfaa28eed06099">CQCT_MeshFitterResult</a> result)</td></tr>
-<tr class="memdesc:gad1f6feb7598f0e51cc785bf0a0b3cf85"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the result mesh. <br/></td></tr>
-<tr class="separator:gad1f6feb7598f0e51cc785bf0a0b3cf85"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaed43b3031aefb56839eaf0072fcb94bd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gaed43b3031aefb56839eaf0072fcb94bd"></a>
-CQCT_EXTERN <a class="el" href="group__C-API.html#ga291818d1b742b936e4bfaa28eed06099">CQCT_MeshFitterResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#gaed43b3031aefb56839eaf0072fcb94bd">CQCT_meshFitterFit</a> (<a class="el" href="group__C-API.html#gab05b3b71393719099ff08d8417005cdf">CQCT_MeshFitter</a> meshFitter, <a class="el" href="group__C-API.html#gad69cbc780e25804265d6a8574fa84c4c">CQCT_VoxelVolume</a> volume)</td></tr>
+CQCT_EXTERN <a class="el" href="group__C-API.html#ga3d8d73b8c1ab47b7271307105eca3f1d">CQCT_MeshFitterResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#gaed43b3031aefb56839eaf0072fcb94bd">CQCT_meshFitterFit</a> (<a class="el" href="group__C-API.html#gab05b3b71393719099ff08d8417005cdf">CQCT_MeshFitter</a> meshFitter, <a class="el" href="group__C-API.html#gad69cbc780e25804265d6a8574fa84c4c">CQCT_VoxelVolume</a> volume)</td></tr>
 <tr class="memdesc:gaed43b3031aefb56839eaf0072fcb94bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fits the reference mesh to the given voxel volume. <br/></td></tr>
 <tr class="separator:gaed43b3031aefb56839eaf0072fcb94bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga65389fea06ca65ed5a2194f0cf3a5b7d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga65389fea06ca65ed5a2194f0cf3a5b7d"></a>
+CQCT_EXTERN int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#ga65389fea06ca65ed5a2194f0cf3a5b7d">CQCT_meshFitterFitOneIteration</a> (<a class="el" href="group__C-API.html#gab05b3b71393719099ff08d8417005cdf">CQCT_MeshFitter</a> meshFitter, <a class="el" href="group__C-API.html#gac84b6d0c342bb66add36810e422053b6">CQCT_MeshFitterState</a> state, <a class="el" href="group__C-API.html#ga18408ad6c19d73790930b59068bc0d72">CQCT_Error</a> *error)</td></tr>
+<tr class="memdesc:ga65389fea06ca65ed5a2194f0cf3a5b7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs one iteration of the fitting algorithm. <br/></td></tr>
+<tr class="separator:ga65389fea06ca65ed5a2194f0cf3a5b7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8d1f00b2f3c476da1054a47869f2134b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga8d1f00b2f3c476da1054a47869f2134b"></a>
+CQCT_EXTERN int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#ga8d1f00b2f3c476da1054a47869f2134b">CQCT_meshFitterVolumeSamplingStep</a> (<a class="el" href="group__C-API.html#gab05b3b71393719099ff08d8417005cdf">CQCT_MeshFitter</a> meshFitter, <a class="el" href="group__C-API.html#gac84b6d0c342bb66add36810e422053b6">CQCT_MeshFitterState</a> state, <a class="el" href="group__C-API.html#ga18408ad6c19d73790930b59068bc0d72">CQCT_Error</a> *error)</td></tr>
+<tr class="memdesc:ga8d1f00b2f3c476da1054a47869f2134b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs the volume sampling step. <br/></td></tr>
+<tr class="separator:ga8d1f00b2f3c476da1054a47869f2134b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae7e58acd79e0be9413dd8264d7723366"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gae7e58acd79e0be9413dd8264d7723366"></a>
+CQCT_EXTERN int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#gae7e58acd79e0be9413dd8264d7723366">CQCT_meshFitterOptimalDisplacementStep</a> (<a class="el" href="group__C-API.html#gab05b3b71393719099ff08d8417005cdf">CQCT_MeshFitter</a> meshFitter, <a class="el" href="group__C-API.html#gac84b6d0c342bb66add36810e422053b6">CQCT_MeshFitterState</a> state, <a class="el" href="group__C-API.html#ga18408ad6c19d73790930b59068bc0d72">CQCT_Error</a> *error)</td></tr>
+<tr class="memdesc:gae7e58acd79e0be9413dd8264d7723366"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs the displacement optimization step. <br/></td></tr>
+<tr class="separator:gae7e58acd79e0be9413dd8264d7723366"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga23014262255ba3569a079ec4932f869b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga23014262255ba3569a079ec4932f869b"></a>
+CQCT_EXTERN int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#ga23014262255ba3569a079ec4932f869b">CQCT_meshFitterOptimalDeformationStep</a> (<a class="el" href="group__C-API.html#gab05b3b71393719099ff08d8417005cdf">CQCT_MeshFitter</a> meshFitter, <a class="el" href="group__C-API.html#gac84b6d0c342bb66add36810e422053b6">CQCT_MeshFitterState</a> state, <a class="el" href="group__C-API.html#ga18408ad6c19d73790930b59068bc0d72">CQCT_Error</a> *error)</td></tr>
+<tr class="memdesc:ga23014262255ba3569a079ec4932f869b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs the deformation optimization step. <br/></td></tr>
+<tr class="separator:ga23014262255ba3569a079ec4932f869b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2d715afd284a286a97f1be6e7255a063"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga2d715afd284a286a97f1be6e7255a063"></a>
+CQCT_EXTERN int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#ga2d715afd284a286a97f1be6e7255a063">CQCT_meshFitterLogLikelihoodStep</a> (<a class="el" href="group__C-API.html#gab05b3b71393719099ff08d8417005cdf">CQCT_MeshFitter</a> meshFitter, <a class="el" href="group__C-API.html#gac84b6d0c342bb66add36810e422053b6">CQCT_MeshFitterState</a> state, <a class="el" href="group__C-API.html#ga18408ad6c19d73790930b59068bc0d72">CQCT_Error</a> *error)</td></tr>
+<tr class="memdesc:ga2d715afd284a286a97f1be6e7255a063"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs the log likelihood computation step. <br/></td></tr>
+<tr class="separator:ga2d715afd284a286a97f1be6e7255a063"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad6af766e184430e89a6a505b0f57fb74"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gad6af766e184430e89a6a505b0f57fb74"></a>
+CQCT_EXTERN int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#gad6af766e184430e89a6a505b0f57fb74">CQCT_meshFitterConvergenceTestStep</a> (<a class="el" href="group__C-API.html#gab05b3b71393719099ff08d8417005cdf">CQCT_MeshFitter</a> meshFitter, <a class="el" href="group__C-API.html#gac84b6d0c342bb66add36810e422053b6">CQCT_MeshFitterState</a> state, <a class="el" href="group__C-API.html#ga18408ad6c19d73790930b59068bc0d72">CQCT_Error</a> *error)</td></tr>
+<tr class="memdesc:gad6af766e184430e89a6a505b0f57fb74"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs the convergence testing step. <br/></td></tr>
+<tr class="separator:gad6af766e184430e89a6a505b0f57fb74"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>Matlab API for <a class="el" href="namespaceCortidQCT.html" title="Name namespace for CortidQCT library. ">CortidQCT</a>. </p>
@@ -592,7 +711,7 @@ CQCT_EXTERN <a class="el" href="group__C-API.html#ga291818d1b742b936e4bfaa28eed0
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Nov 14 2018 12:18:00 for CortidQCT by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Nov 14 2018 15:32:52 for CortidQCT by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

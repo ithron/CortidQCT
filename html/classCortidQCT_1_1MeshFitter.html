@@ -64,6 +64,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
+      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
@@ -108,6 +109,9 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCortidQCT_1_1MeshFitter_1_1Result.html">Result</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structCortidQCT_1_1MeshFitter_1_1Result.html" title="Result type. ">Result</a> type.  <a href="structCortidQCT_1_1MeshFitter_1_1Result.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCortidQCT_1_1MeshFitter_1_1State.html">State</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal <a class="el" href="structCortidQCT_1_1MeshFitter_1_1State.html" title="Internal State type. ">State</a> type.  <a href="structCortidQCT_1_1MeshFitter_1_1State.html#details">More...</a><br/></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -132,9 +136,30 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>swap</b> (<a class="e
 <tr class="memitem:a15f2a10042b92a68dca2d1c0d3d0a2f1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCortidQCT_1_1MeshFitter.html#a15f2a10042b92a68dca2d1c0d3d0a2f1">MeshFitter</a> (std::string const &amp;configFilename)</td></tr>
 <tr class="memdesc:a15f2a10042b92a68dca2d1c0d3d0a2f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convenience constructor that reads the configuration from the given configuration file.  <a href="#a15f2a10042b92a68dca2d1c0d3d0a2f1">More...</a><br/></td></tr>
 <tr class="separator:a15f2a10042b92a68dca2d1c0d3d0a2f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1baf4e777cae078166fc5e624c081a7e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structCortidQCT_1_1MeshFitter_1_1Result.html">Result</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCortidQCT_1_1MeshFitter.html#a1baf4e777cae078166fc5e624c081a7e">fit</a> (<a class="el" href="classCortidQCT_1_1VoxelVolume.html">VoxelVolume</a> const &amp;volume)</td></tr>
-<tr class="memdesc:a1baf4e777cae078166fc5e624c081a7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fits the reference mesh to the given voxel volume.  <a href="#a1baf4e777cae078166fc5e624c081a7e">More...</a><br/></td></tr>
-<tr class="separator:a1baf4e777cae078166fc5e624c081a7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a734da3d709635cf1222a919584fbd3ae"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structCortidQCT_1_1MeshFitter_1_1Result.html">Result</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCortidQCT_1_1MeshFitter.html#a734da3d709635cf1222a919584fbd3ae">fit</a> (<a class="el" href="classCortidQCT_1_1VoxelVolume.html">VoxelVolume</a> const &amp;volume) const </td></tr>
+<tr class="memdesc:a734da3d709635cf1222a919584fbd3ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fits the reference mesh to the given voxel volume.  <a href="#a734da3d709635cf1222a919584fbd3ae">More...</a><br/></td></tr>
+<tr class="separator:a734da3d709635cf1222a919584fbd3ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9902f70746c77bc9f7529a9e8baa448"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structCortidQCT_1_1MeshFitter_1_1State.html">State</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCortidQCT_1_1MeshFitter.html#af9902f70746c77bc9f7529a9e8baa448">init</a> (<a class="el" href="classCortidQCT_1_1VoxelVolume.html">VoxelVolume</a> const &amp;volume) const </td></tr>
+<tr class="memdesc:af9902f70746c77bc9f7529a9e8baa448"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the fitting algorithm.  <a href="#af9902f70746c77bc9f7529a9e8baa448">More...</a><br/></td></tr>
+<tr class="separator:af9902f70746c77bc9f7529a9e8baa448"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6847614e7a0f53e979e11e3fd826e90"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCortidQCT_1_1MeshFitter.html#ae6847614e7a0f53e979e11e3fd826e90">fitOneIteration</a> (<a class="el" href="structCortidQCT_1_1MeshFitter_1_1State.html">State</a> &amp;state) const </td></tr>
+<tr class="memdesc:ae6847614e7a0f53e979e11e3fd826e90"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs the fitting algorithm for a single iteration.  <a href="#ae6847614e7a0f53e979e11e3fd826e90">More...</a><br/></td></tr>
+<tr class="separator:ae6847614e7a0f53e979e11e3fd826e90"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77aa8f3fe4eedad37946f2ca79d91f22"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCortidQCT_1_1MeshFitter.html#a77aa8f3fe4eedad37946f2ca79d91f22">volumeSamplingStep</a> (<a class="el" href="structCortidQCT_1_1MeshFitter_1_1State.html">State</a> &amp;state) const </td></tr>
+<tr class="memdesc:a77aa8f3fe4eedad37946f2ca79d91f22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Samples the input volume at lines perpendicular to the vertices of the current deformed mesh.  <a href="#a77aa8f3fe4eedad37946f2ca79d91f22">More...</a><br/></td></tr>
+<tr class="separator:a77aa8f3fe4eedad37946f2ca79d91f22"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa77c017d25be0923c4a2d58e0d2711ba"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCortidQCT_1_1MeshFitter.html#aa77c017d25be0923c4a2d58e0d2711ba">optimalDisplacementStep</a> (<a class="el" href="structCortidQCT_1_1MeshFitter_1_1State.html">State</a> &amp;state) const </td></tr>
+<tr class="memdesc:aa77c017d25be0923c4a2d58e0d2711ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds the optimal displacements of the model and computes the per-vertex weights.  <a href="#aa77c017d25be0923c4a2d58e0d2711ba">More...</a><br/></td></tr>
+<tr class="separator:aa77c017d25be0923c4a2d58e0d2711ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a93ff96bfcf88b2ce7c32acfb5c8bf6c6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCortidQCT_1_1MeshFitter.html#a93ff96bfcf88b2ce7c32acfb5c8bf6c6">optimalDeformationStep</a> (<a class="el" href="structCortidQCT_1_1MeshFitter_1_1State.html">State</a> &amp;state) const </td></tr>
+<tr class="memdesc:a93ff96bfcf88b2ce7c32acfb5c8bf6c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find the deformation that minimizes the point-to-plane distance of the current deformed mesh to the displaced vertices with respect to the ARAP energy.  <a href="#a93ff96bfcf88b2ce7c32acfb5c8bf6c6">More...</a><br/></td></tr>
+<tr class="separator:a93ff96bfcf88b2ce7c32acfb5c8bf6c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adaf2ae9328d91b0c829c2f0787998e9d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCortidQCT_1_1MeshFitter.html#adaf2ae9328d91b0c829c2f0787998e9d">logLikelihoodStep</a> (<a class="el" href="structCortidQCT_1_1MeshFitter_1_1State.html">State</a> &amp;state) const </td></tr>
+<tr class="memdesc:adaf2ae9328d91b0c829c2f0787998e9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the log likelihood of the current deformed mesh given the input volume.  <a href="#adaf2ae9328d91b0c829c2f0787998e9d">More...</a><br/></td></tr>
+<tr class="separator:adaf2ae9328d91b0c829c2f0787998e9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f8f7e463bf921c1f8ef18e8573d530d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCortidQCT_1_1MeshFitter.html#a1f8f7e463bf921c1f8ef18e8573d530d">convergenceTestStep</a> (<a class="el" href="structCortidQCT_1_1MeshFitter_1_1State.html">State</a> &amp;state) const </td></tr>
+<tr class="memdesc:a1f8f7e463bf921c1f8ef18e8573d530d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tests if the algorithm has converged.  <a href="#a1f8f7e463bf921c1f8ef18e8573d530d">More...</a><br/></td></tr>
+<tr class="separator:a1f8f7e463bf921c1f8ef18e8573d530d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="member-group"></a>
 Public Properties</h2></td></tr>
@@ -202,7 +227,39 @@ Public Properties</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a1baf4e777cae078166fc5e624c081a7e"></a>
+<a class="anchor" id="a1f8f7e463bf921c1f8ef18e8573d530d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CortidQCT::MeshFitter::convergenceTestStep </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCortidQCT_1_1MeshFitter_1_1State.html">MeshFitter::State</a> &amp;&#160;</td>
+          <td class="paramname"><em>state</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Tests if the algorithm has converged. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">state</td><td>Optimization state </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section pre"><dt>Precondition</dt><dd><code>state</code> has been initialized by calling <code><a class="el" href="classCortidQCT_1_1MeshFitter.html#af9902f70746c77bc9f7529a9e8baa448" title="Initializes the fitting algorithm. ">init()</a></code>. </dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">std::invalid_argument</td><td>iff state was not initialized properly </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classCortidQCT_1_1MeshFitter.html#ae6847614e7a0f53e979e11e3fd826e90" title="Runs the fitting algorithm for a single iteration. ">fitOneIteration</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a734da3d709635cf1222a919584fbd3ae"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -211,7 +268,7 @@ Public Properties</h2></td></tr>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classCortidQCT_1_1VoxelVolume.html">VoxelVolume</a> const &amp;&#160;</td>
           <td class="paramname"><em>volume</em></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -227,6 +284,201 @@ Public Properties</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="ae6847614e7a0f53e979e11e3fd826e90"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CortidQCT::MeshFitter::fitOneIteration </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCortidQCT_1_1MeshFitter_1_1State.html">MeshFitter::State</a> &amp;&#160;</td>
+          <td class="paramname"><em>state</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Runs the fitting algorithm for a single iteration. </p>
+<p>Performed the following steps:</p>
+<ol type="1">
+<li><a class="el" href="classCortidQCT_1_1MeshFitter.html#aa77c017d25be0923c4a2d58e0d2711ba" title="Finds the optimal displacements of the model and computes the per-vertex weights. ...">optimalDisplacementStep()</a></li>
+<li><a class="el" href="classCortidQCT_1_1MeshFitter.html#a93ff96bfcf88b2ce7c32acfb5c8bf6c6" title="Find the deformation that minimizes the point-to-plane distance of the current deformed mesh to the d...">optimalDeformationStep()</a></li>
+<li><a class="el" href="classCortidQCT_1_1MeshFitter.html#adaf2ae9328d91b0c829c2f0787998e9d" title="Computes the log likelihood of the current deformed mesh given the input volume. ">logLikelihoodStep()</a></li>
+<li><a class="el" href="classCortidQCT_1_1MeshFitter.html#a1f8f7e463bf921c1f8ef18e8573d530d" title="Tests if the algorithm has converged. ">convergenceTestStep()</a></li>
+<li>increase interation count</li>
+<li><a class="el" href="classCortidQCT_1_1MeshFitter.html#a77aa8f3fe4eedad37946f2ca79d91f22" title="Samples the input volume at lines perpendicular to the vertices of the current deformed mesh...">volumeSamplingStep()</a></li>
+</ol>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">state</td><td><a class="el" href="structCortidQCT_1_1MeshFitter_1_1State.html" title="Internal State type. ">State</a> object returned by <code>init</code>. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">std::invalid_argument</td><td>iff state was not initialized properly </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classCortidQCT_1_1MeshFitter.html#a734da3d709635cf1222a919584fbd3ae" title="Fits the reference mesh to the given voxel volume. ">fit()</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="af9902f70746c77bc9f7529a9e8baa448"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structCortidQCT_1_1MeshFitter_1_1State.html">MeshFitter::State</a> CortidQCT::MeshFitter::init </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classCortidQCT_1_1VoxelVolume.html">VoxelVolume</a> const &amp;&#160;</td>
+          <td class="paramname"><em>volume</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initializes the fitting algorithm. </p>
+<p>Initializes the state and performed the first volume sampling step by calling <code><a class="el" href="classCortidQCT_1_1MeshFitter.html#a77aa8f3fe4eedad37946f2ca79d91f22" title="Samples the input volume at lines perpendicular to the vertices of the current deformed mesh...">volumeSamplingStep()</a></code>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">volume</td><td><a class="el" href="classCortidQCT_1_1VoxelVolume.html" title="Type representing a voxel volume. ">VoxelVolume</a> object representing the target scan </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="structCortidQCT_1_1MeshFitter_1_1State.html" title="Internal State type. ">State</a> object that must be passed to subsequent calls </dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classCortidQCT_1_1MeshFitter.html#a734da3d709635cf1222a919584fbd3ae" title="Fits the reference mesh to the given voxel volume. ">fit()</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="adaf2ae9328d91b0c829c2f0787998e9d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CortidQCT::MeshFitter::logLikelihoodStep </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCortidQCT_1_1MeshFitter_1_1State.html">MeshFitter::State</a> &amp;&#160;</td>
+          <td class="paramname"><em>state</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Computes the log likelihood of the current deformed mesh given the input volume. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">state</td><td>Optimization state </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section pre"><dt>Precondition</dt><dd><code>state</code> has been initialized by calling <code><a class="el" href="classCortidQCT_1_1MeshFitter.html#af9902f70746c77bc9f7529a9e8baa448" title="Initializes the fitting algorithm. ">init()</a></code>. </dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">std::invalid_argument</td><td>iff state was not initialized properly </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classCortidQCT_1_1MeshFitter.html#ae6847614e7a0f53e979e11e3fd826e90" title="Runs the fitting algorithm for a single iteration. ">fitOneIteration</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a93ff96bfcf88b2ce7c32acfb5c8bf6c6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CortidQCT::MeshFitter::optimalDeformationStep </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCortidQCT_1_1MeshFitter_1_1State.html">MeshFitter::State</a> &amp;&#160;</td>
+          <td class="paramname"><em>state</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Find the deformation that minimizes the point-to-plane distance of the current deformed mesh to the displaced vertices with respect to the ARAP energy. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">state</td><td>Optimization state </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section pre"><dt>Precondition</dt><dd><code>state</code> has been initialized by calling <code><a class="el" href="classCortidQCT_1_1MeshFitter.html#af9902f70746c77bc9f7529a9e8baa448" title="Initializes the fitting algorithm. ">init()</a></code>. </dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">std::invalid_argument</td><td>iff state was not initialized properly </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classCortidQCT_1_1MeshFitter.html#ae6847614e7a0f53e979e11e3fd826e90" title="Runs the fitting algorithm for a single iteration. ">fitOneIteration</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="aa77c017d25be0923c4a2d58e0d2711ba"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CortidQCT::MeshFitter::optimalDisplacementStep </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCortidQCT_1_1MeshFitter_1_1State.html">MeshFitter::State</a> &amp;&#160;</td>
+          <td class="paramname"><em>state</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Finds the optimal displacements of the model and computes the per-vertex weights. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">state</td><td>Optimization state </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section pre"><dt>Precondition</dt><dd><code>state</code> has been initialized by calling <code><a class="el" href="classCortidQCT_1_1MeshFitter.html#af9902f70746c77bc9f7529a9e8baa448" title="Initializes the fitting algorithm. ">init()</a></code>. </dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">std::invalid_argument</td><td>iff state was not initialized properly </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classCortidQCT_1_1MeshFitter.html#ae6847614e7a0f53e979e11e3fd826e90" title="Runs the fitting algorithm for a single iteration. ">fitOneIteration</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a77aa8f3fe4eedad37946f2ca79d91f22"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CortidQCT::MeshFitter::volumeSamplingStep </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCortidQCT_1_1MeshFitter_1_1State.html">MeshFitter::State</a> &amp;&#160;</td>
+          <td class="paramname"><em>state</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Samples the input volume at lines perpendicular to the vertices of the current deformed mesh. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">state</td><td>Optimization state </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section pre"><dt>Precondition</dt><dd><code>state</code> has been initialized by calling <code><a class="el" href="classCortidQCT_1_1MeshFitter.html#af9902f70746c77bc9f7529a9e8baa448" title="Initializes the fitting algorithm. ">init()</a></code>. </dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">std::invalid_argument</td><td>iff state was not initialized properly </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classCortidQCT_1_1MeshFitter.html#ae6847614e7a0f53e979e11e3fd826e90" title="Runs the fitting algorithm for a single iteration. ">fitOneIteration</a> </dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>include/CortidQCT/src/<a class="el" href="MeshFitter_8h_source.html">MeshFitter.h</a></li>
 <li>lib/MeshFitter.cpp</li>
@@ -234,7 +486,7 @@ Public Properties</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Nov 14 2018 12:18:00 for CortidQCT by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Nov 14 2018 15:32:52 for CortidQCT by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
