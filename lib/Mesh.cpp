@@ -37,7 +37,7 @@ namespace {
 template <class DerivedV, class DerivedF>
 void orientOutwards(Eigen::MatrixBase<DerivedV> const &V,
                     Eigen::MatrixBase<DerivedF> &F) {
-  DerivedF C;
+  Eigen::Matrix<typename DerivedF::Scalar, Eigen::Dynamic, Eigen::Dynamic> C;
   Eigen::Matrix<bool, Eigen::Dynamic, 1> I;
 
   Expects(V.rows() > 0 && V.cols() == 3);
@@ -96,12 +96,34 @@ Mesh<T> &Mesh<T>::loadFromFile(std::string const &meshFilename,
   using gsl::narrow;
 
   // Check file format since igl does only print an error
-  std::string const supportedFormats[] = {"obj", "off", "stl",
-                                          "wrl", "ply", "mesh"};
+  std::string const supportedFormats[] = {"obj", "off",  "stl",   "wrl",
+                                          "ply", "mesh", "simesh"};
 
   if (!IO::checkExtensions(meshFilename, supportedFormats)) {
     throw std::invalid_argument("Unsupported file format '" +
                                 IO::extension(meshFilename) + "'");
+  }
+
+  Size lVertexCount{0};
+
+  bool meshLoaded = false;
+  if (IO::extension(meshFilename, true) == "simesh") {
+    *this = readFromSIMesh<T>(meshFilename, false);
+    meshLoaded = true;
+
+    Map<Matrix<T, 3, Dynamic>> vertices{vertexData_.data(), 3,
+                                        narrow<Eigen::Index>(vertexCount())};
+    Map<Matrix<Index, 3, Dynamic>> indices{
+        indexData_.data(), 3, narrow<Eigen::Index>(triangleCount())};
+
+    VertexMatrix<T> V = vertices.transpose();
+    FacetMatrix F = indices.transpose();
+    orientOutwards(V, F);
+
+    vertices = V.transpose();
+    indices = F.transpose();
+
+    lVertexCount = vertexCount();
   }
 
   MatrixXd vertices;
@@ -109,12 +131,14 @@ Mesh<T> &Mesh<T>::loadFromFile(std::string const &meshFilename,
 
   constexpr auto magicLabel = std::numeric_limits<Label>::max();
 
-  // Ensure the file exists and is readable, otherwise
-  // igl::read_triangle_mesh() might SEGFAULT.
-  if (!std::ifstream{meshFilename} ||
-      !igl::read_triangle_mesh(meshFilename, vertices, indices)) {
-    throw std::invalid_argument("Failed to read mesh from file '" +
-                                meshFilename + "'");
+  if (!meshLoaded) {
+    // Ensure the file exists and is readable, otherwise
+    // igl::read_triangle_mesh() might SEGFAULT.
+    if (!std::ifstream{meshFilename} ||
+        !igl::read_triangle_mesh(meshFilename, vertices, indices)) {
+      throw std::invalid_argument("Failed to read mesh from file '" +
+                                  meshFilename + "'");
+    }
   }
 
   // load labels. Fill labels vector with prefined value to be able to check if
@@ -137,30 +161,37 @@ Mesh<T> &Mesh<T>::loadFromFile(std::string const &meshFilename,
         std::to_string(vertices.rows()) + ")");
   }
 
-  auto const lVertexCount = narrow<Size>(vertices.rows());
-  auto const lTriangleCount = narrow<Size>(indices.rows());
+  VertexData vertexData;
+  IndexData indexData;
+  if (!meshLoaded) {
+    lVertexCount = narrow<Size>(vertices.rows());
+    auto const lTriangleCount = narrow<Size>(indices.rows());
 
-  orientOutwards(vertices, indices);
+    orientOutwards(vertices, indices);
 
-  // Reserve storage for vertex and index data
-  auto vertexData = VertexData(3 * lVertexCount);
-  auto indexData = IndexData(3 * lTriangleCount);
+    // Reserve storage for vertex and index data
+    vertexData = VertexData(3 * lVertexCount);
+    indexData = IndexData(3 * lTriangleCount);
+
+    // Copy data from eigen matrix into vectors
+    Map<Matrix<Scalar, 3, Dynamic>>{vertexData.data(), 3, vertices.rows()} =
+        vertices.cast<Scalar>().transpose();
+    Map<Matrix<Index, 3, Dynamic>>{indexData.data(), 3, indices.rows()} =
+        indices.cast<Index>().transpose();
+
+    Ensures(vertexData.size() == 3 * lVertexCount);
+    Ensures(indexData.size() == 3 * lTriangleCount);
+  }
+
   auto labelData = LabelData(lVertexCount);
-
-  // Copy data from eigen matrix into vectors
-  Map<Matrix<Scalar, 3, Dynamic>>{vertexData.data(), 3, vertices.rows()} =
-      vertices.cast<Scalar>().transpose();
-  Map<Matrix<Index, 3, Dynamic>>{indexData.data(), 3, indices.rows()} =
-      indices.cast<Index>().transpose();
   Map<Matrix<Label, Dynamic, 1>>{labelData.data(), vertices.rows(), 1} = labels;
-
-  Ensures(vertexData.size() == 3 * lVertexCount);
-  Ensures(indexData.size() == 3 * lTriangleCount);
   Ensures(labelData.size() == lVertexCount);
-
-  vertexData_ = std::move(vertexData);
-  indexData_ = std::move(indexData);
   labelData_ = std::move(labelData);
+
+  if (!meshLoaded) {
+    vertexData_ = std::move(vertexData);
+    indexData_ = std::move(indexData);
+  }
 
   ensurePostconditions();
 
@@ -178,11 +209,29 @@ Mesh<T> &Mesh<T>::loadFromFile(std::string const &meshFilename,
   using gsl::narrow;
 
   // Check file format since igl does only print an error
-  std::string const supportedFormats[] = {"off", "coff"};
+  std::string const supportedFormats[] = {"off", "coff", "simesh"};
 
   if (!IO::checkExtensions(meshFilename, supportedFormats)) {
     throw std::invalid_argument("Unsupported file format '" +
                                 IO::extension(meshFilename) + "'");
+  }
+
+  if (IO::extension(meshFilename, true) == "simesh") {
+    *this = readFromSIMesh<T>(meshFilename, true);
+    Map<Matrix<T, 3, Dynamic>> vertices{vertexData_.data(), 3,
+                                        narrow<Eigen::Index>(vertexCount())};
+    Map<Matrix<Index, 3, Dynamic>> indices{
+        indexData_.data(), 3, narrow<Eigen::Index>(triangleCount())};
+
+    VertexMatrix<T> V = vertices.transpose();
+    FacetMatrix F = indices.transpose();
+    orientOutwards(V, F);
+
+    vertices = V.transpose();
+    indices = F.transpose();
+
+    ensurePostconditions();
+    return *this;
   }
 
   MatrixXd vertices, colors;

@@ -19,6 +19,7 @@
 #include <igl/edges.h>
 
 #include <fstream>
+#include <sstream>
 
 namespace CortidQCT {
 namespace Internal {
@@ -164,10 +165,88 @@ void writeToSIMesh(Mesh<T> const &mesh, std::string const &filename,
   for (auto const &f : facets) out << f << std::endl;
 }
 
+template <class T>
+Mesh<T> readFromSIMesh(std::string const &filename, bool withLabels) {
+  using namespace Eigen;
+  using namespace gsl;
+
+  std::ifstream input{filename};
+  std::string line;
+
+  // Skip to first line
+  while (std::getline(input, line)) {
+    if (line != "") break;
+  }
+
+  std::size_t nVertices, nTriangles, nEdges;
+  std::istringstream{line} >> nVertices >> nTriangles >> nEdges;
+
+  // Skip to "Vertices block
+  while (std::getline(input, line)) {
+    if (line == "Vertices") break;
+  }
+
+  VertexMatrix<T> vertices(narrow_cast<Index>(nVertices), 3);
+  FacetMatrix facets(narrow_cast<Index>(nTriangles), 3);
+  LabelVector labels(narrow_cast<Index>(nVertices));
+  // Read vertices
+  for (auto i = 0; i < vertices.rows(); ++i) {
+    // skip empty lines
+    while (std::getline(input, line)) {
+      if (line != "") break;
+    }
+    std::istringstream is{line};
+    is >> vertices(i, 0) >> vertices(i, 1) >> vertices(i, 2);
+    int degree;
+    is >> degree;
+    int dummy;
+    // skip 2 * degree entries
+    for (auto j = 0; j < 2 * degree; ++j) is >> dummy;
+    if (!is.eof()) { is >> labels(i); }
+  }
+
+  // Skip to "Facets block
+  while (std::getline(input, line)) {
+    if (line == "Facets") break;
+  }
+
+  for (auto i = 0; i < facets.rows(); ++i) {
+    // skip empty lines
+    while (std::getline(input, line)) {
+      if (line != "") break;
+    }
+    std::istringstream is{line};
+    is >> facets(i, 0) >> facets(i, 1) >> facets(i, 2);
+  }
+
+  auto mesh = Mesh<T>(nVertices, nTriangles);
+
+  mesh.withUnsafeVertexPointer([&vertices](auto *ptr) {
+    Map<Matrix<T, 3, Dynamic>>{ptr, 3, vertices.rows()} = vertices.transpose();
+  });
+
+  mesh.withUnsafeIndexPointer([&facets](auto *ptr) {
+    Map<Matrix<typename Mesh<T>::Index, 3, Dynamic>>{ptr, 3, facets.rows()} =
+        facets.transpose();
+  });
+
+  if (withLabels) {
+    mesh.withUnsafeLabelPointer([&labels](auto *ptr) {
+      Map<Matrix<typename Mesh<T>::Label, Dynamic, 1>>{ptr, labels.rows()} =
+          labels;
+    });
+  }
+
+  return mesh;
+}
+
 template void writeToSIMesh<float>(Mesh<float> const &, std::string const &,
                                    bool);
 template void writeToSIMesh<double>(Mesh<double> const &, std::string const &,
                                     bool);
+
+template Mesh<float> readFromSIMesh<float>(std::string const &, bool);
+template Mesh<double> readFromSIMesh<double>(std::string const &, bool);
 
 } // namespace Internal
 } // namespace CortidQCT

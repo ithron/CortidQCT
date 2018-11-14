@@ -20,9 +20,15 @@ template <class T>
 void writeToSIMesh(Mesh<T> const &mesh, std::string const &filename,
                    bool includeLabels = false);
 
+template <class T>
+Mesh<T> readFromSIMesh(std::string const &filename, bool withLabels = true);
+
 extern template void writeToSIMesh<float>(Mesh<float> const &,
                                           std::string const &, bool);
 extern template void writeToSIMesh<double>(Mesh<double> const &,
                                            std::string const &, bool);
+
+extern template Mesh<float> readFromSIMesh<float>(std::string const &, bool);
+extern template Mesh<double> readFromSIMesh<double>(std::string const &, bool);
 } // namespace Internal
 } // namespace CortidQCT
