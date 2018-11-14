@@ -15,6 +15,7 @@
 #include "DiscreteRangeDecorators.h"
 #include "DisplacementOptimizer.h"
 #include "EigenAdaptors.h"
+#include "MeshAdaptors.h"
 #include "MeshHelpers.h"
 #include "Sampler.h"
 #include "WeightedARAPFitter.h"
@@ -26,6 +27,50 @@
 namespace CortidQCT {
 
 using namespace Internal;
+
+struct MeshFitter::State::HiddenState {
+  VoxelVolume volume;
+  DisplacementOptimizer displacementOptimizer;
+  WeightedARAPFitter<float> meshFitter;
+  FacetMatrix F;
+  Eigen::MatrixXf volumeSamplesMatrix;
+
+  HiddenState(VoxelVolume const &v, DisplacementOptimizer const &opt,
+              WeightedARAPFitter<float> const &fitter, FacetMatrix const &f)
+      : volume{v}, displacementOptimizer{opt}, meshFitter{fitter}, F{f} {}
+};
+
+/**************
+ * MeshFitter::State implementations
+ */
+// MARK: -
+// MARK: MeshFitter::State
+
+MeshFitter::State::State(State const &rhs)
+    : Result(rhs), hiddenState_{
+                       std::make_unique<HiddenState>(*rhs.hiddenState_)} {}
+
+MeshFitter::State::State(Result const &rhs)
+    : Result(rhs), hiddenState_{nullptr} {}
+
+MeshFitter::State::State(Result &&rhs)
+    : Result(std::move(rhs)), hiddenState_{nullptr} {}
+
+MeshFitter::State::~State() = default;
+
+MeshFitter::State &MeshFitter::State::operator=(State const &rhs) {
+  static_cast<Result &>(*this) = rhs;
+  hiddenState_ = std::make_unique<HiddenState>(*rhs.hiddenState_);
+
+  return *this;
+}
+
+/**********************
+ * Helper Functions
+ */
+
+// MARK: -
+// MARK: Helper Function
 
 /**
  * @brief Returns a matrix containing positions to sample a voxel volume at
@@ -64,130 +109,234 @@ samplingPoints(Eigen::MatrixBase<DerivedV> const &V,
   return samples;
 }
 
-MeshFitter::Result MeshFitter::Impl::fit(VoxelVolume const &volume) {
+/***********************************
+ * MeshFitter::Impl Implementation
+ */
+
+// MARK: -
+// MARK: MeshFitter::Impl Implementation
+
+MeshFitter::Result MeshFitter::Impl::fit(VoxelVolume const &volume) const {
+
+  auto state = init(volume);
+
+  VertexMatrix<float> Vlast =
+      Adaptor::vertexMap(state.deformedMesh).transpose();
+
+  while (!state.converged) {
+
+    fitOneIteration(state);
+
+    auto V = Adaptor::vertexMap(state.deformedMesh);
+
+    auto const diff = (V.transpose() - Vlast).norm() / V.norm();
+    Vlast = V.transpose();
+
+    auto disNorm = Adaptor::map(state.displacementVector).norm() /
+                   static_cast<float>(state.displacementVector.size());
+
+    std::cout << "Converged after iteration " << state.iteration << ": "
+              << std::boolalpha << state.converged << " (" << diff << " | "
+              << disNorm << " | " << state.nonDecreasing << ")" << std::endl;
+  }
+
+  state.success = true;
+
+  return state;
+}
+
+MeshFitter::State MeshFitter::Impl::init(VoxelVolume const &volume) const {
   using Eigen::Dynamic;
   using Eigen::Index;
   using Eigen::Map;
   using Eigen::Matrix;
-  using Eigen::MatrixXd;
   using Eigen::MatrixXf;
   using Eigen::Vector3f;
-  using Eigen::VectorXd;
   using Eigen::VectorXf;
-  // Step:
-  // 1. Move reference mesh to center
-  // 2. Set deformedMesh = refMesh
-  // 3. Compute normals of deformedMesh
-  // 4. Sample volume along lines through the vertices of refMesh along
-  // surface
-  //    normals
-  // 5. For every displacement s in [-s0, +s0] compute the log likelihood
-  // using
-  //    trilinear sampling of the measurement PDF
-  // 6. Find optimal displacements
-  // 7. Copmute target vertex positions using optimal displacements
-  // 8. Fit mesh to target vertices
-  // 9. Check for convergence, if not converged go to 3.
+  using gsl::narrow_cast;
+
+  MeshFitter::State state;
 
   auto const &conf = fitter_.configuration;
-  auto const &model = fitter_.configuration.model;
-  auto const volumeSampler = VolumeSampler{volume};
+  // auto const &model = fitter_.configuration.model;
 
-  auto displacementOptimizer = Internal::DisplacementOptimizer{conf};
+  // Init result state
+  state.referenceMesh = conf.referenceMesh;
 
-  // Preparation step: Convert meshes into IGL compatible formats
-  // Also tranlate the reference mesh according to the configured origin
+  auto const nVertices = narrow_cast<Index>(conf.referenceMesh.vertexCount());
+
+  // Apply initial transofrmation on the vertices of the reference mesh
   auto const translation = Adaptor::vec(conf.meshTranslation(volume));
   Vector3f const rotInRad = Adaptor::vec(conf.referenceMeshRotation) *
                             static_cast<float>(M_PI) / 180.f;
-  VertexMatrix<> const V0 =
-      ((Eigen::Translation<float, 3>{translation} *
-        Eigen::AngleAxisf(rotInRad[0], Vector3f::UnitX()) *
-        Eigen::AngleAxisf(rotInRad[1], Vector3f::UnitY()) *
-        Eigen::AngleAxisf(rotInRad[2], Vector3f::UnitZ())) *
-       Adaptor::vec(conf.referenceMeshScale).asDiagonal() *
-       vertexMatrix(conf.referenceMesh).transpose())
-          .transpose();
-  FacetMatrix const F = facetMatrix(conf.referenceMesh);
-  LabelVector const labels = labelVector(conf.referenceMesh);
-  LaplacianMatrix<double> const L =
-      laplacianMatrix(V0.template cast<double>(), F);
+  auto V0 = Adaptor::vertexMap(state.referenceMesh);
 
-  // 2. set deformed mesh = reference mesh
-  VertexMatrix<> V = V0;
+  // Apply transformation to vertices of reference mesh
+  V0 = ((Eigen::Translation<float, 3>{translation} *
+         Eigen::AngleAxisf(rotInRad[0], Vector3f::UnitX()) *
+         Eigen::AngleAxisf(rotInRad[1], Vector3f::UnitY()) *
+         Eigen::AngleAxisf(rotInRad[2], Vector3f::UnitZ())) *
+        Adaptor::vec(conf.referenceMeshScale).asDiagonal() * V0);
 
-  // Pre-allocate vector for volume samples
-  VectorXf volumeSamples(V.rows() *
-                         gsl::narrow<Index>(model.samplingRange.numElements()));
-  MatrixXf volumeSamplesMatrix(
-      gsl::narrow<Index>(model.samplingRange.numElements()), V.rows());
+  // Init deformed mesh with reference mesh
+  state.deformedMesh = state.referenceMesh;
 
-  VectorXf gamma;
-  VectorXf optimalDisplacements;
+  // Init displacement vector
+  state.displacementVector =
+      std::vector<float>(narrow_cast<std::size_t>(nVertices), .0f);
 
-  auto meshFitter =
-      WeightedARAPFitter<float>(V, F, static_cast<float>(conf.sigmaE));
+  // Init weight vector
+  state.weights = std::vector<float>(narrow_cast<std::size_t>(nVertices),
+                                     1 / static_cast<float>(nVertices));
 
-  auto converged = false;
-  auto iterations = std::size_t{0};
-  auto nonDecreasing = std::size_t{0};
-  auto minDisNorm = std::numeric_limits<float>::max();
+  // Init vertex normals
+  state.vertexNormals.resize(narrow_cast<std::size_t>(nVertices));
 
-  auto Vlast = V;
+  // Init hidden state
+  state.hiddenState_ = std::make_unique<State::HiddenState>(
+      volume, DisplacementOptimizer{conf},
+      WeightedARAPFitter<float>{V0.transpose(), facetMatrix(conf.referenceMesh),
+                                narrow_cast<float>(conf.sigmaE)},
+      facetMatrix(conf.referenceMesh));
 
-  while (!converged) {
-    ++iterations;
-    NormalMatrix<> const N = perVertexNormalMatrix(V, F);
+  // Init volume sampling positions
+  auto const nSamples = conf.model.samplingRange.numElements() *
+                        narrow_cast<std::size_t>(nVertices);
+  state.volumeSamplingPositions.resize(nSamples);
 
-    // sample volume
-    auto const samplingPositions = samplingPoints(V, N, model);
-    volumeSampler(samplingPositions, volumeSamples);
+  // Init volume samples
+  state.volumeSamples.resize(nSamples);
 
-    // Reoder volume samples
-    volumeSamplesMatrix =
-        Map<MatrixXf const>{volumeSamples.data(),
-                            volumeSamples.rows() / V.rows(), V.rows()}
-            .transpose();
-    volumeSamples = Map<VectorXf const>{volumeSamplesMatrix.data(),
-                                        volumeSamples.rows(), 1};
+  sampleVolume(state);
 
-    // find optimal displacements
-    std::tie(optimalDisplacements, gamma) =
-        displacementOptimizer(N, labels, volumeSamples, nonDecreasing);
+  return state;
+} // namespace CortidQCT
 
-    auto disNorm = optimalDisplacements.norm() / V.rows();
-    if (disNorm < minDisNorm) {
-      minDisNorm = disNorm;
-      nonDecreasing = 0;
-    } else {
-      ++nonDecreasing;
-    }
+void MeshFitter::Impl::fitOneIteration(MeshFitter::State &state) const {
 
-    // Copmute dispaced vertices
-    VertexMatrix<> const Y =
-        V - (N.array().colwise() * optimalDisplacements.array()).matrix();
-
-    V = meshFitter.fit(Y, N, gamma);
-
-    // std::ofstream{"V" + std::to_string(iterations) + ".mat"} << V;
-
-    auto const diff = (V - Vlast).norm() / V.norm();
-    Vlast = V;
-
-    converged = iterations >= conf.maxIterations ||
-                (optimalDisplacements.norm() < 1e-3f);
-    std::cout << "Converged after iteration " << iterations << ": "
-              << std::boolalpha << converged << " (" << diff << " | " << disNorm
-              << " | " << nonDecreasing << ")" << std::endl;
+  if (state.hiddenState_ == nullptr) {
+    throw std::invalid_argument("Invalid state argument, call init() first!");
   }
 
-  auto resultMesh = conf.referenceMesh;
+  findOptimalDisplacements(state);
+  findOptimalDeformation(state);
+  sampleVolume(state);
+  computeLogLikelihood(state);
+  checkConvergence(state);
 
-  resultMesh.withUnsafeVertexPointer([&V](auto *vPtr) {
-    Map<Matrix<float, 3, Dynamic>>{vPtr, 3, V.rows()} = V.transpose();
-  });
+  ++state.iteration;
+}
 
-  return MeshFitter::Result{resultMesh};
+void MeshFitter::Impl::findOptimalDisplacements(
+    MeshFitter::State &state) const {
+  if (state.hiddenState_ == nullptr) {
+    throw std::invalid_argument("Invalid state argument, call init() first!");
+  }
+
+  // Get maps to state variables
+  auto const labels = Adaptor::labelMap(state.referenceMesh);
+  auto const N = Adaptor::map(state.vertexNormals);
+  auto const volumeSamples = Adaptor::map(state.volumeSamples);
+  auto optimalDisplacements = Adaptor::map(state.displacementVector);
+  auto gamma = Adaptor::map(state.weights);
+
+  // Find optimal displacements
+  std::tie(optimalDisplacements, gamma) =
+      state.hiddenState_->displacementOptimizer(
+          N.transpose(), labels, volumeSamples, state.nonDecreasing,
+          state.effectiveSigmaS);
+}
+
+void MeshFitter::Impl::findOptimalDeformation(MeshFitter::State &state) const {
+  if (state.hiddenState_ == nullptr) {
+    throw std::invalid_argument("Invalid state argument, call init() first!");
+  }
+
+  auto const N = Adaptor::map(state.vertexNormals);
+  auto const optimalDisplacements = Adaptor::map(state.displacementVector);
+  auto const gamma = Adaptor::map(state.weights);
+  auto V = Adaptor::vertexMap(state.deformedMesh);
+
+  VertexMatrix<> const Y =
+      (V - (N.array().rowwise() * optimalDisplacements.array().transpose())
+               .matrix())
+          .transpose();
+
+  // Fit mesh
+  V = state.hiddenState_->meshFitter.fit(Y, N.transpose(), gamma).transpose();
+}
+
+void MeshFitter::Impl::sampleVolume(MeshFitter::State &state) const {
+
+  using Eigen::Map;
+  using Eigen::MatrixXf;
+  using Eigen::VectorXf;
+
+  if (state.hiddenState_ == nullptr) {
+    throw std::invalid_argument("Invalid state argument, call init() first!");
+  }
+
+  auto const &conf = fitter_.configuration;
+  auto const V = Adaptor::vertexMap(state.deformedMesh);
+  auto const nVertices = V.cols();
+  auto N = Adaptor::map(state.vertexNormals);
+  auto volumeSamplingPositions = Adaptor::map(state.volumeSamplingPositions);
+  auto volumeSamples = Adaptor::map(state.volumeSamples);
+
+  // Compute normals
+  N = perVertexNormalMatrix(V.transpose(), state.hiddenState_->F).transpose();
+
+  // Copmute new sampling positions
+  volumeSamplingPositions =
+      samplingPoints(V.transpose(), N.transpose(), conf.model).transpose();
+
+  // Sample the volume
+  auto const volumeSampler = VolumeSampler{state.hiddenState_->volume};
+  volumeSampler(volumeSamplingPositions.transpose(), volumeSamples);
+
+  // Reorder samples
+  state.hiddenState_->volumeSamplesMatrix =
+      Map<MatrixXf const>{volumeSamples.data(),
+                          volumeSamples.rows() / nVertices, nVertices}
+          .transpose();
+
+  volumeSamples = Map<VectorXf const>{
+      state.hiddenState_->volumeSamplesMatrix.data(), volumeSamples.rows()};
+}
+
+void MeshFitter::Impl::computeLogLikelihood(MeshFitter::State &state) const {
+  if (state.hiddenState_ == nullptr) {
+    throw std::invalid_argument("Invalid state argument, call init() first!");
+  }
+
+  auto const labels = Adaptor::labelMap(state.referenceMesh);
+  auto const N = Adaptor::map(state.vertexNormals);
+  auto const volumeSamples = Adaptor::map(state.volumeSamples);
+
+  auto const LL = state.hiddenState_->displacementOptimizer.logLikelihood(
+      N.transpose(), labels, volumeSamples);
+
+  state.logLikelihood = LL;
+}
+
+void MeshFitter::Impl::checkConvergence(MeshFitter::State &state) const {
+  if (state.hiddenState_ == nullptr) {
+    throw std::invalid_argument("Invalid state argument, call init() first!");
+  }
+
+  auto const optimalDisplacements = Adaptor::map(state.displacementVector);
+  auto const &conf = fitter_.configuration;
+
+  state.converged = state.iteration >= conf.maxIterations ||
+                    (optimalDisplacements.norm() < 1e-3f);
+
+  auto disNorm = optimalDisplacements.norm() / optimalDisplacements.rows();
+  if (disNorm < state.minDisNorm) {
+    state.minDisNorm = disNorm;
+    state.nonDecreasing = 0;
+  } else {
+    ++state.nonDecreasing;
+  }
 }
 
 } // namespace CortidQCT

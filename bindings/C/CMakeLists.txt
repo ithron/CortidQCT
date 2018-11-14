@@ -21,6 +21,7 @@ add_library(C-Bindings-Objects OBJECT
   src/Error.cpp
   src/Mesh.cpp
   src/MeshFitter.cpp
+  src/MeshFitterState.cpp
   src/ObjectBase.cpp
   src/VoxelVolume.cpp
 )

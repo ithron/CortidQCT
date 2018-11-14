@@ -5,6 +5,7 @@ classdef VoxelVolume < CortidQCT.lib.ObjectBase
     size
     voxelSize
     Voxels
+    pointer
   end
   
   methods
@@ -89,6 +90,10 @@ classdef VoxelVolume < CortidQCT.lib.ObjectBase
       s = slice(ax, X, Y, Z, obj.Voxels, xslice, yslice, zslice);
       set(s, 'edgecolor', 'interp');
       
+    end
+    
+    function pointer = get.pointer(obj)
+      pointer = obj.handle;
     end
     
   end

@@ -291,9 +291,9 @@ CQCT_EXTERN void CQCT_colorToLabelMapSetEntries(CQCT_ColorToLabelMap map,
 /// @}
 
 // MARK: -
-// MARK: MeshFitter Type
+// MARK: MeshFitterState Type
 /**
- * @name MeshFitter object type
+ * @name MeshFitterState object type
  * @{
  */
 
@@ -301,20 +301,148 @@ struct CQCT_MeshFitter_t;
 /// Mesh fitter handle type
 typedef struct CQCT_MeshFitter_t *CQCT_MeshFitter;
 
-struct CQCT_MeshFitterResult_t;
+struct CQCT_MeshFitterState_t;
+/// Mesh fitter state handle type
+typedef struct CQCT_MeshFitterState_t *CQCT_MeshFitterState;
+
 /// Mesh fitter result object
-typedef struct CQCT_MeshFitterResult_t *CQCT_MeshFitterResult;
+typedef CQCT_MeshFitterState CQCT_MeshFitterResult;
+
+/// Creates an MeshFitter optimization state object
+CQCT_EXTERN CQCT_MeshFitterState
+CQCT_createMeshFitterState(CQCT_MeshFitter fitter, CQCT_VoxelVolume volume);
+
+/// Returns the result reference mesh
+CQCT_EXTERN CQCT_Mesh
+CQCT_meshFitterResultReferenceMesh(CQCT_MeshFitterResult result);
+
+/// Returns the result mesh
+CQCT_EXTERN CQCT_Mesh CQCT_meshFitterResultMesh(CQCT_MeshFitterResult result);
+
+/// Copies the displacement vector
+CQCT_EXTERN size_t CQCT_meshFitterResultCopyDisplacementVector(
+    CQCT_MeshFitterResult result, float **buffer);
+
+/// Sets the displacement vector
+CQCT_EXTERN void
+CQCT_meshFitterResultSetDisplacementVector(CQCT_MeshFitterResult result,
+                                           float const *buffer);
+
+/// Copies the weight vector
+CQCT_EXTERN size_t
+CQCT_meshFitterResultCopyWeights(CQCT_MeshFitterResult result, float **buffer);
+
+/// Sets the weight vector
+CQCT_EXTERN void CQCT_meshFitterResultSetWeights(CQCT_MeshFitterResult result,
+                                                 float const *buffer);
+/// Copies the vertex normals
+CQCT_EXTERN size_t CQCT_meshFitterResultCopyVertexNormals(
+    CQCT_MeshFitterResult result, float **buffer);
+
+/// Returns the number of volume sampling positions
+CQCT_EXTERN size_t
+CQCT_meshFitterResultVolumeSamplingPositionsCount(CQCT_MeshFitterResult result);
+
+/// Copies the volume sampling positions
+CQCT_EXTERN size_t CQCT_meshFitterResultCopyVolumeSamplingPositions(
+    CQCT_MeshFitterResult result, float **buffer);
+
+/// Copies the volume samples
+CQCT_EXTERN size_t CQCT_meshFitterResultCopyVolumeSamples(
+    CQCT_MeshFitterResult result, float **buffer);
+
+/// Returns the minimum norm of the displacement vector
+CQCT_EXTERN float
+CQCT_meshFitterResultMinimumDisplacementNorm(CQCT_MeshFitterResult result);
+
+/// Returns the current log likelihood of the model given the input volume
+CQCT_EXTERN float
+CQCT_meshFitterResultLogLikelihood(CQCT_MeshFitterResult result);
+
+/// Sets the current log likelihood of the model given the input volume
+CQCT_EXTERN void
+CQCT_meshFitterResultSetLogLikelihood(CQCT_MeshFitterResult result, float ll);
+
+/// Returns the current effective sigmaS (after applying decay)
+CQCT_EXTERN float
+CQCT_meshFitterResultEffectiveSigmaS(CQCT_MeshFitterResult result);
+
+/// Returns the iteration count
+CQCT_EXTERN size_t
+CQCT_meshFitterResultIterationCount(CQCT_MeshFitterResult result);
+
+/// Sets the iteration count
+CQCT_EXTERN void
+CQCT_meshFitterResultSetIterationCount(CQCT_MeshFitterResult result,
+                                       size_t count);
+
+/// Returns whether the optimization has converged
+CQCT_EXTERN int CQCT_meshFitterResultHasConverged(CQCT_MeshFitterResult result);
+
+/// Sets whether the optimization has converged
+CQCT_EXTERN void
+CQCT_meshFitterResultSetHasConverged(CQCT_MeshFitterResult result,
+                                     int converged);
+
+/// Returns whether the optimization was successfull
+CQCT_EXTERN int CQCT_meshFitterResultSuccess(CQCT_MeshFitterResult result);
+
+/// Sets whether the optimization was successfull
+CQCT_EXTERN void CQCT_meshFitterResultSetSuccess(CQCT_MeshFitterResult result,
+                                                 int success);
+
+/// Returns the current non decreasing count
+CQCT_EXTERN size_t
+CQCT_meshFitterResultNonDecreasingCount(CQCT_MeshFitterResult result);
+
+/// Sets the current non decreasing count
+CQCT_EXTERN void
+CQCT_meshFitterResultSetNonDecreasingCount(CQCT_MeshFitterResult result,
+                                           size_t count);
+/// @}
+
+// MARK: -
+// MARK: MeshFitter Type
+/**
+ * @name MeshFitter object type
+ * @{
+ */
 
 /// Creates a mesh fitter given the configuration file
 CQCT_EXTERN CQCT_MeshFitter CQCT_createMeshFitter(const char *filename,
                                                   CQCT_Error *error);
 
-/// Returns the result mesh
-CQCT_EXTERN CQCT_Mesh CQCT_meshFitterResultMesh(CQCT_MeshFitterResult result);
-
 /// Fits the reference mesh to the given voxel volume
 CQCT_EXTERN CQCT_MeshFitterResult CQCT_meshFitterFit(CQCT_MeshFitter meshFitter,
                                                      CQCT_VoxelVolume volume);
+
+/// Runs one iteration of the fitting algorithm
+CQCT_EXTERN int CQCT_meshFitterFitOneIteration(CQCT_MeshFitter meshFitter,
+                                               CQCT_MeshFitterState state,
+                                               CQCT_Error *error);
+
+/// Runs the volume sampling step
+CQCT_EXTERN int CQCT_meshFitterVolumeSamplingStep(CQCT_MeshFitter meshFitter,
+                                                  CQCT_MeshFitterState state,
+                                                  CQCT_Error *error);
+
+/// Runs the displacement optimization step
+CQCT_EXTERN int CQCT_meshFitterOptimalDisplacementStep(
+    CQCT_MeshFitter meshFitter, CQCT_MeshFitterState state, CQCT_Error *error);
+
+/// Runs the deformation optimization step
+CQCT_EXTERN int CQCT_meshFitterOptimalDeformationStep(
+    CQCT_MeshFitter meshFitter, CQCT_MeshFitterState state, CQCT_Error *error);
+
+/// Runs the log likelihood computation step
+CQCT_EXTERN int CQCT_meshFitterLogLikelihoodStep(CQCT_MeshFitter meshFitter,
+                                                 CQCT_MeshFitterState state,
+                                                 CQCT_Error *error);
+
+/// Runs the convergence testing step
+CQCT_EXTERN int CQCT_meshFitterConvergenceTestStep(CQCT_MeshFitter meshFitter,
+                                                   CQCT_MeshFitterState state,
+                                                   CQCT_Error *error);
 
 /// @}
 

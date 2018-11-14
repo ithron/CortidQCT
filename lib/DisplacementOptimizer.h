@@ -39,14 +39,23 @@ public:
   explicit DisplacementOptimizer(MeshFitter::Configuration const &config);
 
   /**
-   * Compute the optimal displacement and the corresponding weights
+   * @brief Compute the optimal displacement and the corresponding weights
    */
   template <class DerivedN, class DerivedL, class DerivedM>
   DisplacementsWeightsPair
   operator()(Eigen::MatrixBase<DerivedN> const &N,
              Eigen::MatrixBase<DerivedL> const &labels,
              Eigen::MatrixBase<DerivedM> const &measurements,
-             std::size_t nonDecrease);
+             std::size_t nonDecrease, float &effectiveSigmaS);
+
+  /**
+   * @brief Compute the log likelihood of the current model for the given
+   * displacement.
+   */
+  template <class DerivedN, class DerivedL, class DerivedM>
+  float logLikelihood(Eigen::MatrixBase<DerivedN> const &N,
+                      Eigen::MatrixBase<DerivedL> const &labels,
+                      Eigen::MatrixBase<DerivedM> const &measurements);
 
 private:
   using ModelSamplingPositionMatrix = Eigen::Matrix<float, Eigen::Dynamic, 4>;
@@ -64,14 +73,42 @@ DisplacementOptimizer::
 operator()<NormalMatrix<float>, LabelVector, Eigen::VectorXf>(
     Eigen::MatrixBase<NormalMatrix<float>> const &,
     Eigen::MatrixBase<LabelVector> const &,
-    Eigen::MatrixBase<Eigen::VectorXf> const &, std::size_t);
+    Eigen::MatrixBase<Eigen::VectorXf> const &, std::size_t, float &);
 
 extern template DisplacementOptimizer::DisplacementsWeightsPair
 DisplacementOptimizer::
 operator()<NormalMatrix<double>, LabelVector, Eigen::VectorXd>(
     Eigen::MatrixBase<NormalMatrix<double>> const &,
     Eigen::MatrixBase<LabelVector> const &,
-    Eigen::MatrixBase<Eigen::VectorXd> const &, std::size_t);
+    Eigen::MatrixBase<Eigen::VectorXd> const &, std::size_t, float &);
+
+extern template DisplacementOptimizer::DisplacementsWeightsPair
+DisplacementOptimizer::operator()<
+    Eigen::Transpose<const Eigen::Map<Eigen::Matrix<float, 3, Eigen::Dynamic>>>,
+    Eigen::Map<LabelVector>, Eigen::Map<Eigen::VectorXf>>(
+    Eigen::MatrixBase<Eigen::Transpose<
+        const Eigen::Map<Eigen::Matrix<float, 3, Eigen::Dynamic>>>> const &,
+    Eigen::MatrixBase<Eigen::Map<LabelVector>> const &,
+    Eigen::MatrixBase<Eigen::Map<Eigen::VectorXf>> const &, std::size_t,
+    float &);
+
+extern template DisplacementOptimizer::DisplacementsWeightsPair
+DisplacementOptimizer::operator()<
+    Eigen::Transpose<Eigen::Map<Eigen::Matrix<float, 3, Eigen::Dynamic>>>,
+    Eigen::Map<LabelVector>, Eigen::Map<Eigen::VectorXf>>(
+    Eigen::MatrixBase<Eigen::Transpose<
+        Eigen::Map<Eigen::Matrix<float, 3, Eigen::Dynamic>>>> const &,
+    Eigen::MatrixBase<Eigen::Map<LabelVector>> const &,
+    Eigen::MatrixBase<Eigen::Map<Eigen::VectorXf>> const &, std::size_t,
+    float &);
+
+extern template float DisplacementOptimizer::logLikelihood<
+    Eigen::Transpose<const Eigen::Map<Eigen::Matrix<float, 3, Eigen::Dynamic>>>,
+    Eigen::Map<LabelVector>, Eigen::Map<Eigen::VectorXf>>(
+    Eigen::MatrixBase<Eigen::Transpose<
+        const Eigen::Map<Eigen::Matrix<float, 3, Eigen::Dynamic>>>> const &,
+    Eigen::MatrixBase<Eigen::Map<LabelVector>> const &,
+    Eigen::MatrixBase<Eigen::Map<Eigen::VectorXf>> const &);
 
 } // namespace Internal
 
