@@ -1,5 +1,5 @@
 /**
- * @file      MeshSIWrtier.cpp
+ * @file      SIMesh.cpp
  *
  * @brief     This file contains the implementation of the SIMesh file writer.
  *
@@ -9,7 +9,7 @@
  *            the AFL 3.0 license; see LICENSE for full license details.
  */
 
-#include "MeshSIWriter.h"
+#include "SIMesh.h"
 #include "Mesh.h"
 #include "MeshHelpers.h"
 #include "Optional.h"

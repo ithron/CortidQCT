@@ -1,5 +1,5 @@
 /**
- * @file      MeshSIWriter.h
+ * @file      SIMesh.h
  *
  * @brief     This file contains the definition of the SIMesh writer function.
  *

@@ -40,7 +40,7 @@ add_library(Core
   MeshFitter.cpp
   MeshFitterConfiguration.cpp
   MeshFitterImpl.cpp
-  MeshSIWriter.cpp
+  SIMesh.cpp
   VoxelVolume.cpp
   WeightedARAPFitter.cpp
 )

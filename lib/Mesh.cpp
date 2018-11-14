@@ -13,7 +13,7 @@
 #include "CheckExtension.h"
 #include "MatrixIO.h"
 #include "MeshHelpers.h"
-#include "MeshSIWriter.h"
+#include "SIMesh.h"
 
 #include <gsl/gsl>
 #include <igl/orient_outward.h>
