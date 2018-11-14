@@ -126,7 +126,7 @@ public:
 
   /// @brief Writes mesh to ASCII file using format auto detection
   ///
-  /// Supported file formats are: obj, off, stl, wrl, ply, mesh.
+  /// Supported file formats are: obj, off, stl, wrl, ply, mesh, SIMesh.
   /// Labels are written rowwise to `labelFilename`.
   /// For encoding the labels in the color attribute use the overload
   /// `writeToFile(std::string const &, LabelToColorMap<double, Label> const
@@ -145,9 +145,11 @@ public:
   /// @brief Writes mesh to ASCII file using format auto detection and encode
   /// labels as colors.
   ///
-  /// Supported file formats are: off (coff).
+  /// Supported file formats are: off (coff), SIMesh.
   /// The labels are encoded in per-vertex colors using the given label to
   /// color map.
+  /// For the 'SIMesh' format the labels are written directly into the mesh
+  /// file, ignoring the color encoding.
   /// For storing the labels in a separate file use the overload
   /// `writeToFile(std::string const &, std::string const &)`.
   ///

@@ -13,6 +13,7 @@
 #include "CheckExtension.h"
 #include "MatrixIO.h"
 #include "MeshHelpers.h"
+#include "MeshSIWriter.h"
 
 #include <gsl/gsl>
 #include <igl/orient_outward.h>
@@ -242,28 +243,34 @@ void Mesh<T>::writeToFile(std::string const &meshFilename,
   if (isEmpty()) { return; }
 
   // Check file format since igl does only print an error
-  std::string const supportedFormats[] = {"obj", "off", "stl",
-                                          "wrl", "ply", "mesh"};
+  std::string const supportedFormats[] = {"obj", "off",  "stl",   "wrl",
+                                          "ply", "mesh", "simesh"};
 
   if (!IO::checkExtensions(meshFilename, supportedFormats)) {
     throw std::invalid_argument("Unsupported file format '" +
                                 IO::extension(meshFilename) + "'");
   }
 
-  // Convert vertex and index data to a format igl understads
-  Map<Matrix<Scalar, 3, Dynamic> const> const Vmap{
-      vertexData_.data(), 3, narrow<Eigen::Index>(vertexCount())};
-  Map<Matrix<Index, 3, Dynamic> const> const Fmap{
-      indexData_.data(), 3, narrow<Eigen::Index>(triangleCount())};
+  // check for SIMEsh format
+  if (IO::extension(meshFilename, true) == "simesh") {
+    writeToSIMesh(*this, meshFilename);
+  } else {
 
-  Eigen::Matrix<double, Dynamic, 3> const V =
-      Vmap.template cast<double>().transpose();
-  Eigen::Matrix<int, Dynamic, 3> const F =
-      Fmap.template cast<int>().transpose();
+    // Convert vertex and index data to a format igl understads
+    Map<Matrix<Scalar, 3, Dynamic> const> const Vmap{
+        vertexData_.data(), 3, narrow<Eigen::Index>(vertexCount())};
+    Map<Matrix<Index, 3, Dynamic> const> const Fmap{
+        indexData_.data(), 3, narrow<Eigen::Index>(triangleCount())};
 
-  if (!igl::write_triangle_mesh(meshFilename, V, F)) {
-    throw std::invalid_argument("Failed to write mesh to file '" +
-                                meshFilename + "'");
+    Eigen::Matrix<double, Dynamic, 3> const V =
+        Vmap.template cast<double>().transpose();
+    Eigen::Matrix<int, Dynamic, 3> const F =
+        Fmap.template cast<int>().transpose();
+
+    if (!igl::write_triangle_mesh(meshFilename, V, F)) {
+      throw std::invalid_argument("Failed to write mesh to file '" +
+                                  meshFilename + "'");
+    }
   }
 
   // Write lables
@@ -292,47 +299,53 @@ void Mesh<T>::writeToFile(
   if (isEmpty()) { return; };
 
   // Check file format since igl does only print an error
-  std::string const supportedFormats[] = {"off", "coff"};
+  std::string const supportedFormats[] = {"off", "coff", "simesh"};
 
   if (!IO::checkExtensions(meshFilename, supportedFormats)) {
     throw std::invalid_argument("Unsupported file format '" +
                                 IO::extension(meshFilename) + "'");
   }
 
-  // Convert vertex and index data to a format igl understads
-  Map<Matrix<Scalar, 3, Dynamic> const> const Vmap{
-      vertexData_.data(), 3, narrow<Eigen::Index>(vertexCount())};
-  Map<Matrix<Index, 3, Dynamic> const> const Fmap{
-      indexData_.data(), 3, narrow<Eigen::Index>(triangleCount())};
+  // check for SIMEsh format
+  if (IO::extension(meshFilename, true) == "simesh") {
+    writeToSIMesh(*this, meshFilename, true);
+  } else {
+    // Convert vertex and index data to a format igl understads
+    Map<Matrix<Scalar, 3, Dynamic> const> const Vmap{
+        vertexData_.data(), 3, narrow<Eigen::Index>(vertexCount())};
+    Map<Matrix<Index, 3, Dynamic> const> const Fmap{
+        indexData_.data(), 3, narrow<Eigen::Index>(triangleCount())};
 
-  Matrix<double, Dynamic, 3> const V = Vmap.template cast<double>().transpose();
-  Matrix<int, Dynamic, 3> const F = Fmap.template cast<int>().transpose();
-  Matrix<double, Dynamic, 3> C(Vmap.cols(), 3);
+    Matrix<double, Dynamic, 3> const V =
+        Vmap.template cast<double>().transpose();
+    Matrix<int, Dynamic, 3> const F = Fmap.template cast<int>().transpose();
+    Matrix<double, Dynamic, 3> C(Vmap.cols(), 3);
 
-  Ensures(V.rows() > 0 && F.rows() > 0);
-  Ensures(C.rows() == V.rows());
+    Ensures(V.rows() > 0 && F.rows() > 0);
+    Ensures(C.rows() == V.rows());
 
-  // convert labels to colors
-  for (auto i = 0; i < C.rows(); ++i) {
-    auto const label = labelData_[narrow<Size>(i)];
-    auto const color = labelMap(label);
+    // convert labels to colors
+    for (auto i = 0; i < C.rows(); ++i) {
+      auto const label = labelData_[narrow<Size>(i)];
+      auto const color = labelMap(label);
 
-    C(i, 0) = color[0];
-    C(i, 1) = color[1];
-    C(i, 2) = color[2];
-  }
+      C(i, 0) = color[0];
+      C(i, 1) = color[1];
+      C(i, 2) = color[2];
+    }
 
-  // clang-format off
+    // clang-format off
   // This assertion is to silence clang-tidy linter, somehow it does not
   // recognize that C was allocated before and complains about null pointer
   // dereferenceing when igl::writeOFF() calls C.maxCoeff().
   // NOLINTNEXTLINE(cppcoreguidelines-pro-bounds-array-to-pointer-decay, hicpp-no-array-decay)
   Ensures(C.data() != nullptr);
-  // clang-format on
+    // clang-format on
 
-  if (!igl::writeOFF(meshFilename, V, F, C)) {
-    throw std::invalid_argument("Failed to write mesh to file '" +
-                                meshFilename + "'");
+    if (!igl::writeOFF(meshFilename, V, F, C)) {
+      throw std::invalid_argument("Failed to write mesh to file '" +
+                                  meshFilename + "'");
+    }
   }
 }
 
