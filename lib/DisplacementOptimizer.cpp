@@ -195,14 +195,25 @@ DisplacementOptimizer::logLikelihoodVector(
     Eigen::MatrixBase<DerivedM> const &measurements) {
   using Scalar = typename DerivedM::Scalar;
   using Vector = Eigen::Matrix<Scalar, Eigen::Dynamic, 1>;
+  using Matrix = Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>;
+  using Eigen::Map;
 
   updateModelSamplingPositions(model_, N, labels, measurements,
                                modelSamplingPositions_);
 
-  Vector modelSamples(measurements.size());
-  modelSampler_(modelSamplingPositions_, .0f, modelSamples);
+  Matrix modelSamples(N.rows(), modelSamplingPositions_.rows() / N.rows());
+  modelSampler_(
+      modelSamplingPositions_, .0f,
+      Map<Vector>{modelSamples.data(), modelSamplingPositions_.rows(), 1});
 
-  return modelSamples;
+  // Add scale
+  for (auto i = 0; i < modelSamples.rows(); ++i) {
+    auto scale = model_.densityScale(labels(i));
+    if (std::isnan(scale)) { scale = -std::numeric_limits<double>::infinity(); }
+    modelSamples.row(i).array() += static_cast<float>(scale);
+  }
+
+  return modelSamples.rowwise().sum();
 }
 
 template <class DerivedN, class DerivedL, class DerivedM>
