@@ -269,6 +269,10 @@ void MeshFitter::Impl::sampleVolume(MeshFitter::State &state) const {
 }
 
 void MeshFitter::Impl::computeLogLikelihood(MeshFitter::State &state) const {
+  using Eigen::Map;
+  using Eigen::VectorXf;
+  using gsl::narrow_cast;
+
   if (state.hiddenState_ == nullptr) {
     throw std::invalid_argument("Invalid state argument, call init() first!");
   }
@@ -277,10 +281,15 @@ void MeshFitter::Impl::computeLogLikelihood(MeshFitter::State &state) const {
   auto const N = Adaptor::map(state.vertexNormals);
   auto const volumeSamples = Adaptor::map(state.volumeSamples);
 
-  auto const LL = state.hiddenState_->displacementOptimizer.logLikelihood(
-      N.transpose(), labels, volumeSamples);
+  auto const llVec =
+      state.hiddenState_->displacementOptimizer.logLikelihoodVector(
+          N.transpose(), labels, volumeSamples);
+  auto const LL = llVec.sum();
 
   state.logLikelihood = LL;
+  state.perVertexLogLikelihood.resize(narrow_cast<std::size_t>(llVec.size()));
+
+  Map<VectorXf>{state.perVertexLogLikelihood.data(), llVec.rows(), 1} = llVec;
 }
 
 void MeshFitter::Impl::checkConvergence(MeshFitter::State &state) const {

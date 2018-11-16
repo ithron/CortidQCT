@@ -387,6 +387,12 @@ CQCT_meshFitterResultMinimumDisplacementNorm(CQCT_MeshFitterResult result);
 CQCT_EXTERN float
 CQCT_meshFitterResultLogLikelihood(CQCT_MeshFitterResult result);
 
+/// Copies the current per-vertex log likelihood vector of the model given the
+/// input volume to the given buffer
+CQCT_EXTERN float
+CQCT_meshFitterResultCopyPerVertexLogLikelihood(CQCT_MeshFitterResult result,
+                                                float **buffer);
+
 /// Sets the current log likelihood of the model given the input volume
 CQCT_EXTERN void
 CQCT_meshFitterResultSetLogLikelihood(CQCT_MeshFitterResult result, float ll);

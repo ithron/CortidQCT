@@ -49,8 +49,16 @@ public:
              std::size_t nonDecrease, float &effectiveSigmaS);
 
   /**
-   * @brief Compute the log likelihood of the current model for the given
-   * displacement.
+   * @brief Computes the per-veretx log likelihood of the current model.
+   */
+  template <class DerivedN, class DerivedL, class DerivedM>
+  Eigen::Matrix<typename DerivedM::Scalar, Eigen::Dynamic, 1>
+  logLikelihoodVector(Eigen::MatrixBase<DerivedN> const &N,
+                      Eigen::MatrixBase<DerivedL> const &labels,
+                      Eigen::MatrixBase<DerivedM> const &measurements);
+
+  /**
+   * @brief Compute the log likelihood of the current model.
    */
   template <class DerivedN, class DerivedL, class DerivedM>
   float logLikelihood(Eigen::MatrixBase<DerivedN> const &N,
@@ -110,6 +118,15 @@ DisplacementOptimizer::operator()<
     float &);
 
 extern template float DisplacementOptimizer::logLikelihood<
+    Eigen::Transpose<const Eigen::Map<Eigen::Matrix<float, 3, Eigen::Dynamic>>>,
+    Eigen::Map<LabelVector>, Eigen::Map<Eigen::VectorXf>>(
+    Eigen::MatrixBase<Eigen::Transpose<
+        const Eigen::Map<Eigen::Matrix<float, 3, Eigen::Dynamic>>>> const &,
+    Eigen::MatrixBase<Eigen::Map<LabelVector>> const &,
+    Eigen::MatrixBase<Eigen::Map<Eigen::VectorXf>> const &);
+
+extern template Eigen::Matrix<float, Eigen::Dynamic, 1>
+DisplacementOptimizer::logLikelihoodVector<
     Eigen::Transpose<const Eigen::Map<Eigen::Matrix<float, 3, Eigen::Dynamic>>>,
     Eigen::Map<LabelVector>, Eigen::Map<Eigen::VectorXf>>(
     Eigen::MatrixBase<Eigen::Transpose<

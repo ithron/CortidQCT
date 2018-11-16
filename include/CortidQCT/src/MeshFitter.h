@@ -134,6 +134,8 @@ public:
     float minDisNorm = std::numeric_limits<float>::max();
     /// Log likeihood of deformedMesh
     float logLikelihood = -std::numeric_limits<float>::max();
+    /// Per-vertex log likelihood vector
+    std::vector<float> perVertexLogLikelihood;
     /// Effective sigmaS
     float effectiveSigmaS = .0f;
     /// Iteration count
