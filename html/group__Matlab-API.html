@@ -326,6 +326,8 @@ CQCT_EXTERN float&#160;</td><td class="memItemRight" valign="bottom"><a class="e
 CQCT_EXTERN float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#gaec4e4e9bb072f0d9203b31e835086e5e">CQCT_meshFitterResultLogLikelihood</a> (<a class="el" href="group__C-API.html#ga3d8d73b8c1ab47b7271307105eca3f1d">CQCT_MeshFitterResult</a> result)</td></tr>
 <tr class="memdesc:gaec4e4e9bb072f0d9203b31e835086e5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the current log likelihood of the model given the input volume. <br/></td></tr>
 <tr class="separator:gaec4e4e9bb072f0d9203b31e835086e5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga32c0c3087ba03d8300615d0df60ed530"><td class="memItemLeft" align="right" valign="top">CQCT_EXTERN float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#ga32c0c3087ba03d8300615d0df60ed530">CQCT_meshFitterResultCopyPerVertexLogLikelihood</a> (<a class="el" href="group__C-API.html#ga3d8d73b8c1ab47b7271307105eca3f1d">CQCT_MeshFitterResult</a> result, float **buffer)</td></tr>
+<tr class="separator:ga32c0c3087ba03d8300615d0df60ed530"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga6c39d0919c8ad22a63aa87d6547b4680"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga6c39d0919c8ad22a63aa87d6547b4680"></a>
 CQCT_EXTERN void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#ga6c39d0919c8ad22a63aa87d6547b4680">CQCT_meshFitterResultSetLogLikelihood</a> (<a class="el" href="group__C-API.html#ga3d8d73b8c1ab47b7271307105eca3f1d">CQCT_MeshFitterResult</a> result, float ll)</td></tr>
 <tr class="memdesc:ga6c39d0919c8ad22a63aa87d6547b4680"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the current log likelihood of the model given the input volume. <br/></td></tr>
@@ -612,6 +614,33 @@ CQCT_EXTERN int&#160;</td><td class="memItemRight" valign="bottom"><a class="el"
 
 </div>
 </div>
+<a class="anchor" id="ga32c0c3087ba03d8300615d0df60ed530"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CQCT_EXTERN float CQCT_meshFitterResultCopyPerVertexLogLikelihood </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__C-API.html#ga3d8d73b8c1ab47b7271307105eca3f1d">CQCT_MeshFitterResult</a>&#160;</td>
+          <td class="paramname"><em>result</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float **&#160;</td>
+          <td class="paramname"><em>buffer</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Copies the current per-vertex log likelihood vector of the model given the input volume to the given buffer </p>
+
+</div>
+</div>
 <a class="anchor" id="ga25823f70bae92b8f2f2f400c20a5318e"></a>
 <div class="memitem">
 <div class="memproto">
@@ -715,7 +744,7 @@ CQCT_EXTERN int&#160;</td><td class="memItemRight" valign="bottom"><a class="el"
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Nov 16 2018 11:48:45 for CortidQCT by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Nov 16 2018 16:02:53 for CortidQCT by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
