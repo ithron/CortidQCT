@@ -39,12 +39,14 @@ add_library(Core
   Mesh.cpp
   MeshFitter.cpp
   MeshFitterConfiguration.cpp
+  MeshFitterHiddenState.cpp
   MeshFitterImpl.cpp
   SIMesh.cpp
   VoxelVolume.cpp
   WeightedARAPFitter.cpp
 )
 add_library(PrivateAPI INTERFACE)
+add_library(CortidQCT::PrivateAPI ALIAS PrivateAPI)
 
 set_property(TARGET Core PROPERTY POSITION_INDEPENDENT_CODE True)
 

@@ -13,6 +13,10 @@
 
 namespace CortidQCT {
 
+namespace Internal {
+struct PrivateStateAccessor;
+}
+
 struct Coordinate3D {
   enum class Type { absolute, relative };
 
@@ -155,6 +159,7 @@ public:
 
   private:
     friend class Impl;
+    friend struct Internal::PrivateStateAccessor;
     struct HiddenState;
     using HiddenStatePtr = std::unique_ptr<HiddenState>;
 

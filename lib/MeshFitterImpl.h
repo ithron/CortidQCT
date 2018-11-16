@@ -11,7 +11,10 @@
 
 #pragma once
 
+#include "DisplacementOptimizer.h"
 #include "MeshFitter.h"
+#include "MeshHelpers.h"
+#include "WeightedARAPFitter.h"
 
 namespace CortidQCT {
 

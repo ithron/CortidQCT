@@ -16,6 +16,7 @@
 #include "DisplacementOptimizer.h"
 #include "EigenAdaptors.h"
 #include "MeshAdaptors.h"
+#include "MeshFitterHiddenState.h"
 #include "MeshHelpers.h"
 #include "Sampler.h"
 #include "WeightedARAPFitter.h"
@@ -27,43 +28,6 @@
 namespace CortidQCT {
 
 using namespace Internal;
-
-struct MeshFitter::State::HiddenState {
-  VoxelVolume volume;
-  DisplacementOptimizer displacementOptimizer;
-  WeightedARAPFitter<float> meshFitter;
-  FacetMatrix F;
-  Eigen::MatrixXf volumeSamplesMatrix;
-
-  HiddenState(VoxelVolume const &v, DisplacementOptimizer const &opt,
-              WeightedARAPFitter<float> const &fitter, FacetMatrix const &f)
-      : volume{v}, displacementOptimizer{opt}, meshFitter{fitter}, F{f} {}
-};
-
-/**************
- * MeshFitter::State implementations
- */
-// MARK: -
-// MARK: MeshFitter::State
-
-MeshFitter::State::State(State const &rhs)
-    : Result(rhs), hiddenState_{
-                       std::make_unique<HiddenState>(*rhs.hiddenState_)} {}
-
-MeshFitter::State::State(Result const &rhs)
-    : Result(rhs), hiddenState_{nullptr} {}
-
-MeshFitter::State::State(Result &&rhs)
-    : Result(std::move(rhs)), hiddenState_{nullptr} {}
-
-MeshFitter::State::~State() = default;
-
-MeshFitter::State &MeshFitter::State::operator=(State const &rhs) {
-  static_cast<Result &>(*this) = rhs;
-  hiddenState_ = std::make_unique<HiddenState>(*rhs.hiddenState_);
-
-  return *this;
-}
 
 /**********************
  * Helper Functions
