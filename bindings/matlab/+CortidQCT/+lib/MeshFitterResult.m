@@ -13,6 +13,7 @@ classdef MeshFitterResult < CortidQCT.lib.ObjectBase
     volumeSamples
     minimumDisplacementNorm
     logLikelihood
+    perVertexLogLikelihood
     effectiveSigmaS
     iteration
     converged
@@ -131,6 +132,15 @@ classdef MeshFitterResult < CortidQCT.lib.ObjectBase
     function logLikelihood = get.logLikelihood(obj)
       import CortidQCT.lib.ObjectBase;
       logLikelihood = ObjectBase.call('meshFitterResultLogLikelihood', obj.handle);
+    end
+
+    function perVertexLogLikelihood = get.perVertexLogLikelihood(obj)
+      import CortidQCT.lib.ObjectBase;
+      buffer = libpointer('singlePtr', zeros(obj.mesh.vertexCount, 1, 'single'));
+      res = ObjectBase.call('meshFitterResultCopyPerVertexLogLikelihood', obj.handle, buffer);
+      assert(res == 4 * obj.mesh.vertexCount, 'Size mismatch');
+
+      perVertexLogLikelihood = buffer.Value;
     end
 
     function obj = set.logLikelihood(obj, ll)
