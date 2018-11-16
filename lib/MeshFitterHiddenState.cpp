@@ -31,7 +31,7 @@ MeshFitter::State::State(Result const &rhs)
 MeshFitter::State::State(Result &&rhs)
     : Result(std::move(rhs)), hiddenState_{nullptr} {}
 
-MeshFitter::State::~State(){};
+MeshFitter::State::~State(){}
 
 MeshFitter::State &MeshFitter::State::operator=(State const &rhs) {
   static_cast<Result &>(*this) = rhs;
