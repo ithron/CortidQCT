@@ -5,8 +5,8 @@ var searchData=
   ['matrixio_2eh',['MatrixIO.h',['../MatrixIO_8h.html',1,'']]],
   ['max',['max',['../structCortidQCT_1_1DiscreteRange.html#ad91b84986cb4089b00e72b3023e4786e',1,'CortidQCT::DiscreteRange']]],
   ['maxiterations',['maxIterations',['../structCortidQCT_1_1MeshFitter_1_1Configuration.html#a99d15229e561c8dd0d3cd3c283bdbf74',1,'CortidQCT::MeshFitter::Configuration']]],
-  ['measurementmodel',['MeasurementModel',['../classCortidQCT_1_1MeasurementModel.html#a05f5c890b07bea5870b0ad9cb7b5f263',1,'CortidQCT::MeasurementModel::MeasurementModel() noexcept(noexcept(DataStorage()))'],['../classCortidQCT_1_1MeasurementModel.html#ab682d529fda33f1edd296fceed6e0096',1,'CortidQCT::MeasurementModel::MeasurementModel(std::string const &amp;filename)']]],
   ['measurementmodel',['MeasurementModel',['../classCortidQCT_1_1MeasurementModel.html',1,'CortidQCT']]],
+  ['measurementmodel',['MeasurementModel',['../classCortidQCT_1_1MeasurementModel.html#a05f5c890b07bea5870b0ad9cb7b5f263',1,'CortidQCT::MeasurementModel::MeasurementModel() noexcept(noexcept(DataStorage()))'],['../classCortidQCT_1_1MeasurementModel.html#ab682d529fda33f1edd296fceed6e0096',1,'CortidQCT::MeasurementModel::MeasurementModel(std::string const &amp;filename)']]],
   ['measurementmodel_2ecpp',['MeasurementModel.cpp',['../MeasurementModel_8cpp.html',1,'']]],
   ['measurementmodel_2eh',['MeasurementModel.h',['../MeasurementModel_8h.html',1,'']]],
   ['mesh',['Mesh',['../classCortidQCT_1_1Mesh.html#abdb35d44b64d63cffaad5ae61b5b547d',1,'CortidQCT::Mesh::Mesh() noexcept(noexcept(VertexData())&amp;&amp;noexcept(IndexData())&amp;&amp;noexcept(LabelData()))'],['../classCortidQCT_1_1Mesh.html#aa528a27520798cb236bb0130e9a97b1f',1,'CortidQCT::Mesh::Mesh(std::size_t nVertices, std::size_t nTriangles) noexcept(noexcept(VertexData(3 *nVertices, T{0}))&amp;&amp;noexcept(IndexData(3 *nTriangles, Index{0}))&amp;&amp;noexcept(LabelData(nVertices, Label{0})))']]],
@@ -14,9 +14,11 @@ var searchData=
   ['mesh_2eh',['Mesh.h',['../Mesh_8h.html',1,'']]],
   ['mesh_3c_20float_20_3e',['Mesh&lt; float &gt;',['../classCortidQCT_1_1Mesh.html',1,'CortidQCT']]],
   ['meshadaptors_2eh',['MeshAdaptors.h',['../MeshAdaptors_8h.html',1,'']]],
-  ['meshfitter',['MeshFitter',['../classCortidQCT_1_1MeshFitter.html#a958e07be3643daa824f4ee1239c65971',1,'CortidQCT::MeshFitter::MeshFitter(Configuration config)'],['../classCortidQCT_1_1MeshFitter.html#a15f2a10042b92a68dca2d1c0d3d0a2f1',1,'CortidQCT::MeshFitter::MeshFitter(std::string const &amp;configFilename)']]],
   ['meshfitter',['MeshFitter',['../classCortidQCT_1_1MeshFitter.html',1,'CortidQCT']]],
+  ['meshfitter',['MeshFitter',['../classCortidQCT_1_1MeshFitter.html#a958e07be3643daa824f4ee1239c65971',1,'CortidQCT::MeshFitter::MeshFitter(Configuration config)'],['../classCortidQCT_1_1MeshFitter.html#a15f2a10042b92a68dca2d1c0d3d0a2f1',1,'CortidQCT::MeshFitter::MeshFitter(std::string const &amp;configFilename)']]],
   ['meshfitterconfiguration_2ecpp',['MeshFitterConfiguration.cpp',['../MeshFitterConfiguration_8cpp.html',1,'']]],
+  ['meshfitterhiddenstate_2ecpp',['MeshFitterHiddenState.cpp',['../MeshFitterHiddenState_8cpp.html',1,'']]],
+  ['meshfitterhiddenstate_2eh',['MeshFitterHiddenState.h',['../MeshFitterHiddenState_8h.html',1,'']]],
   ['meshfitterimpl_2ecpp',['MeshFitterImpl.cpp',['../MeshFitterImpl_8cpp.html',1,'']]],
   ['meshfitterimpl_2eh',['MeshFitterImpl.h',['../MeshFitterImpl_8h.html',1,'']]],
   ['meshfitterstate',['MeshFitterState',['../structCortidQCT_1_1Internal_1_1C_1_1MeshFitterState.html',1,'CortidQCT::Internal::C']]],
@@ -26,5 +28,6 @@ var searchData=
   ['mindisnorm',['minDisNorm',['../structCortidQCT_1_1MeshFitter_1_1Result.html#a52501c543daeec49a6221f461bf059d8',1,'CortidQCT::MeshFitter::Result']]],
   ['minnondecreasing',['minNonDecreasing',['../structCortidQCT_1_1MeshFitter_1_1Configuration.html#ae7a4e4c7494c6d7d50aeb01428387747',1,'CortidQCT::MeshFitter::Configuration']]],
   ['model',['model',['../structCortidQCT_1_1MeshFitter_1_1Configuration.html#aa2cbb656de8162a21077bd4e8f1b0417',1,'CortidQCT::MeshFitter::Configuration']]],
-  ['modelsampler',['ModelSampler',['../classCortidQCT_1_1ModelSampler.html',1,'CortidQCT']]]
+  ['modelsampler',['ModelSampler',['../classCortidQCT_1_1ModelSampler.html',1,'CortidQCT']]],
+  ['modelsamplingpositions',['modelSamplingPositions',['../classCortidQCT_1_1Internal_1_1DisplacementOptimizer.html#a4c52eb801bd558c4320a2ab58419d4e0',1,'CortidQCT::Internal::DisplacementOptimizer']]]
 ];
