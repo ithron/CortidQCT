@@ -45,6 +45,7 @@ target_link_libraries(C-Bindings PRIVATE
 target_include_directories(C-Bindings-Objects
   PRIVATE
     $<TARGET_PROPERTY:C-Bindings,INCLUDE_DIRECTORIES>
+    $<TARGET_PROPERTY:CortidQCT::PrivateAPI,INTERFACE_INCLUDE_DIRECTORIES>
 )
 target_compile_definitions(C-Bindings-Objects
   PRIVATE

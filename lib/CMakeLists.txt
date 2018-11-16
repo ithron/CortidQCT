@@ -56,8 +56,10 @@ target_link_libraries(Core
 set_target_properties(Core PROPERTIES OUTPUT_NAME "CortidQCT-Core")
 target_include_directories(Core PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/../include/CortidQCT/src")
 
-target_include_directories(PrivateAPI INTERFACE "${CMAKE_CURRENT_SOURCE_DIR}/../include/CortidQCT/src")
-target_include_directories(PrivateAPI INTERFACE "${CMAKE_CURRENT_SOURCE_DIR}/../lib")
+target_include_directories(PrivateAPI INTERFACE
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/../include/CortidQCT/src>
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/../lib>
+)
 
 if (WITH_CLANG_TIDY)
   set_target_properties(Core PROPERTIES CXX_CLANG_TIDY "${DO_CLANG_TIDY}")
@@ -142,6 +144,7 @@ target_include_directories(Core PRIVATE $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY
 
 include(GNUInstallDirs)
 
+install(TARGETS PrivateAPI EXPORT CortidQCTExport)
 install(TARGETS Core EXPORT CortidQCTExport
   PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
   LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
