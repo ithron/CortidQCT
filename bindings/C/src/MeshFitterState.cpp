@@ -220,6 +220,24 @@ CQCT_meshFitterResultLogLikelihood(CQCT_MeshFitterResult result) {
   return state.logLikelihood;
 }
 
+CORTIDQCT_C_EXPORT CQCT_EXTERN float
+CQCT_meshFitterResultCopyPerVertexLogLikelihood(CQCT_MeshFitterResult result,
+                                                float **buffer) {
+  using std::copy;
+  assert(result != nullptr);
+  assert(buffer != nullptr);
+
+  auto const &pvLL = result->impl.objPtr->state.perVertexLogLikelihood;
+
+  auto const size = pvLL.size() * sizeof(float);
+
+  if (*buffer == nullptr) { *buffer = static_cast<float *>(malloc(size)); }
+
+  copy(pvLL.cbegin(), pvLL.cend(), *buffer);
+
+  return size;
+}
+
 CORTIDQCT_C_EXPORT CQCT_EXTERN void
 CQCT_meshFitterResultSetLogLikelihood(CQCT_MeshFitterResult result, float ll) {
   assert(result != nullptr);
