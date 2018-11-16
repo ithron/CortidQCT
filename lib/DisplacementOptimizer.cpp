@@ -188,6 +188,24 @@ operator()(Eigen::MatrixBase<DerivedN> const &N,
 }
 
 template <class DerivedN, class DerivedL, class DerivedM>
+Eigen::Matrix<typename DerivedM::Scalar, Eigen::Dynamic, 1>
+DisplacementOptimizer::logLikelihoodVector(
+    Eigen::MatrixBase<DerivedN> const &N,
+    Eigen::MatrixBase<DerivedL> const &labels,
+    Eigen::MatrixBase<DerivedM> const &measurements) {
+  using Scalar = typename DerivedM::Scalar;
+  using Vector = Eigen::Matrix<Scalar, Eigen::Dynamic, 1>;
+
+  updateModelSamplingPositions(model_, N, labels, measurements,
+                               modelSamplingPositions_);
+
+  Vector modelSamples(measurements.size());
+  modelSampler_(modelSamplingPositions_, .0f, modelSamples);
+
+  return modelSamples;
+}
+
+template <class DerivedN, class DerivedL, class DerivedM>
 float DisplacementOptimizer::logLikelihood(
     Eigen::MatrixBase<DerivedN> const &N,
     Eigen::MatrixBase<DerivedL> const &labels,
@@ -195,13 +213,7 @@ float DisplacementOptimizer::logLikelihood(
 
   using Eigen::VectorXf;
 
-  updateModelSamplingPositions(model_, N, labels, measurements,
-                               modelSamplingPositions_);
-
-  VectorXf modelSamples(measurements.size());
-  modelSampler_(modelSamplingPositions_, .0f, modelSamples);
-
-  return modelSamples.sum();
+  return logLikelihoodVector(N, labels, measurements).sum();
 }
 
 template DisplacementOptimizer::DisplacementsWeightsPair DisplacementOptimizer::
@@ -237,6 +249,15 @@ operator()<
     float &);
 
 template float DisplacementOptimizer::logLikelihood<
+    Eigen::Transpose<const Eigen::Map<Eigen::Matrix<float, 3, Eigen::Dynamic>>>,
+    Eigen::Map<LabelVector>, Eigen::Map<Eigen::VectorXf>>(
+    Eigen::MatrixBase<Eigen::Transpose<
+        const Eigen::Map<Eigen::Matrix<float, 3, Eigen::Dynamic>>>> const &,
+    Eigen::MatrixBase<Eigen::Map<LabelVector>> const &,
+    Eigen::MatrixBase<Eigen::Map<Eigen::VectorXf>> const &);
+
+template Eigen::Matrix<float, Eigen::Dynamic, 1>
+DisplacementOptimizer::logLikelihoodVector<
     Eigen::Transpose<const Eigen::Map<Eigen::Matrix<float, 3, Eigen::Dynamic>>>,
     Eigen::Map<LabelVector>, Eigen::Map<Eigen::VectorXf>>(
     Eigen::MatrixBase<Eigen::Transpose<
