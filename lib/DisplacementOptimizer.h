@@ -57,6 +57,13 @@ public:
                       Eigen::MatrixBase<DerivedL> const &labels,
                       Eigen::MatrixBase<DerivedM> const &measurements);
 
+  /**
+   * @brief Returns the model sampling positions used by the optimizer
+   */
+  inline auto const &modelSamplingPositions() const noexcept {
+    return modelSamplingPositions_;
+  }
+
 private:
   using ModelSamplingPositionMatrix = Eigen::Matrix<float, Eigen::Dynamic, 4>;
 

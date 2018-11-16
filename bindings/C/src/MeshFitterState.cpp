@@ -1,4 +1,5 @@
 #include "CortidQCT-Common.h"
+#include "MeshFitterHiddenState.h"
 
 #include <CortidQCT/CortidQCT.h>
 
@@ -246,7 +247,8 @@ CQCT_meshFitterResultIterationCount(CQCT_MeshFitterResult result) {
 }
 
 CORTIDQCT_C_EXPORT CQCT_EXTERN void
-CQCT_meshFitterResultSetIterationCount(CQCT_MeshFitterResult result, size_t count) {
+CQCT_meshFitterResultSetIterationCount(CQCT_MeshFitterResult result,
+                                       size_t count) {
   assert(result != nullptr);
 
   auto &state = result->impl.objPtr->state;
@@ -308,5 +310,32 @@ CQCT_meshFitterResultSetNonDecreasingCount(CQCT_MeshFitterResult result,
   auto &state = result->impl.objPtr->state;
 
   state.nonDecreasing = count;
+}
+
+CORTIDQCT_C_EXPORT CQCT_EXTERN size_t
+CQCT_meshFitterStateCopyModelSamplingPositions(CQCT_MeshFitterState state,
+                                               float **buffer) {
+  using Eigen::Dynamic;
+  using Eigen::Map;
+  using Eigen::Matrix;
+  using gsl::narrow_cast;
+
+  assert(state != nullptr);
+  assert(buffer != nullptr);
+
+  auto const &samplingPositions =
+      CortidQCT::Internal::PrivateStateAccessor::hiddenState(
+          state->impl.objPtr->state)
+          .displacementOptimizer.modelSamplingPositions();
+
+  auto const size = narrow_cast<size_t>(
+      samplingPositions.rows() * samplingPositions.cols() * sizeof(float));
+
+  if (*buffer == nullptr) { *buffer = static_cast<float *>(malloc(size)); }
+
+  Map<Matrix<float, 4, Dynamic>>{*buffer, 4, samplingPositions.rows()} =
+      samplingPositions.transpose();
+
+  return size;
 }
 

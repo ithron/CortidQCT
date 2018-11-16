@@ -399,6 +399,11 @@ CQCT_meshFitterResultNonDecreasingCount(CQCT_MeshFitterResult result);
 CQCT_EXTERN void
 CQCT_meshFitterResultSetNonDecreasingCount(CQCT_MeshFitterResult result,
                                            size_t count);
+
+/// Copies the model sampling positions
+CQCT_EXTERN size_t CQCT_meshFitterStateCopyModelSamplingPositions(
+    CQCT_MeshFitterState state, float **buffer);
+
 /// @}
 
 // MARK: -
