@@ -29,14 +29,15 @@ oopSingIdx = any(~isfinite(oop) | oop > 2/dx, 2);
 ip(ipSingIdx, :) = dirac(ipSingIdx, :);
 oop(oopSingIdx, :) = dirac(oopSingIdx, :) * sliceThickness;
 oop = oop * dx / sliceThickness;
-ip = ip * dx;
 
 IP = fft(fftshift(ip, 2), [], 2);
 OOP = fft(fftshift(oop, 2), [], 2);
 
-Y = IP .* OOP ./ dx;
+Y = IP .* OOP;
+Ysq = Y .* conj(Y);
 
 yValues = ifftshift(ifft(Y, [], 2), 2);
+autoCorrValues = ifftshift(ifft(Ysq, [], 2), 2) * dx;
 
 GTable = struct;
 GTable.x = single(x);
@@ -47,6 +48,7 @@ GTable.minX = single(min(x));
 GTable.maxX = single(max(x));
 GTable.values = single(yValues);
 GTable.primitiveValues = single(cumsum(yValues, 2) * dx);
+GTable.autocorrelationValues = single(autoCorrValues);
 
 end
 
