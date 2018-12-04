@@ -20,6 +20,9 @@ sSq = s.^2;
 
 y = 1./sqrt(2*pi*sSq) .* exp(-0.5 * x.^2 ./ sSq);
 
+% Truncate gaussian to 4 * s;
+y = y .* (abs(x) <= 4 * s);
+
 % if isvector(y)
 %     y = y ./ sum(y);
 % else

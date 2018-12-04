@@ -14,14 +14,12 @@ end
 
 delta = s - t;
 
-cLin = interp2(GTable.x, GTable.y, GTable.autocorrelationValues, delta(:), theta(:));
+cLin = interp2(GTable.x, GTable.y, GTable.autocorrelationValues, delta(:), theta(:), 'linear', 0);
 
 c = reshape(cLin, size(delta));
+cT = c';
 
-clear cLin
-
-c(delta < GTable.minX | delta > GTable.maxX) = 0;
-
+c(delta < 0) = cT(delta < 0);
 
 end
 
