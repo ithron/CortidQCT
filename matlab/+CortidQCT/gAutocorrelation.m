@@ -21,5 +21,7 @@ cT = c';
 
 c(delta < 0) = cT(delta < 0);
 
+c = c ./ sum(c, 2);
+
 end
 
