@@ -48,7 +48,7 @@ Y = IP .* OOP;
 Ysq = Y .* conj(Y);
 
 yValues = fftshift(ifft(Y, [], 2), 2) / dx;
-autoCorrValues = fftshift(ifft(Ysq, [], 2), 2);
+autoCorrValues = fftshift(ifft(Ysq, [], 2), 2) / dx;
 
 % Remove padding
 yValues = yValues(:, K + 1 : end - K);
@@ -82,6 +82,7 @@ autoCorrValues(:, 1:K) = autoCorrValues(:, end:-1:K+2);
 % Construct table
 GTable = struct;
 GTable.x = single(x);
+GTable.dx = single(dx);
 GTable.y = single(th);
 GTable.sigma = single(s);
 GTable.sliceThickness = single(sliceThickness);
