@@ -1,6 +1,6 @@
 function y = g(t, theta, GTable)
 % G evaluates the angle dependent point spread function.
-% y = g(t, theta, sigma, sliceThickness).
+% y = g(t, theta, GTable).
 %   t - evaluation points
 %   theta - angle(s) with z-axis in rad
 %   GTable - pre-computed lookup table, see genGTable
