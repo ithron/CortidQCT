@@ -1,7 +1,7 @@
-function y = OTF(w, theta, sigmaG, sliceThickness)
+function y = OTF(f, theta, sigmaG, sliceThickness)
 %OTF Evaluates the OTF (optical transfer function) of the measurement system
 %   y = OTF(w, thetam sigmaG, sliceThickness) - evaluates the OTF at frequencies
-%   w. sigmaG is the width parameter of the in-plane PSF and sliceThickness
+%   f (lp/mm). sigmaG is the width parameter of the in-plane PSF and sliceThickness
 %   is the collimination width. theta is the angle (in rad) with the z-axis
 
 % This file is part of the 'CortidQCT' project.
@@ -16,9 +16,8 @@ ct = cos(theta);
 h = sliceThickness;
 
 y = ...
-  sigmaG * h^2 .* ...
-  exp(-2 * pi^2 * sigmaG^2 * st.^2 .* w.^2) .* ...
-  sinc(h * ct .* w) .* sinc(0.5 * h * ct .* w).^2;
+  exp(-2 * pi^2 * sigmaG^2 * st.^2 .* f.^2) .* ...
+  sinc(h * ct .* f) .* sinc(0.5 * h * ct .* f).^2;
 
 end
 
