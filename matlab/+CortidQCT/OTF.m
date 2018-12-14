@@ -17,7 +17,7 @@ h = sliceThickness;
 
 y = ...
   exp(-2 * pi^2 * sigmaG^2 * st.^2 .* f.^2) .* ...
-  sinc(h * ct .* f) .* sinc(0.5 * h * ct .* f).^2;
+  sinc(0.5 * h * ct .* f) .* sinc(0.25 * h * ct .* f).^2;
 
 end
 
