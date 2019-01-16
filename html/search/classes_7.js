@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['privatestateaccessor',['PrivateStateAccessor',['../structCortidQCT_1_1Internal_1_1PrivateStateAccessor.html',1,'CortidQCT::Internal']]]
+  ['result',['Result',['../structCortidQCT_1_1MeshFitter_1_1Result.html',1,'CortidQCT::MeshFitter']]]
 ];

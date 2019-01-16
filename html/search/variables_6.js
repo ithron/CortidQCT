@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['kernelsigma',['kernelSigma',['../classCortidQCT_1_1MeasurementModel.html#a1046012275b147d59b4fd41f22f089bc',1,'CortidQCT::MeasurementModel']]]
+  ['name',['name',['../classCortidQCT_1_1MeasurementModel.html#a4d4b9998422f75d2b01eb11fcce3b5ca',1,'CortidQCT::MeasurementModel']]]
 ];

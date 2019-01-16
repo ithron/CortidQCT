@@ -64,7 +64,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
-      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
@@ -110,39 +109,63 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aef939fd68866f70081a2c1ca531fe855"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aef939fd68866f70081a2c1ca531fe855"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>DisplacementOptimizer</b> (<a class="el" href="structCortidQCT_1_1MeshFitter_1_1Configuration.html">MeshFitter::Configuration</a> const &amp;config)</td></tr>
 <tr class="separator:aef939fd68866f70081a2c1ca531fe855"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af936f407402beb07f12f7860fae808eb"><td class="memTemplParams" colspan="2"><a class="anchor" id="af936f407402beb07f12f7860fae808eb"></a>
-template&lt;class DerivedN , class DerivedL , class DerivedM &gt; </td></tr>
-<tr class="memitem:af936f407402beb07f12f7860fae808eb"><td class="memTemplItemLeft" align="right" valign="top">DisplacementsWeightsPair&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classCortidQCT_1_1Internal_1_1DisplacementOptimizer.html#af936f407402beb07f12f7860fae808eb">operator()</a> (Eigen::MatrixBase&lt; DerivedN &gt; const &amp;N, Eigen::MatrixBase&lt; DerivedL &gt; const &amp;labels, Eigen::MatrixBase&lt; DerivedM &gt; const &amp;measurements, std::size_t nonDecrease, float &amp;effectiveSigmaS)</td></tr>
-<tr class="memdesc:af936f407402beb07f12f7860fae808eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the optimal displacement and the corresponding weights. <br/></td></tr>
-<tr class="separator:af936f407402beb07f12f7860fae808eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abba6262eba260e055ac133b4a8196e96"><td class="memTemplParams" colspan="2"><a class="anchor" id="abba6262eba260e055ac133b4a8196e96"></a>
-template&lt;class DerivedN , class DerivedL , class DerivedM &gt; </td></tr>
-<tr class="memitem:abba6262eba260e055ac133b4a8196e96"><td class="memTemplItemLeft" align="right" valign="top">Eigen::Matrix&lt; typename <br class="typebreak"/>
-DerivedM::Scalar, <br class="typebreak"/>
-Eigen::Dynamic, 1 &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classCortidQCT_1_1Internal_1_1DisplacementOptimizer.html#abba6262eba260e055ac133b4a8196e96">logLikelihoodVector</a> (Eigen::MatrixBase&lt; DerivedN &gt; const &amp;N, Eigen::MatrixBase&lt; DerivedL &gt; const &amp;labels, Eigen::MatrixBase&lt; DerivedM &gt; const &amp;measurements)</td></tr>
-<tr class="memdesc:abba6262eba260e055ac133b4a8196e96"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the per-veretx log likelihood of the current model. <br/></td></tr>
-<tr class="separator:abba6262eba260e055ac133b4a8196e96"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9857cc2aa5e865812065cbc46bd081fe"><td class="memTemplParams" colspan="2"><a class="anchor" id="a9857cc2aa5e865812065cbc46bd081fe"></a>
-template&lt;class DerivedN , class DerivedL , class DerivedM &gt; </td></tr>
-<tr class="memitem:a9857cc2aa5e865812065cbc46bd081fe"><td class="memTemplItemLeft" align="right" valign="top">float&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classCortidQCT_1_1Internal_1_1DisplacementOptimizer.html#a9857cc2aa5e865812065cbc46bd081fe">logLikelihood</a> (Eigen::MatrixBase&lt; DerivedN &gt; const &amp;N, Eigen::MatrixBase&lt; DerivedL &gt; const &amp;labels, Eigen::MatrixBase&lt; DerivedM &gt; const &amp;measurements)</td></tr>
-<tr class="memdesc:a9857cc2aa5e865812065cbc46bd081fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the log likelihood of the current model. <br/></td></tr>
-<tr class="separator:a9857cc2aa5e865812065cbc46bd081fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4c52eb801bd558c4320a2ab58419d4e0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4c52eb801bd558c4320a2ab58419d4e0"></a>
-auto const &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCortidQCT_1_1Internal_1_1DisplacementOptimizer.html#a4c52eb801bd558c4320a2ab58419d4e0">modelSamplingPositions</a> () const noexcept</td></tr>
-<tr class="memdesc:a4c52eb801bd558c4320a2ab58419d4e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the model sampling positions used by the optimizer. <br/></td></tr>
-<tr class="separator:a4c52eb801bd558c4320a2ab58419d4e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef871e666813d1b1cf7a653a971b96a3"><td class="memTemplParams" colspan="2">template&lt;class DerivedN , class DerivedL , class DerivedM &gt; </td></tr>
+<tr class="memitem:aef871e666813d1b1cf7a653a971b96a3"><td class="memTemplItemLeft" align="right" valign="top">DisplacementsWeightsPair&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classCortidQCT_1_1Internal_1_1DisplacementOptimizer.html#aef871e666813d1b1cf7a653a971b96a3">operator()</a> (Eigen::MatrixBase&lt; DerivedN &gt; const &amp;N, Eigen::MatrixBase&lt; DerivedL &gt; const &amp;labels, Eigen::MatrixBase&lt; DerivedM &gt; const &amp;measurements, std::size_t nonDecrease)</td></tr>
+<tr class="separator:aef871e666813d1b1cf7a653a971b96a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This class encapuslates the algorithm that estimates the optimal displacments.</p>
 <p>Find the maximizer of the posterior log likelihood of the model displacement given measurements from the inptu volume. </p>
-</div><hr/>The documentation for this class was generated from the following files:<ul>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="aef871e666813d1b1cf7a653a971b96a3"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class DerivedN , class DerivedL , class DerivedM &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">DisplacementOptimizer::DisplacementsWeightsPair CortidQCT::Internal::DisplacementOptimizer::operator() </td>
+          <td>(</td>
+          <td class="paramtype">Eigen::MatrixBase&lt; DerivedN &gt; const &amp;&#160;</td>
+          <td class="paramname"><em>N</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Eigen::MatrixBase&lt; DerivedL &gt; const &amp;&#160;</td>
+          <td class="paramname"><em>labels</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Eigen::MatrixBase&lt; DerivedM &gt; const &amp;&#160;</td>
+          <td class="paramname"><em>measurements</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>nonDecrease</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Compute the optimal displacement and the corresponding weights </p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li>lib/<a class="el" href="DisplacementOptimizer_8h_source.html">DisplacementOptimizer.h</a></li>
 <li>lib/<a class="el" href="DisplacementOptimizer_8cpp.html">DisplacementOptimizer.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Dec 22 2018 14:03:25 for CortidQCT by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Jan 16 2019 10:15:35 for CortidQCT by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
