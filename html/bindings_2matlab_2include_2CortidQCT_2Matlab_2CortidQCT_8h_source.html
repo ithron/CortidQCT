@@ -119,9 +119,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;CORTIDQCT_MATLAB_EXPORT CQCT_EXTERN Id <a class="code" href="group__C-API.html#gaf149633e9627fdb831d3e58bfc5001dc">CQCT_autorelease</a>(Id obj);</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;CORTIDQCT_MATLAB_EXPORT CQCT_EXTERN <span class="keywordtype">void</span> <a class="code" href="group__C-API.html#ga394dfc780f735c547bec46249edc385a">CQCT_autoreleasePoolPush</a>();</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;CORTIDQCT_MATLAB_EXPORT CQCT_EXTERN <span class="keywordtype">void</span> <a class="code" href="group__C-API.html#ga394dfc780f735c547bec46249edc385a">CQCT_autoreleasePoolPush</a>(<span class="keywordtype">void</span>);</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;CORTIDQCT_MATLAB_EXPORT CQCT_EXTERN <span class="keywordtype">void</span> <a class="code" href="group__C-API.html#ga077145f9ee3f90d37240d9340d90d674">CQCT_autoreleasePoolPop</a>();</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;CORTIDQCT_MATLAB_EXPORT CQCT_EXTERN <span class="keywordtype">void</span> <a class="code" href="group__C-API.html#ga077145f9ee3f90d37240d9340d90d674">CQCT_autoreleasePoolPop</a>(<span class="keywordtype">void</span>);</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment">// MARK: -</span></div>
@@ -144,7 +144,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="comment"></span><span class="keyword">struct </span><a class="code" href="structCQCT__VoxelVolume__t.html">CQCT_VoxelVolume_t</a>;</div>
 <div class="line"><a name="l00098"></a><span class="lineno"><a class="line" href="group__Matlab-API.html#gad69cbc780e25804265d6a8574fa84c4c">   98</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structCQCT__VoxelVolume__t.html">CQCT_VoxelVolume_t</a> *<a class="code" href="group__C-API.html#gad69cbc780e25804265d6a8574fa84c4c">CQCT_VoxelVolume</a>;</div>
 <div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;CORTIDQCT_MATLAB_EXPORT CQCT_EXTERN CQCT_VoxelVolume <a class="code" href="group__C-API.html#ga8b6a1986f6f31f50ce90b41ffc290a7f">CQCT_createVoxelVolume</a>();</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;CORTIDQCT_MATLAB_EXPORT CQCT_EXTERN CQCT_VoxelVolume <a class="code" href="group__C-API.html#ga8b6a1986f6f31f50ce90b41ffc290a7f">CQCT_createVoxelVolume</a>(<span class="keywordtype">void</span>);</div>
 <div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;</div>
 <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;CORTIDQCT_MATLAB_EXPORT CQCT_EXTERN <span class="keywordtype">int</span> <a class="code" href="group__C-API.html#ga8aa88ce1c95b1d94f6ba04cdbdeb2e18">CQCT_voxelVolumeLoadFromFile</a>(CQCT_VoxelVolume volume,</div>
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;                                             <span class="keyword">const</span> <span class="keywordtype">char</span> *filename,</div>
@@ -175,7 +175,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;<span class="comment"></span><span class="keyword">struct </span><a class="code" href="structCQCT__Mesh__t.html">CQCT_Mesh_t</a>;</div>
 <div class="line"><a name="l00150"></a><span class="lineno"><a class="line" href="group__Matlab-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">  150</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structCQCT__Mesh__t.html">CQCT_Mesh_t</a> *<a class="code" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a>;</div>
 <div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;</div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;CORTIDQCT_MATLAB_EXPORT CQCT_EXTERN CQCT_Mesh <a class="code" href="group__C-API.html#ga75b5acd6e7f6b790ff9a5401e64bcc56">CQCT_createMesh</a>();</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;CORTIDQCT_MATLAB_EXPORT CQCT_EXTERN CQCT_Mesh <a class="code" href="group__C-API.html#ga75b5acd6e7f6b790ff9a5401e64bcc56">CQCT_createMesh</a>(<span class="keywordtype">void</span>);</div>
 <div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;</div>
 <div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;CORTIDQCT_MATLAB_EXPORT CQCT_EXTERN CQCT_Mesh <a class="code" href="group__C-API.html#gaa5cb5695b90a36f1daa6b9359a8454d7">CQCT_meshFromFile</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *filename,</div>
 <div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;                                        CQCT_Error *error);</div>
@@ -223,7 +223,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;<span class="keyword">struct </span><a class="code" href="structCQCT__ColorToLabelMap__t.html">CQCT_ColorToLabelMap_t</a>;</div>
 <div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structCQCT__ColorToLabelMap__t.html">CQCT_ColorToLabelMap_t</a> *<a class="code" href="group__C-API.html#ga818a024d31ae2e5d3609432d2e4d17dc">CQCT_ColorToLabelMap</a>;</div>
 <div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;</div>
-<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;CORTIDQCT_MATLAB_EXPORT CQCT_EXTERN CQCT_ColorToLabelMap <a class="code" href="group__C-API.html#gaccc57bd8f194a82b026e4c10dbfd4726">CQCT_createColorToLabelMap</a>();</div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;CORTIDQCT_MATLAB_EXPORT CQCT_EXTERN CQCT_ColorToLabelMap <a class="code" href="group__C-API.html#gaccc57bd8f194a82b026e4c10dbfd4726">CQCT_createColorToLabelMap</a>(<span class="keywordtype">void</span>);</div>
 <div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;</div>
 <div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;CORTIDQCT_MATLAB_EXPORT CQCT_EXTERN <span class="keywordtype">int</span> <a class="code" href="group__C-API.html#gaf7b82a5465588e1eec7c9f76a311704c">CQCT_colorToLabelMapLoadFromFile</a>(CQCT_ColorToLabelMap map,</div>
 <div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;                                                 <span class="keyword">const</span> <span class="keywordtype">char</span> *filename,</div>
@@ -317,7 +317,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Jan 16 2019 14:55:10 for CortidQCT by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Jan 16 2019 15:07:35 for CortidQCT by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
