@@ -92,20 +92,25 @@ Generic Functions / Object Type</h2></td></tr>
 typedef void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#ga3b68cd9dda6620fb2575e8f511b5de7f">Id</a></td></tr>
 <tr class="memdesc:ga3b68cd9dda6620fb2575e8f511b5de7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generic 'object' type. <br/></td></tr>
 <tr class="separator:ga3b68cd9dda6620fb2575e8f511b5de7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gad9b809bd9a5eda2dc6564f44f70fd90c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gad9b809bd9a5eda2dc6564f44f70fd90c"></a>
-CQCT_EXTERN <a class="el" href="group__C-API.html#ga3b68cd9dda6620fb2575e8f511b5de7f">Id</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#gad9b809bd9a5eda2dc6564f44f70fd90c">CQCT_retain</a> (<a class="el" href="group__C-API.html#ga3b68cd9dda6620fb2575e8f511b5de7f">Id</a> obj)</td></tr>
-<tr class="memdesc:gad9b809bd9a5eda2dc6564f44f70fd90c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retains an object, i.e. increments its retain count. <br/></td></tr>
-<tr class="separator:gad9b809bd9a5eda2dc6564f44f70fd90c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaece70c037de46f4b30cc6f426a470c30"><td class="memItemLeft" align="right" valign="top">CQCT_EXTERN void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#gaece70c037de46f4b30cc6f426a470c30">CQCT_release</a> (<a class="el" href="group__C-API.html#ga3b68cd9dda6620fb2575e8f511b5de7f">Id</a> obj)</td></tr>
-<tr class="separator:gaece70c037de46f4b30cc6f426a470c30"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga79ca61419a321a949801d9bf15fd1df9"><td class="memItemLeft" align="right" valign="top">CQCT_EXTERN <a class="el" href="group__C-API.html#ga3b68cd9dda6620fb2575e8f511b5de7f">Id</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#ga79ca61419a321a949801d9bf15fd1df9">CQCT_autorelease</a> (<a class="el" href="group__C-API.html#ga3b68cd9dda6620fb2575e8f511b5de7f">Id</a> obj)</td></tr>
-<tr class="separator:ga79ca61419a321a949801d9bf15fd1df9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gae12bf45b47cd386f63e9edb2f500994d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gae12bf45b47cd386f63e9edb2f500994d"></a>
-CQCT_EXTERN void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#gae12bf45b47cd386f63e9edb2f500994d">CQCT_autoreleasePoolPush</a> ()</td></tr>
-<tr class="memdesc:gae12bf45b47cd386f63e9edb2f500994d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a new autorelease pool to the stack. <br/></td></tr>
-<tr class="separator:gae12bf45b47cd386f63e9edb2f500994d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaaef8b9d21f3f1f75bc599509be770bb1"><td class="memItemLeft" align="right" valign="top">CQCT_EXTERN void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#gaaef8b9d21f3f1f75bc599509be770bb1">CQCT_autoreleasePoolPop</a> ()</td></tr>
-<tr class="separator:gaaef8b9d21f3f1f75bc599509be770bb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9f93e9bb29adaec31edade457970bf11"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga9f93e9bb29adaec31edade457970bf11"></a>
+CORTIDQCT_MATLAB_EXPORT <br class="typebreak"/>
+CQCT_EXTERN <a class="el" href="group__C-API.html#ga3b68cd9dda6620fb2575e8f511b5de7f">Id</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#ga9f93e9bb29adaec31edade457970bf11">CQCT_retain</a> (<a class="el" href="group__C-API.html#ga3b68cd9dda6620fb2575e8f511b5de7f">Id</a> obj)</td></tr>
+<tr class="memdesc:ga9f93e9bb29adaec31edade457970bf11"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retains an object, i.e. increments its retain count. <br/></td></tr>
+<tr class="separator:ga9f93e9bb29adaec31edade457970bf11"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab64e38b148ca23b13bd612e2862e5542"><td class="memItemLeft" align="right" valign="top">CORTIDQCT_MATLAB_EXPORT <br class="typebreak"/>
+CQCT_EXTERN void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#gab64e38b148ca23b13bd612e2862e5542">CQCT_release</a> (<a class="el" href="group__C-API.html#ga3b68cd9dda6620fb2575e8f511b5de7f">Id</a> obj)</td></tr>
+<tr class="separator:gab64e38b148ca23b13bd612e2862e5542"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga401de0cc7f7d499602dea3e14da2da4d"><td class="memItemLeft" align="right" valign="top">CORTIDQCT_MATLAB_EXPORT <br class="typebreak"/>
+CQCT_EXTERN <a class="el" href="group__C-API.html#ga3b68cd9dda6620fb2575e8f511b5de7f">Id</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#ga401de0cc7f7d499602dea3e14da2da4d">CQCT_autorelease</a> (<a class="el" href="group__C-API.html#ga3b68cd9dda6620fb2575e8f511b5de7f">Id</a> obj)</td></tr>
+<tr class="separator:ga401de0cc7f7d499602dea3e14da2da4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae6417a2f677000b2ae1bd3200a2765f4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gae6417a2f677000b2ae1bd3200a2765f4"></a>
+CORTIDQCT_MATLAB_EXPORT <br class="typebreak"/>
+CQCT_EXTERN void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#gae6417a2f677000b2ae1bd3200a2765f4">CQCT_autoreleasePoolPush</a> ()</td></tr>
+<tr class="memdesc:gae6417a2f677000b2ae1bd3200a2765f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a new autorelease pool to the stack. <br/></td></tr>
+<tr class="separator:gae6417a2f677000b2ae1bd3200a2765f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1656af6f7853ba443d539fb2ba99cb73"><td class="memItemLeft" align="right" valign="top">CORTIDQCT_MATLAB_EXPORT <br class="typebreak"/>
+CQCT_EXTERN void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#ga1656af6f7853ba443d539fb2ba99cb73">CQCT_autoreleasePoolPop</a> ()</td></tr>
+<tr class="separator:ga1656af6f7853ba443d539fb2ba99cb73"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="member-group"></a>
 Error type</h2></td></tr>
@@ -120,18 +125,21 @@ Error type</h2></td></tr>
 typedef struct <a class="el" href="structCQCT__Error__t.html">CQCT_Error_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#ga18408ad6c19d73790930b59068bc0d72">CQCT_Error</a></td></tr>
 <tr class="memdesc:ga18408ad6c19d73790930b59068bc0d72"><td class="mdescLeft">&#160;</td><td class="mdescRight">Error type. <br/></td></tr>
 <tr class="separator:ga18408ad6c19d73790930b59068bc0d72"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga138b6afb76af878d3274acff97456c18"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga138b6afb76af878d3274acff97456c18"></a>
-CQCT_EXTERN <a class="el" href="group__C-API.html#ga18408ad6c19d73790930b59068bc0d72">CQCT_Error</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#ga138b6afb76af878d3274acff97456c18">CQCT_createError</a> (enum <a class="el" href="group__C-API.html#gaf9e4e94e2ddc85f00e18d83c7b978291">CQCT_ErrorId</a> id, const char *message)</td></tr>
-<tr class="memdesc:ga138b6afb76af878d3274acff97456c18"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an error object. <br/></td></tr>
-<tr class="separator:ga138b6afb76af878d3274acff97456c18"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga66a5206e21942353761459dd64a62059"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga66a5206e21942353761459dd64a62059"></a>
-CQCT_EXTERN enum <a class="el" href="group__C-API.html#gaf9e4e94e2ddc85f00e18d83c7b978291">CQCT_ErrorId</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#ga66a5206e21942353761459dd64a62059">CQCT_errorType</a> (<a class="el" href="group__C-API.html#ga18408ad6c19d73790930b59068bc0d72">CQCT_Error</a> error)</td></tr>
-<tr class="memdesc:ga66a5206e21942353761459dd64a62059"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the error id. <br/></td></tr>
-<tr class="separator:ga66a5206e21942353761459dd64a62059"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga7ae97be7cb23f427ec22d44b3b217198"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga7ae97be7cb23f427ec22d44b3b217198"></a>
-CQCT_EXTERN const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#ga7ae97be7cb23f427ec22d44b3b217198">CQCT_errorMessage</a> (<a class="el" href="group__C-API.html#ga18408ad6c19d73790930b59068bc0d72">CQCT_Error</a> error)</td></tr>
-<tr class="memdesc:ga7ae97be7cb23f427ec22d44b3b217198"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the error message. <br/></td></tr>
-<tr class="separator:ga7ae97be7cb23f427ec22d44b3b217198"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga464bfa6b96caaf766ffce45a813cced9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga464bfa6b96caaf766ffce45a813cced9"></a>
+CORTIDQCT_MATLAB_EXPORT <br class="typebreak"/>
+CQCT_EXTERN <a class="el" href="group__C-API.html#ga18408ad6c19d73790930b59068bc0d72">CQCT_Error</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#ga464bfa6b96caaf766ffce45a813cced9">CQCT_createError</a> (enum <a class="el" href="group__C-API.html#gaf9e4e94e2ddc85f00e18d83c7b978291">CQCT_ErrorId</a> id, const char *message)</td></tr>
+<tr class="memdesc:ga464bfa6b96caaf766ffce45a813cced9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an error object. <br/></td></tr>
+<tr class="separator:ga464bfa6b96caaf766ffce45a813cced9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8f7f60228164b2d1b39ccfae480af5cb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga8f7f60228164b2d1b39ccfae480af5cb"></a>
+CORTIDQCT_MATLAB_EXPORT <br class="typebreak"/>
+CQCT_EXTERN enum <a class="el" href="group__C-API.html#gaf9e4e94e2ddc85f00e18d83c7b978291">CQCT_ErrorId</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#ga8f7f60228164b2d1b39ccfae480af5cb">CQCT_errorType</a> (<a class="el" href="group__C-API.html#ga18408ad6c19d73790930b59068bc0d72">CQCT_Error</a> error)</td></tr>
+<tr class="memdesc:ga8f7f60228164b2d1b39ccfae480af5cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the error id. <br/></td></tr>
+<tr class="separator:ga8f7f60228164b2d1b39ccfae480af5cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0c885585b92918d5a1d6bb5efb5dd9ff"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga0c885585b92918d5a1d6bb5efb5dd9ff"></a>
+CORTIDQCT_MATLAB_EXPORT <br class="typebreak"/>
+CQCT_EXTERN const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#ga0c885585b92918d5a1d6bb5efb5dd9ff">CQCT_errorMessage</a> (<a class="el" href="group__C-API.html#ga18408ad6c19d73790930b59068bc0d72">CQCT_Error</a> error)</td></tr>
+<tr class="memdesc:ga0c885585b92918d5a1d6bb5efb5dd9ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the error message. <br/></td></tr>
+<tr class="separator:ga0c885585b92918d5a1d6bb5efb5dd9ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="member-group"></a>
 VoxelVolume type</h2></td></tr>
@@ -139,42 +147,51 @@ VoxelVolume type</h2></td></tr>
 typedef struct <a class="el" href="structCQCT__VoxelVolume__t.html">CQCT_VoxelVolume_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#gad69cbc780e25804265d6a8574fa84c4c">CQCT_VoxelVolume</a></td></tr>
 <tr class="memdesc:gad69cbc780e25804265d6a8574fa84c4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Voxel volume handle type. <br/></td></tr>
 <tr class="separator:gad69cbc780e25804265d6a8574fa84c4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gab17122293097efc9b2138cd45625dfcc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gab17122293097efc9b2138cd45625dfcc"></a>
-CQCT_EXTERN <a class="el" href="group__C-API.html#gad69cbc780e25804265d6a8574fa84c4c">CQCT_VoxelVolume</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#gab17122293097efc9b2138cd45625dfcc">CQCT_createVoxelVolume</a> ()</td></tr>
-<tr class="memdesc:gab17122293097efc9b2138cd45625dfcc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an empty voxel volume. <br/></td></tr>
-<tr class="separator:gab17122293097efc9b2138cd45625dfcc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaefe9713a6ed123f76cb16ac2cee6a904"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gaefe9713a6ed123f76cb16ac2cee6a904"></a>
-CQCT_EXTERN int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#gaefe9713a6ed123f76cb16ac2cee6a904">CQCT_voxelVolumeLoadFromFile</a> (<a class="el" href="group__C-API.html#gad69cbc780e25804265d6a8574fa84c4c">CQCT_VoxelVolume</a> volume, const char *filename, <a class="el" href="group__C-API.html#ga18408ad6c19d73790930b59068bc0d72">CQCT_Error</a> *error)</td></tr>
-<tr class="memdesc:gaefe9713a6ed123f76cb16ac2cee6a904"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads the voxel volume from file. <br/></td></tr>
-<tr class="separator:gaefe9713a6ed123f76cb16ac2cee6a904"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga22307fb684f3d2e394da83fe5d83a703"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga22307fb684f3d2e394da83fe5d83a703"></a>
-CQCT_EXTERN size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#ga22307fb684f3d2e394da83fe5d83a703">CQCT_voxelVolumeWidth</a> (<a class="el" href="group__C-API.html#gad69cbc780e25804265d6a8574fa84c4c">CQCT_VoxelVolume</a> volume)</td></tr>
-<tr class="memdesc:ga22307fb684f3d2e394da83fe5d83a703"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the width of the voxel volume. <br/></td></tr>
-<tr class="separator:ga22307fb684f3d2e394da83fe5d83a703"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga8bf7cacb56d65e83b9460d1f675d7a7c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga8bf7cacb56d65e83b9460d1f675d7a7c"></a>
-CQCT_EXTERN size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#ga8bf7cacb56d65e83b9460d1f675d7a7c">CQCT_voxelVolumeHeight</a> (<a class="el" href="group__C-API.html#gad69cbc780e25804265d6a8574fa84c4c">CQCT_VoxelVolume</a> volume)</td></tr>
-<tr class="memdesc:ga8bf7cacb56d65e83b9460d1f675d7a7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the height of the voxel volume. <br/></td></tr>
-<tr class="separator:ga8bf7cacb56d65e83b9460d1f675d7a7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga2170c987f961f6e06909ed6e2251185e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga2170c987f961f6e06909ed6e2251185e"></a>
-CQCT_EXTERN size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#ga2170c987f961f6e06909ed6e2251185e">CQCT_voxelVolumeDepth</a> (<a class="el" href="group__C-API.html#gad69cbc780e25804265d6a8574fa84c4c">CQCT_VoxelVolume</a> volume)</td></tr>
-<tr class="memdesc:ga2170c987f961f6e06909ed6e2251185e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the depth of the voxel volume. <br/></td></tr>
-<tr class="separator:ga2170c987f961f6e06909ed6e2251185e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga18237761909270e77a637c3f543c7cfc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga18237761909270e77a637c3f543c7cfc"></a>
-CQCT_EXTERN float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#ga18237761909270e77a637c3f543c7cfc">CQCT_voxelVolumeVoxelWidth</a> (<a class="el" href="group__C-API.html#gad69cbc780e25804265d6a8574fa84c4c">CQCT_VoxelVolume</a> volume)</td></tr>
-<tr class="memdesc:ga18237761909270e77a637c3f543c7cfc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the width of a voxel. <br/></td></tr>
-<tr class="separator:ga18237761909270e77a637c3f543c7cfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gacae7243b01302736831e6e68359af6d4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gacae7243b01302736831e6e68359af6d4"></a>
-CQCT_EXTERN float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#gacae7243b01302736831e6e68359af6d4">CQCT_voxelVolumeVoxelHeight</a> (<a class="el" href="group__C-API.html#gad69cbc780e25804265d6a8574fa84c4c">CQCT_VoxelVolume</a> volume)</td></tr>
-<tr class="memdesc:gacae7243b01302736831e6e68359af6d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the height of a voxel. <br/></td></tr>
-<tr class="separator:gacae7243b01302736831e6e68359af6d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga2bc0a7a7355e775fc930d5a385bfc3a4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga2bc0a7a7355e775fc930d5a385bfc3a4"></a>
-CQCT_EXTERN float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#ga2bc0a7a7355e775fc930d5a385bfc3a4">CQCT_voxelVolumeVoxelDepth</a> (<a class="el" href="group__C-API.html#gad69cbc780e25804265d6a8574fa84c4c">CQCT_VoxelVolume</a> volume)</td></tr>
-<tr class="memdesc:ga2bc0a7a7355e775fc930d5a385bfc3a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the depth of a voxel. <br/></td></tr>
-<tr class="separator:ga2bc0a7a7355e775fc930d5a385bfc3a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaf4eeb5746a151ace7d6320713537f318"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gaf4eeb5746a151ace7d6320713537f318"></a>
-CQCT_EXTERN size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#gaf4eeb5746a151ace7d6320713537f318">CQCT_voxelVolumeCopyVoxels</a> (<a class="el" href="group__C-API.html#gad69cbc780e25804265d6a8574fa84c4c">CQCT_VoxelVolume</a> volume, float **buffer)</td></tr>
-<tr class="memdesc:gaf4eeb5746a151ace7d6320713537f318"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies the voxel data to the given buffer. <br/></td></tr>
-<tr class="separator:gaf4eeb5746a151ace7d6320713537f318"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad154f6279e4d13a04463bdfdc47dcbef"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gad154f6279e4d13a04463bdfdc47dcbef"></a>
+CORTIDQCT_MATLAB_EXPORT <br class="typebreak"/>
+CQCT_EXTERN <a class="el" href="group__C-API.html#gad69cbc780e25804265d6a8574fa84c4c">CQCT_VoxelVolume</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#gad154f6279e4d13a04463bdfdc47dcbef">CQCT_createVoxelVolume</a> ()</td></tr>
+<tr class="memdesc:gad154f6279e4d13a04463bdfdc47dcbef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an empty voxel volume. <br/></td></tr>
+<tr class="separator:gad154f6279e4d13a04463bdfdc47dcbef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4dbd73db8065d5d188b14bf630842b43"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga4dbd73db8065d5d188b14bf630842b43"></a>
+CORTIDQCT_MATLAB_EXPORT <br class="typebreak"/>
+CQCT_EXTERN int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#ga4dbd73db8065d5d188b14bf630842b43">CQCT_voxelVolumeLoadFromFile</a> (<a class="el" href="group__C-API.html#gad69cbc780e25804265d6a8574fa84c4c">CQCT_VoxelVolume</a> volume, const char *filename, <a class="el" href="group__C-API.html#ga18408ad6c19d73790930b59068bc0d72">CQCT_Error</a> *error)</td></tr>
+<tr class="memdesc:ga4dbd73db8065d5d188b14bf630842b43"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads the voxel volume from file. <br/></td></tr>
+<tr class="separator:ga4dbd73db8065d5d188b14bf630842b43"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaeab0bc33d23007fde34f64ed0cd79229"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gaeab0bc33d23007fde34f64ed0cd79229"></a>
+CORTIDQCT_MATLAB_EXPORT <br class="typebreak"/>
+CQCT_EXTERN size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#gaeab0bc33d23007fde34f64ed0cd79229">CQCT_voxelVolumeWidth</a> (<a class="el" href="group__C-API.html#gad69cbc780e25804265d6a8574fa84c4c">CQCT_VoxelVolume</a> volume)</td></tr>
+<tr class="memdesc:gaeab0bc33d23007fde34f64ed0cd79229"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the width of the voxel volume. <br/></td></tr>
+<tr class="separator:gaeab0bc33d23007fde34f64ed0cd79229"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0de35062937b352bc70f3b17ab1bc908"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga0de35062937b352bc70f3b17ab1bc908"></a>
+CORTIDQCT_MATLAB_EXPORT <br class="typebreak"/>
+CQCT_EXTERN size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#ga0de35062937b352bc70f3b17ab1bc908">CQCT_voxelVolumeHeight</a> (<a class="el" href="group__C-API.html#gad69cbc780e25804265d6a8574fa84c4c">CQCT_VoxelVolume</a> volume)</td></tr>
+<tr class="memdesc:ga0de35062937b352bc70f3b17ab1bc908"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the height of the voxel volume. <br/></td></tr>
+<tr class="separator:ga0de35062937b352bc70f3b17ab1bc908"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7445395a2195502c099e4e7468589601"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga7445395a2195502c099e4e7468589601"></a>
+CORTIDQCT_MATLAB_EXPORT <br class="typebreak"/>
+CQCT_EXTERN size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#ga7445395a2195502c099e4e7468589601">CQCT_voxelVolumeDepth</a> (<a class="el" href="group__C-API.html#gad69cbc780e25804265d6a8574fa84c4c">CQCT_VoxelVolume</a> volume)</td></tr>
+<tr class="memdesc:ga7445395a2195502c099e4e7468589601"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the depth of the voxel volume. <br/></td></tr>
+<tr class="separator:ga7445395a2195502c099e4e7468589601"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5b99117c66bcd83b595b9f40e154e669"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga5b99117c66bcd83b595b9f40e154e669"></a>
+CORTIDQCT_MATLAB_EXPORT <br class="typebreak"/>
+CQCT_EXTERN float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#ga5b99117c66bcd83b595b9f40e154e669">CQCT_voxelVolumeVoxelWidth</a> (<a class="el" href="group__C-API.html#gad69cbc780e25804265d6a8574fa84c4c">CQCT_VoxelVolume</a> volume)</td></tr>
+<tr class="memdesc:ga5b99117c66bcd83b595b9f40e154e669"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the width of a voxel. <br/></td></tr>
+<tr class="separator:ga5b99117c66bcd83b595b9f40e154e669"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga14c6cefdcbea076aad521d81606dace9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga14c6cefdcbea076aad521d81606dace9"></a>
+CORTIDQCT_MATLAB_EXPORT <br class="typebreak"/>
+CQCT_EXTERN float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#ga14c6cefdcbea076aad521d81606dace9">CQCT_voxelVolumeVoxelHeight</a> (<a class="el" href="group__C-API.html#gad69cbc780e25804265d6a8574fa84c4c">CQCT_VoxelVolume</a> volume)</td></tr>
+<tr class="memdesc:ga14c6cefdcbea076aad521d81606dace9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the height of a voxel. <br/></td></tr>
+<tr class="separator:ga14c6cefdcbea076aad521d81606dace9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3257f006a54d0f7a482f01cf642abdfc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga3257f006a54d0f7a482f01cf642abdfc"></a>
+CORTIDQCT_MATLAB_EXPORT <br class="typebreak"/>
+CQCT_EXTERN float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#ga3257f006a54d0f7a482f01cf642abdfc">CQCT_voxelVolumeVoxelDepth</a> (<a class="el" href="group__C-API.html#gad69cbc780e25804265d6a8574fa84c4c">CQCT_VoxelVolume</a> volume)</td></tr>
+<tr class="memdesc:ga3257f006a54d0f7a482f01cf642abdfc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the depth of a voxel. <br/></td></tr>
+<tr class="separator:ga3257f006a54d0f7a482f01cf642abdfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7412c21e30c64204f9f4d5e6548f659f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga7412c21e30c64204f9f4d5e6548f659f"></a>
+CORTIDQCT_MATLAB_EXPORT <br class="typebreak"/>
+CQCT_EXTERN size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#ga7412c21e30c64204f9f4d5e6548f659f">CQCT_voxelVolumeCopyVoxels</a> (<a class="el" href="group__C-API.html#gad69cbc780e25804265d6a8574fa84c4c">CQCT_VoxelVolume</a> volume, float **buffer)</td></tr>
+<tr class="memdesc:ga7412c21e30c64204f9f4d5e6548f659f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies the voxel data to the given buffer. <br/></td></tr>
+<tr class="separator:ga7412c21e30c64204f9f4d5e6548f659f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="member-group"></a>
 Custom Color To Label Map</h2></td></tr>
@@ -190,74 +207,93 @@ Mesh type</h2></td></tr>
 typedef struct <a class="el" href="structCQCT__Mesh__t.html">CQCT_Mesh_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a></td></tr>
 <tr class="memdesc:gab16a5b8d67699346c12ee67d3a5d23e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mesh handle type. <br/></td></tr>
 <tr class="separator:gab16a5b8d67699346c12ee67d3a5d23e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga2bf50e1ad18d66b220307db3c6d096f1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga2bf50e1ad18d66b220307db3c6d096f1"></a>
-CQCT_EXTERN <a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#ga2bf50e1ad18d66b220307db3c6d096f1">CQCT_createMesh</a> ()</td></tr>
-<tr class="memdesc:ga2bf50e1ad18d66b220307db3c6d096f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an empty mesh. <br/></td></tr>
-<tr class="separator:ga2bf50e1ad18d66b220307db3c6d096f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga25823f70bae92b8f2f2f400c20a5318e"><td class="memItemLeft" align="right" valign="top">CQCT_EXTERN <a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#ga25823f70bae92b8f2f2f400c20a5318e">CQCT_meshFromFile</a> (const char *filename, <a class="el" href="group__C-API.html#ga18408ad6c19d73790930b59068bc0d72">CQCT_Error</a> *error)</td></tr>
-<tr class="memdesc:ga25823f70bae92b8f2f2f400c20a5318e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates and loads a mesh from file.  <a href="#ga25823f70bae92b8f2f2f400c20a5318e">More...</a><br/></td></tr>
-<tr class="separator:ga25823f70bae92b8f2f2f400c20a5318e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gacfb4a0b387c4d6e0a029c7da8b06f8da"><td class="memItemLeft" align="right" valign="top">CQCT_EXTERN <a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#gacfb4a0b387c4d6e0a029c7da8b06f8da">CQCT_meshFromFileWithCustomMapping</a> (const char *filename, <a class="el" href="group__C-API.html#ga818a024d31ae2e5d3609432d2e4d17dc">CQCT_ColorToLabelMap</a> map, <a class="el" href="group__C-API.html#ga18408ad6c19d73790930b59068bc0d72">CQCT_Error</a> *error)</td></tr>
-<tr class="memdesc:gacfb4a0b387c4d6e0a029c7da8b06f8da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates and loads a mesh from file using the given custom color to label mapping.  <a href="#gacfb4a0b387c4d6e0a029c7da8b06f8da">More...</a><br/></td></tr>
-<tr class="separator:gacfb4a0b387c4d6e0a029c7da8b06f8da"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gac5fc3c96f6872f14bfa7089088921000"><td class="memItemLeft" align="right" valign="top">CQCT_EXTERN <a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#gac5fc3c96f6872f14bfa7089088921000">CQCT_meshAndLabelsFromFile</a> (const char *meshFilename, const char *labelFilename, <a class="el" href="group__C-API.html#ga18408ad6c19d73790930b59068bc0d72">CQCT_Error</a> *error)</td></tr>
-<tr class="memdesc:gac5fc3c96f6872f14bfa7089088921000"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates and loads a mesh from a mesh and a label file.  <a href="#gac5fc3c96f6872f14bfa7089088921000">More...</a><br/></td></tr>
-<tr class="separator:gac5fc3c96f6872f14bfa7089088921000"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga7e6000262d3551531cf98eb6024d8563"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga7e6000262d3551531cf98eb6024d8563"></a>
-CQCT_EXTERN int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#ga7e6000262d3551531cf98eb6024d8563">CQCT_loadMesh</a> (<a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a> mesh, const char *filename, <a class="el" href="group__C-API.html#ga18408ad6c19d73790930b59068bc0d72">CQCT_Error</a> *error)</td></tr>
-<tr class="memdesc:ga7e6000262d3551531cf98eb6024d8563"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads a mesh from file. <br/></td></tr>
-<tr class="separator:ga7e6000262d3551531cf98eb6024d8563"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga44255075d52e9e6c3acbb68f01c46e4b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga44255075d52e9e6c3acbb68f01c46e4b"></a>
-CQCT_EXTERN int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#ga44255075d52e9e6c3acbb68f01c46e4b">CQCT_loadMeshWithCustomMapping</a> (<a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a> mesh, const char *filename, <a class="el" href="group__C-API.html#ga818a024d31ae2e5d3609432d2e4d17dc">CQCT_ColorToLabelMap</a> map, <a class="el" href="group__C-API.html#ga18408ad6c19d73790930b59068bc0d72">CQCT_Error</a> *error)</td></tr>
-<tr class="memdesc:ga44255075d52e9e6c3acbb68f01c46e4b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads a mesh from file using a custom color to label map. <br/></td></tr>
-<tr class="separator:ga44255075d52e9e6c3acbb68f01c46e4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga0e92c81c4c29f3b9358451062fb629cb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga0e92c81c4c29f3b9358451062fb629cb"></a>
-CQCT_EXTERN int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#ga0e92c81c4c29f3b9358451062fb629cb">CQCT_loadMeshAndLabels</a> (<a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a> mesh, const char *meshFilename, const char *labelFilename, <a class="el" href="group__C-API.html#ga18408ad6c19d73790930b59068bc0d72">CQCT_Error</a> *error)</td></tr>
-<tr class="memdesc:ga0e92c81c4c29f3b9358451062fb629cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads a mesh from mesh and label file. <br/></td></tr>
-<tr class="separator:ga0e92c81c4c29f3b9358451062fb629cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga781f0c6195b2139d3d8de2ad04bd01fa"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga781f0c6195b2139d3d8de2ad04bd01fa"></a>
-CQCT_EXTERN int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#ga781f0c6195b2139d3d8de2ad04bd01fa">CQCT_meshAndLabelsWriteToFile</a> (<a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a> mesh, const char *meshFilename, const char *labelsFilename, <a class="el" href="group__C-API.html#ga18408ad6c19d73790930b59068bc0d72">CQCT_Error</a> *error)</td></tr>
-<tr class="memdesc:ga781f0c6195b2139d3d8de2ad04bd01fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes mesh and labels to seperate files. <br/></td></tr>
-<tr class="separator:ga781f0c6195b2139d3d8de2ad04bd01fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga7511a516b4ec4200cfcb91b58a5dff0a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga7511a516b4ec4200cfcb91b58a5dff0a"></a>
-CQCT_EXTERN size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#ga7511a516b4ec4200cfcb91b58a5dff0a">CQCT_meshVertexCount</a> (<a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a> mesh)</td></tr>
-<tr class="memdesc:ga7511a516b4ec4200cfcb91b58a5dff0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return number of vertices of the given mesh. <br/></td></tr>
-<tr class="separator:ga7511a516b4ec4200cfcb91b58a5dff0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga9e0120ecaed815422b5f3dd10219cf3d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga9e0120ecaed815422b5f3dd10219cf3d"></a>
-CQCT_EXTERN size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#ga9e0120ecaed815422b5f3dd10219cf3d">CQCT_meshTriangleCount</a> (<a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a> mesh)</td></tr>
-<tr class="memdesc:ga9e0120ecaed815422b5f3dd10219cf3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return number of triangles of the given mesh. <br/></td></tr>
-<tr class="separator:ga9e0120ecaed815422b5f3dd10219cf3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaf2e05ae8051ccab8022140211278ae58"><td class="memItemLeft" align="right" valign="top">CQCT_EXTERN size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#gaf2e05ae8051ccab8022140211278ae58">CQCT_meshCopyVertices</a> (<a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a> mesh, float **bufferPtr)</td></tr>
-<tr class="memdesc:gaf2e05ae8051ccab8022140211278ae58"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies the mesh's vertices into the given buffer.  <a href="#gaf2e05ae8051ccab8022140211278ae58">More...</a><br/></td></tr>
-<tr class="separator:gaf2e05ae8051ccab8022140211278ae58"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaa48c1fe736281fb10d4ffce92c60269c"><td class="memItemLeft" align="right" valign="top">CQCT_EXTERN size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#gaa48c1fe736281fb10d4ffce92c60269c">CQCT_meshCopyTriangles</a> (<a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a> mesh, ptrdiff_t **bufferPtr)</td></tr>
-<tr class="memdesc:gaa48c1fe736281fb10d4ffce92c60269c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies the mesh's indices into the given buffer.  <a href="#gaa48c1fe736281fb10d4ffce92c60269c">More...</a><br/></td></tr>
-<tr class="separator:gaa48c1fe736281fb10d4ffce92c60269c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga4e9fa7808b060e9ca453a3e1737fdf0c"><td class="memItemLeft" align="right" valign="top">CQCT_EXTERN size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#ga4e9fa7808b060e9ca453a3e1737fdf0c">CQCT_meshCopyLabels</a> (<a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a> mesh, unsigned int **bufferPtr)</td></tr>
-<tr class="memdesc:ga4e9fa7808b060e9ca453a3e1737fdf0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies the mesh's labels into the given buffer.  <a href="#ga4e9fa7808b060e9ca453a3e1737fdf0c">More...</a><br/></td></tr>
-<tr class="separator:ga4e9fa7808b060e9ca453a3e1737fdf0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1a336f133a8b3494f124529f24d8240b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga1a336f133a8b3494f124529f24d8240b"></a>
+CORTIDQCT_MATLAB_EXPORT <br class="typebreak"/>
+CQCT_EXTERN <a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#ga1a336f133a8b3494f124529f24d8240b">CQCT_createMesh</a> ()</td></tr>
+<tr class="memdesc:ga1a336f133a8b3494f124529f24d8240b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an empty mesh. <br/></td></tr>
+<tr class="separator:ga1a336f133a8b3494f124529f24d8240b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaaeac7052f3e6441bbeb88e261fdc9e4f"><td class="memItemLeft" align="right" valign="top">CORTIDQCT_MATLAB_EXPORT <br class="typebreak"/>
+CQCT_EXTERN <a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#gaaeac7052f3e6441bbeb88e261fdc9e4f">CQCT_meshFromFile</a> (const char *filename, <a class="el" href="group__C-API.html#ga18408ad6c19d73790930b59068bc0d72">CQCT_Error</a> *error)</td></tr>
+<tr class="memdesc:gaaeac7052f3e6441bbeb88e261fdc9e4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates and loads a mesh from file.  <a href="#gaaeac7052f3e6441bbeb88e261fdc9e4f">More...</a><br/></td></tr>
+<tr class="separator:gaaeac7052f3e6441bbeb88e261fdc9e4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2c75cd51aed993e7cb4856ad160187ee"><td class="memItemLeft" align="right" valign="top">CORTIDQCT_MATLAB_EXPORT <br class="typebreak"/>
+CQCT_EXTERN <a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#ga2c75cd51aed993e7cb4856ad160187ee">CQCT_meshFromFileWithCustomMapping</a> (const char *filename, <a class="el" href="group__C-API.html#ga818a024d31ae2e5d3609432d2e4d17dc">CQCT_ColorToLabelMap</a> map, <a class="el" href="group__C-API.html#ga18408ad6c19d73790930b59068bc0d72">CQCT_Error</a> *error)</td></tr>
+<tr class="memdesc:ga2c75cd51aed993e7cb4856ad160187ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates and loads a mesh from file using the given custom color to label mapping.  <a href="#ga2c75cd51aed993e7cb4856ad160187ee">More...</a><br/></td></tr>
+<tr class="separator:ga2c75cd51aed993e7cb4856ad160187ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga06644988a621c2db54d4e1dcd195cccb"><td class="memItemLeft" align="right" valign="top">CORTIDQCT_MATLAB_EXPORT <br class="typebreak"/>
+CQCT_EXTERN <a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#ga06644988a621c2db54d4e1dcd195cccb">CQCT_meshAndLabelsFromFile</a> (const char *meshFilename, const char *labelFilename, <a class="el" href="group__C-API.html#ga18408ad6c19d73790930b59068bc0d72">CQCT_Error</a> *error)</td></tr>
+<tr class="memdesc:ga06644988a621c2db54d4e1dcd195cccb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates and loads a mesh from a mesh and a label file.  <a href="#ga06644988a621c2db54d4e1dcd195cccb">More...</a><br/></td></tr>
+<tr class="separator:ga06644988a621c2db54d4e1dcd195cccb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga227e1a5a4754340c266eb1aa734d5aec"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga227e1a5a4754340c266eb1aa734d5aec"></a>
+CORTIDQCT_MATLAB_EXPORT <br class="typebreak"/>
+CQCT_EXTERN int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#ga227e1a5a4754340c266eb1aa734d5aec">CQCT_loadMesh</a> (<a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a> mesh, const char *filename, <a class="el" href="group__C-API.html#ga18408ad6c19d73790930b59068bc0d72">CQCT_Error</a> *error)</td></tr>
+<tr class="memdesc:ga227e1a5a4754340c266eb1aa734d5aec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads a mesh from file. <br/></td></tr>
+<tr class="separator:ga227e1a5a4754340c266eb1aa734d5aec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga519c88da8946e6ad1ffe7156bf99508d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga519c88da8946e6ad1ffe7156bf99508d"></a>
+CORTIDQCT_MATLAB_EXPORT <br class="typebreak"/>
+CQCT_EXTERN int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#ga519c88da8946e6ad1ffe7156bf99508d">CQCT_loadMeshWithCustomMapping</a> (<a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a> mesh, const char *filename, <a class="el" href="group__C-API.html#ga818a024d31ae2e5d3609432d2e4d17dc">CQCT_ColorToLabelMap</a> map, <a class="el" href="group__C-API.html#ga18408ad6c19d73790930b59068bc0d72">CQCT_Error</a> *error)</td></tr>
+<tr class="memdesc:ga519c88da8946e6ad1ffe7156bf99508d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads a mesh from file using a custom color to label map. <br/></td></tr>
+<tr class="separator:ga519c88da8946e6ad1ffe7156bf99508d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae10880fc88bdfe17c1d9b97684ca12dc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gae10880fc88bdfe17c1d9b97684ca12dc"></a>
+CORTIDQCT_MATLAB_EXPORT <br class="typebreak"/>
+CQCT_EXTERN int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#gae10880fc88bdfe17c1d9b97684ca12dc">CQCT_loadMeshAndLabels</a> (<a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a> mesh, const char *meshFilename, const char *labelFilename, <a class="el" href="group__C-API.html#ga18408ad6c19d73790930b59068bc0d72">CQCT_Error</a> *error)</td></tr>
+<tr class="memdesc:gae10880fc88bdfe17c1d9b97684ca12dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads a mesh from mesh and label file. <br/></td></tr>
+<tr class="separator:gae10880fc88bdfe17c1d9b97684ca12dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga567c343167b68dc0dfd32031f1f8c4e5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga567c343167b68dc0dfd32031f1f8c4e5"></a>
+CORTIDQCT_MATLAB_EXPORT <br class="typebreak"/>
+CQCT_EXTERN int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#ga567c343167b68dc0dfd32031f1f8c4e5">CQCT_meshAndLabelsWriteToFile</a> (<a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a> mesh, const char *meshFilename, const char *labelsFilename, <a class="el" href="group__C-API.html#ga18408ad6c19d73790930b59068bc0d72">CQCT_Error</a> *error)</td></tr>
+<tr class="memdesc:ga567c343167b68dc0dfd32031f1f8c4e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes mesh and labels to seperate files. <br/></td></tr>
+<tr class="separator:ga567c343167b68dc0dfd32031f1f8c4e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga626ad9519883a70310c6b2d19b9d847d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga626ad9519883a70310c6b2d19b9d847d"></a>
+CORTIDQCT_MATLAB_EXPORT <br class="typebreak"/>
+CQCT_EXTERN size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#ga626ad9519883a70310c6b2d19b9d847d">CQCT_meshVertexCount</a> (<a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a> mesh)</td></tr>
+<tr class="memdesc:ga626ad9519883a70310c6b2d19b9d847d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return number of vertices of the given mesh. <br/></td></tr>
+<tr class="separator:ga626ad9519883a70310c6b2d19b9d847d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa38386e2b698b2c4464d981e3b7471b1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gaa38386e2b698b2c4464d981e3b7471b1"></a>
+CORTIDQCT_MATLAB_EXPORT <br class="typebreak"/>
+CQCT_EXTERN size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#gaa38386e2b698b2c4464d981e3b7471b1">CQCT_meshTriangleCount</a> (<a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a> mesh)</td></tr>
+<tr class="memdesc:gaa38386e2b698b2c4464d981e3b7471b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return number of triangles of the given mesh. <br/></td></tr>
+<tr class="separator:gaa38386e2b698b2c4464d981e3b7471b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4a5d7625a579a3704b3e4bd4bcd4ba11"><td class="memItemLeft" align="right" valign="top">CORTIDQCT_MATLAB_EXPORT <br class="typebreak"/>
+CQCT_EXTERN size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#ga4a5d7625a579a3704b3e4bd4bcd4ba11">CQCT_meshCopyVertices</a> (<a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a> mesh, float **bufferPtr)</td></tr>
+<tr class="memdesc:ga4a5d7625a579a3704b3e4bd4bcd4ba11"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies the mesh's vertices into the given buffer.  <a href="#ga4a5d7625a579a3704b3e4bd4bcd4ba11">More...</a><br/></td></tr>
+<tr class="separator:ga4a5d7625a579a3704b3e4bd4bcd4ba11"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga094254847cf7f2f0a183479bb7603e80"><td class="memItemLeft" align="right" valign="top">CORTIDQCT_MATLAB_EXPORT <br class="typebreak"/>
+CQCT_EXTERN size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#ga094254847cf7f2f0a183479bb7603e80">CQCT_meshCopyTriangles</a> (<a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a> mesh, ptrdiff_t **bufferPtr)</td></tr>
+<tr class="memdesc:ga094254847cf7f2f0a183479bb7603e80"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies the mesh's indices into the given buffer.  <a href="#ga094254847cf7f2f0a183479bb7603e80">More...</a><br/></td></tr>
+<tr class="separator:ga094254847cf7f2f0a183479bb7603e80"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6b53482e403d54ba4ddf42a803701a81"><td class="memItemLeft" align="right" valign="top">CORTIDQCT_MATLAB_EXPORT <br class="typebreak"/>
+CQCT_EXTERN size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#ga6b53482e403d54ba4ddf42a803701a81">CQCT_meshCopyLabels</a> (<a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a> mesh, unsigned int **bufferPtr)</td></tr>
+<tr class="memdesc:ga6b53482e403d54ba4ddf42a803701a81"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies the mesh's labels into the given buffer.  <a href="#ga6b53482e403d54ba4ddf42a803701a81">More...</a><br/></td></tr>
+<tr class="separator:ga6b53482e403d54ba4ddf42a803701a81"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="member-group"></a>
 ColorToLabelMap object type</h2></td></tr>
-<tr class="memitem:ga791e6143c6bfd45884e28c021d37377c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga791e6143c6bfd45884e28c021d37377c"></a>
-CQCT_EXTERN <a class="el" href="group__C-API.html#ga818a024d31ae2e5d3609432d2e4d17dc">CQCT_ColorToLabelMap</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#ga791e6143c6bfd45884e28c021d37377c">CQCT_createColorToLabelMap</a> ()</td></tr>
-<tr class="memdesc:ga791e6143c6bfd45884e28c021d37377c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a default color to label map. <br/></td></tr>
-<tr class="separator:ga791e6143c6bfd45884e28c021d37377c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga22cc8565520672e916cdd94678b28a49"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga22cc8565520672e916cdd94678b28a49"></a>
-CQCT_EXTERN int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#ga22cc8565520672e916cdd94678b28a49">CQCT_colorToLabelMapLoadFromFile</a> (<a class="el" href="group__C-API.html#ga818a024d31ae2e5d3609432d2e4d17dc">CQCT_ColorToLabelMap</a> map, const char *filename, <a class="el" href="group__C-API.html#ga18408ad6c19d73790930b59068bc0d72">CQCT_Error</a> *error)</td></tr>
-<tr class="memdesc:ga22cc8565520672e916cdd94678b28a49"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads the mapping from YAML file. <br/></td></tr>
-<tr class="separator:ga22cc8565520672e916cdd94678b28a49"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga32b9f55080f20a1ab32b5a93b402834b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga32b9f55080f20a1ab32b5a93b402834b"></a>
-CQCT_EXTERN size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#ga32b9f55080f20a1ab32b5a93b402834b">CQCT_colorToLabelMapEntryCount</a> (<a class="el" href="group__C-API.html#ga818a024d31ae2e5d3609432d2e4d17dc">CQCT_ColorToLabelMap</a> map)</td></tr>
-<tr class="memdesc:ga32b9f55080f20a1ab32b5a93b402834b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns number of entries of the map. <br/></td></tr>
-<tr class="separator:ga32b9f55080f20a1ab32b5a93b402834b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaae6653c09a24b69970227f6f2be905ef"><td class="memItemLeft" align="right" valign="top">CQCT_EXTERN size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#gaae6653c09a24b69970227f6f2be905ef">CQCT_colorToLabelMapCopyEntries</a> (<a class="el" href="group__C-API.html#ga818a024d31ae2e5d3609432d2e4d17dc">CQCT_ColorToLabelMap</a> map, unsigned int **bufferPtr)</td></tr>
-<tr class="memdesc:gaae6653c09a24b69970227f6f2be905ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies the entries of the map into the given buffer.  <a href="#gaae6653c09a24b69970227f6f2be905ef">More...</a><br/></td></tr>
-<tr class="separator:gaae6653c09a24b69970227f6f2be905ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga218895df804f27795a9da96931eb66f5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga218895df804f27795a9da96931eb66f5"></a>
-CQCT_EXTERN void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#ga218895df804f27795a9da96931eb66f5">CQCT_colorToLabelMapSetEntries</a> (<a class="el" href="group__C-API.html#ga818a024d31ae2e5d3609432d2e4d17dc">CQCT_ColorToLabelMap</a> map, size_t count, const unsigned int *entries)</td></tr>
-<tr class="memdesc:ga218895df804f27795a9da96931eb66f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the entries of the mapping. <br/></td></tr>
-<tr class="separator:ga218895df804f27795a9da96931eb66f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga35bd3e233afd8be3b56120aa3c688db2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga35bd3e233afd8be3b56120aa3c688db2"></a>
+CORTIDQCT_MATLAB_EXPORT <br class="typebreak"/>
+CQCT_EXTERN <br class="typebreak"/>
+<a class="el" href="group__C-API.html#ga818a024d31ae2e5d3609432d2e4d17dc">CQCT_ColorToLabelMap</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#ga35bd3e233afd8be3b56120aa3c688db2">CQCT_createColorToLabelMap</a> ()</td></tr>
+<tr class="memdesc:ga35bd3e233afd8be3b56120aa3c688db2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a default color to label map. <br/></td></tr>
+<tr class="separator:ga35bd3e233afd8be3b56120aa3c688db2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaaf3a29bc3b682c81c23f605b48259c39"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gaaf3a29bc3b682c81c23f605b48259c39"></a>
+CORTIDQCT_MATLAB_EXPORT <br class="typebreak"/>
+CQCT_EXTERN int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#gaaf3a29bc3b682c81c23f605b48259c39">CQCT_colorToLabelMapLoadFromFile</a> (<a class="el" href="group__C-API.html#ga818a024d31ae2e5d3609432d2e4d17dc">CQCT_ColorToLabelMap</a> map, const char *filename, <a class="el" href="group__C-API.html#ga18408ad6c19d73790930b59068bc0d72">CQCT_Error</a> *error)</td></tr>
+<tr class="memdesc:gaaf3a29bc3b682c81c23f605b48259c39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads the mapping from YAML file. <br/></td></tr>
+<tr class="separator:gaaf3a29bc3b682c81c23f605b48259c39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga196bfa53db8ab635004376a1db761008"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga196bfa53db8ab635004376a1db761008"></a>
+CORTIDQCT_MATLAB_EXPORT <br class="typebreak"/>
+CQCT_EXTERN size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#ga196bfa53db8ab635004376a1db761008">CQCT_colorToLabelMapEntryCount</a> (<a class="el" href="group__C-API.html#ga818a024d31ae2e5d3609432d2e4d17dc">CQCT_ColorToLabelMap</a> map)</td></tr>
+<tr class="memdesc:ga196bfa53db8ab635004376a1db761008"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns number of entries of the map. <br/></td></tr>
+<tr class="separator:ga196bfa53db8ab635004376a1db761008"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8b82fa306b30f91bb112e5cef687521c"><td class="memItemLeft" align="right" valign="top">CORTIDQCT_MATLAB_EXPORT <br class="typebreak"/>
+CQCT_EXTERN size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#ga8b82fa306b30f91bb112e5cef687521c">CQCT_colorToLabelMapCopyEntries</a> (<a class="el" href="group__C-API.html#ga818a024d31ae2e5d3609432d2e4d17dc">CQCT_ColorToLabelMap</a> map, unsigned int **bufferPtr)</td></tr>
+<tr class="memdesc:ga8b82fa306b30f91bb112e5cef687521c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies the entries of the map into the given buffer.  <a href="#ga8b82fa306b30f91bb112e5cef687521c">More...</a><br/></td></tr>
+<tr class="separator:ga8b82fa306b30f91bb112e5cef687521c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaaf75be375ffb49e68703a14d6b9cb8b3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gaaf75be375ffb49e68703a14d6b9cb8b3"></a>
+CORTIDQCT_MATLAB_EXPORT <br class="typebreak"/>
+CQCT_EXTERN void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#gaaf75be375ffb49e68703a14d6b9cb8b3">CQCT_colorToLabelMapSetEntries</a> (<a class="el" href="group__C-API.html#ga818a024d31ae2e5d3609432d2e4d17dc">CQCT_ColorToLabelMap</a> map, size_t count, const unsigned int *entries)</td></tr>
+<tr class="memdesc:gaaf75be375ffb49e68703a14d6b9cb8b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the entries of the mapping. <br/></td></tr>
+<tr class="separator:gaaf75be375ffb49e68703a14d6b9cb8b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="member-group"></a>
 MeshFitter object type</h2></td></tr>
@@ -270,28 +306,32 @@ typedef struct <br class="typebreak"/>
 <a class="el" href="structCQCT__MeshFitterResult__t.html">CQCT_MeshFitterResult_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#ga291818d1b742b936e4bfaa28eed06099">CQCT_MeshFitterResult</a></td></tr>
 <tr class="memdesc:ga291818d1b742b936e4bfaa28eed06099"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mesh fitter result object. <br/></td></tr>
 <tr class="separator:ga291818d1b742b936e4bfaa28eed06099"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gadc93d3bbf65d43752337481a502ce4a6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gadc93d3bbf65d43752337481a502ce4a6"></a>
-CQCT_EXTERN <a class="el" href="group__C-API.html#gab05b3b71393719099ff08d8417005cdf">CQCT_MeshFitter</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#gadc93d3bbf65d43752337481a502ce4a6">CQCT_createMeshFitter</a> (const char *filename, <a class="el" href="group__C-API.html#ga18408ad6c19d73790930b59068bc0d72">CQCT_Error</a> *error)</td></tr>
-<tr class="memdesc:gadc93d3bbf65d43752337481a502ce4a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a mesh fitter given the configuration file. <br/></td></tr>
-<tr class="separator:gadc93d3bbf65d43752337481a502ce4a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gad1f6feb7598f0e51cc785bf0a0b3cf85"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gad1f6feb7598f0e51cc785bf0a0b3cf85"></a>
-CQCT_EXTERN <a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#gad1f6feb7598f0e51cc785bf0a0b3cf85">CQCT_meshFitterResultMesh</a> (<a class="el" href="group__C-API.html#ga291818d1b742b936e4bfaa28eed06099">CQCT_MeshFitterResult</a> result)</td></tr>
-<tr class="memdesc:gad1f6feb7598f0e51cc785bf0a0b3cf85"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the result mesh. <br/></td></tr>
-<tr class="separator:gad1f6feb7598f0e51cc785bf0a0b3cf85"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaed43b3031aefb56839eaf0072fcb94bd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gaed43b3031aefb56839eaf0072fcb94bd"></a>
-CQCT_EXTERN <a class="el" href="group__C-API.html#ga291818d1b742b936e4bfaa28eed06099">CQCT_MeshFitterResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#gaed43b3031aefb56839eaf0072fcb94bd">CQCT_meshFitterFit</a> (<a class="el" href="group__C-API.html#gab05b3b71393719099ff08d8417005cdf">CQCT_MeshFitter</a> meshFitter, <a class="el" href="group__C-API.html#gad69cbc780e25804265d6a8574fa84c4c">CQCT_VoxelVolume</a> volume)</td></tr>
-<tr class="memdesc:gaed43b3031aefb56839eaf0072fcb94bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fits the reference mesh to the given voxel volume. <br/></td></tr>
-<tr class="separator:gaed43b3031aefb56839eaf0072fcb94bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac15878571a9f882be8d4a31f91c514e6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gac15878571a9f882be8d4a31f91c514e6"></a>
+CORTIDQCT_MATLAB_EXPORT <br class="typebreak"/>
+CQCT_EXTERN <a class="el" href="group__C-API.html#gab05b3b71393719099ff08d8417005cdf">CQCT_MeshFitter</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#gac15878571a9f882be8d4a31f91c514e6">CQCT_createMeshFitter</a> (const char *filename, <a class="el" href="group__C-API.html#ga18408ad6c19d73790930b59068bc0d72">CQCT_Error</a> *error)</td></tr>
+<tr class="memdesc:gac15878571a9f882be8d4a31f91c514e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a mesh fitter given the configuration file. <br/></td></tr>
+<tr class="separator:gac15878571a9f882be8d4a31f91c514e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9a7ed52d14f97f019bd0b52ba3b3a96a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga9a7ed52d14f97f019bd0b52ba3b3a96a"></a>
+CORTIDQCT_MATLAB_EXPORT <br class="typebreak"/>
+CQCT_EXTERN <a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#ga9a7ed52d14f97f019bd0b52ba3b3a96a">CQCT_meshFitterResultMesh</a> (<a class="el" href="group__C-API.html#ga291818d1b742b936e4bfaa28eed06099">CQCT_MeshFitterResult</a> result)</td></tr>
+<tr class="memdesc:ga9a7ed52d14f97f019bd0b52ba3b3a96a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the result mesh. <br/></td></tr>
+<tr class="separator:ga9a7ed52d14f97f019bd0b52ba3b3a96a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga57b2c98ac385937e9dd96f86119c5685"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga57b2c98ac385937e9dd96f86119c5685"></a>
+CORTIDQCT_MATLAB_EXPORT <br class="typebreak"/>
+CQCT_EXTERN <br class="typebreak"/>
+<a class="el" href="group__C-API.html#ga291818d1b742b936e4bfaa28eed06099">CQCT_MeshFitterResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#ga57b2c98ac385937e9dd96f86119c5685">CQCT_meshFitterFit</a> (<a class="el" href="group__C-API.html#gab05b3b71393719099ff08d8417005cdf">CQCT_MeshFitter</a> meshFitter, <a class="el" href="group__C-API.html#gad69cbc780e25804265d6a8574fa84c4c">CQCT_VoxelVolume</a> volume)</td></tr>
+<tr class="memdesc:ga57b2c98ac385937e9dd96f86119c5685"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fits the reference mesh to the given voxel volume. <br/></td></tr>
+<tr class="separator:ga57b2c98ac385937e9dd96f86119c5685"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>Matlab API for <a class="el" href="namespaceCortidQCT.html" title="Name namespace for CortidQCT library. ">CortidQCT</a>. </p>
 <h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="ga79ca61419a321a949801d9bf15fd1df9"></a>
+<a class="anchor" id="ga401de0cc7f7d499602dea3e14da2da4d"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">CQCT_EXTERN <a class="el" href="group__C-API.html#ga3b68cd9dda6620fb2575e8f511b5de7f">Id</a> CQCT_autorelease </td>
+          <td class="memname">CORTIDQCT_MATLAB_EXPORT CQCT_EXTERN <a class="el" href="group__C-API.html#ga3b68cd9dda6620fb2575e8f511b5de7f">Id</a> CQCT_autorelease </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="group__C-API.html#ga3b68cd9dda6620fb2575e8f511b5de7f">Id</a>&#160;</td>
           <td class="paramname"><em>obj</em></td><td>)</td>
@@ -303,12 +343,12 @@ CQCT_EXTERN <a class="el" href="group__C-API.html#ga291818d1b742b936e4bfaa28eed0
 
 </div>
 </div>
-<a class="anchor" id="gaaef8b9d21f3f1f75bc599509be770bb1"></a>
+<a class="anchor" id="ga1656af6f7853ba443d539fb2ba99cb73"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">CQCT_EXTERN void CQCT_autoreleasePoolPop </td>
+          <td class="memname">CORTIDQCT_MATLAB_EXPORT CQCT_EXTERN void CQCT_autoreleasePoolPop </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -319,12 +359,12 @@ CQCT_EXTERN <a class="el" href="group__C-API.html#ga291818d1b742b936e4bfaa28eed0
 
 </div>
 </div>
-<a class="anchor" id="gaae6653c09a24b69970227f6f2be905ef"></a>
+<a class="anchor" id="ga8b82fa306b30f91bb112e5cef687521c"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">CQCT_EXTERN size_t CQCT_colorToLabelMapCopyEntries </td>
+          <td class="memname">CORTIDQCT_MATLAB_EXPORT CQCT_EXTERN size_t CQCT_colorToLabelMapCopyEntries </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="group__C-API.html#ga818a024d31ae2e5d3609432d2e4d17dc">CQCT_ColorToLabelMap</a>&#160;</td>
           <td class="paramname"><em>map</em>, </td>
@@ -348,12 +388,12 @@ CQCT_EXTERN <a class="el" href="group__C-API.html#ga291818d1b742b936e4bfaa28eed0
 
 </div>
 </div>
-<a class="anchor" id="gac5fc3c96f6872f14bfa7089088921000"></a>
+<a class="anchor" id="ga06644988a621c2db54d4e1dcd195cccb"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">CQCT_EXTERN <a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a> CQCT_meshAndLabelsFromFile </td>
+          <td class="memname">CORTIDQCT_MATLAB_EXPORT CQCT_EXTERN <a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a> CQCT_meshAndLabelsFromFile </td>
           <td>(</td>
           <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>meshFilename</em>, </td>
@@ -393,12 +433,12 @@ CQCT_EXTERN <a class="el" href="group__C-API.html#ga291818d1b742b936e4bfaa28eed0
 
 </div>
 </div>
-<a class="anchor" id="ga4e9fa7808b060e9ca453a3e1737fdf0c"></a>
+<a class="anchor" id="ga6b53482e403d54ba4ddf42a803701a81"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">CQCT_EXTERN size_t CQCT_meshCopyLabels </td>
+          <td class="memname">CORTIDQCT_MATLAB_EXPORT CQCT_EXTERN size_t CQCT_meshCopyLabels </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a>&#160;</td>
           <td class="paramname"><em>mesh</em>, </td>
@@ -418,16 +458,16 @@ CQCT_EXTERN <a class="el" href="group__C-API.html#ga291818d1b742b936e4bfaa28eed0
 </div><div class="memdoc">
 
 <p>Copies the mesh's labels into the given buffer. </p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="group__C-API.html#gaf2e05ae8051ccab8022140211278ae58" title="Copies the mesh&#39;s vertices into the given buffer. ">CQCT_meshCopyVertices()</a> </dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="group__C-API.html#ga05eb883df9fd3095fac9f8b6ce60a4f7" title="Copies the mesh&#39;s vertices into the given buffer. ">CQCT_meshCopyVertices()</a> </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="gaa48c1fe736281fb10d4ffce92c60269c"></a>
+<a class="anchor" id="ga094254847cf7f2f0a183479bb7603e80"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">CQCT_EXTERN size_t CQCT_meshCopyTriangles </td>
+          <td class="memname">CORTIDQCT_MATLAB_EXPORT CQCT_EXTERN size_t CQCT_meshCopyTriangles </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a>&#160;</td>
           <td class="paramname"><em>mesh</em>, </td>
@@ -447,16 +487,16 @@ CQCT_EXTERN <a class="el" href="group__C-API.html#ga291818d1b742b936e4bfaa28eed0
 </div><div class="memdoc">
 
 <p>Copies the mesh's indices into the given buffer. </p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="group__C-API.html#gaf2e05ae8051ccab8022140211278ae58" title="Copies the mesh&#39;s vertices into the given buffer. ">CQCT_meshCopyVertices()</a> </dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="group__C-API.html#ga05eb883df9fd3095fac9f8b6ce60a4f7" title="Copies the mesh&#39;s vertices into the given buffer. ">CQCT_meshCopyVertices()</a> </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="gaf2e05ae8051ccab8022140211278ae58"></a>
+<a class="anchor" id="ga4a5d7625a579a3704b3e4bd4bcd4ba11"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">CQCT_EXTERN size_t CQCT_meshCopyVertices </td>
+          <td class="memname">CORTIDQCT_MATLAB_EXPORT CQCT_EXTERN size_t CQCT_meshCopyVertices </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a>&#160;</td>
           <td class="paramname"><em>mesh</em>, </td>
@@ -489,12 +529,12 @@ CQCT_EXTERN <a class="el" href="group__C-API.html#ga291818d1b742b936e4bfaa28eed0
 
 </div>
 </div>
-<a class="anchor" id="ga25823f70bae92b8f2f2f400c20a5318e"></a>
+<a class="anchor" id="gaaeac7052f3e6441bbeb88e261fdc9e4f"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">CQCT_EXTERN <a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a> CQCT_meshFromFile </td>
+          <td class="memname">CORTIDQCT_MATLAB_EXPORT CQCT_EXTERN <a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a> CQCT_meshFromFile </td>
           <td>(</td>
           <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>filename</em>, </td>
@@ -527,12 +567,12 @@ CQCT_EXTERN <a class="el" href="group__C-API.html#ga291818d1b742b936e4bfaa28eed0
 
 </div>
 </div>
-<a class="anchor" id="gacfb4a0b387c4d6e0a029c7da8b06f8da"></a>
+<a class="anchor" id="ga2c75cd51aed993e7cb4856ad160187ee"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">CQCT_EXTERN <a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a> CQCT_meshFromFileWithCustomMapping </td>
+          <td class="memname">CORTIDQCT_MATLAB_EXPORT CQCT_EXTERN <a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a> CQCT_meshFromFileWithCustomMapping </td>
           <td>(</td>
           <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>filename</em>, </td>
@@ -572,12 +612,12 @@ CQCT_EXTERN <a class="el" href="group__C-API.html#ga291818d1b742b936e4bfaa28eed0
 
 </div>
 </div>
-<a class="anchor" id="gaece70c037de46f4b30cc6f426a470c30"></a>
+<a class="anchor" id="gab64e38b148ca23b13bd612e2862e5542"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">CQCT_EXTERN void CQCT_release </td>
+          <td class="memname">CORTIDQCT_MATLAB_EXPORT CQCT_EXTERN void CQCT_release </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="group__C-API.html#ga3b68cd9dda6620fb2575e8f511b5de7f">Id</a>&#160;</td>
           <td class="paramname"><em>obj</em></td><td>)</td>
@@ -592,7 +632,7 @@ CQCT_EXTERN <a class="el" href="group__C-API.html#ga291818d1b742b936e4bfaa28eed0
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Jan 16 2019 12:09:49 for CortidQCT by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Jan 16 2019 13:51:45 for CortidQCT by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
