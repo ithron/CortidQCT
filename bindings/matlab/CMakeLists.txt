@@ -26,7 +26,10 @@ target_include_directories(matlab-bindings
 )
 
 target_link_libraries(matlab-bindings PRIVATE CortidQCT::Bindings::C)
-set_target_properties(matlab-bindings PROPERTIES OUTPUT_NAME "CortidQCT-Matlab")
+set_target_properties(matlab-bindings PROPERTIES
+  OUTPUT_NAME "CortidQCT-Matlab"
+  WINDOWS_EXPORT_ALL_SYMBOLS ON
+)
 
 add_library(CortidQCT::Bindings::Matlab ALIAS matlab-bindings)
 
