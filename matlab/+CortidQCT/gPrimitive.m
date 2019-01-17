@@ -11,7 +11,7 @@ function y = gPrimitive(t, theta, GTable)
 %            You may use, distribute and modify this code under the terms of¬
 %            the AFL 3.0 license; see LICENSE for full license details.
 
-yLin = interp2(GTable.x, GTable.y, GTable.values, t(:), theta(:));
+yLin = interp2(GTable.x, GTable.y, GTable.primitiveValues, t(:), theta(:));
 
 y = reshape(yLin, size(t));
 

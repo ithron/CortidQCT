@@ -11,7 +11,10 @@
 
 #pragma once
 
+#include "DisplacementOptimizer.h"
 #include "MeshFitter.h"
+#include "MeshHelpers.h"
+#include "WeightedARAPFitter.h"
 
 namespace CortidQCT {
 
@@ -36,9 +39,19 @@ public:
       : fitter_(rhsFitter) {}
 
 protected:
-  MeshFitter::Result fit(VoxelVolume const &volume);
+  MeshFitter::Result fit(VoxelVolume const &volume) const;
+  MeshFitter::State init(VoxelVolume const &volume) const;
+  void fitOneIteration(MeshFitter::State &state) const;
+
+  void findOptimalDisplacements(MeshFitter::State &state) const;
+  void findOptimalDeformation(MeshFitter::State &state) const;
+  void sampleVolume(MeshFitter::State &state) const;
+  void computeLogLikelihood(MeshFitter::State &state) const;
+  void checkConvergence(MeshFitter::State &state) const;
 
   MeshFitter &fitter_;
+
+  std::optional<Result> result_;
 };
 
 } // namespace CortidQCT

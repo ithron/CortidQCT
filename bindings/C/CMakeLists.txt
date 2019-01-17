@@ -21,6 +21,7 @@ add_library(C-Bindings-Objects OBJECT
   src/Error.cpp
   src/Mesh.cpp
   src/MeshFitter.cpp
+  src/MeshFitterState.cpp
   src/ObjectBase.cpp
   src/VoxelVolume.cpp
 )
@@ -44,6 +45,7 @@ target_link_libraries(C-Bindings PRIVATE
 target_include_directories(C-Bindings-Objects
   PRIVATE
     $<TARGET_PROPERTY:C-Bindings,INCLUDE_DIRECTORIES>
+    $<TARGET_PROPERTY:CortidQCT::PrivateAPI,INTERFACE_INCLUDE_DIRECTORIES>
 )
 target_compile_definitions(C-Bindings-Objects
   PRIVATE

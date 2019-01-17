@@ -32,8 +32,8 @@ int main(int argc, char **argv) {
 
     auto const result = fitter.fit(volume);
 
-    if (result.deformedMesh) {
-      auto const &mesh = *result.deformedMesh;
+    if (result.success) {
+      auto const &mesh = result.deformedMesh;
       auto outLabels = "/dev/null"s;
 
       if (argc == 5) { outLabels = argv[4]; }

@@ -41,7 +41,7 @@ configure_package_config_file(
   INSTALL_DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/CortidQCT/cmake
 )
 
-export(EXPORT CortidQCTExport
+export(EXPORT CortidQCTExport NAMESPACE CortidQCT::
   FILE "${CMAKE_BINARY_DIR}/CortidQCTExport.cmake"
 )
 install(EXPORT CortidQCTExport NAMESPACE CortidQCT::

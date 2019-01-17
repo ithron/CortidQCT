@@ -10,32 +10,87 @@ function GTable = genGTable(s, sliceThickness)
 %            You may use, distribute and modify this code under the terms of¬
 %            the AFL 3.0 license; see LICENSE for full license details.
 
-N = 1e4;
-
-% range = max(norminv(1 - 1e-12) * s, sliceThickness);
 range = max(7.034487 * s, 2 * sliceThickness);
+dx = 1e-3;
+range = ceil(range / dx) * dx;
+x = -range:dx:range;
+th = linspace(0, pi/2, 91);
 
-x = linspace(-range, range, N + 1);
-y = linspace(0, pi/2, 91);
+[X, Th] = meshgrid(x, th);
 
-delta = x(2) - x(1);
+dirac = zeros(size(X));
+dirac(X == 0) = 1;
 
-[X, Y] = meshgrid(x, y);
+ip = CortidQCT.gi(X, s .* sin(Th));
+ip = ip ./ sum(ip, 2);
+oop = CortidQCT.go(X ./ (sliceThickness * cos(Th))) ./ cos(Th);
+oop = oop ./ sum(oop, 2);
 
-evalG = CortidQCT.g(X, Y, s, 2 * sliceThickness);
+ipSingIdx = any(~isfinite(ip), 2);
+oopSingIdx = any(~isfinite(oop) | oop > 2/dx, 2);
+ip(ipSingIdx, :) = dirac(ipSingIdx, :);
+oop(oopSingIdx, :) = dirac(oopSingIdx, :);
 
-% evalG = bsxfun(@(a, b) g(a, b, s, sliceThickness), x', y);
+% zero pad signals
+% 2 * K + 1 = size of signal before padding
+K = floor(size(ip, 2) / 2);
+padding = zeros(size(ip, 1), K);
 
-values = cumsum(evalG, 2) * delta;
+ip = [padding, ip, padding];
+oop = [padding, oop, padding];
 
-GTable = struct();
-GTable.values = single(values);
+% Compute convolution using FFT
+
+IP = fft(ifftshift(ip, 2), [], 2);
+OOP = fft(ifftshift(oop, 2), [], 2);
+
+Y = IP .* OOP;
+Ysq = Y .* conj(Y);
+
+yValues = fftshift(ifft(Y, [], 2), 2) / dx;
+autoCorrValues = fftshift(ifft(Ysq, [], 2), 2) / dx;
+
+% Remove padding
+yValues = yValues(:, K + 1 : end - K);
+autoCorrValues = autoCorrValues(:, K + 1 : end - K);
+
+% Ensure the PSF is non negative. This is done by exploiting the fact that
+% the PSF is monotonically decreasing for x>0. If there exists a x' so that
+% the PSF(x') > PSF(x) for all x > 0, then the numeric precision is not
+% sufficient at all points x >= x'. So it is safe to set all values
+% PSF(abs(x) > x') to zero.
+% The same applies for the autocorrelation.
+
+yDiff = diff(yValues(:, K+1:end), [], 2);
+acDiff = diff(autoCorrValues(:, K+1:end), [], 2);
+for ii=1:size(yValues, 1)
+  xZero = x(K+find(yDiff(ii, :) > 0, 1));
+  xZeroAC = x(K+find(acDiff(ii, :) > 0, 1));
+  
+  if not(isempty(xZero))
+    yValues(ii, abs(x) >= xZero) = 0;
+  end
+  if not(isempty(xZeroAC))
+    autoCorrValues(ii, abs(x) >= xZeroAC) = 0;
+  end
+end
+
+% Ensure symmetry
+yValues(:, 1:K) = yValues(:, end:-1:K+2);
+autoCorrValues(:, 1:K) = autoCorrValues(:, end:-1:K+2);
+
+% Construct table
+GTable = struct;
 GTable.x = single(x);
-GTable.y = single(y);
+GTable.dx = single(dx);
+GTable.y = single(th);
 GTable.sigma = single(s);
 GTable.sliceThickness = single(sliceThickness);
-GTable.minX = single(-range);
-GTable.maxX = single(range);
+GTable.minX = single(min(x));
+GTable.maxX = single(max(x));
+GTable.values = single(yValues);
+GTable.primitiveValues = single(cumsum(yValues, 2) * dx);
+GTable.autocorrelationValues = single(autoCorrValues);
 
 end
 
