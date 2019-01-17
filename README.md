@@ -8,19 +8,14 @@ This software is based on
 
 ## Binary Releases
 
-Version | File | OS | Comment
--------:|:----:|:--:|:-------
-**v1.2.1**  |  [CortidQCT-v1.2.1-win64.zip](https://github.com/ithron/CortidQCT/releases/download/v1.2.1/CortidQCT-v1.2.1-win64.zip) | Windows x64| CLI, C++ library, C bindings, MATLAB bindings, headers, Matlab toolbox
- &nbsp;  | [CortidQCT-v1.2.1-macOS-Mojave.zip](https://github.com/ithron/CortidQCT/releases/download/v1.2.1/CortidQCT-v1.2.1-macOS-Mojave.zip) | macOS Mojave |
-&nbsp; | [CortidQCT-v1.2.1-x86_64-linux-gnu-ubuntu-18.04.tar.gz](https://github.com/ithron/CortidQCT/releases/download/v1.2.1/CortidQCT-v1.2.1-x86_64-linux-gnu-ubuntu-18.04.tar.gz) | Ubuntu Linux 18.04 x86_64 |
-&nbsp; | [CortidQCT-v1.2.1.mltbx](https://github.com/ithron/CortidQCT/releases/download/v1.2.1/CortidQCT-v1.2.1.mltbx) | Windows x64, Ubuntu Linux 18.04 x86_64, macOS Mojave | Ready to install MATLAB toolbox, 64bit
-v1.2.0  |  [CortidQCT-v1.2.0-win64.zip](https://github.com/ithron/CortidQCT/releases/download/v1.2.0/CortidQCT-v1.2.0-win64.zip) | Windows x64| CLI, C++ library, C bindings, MATLAB bindings, headers, Matlab toolbox
- &nbsp;  | [CortidQCT-v1.2.0-macOS-Mojave.zip](https://github.com/ithron/CortidQCT/releases/download/v1.2.0/CortidQCT-v1.2.0-macOS-Mojave.zip) | macOS Mojave |
-&nbsp; | [CortidQCT-v1.2.0-x86_64-linux-gnu-ubuntu-18.04.tar.gz](https://github.com/ithron/CortidQCT/releases/download/v1.2.0/CortidQCT-v1.2.0-x86_64-linux-gnu-ubuntu-18.04.tar.gz) | Ubuntu Linux 18.04 x86_64 |
-&nbsp; | [CortidQCT-v1.2.0.mltbx](https://github.com/ithron/CortidQCT/releases/download/v1.2.0/CortidQCT-v1.2.0.mltbx) | Windows x64, Ubuntu Linux 18.04 x86_64, macOS Mojave | Ready to install MATLAB toolbox, 64bit
-v1.1.0  |  [CortidQCT-v1.1.0-Windows-x64.zip](https://github.com/ithron/CortidQCT/releases/download/v1.1.0/CortidQCT-v1.1.0-Windows-x64.zip) | Windows x64 | Complete: CLI, C++ library, C bindings, headers, Matlab toolbox
-v1.0.1  |  [CortidQCT-v1.0.1-Windows-x64.zip](https://github.com/ithron/CortidQCT/releases/download/v1.0.1/CortidQCT-v1.0.1-Windows-x64.zip) | Windows x64 | Complete: CLI, library, headers, Matlab toolbox
-v1.0.0  | [CortidQCT_CLI-1.0.0-Windows-x64.zip](https://github.com/ithron/CortidQCT/releases/download/v1.0.0/CortidQCT_CLI-1.0.0-Windows-x64.zip) | Windows x64 | CLI binary only
+The current release is **v1.2.2**:
+
+- [CortidQCT-v1.2.2-win64.zip](https://github.com/ithron/CortidQCT/releases/download/v1.2.2/CortidQCT-v1.2.2-win64.zip) Windows x64 binary release
+- [CortidQCT-v1.2.2-macOS-Mojave.zip](https://github.com/ithron/CortidQCT/releases/download/v1.2.2/CortidQCT-v1.2.2-macOS-Mojave.zip) macOS Mojave binary release
+- [CortidQCT-v1.2.2-x86_64-linux-gnu-ubuntu-18.04.tar.gz](https://github.com/ithron/CortidQCT/releases/download/v1.2.2/CortidQCT-v1.2.2-x86_64-linux-gnu-ubuntu-18.04.tar.gz) Ubuntu Linux 18.04 x86_64 binary release
+- [CortidQCT-v1.2.2.mltbx](https://github.com/ithron/CortidQCT/releases/download/v1.2.2/CortidQCT-v1.2.2.mltbx) MATLAB toolbox
+
+Older releases can be found [here](https://github.com/ithron/CortidQCT/releases).
 
 ## Build from Source
 The build instructions below are for *NIX (Unix/Linux/macOS) systems only.
