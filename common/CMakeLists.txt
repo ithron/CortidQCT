@@ -26,12 +26,6 @@ option(CortidQCT_WITH_WERROR "Treat warnings as errors" ON)
 ############################
 # Targets
 
-project(
-  CortidQCT-Common
-  VERSION 1.0.0
-  LANGUAGES CXX
-)
-
 add_library(Common INTERFACE)
 
 target_compile_features(Common
