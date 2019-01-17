@@ -97,7 +97,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p>This file contains the C API definition.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;stddef.h&gt;</code><br/>
-<code>#include &quot;cortidqct-c_export.h&quot;</code><br/>
 </div>
 <p><a href="bindings_2C_2include_2CortidQCT_2C_2CortidQCT_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -122,28 +121,25 @@ typedef struct <br class="typebreak"/>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr><td colspan="2"><div class="groupHeader">ColorToLabelMap object type</div></td></tr>
-<tr class="memitem:gaccc57bd8f194a82b026e4c10dbfd4726"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gaccc57bd8f194a82b026e4c10dbfd4726"></a>
-CORTIDQCT_C_EXPORT CQCT_EXTERN <br class="typebreak"/>
-<a class="el" href="group__C-API.html#ga818a024d31ae2e5d3609432d2e4d17dc">CQCT_ColorToLabelMap</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#gaccc57bd8f194a82b026e4c10dbfd4726">CQCT_createColorToLabelMap</a> ()</td></tr>
-<tr class="memdesc:gaccc57bd8f194a82b026e4c10dbfd4726"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a default color to label map. <br/></td></tr>
-<tr class="separator:gaccc57bd8f194a82b026e4c10dbfd4726"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaf7b82a5465588e1eec7c9f76a311704c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gaf7b82a5465588e1eec7c9f76a311704c"></a>
-CORTIDQCT_C_EXPORT CQCT_EXTERN int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#gaf7b82a5465588e1eec7c9f76a311704c">CQCT_colorToLabelMapLoadFromFile</a> (<a class="el" href="group__C-API.html#ga818a024d31ae2e5d3609432d2e4d17dc">CQCT_ColorToLabelMap</a> map, const char *filename, <a class="el" href="group__C-API.html#ga18408ad6c19d73790930b59068bc0d72">CQCT_Error</a> *error)</td></tr>
-<tr class="memdesc:gaf7b82a5465588e1eec7c9f76a311704c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads the mapping from YAML file. <br/></td></tr>
-<tr class="separator:gaf7b82a5465588e1eec7c9f76a311704c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaa609b9eb0fdb5e1f80aa8dc3f498fe34"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gaa609b9eb0fdb5e1f80aa8dc3f498fe34"></a>
-CORTIDQCT_C_EXPORT CQCT_EXTERN <br class="typebreak"/>
-size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#gaa609b9eb0fdb5e1f80aa8dc3f498fe34">CQCT_colorToLabelMapEntryCount</a> (<a class="el" href="group__C-API.html#ga818a024d31ae2e5d3609432d2e4d17dc">CQCT_ColorToLabelMap</a> map)</td></tr>
-<tr class="memdesc:gaa609b9eb0fdb5e1f80aa8dc3f498fe34"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns number of entries of the map. <br/></td></tr>
-<tr class="separator:gaa609b9eb0fdb5e1f80aa8dc3f498fe34"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaf4d5c7235e1afd2d908b7f73bdaed587"><td class="memItemLeft" align="right" valign="top">CORTIDQCT_C_EXPORT CQCT_EXTERN <br class="typebreak"/>
-size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#gaf4d5c7235e1afd2d908b7f73bdaed587">CQCT_colorToLabelMapCopyEntries</a> (<a class="el" href="group__C-API.html#ga818a024d31ae2e5d3609432d2e4d17dc">CQCT_ColorToLabelMap</a> map, unsigned int **bufferPtr)</td></tr>
-<tr class="memdesc:gaf4d5c7235e1afd2d908b7f73bdaed587"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies the entries of the map into the given buffer.  <a href="group__C-API.html#gaf4d5c7235e1afd2d908b7f73bdaed587">More...</a><br/></td></tr>
-<tr class="separator:gaf4d5c7235e1afd2d908b7f73bdaed587"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gac378c4fc96e0783e767a0182ac281999"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gac378c4fc96e0783e767a0182ac281999"></a>
-CORTIDQCT_C_EXPORT CQCT_EXTERN void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#gac378c4fc96e0783e767a0182ac281999">CQCT_colorToLabelMapSetEntries</a> (<a class="el" href="group__C-API.html#ga818a024d31ae2e5d3609432d2e4d17dc">CQCT_ColorToLabelMap</a> map, size_t count, const unsigned int *entries)</td></tr>
-<tr class="memdesc:gac378c4fc96e0783e767a0182ac281999"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the entries of the mapping. <br/></td></tr>
-<tr class="separator:gac378c4fc96e0783e767a0182ac281999"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga791e6143c6bfd45884e28c021d37377c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga791e6143c6bfd45884e28c021d37377c"></a>
+CQCT_EXTERN <a class="el" href="group__C-API.html#ga818a024d31ae2e5d3609432d2e4d17dc">CQCT_ColorToLabelMap</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#ga791e6143c6bfd45884e28c021d37377c">CQCT_createColorToLabelMap</a> ()</td></tr>
+<tr class="memdesc:ga791e6143c6bfd45884e28c021d37377c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a default color to label map. <br/></td></tr>
+<tr class="separator:ga791e6143c6bfd45884e28c021d37377c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga22cc8565520672e916cdd94678b28a49"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga22cc8565520672e916cdd94678b28a49"></a>
+CQCT_EXTERN int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#ga22cc8565520672e916cdd94678b28a49">CQCT_colorToLabelMapLoadFromFile</a> (<a class="el" href="group__C-API.html#ga818a024d31ae2e5d3609432d2e4d17dc">CQCT_ColorToLabelMap</a> map, const char *filename, <a class="el" href="group__C-API.html#ga18408ad6c19d73790930b59068bc0d72">CQCT_Error</a> *error)</td></tr>
+<tr class="memdesc:ga22cc8565520672e916cdd94678b28a49"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads the mapping from YAML file. <br/></td></tr>
+<tr class="separator:ga22cc8565520672e916cdd94678b28a49"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga32b9f55080f20a1ab32b5a93b402834b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga32b9f55080f20a1ab32b5a93b402834b"></a>
+CQCT_EXTERN size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#ga32b9f55080f20a1ab32b5a93b402834b">CQCT_colorToLabelMapEntryCount</a> (<a class="el" href="group__C-API.html#ga818a024d31ae2e5d3609432d2e4d17dc">CQCT_ColorToLabelMap</a> map)</td></tr>
+<tr class="memdesc:ga32b9f55080f20a1ab32b5a93b402834b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns number of entries of the map. <br/></td></tr>
+<tr class="separator:ga32b9f55080f20a1ab32b5a93b402834b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaae6653c09a24b69970227f6f2be905ef"><td class="memItemLeft" align="right" valign="top">CQCT_EXTERN size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#gaae6653c09a24b69970227f6f2be905ef">CQCT_colorToLabelMapCopyEntries</a> (<a class="el" href="group__C-API.html#ga818a024d31ae2e5d3609432d2e4d17dc">CQCT_ColorToLabelMap</a> map, unsigned int **bufferPtr)</td></tr>
+<tr class="memdesc:gaae6653c09a24b69970227f6f2be905ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies the entries of the map into the given buffer.  <a href="group__C-API.html#gaae6653c09a24b69970227f6f2be905ef">More...</a><br/></td></tr>
+<tr class="separator:gaae6653c09a24b69970227f6f2be905ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga218895df804f27795a9da96931eb66f5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga218895df804f27795a9da96931eb66f5"></a>
+CQCT_EXTERN void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#ga218895df804f27795a9da96931eb66f5">CQCT_colorToLabelMapSetEntries</a> (<a class="el" href="group__C-API.html#ga818a024d31ae2e5d3609432d2e4d17dc">CQCT_ColorToLabelMap</a> map, size_t count, const unsigned int *entries)</td></tr>
+<tr class="memdesc:ga218895df804f27795a9da96931eb66f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the entries of the mapping. <br/></td></tr>
+<tr class="separator:ga218895df804f27795a9da96931eb66f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="member-group"></a>
 Generic Functions / Object Type</h2></td></tr>
@@ -151,20 +147,20 @@ Generic Functions / Object Type</h2></td></tr>
 typedef void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#ga3b68cd9dda6620fb2575e8f511b5de7f">Id</a></td></tr>
 <tr class="memdesc:ga3b68cd9dda6620fb2575e8f511b5de7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generic 'object' type. <br/></td></tr>
 <tr class="separator:ga3b68cd9dda6620fb2575e8f511b5de7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaf5fdee59e055898c17f170ab3e9f7949"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gaf5fdee59e055898c17f170ab3e9f7949"></a>
-CORTIDQCT_C_EXPORT CQCT_EXTERN <a class="el" href="group__C-API.html#ga3b68cd9dda6620fb2575e8f511b5de7f">Id</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#gaf5fdee59e055898c17f170ab3e9f7949">CQCT_retain</a> (<a class="el" href="group__C-API.html#ga3b68cd9dda6620fb2575e8f511b5de7f">Id</a> obj)</td></tr>
-<tr class="memdesc:gaf5fdee59e055898c17f170ab3e9f7949"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retains an object, i.e. increments its retain count. <br/></td></tr>
-<tr class="separator:gaf5fdee59e055898c17f170ab3e9f7949"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga57254012be36fe67f62c01fa56af5a54"><td class="memItemLeft" align="right" valign="top">CORTIDQCT_C_EXPORT CQCT_EXTERN void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#ga57254012be36fe67f62c01fa56af5a54">CQCT_release</a> (<a class="el" href="group__C-API.html#ga3b68cd9dda6620fb2575e8f511b5de7f">Id</a> obj)</td></tr>
-<tr class="separator:ga57254012be36fe67f62c01fa56af5a54"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaf149633e9627fdb831d3e58bfc5001dc"><td class="memItemLeft" align="right" valign="top">CORTIDQCT_C_EXPORT CQCT_EXTERN <a class="el" href="group__C-API.html#ga3b68cd9dda6620fb2575e8f511b5de7f">Id</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#gaf149633e9627fdb831d3e58bfc5001dc">CQCT_autorelease</a> (<a class="el" href="group__C-API.html#ga3b68cd9dda6620fb2575e8f511b5de7f">Id</a> obj)</td></tr>
-<tr class="separator:gaf149633e9627fdb831d3e58bfc5001dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga394dfc780f735c547bec46249edc385a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga394dfc780f735c547bec46249edc385a"></a>
-CORTIDQCT_C_EXPORT CQCT_EXTERN void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#ga394dfc780f735c547bec46249edc385a">CQCT_autoreleasePoolPush</a> ()</td></tr>
-<tr class="memdesc:ga394dfc780f735c547bec46249edc385a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a new autorelease pool to the stack. <br/></td></tr>
-<tr class="separator:ga394dfc780f735c547bec46249edc385a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga077145f9ee3f90d37240d9340d90d674"><td class="memItemLeft" align="right" valign="top">CORTIDQCT_C_EXPORT CQCT_EXTERN void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#ga077145f9ee3f90d37240d9340d90d674">CQCT_autoreleasePoolPop</a> ()</td></tr>
-<tr class="separator:ga077145f9ee3f90d37240d9340d90d674"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad9b809bd9a5eda2dc6564f44f70fd90c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gad9b809bd9a5eda2dc6564f44f70fd90c"></a>
+CQCT_EXTERN <a class="el" href="group__C-API.html#ga3b68cd9dda6620fb2575e8f511b5de7f">Id</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#gad9b809bd9a5eda2dc6564f44f70fd90c">CQCT_retain</a> (<a class="el" href="group__C-API.html#ga3b68cd9dda6620fb2575e8f511b5de7f">Id</a> obj)</td></tr>
+<tr class="memdesc:gad9b809bd9a5eda2dc6564f44f70fd90c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retains an object, i.e. increments its retain count. <br/></td></tr>
+<tr class="separator:gad9b809bd9a5eda2dc6564f44f70fd90c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaece70c037de46f4b30cc6f426a470c30"><td class="memItemLeft" align="right" valign="top">CQCT_EXTERN void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#gaece70c037de46f4b30cc6f426a470c30">CQCT_release</a> (<a class="el" href="group__C-API.html#ga3b68cd9dda6620fb2575e8f511b5de7f">Id</a> obj)</td></tr>
+<tr class="separator:gaece70c037de46f4b30cc6f426a470c30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga79ca61419a321a949801d9bf15fd1df9"><td class="memItemLeft" align="right" valign="top">CQCT_EXTERN <a class="el" href="group__C-API.html#ga3b68cd9dda6620fb2575e8f511b5de7f">Id</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#ga79ca61419a321a949801d9bf15fd1df9">CQCT_autorelease</a> (<a class="el" href="group__C-API.html#ga3b68cd9dda6620fb2575e8f511b5de7f">Id</a> obj)</td></tr>
+<tr class="separator:ga79ca61419a321a949801d9bf15fd1df9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae12bf45b47cd386f63e9edb2f500994d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gae12bf45b47cd386f63e9edb2f500994d"></a>
+CQCT_EXTERN void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#gae12bf45b47cd386f63e9edb2f500994d">CQCT_autoreleasePoolPush</a> ()</td></tr>
+<tr class="memdesc:gae12bf45b47cd386f63e9edb2f500994d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a new autorelease pool to the stack. <br/></td></tr>
+<tr class="separator:gae12bf45b47cd386f63e9edb2f500994d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaaef8b9d21f3f1f75bc599509be770bb1"><td class="memItemLeft" align="right" valign="top">CQCT_EXTERN void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#gaaef8b9d21f3f1f75bc599509be770bb1">CQCT_autoreleasePoolPop</a> ()</td></tr>
+<tr class="separator:gaaef8b9d21f3f1f75bc599509be770bb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="member-group"></a>
 Error type</h2></td></tr>
@@ -179,21 +175,18 @@ Error type</h2></td></tr>
 typedef struct <a class="el" href="structCQCT__Error__t.html">CQCT_Error_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#ga18408ad6c19d73790930b59068bc0d72">CQCT_Error</a></td></tr>
 <tr class="memdesc:ga18408ad6c19d73790930b59068bc0d72"><td class="mdescLeft">&#160;</td><td class="mdescRight">Error type. <br/></td></tr>
 <tr class="separator:ga18408ad6c19d73790930b59068bc0d72"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gad691907b86797ff891fe488e16d7e3d0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gad691907b86797ff891fe488e16d7e3d0"></a>
-CORTIDQCT_C_EXPORT CQCT_EXTERN <br class="typebreak"/>
-<a class="el" href="group__C-API.html#ga18408ad6c19d73790930b59068bc0d72">CQCT_Error</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#gad691907b86797ff891fe488e16d7e3d0">CQCT_createError</a> (enum <a class="el" href="group__C-API.html#gaf9e4e94e2ddc85f00e18d83c7b978291">CQCT_ErrorId</a> id, const char *message)</td></tr>
-<tr class="memdesc:gad691907b86797ff891fe488e16d7e3d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an error object. <br/></td></tr>
-<tr class="separator:gad691907b86797ff891fe488e16d7e3d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga20983469ebda5d6b90413129d40c1ff6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga20983469ebda5d6b90413129d40c1ff6"></a>
-CORTIDQCT_C_EXPORT CQCT_EXTERN <br class="typebreak"/>
-enum <a class="el" href="group__C-API.html#gaf9e4e94e2ddc85f00e18d83c7b978291">CQCT_ErrorId</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#ga20983469ebda5d6b90413129d40c1ff6">CQCT_errorType</a> (<a class="el" href="group__C-API.html#ga18408ad6c19d73790930b59068bc0d72">CQCT_Error</a> error)</td></tr>
-<tr class="memdesc:ga20983469ebda5d6b90413129d40c1ff6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the error id. <br/></td></tr>
-<tr class="separator:ga20983469ebda5d6b90413129d40c1ff6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gac93a162e8eee4f2089cc0ae75a86d369"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gac93a162e8eee4f2089cc0ae75a86d369"></a>
-CORTIDQCT_C_EXPORT CQCT_EXTERN <br class="typebreak"/>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#gac93a162e8eee4f2089cc0ae75a86d369">CQCT_errorMessage</a> (<a class="el" href="group__C-API.html#ga18408ad6c19d73790930b59068bc0d72">CQCT_Error</a> error)</td></tr>
-<tr class="memdesc:gac93a162e8eee4f2089cc0ae75a86d369"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the error message. <br/></td></tr>
-<tr class="separator:gac93a162e8eee4f2089cc0ae75a86d369"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga138b6afb76af878d3274acff97456c18"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga138b6afb76af878d3274acff97456c18"></a>
+CQCT_EXTERN <a class="el" href="group__C-API.html#ga18408ad6c19d73790930b59068bc0d72">CQCT_Error</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#ga138b6afb76af878d3274acff97456c18">CQCT_createError</a> (enum <a class="el" href="group__C-API.html#gaf9e4e94e2ddc85f00e18d83c7b978291">CQCT_ErrorId</a> id, const char *message)</td></tr>
+<tr class="memdesc:ga138b6afb76af878d3274acff97456c18"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an error object. <br/></td></tr>
+<tr class="separator:ga138b6afb76af878d3274acff97456c18"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga66a5206e21942353761459dd64a62059"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga66a5206e21942353761459dd64a62059"></a>
+CQCT_EXTERN enum <a class="el" href="group__C-API.html#gaf9e4e94e2ddc85f00e18d83c7b978291">CQCT_ErrorId</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#ga66a5206e21942353761459dd64a62059">CQCT_errorType</a> (<a class="el" href="group__C-API.html#ga18408ad6c19d73790930b59068bc0d72">CQCT_Error</a> error)</td></tr>
+<tr class="memdesc:ga66a5206e21942353761459dd64a62059"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the error id. <br/></td></tr>
+<tr class="separator:ga66a5206e21942353761459dd64a62059"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7ae97be7cb23f427ec22d44b3b217198"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga7ae97be7cb23f427ec22d44b3b217198"></a>
+CQCT_EXTERN const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#ga7ae97be7cb23f427ec22d44b3b217198">CQCT_errorMessage</a> (<a class="el" href="group__C-API.html#ga18408ad6c19d73790930b59068bc0d72">CQCT_Error</a> error)</td></tr>
+<tr class="memdesc:ga7ae97be7cb23f427ec22d44b3b217198"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the error message. <br/></td></tr>
+<tr class="separator:ga7ae97be7cb23f427ec22d44b3b217198"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="member-group"></a>
 VoxelVolume type</h2></td></tr>
@@ -201,30 +194,27 @@ VoxelVolume type</h2></td></tr>
 typedef struct <a class="el" href="structCQCT__VoxelVolume__t.html">CQCT_VoxelVolume_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#gad69cbc780e25804265d6a8574fa84c4c">CQCT_VoxelVolume</a></td></tr>
 <tr class="memdesc:gad69cbc780e25804265d6a8574fa84c4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Voxel volume handle type. <br/></td></tr>
 <tr class="separator:gad69cbc780e25804265d6a8574fa84c4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga8b6a1986f6f31f50ce90b41ffc290a7f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga8b6a1986f6f31f50ce90b41ffc290a7f"></a>
-CORTIDQCT_C_EXPORT CQCT_EXTERN <br class="typebreak"/>
-<a class="el" href="group__C-API.html#gad69cbc780e25804265d6a8574fa84c4c">CQCT_VoxelVolume</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#ga8b6a1986f6f31f50ce90b41ffc290a7f">CQCT_createVoxelVolume</a> ()</td></tr>
-<tr class="memdesc:ga8b6a1986f6f31f50ce90b41ffc290a7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an empty voxel volume. <br/></td></tr>
-<tr class="separator:ga8b6a1986f6f31f50ce90b41ffc290a7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga8aa88ce1c95b1d94f6ba04cdbdeb2e18"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga8aa88ce1c95b1d94f6ba04cdbdeb2e18"></a>
-CORTIDQCT_C_EXPORT CQCT_EXTERN int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#ga8aa88ce1c95b1d94f6ba04cdbdeb2e18">CQCT_voxelVolumeLoadFromFile</a> (<a class="el" href="group__C-API.html#gad69cbc780e25804265d6a8574fa84c4c">CQCT_VoxelVolume</a> volume, const char *filename, <a class="el" href="group__C-API.html#ga18408ad6c19d73790930b59068bc0d72">CQCT_Error</a> *error)</td></tr>
-<tr class="memdesc:ga8aa88ce1c95b1d94f6ba04cdbdeb2e18"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads the voxel volume from file. <br/></td></tr>
-<tr class="separator:ga8aa88ce1c95b1d94f6ba04cdbdeb2e18"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga024b8b3b5a590e390d02e6d2e4afc380"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga024b8b3b5a590e390d02e6d2e4afc380"></a>
-CORTIDQCT_C_EXPORT CQCT_EXTERN <br class="typebreak"/>
-<a class="el" href="structCQCT__VoxelVolumeSize.html">CQCT_VoxelVolumeSize</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#ga024b8b3b5a590e390d02e6d2e4afc380">CQCT_voxelVolumeSize</a> (<a class="el" href="group__C-API.html#gad69cbc780e25804265d6a8574fa84c4c">CQCT_VoxelVolume</a> volume)</td></tr>
-<tr class="memdesc:ga024b8b3b5a590e390d02e6d2e4afc380"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the size of the voxel volume. <br/></td></tr>
-<tr class="separator:ga024b8b3b5a590e390d02e6d2e4afc380"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga527aa11095f7a08ef8cb2ec2fa5cb578"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga527aa11095f7a08ef8cb2ec2fa5cb578"></a>
-CORTIDQCT_C_EXPORT CQCT_EXTERN <br class="typebreak"/>
-<a class="el" href="structCQCT__VoxelVolumeVoxelSize.html">CQCT_VoxelVolumeVoxelSize</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#ga527aa11095f7a08ef8cb2ec2fa5cb578">CQCT_voxelVolumeVoxelSize</a> (<a class="el" href="group__C-API.html#gad69cbc780e25804265d6a8574fa84c4c">CQCT_VoxelVolume</a> volume)</td></tr>
-<tr class="memdesc:ga527aa11095f7a08ef8cb2ec2fa5cb578"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the size of a voxel. <br/></td></tr>
-<tr class="separator:ga527aa11095f7a08ef8cb2ec2fa5cb578"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaea7eea352a0f36785fc0a97c0d8a7e9b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gaea7eea352a0f36785fc0a97c0d8a7e9b"></a>
-CORTIDQCT_C_EXPORT CQCT_EXTERN <br class="typebreak"/>
-size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#gaea7eea352a0f36785fc0a97c0d8a7e9b">CQCT_voxelVolumeCopyVoxels</a> (<a class="el" href="group__C-API.html#gad69cbc780e25804265d6a8574fa84c4c">CQCT_VoxelVolume</a> volume, float **buffer)</td></tr>
-<tr class="memdesc:gaea7eea352a0f36785fc0a97c0d8a7e9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies the voxel data to the given buffer. <br/></td></tr>
-<tr class="separator:gaea7eea352a0f36785fc0a97c0d8a7e9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab17122293097efc9b2138cd45625dfcc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gab17122293097efc9b2138cd45625dfcc"></a>
+CQCT_EXTERN <a class="el" href="group__C-API.html#gad69cbc780e25804265d6a8574fa84c4c">CQCT_VoxelVolume</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#gab17122293097efc9b2138cd45625dfcc">CQCT_createVoxelVolume</a> ()</td></tr>
+<tr class="memdesc:gab17122293097efc9b2138cd45625dfcc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an empty voxel volume. <br/></td></tr>
+<tr class="separator:gab17122293097efc9b2138cd45625dfcc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaefe9713a6ed123f76cb16ac2cee6a904"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gaefe9713a6ed123f76cb16ac2cee6a904"></a>
+CQCT_EXTERN int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#gaefe9713a6ed123f76cb16ac2cee6a904">CQCT_voxelVolumeLoadFromFile</a> (<a class="el" href="group__C-API.html#gad69cbc780e25804265d6a8574fa84c4c">CQCT_VoxelVolume</a> volume, const char *filename, <a class="el" href="group__C-API.html#ga18408ad6c19d73790930b59068bc0d72">CQCT_Error</a> *error)</td></tr>
+<tr class="memdesc:gaefe9713a6ed123f76cb16ac2cee6a904"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads the voxel volume from file. <br/></td></tr>
+<tr class="separator:gaefe9713a6ed123f76cb16ac2cee6a904"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga766ba1c5c97fb3d1bf855517c85d1953"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga766ba1c5c97fb3d1bf855517c85d1953"></a>
+CQCT_EXTERN <a class="el" href="structCQCT__VoxelVolumeSize.html">CQCT_VoxelVolumeSize</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#ga766ba1c5c97fb3d1bf855517c85d1953">CQCT_voxelVolumeSize</a> (<a class="el" href="group__C-API.html#gad69cbc780e25804265d6a8574fa84c4c">CQCT_VoxelVolume</a> volume)</td></tr>
+<tr class="memdesc:ga766ba1c5c97fb3d1bf855517c85d1953"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the size of the voxel volume. <br/></td></tr>
+<tr class="separator:ga766ba1c5c97fb3d1bf855517c85d1953"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga34698cfb9e6e2cc4e7a703474252cdbc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga34698cfb9e6e2cc4e7a703474252cdbc"></a>
+CQCT_EXTERN <br class="typebreak"/>
+<a class="el" href="structCQCT__VoxelVolumeVoxelSize.html">CQCT_VoxelVolumeVoxelSize</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#ga34698cfb9e6e2cc4e7a703474252cdbc">CQCT_voxelVolumeVoxelSize</a> (<a class="el" href="group__C-API.html#gad69cbc780e25804265d6a8574fa84c4c">CQCT_VoxelVolume</a> volume)</td></tr>
+<tr class="memdesc:ga34698cfb9e6e2cc4e7a703474252cdbc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the size of a voxel. <br/></td></tr>
+<tr class="separator:ga34698cfb9e6e2cc4e7a703474252cdbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf4eeb5746a151ace7d6320713537f318"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gaf4eeb5746a151ace7d6320713537f318"></a>
+CQCT_EXTERN size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#gaf4eeb5746a151ace7d6320713537f318">CQCT_voxelVolumeCopyVoxels</a> (<a class="el" href="group__C-API.html#gad69cbc780e25804265d6a8574fa84c4c">CQCT_VoxelVolume</a> volume, float **buffer)</td></tr>
+<tr class="memdesc:gaf4eeb5746a151ace7d6320713537f318"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies the voxel data to the given buffer. <br/></td></tr>
+<tr class="separator:gaf4eeb5746a151ace7d6320713537f318"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="member-group"></a>
 Mesh type</h2></td></tr>
@@ -232,61 +222,52 @@ Mesh type</h2></td></tr>
 typedef struct <a class="el" href="structCQCT__Mesh__t.html">CQCT_Mesh_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a></td></tr>
 <tr class="memdesc:gab16a5b8d67699346c12ee67d3a5d23e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mesh handle type. <br/></td></tr>
 <tr class="separator:gab16a5b8d67699346c12ee67d3a5d23e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga75b5acd6e7f6b790ff9a5401e64bcc56"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga75b5acd6e7f6b790ff9a5401e64bcc56"></a>
-CORTIDQCT_C_EXPORT CQCT_EXTERN <br class="typebreak"/>
-<a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#ga75b5acd6e7f6b790ff9a5401e64bcc56">CQCT_createMesh</a> ()</td></tr>
-<tr class="memdesc:ga75b5acd6e7f6b790ff9a5401e64bcc56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an empty mesh. <br/></td></tr>
-<tr class="separator:ga75b5acd6e7f6b790ff9a5401e64bcc56"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaa5cb5695b90a36f1daa6b9359a8454d7"><td class="memItemLeft" align="right" valign="top">CORTIDQCT_C_EXPORT CQCT_EXTERN <br class="typebreak"/>
-<a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#gaa5cb5695b90a36f1daa6b9359a8454d7">CQCT_meshFromFile</a> (const char *filename, <a class="el" href="group__C-API.html#ga18408ad6c19d73790930b59068bc0d72">CQCT_Error</a> *error)</td></tr>
-<tr class="memdesc:gaa5cb5695b90a36f1daa6b9359a8454d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates and loads a mesh from file.  <a href="group__C-API.html#gaa5cb5695b90a36f1daa6b9359a8454d7">More...</a><br/></td></tr>
-<tr class="separator:gaa5cb5695b90a36f1daa6b9359a8454d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga560220b5392a252a5ff38cd296153223"><td class="memItemLeft" align="right" valign="top">CORTIDQCT_C_EXPORT CQCT_EXTERN <br class="typebreak"/>
-<a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#ga560220b5392a252a5ff38cd296153223">CQCT_meshFromFileWithCustomMapping</a> (const char *filename, <a class="el" href="group__C-API.html#ga818a024d31ae2e5d3609432d2e4d17dc">CQCT_ColorToLabelMap</a> map, <a class="el" href="group__C-API.html#ga18408ad6c19d73790930b59068bc0d72">CQCT_Error</a> *error)</td></tr>
-<tr class="memdesc:ga560220b5392a252a5ff38cd296153223"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates and loads a mesh from file using the given custom color to label mapping.  <a href="group__C-API.html#ga560220b5392a252a5ff38cd296153223">More...</a><br/></td></tr>
-<tr class="separator:ga560220b5392a252a5ff38cd296153223"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga39d04227ca5609765acc2bf63101db31"><td class="memItemLeft" align="right" valign="top">CORTIDQCT_C_EXPORT CQCT_EXTERN <br class="typebreak"/>
-<a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#ga39d04227ca5609765acc2bf63101db31">CQCT_meshAndLabelsFromFile</a> (const char *meshFilename, const char *labelFilename, <a class="el" href="group__C-API.html#ga18408ad6c19d73790930b59068bc0d72">CQCT_Error</a> *error)</td></tr>
-<tr class="memdesc:ga39d04227ca5609765acc2bf63101db31"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates and loads a mesh from a mesh and a label file.  <a href="group__C-API.html#ga39d04227ca5609765acc2bf63101db31">More...</a><br/></td></tr>
-<tr class="separator:ga39d04227ca5609765acc2bf63101db31"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga871c4daa7b20a5eba84a1e9c9475d513"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga871c4daa7b20a5eba84a1e9c9475d513"></a>
-CORTIDQCT_C_EXPORT CQCT_EXTERN int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#ga871c4daa7b20a5eba84a1e9c9475d513">CQCT_loadMesh</a> (<a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a> mesh, const char *filename, <a class="el" href="group__C-API.html#ga18408ad6c19d73790930b59068bc0d72">CQCT_Error</a> *error)</td></tr>
-<tr class="memdesc:ga871c4daa7b20a5eba84a1e9c9475d513"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads a mesh from file. <br/></td></tr>
-<tr class="separator:ga871c4daa7b20a5eba84a1e9c9475d513"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gab18674c44f74c5298d980d2b46cce733"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gab18674c44f74c5298d980d2b46cce733"></a>
-CORTIDQCT_C_EXPORT CQCT_EXTERN int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#gab18674c44f74c5298d980d2b46cce733">CQCT_loadMeshWithCustomMapping</a> (<a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a> mesh, const char *filename, <a class="el" href="group__C-API.html#ga818a024d31ae2e5d3609432d2e4d17dc">CQCT_ColorToLabelMap</a> map, <a class="el" href="group__C-API.html#ga18408ad6c19d73790930b59068bc0d72">CQCT_Error</a> *error)</td></tr>
-<tr class="memdesc:gab18674c44f74c5298d980d2b46cce733"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads a mesh from file using a custom color to label map. <br/></td></tr>
-<tr class="separator:gab18674c44f74c5298d980d2b46cce733"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaf0c2bfeb3a2d886bad7e4f5a05888bab"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gaf0c2bfeb3a2d886bad7e4f5a05888bab"></a>
-CORTIDQCT_C_EXPORT CQCT_EXTERN int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#gaf0c2bfeb3a2d886bad7e4f5a05888bab">CQCT_loadMeshAndLabels</a> (<a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a> mesh, const char *meshFilename, const char *labelFilename, <a class="el" href="group__C-API.html#ga18408ad6c19d73790930b59068bc0d72">CQCT_Error</a> *error)</td></tr>
-<tr class="memdesc:gaf0c2bfeb3a2d886bad7e4f5a05888bab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads a mesh from mesh and label file. <br/></td></tr>
-<tr class="separator:gaf0c2bfeb3a2d886bad7e4f5a05888bab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga6a3b64c70143c4a7e45825be3331f2cd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga6a3b64c70143c4a7e45825be3331f2cd"></a>
-CORTIDQCT_C_EXPORT CQCT_EXTERN int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#ga6a3b64c70143c4a7e45825be3331f2cd">CQCT_meshAndLabelsWriteToFile</a> (<a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a> mesh, const char *meshFilename, const char *labelsFilename, <a class="el" href="group__C-API.html#ga18408ad6c19d73790930b59068bc0d72">CQCT_Error</a> *error)</td></tr>
-<tr class="memdesc:ga6a3b64c70143c4a7e45825be3331f2cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes mesh and labels to seperate files. <br/></td></tr>
-<tr class="separator:ga6a3b64c70143c4a7e45825be3331f2cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gafe6de01bb3a76b946f7e5e60bddf7e7f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gafe6de01bb3a76b946f7e5e60bddf7e7f"></a>
-CORTIDQCT_C_EXPORT CQCT_EXTERN <br class="typebreak"/>
-size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#gafe6de01bb3a76b946f7e5e60bddf7e7f">CQCT_meshVertexCount</a> (<a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a> mesh)</td></tr>
-<tr class="memdesc:gafe6de01bb3a76b946f7e5e60bddf7e7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return number of vertices of the given mesh. <br/></td></tr>
-<tr class="separator:gafe6de01bb3a76b946f7e5e60bddf7e7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gae647aafbe26d1e8b01f0b1ee98843a57"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gae647aafbe26d1e8b01f0b1ee98843a57"></a>
-CORTIDQCT_C_EXPORT CQCT_EXTERN <br class="typebreak"/>
-size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#gae647aafbe26d1e8b01f0b1ee98843a57">CQCT_meshTriangleCount</a> (<a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a> mesh)</td></tr>
-<tr class="memdesc:gae647aafbe26d1e8b01f0b1ee98843a57"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return number of triangles of the given mesh. <br/></td></tr>
-<tr class="separator:gae647aafbe26d1e8b01f0b1ee98843a57"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga05eb883df9fd3095fac9f8b6ce60a4f7"><td class="memItemLeft" align="right" valign="top">CORTIDQCT_C_EXPORT CQCT_EXTERN <br class="typebreak"/>
-size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#ga05eb883df9fd3095fac9f8b6ce60a4f7">CQCT_meshCopyVertices</a> (<a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a> mesh, float **bufferPtr)</td></tr>
-<tr class="memdesc:ga05eb883df9fd3095fac9f8b6ce60a4f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies the mesh's vertices into the given buffer.  <a href="group__C-API.html#ga05eb883df9fd3095fac9f8b6ce60a4f7">More...</a><br/></td></tr>
-<tr class="separator:ga05eb883df9fd3095fac9f8b6ce60a4f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gac3a97faa09651352a77c08276cc6e5d2"><td class="memItemLeft" align="right" valign="top">CORTIDQCT_C_EXPORT CQCT_EXTERN <br class="typebreak"/>
-size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#gac3a97faa09651352a77c08276cc6e5d2">CQCT_meshCopyTriangles</a> (<a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a> mesh, ptrdiff_t **bufferPtr)</td></tr>
-<tr class="memdesc:gac3a97faa09651352a77c08276cc6e5d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies the mesh's indices into the given buffer.  <a href="group__C-API.html#gac3a97faa09651352a77c08276cc6e5d2">More...</a><br/></td></tr>
-<tr class="separator:gac3a97faa09651352a77c08276cc6e5d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga0474db47e8b1cc38e92f481e07d0d8cf"><td class="memItemLeft" align="right" valign="top">CORTIDQCT_C_EXPORT CQCT_EXTERN <br class="typebreak"/>
-size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#ga0474db47e8b1cc38e92f481e07d0d8cf">CQCT_meshCopyLabels</a> (<a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a> mesh, unsigned int **bufferPtr)</td></tr>
-<tr class="memdesc:ga0474db47e8b1cc38e92f481e07d0d8cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies the mesh's labels into the given buffer.  <a href="group__C-API.html#ga0474db47e8b1cc38e92f481e07d0d8cf">More...</a><br/></td></tr>
-<tr class="separator:ga0474db47e8b1cc38e92f481e07d0d8cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2bf50e1ad18d66b220307db3c6d096f1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga2bf50e1ad18d66b220307db3c6d096f1"></a>
+CQCT_EXTERN <a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#ga2bf50e1ad18d66b220307db3c6d096f1">CQCT_createMesh</a> ()</td></tr>
+<tr class="memdesc:ga2bf50e1ad18d66b220307db3c6d096f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an empty mesh. <br/></td></tr>
+<tr class="separator:ga2bf50e1ad18d66b220307db3c6d096f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga25823f70bae92b8f2f2f400c20a5318e"><td class="memItemLeft" align="right" valign="top">CQCT_EXTERN <a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#ga25823f70bae92b8f2f2f400c20a5318e">CQCT_meshFromFile</a> (const char *filename, <a class="el" href="group__C-API.html#ga18408ad6c19d73790930b59068bc0d72">CQCT_Error</a> *error)</td></tr>
+<tr class="memdesc:ga25823f70bae92b8f2f2f400c20a5318e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates and loads a mesh from file.  <a href="group__C-API.html#ga25823f70bae92b8f2f2f400c20a5318e">More...</a><br/></td></tr>
+<tr class="separator:ga25823f70bae92b8f2f2f400c20a5318e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gacfb4a0b387c4d6e0a029c7da8b06f8da"><td class="memItemLeft" align="right" valign="top">CQCT_EXTERN <a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#gacfb4a0b387c4d6e0a029c7da8b06f8da">CQCT_meshFromFileWithCustomMapping</a> (const char *filename, <a class="el" href="group__C-API.html#ga818a024d31ae2e5d3609432d2e4d17dc">CQCT_ColorToLabelMap</a> map, <a class="el" href="group__C-API.html#ga18408ad6c19d73790930b59068bc0d72">CQCT_Error</a> *error)</td></tr>
+<tr class="memdesc:gacfb4a0b387c4d6e0a029c7da8b06f8da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates and loads a mesh from file using the given custom color to label mapping.  <a href="group__C-API.html#gacfb4a0b387c4d6e0a029c7da8b06f8da">More...</a><br/></td></tr>
+<tr class="separator:gacfb4a0b387c4d6e0a029c7da8b06f8da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac5fc3c96f6872f14bfa7089088921000"><td class="memItemLeft" align="right" valign="top">CQCT_EXTERN <a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#gac5fc3c96f6872f14bfa7089088921000">CQCT_meshAndLabelsFromFile</a> (const char *meshFilename, const char *labelFilename, <a class="el" href="group__C-API.html#ga18408ad6c19d73790930b59068bc0d72">CQCT_Error</a> *error)</td></tr>
+<tr class="memdesc:gac5fc3c96f6872f14bfa7089088921000"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates and loads a mesh from a mesh and a label file.  <a href="group__C-API.html#gac5fc3c96f6872f14bfa7089088921000">More...</a><br/></td></tr>
+<tr class="separator:gac5fc3c96f6872f14bfa7089088921000"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7e6000262d3551531cf98eb6024d8563"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga7e6000262d3551531cf98eb6024d8563"></a>
+CQCT_EXTERN int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#ga7e6000262d3551531cf98eb6024d8563">CQCT_loadMesh</a> (<a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a> mesh, const char *filename, <a class="el" href="group__C-API.html#ga18408ad6c19d73790930b59068bc0d72">CQCT_Error</a> *error)</td></tr>
+<tr class="memdesc:ga7e6000262d3551531cf98eb6024d8563"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads a mesh from file. <br/></td></tr>
+<tr class="separator:ga7e6000262d3551531cf98eb6024d8563"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga44255075d52e9e6c3acbb68f01c46e4b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga44255075d52e9e6c3acbb68f01c46e4b"></a>
+CQCT_EXTERN int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#ga44255075d52e9e6c3acbb68f01c46e4b">CQCT_loadMeshWithCustomMapping</a> (<a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a> mesh, const char *filename, <a class="el" href="group__C-API.html#ga818a024d31ae2e5d3609432d2e4d17dc">CQCT_ColorToLabelMap</a> map, <a class="el" href="group__C-API.html#ga18408ad6c19d73790930b59068bc0d72">CQCT_Error</a> *error)</td></tr>
+<tr class="memdesc:ga44255075d52e9e6c3acbb68f01c46e4b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads a mesh from file using a custom color to label map. <br/></td></tr>
+<tr class="separator:ga44255075d52e9e6c3acbb68f01c46e4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0e92c81c4c29f3b9358451062fb629cb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga0e92c81c4c29f3b9358451062fb629cb"></a>
+CQCT_EXTERN int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#ga0e92c81c4c29f3b9358451062fb629cb">CQCT_loadMeshAndLabels</a> (<a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a> mesh, const char *meshFilename, const char *labelFilename, <a class="el" href="group__C-API.html#ga18408ad6c19d73790930b59068bc0d72">CQCT_Error</a> *error)</td></tr>
+<tr class="memdesc:ga0e92c81c4c29f3b9358451062fb629cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads a mesh from mesh and label file. <br/></td></tr>
+<tr class="separator:ga0e92c81c4c29f3b9358451062fb629cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga781f0c6195b2139d3d8de2ad04bd01fa"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga781f0c6195b2139d3d8de2ad04bd01fa"></a>
+CQCT_EXTERN int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#ga781f0c6195b2139d3d8de2ad04bd01fa">CQCT_meshAndLabelsWriteToFile</a> (<a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a> mesh, const char *meshFilename, const char *labelsFilename, <a class="el" href="group__C-API.html#ga18408ad6c19d73790930b59068bc0d72">CQCT_Error</a> *error)</td></tr>
+<tr class="memdesc:ga781f0c6195b2139d3d8de2ad04bd01fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes mesh and labels to seperate files. <br/></td></tr>
+<tr class="separator:ga781f0c6195b2139d3d8de2ad04bd01fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7511a516b4ec4200cfcb91b58a5dff0a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga7511a516b4ec4200cfcb91b58a5dff0a"></a>
+CQCT_EXTERN size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#ga7511a516b4ec4200cfcb91b58a5dff0a">CQCT_meshVertexCount</a> (<a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a> mesh)</td></tr>
+<tr class="memdesc:ga7511a516b4ec4200cfcb91b58a5dff0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return number of vertices of the given mesh. <br/></td></tr>
+<tr class="separator:ga7511a516b4ec4200cfcb91b58a5dff0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9e0120ecaed815422b5f3dd10219cf3d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga9e0120ecaed815422b5f3dd10219cf3d"></a>
+CQCT_EXTERN size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#ga9e0120ecaed815422b5f3dd10219cf3d">CQCT_meshTriangleCount</a> (<a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a> mesh)</td></tr>
+<tr class="memdesc:ga9e0120ecaed815422b5f3dd10219cf3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return number of triangles of the given mesh. <br/></td></tr>
+<tr class="separator:ga9e0120ecaed815422b5f3dd10219cf3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf2e05ae8051ccab8022140211278ae58"><td class="memItemLeft" align="right" valign="top">CQCT_EXTERN size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#gaf2e05ae8051ccab8022140211278ae58">CQCT_meshCopyVertices</a> (<a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a> mesh, float **bufferPtr)</td></tr>
+<tr class="memdesc:gaf2e05ae8051ccab8022140211278ae58"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies the mesh's vertices into the given buffer.  <a href="group__C-API.html#gaf2e05ae8051ccab8022140211278ae58">More...</a><br/></td></tr>
+<tr class="separator:gaf2e05ae8051ccab8022140211278ae58"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa48c1fe736281fb10d4ffce92c60269c"><td class="memItemLeft" align="right" valign="top">CQCT_EXTERN size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#gaa48c1fe736281fb10d4ffce92c60269c">CQCT_meshCopyTriangles</a> (<a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a> mesh, ptrdiff_t **bufferPtr)</td></tr>
+<tr class="memdesc:gaa48c1fe736281fb10d4ffce92c60269c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies the mesh's indices into the given buffer.  <a href="group__C-API.html#gaa48c1fe736281fb10d4ffce92c60269c">More...</a><br/></td></tr>
+<tr class="separator:gaa48c1fe736281fb10d4ffce92c60269c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4e9fa7808b060e9ca453a3e1737fdf0c"><td class="memItemLeft" align="right" valign="top">CQCT_EXTERN size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#ga4e9fa7808b060e9ca453a3e1737fdf0c">CQCT_meshCopyLabels</a> (<a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a> mesh, unsigned int **bufferPtr)</td></tr>
+<tr class="memdesc:ga4e9fa7808b060e9ca453a3e1737fdf0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies the mesh's labels into the given buffer.  <a href="group__C-API.html#ga4e9fa7808b060e9ca453a3e1737fdf0c">More...</a><br/></td></tr>
+<tr class="separator:ga4e9fa7808b060e9ca453a3e1737fdf0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="member-group"></a>
 MeshFitter object type</h2></td></tr>
@@ -299,21 +280,18 @@ typedef struct <br class="typebreak"/>
 <a class="el" href="structCQCT__MeshFitterResult__t.html">CQCT_MeshFitterResult_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#ga291818d1b742b936e4bfaa28eed06099">CQCT_MeshFitterResult</a></td></tr>
 <tr class="memdesc:ga291818d1b742b936e4bfaa28eed06099"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mesh fitter result object. <br/></td></tr>
 <tr class="separator:ga291818d1b742b936e4bfaa28eed06099"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga593e94e6c53fd7df709ef07a9ca750ef"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga593e94e6c53fd7df709ef07a9ca750ef"></a>
-CORTIDQCT_C_EXPORT CQCT_EXTERN <br class="typebreak"/>
-<a class="el" href="group__C-API.html#gab05b3b71393719099ff08d8417005cdf">CQCT_MeshFitter</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#ga593e94e6c53fd7df709ef07a9ca750ef">CQCT_createMeshFitter</a> (const char *filename, <a class="el" href="group__C-API.html#ga18408ad6c19d73790930b59068bc0d72">CQCT_Error</a> *error)</td></tr>
-<tr class="memdesc:ga593e94e6c53fd7df709ef07a9ca750ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a mesh fitter given the configuration file. <br/></td></tr>
-<tr class="separator:ga593e94e6c53fd7df709ef07a9ca750ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga9f29d1d2e759271bd2985d55b98dea51"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga9f29d1d2e759271bd2985d55b98dea51"></a>
-CORTIDQCT_C_EXPORT CQCT_EXTERN <br class="typebreak"/>
-<a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#ga9f29d1d2e759271bd2985d55b98dea51">CQCT_meshFitterResultMesh</a> (<a class="el" href="group__C-API.html#ga291818d1b742b936e4bfaa28eed06099">CQCT_MeshFitterResult</a> result)</td></tr>
-<tr class="memdesc:ga9f29d1d2e759271bd2985d55b98dea51"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the result mesh. <br/></td></tr>
-<tr class="separator:ga9f29d1d2e759271bd2985d55b98dea51"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga6fefe45734d702cf1b043a652bff077e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga6fefe45734d702cf1b043a652bff077e"></a>
-CORTIDQCT_C_EXPORT CQCT_EXTERN <br class="typebreak"/>
-<a class="el" href="group__C-API.html#ga291818d1b742b936e4bfaa28eed06099">CQCT_MeshFitterResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#ga6fefe45734d702cf1b043a652bff077e">CQCT_meshFitterFit</a> (<a class="el" href="group__C-API.html#gab05b3b71393719099ff08d8417005cdf">CQCT_MeshFitter</a> meshFitter, <a class="el" href="group__C-API.html#gad69cbc780e25804265d6a8574fa84c4c">CQCT_VoxelVolume</a> volume)</td></tr>
-<tr class="memdesc:ga6fefe45734d702cf1b043a652bff077e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fits the reference mesh to the given voxel volume. <br/></td></tr>
-<tr class="separator:ga6fefe45734d702cf1b043a652bff077e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gadc93d3bbf65d43752337481a502ce4a6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gadc93d3bbf65d43752337481a502ce4a6"></a>
+CQCT_EXTERN <a class="el" href="group__C-API.html#gab05b3b71393719099ff08d8417005cdf">CQCT_MeshFitter</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#gadc93d3bbf65d43752337481a502ce4a6">CQCT_createMeshFitter</a> (const char *filename, <a class="el" href="group__C-API.html#ga18408ad6c19d73790930b59068bc0d72">CQCT_Error</a> *error)</td></tr>
+<tr class="memdesc:gadc93d3bbf65d43752337481a502ce4a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a mesh fitter given the configuration file. <br/></td></tr>
+<tr class="separator:gadc93d3bbf65d43752337481a502ce4a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad1f6feb7598f0e51cc785bf0a0b3cf85"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gad1f6feb7598f0e51cc785bf0a0b3cf85"></a>
+CQCT_EXTERN <a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#gad1f6feb7598f0e51cc785bf0a0b3cf85">CQCT_meshFitterResultMesh</a> (<a class="el" href="group__C-API.html#ga291818d1b742b936e4bfaa28eed06099">CQCT_MeshFitterResult</a> result)</td></tr>
+<tr class="memdesc:gad1f6feb7598f0e51cc785bf0a0b3cf85"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the result mesh. <br/></td></tr>
+<tr class="separator:gad1f6feb7598f0e51cc785bf0a0b3cf85"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaed43b3031aefb56839eaf0072fcb94bd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gaed43b3031aefb56839eaf0072fcb94bd"></a>
+CQCT_EXTERN <a class="el" href="group__C-API.html#ga291818d1b742b936e4bfaa28eed06099">CQCT_MeshFitterResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#gaed43b3031aefb56839eaf0072fcb94bd">CQCT_meshFitterFit</a> (<a class="el" href="group__C-API.html#gab05b3b71393719099ff08d8417005cdf">CQCT_MeshFitter</a> meshFitter, <a class="el" href="group__C-API.html#gad69cbc780e25804265d6a8574fa84c4c">CQCT_VoxelVolume</a> volume)</td></tr>
+<tr class="memdesc:gaed43b3031aefb56839eaf0072fcb94bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fits the reference mesh to the given voxel volume. <br/></td></tr>
+<tr class="separator:gaed43b3031aefb56839eaf0072fcb94bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This file contains the C API definition. </p>
@@ -322,7 +300,7 @@ CORTIDQCT_C_EXPORT CQCT_EXTERN <br class="typebreak"/>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Jan 16 2019 15:33:51 for CortidQCT by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jan 17 2019 12:32:07 for CortidQCT by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
