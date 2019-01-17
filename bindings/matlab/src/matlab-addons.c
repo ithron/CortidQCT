@@ -42,8 +42,8 @@ CQCT_voxelVolumeVoxelDepth(CQCT_VoxelVolume volume) {
   return CQCT_voxelVolumeVoxelSize(volume).depth;
 }
 
-extern void CQCT_autoreleasePoolPush();
-extern void CQCT_autoreleasePoolPop();
+extern void CQCT_autoreleasePoolPush(void);
+extern void CQCT_autoreleasePoolPop(void);
 
 #ifdef _WIN32
 
@@ -66,6 +66,9 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpReserved) {
 }
 
 #else
+
+CORTIDQCT_MATLAB_EXPORT void __attribute__((constructor)) CQCT_init(void);
+CORTIDQCT_MATLAB_EXPORT void __attribute__((destructor)) CQCT_fini(void);
 
 CORTIDQCT_MATLAB_EXPORT void __attribute__((constructor)) CQCT_init(void) {
   CQCT_autoreleasePoolPush();

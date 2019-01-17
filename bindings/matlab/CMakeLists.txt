@@ -5,7 +5,7 @@ cmake_minimum_required(VERSION 3.8)
 
 project(
   CortidQCT-MATLAB-Bindings
-  VERSION 1.2.1
+  VERSION 1.2.2
   LANGUAGES C
 )
 
@@ -26,7 +26,10 @@ target_include_directories(matlab-bindings
 )
 
 target_link_libraries(matlab-bindings PRIVATE CortidQCT::Bindings::C)
-set_target_properties(matlab-bindings PROPERTIES OUTPUT_NAME "CortidQCT-Matlab")
+set_target_properties(matlab-bindings PROPERTIES
+  OUTPUT_NAME "CortidQCT-Matlab"
+  WINDOWS_EXPORT_ALL_SYMBOLS ON
+)
 
 add_library(CortidQCT::Bindings::Matlab ALIAS matlab-bindings)
 

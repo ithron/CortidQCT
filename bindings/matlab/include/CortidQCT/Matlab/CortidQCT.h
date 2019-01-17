@@ -48,11 +48,11 @@ CQCT_EXTERN void CQCT_release(Id obj);
 CQCT_EXTERN Id CQCT_autorelease(Id obj);
 
 /// Adds a new autorelease pool to the stack
-CQCT_EXTERN void CQCT_autoreleasePoolPush();
+CQCT_EXTERN void CQCT_autoreleasePoolPush(void);
 
 /// Removes the current autorelease pool from the stack and releases all of
 /// its objects
-CQCT_EXTERN void CQCT_autoreleasePoolPop();
+CQCT_EXTERN void CQCT_autoreleasePoolPop(void);
 
 /// @}
 
@@ -94,7 +94,7 @@ struct CQCT_VoxelVolume_t;
 typedef struct CQCT_VoxelVolume_t *CQCT_VoxelVolume;
 
 /// Creates an empty voxel volume
-CQCT_EXTERN CQCT_VoxelVolume CQCT_createVoxelVolume();
+CQCT_EXTERN CQCT_VoxelVolume CQCT_createVoxelVolume(void);
 
 /// Loads the voxel volume from file
 CQCT_EXTERN int CQCT_voxelVolumeLoadFromFile(CQCT_VoxelVolume volume,
@@ -146,7 +146,7 @@ struct CQCT_Mesh_t;
 typedef struct CQCT_Mesh_t *CQCT_Mesh;
 
 /// Creates an empty mesh
-CQCT_EXTERN CQCT_Mesh CQCT_createMesh();
+CQCT_EXTERN CQCT_Mesh CQCT_createMesh(void);
 
 /**
  * @brief Creates and loads a mesh from file.
@@ -266,7 +266,7 @@ struct CQCT_ColorToLabelMap_t;
 typedef struct CQCT_ColorToLabelMap_t *CQCT_ColorToLabelMap;
 
 /// Creates a default color to label map
-CQCT_EXTERN CQCT_ColorToLabelMap CQCT_createColorToLabelMap();
+CQCT_EXTERN CQCT_ColorToLabelMap CQCT_createColorToLabelMap(void);
 
 /// Loads the mapping from YAML file
 CQCT_EXTERN int CQCT_colorToLabelMapLoadFromFile(CQCT_ColorToLabelMap map,
