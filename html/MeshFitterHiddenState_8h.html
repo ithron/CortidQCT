@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>CortidQCT: CortidQCT::Adaptor::Detail_::ConstructionHelper&lt; T, N &gt; Struct Template Reference</title>
+<title>CortidQCT: lib/MeshFitterHiddenState.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -40,8 +40,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
-      <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
-      <li><a href="files.html"><span>Files</span></a></li>
+      <li><a href="annotated.html"><span>Classes</span></a></li>
+      <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -62,9 +62,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
-      <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
-      <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
-      <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
+      <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
 <!-- window showing the filter options -->
@@ -83,32 +82,48 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="namespaceCortidQCT.html">CortidQCT</a></li><li class="navelem"><b>Adaptor</b></li><li class="navelem"><b>Detail_</b></li><li class="navelem"><a class="el" href="structCortidQCT_1_1Adaptor_1_1Detail___1_1ConstructionHelper.html">ConstructionHelper</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_4c550ca0e4a98d4c430d2c1d62bdb7c0.html">lib</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="structCortidQCT_1_1Adaptor_1_1Detail___1_1ConstructionHelper-members.html">List of all members</a>  </div>
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#namespaces">Namespaces</a>  </div>
   <div class="headertitle">
-<div class="title">CortidQCT::Adaptor::Detail_::ConstructionHelper&lt; T, N &gt; Struct Template Reference</div>  </div>
+<div class="title">MeshFitterHiddenState.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Definitions for the HiddenState type of MeshFitter.  
+<a href="#details">More...</a></p>
+<div class="textblock"><code>#include &quot;<a class="el" href="DisplacementOptimizer_8h_source.html">DisplacementOptimizer.h</a>&quot;</code><br/>
+<code>#include &quot;MeshFitter.h&quot;</code><br/>
+<code>#include &quot;<a class="el" href="MeshHelpers_8h_source.html">MeshHelpers.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="WeightedARAPFitter_8h_source.html">WeightedARAPFitter.h</a>&quot;</code><br/>
+</div>
+<p><a href="MeshFitterHiddenState_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
-Public Member Functions</h2></td></tr>
-<tr class="memitem:a4e1e914b874527ddc4a8784b972ddc9f"><td class="memTemplParams" colspan="2"><a class="anchor" id="a4e1e914b874527ddc4a8784b972ddc9f"></a>
-template&lt;class P , class... Args&gt; </td></tr>
-<tr class="memitem:a4e1e914b874527ddc4a8784b972ddc9f"><td class="memTemplItemLeft" align="right" valign="top">constexpr T&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator()</b> (P &amp;&amp;param, Args &amp;&amp;...args) const noexcept(noexcept(<a class="el" href="structCortidQCT_1_1Adaptor_1_1Detail___1_1ConstructionHelper.html">ConstructionHelper</a>&lt; T, N-1 &gt;{}(std::forward&lt; P &gt;(param), subscript(param, N-1), std::forward&lt; Args &gt;(args)...)))</td></tr>
-<tr class="separator:a4e1e914b874527ddc4a8784b972ddc9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCortidQCT_1_1MeshFitter_1_1State_1_1HiddenState.html">CortidQCT::MeshFitter::State::HiddenState</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCortidQCT_1_1Internal_1_1PrivateStateAccessor.html">CortidQCT::Internal::PrivateStateAccessor</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
+Namespaces</h2></td></tr>
+<tr class="memitem:namespaceCortidQCT"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCortidQCT.html">CortidQCT</a></td></tr>
+<tr class="memdesc:namespaceCortidQCT"><td class="mdescLeft">&#160;</td><td class="mdescRight">Name namespace for <a class="el" href="namespaceCortidQCT.html" title="Name namespace for CortidQCT library. ">CortidQCT</a> library. <br/></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<hr/>The documentation for this struct was generated from the following file:<ul>
-<li>lib/<a class="el" href="EigenAdaptors_8h_source.html">EigenAdaptors.h</a></li>
-</ul>
-</div><!-- contents -->
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Definitions for the HiddenState type of MeshFitter. </p>
+<dl class="section author"><dt>Author</dt><dd>Stefan Reinhold </dd></dl>
+<dl class="section copyright"><dt>Copyright</dt><dd>Copyright (C) 2018 Stefan Reinhold &ndash; All Rights Reserved. You may use, distribute and modify this code under the terms of the AFL 3.0 license; see LICENSE for full license details. </dd></dl>
+</div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jan 17 2019 14:09:40 for CortidQCT by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jan 17 2019 14:18:50 for CortidQCT by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

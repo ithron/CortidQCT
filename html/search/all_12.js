@@ -1,13 +1,19 @@
 var searchData=
 [
-  ['weightedarapfitter',['WeightedARAPFitter',['../classCortidQCT_1_1Internal_1_1WeightedARAPFitter.html',1,'CortidQCT::Internal']]],
-  ['weightedarapfitter',['WeightedARAPFitter',['../classCortidQCT_1_1Internal_1_1WeightedARAPFitter.html#a0105ed6747f0bb386712e056fa2b6a11',1,'CortidQCT::Internal::WeightedARAPFitter::WeightedARAPFitter(Mesh&lt; T &gt; const &amp;referenceMesh, T sigma)'],['../classCortidQCT_1_1Internal_1_1WeightedARAPFitter.html#ac5f60a8c0de01f35784e8b19696861f3',1,'CortidQCT::Internal::WeightedARAPFitter::WeightedARAPFitter(Eigen::MatrixBase&lt; DerivedV &gt; const &amp;V, Eigen::MatrixBase&lt; DerivedF &gt; const &amp;F, T sigma)']]],
-  ['weightedarapfitter_2ecpp',['WeightedARAPFitter.cpp',['../WeightedARAPFitter_8cpp.html',1,'']]],
-  ['weightedarapfitter_2eh',['WeightedARAPFitter.h',['../WeightedARAPFitter_8h.html',1,'']]],
-  ['width',['width',['../structCortidQCT_1_1VolumeSize.html#a7176a12ff140b49ee018c3274eab0b35',1,'CortidQCT::VolumeSize::width()'],['../structCortidQCT_1_1VoxelSize.html#ad811515fb765c11a0e12ffaef5241471',1,'CortidQCT::VoxelSize::width()']]],
-  ['withunsafedatapointer',['withUnsafeDataPointer',['../classCortidQCT_1_1MeasurementModel.html#a097a3f78865990322a7b6b361c2da2cb',1,'CortidQCT::MeasurementModel::withUnsafeDataPointer()'],['../classCortidQCT_1_1VoxelVolume.html#a594820604528ddf41eeb7796046d6e96',1,'CortidQCT::VoxelVolume::withUnsafeDataPointer()']]],
-  ['withunsafeindexpointer',['withUnsafeIndexPointer',['../classCortidQCT_1_1Mesh.html#ac6334c55d0c95f19bc6214983ba4dc29',1,'CortidQCT::Mesh']]],
-  ['withunsafelabelpointer',['withUnsafeLabelPointer',['../classCortidQCT_1_1Mesh.html#a8173d354feb4ca374319272687f1f427',1,'CortidQCT::Mesh']]],
-  ['withunsafevertexpointer',['withUnsafeVertexPointer',['../classCortidQCT_1_1Mesh.html#a1f08cb96ee61f455b4f4d317764a5235',1,'CortidQCT::Mesh']]],
-  ['writetofile',['writeToFile',['../classCortidQCT_1_1Mesh.html#ac19e59dc75cd1c4453e941e33b6681bd',1,'CortidQCT::Mesh::writeToFile(std::string const &amp;meshFilename, std::string const &amp;labelFilename) const '],['../classCortidQCT_1_1Mesh.html#aea52ab27d64c744316abc0f565de1abc',1,'CortidQCT::Mesh::writeToFile(std::string const &amp;meshFilename, LabelToColorMap&lt; double, Label &gt; const &amp;labelMap=LabelToColorMaps::defaultMap&lt; double, Label &gt;) const ']]]
+  ['value_5ftype',['value_type',['../structCortidQCT_1_1DiscreteRange.html#aee5b5a6e0b971b248cfdd66a40724840',1,'CortidQCT::DiscreteRange']]],
+  ['valuetype',['ValueType',['../classCortidQCT_1_1VoxelVolume.html#af9e11e71d4fc998cc3c806940b446e58',1,'CortidQCT::VoxelVolume']]],
+  ['vertexcount',['vertexCount',['../classCortidQCT_1_1Mesh.html#a00230e71237643779b241188e7acd84d',1,'CortidQCT::Mesh']]],
+  ['vertexnormals',['vertexNormals',['../structCortidQCT_1_1MeshFitter_1_1Result.html#aa79550b8c62b3654ea279790f03c9a46',1,'CortidQCT::MeshFitter::Result']]],
+  ['volumesampler',['VolumeSampler',['../classCortidQCT_1_1VolumeSampler.html',1,'CortidQCT']]],
+  ['volumesamples',['volumeSamples',['../structCortidQCT_1_1MeshFitter_1_1Result.html#a60429e9ce2c07c043972d34c4c758cd7',1,'CortidQCT::MeshFitter::Result']]],
+  ['volumesamplingpositions',['volumeSamplingPositions',['../structCortidQCT_1_1MeshFitter_1_1Result.html#a29629017261cfd2be6e3553f40fe6e5f',1,'CortidQCT::MeshFitter::Result']]],
+  ['volumesamplingstep',['volumeSamplingStep',['../classCortidQCT_1_1MeshFitter.html#a77aa8f3fe4eedad37946f2ca79d91f22',1,'CortidQCT::MeshFitter']]],
+  ['volumesize',['VolumeSize',['../structCortidQCT_1_1VolumeSize.html',1,'CortidQCT']]],
+  ['volumesize_2eh',['VolumeSize.h',['../VolumeSize_8h.html',1,'']]],
+  ['voxelsize',['VoxelSize',['../structVoxelSize.html',1,'VoxelSize'],['../classCortidQCT_1_1VoxelVolume.html#abaefe2a77728ffa149c0685055c3e8cd',1,'CortidQCT::VoxelVolume::voxelSize()']]],
+  ['voxelsize',['VoxelSize',['../structCortidQCT_1_1VoxelSize.html',1,'CortidQCT']]],
+  ['voxelsize_2eh',['VoxelSize.h',['../VoxelSize_8h.html',1,'']]],
+  ['voxelvolume',['VoxelVolume',['../classCortidQCT_1_1VoxelVolume.html',1,'CortidQCT']]],
+  ['voxelvolume',['VoxelVolume',['../classCortidQCT_1_1VoxelVolume.html#a0b2a3dd9a735c181e226d65994b79eaa',1,'CortidQCT::VoxelVolume::VoxelVolume() noexcept'],['../classCortidQCT_1_1VoxelVolume.html#a6a4e5fa5b0b42b7422964dfaa5ba2222',1,'CortidQCT::VoxelVolume::VoxelVolume(std::string const &amp;filename)']]],
+  ['voxelvolume_2eh',['VoxelVolume.h',['../VoxelVolume_8h.html',1,'']]]
 ];
