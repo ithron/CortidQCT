@@ -1,5 +1,5 @@
 <deployment-project plugin="plugin.toolbox" plugin-version="1.0">
-  <configuration build-checksum="3799093198" file="CortidQCT.prj" location="" name="CortidQCT" target="target.toolbox" target-name="Package Toolbox">
+  <configuration build-checksum="3799093198" file="/data1/sreinhold/src/CortidQCT/matlab/CortidQCT.prj" location="/data1/sreinhold/src/CortidQCT/matlab" name="CortidQCT" target="target.toolbox" target-name="Package Toolbox">
     <param.appname>CortidQCT</param.appname>
     <param.authnamewatermark>Stefan Reinhold</param.authnamewatermark>
     <param.email>sre@informatik.uni-kiel.de</param.email>
@@ -9,7 +9,7 @@
 
 For details visit https://github.com/ithron/CortidQCT</param.description>
     <param.screenshot />
-    <param.version>1.2.2.2</param.version>
+    <param.version>1.2.2.3</param.version>
     <param.output>${PROJECT_ROOT}/CortidQCT.mltbx</param.output>
     <param.products.name>
       <item>MATLAB</item>
@@ -22,13 +22,14 @@ For details visit https://github.com/ithron/CortidQCT</param.description>
       <item>19</item>
     </param.products.id>
     <param.products.version>
-      <item>9.3</item>
-      <item>6.11</item>
-      <item>11.2</item>
+      <item>9.5</item>
+      <item>6.13</item>
+      <item>11.4</item>
     </param.products.version>
     <param.platforms />
     <param.guid>6cb226f8-03a1-4687-917b-3b0f553e1647</param.guid>
     <param.exclude.filters />
+    <param.exclude.pcodedmfiles>true</param.exclude.pcodedmfiles>
     <param.examples />
     <param.demosxml />
     <param.apps />
@@ -39,6 +40,20 @@ For details visit https://github.com/ithron/CortidQCT</param.description>
     <param.getting.started.guide />
     <param.matlabpath.excludes />
     <param.javaclasspath.excludes />
+    <param.exported.on.package>false</param.exported.on.package>
+    <param.release.start />
+    <param.release.end />
+    <param.release.current.only>false</param.release.current.only>
+    <param.compatiblity.windows>true</param.compatiblity.windows>
+    <param.compatiblity.macos>true</param.compatiblity.macos>
+    <param.compatiblity.linux>true</param.compatiblity.linux>
+    <param.compatiblity.matlabonline>true</param.compatiblity.matlabonline>
+    <param.installation.map />
+    <param.additional.sw.names />
+    <param.additional.sw.licenses />
+    <param.additional.sw.win.url />
+    <param.additional.sw.mac.url />
+    <param.additional.sw.linux.url />
     <unset>
       <param.authnamewatermark />
       <param.email />
@@ -47,6 +62,7 @@ For details visit https://github.com/ithron/CortidQCT</param.description>
       <param.output />
       <param.platforms />
       <param.exclude.filters />
+      <param.exclude.pcodedmfiles />
       <param.examples />
       <param.demosxml />
       <param.apps />
@@ -54,32 +70,49 @@ For details visit https://github.com/ithron/CortidQCT</param.description>
       <param.getting.started.guide />
       <param.matlabpath.excludes />
       <param.javaclasspath.excludes />
+      <param.exported.on.package />
+      <param.release.start />
+      <param.release.end />
+      <param.release.current.only />
+      <param.compatiblity.windows />
+      <param.compatiblity.macos />
+      <param.compatiblity.linux />
+      <param.compatiblity.matlabonline />
+      <param.installation.map />
+      <param.additional.sw.names />
+      <param.additional.sw.licenses />
+      <param.additional.sw.win.url />
+      <param.additional.sw.mac.url />
+      <param.additional.sw.linux.url />
     </unset>
     <fileset.rootdir>
       <file>${PROJECT_ROOT}/toolbox</file>
     </fileset.rootdir>
-    <fileset.rootfiles>
-      <file>${PROJECT_ROOT}/toolbox/+CortidQCT</file>
-      <file>${PROJECT_ROOT}/toolbox/DesktopToolset.xml</file>
-    </fileset.rootfiles>
+    <fileset.rootfiles />
     <fileset.depfun.included />
     <fileset.depfun.excluded />
     <fileset.package />
     <build-deliverables>
-      <file location="" name="CortidQCT.mltbx" optional="false">CortidQCT.mltbx</file>
+      <file location="/data1/sreinhold/src/CortidQCT/matlab" name="CortidQCT.mltbx" optional="false">/data1/sreinhold/src/CortidQCT/matlab/CortidQCT.mltbx</file>
     </build-deliverables>
     <workflow />
+    <matlab>
+      <root>/opt/net64/matlab</root>
+      <toolboxes />
+    </matlab>
     <platform>
       <unix>true</unix>
-      <mac>true</mac>
-      <windows>true</windows>
+      <mac>false</mac>
+      <windows>false</windows>
       <win2k>false</win2k>
       <winxp>false</winxp>
       <vista>false</vista>
       <linux>true</linux>
       <solaris>false</solaris>
+      <osver>4.15.0-44-generic</osver>
       <os32>false</os32>
       <os64>true</os64>
+      <arch>glnxa64</arch>
       <matlab>true</matlab>
     </platform>
   </configuration>

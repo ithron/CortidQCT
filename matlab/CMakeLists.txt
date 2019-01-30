@@ -25,6 +25,8 @@ if (BUILD_MEX)
       floatVector2base64
   )
 
+  set_target_properties(matlab PROPERTIES COMPILE_FLAGS "-fvisibility=default")
+
   add_library(CortidQCT::matlab ALIAS matlab)
 endif()
 
