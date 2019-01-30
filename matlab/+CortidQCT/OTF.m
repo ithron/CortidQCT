@@ -15,9 +15,10 @@ ct = cos(theta);
 
 h = sliceThickness;
 
+  gi = exp(-2 * pi^2 * sigmaG^2 * st.^2 .* f.^2);
+go = sinc(h * ct .* f) .* sinc(0.5 * h * ct .* f).^2;
 y = ...
-  exp(-2 * pi^2 * sigmaG^2 * st.^2 .* f.^2) .* ...
-  sinc(0.5 * h * ct .* f) .* sinc(0.25 * h * ct .* f).^2;
+  gi .* go;
 
 end
 
