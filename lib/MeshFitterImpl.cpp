@@ -106,7 +106,7 @@ MeshFitter::Result MeshFitter::Impl::fit(VoxelVolume const &volume) const {
 
   state.success = true;
 
-  return state;
+  return std::move(state);
 }
 
 MeshFitter::State MeshFitter::Impl::init(VoxelVolume const &volume) const {
