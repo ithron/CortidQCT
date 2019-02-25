@@ -9,7 +9,7 @@
 
 For details visit https://github.com/ithron/CortidQCT</param.description>
     <param.screenshot />
-    <param.version>1.2.2.3</param.version>
+    <param.version>1.2.2.4</param.version>
     <param.output>${PROJECT_ROOT}/CortidQCT.mltbx</param.output>
     <param.products.name>
       <item>MATLAB</item>
