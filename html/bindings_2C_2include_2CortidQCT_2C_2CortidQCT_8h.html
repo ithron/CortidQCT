@@ -259,6 +259,9 @@ typedef struct <a class="el" href="structCQCT__Mesh__t.html">CQCT_Mesh_t</a> *&#
 CQCT_EXTERN <a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#ga2bf50e1ad18d66b220307db3c6d096f1">CQCT_createMesh</a> ()</td></tr>
 <tr class="memdesc:ga2bf50e1ad18d66b220307db3c6d096f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an empty mesh. <br/></td></tr>
 <tr class="separator:ga2bf50e1ad18d66b220307db3c6d096f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0387f4db22601f452276a26d5766e561"><td class="memItemLeft" align="right" valign="top">CQCT_EXTERN <a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#ga0387f4db22601f452276a26d5766e561">CQCT_createMeshAndAllocateMemory</a> (size_t nVertices, size_t nTriangles, <a class="el" href="group__C-API.html#ga18408ad6c19d73790930b59068bc0d72">CQCT_Error</a> *error)</td></tr>
+<tr class="memdesc:ga0387f4db22601f452276a26d5766e561"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an mesh and reserve space for vertices and indices.  <a href="group__C-API.html#ga0387f4db22601f452276a26d5766e561">More...</a><br/></td></tr>
+<tr class="separator:ga0387f4db22601f452276a26d5766e561"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga25823f70bae92b8f2f2f400c20a5318e"><td class="memItemLeft" align="right" valign="top">CQCT_EXTERN <a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#ga25823f70bae92b8f2f2f400c20a5318e">CQCT_meshFromFile</a> (const char *filename, <a class="el" href="group__C-API.html#ga18408ad6c19d73790930b59068bc0d72">CQCT_Error</a> *error)</td></tr>
 <tr class="memdesc:ga25823f70bae92b8f2f2f400c20a5318e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates and loads a mesh from file.  <a href="group__C-API.html#ga25823f70bae92b8f2f2f400c20a5318e">More...</a><br/></td></tr>
 <tr class="separator:ga25823f70bae92b8f2f2f400c20a5318e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -295,12 +298,21 @@ CQCT_EXTERN size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="
 <tr class="memitem:gaf2e05ae8051ccab8022140211278ae58"><td class="memItemLeft" align="right" valign="top">CQCT_EXTERN size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#gaf2e05ae8051ccab8022140211278ae58">CQCT_meshCopyVertices</a> (<a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a> mesh, float **bufferPtr)</td></tr>
 <tr class="memdesc:gaf2e05ae8051ccab8022140211278ae58"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies the mesh's vertices into the given buffer.  <a href="group__C-API.html#gaf2e05ae8051ccab8022140211278ae58">More...</a><br/></td></tr>
 <tr class="separator:gaf2e05ae8051ccab8022140211278ae58"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7288d6d06048818bc06d2f26344e3a0b"><td class="memItemLeft" align="right" valign="top">CQCT_EXTERN void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#ga7288d6d06048818bc06d2f26344e3a0b">CQCT_meshSetVertices</a> (<a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a> mesh, float const *buffer)</td></tr>
+<tr class="memdesc:ga7288d6d06048818bc06d2f26344e3a0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies the vertices from the given buffer into the mesh data structure.  <a href="group__C-API.html#ga7288d6d06048818bc06d2f26344e3a0b">More...</a><br/></td></tr>
+<tr class="separator:ga7288d6d06048818bc06d2f26344e3a0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaa48c1fe736281fb10d4ffce92c60269c"><td class="memItemLeft" align="right" valign="top">CQCT_EXTERN size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#gaa48c1fe736281fb10d4ffce92c60269c">CQCT_meshCopyTriangles</a> (<a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a> mesh, ptrdiff_t **bufferPtr)</td></tr>
 <tr class="memdesc:gaa48c1fe736281fb10d4ffce92c60269c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies the mesh's indices into the given buffer.  <a href="group__C-API.html#gaa48c1fe736281fb10d4ffce92c60269c">More...</a><br/></td></tr>
 <tr class="separator:gaa48c1fe736281fb10d4ffce92c60269c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae6ced75d9b6e052f8022e56e4f982a5a"><td class="memItemLeft" align="right" valign="top">CQCT_EXTERN void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#gae6ced75d9b6e052f8022e56e4f982a5a">CQCT_meshSetTriangles</a> (<a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a> mesh, ptrdiff_t const *buffer)</td></tr>
+<tr class="memdesc:gae6ced75d9b6e052f8022e56e4f982a5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies the triangle indices from the given buffer into the mesh data structure.  <a href="group__C-API.html#gae6ced75d9b6e052f8022e56e4f982a5a">More...</a><br/></td></tr>
+<tr class="separator:gae6ced75d9b6e052f8022e56e4f982a5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga4e9fa7808b060e9ca453a3e1737fdf0c"><td class="memItemLeft" align="right" valign="top">CQCT_EXTERN size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#ga4e9fa7808b060e9ca453a3e1737fdf0c">CQCT_meshCopyLabels</a> (<a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a> mesh, unsigned int **bufferPtr)</td></tr>
 <tr class="memdesc:ga4e9fa7808b060e9ca453a3e1737fdf0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies the mesh's labels into the given buffer.  <a href="group__C-API.html#ga4e9fa7808b060e9ca453a3e1737fdf0c">More...</a><br/></td></tr>
 <tr class="separator:ga4e9fa7808b060e9ca453a3e1737fdf0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaee4dfd356b36b153215c83ec9bac981e"><td class="memItemLeft" align="right" valign="top">CQCT_EXTERN void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#gaee4dfd356b36b153215c83ec9bac981e">CQCT_meshSetLabels</a> (<a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a> mesh, unsigned int const *buffer)</td></tr>
+<tr class="memdesc:gaee4dfd356b36b153215c83ec9bac981e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies the vertex labels from the given buffer into the mesh data structure.  <a href="group__C-API.html#gaee4dfd356b36b153215c83ec9bac981e">More...</a><br/></td></tr>
+<tr class="separator:gaee4dfd356b36b153215c83ec9bac981e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="member-group"></a>
 MeshFitterState object type</h2></td></tr>
@@ -423,7 +435,7 @@ CQCT_EXTERN size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Feb 22 2019 14:03:38 for CortidQCT by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Feb 25 2019 13:41:19 for CortidQCT by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

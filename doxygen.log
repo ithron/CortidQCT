@@ -178,8 +178,8 @@ Please use a more specific name by including a (larger) part of the path!
    /home/travis/build/ithron/CortidQCT/bindings/C/src/VoxelVolume.cpp
 Please use a more specific name by including a (larger) part of the path!
 /home/travis/build/ithron/CortidQCT/bindings/matlab/include/CortidQCT/Matlab/CortidQCT.h:2: warning: the name `bindings/Matlab/include/CortidQCT/Matlab/CortidQCT.h' supplied as the second argument in the \file statement is not an input file
-/home/travis/build/ithron/CortidQCT/bindings/matlab/include/CortidQCT/Matlab/CortidQCT.h:266: warning: member CQCT_ColorToLabelMap belongs to two different groups. The second one found here will be ignored.
-/home/travis/build/ithron/CortidQCT/bindings/matlab/include/CortidQCT/Matlab/CortidQCT.h:266: warning: member CQCT_ColorToLabelMap belongs to two different groups. The second one found here will be ignored.
+/home/travis/build/ithron/CortidQCT/bindings/matlab/include/CortidQCT/Matlab/CortidQCT.h:319: warning: member CQCT_ColorToLabelMap belongs to two different groups. The second one found here will be ignored.
+/home/travis/build/ithron/CortidQCT/bindings/matlab/include/CortidQCT/Matlab/CortidQCT.h:319: warning: member CQCT_ColorToLabelMap belongs to two different groups. The second one found here will be ignored.
 /home/travis/build/ithron/CortidQCT/bindings/matlab/src/matlab-addons.c:8: warning: Compound VoxelSize is not documented.
 /home/travis/build/ithron/CortidQCT/bindings/C/src/CortidQCT-Common.h:22: warning: Compound CortidQCT::Internal::C::GenericObjectWrapper is not documented.
 /home/travis/build/ithron/CortidQCT/bindings/C/src/CortidQCT-Common.h:77: warning: Compound CQCT_Mesh_t is not documented.
@@ -212,7 +212,7 @@ Please use a more specific name by including a (larger) part of the path!
 /home/travis/build/ithron/CortidQCT/lib/DisplacementOptimizer.h:94: warning: documented symbol `template DisplacementOptimizer::DisplacementsWeightsPair CortidQCT::Internal::DisplacementOptimizer::operator' was not declared or defined.
 /home/travis/build/ithron/CortidQCT/lib/DisplacementOptimizer.h:95: warning: documented symbol `template DisplacementOptimizer::DisplacementsWeightsPair CortidQCT::Internal::Eigen::VectorXd' was not declared or defined.
 /home/travis/build/ithron/CortidQCT/lib/DisplacementOptimizer.h:120: warning: documented symbol `template DisplacementOptimizer::DisplacementsWeightsPair CortidQCT::Internal::DisplacementOptimizer::operator' was not declared or defined.
-/home/travis/build/ithron/CortidQCT/bindings/matlab/include/CortidQCT/Matlab/CortidQCT.h:266: warning: member CQCT_ColorToLabelMap belongs to two different groups. The second one found here will be ignored.
+/home/travis/build/ithron/CortidQCT/bindings/matlab/include/CortidQCT/Matlab/CortidQCT.h:319: warning: member CQCT_ColorToLabelMap belongs to two different groups. The second one found here will be ignored.
 e/travis/build/ithron/CortidQCT/bindings/C/src/ObjectBase.cpp...
 Preprocessing /home/travis/build/ithron/CortidQCT/bindings/C/src/VoxelVolume.cpp...
 Parsing file /home/travis/build/ithron/CortidQCT/bindings/C/src/VoxelVolume.cpp...
@@ -587,7 +587,7 @@ Generating file index...
 Generating file member index...
 Generating example index...
 finalizing index lists...
-lookup cache used 851/65536 hits=6310 misses=999
+lookup cache used 855/65536 hits=6426 misses=1003
 finished...
 make[3]: Leaving directory `/home/travis/build/ithron/CortidQCT'
 [100%] Built target doc
