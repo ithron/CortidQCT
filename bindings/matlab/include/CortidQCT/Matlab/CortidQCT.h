@@ -149,6 +149,27 @@ typedef struct CQCT_Mesh_t *CQCT_Mesh;
 CQCT_EXTERN CQCT_Mesh CQCT_createMesh(void);
 
 /**
+ * @brief Creates an mesh and reserve space for vertices and indices.
+ *
+ * Creates a mesh data structure and allocate memory for vertices, indices and
+ * labels.
+ *
+ * @param[in] nVertices Number of vertices to allocate memory for
+ * @param[in] nTriangles Number of triangles to allocate memory for
+ * @param[out] error In case of an error, an error object is copied to
+ * `*error`. NULL may be passed here to not get any error objects.
+ * @return A newly created CQCT_Mesh opbject or NULL on error.
+ * @note The ownership of the mesh object is transfered to the caller.
+ * @note The ownership of the error object is NOT transfered to teh caller.
+ * @note It is very unlikely that this function returns an error. The only
+ * reason for failure is when the system is unable to allocate enough memory.
+ * It is therefore kind of save to pass NULL for `error` here.
+ */
+CQCT_EXTERN CQCT_Mesh CQCT_createMeshAndAllocateMemory(size_t nVertices,
+                                                       size_t nTriangles,
+                                                       CQCT_Error *error);
+
+/**
  * @brief Creates and loads a mesh from file.
  *
  * @param[in] filename path to the file to load the mesh from

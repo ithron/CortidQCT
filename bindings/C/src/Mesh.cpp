@@ -9,6 +9,21 @@ CORTIDQCT_C_EXPORT CQCT_EXTERN CQCT_Mesh CQCT_createMesh() {
   return static_cast<CQCT_Mesh>(constructObject<Mesh<float>>());
 }
 
+CORTIDQCT_C_EXPORT CQCT_EXTERN CQCT_Mesh CQCT_createMeshAndAllocateMemory(
+    size_t nVertices, size_t nTriangles, CQCT_Error *error) {
+
+  try {
+    return static_cast<CQCT_Mesh>(
+        constructObject<Mesh<float>>(nVertices, nTriangles));
+  } catch (std::exception const &e) {
+    if (error != nullptr) {
+      *error = CQCT_createError(CQCT_ErrorId_Unknown, e.what());
+      CQCT_autorelease(*error);
+    }
+    return nullptr;
+  }
+}
+
 CORTIDQCT_C_EXPORT CQCT_EXTERN CQCT_Mesh CQCT_meshFromFile(const char *filename,
                                                            CQCT_Error *error) {
   return CQCT_meshFromFileWithCustomMapping(filename, nullptr, error);
