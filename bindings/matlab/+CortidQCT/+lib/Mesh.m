@@ -14,14 +14,35 @@ classdef Mesh < CortidQCT.lib.ObjectBase
     % Constructor
     function obj = Mesh(varargin)
       import CortidQCT.lib.ObjectBase;
+      import CortidQCT.lib.Error;
       
       if nargin == 0
         handle = ObjectBase.call('createMesh');
-      else
+      elseif nargin == 1
         handle = varargin{1};
+      elseif nargin == 2 || nargin == 3
+        V = varargin{1};
+        F = varargin{2};
+        if nargin == 3
+          L = varargin{3};
+        else
+          L = zeros(size(V, 1), 1, 'uint32');
+        end
+
+        err = Error;
+        handle = ObjectBase.call('createMeshAndAllocateMemory', size(V, 1), size(F, 1), err.pointer)
+        if handle == 0
+          error('Failed to create mesh: %s', err.message);
+        end
       end
       
       obj@CortidQCT.lib.ObjectBase(handle);
+
+      if nargin == 2 || nargin == 3
+        obj.Vertices = V;
+        obj.Indices = F;
+        obj.Labels = L;
+      end
     end
 
     %%%%%%%%%%%%%%%%%
@@ -46,6 +67,20 @@ classdef Mesh < CortidQCT.lib.ObjectBase
       Vertices = vBuffer.Value';
     end
 
+    function obj = set.Vertices(obj, V)
+      import CortidQCT.lib.ObjectBase;
+
+      if size(V, 2) ~= 3 || not(isa(V, 'single'))
+        error('V must be a Nx3 single matrix')
+      end
+
+      if size(V, 1) ~= obj.vertexCount
+        error('Number of rows of V must match vertexCount')
+      end
+
+      ObjectBase.call('meshSetVertices', obj.handle, V');
+    end
+
     function Indices = get.Indices(obj)
       import CortidQCT.lib.ObjectBase;
       iBuffer = libpointer('longPtr', zeros(3, obj.triangleCount, 'int64'));
@@ -54,12 +89,55 @@ classdef Mesh < CortidQCT.lib.ObjectBase
       Indices = iBuffer.Value' + 1;
     end
 
+    function obj = set.Indices(obj, F)
+      import CortidQCT.lib.ObjectBase;
+
+      if size(F, 2) ~= 3
+        error('F must be a Mx3 single matrix')
+      end
+
+      if ~isa(F, 'int64')
+        F = int64(F);
+      end
+
+      if size(F, 1) ~= obj.triangleCount
+        error('Number of rows of F must match triangleCount')
+      end
+
+      % Convert from matlab's 1 bases indexing to C's 0 based indexing
+      F = F - 1;
+
+      ObjectBase.call('meshSetTriangles', obj.handle, F');
+    end
+
     function Labels = get.Labels(obj)
       import CortidQCT.lib.ObjectBase;
       lBuffer = libpointer('uint32Ptr', zeros(obj.vertexCount, 1, 'uint32'));
       result = ObjectBase.call('meshCopyLabels', obj.handle, lBuffer);
       assert(result == 4 * length(lBuffer.Value(:)), "Size mismatch");
       Labels = lBuffer.Value;
+    end
+
+    function obj = set.Labels(obj, L)
+      import CortidQCT.lib.ObjectBase;
+
+      if not(isvector(L))
+        error('L must be a vector');
+      end
+
+      if isrow(L)
+        L = L';
+      end
+
+      if ~isa(L, 'uint32')
+        F = uint32(L);
+      end
+
+      if numel(L) ~= obj.vertexCount
+        error('Number of rows of L must match vertexCount')
+      end
+
+      ObjectBase.call('meshSetLabels', obj.handle, L);
     end
 
     %%%%%%%%%%%%%%%%%

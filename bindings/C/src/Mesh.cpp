@@ -9,6 +9,21 @@ CORTIDQCT_C_EXPORT CQCT_EXTERN CQCT_Mesh CQCT_createMesh() {
   return static_cast<CQCT_Mesh>(constructObject<Mesh<float>>());
 }
 
+CORTIDQCT_C_EXPORT CQCT_EXTERN CQCT_Mesh CQCT_createMeshAndAllocateMemory(
+    size_t nVertices, size_t nTriangles, CQCT_Error *error) {
+
+  try {
+    return static_cast<CQCT_Mesh>(
+        constructObject<Mesh<float>>(nVertices, nTriangles));
+  } catch (std::exception const &e) {
+    if (error != nullptr) {
+      *error = CQCT_createError(CQCT_ErrorId_Unknown, e.what());
+      CQCT_autorelease(*error);
+    }
+    return nullptr;
+  }
+}
+
 CORTIDQCT_C_EXPORT CQCT_EXTERN CQCT_Mesh CQCT_meshFromFile(const char *filename,
                                                            CQCT_Error *error) {
   return CQCT_meshFromFileWithCustomMapping(filename, nullptr, error);
@@ -158,6 +173,18 @@ CORTIDQCT_C_EXPORT CQCT_EXTERN size_t CQCT_meshCopyVertices(CQCT_Mesh mesh,
   return size;
 }
 
+CORTIDQCT_C_EXPORT CQCT_EXTERN void CQCT_meshSetVertices(CQCT_Mesh mesh,
+                                                         float const *buffer) {
+
+  assert(mesh != nullptr);
+  assert(buffer != nullptr);
+
+  auto &obj = *(mesh->impl.objPtr);
+  auto const size = obj.vertexCount() * 3;
+  obj.withUnsafeVertexPointer(
+      [buffer, size](float *dest) { std::copy(buffer, buffer + size, dest); });
+}
+
 CORTIDQCT_C_EXPORT CQCT_EXTERN size_t
 CQCT_meshCopyTriangles(CQCT_Mesh mesh, ptrdiff_t **bufferPtr) {
   assert(mesh != nullptr);
@@ -175,6 +202,19 @@ CQCT_meshCopyTriangles(CQCT_Mesh mesh, ptrdiff_t **bufferPtr) {
   });
 
   return size;
+}
+
+CORTIDQCT_C_EXPORT CQCT_EXTERN void
+CQCT_meshSetTriangles(CQCT_Mesh mesh, ptrdiff_t const *buffer) {
+
+  assert(mesh != nullptr);
+  assert(buffer != nullptr);
+
+  auto &obj = *(mesh->impl.objPtr);
+  auto const size = obj.triangleCount() * 3;
+  obj.withUnsafeIndexPointer([buffer, size](ptrdiff_t *dest) {
+    std::copy(buffer, buffer + size, dest);
+  });
 }
 
 CORTIDQCT_C_EXPORT CQCT_EXTERN size_t
@@ -195,3 +235,17 @@ CQCT_meshCopyLabels(CQCT_Mesh mesh, unsigned int **bufferPtr) {
 
   return size;
 }
+
+CORTIDQCT_C_EXPORT CQCT_EXTERN void
+CQCT_meshSetLabels(CQCT_Mesh mesh, unsigned int const *buffer) {
+
+  assert(mesh != nullptr);
+  assert(buffer != nullptr);
+
+  auto &obj = *(mesh->impl.objPtr);
+  auto const size = obj.vertexCount();
+  obj.withUnsafeLabelPointer([buffer, size](unsigned int *dest) {
+    std::copy(buffer, buffer + size, dest);
+  });
+}
+

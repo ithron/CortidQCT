@@ -149,6 +149,27 @@ typedef struct CQCT_Mesh_t *CQCT_Mesh;
 CQCT_EXTERN CQCT_Mesh CQCT_createMesh(void);
 
 /**
+ * @brief Creates an mesh and reserve space for vertices and indices.
+ *
+ * Creates a mesh data structure and allocate memory for vertices, indices and
+ * labels.
+ *
+ * @param[in] nVertices Number of vertices to allocate memory for
+ * @param[in] nTriangles Number of triangles to allocate memory for
+ * @param[out] error In case of an error, an error object is copied to
+ * `*error`. NULL may be passed here to not get any error objects.
+ * @return A newly created CQCT_Mesh opbject or NULL on error.
+ * @note The ownership of the mesh object is transfered to the caller.
+ * @note The ownership of the error object is NOT transfered to teh caller.
+ * @note It is very unlikely that this function returns an error. The only
+ * reason for failure is when the system is unable to allocate enough memory.
+ * It is therefore kind of save to pass NULL for `error` here.
+ */
+CQCT_EXTERN CQCT_Mesh CQCT_createMeshAndAllocateMemory(size_t nVertices,
+                                                       size_t nTriangles,
+                                                       CQCT_Error *error);
+
+/**
  * @brief Creates and loads a mesh from file.
  *
  * @param[in] filename path to the file to load the mesh from
@@ -238,6 +259,17 @@ CQCT_EXTERN size_t CQCT_meshTriangleCount(CQCT_Mesh mesh);
 CQCT_EXTERN size_t CQCT_meshCopyVertices(CQCT_Mesh mesh, float **bufferPtr);
 
 /**
+ * @brief Copies the vertices from the given buffer into the mesh data
+ * structure.
+ *
+ * @note Vertices are expected to have the oder [v1x, v1y, v1z, v2x, v2y, v2z,
+ * ...]
+ * @param[in,out] mesh mesh to set the vertices for
+ * @param[in] buffer buffer to copy the vertices from
+ */
+CQCT_EXTERN void CQCT_meshSetVertices(CQCT_Mesh mesh, float const *buffer);
+
+/**
  * @brief Copies the mesh's indices into the given buffer
  * @see CQCT_meshCopyVertices()
  */
@@ -245,11 +277,32 @@ CQCT_EXTERN size_t CQCT_meshCopyTriangles(CQCT_Mesh mesh,
                                           ptrdiff_t **bufferPtr);
 
 /**
+ * @brief Copies the triangle indices from the given buffer into the mesh data
+ * structure.
+ *
+ * @note Vertices are expected to have the oder [i11, i12, i13, i21, i22, i23,
+ * ...], where im, denotes the m-th index of the n-th triangle.
+ * @param[in,out] mesh mesh to set the indices for
+ * @param[in] buffer buffer to copy the indices from
+ */
+CQCT_EXTERN void CQCT_meshSetTriangles(CQCT_Mesh mesh, ptrdiff_t const *buffer);
+
+/**
  * @brief Copies the mesh's labels into the given buffer
  * @see CQCT_meshCopyVertices()
  */
 CQCT_EXTERN size_t CQCT_meshCopyLabels(CQCT_Mesh mesh,
                                        unsigned int **bufferPtr);
+
+/**
+ * @brief Copies the vertex labels from the given buffer into the mesh data
+ * structure.
+ *
+ * @param[in,out] mesh mesh to set the indices for
+ * @param[in] buffer buffer to copy the indices from
+ */
+CQCT_EXTERN void CQCT_meshSetLabels(CQCT_Mesh mesh, unsigned int const *buffer);
+
 
 /// @}
 
