@@ -11,8 +11,10 @@
 
 #pragma once
 
+#include "BarycentricPoint.h"
 #include "ColorToLabelMap.h"
 #include "LabelToColorMap.h"
+#include "Ray.h"
 
 #include <array>
 #include <stdexcept>
@@ -177,6 +179,59 @@ public:
   /// @}
 
   /**
+   * @name Queries
+   * @{
+   */
+
+  /**
+   * @brief Returns the cartesian coordinate of a point in barycentric
+   * coordinates
+   * @param[in] point point in barycentric coodinate representation
+   * @return vartesian coordinates of the point
+   * @throws std::out_of_range if the triangle index of the point is invalid.
+   */
+  std::array<T, 3>
+  cartesianRepresentation(BarycentricPoint<T, Index> const &point) const;
+
+  /**
+   * @brief Converts a sequence of barycentric coordinates into caresian
+   * coordinates.
+   * @param[in] begin iterator that points to the first cartesian point
+   * @param[in] end interator that points right after the last point
+   * @param[out] out output iterator
+   * @return Number of points converted
+   * @throws std::out_of_range if a triangle index is out of range
+   * @note If `InputIterator` and `OutputIterator` are random access iterator,
+   * the computation may be carried out in parallel. The function is also
+   * optimized for `OutputIterator` types that are also input iterators (i.e.
+   * read-write).
+   * @todo Write unit test.
+   */
+  template <class InputIterator, class OutputIterator>
+  std::size_t cartesianRepresentation(InputIterator begin, InputIterator end,
+                                      OutputIterator out) const;
+
+  /**
+   * @brief Converts a sequence of barycentric coordinates into caresian
+   * coordinates.
+   * @param[in] points std::vector of barycentric points
+   * @return a std::vector of cartesian points
+   * @throws std::out_of_range if a triangle index is out of range
+   */
+  inline std::vector<std::array<T, 3>> cartesianRepresentation(
+      std::vector<BarycentricPoint<T, Index>> const &points) const {
+
+    using Cartesian = std::array<T, 3>;
+    std::vector<Cartesian> cartPoints(points.size());
+
+    cartesianRepresentation(points.cbegin(), points.cend(), cartPoints.begin());
+
+    return cartPoints;
+  }
+
+  /// @}
+
+  /**
    * @name Raw Data Access
    * The methods in this section all call a functional with a pointer to raw
    * data as its argument. The pointer only guaranteed to be valid within the
@@ -275,5 +330,22 @@ private:
 
 extern template class Mesh<float>;
 extern template class Mesh<double>;
+
+extern template std::size_t Mesh<float>::cartesianRepresentation(
+    BarycentricPoint<float, std::ptrdiff_t> const *begin,
+    BarycentricPoint<float, std::ptrdiff_t> const *end,
+    std::array<float, 3> *out) const;
+extern template std::size_t Mesh<double>::cartesianRepresentation(
+    BarycentricPoint<float, std::ptrdiff_t> const *begin,
+    BarycentricPoint<float, std::ptrdiff_t> const *end,
+    std::array<float, 3> *out) const;
+extern template std::size_t Mesh<float>::cartesianRepresentation(
+    std::vector<BarycentricPoint<float, std::ptrdiff_t>>::const_iterator begin,
+    std::vector<BarycentricPoint<float, std::ptrdiff_t>>::const_iterator end,
+    std::vector<std::array<float, 3>>::iterator out) const;
+extern template std::size_t Mesh<double>::cartesianRepresentation(
+    std::vector<BarycentricPoint<double, std::ptrdiff_t>>::const_iterator begin,
+    std::vector<BarycentricPoint<double, std::ptrdiff_t>>::const_iterator end,
+    std::vector<std::array<double, 3>>::iterator out) const;
 
 } // namespace CortidQCT

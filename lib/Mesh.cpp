@@ -12,6 +12,7 @@
 #include "Mesh.h"
 #include "CheckExtension.h"
 #include "MatrixIO.h"
+#include "MeshAdaptors.h"
 #include "MeshHelpers.h"
 #include "SIMesh.h"
 
@@ -26,6 +27,7 @@
 #include <algorithm>
 #include <cctype>
 #include <fstream>
+#include <iterator>
 #include <limits>
 
 namespace CortidQCT {
@@ -398,6 +400,148 @@ void Mesh<T>::writeToFile(
   }
 }
 
+template <class T>
+std::array<T, 3> Mesh<T>::cartesianRepresentation(
+    BarycentricPoint<T, Mesh<T>::Index> const &point) const {
+  using gsl::narrow_cast;
+  using Internal::Adaptor::indexMap;
+  using Internal::Adaptor::vertexMap;
+
+  if ((point.triangleIndex < 0) ||
+      (narrow_cast<std::size_t>(point.triangleIndex) > triangleCount())) {
+    throw std::range_error("Triangle index out of range");
+  }
+
+  auto const idx = point.triangleIndex;
+  auto const idxMap = indexMap(*this);
+  auto const vMap = vertexMap(*this);
+
+  std::array<T, 3> cartPoint;
+  Eigen::Map<Eigen::Matrix<T, 3, 1>> cartMap{cartPoint.data(), 3, 1};
+
+  cartMap = point.uv[0] * vMap.col(idxMap(0, idx)) +
+            point.uv[1] * vMap.col(idxMap(1, idx)) +
+            (1 - point.uv[0] - point.uv[1]) * vMap.col(idxMap(2, idx));
+
+  return cartPoint;
+}
+
+namespace Internal {
+
+template <class T, class InputIterator>
+inline void cartesianRepresentationValidateInput_(InputIterator begin,
+                                                  InputIterator end,
+                                                  Mesh<T> const &mesh) {
+  auto const idxUB = mesh.triangleCount();
+  if (std::any_of(begin, end, [idxUB](auto const &p) {
+        return (p.triangleIndex < 0) ||
+               (gsl::narrow_cast<std::size_t>(p.triangleIndex) > idxUB);
+      })) {
+    throw std::out_of_range("At least one triangle index is out of range");
+  }
+}
+
+template <class T, class I, class D1, class D2>
+inline auto cartesianRepresentationConv_(BarycentricPoint<T, I> const &pt,
+                                         Eigen::MatrixBase<D1> const &iMap,
+                                         Eigen::MatrixBase<D2> const &vMap) {
+  auto const ti = pt.triangleIndex;
+
+  return pt.uv[0] * vMap.col(iMap(0, ti)) + pt.uv[1] * vMap.col(iMap(1, ti)) +
+         (1 - pt.uv[0] - pt.uv[1]) * vMap.col(iMap(2, ti));
+}
+
+template <class T, class InputIterator, class OutputIterator>
+std::size_t cartesianRepresentationImpl_(InputIterator begin, InputIterator end,
+                                         OutputIterator out,
+                                         Mesh<T> const &mesh, std::true_type) {
+  using Eigen::Map;
+  using Eigen::Matrix;
+  using gsl::narrow_cast;
+  using Internal::Adaptor::indexMap;
+  using Internal::Adaptor::vertexMap;
+  using DTI = typename std::iterator_traits<InputIterator>::difference_type;
+  using DTO = typename std::iterator_traits<OutputIterator>::difference_type;
+
+  cartesianRepresentationValidateInput_(begin, end, mesh);
+
+  auto const idxMap = indexMap(mesh);
+  auto const vMap = vertexMap(mesh);
+
+  auto const n = gsl::narrow<std::size_t>(std::distance(begin, end));
+
+  if (std::is_base_of<std::input_iterator_tag,
+                      typename std::iterator_traits<
+                          OutputIterator>::iterator_category>::value) {
+#pragma omp parallel for
+    for (std::size_t i = 0; i < n; ++i) {
+      Eigen::Map<Matrix<T, 3, 1>>{out[narrow_cast<DTO>(i)].data(), 3, 1} =
+          cartesianRepresentationConv_(begin[narrow_cast<DTI>(i)], idxMap,
+                                       vMap);
+    }
+  } else {
+#pragma omp parallel for
+    for (std::size_t i = 0; i < n; ++i) {
+
+      thread_local std::array<T, 3> cart;
+      thread_local Eigen::Map<Matrix<T, 3, 1>> cartMap{cart.data(), 3, 1};
+
+      cartMap = cartesianRepresentationConv_(begin[narrow_cast<DTI>(i)], idxMap,
+                                             vMap);
+      out[narrow_cast<DTO>(i)] = cart;
+    }
+  }
+
+  return n;
+}
+
+template <class T, class InputIterator, class OutputIterator>
+std::size_t cartesianRepresentationImpl_(InputIterator begin, InputIterator end,
+                                         OutputIterator out,
+                                         Mesh<T> const &mesh, std::false_type) {
+  using Eigen::Map;
+  using Eigen::Matrix;
+  using gsl::narrow_cast;
+  using Internal::Adaptor::indexMap;
+  using Internal::Adaptor::vertexMap;
+
+  cartesianRepresentationValidateInput_(begin, end, mesh);
+
+  auto const idxMap = indexMap(mesh);
+  auto const vMap = vertexMap(mesh);
+
+  auto const n = gsl::narrow<std::size_t>(std::distance(begin, end));
+
+  std::transform(begin, end, out, [&idxMap, &vMap](auto const &pt) {
+    std::array<T, 3> cart;
+    Eigen::Map<Matrix<T, 3, 1>> cartMap{cart.data(), 3, 1};
+
+    cartMap = cartesianRepresentationConv_(pt, idxMap, vMap);
+    return cart;
+  });
+
+  return n;
+}
+
+} // namespace Internal
+
+template <class T>
+template <class InputIterator, class OutputIterator>
+std::size_t Mesh<T>::cartesianRepresentation(InputIterator begin,
+                                             InputIterator end,
+                                             OutputIterator out) const {
+  using Parallel = std::integral_constant<
+      bool, std::is_base_of<std::random_access_iterator_tag,
+                            typename std::iterator_traits<
+                                OutputIterator>::iterator_category>::value &&
+                std::is_base_of<std::random_access_iterator_tag,
+                                typename std::iterator_traits<
+                                    InputIterator>::iterator_category>::value>;
+
+  return Internal::cartesianRepresentationImpl_(begin, end, out, *this,
+                                                Parallel{});
+}
+
 /*************************************
  * Explicit template instanciations
  */
@@ -405,4 +549,22 @@ void Mesh<T>::writeToFile(
 template class Mesh<float>;
 template class Mesh<double>;
 
+template std::size_t Mesh<float>::cartesianRepresentation(
+    BarycentricPoint<float, std::ptrdiff_t> const *begin,
+    BarycentricPoint<float, std::ptrdiff_t> const *end,
+    std::array<float, 3> *out) const;
+template std::size_t Mesh<double>::cartesianRepresentation(
+    BarycentricPoint<double, std::ptrdiff_t> const *begin,
+    BarycentricPoint<double, std::ptrdiff_t> const *end,
+    std::array<double, 3> *out) const;
+template std::size_t Mesh<float>::cartesianRepresentation(
+    std::vector<BarycentricPoint<float, std::ptrdiff_t>>::const_iterator begin,
+    std::vector<BarycentricPoint<float, std::ptrdiff_t>>::const_iterator end,
+    std::vector<std::array<float, 3>>::iterator out) const;
+template std::size_t Mesh<double>::cartesianRepresentation(
+    std::vector<BarycentricPoint<double, std::ptrdiff_t>>::const_iterator begin,
+    std::vector<BarycentricPoint<double, std::ptrdiff_t>>::const_iterator end,
+    std::vector<std::array<double, 3>>::iterator out) const;
+
+// namespace CortidQCT
 } // namespace CortidQCT
