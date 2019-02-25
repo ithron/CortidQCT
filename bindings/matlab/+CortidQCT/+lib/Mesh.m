@@ -46,6 +46,20 @@ classdef Mesh < CortidQCT.lib.ObjectBase
       Vertices = vBuffer.Value';
     end
 
+    function obj = set.Vertices(obj, V)
+      import CortidQCT.lib.ObjectBase;
+
+      if size(V, 2) ~= 3 || not(isa(V, 'single'))
+        error('V must be a Nx3 single matrix')
+      end
+
+      if size(V, 1) ~= obj.VertexCount
+        error('Number of rows of V must match VertexCount')
+      end
+
+      ObjectBase.call('meshSetVertices', obj.handle, V');
+    end
+
     function Indices = get.Indices(obj)
       import CortidQCT.lib.ObjectBase;
       iBuffer = libpointer('longPtr', zeros(3, obj.triangleCount, 'int64'));
@@ -54,12 +68,52 @@ classdef Mesh < CortidQCT.lib.ObjectBase
       Indices = iBuffer.Value' + 1;
     end
 
+    function obj = set.Indices(obj, F)
+      import CortidQCT.lib.ObjectBase;
+
+      if size(F, 2) ~= 3
+        error('V must be a Mx3 single matrix')
+      end
+
+      if ~isa(F, 'int64')
+        F = int64(F);
+      end
+
+      if size(F, 1) ~= obj.VertexCount
+        error('Number of rows of F must match TriangleCount')
+      end
+
+      ObjectBase.call('meshSetTriangles', obj.handle, F');
+    end
+
     function Labels = get.Labels(obj)
       import CortidQCT.lib.ObjectBase;
       lBuffer = libpointer('uint32Ptr', zeros(obj.vertexCount, 1, 'uint32'));
       result = ObjectBase.call('meshCopyLabels', obj.handle, lBuffer);
       assert(result == 4 * length(lBuffer.Value(:)), "Size mismatch");
       Labels = lBuffer.Value;
+    end
+
+    function obj = set.Labels(obj, L)
+      import CortidQCT.lib.ObjectBase;
+
+      if not(isvector(L))
+        error('L must be a vector');
+      end
+
+      if isrow(L)
+        L = L';
+      end
+
+      if ~isa(F, 'uint32')
+        F = uint32(F);
+      end
+
+      if size(F, 1) ~= obj.VertexCount
+        error('Number of rows of L must match TriangleCount')
+      end
+
+      ObjectBase.call('meshSetLabels', obj.handle, L);
     end
 
     %%%%%%%%%%%%%%%%%
