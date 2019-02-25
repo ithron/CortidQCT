@@ -17,8 +17,29 @@ classdef Mesh < CortidQCT.lib.ObjectBase
       
       if nargin == 0
         handle = ObjectBase.call('createMesh');
-      else
+      elseif nargin == 1
         handle = varargin{1};
+      elseif nargin == 2 || nargin == 3
+        V = varargin{1};
+        F = varargin{2};
+        if nargin == 3
+          L = varargin{3};
+        else
+          L = zeros(size(V, 1), 'uint32');
+        end
+
+        err = Error;
+        handle = ObjectBase.call('createMeshAndAllocateMemory', size(V, 1), size(F, 1), err.pointer)
+        if handle == 0
+          error('Failed to create mesh: %s', err.message);
+        end
+
+        obj@CortidQCT.lib.ObjectBase(handle);
+
+        obj.Vertices = V;
+        obj.Indices = F;
+        obj.Labels = L;
+        return
       end
       
       obj@CortidQCT.lib.ObjectBase(handle);
