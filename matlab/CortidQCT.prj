@@ -3,13 +3,13 @@
     <param.appname>CortidQCT</param.appname>
     <param.authnamewatermark>Stefan Reinhold</param.authnamewatermark>
     <param.email>sre@informatik.uni-kiel.de</param.email>
-    <param.company>Kiel Univerisy</param.company>
+    <param.company>Kiel University</param.company>
     <param.summary>A toolbox for automatic cortical shape identification for QCT scans.</param.summary>
-    <param.description>his software is based on "An Analysis by Synthesis Approach for Automatic Vertebral Shape Identification in Clinical QCT" by Stefan Reinhold, Timo Damm, Lukas Huber, Reimer Andresen, Reinhard Barkmann, Claus-C. Glüer and Reinhard Koch, accepted for publication in Springer LNCS, presented on "German Conference on Pattern Recognition 2018".
+    <param.description>This software is based on "Reinhold S. et al. (2019) An Analysis by Synthesis Approach for Automatic Vertebral Shape Identification in Clinical QCT. In: Brox T., Bruhn A., Fritz M. (eds) Pattern Recognition. GCPR 2018. Lecture Notes in Computer Science, vol 11269. Springer, Cham" (https://link.springer.com/chapter/10.1007%2F978-3-030-12939-2_6).
 
 For details visit https://github.com/ithron/CortidQCT</param.description>
     <param.screenshot />
-    <param.version>1.2.2.4</param.version>
+    <param.version>1.2.2.11</param.version>
     <param.output>${PROJECT_ROOT}/CortidQCT.mltbx</param.output>
     <param.products.name>
       <item>MATLAB</item>
