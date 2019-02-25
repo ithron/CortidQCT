@@ -14,6 +14,7 @@ classdef Mesh < CortidQCT.lib.ObjectBase
     % Constructor
     function obj = Mesh(varargin)
       import CortidQCT.lib.ObjectBase;
+      import CortidQCT.lib.Error;
       
       if nargin == 0
         handle = ObjectBase.call('createMesh');
@@ -25,7 +26,7 @@ classdef Mesh < CortidQCT.lib.ObjectBase
         if nargin == 3
           L = varargin{3};
         else
-          L = zeros(size(V, 1), 'uint32');
+          L = zeros(size(V, 1), 1, 'uint32');
         end
 
         err = Error;
@@ -33,16 +34,15 @@ classdef Mesh < CortidQCT.lib.ObjectBase
         if handle == 0
           error('Failed to create mesh: %s', err.message);
         end
-
-        obj@CortidQCT.lib.ObjectBase(handle);
-
-        obj.Vertices = V;
-        obj.Indices = F;
-        obj.Labels = L;
-        return
       end
       
       obj@CortidQCT.lib.ObjectBase(handle);
+
+      if nargin == 2 || nargin == 3
+        obj.Vertices = V;
+        obj.Indices = F;
+        obj.Labels = L;
+      end
     end
 
     %%%%%%%%%%%%%%%%%
@@ -74,8 +74,8 @@ classdef Mesh < CortidQCT.lib.ObjectBase
         error('V must be a Nx3 single matrix')
       end
 
-      if size(V, 1) ~= obj.VertexCount
-        error('Number of rows of V must match VertexCount')
+      if size(V, 1) ~= obj.vertexCount
+        error('Number of rows of V must match vertexCount')
       end
 
       ObjectBase.call('meshSetVertices', obj.handle, V');
@@ -93,16 +93,19 @@ classdef Mesh < CortidQCT.lib.ObjectBase
       import CortidQCT.lib.ObjectBase;
 
       if size(F, 2) ~= 3
-        error('V must be a Mx3 single matrix')
+        error('F must be a Mx3 single matrix')
       end
 
       if ~isa(F, 'int64')
         F = int64(F);
       end
 
-      if size(F, 1) ~= obj.VertexCount
-        error('Number of rows of F must match TriangleCount')
+      if size(F, 1) ~= obj.triangleCount
+        error('Number of rows of F must match triangleCount')
       end
+
+      % Convert from matlab's 1 bases indexing to C's 0 based indexing
+      F = F - 1;
 
       ObjectBase.call('meshSetTriangles', obj.handle, F');
     end
@@ -126,12 +129,12 @@ classdef Mesh < CortidQCT.lib.ObjectBase
         L = L';
       end
 
-      if ~isa(F, 'uint32')
-        F = uint32(F);
+      if ~isa(L, 'uint32')
+        F = uint32(L);
       end
 
-      if size(F, 1) ~= obj.VertexCount
-        error('Number of rows of L must match TriangleCount')
+      if numel(L) ~= obj.vertexCount
+        error('Number of rows of L must match vertexCount')
       end
 
       ObjectBase.call('meshSetLabels', obj.handle, L);
