@@ -265,13 +265,15 @@ CORTIDQCT_C_EXPORT CQCT_EXTERN size_t CQCT_meshBarycentricToCartesian(
   }
 
   auto const input = reinterpret_cast<BP const *>(barycentricPtr);
-  auto output = reinterpret_cast<std::array<float, 3> *>(bufferPtr);
+  auto output = reinterpret_cast<std::array<float, 3> *>(*bufferPtr);
 
   auto const &meshObj = *(mesh->impl.objPtr);
 
   try {
-    return meshObj.cartesianRepresentation(input, input + nPoints, output) * 3 *
-           sizeof(float);
+    auto const nPts =
+        meshObj.cartesianRepresentation(input, input + nPoints, output);
+
+    return nPts * 3 * sizeof(float);
   } catch (std::out_of_range const &e) {
     if (error != nullptr) {
       *error = CQCT_createError(CQCT_ErrorId_OutOfRange, e.what());
