@@ -249,3 +249,26 @@ CQCT_meshSetLabels(CQCT_Mesh mesh, unsigned int const *buffer) {
   });
 }
 
+CORTIDQCT_C_EXPORT CQCT_EXTERN size_t CQCT_meshBarycentricToCartesian(
+    CQCT_Mesh mesh, CQCT_BarycentricPoint const *barycentricPtr, size_t nPoints,
+    float **bufferPtr) {
+  if (nPoints == 0 || barycentricPtr == nullptr) { return 0; };
+
+  using BP = BarycentricPoint<float, typename Mesh<float>::Index>;
+
+  assert(barycentricPtr != nullptr);
+  assert(mesh != nullptr);
+
+  if (*bufferPtr == nullptr) {
+    *bufferPtr = (float *)malloc(3 * nPoints * sizeof(float));
+  }
+
+  auto const input = reinterpret_cast<BP const *>(barycentricPtr);
+  auto output = reinterpret_cast<std::array<float, 3> *>(bufferPtr);
+
+  auto const &meshObj = *(mesh->impl.objPtr);
+
+  return meshObj.cartesianRepresentation(input, input + nPoints, output) * 3 *
+         sizeof(float);
+}
+
