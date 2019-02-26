@@ -205,6 +205,56 @@ classdef Mesh < CortidQCT.lib.ObjectBase
       
     end
 
+    %%%%%%%%%%%%%%%%%
+    %% Queries
+    %
+
+    function points = barycentricToCartesian(obj, UV, Idx)
+      % BARYCENTRICTOCARTESIAN Converts points given in barycentric coordinates
+      % into cartesian coordinates.
+      %   points = barycentricToCartesian(obj, UV, Idx)
+      %     UV is an Nx2 matrix of barycentric coordinates, each row represents
+      %       the coordinates of one point.
+      %     Idx is an N-vector of triangle indices.
+      %   points is an Nx3 matrix of cartesian coordinates
+
+      import CortidQCT.lib.ObjectBase;
+      import CortidQCT.lib.Error;
+      
+      if size(UV, 2) ~= 2
+        error('UV must be a Nx2 matrix')
+      end
+      if size(UV, 1) ~= length(Idx)
+        error('UV and Idx must have the same number of rows')
+      end
+      if isrow(Idx)
+        Idx = Idx';
+      end
+      
+      % Convert data fir API call
+      Idx = Idx - 1;
+      baryPts = arrayfun(@(u, v, i) ...
+        struct('u', u, 'v', v, 'triangleIndex', i), UV(:, 1), UV(:, 2), Idx);
+      inBuffer = libpointer('CQCT_BarycentricPoint_tPtr', baryPts);
+      outBuffer = libpointer('singlePtr', zeros(3, length(Idx), 'single'));
+      
+      err = Error;
+      
+      res = ObjectBase.call('meshBarycentricToCartesian', ...
+        obj.handle, ...
+        inBuffer, length(Idx), ...
+        outBuffer, ...
+        err.pointer);
+      
+      expectedCount = length(Idx) * 3 * 4;
+      
+      if res ~= expectedCount
+        error('Failed to convert points: %s', err.message);
+      end
+      
+      points = outBuffer.Value';
+    end
+
   end % methods
   
   methods (Static)

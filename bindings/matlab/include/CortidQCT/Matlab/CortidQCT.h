@@ -145,6 +145,14 @@ struct CQCT_Mesh_t;
 /// Mesh handle type
 typedef struct CQCT_Mesh_t *CQCT_Mesh;
 
+/// Barycentric point type
+struct CQCT_BarycentricPoint_t {
+  float u; // first barycentric coordinate
+  float v; // second barycentric coordinate
+  ptrdiff_t triangleIndex; // triangle index
+};
+typedef struct CQCT_BarycentricPoint_t CQCT_BarycentricPoint;
+
 /// Creates an empty mesh
 CQCT_EXTERN CQCT_Mesh CQCT_createMesh(void);
 
@@ -303,6 +311,27 @@ CQCT_EXTERN size_t CQCT_meshCopyLabels(CQCT_Mesh mesh,
  */
 CQCT_EXTERN void CQCT_meshSetLabels(CQCT_Mesh mesh, unsigned int const *buffer);
 
+/**
+ * @brief Converts the given list of barycentric points in cartesian
+ * coordinates.
+ *
+ * @param[in] mesh Mesh object
+ * @param[in] barycentricPtr pointer to list of points in barycentric
+ * representation
+ * @param[in] nPoints number of points to convert
+ * @param[out] Pointer to the output buffer. The buffer must be able to hold
+ * `3 * N` floats. Alternatively, `bufferPtr` can point to a `NULL` pointer. In
+ * this case the required memory is allocated by the function. Note that in
+ * both variants the caller is responsible for releasing the memory.
+ * @param[out] error pointer to error object where an error is stored in case
+ * of an error. Or `NULL` if no error should be returned.
+ * @return Number of vopied bytes on success or `(size_t) -1` on failure.
+ * @pre `barycentricPtr != NULL || nPoints == 0`
+ * @pre `bufferPtr != NULL`
+ */
+CQCT_EXTERN size_t CQCT_meshBarycentricToCartesian(
+    CQCT_Mesh mesh, CQCT_BarycentricPoint const *barycentricPtr, size_t nPoints,
+    float **bufferPtr, CQCT_Error *error);
 
 /// @}
 
