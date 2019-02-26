@@ -251,7 +251,8 @@ CQCT_meshSetLabels(CQCT_Mesh mesh, unsigned int const *buffer) {
 
 CORTIDQCT_C_EXPORT CQCT_EXTERN size_t CQCT_meshBarycentricToCartesian(
     CQCT_Mesh mesh, CQCT_BarycentricPoint const *barycentricPtr, size_t nPoints,
-    float **bufferPtr) {
+    float **bufferPtr, CQCT_Error *error) {
+
   if (nPoints == 0 || barycentricPtr == nullptr) { return 0; };
 
   using BP = BarycentricPoint<float, typename Mesh<float>::Index>;
@@ -268,7 +269,21 @@ CORTIDQCT_C_EXPORT CQCT_EXTERN size_t CQCT_meshBarycentricToCartesian(
 
   auto const &meshObj = *(mesh->impl.objPtr);
 
-  return meshObj.cartesianRepresentation(input, input + nPoints, output) * 3 *
-         sizeof(float);
+  try {
+    return meshObj.cartesianRepresentation(input, input + nPoints, output) * 3 *
+           sizeof(float);
+  } catch (std::out_of_range const &e) {
+    if (error != nullptr) {
+      *error = CQCT_createError(CQCT_ErrorId_OutOfRange, e.what());
+      CQCT_autorelease(*error);
+    }
+  } catch (std::exception const &e) {
+    if (error != nullptr) {
+      *error = CQCT_createError(CQCT_ErrorId_Unknown, e.what());
+      CQCT_autorelease(*error);
+    }
+  }
+
+  return std::numeric_limits<std::size_t>::max();
 }
 

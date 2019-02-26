@@ -95,7 +95,11 @@ CQCT_EXTERN void CQCT_autoreleasePoolPop();
  */
 
 /// Error types/Ids
-enum CQCT_ErrorId { CQCT_ErrorId_Unknown, CQCT_ErrorId_InvalidArgument };
+enum CQCT_ErrorId {
+  CQCT_ErrorId_Unknown,
+  CQCT_ErrorId_InvalidArgument,
+  CQCT_ErrorId_OutOfRange
+};
 
 struct CQCT_Error_t;
 /// Error type
@@ -177,8 +181,8 @@ typedef struct CQCT_Mesh_t *CQCT_Mesh;
 
 /// Barycentric point type
 struct CQCT_BarycentricPoint_t {
-  float u; // first barycentric coordinate
-  float v; // second barycentric coordinate
+  float u;                 // first barycentric coordinate
+  float v;                 // second barycentric coordinate
   ptrdiff_t triangleIndex; // triangle index
 };
 typedef struct CQCT_BarycentricPoint_t CQCT_BarycentricPoint;
@@ -353,13 +357,15 @@ CQCT_EXTERN void CQCT_meshSetLabels(CQCT_Mesh mesh, unsigned int const *buffer);
  * `3 * N` floats. Alternatively, `bufferPtr` can point to a `NULL` pointer. In
  * this case the required memory is allocated by the function. Note that in
  * both variants the caller is responsible for releasing the memory.
- * @return Number of vopied bytes.
+ * @param[out] error pointer to error object where an error is stored in case
+ * of an error. Or `NULL` if no error should be returned.
+ * @return Number of vopied bytes on success or `(size_t) -1` on failure.
  * @pre `barycentricPtr != NULL || nPoints == 0`
  * @pre `bufferPtr != NULL`
  */
 CQCT_EXTERN size_t CQCT_meshBarycentricToCartesian(
     CQCT_Mesh mesh, CQCT_BarycentricPoint const *barycentricPtr, size_t nPoints,
-    float **bufferPtr);
+    float **bufferPtr, CQCT_Error *error);
 
 /// @}
 
