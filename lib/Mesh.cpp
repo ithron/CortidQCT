@@ -604,5 +604,18 @@ template void Mesh<double>::cartesianRepresentation(
     std::vector<BarycentricPoint<double, std::ptrdiff_t>>::const_iterator end,
     double *out) const;
 
+template void Mesh<float>::rayIntersections(Ray<float> const *,
+                                            Ray<float> const *,
+                                            RayMeshIntersection<float> *) const;
+template void Mesh<float>::rayIntersections(
+    Ray<float> const *, Ray<float> const *,
+    std::back_insert_iterator<std::vector<RayMeshIntersection<float>>>) const;
+template void
+Mesh<double>::rayIntersections(Ray<double> const *, Ray<double> const *,
+                               RayMeshIntersection<double> *) const;
+template void Mesh<double>::rayIntersections(
+    Ray<double> const *, Ray<double> const *,
+    std::back_insert_iterator<std::vector<RayMeshIntersection<double>>>) const;
+
 // namespace CortidQCT
 } // namespace CortidQCT
