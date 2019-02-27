@@ -6,11 +6,18 @@ hunter_config(yaml-cpp
     YAML_CPP_BUILD_TESTS=OFF
     YAML_CPP_BUILD_TOOLS=OFF
     YAML_CPP_BUILD_CONTRIB=OFF
+    CMAKE_POSITION_INDEPENDENT_CODE=ON
 )
 
 if (CortidQCT_GIT_SELF)
   hunter_config(CortidQCT GIT_SELF)
 endif()
+
+hunter_config(GTest
+  GIT_SUBMODULE "Dependencies/googletest"
+  CMAKE_ARGS
+    BUILD_GMOCK=OFF 
+)
 
 hunter_config(libigl
   GIT_SUBMODULE "Dependencies/libigl"
@@ -32,5 +39,10 @@ hunter_config(ImageStack
   CMAKE_ARGS
     BUILD_TESTING=OFF
     BUILD_EXAMPLES=OFF
+    CMAKE_POSITION_INDEPENDENT_CODE=ON
+)
+
+hunter_config(Microsoft.GSL
+  GIT_SUBMODULE "Dependencies/Microsoft.GSL"
 )
 

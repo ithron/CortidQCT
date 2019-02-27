@@ -30,7 +30,7 @@ static std::string const file2 =
 TEST(MeshFitterConfiguration, DefaultParameters) {
   auto const config = MeshFitter::Configuration{};
 
-  ASSERT_DOUBLE_EQ(2.0, config.sigmaE);
+  ASSERT_DOUBLE_EQ(5.4, config.sigmaE);
   ASSERT_DOUBLE_EQ(2.0, config.sigmaS);
 
   ASSERT_TRUE(config.model.isEmpty());

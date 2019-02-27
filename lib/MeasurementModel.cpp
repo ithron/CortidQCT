@@ -109,7 +109,7 @@ MeasurementModel &MeasurementModel::loadFromFile(std::string const &filename) {
       auto const label = labelNode.as<unsigned int>();
       auto const scale = scaleNode.as<double>();
       auto const binaryData = dataNode.as<YAML::Binary>();
-      auto const nSamples = binaryData.size() / sizeof(double);
+      auto const nSamples = binaryData.size() / sizeof(float);
 
       auto const nRequiredSamples = samplingRange_.numElements() *
                                     densityRange_.numElements() *
@@ -121,7 +121,7 @@ MeasurementModel &MeasurementModel::loadFromFile(std::string const &filename) {
             " samples but required "s + std::to_string(nRequiredSamples));
       }
 
-      auto storage = std::vector<double>(nSamples);
+      auto storage = std::vector<float>(nSamples);
 
       // Copy binary data to storage, reinterpreting bytes as doubles.
       // It'd probably better to use std::bit_cast here, but that's not
@@ -133,9 +133,7 @@ MeasurementModel &MeasurementModel::loadFromFile(std::string const &filename) {
       VOIData voiData;
       voiData.label = label;
       voiData.scale = scale;
-      voiData.data = std::vector<float>(storage.size());
-      std::transform(storage.begin(), storage.end(), voiData.data.begin(),
-                     [](auto &&x) { return static_cast<float>(x); });
+      voiData.data = std::move(storage);
 
       if (auto const &voiNameNode = datNode["name"]) {
         voiData.name = voiNameNode.as<std::string>();

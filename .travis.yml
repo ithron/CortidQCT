@@ -6,6 +6,12 @@ git:
 env:
   global:
     - HUNTER_ROOT=${HOME}/hunter
+    - GH_REPO_REF=github.com/ithron/CortidQCT.git
+    - GH_REPO_NAME=CortidQCT
+    - GENERATE_DOCS=no
+    - Matlab_ROOT_DIR=${HOME}/MCR/v93
+    - BUILD_MEX=OFF
+    - DEPLOY=false
 
 cache:
   directories:
@@ -45,6 +51,7 @@ matrix:
       env:
         - COMPILER=gcc GCC_VERSION=7
         - BUILD_TYPE=Release
+        - DEPLOY=true
 
     ##########
     # GCC-8
@@ -82,7 +89,7 @@ matrix:
         - COMPILER=clang CLANG_VERSION=4.0.0
         - BUILD_TYPE=Debug
 
-    # Debug
+    # Relase
     - os: linux
       env:
         - COMPILER=clang CLANG_VERSION=4.0.0
@@ -97,7 +104,7 @@ matrix:
         - COMPILER=clang CLANG_VERSION=5.0.2
         - BUILD_TYPE=Debug
 
-    # Debug
+    # Relase
     - os: linux
       env:
         - COMPILER=clang CLANG_VERSION=5.0.2
@@ -112,11 +119,16 @@ matrix:
         - COMPILER=clang CLANG_VERSION=6.0.1
         - BUILD_TYPE=Debug
 
-    # Debug
+    # Relase
     - os: linux
+      addons:
+        apt:
+          packages:
+            - doxygen doxygen-latex graphviz
       env:
         - COMPILER=clang CLANG_VERSION=6.0.1
         - BUILD_TYPE=Release
+        - GENERATE_DOCS=yes
 
     ##########
     # macOS
@@ -135,10 +147,36 @@ matrix:
       env: BUILD_TYPE=Release
 
 before_install:
+  - |
+    if ([ "$TRAVIS_BRANCH" == "master" ] || [ ! -z "$TRAVIS_TAG" ]) &&
+          [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
+      ./scripts/setup-matlab.sh
+      export BUILD_MEX=ON
+    fi
   - source scripts/travis-toolchain.sh
   - git submodule update --init
 
 script:
   - ./scripts/travis-cmake.sh
   - ./scripts/travis-build.sh
+
+after_success:
+  - |
+    if [ "${GENERATE_DOCS}" = "yes" ]; then
+      ./scripts/generateDocumentationAndDeploy.sh
+    fi
+
+# before_deploy:
+#   - ./scripts/generateDocumentationAndDeploy.sh
+
+# deploy:
+#   provider: releases
+#   api_key: ${GH_REPO_TOKEN}
+#   file: "${TRAVIS_BUILD_DIR}/CortidQCT-${TRAVIS_TAG}-x86_64-linux-gnu-ubuntu-18.04.tar.gz"
+#   skip_cleanup: true
+#   prerelease: true
+#   overwrite: true
+#   all_branches: true
+#   on:
+#     condition: $DEPLOY = true
 

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -eu
+set -euvx
 
 if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
 
@@ -12,6 +12,12 @@ else
 
 fi
 
+BUILD_DOC=OFF
+if [[ ${GENERATE_DOCS} = 'yes' ]]; then
+  BUILD_DOC=ON
+fi
+
+
 cmake \
   -G"${GENERATOR}" \
   -DCMAKE_BUILD_TYPE=${BUILD_TYPE} \
@@ -20,5 +26,8 @@ cmake \
   -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
   -DWITH_CLANG_TIDY=OFF \
   -DWITH_OPENCL=OFF \
-  -DBUILD_DOC=OFF .
+  -DBUILD_MEX=${BUILD_MEX} \
+  -DMatlab_ROOT_DIR=${Matlab_ROOT_DIR} \
+  -DCMAKE_PREFIX_PATH=`pwd`/install \
+  -DBUILD_DOC=${BUILD_DOC} .
 

@@ -63,6 +63,14 @@ public:
   inline Mesh() noexcept(noexcept(VertexData()) && noexcept(IndexData()) &&
                          noexcept(LabelData())) {}
 
+  /// Constructs an uninitialized mesh with the given vertex and triangle count
+  inline Mesh(std::size_t nVertices, std::size_t nTriangles) noexcept(
+      noexcept(VertexData(3 * nVertices, T{0})) &&
+      noexcept(IndexData(3 * nTriangles, Index{0})) &&
+      noexcept(LabelData(nVertices, Label{0})))
+      : vertexData_(3 * nVertices, T{0}), indexData_(3 * nTriangles, Index{0}),
+        labelData_(nVertices, Label{0}) {}
+
   // @}
 
   /// @name Accessors
@@ -87,7 +95,7 @@ public:
 
   /// @brief Load mesh and labels from ASCII file using format auto detection
   ///
-  /// Supported file formats are: obj, off, stl, wrl, ply, mesh.
+  /// Supported file formats are: obj, off, stl, wrl, ply, mesh, SIMesh.
   /// If a .off file with color data (COFF) is given and the labels should be
   /// extracted from the color data, use the overload
   /// `loadFromFile(std::string const &, ColorToLabelMap<Label, double> const
@@ -107,8 +115,9 @@ public:
   /// @brief Load mesh from ASCII file using format auto detection and extract
   /// labels from per-vertex colors
   ///
-  /// Supported file formats are: off (COFF).
+  /// Supported file formats are: off (COFF), SIMesh.
   /// Per-vertex colors are converted to labels using the given colormap.
+  /// For SIMesh format, the labels are directly read from the file.
   /// For other formats use the overload
   /// `loadFromFile(std::string const &, std::string const &)`
   ///
@@ -126,7 +135,7 @@ public:
 
   /// @brief Writes mesh to ASCII file using format auto detection
   ///
-  /// Supported file formats are: obj, off, stl, wrl, ply, mesh.
+  /// Supported file formats are: obj, off, stl, wrl, ply, mesh, SIMesh.
   /// Labels are written rowwise to `labelFilename`.
   /// For encoding the labels in the color attribute use the overload
   /// `writeToFile(std::string const &, LabelToColorMap<double, Label> const
@@ -145,9 +154,11 @@ public:
   /// @brief Writes mesh to ASCII file using format auto detection and encode
   /// labels as colors.
   ///
-  /// Supported file formats are: off (coff).
+  /// Supported file formats are: off (coff), SIMesh.
   /// The labels are encoded in per-vertex colors using the given label to
   /// color map.
+  /// For the 'SIMesh' format the labels are written directly into the mesh
+  /// file, ignoring the color encoding.
   /// For storing the labels in a separate file use the overload
   /// `writeToFile(std::string const &, std::string const &)`.
   ///
@@ -216,6 +227,12 @@ public:
     return f(indexData_.data());
   }
 
+  template <class F>
+  inline auto withUnsafeIndexPointer(F &&f) noexcept(
+      noexcept(f(std::declval<IndexData>().data()))) {
+    return f(indexData_.data());
+  }
+
   /**
    * @brief Calls the given functional with an unsafe pointer to the raw
    * label storage.
@@ -230,6 +247,12 @@ public:
   template <class F>
   inline auto withUnsafeLabelPointer(F &&f) const
       noexcept(noexcept(f(LabelData().data()))) {
+    return f(labelData_.data());
+  }
+
+  template <class F>
+  inline auto
+  withUnsafeLabelPointer(F &&f) noexcept(noexcept(f(LabelData().data()))) {
     return f(labelData_.data());
   }
 

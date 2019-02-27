@@ -55,8 +55,36 @@ void MeshFitter::swap(MeshFitter &rhs) noexcept {
   pImpl_->fitter_ = *this;
 }
 
-MeshFitter::Result MeshFitter::fit(VoxelVolume const &volume) {
+MeshFitter::Result MeshFitter::fit(VoxelVolume const &volume) const {
   return pImpl_->fit(volume);
+}
+
+MeshFitter::State MeshFitter::init(VoxelVolume const &volume) const {
+  return pImpl_->init(volume);
+}
+
+void MeshFitter::fitOneIteration(MeshFitter::State &state) const {
+  return pImpl_->fitOneIteration(state);
+}
+
+void MeshFitter::volumeSamplingStep(MeshFitter::State &state) const {
+  return pImpl_->sampleVolume(state);
+}
+
+void MeshFitter::optimalDisplacementStep(MeshFitter::State &state) const {
+  return pImpl_->findOptimalDisplacements(state);
+}
+
+void MeshFitter::optimalDeformationStep(MeshFitter::State &state) const {
+  return pImpl_->findOptimalDeformation(state);
+}
+
+void MeshFitter::logLikelihoodStep(MeshFitter::State &state) const {
+  return pImpl_->computeLogLikelihood(state);
+}
+
+void MeshFitter::convergenceTestStep(MeshFitter::State &state) const {
+  return pImpl_->checkConvergence(state);
 }
 
 } // namespace CortidQCT

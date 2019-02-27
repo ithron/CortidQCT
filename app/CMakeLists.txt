@@ -7,7 +7,7 @@ include(GNUInstallDirs)
 # Create project
 project(
   CortidQCTApplication
-  VERSION 1.0.0
+  VERSION 1.2.2
   LANGUAGES CXX
 )
 
@@ -29,5 +29,17 @@ add_executable(CortidQCT_CLI CLI.cpp)
 target_link_libraries(CortidQCT_CLI
   PRIVATE
     CortidQCT::Core
+)
+
+############################
+# Exports
+
+include(GNUInstallDirs)
+
+install(TARGETS CortidQCT_CLI EXPORT CortidQCTExport
+  PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
+  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+  RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+  ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
 )
 

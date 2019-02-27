@@ -20,13 +20,19 @@ namespace CortidQCT {
 /// Namespace for IO helper functions
 namespace IO {
 
-inline std::string extension(std::string const &filename) {
+inline std::string extension(std::string const &filename,
+                             bool toLower = false) {
 
+  std::string extension = "";
   if (auto const dotPos = filename.find_last_of('.');
       dotPos != std::string::npos) {
-    return filename.substr(dotPos + 1);
+    extension = filename.substr(dotPos + 1);
   }
-  return "";
+
+  if (toLower) {
+    std::transform(begin(extension), end(extension), begin(extension), tolower);
+  }
+  return extension;
 }
 
 template <class Extensions>
@@ -35,7 +41,7 @@ bool checkExtensions(std::string const &filename, Extensions &&extensions) {
   using std::end;
   using std::find;
 
-  auto const ext = extension(filename);
+  auto const ext = extension(filename, true);
 
   return find_if(begin(extensions), end(extensions), [&ext](auto const &rhs) {
            std::string query = rhs;
