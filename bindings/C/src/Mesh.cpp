@@ -286,3 +286,41 @@ CORTIDQCT_C_EXPORT CQCT_EXTERN int CQCT_meshBarycentricToCartesian(
   return -1;
 }
 
+CORTIDQCT_C_EXPORT CQCT_EXTERN int CQCT_meshBarycentricInterpolation(
+    CQCT_Mesh mesh, CQCT_BarycentricPoint const *barycentricPtr, size_t nPoints,
+    float const *attributePtr, size_t attributeDimensions, float **bufferPtr,
+    CQCT_Error *error) {
+
+  if (nPoints == 0 || barycentricPtr == nullptr) { return 0; };
+
+  using BP = BarycentricPoint<float, typename Mesh<float>::Index>;
+
+  assert(barycentricPtr != nullptr);
+  assert(mesh != nullptr);
+
+  if (*bufferPtr == nullptr) {
+    *bufferPtr = (float *)malloc(attributeDimensions * nPoints * sizeof(float));
+  }
+
+  auto const input = reinterpret_cast<BP const *>(barycentricPtr);
+
+  auto const &meshObj = *(mesh->impl.objPtr);
+
+  try {
+    meshObj.barycentricInterpolation(input, input + nPoints, attributePtr,
+                                     *bufferPtr, attributeDimensions);
+    return 0;
+  } catch (std::out_of_range const &e) {
+    if (error != nullptr) {
+      *error = CQCT_createError(CQCT_ErrorId_OutOfRange, e.what());
+      CQCT_autorelease(*error);
+    }
+  } catch (std::exception const &e) {
+    if (error != nullptr) {
+      *error = CQCT_createError(CQCT_ErrorId_Unknown, e.what());
+      CQCT_autorelease(*error);
+    }
+  }
+
+  return -1;
+}
