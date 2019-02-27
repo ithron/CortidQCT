@@ -199,7 +199,6 @@ public:
    * @param[in] begin iterator that points to the first cartesian point
    * @param[in] end interator that points right after the last point
    * @param[out] out output iterator
-   * @return Number of points converted
    * @throws std::out_of_range if a triangle index is out of range
    * @note If `InputIterator` and `OutputIterator` are random access iterator,
    * the computation may be carried out in parallel. The function is also
@@ -208,8 +207,8 @@ public:
    * @todo Write unit test.
    */
   template <class InputIterator, class OutputIterator>
-  std::size_t cartesianRepresentation(InputIterator begin, InputIterator end,
-                                      OutputIterator out) const;
+  void cartesianRepresentation(InputIterator begin, InputIterator end,
+                               OutputIterator out) const;
 
   /**
    * @brief Converts a sequence of barycentric coordinates into caresian
@@ -331,19 +330,19 @@ private:
 extern template class Mesh<float>;
 extern template class Mesh<double>;
 
-extern template std::size_t Mesh<float>::cartesianRepresentation(
+extern template void Mesh<float>::cartesianRepresentation(
     BarycentricPoint<float, std::ptrdiff_t> const *begin,
     BarycentricPoint<float, std::ptrdiff_t> const *end,
     std::array<float, 3> *out) const;
-extern template std::size_t Mesh<double>::cartesianRepresentation(
+extern template void Mesh<double>::cartesianRepresentation(
     BarycentricPoint<float, std::ptrdiff_t> const *begin,
     BarycentricPoint<float, std::ptrdiff_t> const *end,
     std::array<float, 3> *out) const;
-extern template std::size_t Mesh<float>::cartesianRepresentation(
+extern template void Mesh<float>::cartesianRepresentation(
     std::vector<BarycentricPoint<float, std::ptrdiff_t>>::const_iterator begin,
     std::vector<BarycentricPoint<float, std::ptrdiff_t>>::const_iterator end,
     std::vector<std::array<float, 3>>::iterator out) const;
-extern template std::size_t Mesh<double>::cartesianRepresentation(
+extern template void Mesh<double>::cartesianRepresentation(
     std::vector<BarycentricPoint<double, std::ptrdiff_t>>::const_iterator begin,
     std::vector<BarycentricPoint<double, std::ptrdiff_t>>::const_iterator end,
     std::vector<std::array<double, 3>>::iterator out) const;

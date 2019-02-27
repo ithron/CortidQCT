@@ -246,9 +246,7 @@ classdef Mesh < CortidQCT.lib.ObjectBase
         outBuffer, ...
         err.pointer);
       
-      expectedCount = length(Idx) * 3 * 4;
-      
-      if res ~= expectedCount
+      if res ~= 0
         error('Failed to convert points: %s', err.message);
       end
       

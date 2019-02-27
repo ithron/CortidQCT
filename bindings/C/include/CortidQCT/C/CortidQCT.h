@@ -359,11 +359,11 @@ CQCT_EXTERN void CQCT_meshSetLabels(CQCT_Mesh mesh, unsigned int const *buffer);
  * both variants the caller is responsible for releasing the memory.
  * @param[out] error pointer to error object where an error is stored in case
  * of an error. Or `NULL` if no error should be returned.
- * @return Number of vopied bytes on success or `(size_t) -1` on failure.
+ * @return 0 on success, a v alue < 0 on error
  * @pre `barycentricPtr != NULL || nPoints == 0`
  * @pre `bufferPtr != NULL`
  */
-CQCT_EXTERN size_t CQCT_meshBarycentricToCartesian(
+CQCT_EXTERN int CQCT_meshBarycentricToCartesian(
     CQCT_Mesh mesh, CQCT_BarycentricPoint const *barycentricPtr, size_t nPoints,
     float **bufferPtr, CQCT_Error *error);
 

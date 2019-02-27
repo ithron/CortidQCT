@@ -549,19 +549,19 @@ std::size_t Mesh<T>::cartesianRepresentation(InputIterator begin,
 template class Mesh<float>;
 template class Mesh<double>;
 
-template std::size_t Mesh<float>::cartesianRepresentation(
+template void Mesh<float>::cartesianRepresentation(
     BarycentricPoint<float, std::ptrdiff_t> const *begin,
     BarycentricPoint<float, std::ptrdiff_t> const *end,
     std::array<float, 3> *out) const;
-template std::size_t Mesh<double>::cartesianRepresentation(
+template void Mesh<double>::cartesianRepresentation(
     BarycentricPoint<double, std::ptrdiff_t> const *begin,
     BarycentricPoint<double, std::ptrdiff_t> const *end,
     std::array<double, 3> *out) const;
-template std::size_t Mesh<float>::cartesianRepresentation(
+template void Mesh<float>::cartesianRepresentation(
     std::vector<BarycentricPoint<float, std::ptrdiff_t>>::const_iterator begin,
     std::vector<BarycentricPoint<float, std::ptrdiff_t>>::const_iterator end,
     std::vector<std::array<float, 3>>::iterator out) const;
-template std::size_t Mesh<double>::cartesianRepresentation(
+template void Mesh<double>::cartesianRepresentation(
     std::vector<BarycentricPoint<double, std::ptrdiff_t>>::const_iterator begin,
     std::vector<BarycentricPoint<double, std::ptrdiff_t>>::const_iterator end,
     std::vector<std::array<double, 3>>::iterator out) const;
