@@ -196,15 +196,15 @@ public:
   /**
    * @brief Converts a sequence of barycentric coordinates into caresian
    * coordinates.
+   *
+   * The implementation uses barycetnricInterpolation. OutputIterator's
+   * value_type must be T.
+   *
    * @param[in] begin iterator that points to the first cartesian point
    * @param[in] end interator that points right after the last point
    * @param[out] out output iterator
    * @throws std::out_of_range if a triangle index is out of range
-   * @note If `InputIterator` and `OutputIterator` are random access iterator,
-   * the computation may be carried out in parallel. The function is also
-   * optimized for `OutputIterator` types that are also input iterators (i.e.
-   * read-write).
-   * @todo Write unit test.
+   * @see barycentricInterpolation
    */
   template <class InputIterator, class OutputIterator>
   void cartesianRepresentation(InputIterator begin, InputIterator end,
@@ -223,10 +223,46 @@ public:
     using Cartesian = std::array<T, 3>;
     std::vector<Cartesian> cartPoints(points.size());
 
-    cartesianRepresentation(points.cbegin(), points.cend(), cartPoints.begin());
+    auto const out = reinterpret_cast<T *>(cartPoints.data());
+    cartesianRepresentation(points.cbegin(), points.cend(), out);
 
     return cartPoints;
   }
+
+  /**
+   * @brief Interpolates per-vertex values for points inside a triangle.
+   *
+   * This input of this function are some points on the surfac of the mesh in
+   * barycentric representation and a vector of per-vertex attributes/values
+   * that are to be interpolated.
+   * The per-vertex attributes/values do not have to be scalar, vector values
+   * attributes can be used by setting the `attributeDimension` paremter.
+   * The attributes must be in row major order, i.e. a full attribute vector is
+   * stored in consecutively in the underlying container.
+   *
+   * @tparam PtIter InputIterator of BarycentricPoint type
+   * @tparam AttrIter RandomAccessIterator of scalar type
+   * @tparam OutputIterator output iterator acceptiong scalar of the same type
+   * as AttrIter
+   * @param[in] pointsBegin input iterator pointing to the first barycentric
+   * point
+   * @param[in] pointsEnd input iterator pointing one element past the last
+   * barycentric point
+   * @param[in] attributesBegin random access iterator pointing to the first
+   * attribute vector
+   * @param[out] out output iterator
+   * @param[in] attributeDimension number of attribute dimensions, defaults to
+   * 1
+   * @throws std::out_of_range if a trinagle index is out of range
+   *  In case of an exception `out` is only untouched if and only if
+   * `PtIter` conforms to `ForwardIterator`. If `PtIter` only conforms to
+   * `IputIterator`, all values up to the one where the exception happened will
+   * be written to `out`.
+   */
+  template <class PtIter, class AttrIter, class OutputIterator>
+  void barycentricInterpolation(PtIter pointsBegin, PtIter pointsEnd,
+                                AttrIter attributesBegin, OutputIterator out,
+                                std::size_t attributeDimension = 1) const;
 
   /// @}
 
@@ -332,19 +368,17 @@ extern template class Mesh<double>;
 
 extern template void Mesh<float>::cartesianRepresentation(
     BarycentricPoint<float, std::ptrdiff_t> const *begin,
-    BarycentricPoint<float, std::ptrdiff_t> const *end,
-    std::array<float, 3> *out) const;
+    BarycentricPoint<float, std::ptrdiff_t> const *end, float *out) const;
 extern template void Mesh<double>::cartesianRepresentation(
     BarycentricPoint<float, std::ptrdiff_t> const *begin,
-    BarycentricPoint<float, std::ptrdiff_t> const *end,
-    std::array<float, 3> *out) const;
+    BarycentricPoint<float, std::ptrdiff_t> const *end, double *out) const;
 extern template void Mesh<float>::cartesianRepresentation(
     std::vector<BarycentricPoint<float, std::ptrdiff_t>>::const_iterator begin,
     std::vector<BarycentricPoint<float, std::ptrdiff_t>>::const_iterator end,
-    std::vector<std::array<float, 3>>::iterator out) const;
+    float *out) const;
 extern template void Mesh<double>::cartesianRepresentation(
     std::vector<BarycentricPoint<double, std::ptrdiff_t>>::const_iterator begin,
     std::vector<BarycentricPoint<double, std::ptrdiff_t>>::const_iterator end,
-    std::vector<std::array<double, 3>>::iterator out) const;
+    double *out) const;
 
 } // namespace CortidQCT
