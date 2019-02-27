@@ -218,6 +218,23 @@ classdef Mesh < CortidQCT.lib.ObjectBase
       %     Idx is an N-vector of triangle indices.
       %   points is an Nx3 matrix of cartesian coordinates
 
+      % Use barycentricInterpolation to simplify things
+      points = obj.barycentricInterpolation(UV, Idx, obj.Vertices);
+
+    end
+
+    function points = barycentricInterpolation(obj, UV, Idx, Attributes)
+      % BARYCENTRICINTERPOLATION Interpolates per-vertex attributes for
+      % arbirary points on the surface of the mesh.
+      %   points = barycentricInterpolation(obj, UV, Idx, Attributes)
+      %     UV is an Nx2 matrix of barycentric coordinates, each row represents
+      %       the coordinates of one point.
+      %     Idx is an N-vector of triangle indices.
+      %   Attributes is an KxD matrix of attribute values. Each row contains a
+      %     D-dimensional attribute vector. K mist equal the number of vertices
+      %     in the mesh.
+      %   points is an Nx3 matrix of cartesian coordinates
+
       import CortidQCT.lib.ObjectBase;
       import CortidQCT.lib.Error;
       
@@ -227,27 +244,33 @@ classdef Mesh < CortidQCT.lib.ObjectBase
       if size(UV, 1) ~= length(Idx)
         error('UV and Idx must have the same number of rows')
       end
+      if size(Attributes, 1) ~= obj.vertexCount
+        error('The number of rows of Attributes must match the VertexCount')
+      end
       if isrow(Idx)
         Idx = Idx';
       end
+
+      nDims = size(Attributes, 2);
       
       % Convert data fir API call
+      Attributes = single(Attributes);
       Idx = Idx - 1;
       baryPts = arrayfun(@(u, v, i) ...
         struct('u', u, 'v', v, 'triangleIndex', i), UV(:, 1), UV(:, 2), Idx);
-      inBuffer = libpointer('CQCT_BarycentricPoint_tPtr', baryPts);
       outBuffer = libpointer('singlePtr', zeros(3, length(Idx), 'single'));
       
       err = Error;
       
-      res = ObjectBase.call('meshBarycentricToCartesian', ...
+      res = ObjectBase.call('meshBarycentricInterpolation', ...
         obj.handle, ...
-        inBuffer, length(Idx), ...
+        baryPts, length(Idx), ...
+        Attributes', nDims, ...
         outBuffer, ...
         err.pointer);
       
       if res ~= 0
-        error('Failed to convert points: %s', err.message);
+        error('Interpolation failed: %s', err.message);
       end
       
       points = outBuffer.Value';

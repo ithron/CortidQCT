@@ -333,6 +333,34 @@ CQCT_EXTERN int CQCT_meshBarycentricToCartesian(
     CQCT_Mesh mesh, CQCT_BarycentricPoint const *barycentricPtr, size_t nPoints,
     float **bufferPtr, CQCT_Error *error);
 
+/**
+ * @brief Interpolates attribute values given at mesh vertices at arbitrary
+ * points on the surface of the mesh.
+ *
+ * @param[in] mesh Mesh object
+ * @param[in] barycentricPtr pointer to a list of points in barycentric
+ * representation
+ * @param[in] nPoints number of points
+ * @param[in] attributePtr pointer to attribute buffer. Note that this buffer
+ * must hold `attributeDimensions * N` values, where `N` is the number of
+ * vertices in the mesh.
+ * @param[in] attributeDimensions number of attribute dimensions
+ * @param[out] bufferPtr Pointer where the interpolated values are stored. Must
+ * be able to hold `nPoints * attributeDimensions` values. Alternatively, if
+ * `*bufferPtr == NULL`, the required memory is allocated by the function and
+ * the pointer is returned in `bufferPtr`. The caller is responisble for
+ * releasing the memory, in both cases.
+ * @param[out] error pointer to an error object. If `NULL` errors are ignored.
+ * @return 0 on success, a negative value on error.
+ * @pre `barycentricPtr != NULL || nPoint == 0`
+ * @pre `bufferPtr != NULL || nPoints == 0`
+ * @pre 'attributePtr != NULL || nPoints == 0'
+ */
+CQCT_EXTERN int CQCT_meshBarycentricInterpolation(
+    CQCT_Mesh mesh, CQCT_BarycentricPoint const *barycentricPtr, size_t nPoints,
+    float const *attributePtr, size_t attributeDimensions, float **bufferPtr,
+    CQCT_Error *error);
+
 /// @}
 
 // MARK: -
