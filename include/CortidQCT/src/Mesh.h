@@ -265,6 +265,8 @@ public:
                                 AttrIter attributesBegin, OutputIterator out,
                                 std::size_t attributeDimension = 1) const;
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdocumentation"
   /**
    * @brief Computes the intersection of a set of rays with the mesh.
    *
@@ -282,6 +284,7 @@ public:
   template <class InputIterator, class OutputIterator>
   void rayIntersections(InputIterator raysBegin, InputIterator raysEnd,
                         OutputIterator intersectionsOut) const;
+#pragma clang diagnostic pop
 
   /**
    * @brief Computes intersection with the given ray and the mesh
