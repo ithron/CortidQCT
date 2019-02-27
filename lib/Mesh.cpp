@@ -19,6 +19,7 @@
 #include <gsl/gsl>
 #include <igl/orient_outward.h>
 #include <igl/orientable_patches.h>
+#include <igl/ray_mesh_intersect.h>
 #include <igl/readOFF.h>
 #include <igl/read_triangle_mesh.h>
 #include <igl/writeOFF.h>
@@ -529,6 +530,55 @@ void Mesh<T>::barycentricInterpolation(PtIter pointsBegin, PtIter pointsEnd,
                (1 - ptI->uv[0] - ptI->uv[1]) * attrBegin[attrIdx[2]];
     }
   }
+}
+
+template <class T>
+RayMeshIntersection<T> Mesh<T>::rayIntersection(Ray<T> const &ray) const {
+  using std::addressof;
+  RayMeshIntersection<T> intersection;
+
+  rayIntersections(addressof(ray), addressof(ray) + 1, addressof(intersection));
+
+  return intersection;
+}
+
+template <class T>
+template <class InputIterator, class OutputIterator>
+void Mesh<T>::rayIntersections(InputIterator raysBegin, InputIterator raysEnd,
+                               OutputIterator intersectionsOut) const {
+  using namespace Internal::Adaptor;
+  using Eigen::Map;
+  using Eigen::Matrix;
+  using gsl::narrow_cast;
+  using std::transform;
+
+  // Type validation
+  using InputTraits = std::iterator_traits<InputIterator>;
+
+  static_assert(
+      std::is_convertible<typename InputTraits::value_type, Ray<T>>::value,
+      "value_type of InputIterator must be convertible to Ray");
+
+  auto const vMap = vertexMap(*this);
+  auto const iMap = indexMap(*this);
+
+  transform(
+      raysBegin, raysEnd, intersectionsOut, [&vMap, &iMap](auto const &ray) {
+        // map ray elements to eigen vectors
+        Map<Matrix<T, 3, 1> const> const sourceMap{ray.origin.data(), 3, 1};
+        Map<Matrix<T, 3, 1> const> const dirMap{ray.direction.data(), 3, 1};
+        igl::Hit hit;
+        RayMeshIntersection<T> intersection;
+
+        if (igl::ray_mesh_intersect(sourceMap, dirMap, vMap, iMap, hit)) {
+          intersection.position.triangleIndex = hit.id;
+          intersection.position.uv[0] = narrow_cast<T>(hit.u);
+          intersection.position.uv[1] = narrow_cast<T>(hit.v);
+          intersection.signedDistance = narrow_cast<T>(hit.t);
+        }
+
+        return intersection;
+      });
 }
 
 /*************************************

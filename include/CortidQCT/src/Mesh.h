@@ -15,6 +15,7 @@
 #include "ColorToLabelMap.h"
 #include "LabelToColorMap.h"
 #include "Ray.h"
+#include "RayMeshIntersection.h"
 
 #include <array>
 #include <stdexcept>
@@ -263,6 +264,33 @@ public:
   void barycentricInterpolation(PtIter pointsBegin, PtIter pointsEnd,
                                 AttrIter attributesBegin, OutputIterator out,
                                 std::size_t attributeDimension = 1) const;
+
+  /**
+   * @brief Computes the intersection of a set of rays with the mesh.
+   *
+   * If for any ray no intersection can be found, the corresponding
+   * RayMeshIntersection object is left with its default values (its signed
+   * distance is infinity).
+   *
+   * @tparam InputIterator Input iterator with value_type of Ray
+   * @tparam OutputIterator Output iterator with value_type of
+   * RayMeshIntersection
+   * @param raysBegin Iterator poiting to the first ray
+   * @param raysEnd Iterator pointing one element past the last ray
+   * @param intersectionsOut Output iterator for intersections
+   */
+  template <class InputIterator, class OutputIterator>
+  void rayIntersections(InputIterator raysBegin, InputIterator raysEnd,
+                        OutputIterator intersectionsOut) const;
+
+  /**
+   * @brief Computes intersection with the given ray and the mesh
+   *
+   * @see rayIntersections
+   * @param ray Query ray
+   * @return RayMeshIntersection object describing the intersection.
+   */
+  RayMeshIntersection<T> rayIntersection(Ray<T> const &ray) const;
 
   /// @}
 
