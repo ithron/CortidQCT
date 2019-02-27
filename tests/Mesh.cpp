@@ -8,6 +8,7 @@
 #include <igl/per_vertex_normals.h>
 
 #include <cstdio>
+#include <iterator>
 
 using namespace CortidQCT;
 
@@ -184,7 +185,7 @@ TEST(Mesh, NormalsOrientedOutwards) {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wconversion"
 
-template <class T> class MeshBarycentricToCartesian : public ::testing::Test {
+template <class T> class MeshQueriesTest : public ::testing::Test {
 protected:
   Mesh<T> mesh;
 
@@ -235,10 +236,10 @@ protected:
 typedef ::testing::Types<float, double> MeshTypes;
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wgnu-zero-variadic-macro-arguments"
-TYPED_TEST_CASE(MeshBarycentricToCartesian, MeshTypes);
+TYPED_TEST_CASE(MeshQueriesTest, MeshTypes);
 #pragma clang diagnostic pop
 
-TYPED_TEST(MeshBarycentricToCartesian, SingleCall) {
+TYPED_TEST(MeshQueriesTest, BarycentricToCartesianSingleCall) {
   using T = TypeParam;
   using BC = BarycentricPoint<T, typename Mesh<T>::Index>;
 
@@ -255,7 +256,7 @@ TYPED_TEST(MeshBarycentricToCartesian, SingleCall) {
   ASSERT_NEAR(refPoint[2], testPoint[2], 1e-6);
 }
 
-TYPED_TEST(MeshBarycentricToCartesian, SequenceCall) {
+TYPED_TEST(MeshQueriesTest, BarycentricToCartesianSequenceCall) {
   using T = TypeParam;
   using BC = BarycentricPoint<T, typename Mesh<T>::Index>;
 
@@ -282,6 +283,42 @@ TYPED_TEST(MeshBarycentricToCartesian, SequenceCall) {
     ASSERT_NEAR(rp[1], tp[1], 1e-6);
     ASSERT_NEAR(rp[2], tp[2], 1e-6);
   }
+}
+
+TYPED_TEST(MeshQueriesTest, RayMeshIntersectionSingleCall) {
+  using T = TypeParam;
+  using R = Ray<T>;
+
+  R const ray = {{0, 0, -1}, {0, 0, 1}};
+
+  auto const intersection = this->mesh.rayIntersection(ray);
+
+  ASSERT_TRUE(std::isfinite(intersection.signedDistance));
+  ASSERT_NEAR(0.666666666666, intersection.signedDistance, 1e-6);
+  ASSERT_EQ(3, intersection.position.triangleIndex);
+  ASSERT_NEAR(0.33333333333, intersection.position.uv[0], 1e-6);
+  ASSERT_NEAR(0.33333333333, intersection.position.uv[1], 1e-6);
+}
+
+TYPED_TEST(MeshQueriesTest, RayMeshIntersectionSequence) {
+  using T = TypeParam;
+  using R = Ray<T>;
+
+  std::array<R, 2> const rays = {
+      {{{0, 0, -1}, {0, 0, 1}}, {{4, 0, -1}, {0, 0, 1}}}};
+
+  std::vector<RayMeshIntersection<T>> intersections;
+
+  this->mesh.rayIntersections(rays.cbegin(), rays.cend(),
+                              std::back_inserter(intersections));
+
+  ASSERT_EQ(2, intersections.size());
+  ASSERT_TRUE(std::isfinite(intersections[0].signedDistance));
+  ASSERT_FALSE(std::isfinite(intersections[1].signedDistance));
+  ASSERT_NEAR(0.666666666666, intersections[0].signedDistance, 1e-6);
+  ASSERT_EQ(3, intersections[0].position.triangleIndex);
+  ASSERT_NEAR(0.33333333333, intersections[0].position.uv[0], 1e-6);
+  ASSERT_NEAR(0.33333333333, intersections[0].position.uv[1], 1e-6);
 }
 
 #pragma clang diagnostic pop
