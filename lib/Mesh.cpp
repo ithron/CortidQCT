@@ -570,7 +570,8 @@ void Mesh<T>::rayIntersections(InputIterator raysBegin, InputIterator raysEnd,
         igl::Hit hit;
         RayMeshIntersection<T> intersection;
 
-        if (igl::ray_mesh_intersect(sourceMap, dirMap, vMap, iMap, hit)) {
+        if (igl::ray_mesh_intersect(sourceMap, dirMap, vMap.transpose(),
+                                    iMap.transpose(), hit)) {
           intersection.position.triangleIndex = hit.id;
           intersection.position.uv[0] = narrow_cast<T>(hit.u);
           intersection.position.uv[1] = narrow_cast<T>(hit.v);
