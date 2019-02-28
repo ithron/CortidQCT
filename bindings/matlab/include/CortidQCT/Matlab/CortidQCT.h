@@ -153,6 +153,27 @@ struct CQCT_BarycentricPoint_t {
 };
 typedef struct CQCT_BarycentricPoint_t CQCT_BarycentricPoint;
 
+/// Ray type
+struct CQCT_Ray_t {
+  /// Ray origin in cartesian coordinates
+  float x0, y0, z0;
+  /// Ray direction in cartesian coordinates
+  float dx, dy, dz;
+};
+typedef struct CQCT_Ray_t CQCT_Ray;
+
+struct CQCT_RayMeshIntersection_t {
+  /// Inline CQCT_BarycentricPoint since MATLAB cannot handle nested structs
+  float u;
+  float v;
+  ptrdiff_t triangleIndex;
+  /// Signed distance frim the ray origin to the intersection
+  float t;
+  /// Explicit padding
+  unsigned char _a, _b, _c;
+};
+typedef struct CQCT_RayMeshIntersection_t CQCT_RayMeshIntersection;
+
 /// Creates an empty mesh
 CQCT_EXTERN CQCT_Mesh CQCT_createMesh(void);
 
@@ -360,6 +381,29 @@ CQCT_EXTERN int CQCT_meshBarycentricInterpolation(
     CQCT_Mesh mesh, CQCT_BarycentricPoint const *barycentricPtr, size_t nPoints,
     float const *attributePtr, size_t attributeDimensions, float **bufferPtr,
     CQCT_Error *error);
+
+/**
+ * @brief Computes the intersection of a set of rays with the mesh.
+ *
+ * If for any ray no intersection can be found, its signed distance `t` is set
+ * to infinity.
+ *
+ * @param[in] mesh Mesh object
+ * @param[in] raysPtr pointer to array of CQCT_Ray objects
+ * @param[in] nRays Number of rays
+ * @param[out] intersectionsOutPtr Pointer that contains the memory address
+ * where the intersection object should be stored. the underlying memory must
+ * be able to hold `nRays * sizeof(CQCT_RayMeshIntersection)` bytes.
+ * Alternatively, the address contained in `intersectionsOutPtr` can be set to
+ * NULL. In this case the memory is allocated by the function. The caller is
+ * responsible for relasing the memory, in all cases.
+ * @pre `mesh != NULL || nRays == 0`
+ * @pre `raysPtr != NULL || nRays == 0`
+ * @pre `intersectionsOutPtr != NULL || nRays == 0`
+ */
+CQCT_EXTERN void
+CQCT_meshRayIntersections(CQCT_Mesh mesh, CQCT_Ray *raysPtr, size_t nRays,
+                          CQCT_RayMeshIntersection **intersectionsOutPtr);
 
 /// @}
 
