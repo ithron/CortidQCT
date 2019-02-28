@@ -184,110 +184,123 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;    <span class="keywordflow">return</span> cartPoints;</div>
 <div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;  }</div>
 <div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;</div>
-<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;  <span class="keyword">template</span> &lt;<span class="keyword">class</span> PtIter, <span class="keyword">class</span> AttrIter, <span class="keyword">class</span> OutputIterator&gt;</div>
-<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="classCortidQCT_1_1Mesh.html#aa64b25e542174004534dd9e0364ea714">barycentricInterpolation</a>(PtIter pointsBegin, PtIter pointsEnd,</div>
-<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;                                AttrIter attributesBegin, OutputIterator out,</div>
-<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;                                std::size_t attributeDimension = 1) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;</div>
-<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;<span class="preprocessor">#pragma clang diagnostic push</span></div>
-<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#pragma clang diagnostic ignored &quot;-Wdocumentation&quot;</span></div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;<span class="preprocessor">#pragma clang diagnostic push</span></div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#pragma clang diagnostic ignored &quot;-Wdocumentation&quot;</span></div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;  <span class="keyword">template</span> &lt;<span class="keyword">class</span> PtIter, <span class="keyword">class</span> AttrIter, <span class="keyword">class</span> OutputIterator&gt;</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="classCortidQCT_1_1Mesh.html#a2d08d1f06372f31e187d626d273044f5">barycentricInterpolation</a>(PtIter pointsBegin, PtIter pointsEnd,</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;                                AttrIter attributesBegin, OutputIterator out,</div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;                                std::size_t attributeDimension = 1) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;<span class="preprocessor">#pragma clang diagnostic pop</span></div>
 <div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;  <span class="keyword">template</span> &lt;<span class="keyword">class</span> InputIterator, <span class="keyword">class</span> OutputIterator&gt;</div>
-<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="classCortidQCT_1_1Mesh.html#aa5055fa34780c0c454e8456416e10f7c">rayIntersections</a>(InputIterator raysBegin, InputIterator raysEnd,</div>
-<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;                        OutputIterator intersectionsOut) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;<span class="preprocessor">#pragma clang diagnostic pop</span></div>
-<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;  <a class="code" href="structCortidQCT_1_1RayMeshIntersection.html">RayMeshIntersection&lt;T&gt;</a> <a class="code" href="classCortidQCT_1_1Mesh.html#ae398361b2609e87158aa2131136c744b">rayIntersection</a>(<a class="code" href="structCortidQCT_1_1Ray.html">Ray&lt;T&gt;</a> <span class="keyword">const</span> &amp;ray) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;</div>
-<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;</div>
-<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;  <span class="keyword">template</span> &lt;<span class="keyword">class</span> F&gt;</div>
-<div class="line"><a name="l00323"></a><span class="lineno"><a class="line" href="classCortidQCT_1_1Mesh.html#a1f08cb96ee61f455b4f4d317764a5235">  323</a></span>&#160;  <span class="keyword">inline</span> <span class="keyword">auto</span> <a class="code" href="classCortidQCT_1_1Mesh.html#a1f08cb96ee61f455b4f4d317764a5235">withUnsafeVertexPointer</a>(F &amp;&amp;f) const</div>
-<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;      noexcept(noexcept(f(std::declval&lt;const VertexData&gt;().data()))) {</div>
-<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;    <span class="keywordflow">return</span> f(vertexData_.data());</div>
-<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;  }</div>
-<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;</div>
-<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;  <span class="keyword">template</span> &lt;<span class="keyword">class</span> F&gt;</div>
-<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;  <span class="keyword">inline</span> <span class="keyword">auto</span> <a class="code" href="classCortidQCT_1_1Mesh.html#a1f08cb96ee61f455b4f4d317764a5235">withUnsafeVertexPointer</a>(F &amp;&amp;f) noexcept(</div>
-<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;      noexcept(f(std::declval&lt;VertexData&gt;().data()))) {</div>
-<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;    <span class="keywordflow">return</span> f(vertexData_.data());</div>
-<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;  }</div>
-<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;</div>
-<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;  <span class="keyword">template</span> &lt;<span class="keyword">class</span> F&gt;</div>
-<div class="line"><a name="l00346"></a><span class="lineno"><a class="line" href="classCortidQCT_1_1Mesh.html#ac6334c55d0c95f19bc6214983ba4dc29">  346</a></span>&#160;  <span class="keyword">inline</span> <span class="keyword">auto</span> <a class="code" href="classCortidQCT_1_1Mesh.html#ac6334c55d0c95f19bc6214983ba4dc29">withUnsafeIndexPointer</a>(F &amp;&amp;f) const</div>
-<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;      noexcept(noexcept(f(std::declval&lt;const IndexData&gt;().data()))) {</div>
-<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;    <span class="keywordflow">return</span> f(indexData_.data());</div>
-<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;  }</div>
-<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;</div>
-<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;  <span class="keyword">template</span> &lt;<span class="keyword">class</span> F&gt;</div>
-<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;  <span class="keyword">inline</span> <span class="keyword">auto</span> <a class="code" href="classCortidQCT_1_1Mesh.html#ac6334c55d0c95f19bc6214983ba4dc29">withUnsafeIndexPointer</a>(F &amp;&amp;f) noexcept(</div>
-<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;      noexcept(f(std::declval&lt;IndexData&gt;().data()))) {</div>
-<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;    <span class="keywordflow">return</span> f(indexData_.data());</div>
-<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;  }</div>
-<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;</div>
-<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;  <span class="keyword">template</span> &lt;<span class="keyword">class</span> F&gt;</div>
-<div class="line"><a name="l00369"></a><span class="lineno"><a class="line" href="classCortidQCT_1_1Mesh.html#a8173d354feb4ca374319272687f1f427">  369</a></span>&#160;  <span class="keyword">inline</span> <span class="keyword">auto</span> <a class="code" href="classCortidQCT_1_1Mesh.html#a8173d354feb4ca374319272687f1f427">withUnsafeLabelPointer</a>(F &amp;&amp;f) const</div>
-<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;      noexcept(noexcept(f(LabelData().data()))) {</div>
-<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;    <span class="keywordflow">return</span> f(labelData_.data());</div>
-<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;  }</div>
-<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;</div>
-<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;  <span class="keyword">template</span> &lt;<span class="keyword">class</span> F&gt;</div>
-<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;  <span class="keyword">inline</span> <span class="keyword">auto</span></div>
-<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;  <a class="code" href="classCortidQCT_1_1Mesh.html#a8173d354feb4ca374319272687f1f427">withUnsafeLabelPointer</a>(F &amp;&amp;f) noexcept(noexcept(f(LabelData().data()))) {</div>
-<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;    <span class="keywordflow">return</span> f(labelData_.data());</div>
-<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;  }</div>
-<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;</div>
-<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;  <span class="keywordtype">void</span> ensurePostconditions() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;</div>
-<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;  VertexData vertexData_;</div>
-<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;  IndexData indexData_;</div>
-<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;  LabelData labelData_;</div>
-<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;};</div>
-<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;</div>
-<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;<span class="comment">/*************************************</span></div>
-<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;<span class="comment"> * Explicit template instanciations</span></div>
-<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;</div>
-<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;<span class="keyword">extern</span> <span class="keyword">template</span> <span class="keyword">class </span>Mesh&lt;float&gt;;</div>
-<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;<span class="keyword">extern</span> <span class="keyword">template</span> <span class="keyword">class </span>Mesh&lt;double&gt;;</div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;<span class="preprocessor">#pragma clang diagnostic push</span></div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#pragma clang diagnostic ignored &quot;-Wdocumentation&quot;</span></div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;  <span class="keyword">template</span> &lt;<span class="keyword">class</span> InputIterator, <span class="keyword">class</span> OutputIterator&gt;</div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="classCortidQCT_1_1Mesh.html#aa5055fa34780c0c454e8456416e10f7c">rayIntersections</a>(InputIterator raysBegin, InputIterator raysEnd,</div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;                        OutputIterator intersectionsOut) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;<span class="preprocessor">#pragma clang diagnostic pop</span></div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;  <a class="code" href="structCortidQCT_1_1RayMeshIntersection.html">RayMeshIntersection&lt;T&gt;</a> <a class="code" href="classCortidQCT_1_1Mesh.html#ae398361b2609e87158aa2131136c744b">rayIntersection</a>(<a class="code" href="structCortidQCT_1_1Ray.html">Ray&lt;T&gt;</a> <span class="keyword">const</span> &amp;ray) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;</div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;</div>
+<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;  <span class="keyword">template</span> &lt;<span class="keyword">class</span> F&gt;</div>
+<div class="line"><a name="l00326"></a><span class="lineno"><a class="line" href="classCortidQCT_1_1Mesh.html#a1f08cb96ee61f455b4f4d317764a5235">  326</a></span>&#160;  <span class="keyword">inline</span> <span class="keyword">auto</span> <a class="code" href="classCortidQCT_1_1Mesh.html#a1f08cb96ee61f455b4f4d317764a5235">withUnsafeVertexPointer</a>(F &amp;&amp;f) const</div>
+<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;      noexcept(noexcept(f(std::declval&lt;const VertexData&gt;().data()))) {</div>
+<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;    <span class="keywordflow">return</span> f(vertexData_.data());</div>
+<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;  }</div>
+<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;</div>
+<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;  <span class="keyword">template</span> &lt;<span class="keyword">class</span> F&gt;</div>
+<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;  <span class="keyword">inline</span> <span class="keyword">auto</span> <a class="code" href="classCortidQCT_1_1Mesh.html#a1f08cb96ee61f455b4f4d317764a5235">withUnsafeVertexPointer</a>(F &amp;&amp;f) noexcept(</div>
+<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;      noexcept(f(std::declval&lt;VertexData&gt;().data()))) {</div>
+<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;    <span class="keywordflow">return</span> f(vertexData_.data());</div>
+<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;  }</div>
+<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;</div>
+<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;  <span class="keyword">template</span> &lt;<span class="keyword">class</span> F&gt;</div>
+<div class="line"><a name="l00349"></a><span class="lineno"><a class="line" href="classCortidQCT_1_1Mesh.html#ac6334c55d0c95f19bc6214983ba4dc29">  349</a></span>&#160;  <span class="keyword">inline</span> <span class="keyword">auto</span> <a class="code" href="classCortidQCT_1_1Mesh.html#ac6334c55d0c95f19bc6214983ba4dc29">withUnsafeIndexPointer</a>(F &amp;&amp;f) const</div>
+<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;      noexcept(noexcept(f(std::declval&lt;const IndexData&gt;().data()))) {</div>
+<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;    <span class="keywordflow">return</span> f(indexData_.data());</div>
+<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;  }</div>
+<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;</div>
+<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;  <span class="keyword">template</span> &lt;<span class="keyword">class</span> F&gt;</div>
+<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;  <span class="keyword">inline</span> <span class="keyword">auto</span> <a class="code" href="classCortidQCT_1_1Mesh.html#ac6334c55d0c95f19bc6214983ba4dc29">withUnsafeIndexPointer</a>(F &amp;&amp;f) noexcept(</div>
+<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;      noexcept(f(std::declval&lt;IndexData&gt;().data()))) {</div>
+<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;    <span class="keywordflow">return</span> f(indexData_.data());</div>
+<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;  }</div>
+<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;</div>
+<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;  <span class="keyword">template</span> &lt;<span class="keyword">class</span> F&gt;</div>
+<div class="line"><a name="l00372"></a><span class="lineno"><a class="line" href="classCortidQCT_1_1Mesh.html#a8173d354feb4ca374319272687f1f427">  372</a></span>&#160;  <span class="keyword">inline</span> <span class="keyword">auto</span> <a class="code" href="classCortidQCT_1_1Mesh.html#a8173d354feb4ca374319272687f1f427">withUnsafeLabelPointer</a>(F &amp;&amp;f) const</div>
+<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;      noexcept(noexcept(f(LabelData().data()))) {</div>
+<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;    <span class="keywordflow">return</span> f(labelData_.data());</div>
+<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;  }</div>
+<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;</div>
+<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;  <span class="keyword">template</span> &lt;<span class="keyword">class</span> F&gt;</div>
+<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;  <span class="keyword">inline</span> <span class="keyword">auto</span></div>
+<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;  <a class="code" href="classCortidQCT_1_1Mesh.html#a8173d354feb4ca374319272687f1f427">withUnsafeLabelPointer</a>(F &amp;&amp;f) noexcept(noexcept(f(LabelData().data()))) {</div>
+<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;    <span class="keywordflow">return</span> f(labelData_.data());</div>
+<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;  }</div>
+<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;</div>
+<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;  <span class="keywordtype">void</span> ensurePostconditions() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;</div>
+<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;  VertexData vertexData_;</div>
+<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;  IndexData indexData_;</div>
+<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;  LabelData labelData_;</div>
+<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;};</div>
+<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;</div>
+<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;<span class="comment">/*************************************</span></div>
+<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;<span class="comment"> * Explicit template instanciations</span></div>
+<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;</div>
-<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;<span class="keyword">extern</span> <span class="keyword">template</span> <span class="keywordtype">void</span> <a class="code" href="classCortidQCT_1_1Mesh.html#a72cbf64c5fdcfec7b414df1dc7e57d55">Mesh&lt;float&gt;::cartesianRepresentation</a>(</div>
-<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;    BarycentricPoint&lt;float, std::ptrdiff_t&gt; <span class="keyword">const</span> *begin,</div>
-<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;    BarycentricPoint&lt;float, std::ptrdiff_t&gt; <span class="keyword">const</span> *end, <span class="keywordtype">float</span> *out) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;<span class="keyword">extern</span> <span class="keyword">template</span> <span class="keywordtype">void</span> <a class="code" href="classCortidQCT_1_1Mesh.html#a72cbf64c5fdcfec7b414df1dc7e57d55">Mesh&lt;double&gt;::cartesianRepresentation</a>(</div>
-<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;    BarycentricPoint&lt;float, std::ptrdiff_t&gt; <span class="keyword">const</span> *begin,</div>
-<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;    BarycentricPoint&lt;float, std::ptrdiff_t&gt; <span class="keyword">const</span> *end, <span class="keywordtype">double</span> *out) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;<span class="keyword">extern</span> <span class="keyword">template</span> <span class="keywordtype">void</span> <a class="code" href="classCortidQCT_1_1Mesh.html#a72cbf64c5fdcfec7b414df1dc7e57d55">Mesh&lt;float&gt;::cartesianRepresentation</a>(</div>
-<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;    std::vector&lt;BarycentricPoint&lt;float, std::ptrdiff_t&gt;&gt;::const_iterator begin,</div>
-<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;    std::vector&lt;BarycentricPoint&lt;float, std::ptrdiff_t&gt;&gt;::const_iterator end,</div>
-<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;    <span class="keywordtype">float</span> *out) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;<span class="keyword">extern</span> <span class="keyword">template</span> <span class="keywordtype">void</span> <a class="code" href="classCortidQCT_1_1Mesh.html#a72cbf64c5fdcfec7b414df1dc7e57d55">Mesh&lt;double&gt;::cartesianRepresentation</a>(</div>
-<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;    std::vector&lt;BarycentricPoint&lt;double, std::ptrdiff_t&gt;&gt;::const_iterator begin,</div>
-<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;    std::vector&lt;BarycentricPoint&lt;double, std::ptrdiff_t&gt;&gt;::const_iterator end,</div>
-<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;    <span class="keywordtype">double</span> *out) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;</div>
-<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;<span class="keyword">extern</span> <span class="keyword">template</span> <span class="keywordtype">void</span></div>
-<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;<a class="code" href="classCortidQCT_1_1Mesh.html#aa5055fa34780c0c454e8456416e10f7c">Mesh&lt;float&gt;::rayIntersections</a>(Ray&lt;float&gt; <span class="keyword">const</span> *, Ray&lt;float&gt; <span class="keyword">const</span> *,</div>
-<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;                              RayMeshIntersection&lt;float&gt; *) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160;<span class="keyword">extern</span> <span class="keyword">template</span> <span class="keywordtype">void</span> <a class="code" href="classCortidQCT_1_1Mesh.html#aa5055fa34780c0c454e8456416e10f7c">Mesh&lt;float&gt;::rayIntersections</a>(</div>
-<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160;    Ray&lt;float&gt; <span class="keyword">const</span> *, Ray&lt;float&gt; <span class="keyword">const</span> *,</div>
-<div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160;    std::back_insert_iterator&lt;std::vector&lt;RayMeshIntersection&lt;float&gt;&gt;&gt;) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160;<span class="keyword">extern</span> <span class="keyword">template</span> <span class="keywordtype">void</span></div>
-<div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;<a class="code" href="classCortidQCT_1_1Mesh.html#aa5055fa34780c0c454e8456416e10f7c">Mesh&lt;double&gt;::rayIntersections</a>(Ray&lt;double&gt; <span class="keyword">const</span> *, Ray&lt;double&gt; <span class="keyword">const</span> *,</div>
-<div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160;                               RayMeshIntersection&lt;double&gt; *) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;<span class="keyword">extern</span> <span class="keyword">template</span> <span class="keywordtype">void</span> <a class="code" href="classCortidQCT_1_1Mesh.html#aa5055fa34780c0c454e8456416e10f7c">Mesh&lt;double&gt;::rayIntersections</a>(</div>
-<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;    Ray&lt;double&gt; <span class="keyword">const</span> *, Ray&lt;double&gt; <span class="keyword">const</span> *,</div>
-<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;    std::back_insert_iterator&lt;std::vector&lt;RayMeshIntersection&lt;double&gt;&gt;&gt;) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;</div>
-<div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160;} <span class="comment">// namespace CortidQCT</span></div>
-<div class="ttc" id="classCortidQCT_1_1Mesh_html_ac6334c55d0c95f19bc6214983ba4dc29"><div class="ttname"><a href="classCortidQCT_1_1Mesh.html#ac6334c55d0c95f19bc6214983ba4dc29">CortidQCT::Mesh::withUnsafeIndexPointer</a></div><div class="ttdeci">auto withUnsafeIndexPointer(F &amp;&amp;f) const noexcept(noexcept(f(std::declval&lt; const IndexData &gt;().data())))</div><div class="ttdoc">Calls the given functional with an unsafe pointer to the raw index storage. </div><div class="ttdef"><b>Definition:</b> Mesh.h:346</div></div>
+<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;<span class="keyword">extern</span> <span class="keyword">template</span> <span class="keyword">class </span>Mesh&lt;float&gt;;</div>
+<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;<span class="keyword">extern</span> <span class="keyword">template</span> <span class="keyword">class </span>Mesh&lt;double&gt;;</div>
+<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;</div>
+<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;<span class="keyword">extern</span> <span class="keyword">template</span> <span class="keywordtype">void</span> <a class="code" href="classCortidQCT_1_1Mesh.html#a2d08d1f06372f31e187d626d273044f5">Mesh&lt;float&gt;::barycentricInterpolation</a>(</div>
+<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;    BarycentricPoint&lt;float, std::ptrdiff_t&gt; <span class="keyword">const</span> *,</div>
+<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;    BarycentricPoint&lt;float, std::ptrdiff_t&gt; <span class="keyword">const</span> *, <span class="keywordtype">float</span> <span class="keyword">const</span> *, <span class="keywordtype">float</span> *,</div>
+<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;    std::size_t) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;<span class="keyword">extern</span> <span class="keyword">template</span> <span class="keywordtype">void</span> <a class="code" href="classCortidQCT_1_1Mesh.html#a2d08d1f06372f31e187d626d273044f5">Mesh&lt;double&gt;::barycentricInterpolation</a>(</div>
+<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;    BarycentricPoint&lt;double, std::ptrdiff_t&gt; <span class="keyword">const</span> *,</div>
+<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;    BarycentricPoint&lt;double, std::ptrdiff_t&gt; <span class="keyword">const</span> *, <span class="keywordtype">double</span> <span class="keyword">const</span> *, <span class="keywordtype">double</span> *,</div>
+<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;    std::size_t) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;</div>
+<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;<span class="keyword">extern</span> <span class="keyword">template</span> <span class="keywordtype">void</span> <a class="code" href="classCortidQCT_1_1Mesh.html#a72cbf64c5fdcfec7b414df1dc7e57d55">Mesh&lt;float&gt;::cartesianRepresentation</a>(</div>
+<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;    BarycentricPoint&lt;float, std::ptrdiff_t&gt; <span class="keyword">const</span> *,</div>
+<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;    BarycentricPoint&lt;float, std::ptrdiff_t&gt; <span class="keyword">const</span> *, <span class="keywordtype">float</span> *) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;<span class="keyword">extern</span> <span class="keyword">template</span> <span class="keywordtype">void</span> <a class="code" href="classCortidQCT_1_1Mesh.html#a72cbf64c5fdcfec7b414df1dc7e57d55">Mesh&lt;double&gt;::cartesianRepresentation</a>(</div>
+<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;    BarycentricPoint&lt;float, std::ptrdiff_t&gt; <span class="keyword">const</span> *,</div>
+<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;    BarycentricPoint&lt;float, std::ptrdiff_t&gt; <span class="keyword">const</span> *, <span class="keywordtype">double</span> *) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160;<span class="keyword">extern</span> <span class="keyword">template</span> <span class="keywordtype">void</span> <a class="code" href="classCortidQCT_1_1Mesh.html#a72cbf64c5fdcfec7b414df1dc7e57d55">Mesh&lt;float&gt;::cartesianRepresentation</a>(</div>
+<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160;    std::vector&lt;BarycentricPoint&lt;float, std::ptrdiff_t&gt;&gt;::const_iterator,</div>
+<div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160;    std::vector&lt;BarycentricPoint&lt;float, std::ptrdiff_t&gt;&gt;::const_iterator,</div>
+<div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160;    <span class="keywordtype">float</span> *) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;<span class="keyword">extern</span> <span class="keyword">template</span> <span class="keywordtype">void</span> <a class="code" href="classCortidQCT_1_1Mesh.html#a72cbf64c5fdcfec7b414df1dc7e57d55">Mesh&lt;double&gt;::cartesianRepresentation</a>(</div>
+<div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160;    std::vector&lt;BarycentricPoint&lt;double, std::ptrdiff_t&gt;&gt;::const_iterator,</div>
+<div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;    std::vector&lt;BarycentricPoint&lt;double, std::ptrdiff_t&gt;&gt;::const_iterator,</div>
+<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;    <span class="keywordtype">double</span> *) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;</div>
+<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;<span class="keyword">extern</span> <span class="keyword">template</span> <span class="keywordtype">void</span></div>
+<div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160;<a class="code" href="classCortidQCT_1_1Mesh.html#aa5055fa34780c0c454e8456416e10f7c">Mesh&lt;float&gt;::rayIntersections</a>(Ray&lt;float&gt; <span class="keyword">const</span> *, Ray&lt;float&gt; <span class="keyword">const</span> *,</div>
+<div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;                              RayMeshIntersection&lt;float&gt; *) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160;<span class="keyword">extern</span> <span class="keyword">template</span> <span class="keywordtype">void</span> <a class="code" href="classCortidQCT_1_1Mesh.html#aa5055fa34780c0c454e8456416e10f7c">Mesh&lt;float&gt;::rayIntersections</a>(</div>
+<div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160;    Ray&lt;float&gt; <span class="keyword">const</span> *, Ray&lt;float&gt; <span class="keyword">const</span> *,</div>
+<div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160;    std::back_insert_iterator&lt;std::vector&lt;RayMeshIntersection&lt;float&gt;&gt;&gt;) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00433"></a><span class="lineno">  433</span>&#160;<span class="keyword">extern</span> <span class="keyword">template</span> <span class="keywordtype">void</span></div>
+<div class="line"><a name="l00434"></a><span class="lineno">  434</span>&#160;<a class="code" href="classCortidQCT_1_1Mesh.html#aa5055fa34780c0c454e8456416e10f7c">Mesh&lt;double&gt;::rayIntersections</a>(Ray&lt;double&gt; <span class="keyword">const</span> *, Ray&lt;double&gt; <span class="keyword">const</span> *,</div>
+<div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160;                               RayMeshIntersection&lt;double&gt; *) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160;<span class="keyword">extern</span> <span class="keyword">template</span> <span class="keywordtype">void</span> <a class="code" href="classCortidQCT_1_1Mesh.html#aa5055fa34780c0c454e8456416e10f7c">Mesh&lt;double&gt;::rayIntersections</a>(</div>
+<div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;    Ray&lt;double&gt; <span class="keyword">const</span> *, Ray&lt;double&gt; <span class="keyword">const</span> *,</div>
+<div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;    std::back_insert_iterator&lt;std::vector&lt;RayMeshIntersection&lt;double&gt;&gt;&gt;) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160;</div>
+<div class="line"><a name="l00440"></a><span class="lineno">  440</span>&#160;} <span class="comment">// namespace CortidQCT</span></div>
+<div class="ttc" id="classCortidQCT_1_1Mesh_html_ac6334c55d0c95f19bc6214983ba4dc29"><div class="ttname"><a href="classCortidQCT_1_1Mesh.html#ac6334c55d0c95f19bc6214983ba4dc29">CortidQCT::Mesh::withUnsafeIndexPointer</a></div><div class="ttdeci">auto withUnsafeIndexPointer(F &amp;&amp;f) const noexcept(noexcept(f(std::declval&lt; const IndexData &gt;().data())))</div><div class="ttdoc">Calls the given functional with an unsafe pointer to the raw index storage. </div><div class="ttdef"><b>Definition:</b> Mesh.h:349</div></div>
 <div class="ttc" id="ColorToLabelMap_8h_html"><div class="ttname"><a href="ColorToLabelMap_8h.html">ColorToLabelMap.h</a></div><div class="ttdoc">This finle contains definitions for color to index map types. </div></div>
 <div class="ttc" id="classCortidQCT_1_1Mesh_html_a85ed47c4807bd85372175889555ed77c"><div class="ttname"><a href="classCortidQCT_1_1Mesh.html#a85ed47c4807bd85372175889555ed77c">CortidQCT::Mesh&lt; float &gt;::Index</a></div><div class="ttdeci">std::ptrdiff_t Index</div><div class="ttdoc">Index type. </div><div class="ttdef"><b>Definition:</b> Mesh.h:45</div></div>
-<div class="ttc" id="classCortidQCT_1_1Mesh_html_a1f08cb96ee61f455b4f4d317764a5235"><div class="ttname"><a href="classCortidQCT_1_1Mesh.html#a1f08cb96ee61f455b4f4d317764a5235">CortidQCT::Mesh::withUnsafeVertexPointer</a></div><div class="ttdeci">auto withUnsafeVertexPointer(F &amp;&amp;f) const noexcept(noexcept(f(std::declval&lt; const VertexData &gt;().data())))</div><div class="ttdoc">Calls the given functional with an unsafe pointer to the raw vertex storage. </div><div class="ttdef"><b>Definition:</b> Mesh.h:323</div></div>
+<div class="ttc" id="classCortidQCT_1_1Mesh_html_a1f08cb96ee61f455b4f4d317764a5235"><div class="ttname"><a href="classCortidQCT_1_1Mesh.html#a1f08cb96ee61f455b4f4d317764a5235">CortidQCT::Mesh::withUnsafeVertexPointer</a></div><div class="ttdeci">auto withUnsafeVertexPointer(F &amp;&amp;f) const noexcept(noexcept(f(std::declval&lt; const VertexData &gt;().data())))</div><div class="ttdoc">Calls the given functional with an unsafe pointer to the raw vertex storage. </div><div class="ttdef"><b>Definition:</b> Mesh.h:326</div></div>
+<div class="ttc" id="classCortidQCT_1_1Mesh_html_a2d08d1f06372f31e187d626d273044f5"><div class="ttname"><a href="classCortidQCT_1_1Mesh.html#a2d08d1f06372f31e187d626d273044f5">CortidQCT::Mesh::barycentricInterpolation</a></div><div class="ttdeci">void barycentricInterpolation(PtIter pointsBegin, PtIter pointsEnd, AttrIter attributesBegin, OutputIterator out, std::size_t attributeDimension=1) const </div><div class="ttdoc">Interpolates per-vertex values for points inside a triangle. </div><div class="ttdef"><b>Definition:</b> Mesh.cpp:488</div></div>
 <div class="ttc" id="classCortidQCT_1_1Mesh_html_ac19e59dc75cd1c4453e941e33b6681bd"><div class="ttname"><a href="classCortidQCT_1_1Mesh.html#ac19e59dc75cd1c4453e941e33b6681bd">CortidQCT::Mesh::writeToFile</a></div><div class="ttdeci">void writeToFile(std::string const &amp;meshFilename, std::string const &amp;labelFilename) const </div><div class="ttdoc">Writes mesh to ASCII file using format auto detection. </div><div class="ttdef"><b>Definition:</b> Mesh.cpp:287</div></div>
 <div class="ttc" id="classCortidQCT_1_1Mesh_html"><div class="ttname"><a href="classCortidQCT_1_1Mesh.html">CortidQCT::Mesh</a></div><div class="ttdoc">A triangle mesh class. </div><div class="ttdef"><b>Definition:</b> BarycentricPoint.h:20</div></div>
 <div class="ttc" id="namespaceCortidQCT_html_a04ddf5259cabc1e1238ae30285564dfc"><div class="ttname"><a href="namespaceCortidQCT.html#a04ddf5259cabc1e1238ae30285564dfc">CortidQCT::LabelToColorMap</a></div><div class="ttdeci">std::function&lt; std::array&lt; Scalar, 3 &gt;(Label)&gt; LabelToColorMap</div><div class="ttdoc">Label to color map. </div><div class="ttdef"><b>Definition:</b> LabelToColorMap.h:30</div></div>
-<div class="ttc" id="classCortidQCT_1_1Mesh_html_aa64b25e542174004534dd9e0364ea714"><div class="ttname"><a href="classCortidQCT_1_1Mesh.html#aa64b25e542174004534dd9e0364ea714">CortidQCT::Mesh::barycentricInterpolation</a></div><div class="ttdeci">void barycentricInterpolation(PtIter pointsBegin, PtIter pointsEnd, AttrIter attributesBegin, OutputIterator out, std::size_t attributeDimension=1) const </div><div class="ttdoc">Interpolates per-vertex values for points inside a triangle. </div><div class="ttdef"><b>Definition:</b> Mesh.cpp:488</div></div>
 <div class="ttc" id="classCortidQCT_1_1Mesh_html_a72cbf64c5fdcfec7b414df1dc7e57d55"><div class="ttname"><a href="classCortidQCT_1_1Mesh.html#a72cbf64c5fdcfec7b414df1dc7e57d55">CortidQCT::Mesh::cartesianRepresentation</a></div><div class="ttdeci">std::array&lt; T, 3 &gt; cartesianRepresentation(BarycentricPoint&lt; T, Index &gt; const &amp;point) const </div><div class="ttdoc">Returns the cartesian coordinate of a point in barycentric coordinates. </div></div>
 <div class="ttc" id="classCortidQCT_1_1Mesh_html_aa5055fa34780c0c454e8456416e10f7c"><div class="ttname"><a href="classCortidQCT_1_1Mesh.html#aa5055fa34780c0c454e8456416e10f7c">CortidQCT::Mesh::rayIntersections</a></div><div class="ttdeci">void rayIntersections(InputIterator raysBegin, InputIterator raysEnd, OutputIterator intersectionsOut) const </div><div class="ttdoc">Computes the intersection of a set of rays with the mesh. </div><div class="ttdef"><b>Definition:</b> Mesh.cpp:547</div></div>
 <div class="ttc" id="classCortidQCT_1_1Mesh_html_abdb35d44b64d63cffaad5ae61b5b547d"><div class="ttname"><a href="classCortidQCT_1_1Mesh.html#abdb35d44b64d63cffaad5ae61b5b547d">CortidQCT::Mesh::Mesh</a></div><div class="ttdeci">Mesh() noexcept(noexcept(VertexData())&amp;&amp;noexcept(IndexData())&amp;&amp;noexcept(LabelData()))</div><div class="ttdoc">Constructs an empty mesh. </div><div class="ttdef"><b>Definition:</b> Mesh.h:66</div></div>
@@ -304,7 +317,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="classCortidQCT_1_1Mesh_html_a8f056311a26858c6c1355821e810e9dc"><div class="ttname"><a href="classCortidQCT_1_1Mesh.html#a8f056311a26858c6c1355821e810e9dc">CortidQCT::Mesh::cartesianRepresentation</a></div><div class="ttdeci">std::vector&lt; std::array&lt; T, 3 &gt; &gt; cartesianRepresentation(std::vector&lt; BarycentricPoint&lt; T, Index &gt;&gt; const &amp;points) const </div><div class="ttdoc">Converts a sequence of barycentric coordinates into caresian coordinates. </div><div class="ttdef"><b>Definition:</b> Mesh.h:221</div></div>
 <div class="ttc" id="classCortidQCT_1_1Mesh_html_a00230e71237643779b241188e7acd84d"><div class="ttname"><a href="classCortidQCT_1_1Mesh.html#a00230e71237643779b241188e7acd84d">CortidQCT::Mesh::vertexCount</a></div><div class="ttdeci">Size vertexCount() const noexcept</div><div class="ttdoc">Number of vertices. </div><div class="ttdef"><b>Definition:</b> Mesh.h:83</div></div>
 <div class="ttc" id="RayMeshIntersection_8h_html"><div class="ttname"><a href="RayMeshIntersection_8h.html">RayMeshIntersection.h</a></div><div class="ttdoc">This file contains the definition of the RayMeshIntersection type. </div></div>
-<div class="ttc" id="classCortidQCT_1_1Mesh_html_a8173d354feb4ca374319272687f1f427"><div class="ttname"><a href="classCortidQCT_1_1Mesh.html#a8173d354feb4ca374319272687f1f427">CortidQCT::Mesh::withUnsafeLabelPointer</a></div><div class="ttdeci">auto withUnsafeLabelPointer(F &amp;&amp;f) const noexcept(noexcept(f(LabelData().data())))</div><div class="ttdoc">Calls the given functional with an unsafe pointer to the raw label storage. </div><div class="ttdef"><b>Definition:</b> Mesh.h:369</div></div>
+<div class="ttc" id="classCortidQCT_1_1Mesh_html_a8173d354feb4ca374319272687f1f427"><div class="ttname"><a href="classCortidQCT_1_1Mesh.html#a8173d354feb4ca374319272687f1f427">CortidQCT::Mesh::withUnsafeLabelPointer</a></div><div class="ttdeci">auto withUnsafeLabelPointer(F &amp;&amp;f) const noexcept(noexcept(f(LabelData().data())))</div><div class="ttdoc">Calls the given functional with an unsafe pointer to the raw label storage. </div><div class="ttdef"><b>Definition:</b> Mesh.h:372</div></div>
 <div class="ttc" id="classCortidQCT_1_1Mesh_html_ae398361b2609e87158aa2131136c744b"><div class="ttname"><a href="classCortidQCT_1_1Mesh.html#ae398361b2609e87158aa2131136c744b">CortidQCT::Mesh::rayIntersection</a></div><div class="ttdeci">RayMeshIntersection&lt; T &gt; rayIntersection(Ray&lt; T &gt; const &amp;ray) const </div><div class="ttdoc">Computes intersection with the given ray and the mesh. </div><div class="ttdef"><b>Definition:</b> Mesh.cpp:536</div></div>
 <div class="ttc" id="Ray_8h_html"><div class="ttname"><a href="Ray_8h.html">Ray.h</a></div><div class="ttdoc">Definition of Ray data structure. </div></div>
 <div class="ttc" id="classCortidQCT_1_1Mesh_html_aa528a27520798cb236bb0130e9a97b1f"><div class="ttname"><a href="classCortidQCT_1_1Mesh.html#aa528a27520798cb236bb0130e9a97b1f">CortidQCT::Mesh::Mesh</a></div><div class="ttdeci">Mesh(std::size_t nVertices, std::size_t nTriangles) noexcept(noexcept(VertexData(3 *nVertices, T{0}))&amp;&amp;noexcept(IndexData(3 *nTriangles, Index{0}))&amp;&amp;noexcept(LabelData(nVertices, Label{0})))</div><div class="ttdoc">Constructs an uninitialized mesh with the given vertex and triangle count. </div><div class="ttdef"><b>Definition:</b> Mesh.h:70</div></div>
@@ -313,7 +326,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Feb 28 2019 16:49:58 for CortidQCT by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Feb 28 2019 17:05:11 for CortidQCT by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

@@ -258,32 +258,32 @@ Searching for d/home/travis/build/ithron/CortidQCT/bindings/matlab/include/Corti
 /home/travis/build/ithron/CortidQCT/bindings/C/include/CortidQCT/C/CortidQCT.h:199: warning: Compound CQCT_RayMeshIntersection is not documented.
 /home/travis/build/ithron/CortidQCT/lib/Sampler.h:133: warning: Compound CortidQCT::ModelSampler is not documented.
 /home/travis/build/ithron/CortidQCT/bindings/matlab/include/CortidQCT/Matlab/CortidQCT.h:165: warning: Compound CQCT_RayMeshIntersection_t is not documented.
-/home/travis/build/ithron/CortidQCT/include/CortidQCT/src/Mesh.h:400: warning: no uniquely matching class member found for 
-  template void CortidQCT::Mesh< T >::cartesianRepresentation(const CortidQCT::BarycentricPoint< float, std::ptrdiff_t > *begin, BarycentricPoint< float, std::ptrdiff_t > const *end, float *out) const
+/home/travis/build/ithron/CortidQCT/include/CortidQCT/src/Mesh.h:412: warning: no uniquely matching class member found for 
+  template void CortidQCT::Mesh< T >::cartesianRepresentation(const CortidQCT::BarycentricPoint< float, std::ptrdiff_t > *, BarycentricPoint< float, std::ptrdiff_t > const *, float *) const
 Possible candidates:
   std::array< T, 3 > CortidQCT::Mesh< T >::cartesianRepresentation(BarycentricPoint< T, Index > const &point) const ' at line 195 of file /home/travis/build/ithron/CortidQCT/include/CortidQCT/src/Mesh.h
   'template < InputIterator, OutputIterator >
   void CortidQCT::Mesh< T >::cartesianRepresentation(InputIterator begin, InputIterator end, OutputIterator out) const ' at line 211 of file /home/travis/build/ithron/CortidQCT/include/CortidQCT/src/Mesh.h
   std::vector< std::array< T, 3 > > CortidQCT::Mesh< T >::cartesianRepresentation(std::vector< BarycentricPoint< T, Index >> const &points) const ' at line 221 of file /home/travis/build/ithron/CortidQCT/include/CortidQCT/src/Mesh.h
 
-/home/travis/build/ithron/CortidQCT/include/CortidQCT/src/Mesh.h:403: warning: no uniquely matching class member found for 
-  template void CortidQCT::Mesh< T >::cartesianRepresentation(const CortidQCT::BarycentricPoint< float, std::ptrdiff_t > *begin, BarycentricPoint< float, std::ptrdiff_t > const *end, double *out) const
+/home/travis/build/ithron/CortidQCT/include/CortidQCT/src/Mesh.h:415: warning: no uniquely matching class member found for 
+  template void CortidQCT::Mesh< T >::cartesianRepresentation(const CortidQCT::BarycentricPoint< float, std::ptrdiff_t > *, BarycentricPoint< float, std::ptrdiff_t > const *, double *) const
 Possible candidates:
   std::array< T, 3 > CortidQCT::Mesh< T >::cartesianRepresentation(BarycentricPoint< T, Index > const &point) const ' at line 195 of file /home/travis/build/ithron/CortidQCT/include/CortidQCT/src/Mesh.h
   'template < InputIterator, OutputIterator >
   void CortidQCT::Mesh< T >::cartesianRepresentation(InputIterator begin, InputIterator end, OutputIterator out) const ' at line 211 of file /home/travis/build/ithron/CortidQCT/include/CortidQCT/src/Mesh.h
   std::vector< std::array< T, 3 > > CortidQCT::Mesh< T >::cartesianRepresentation(std::vector< BarycentricPoint< T, Index >> const &points) const ' at line 221 of file /home/travis/build/ithron/CortidQCT/include/CortidQCT/src/Mesh.h
 
-/home/travis/build/ithron/CortidQCT/include/CortidQCT/src/Mesh.h:406: warning: no uniquely matching class member found for 
-  template void CortidQCT::Mesh< T >::cartesianRepresentation(std::vector< CortidQCT::BarycentricPoint< float, std::ptrdiff_t >>::const_iterator begin, std::vector< BarycentricPoint< float, std::ptrdiff_t >>::const_iterator end, float *out) const
+/home/travis/build/ithron/CortidQCT/include/CortidQCT/src/Mesh.h:418: warning: no uniquely matching class member found for 
+  template void CortidQCT::Mesh< T >::cartesianRepresentation(std::vector< CortidQCT::BarycentricPoint< float, std::ptrdiff_t >>::const_iterator, std::vector< BarycentricPoint< float, std::ptrdiff_t >>::const_iterator, float *) const
 Possible candidates:
   std::array< T, 3 > CortidQCT::Mesh< T >::cartesianRepresentation(BarycentricPoint< T, Index > const &point) const ' at line 195 of file /home/travis/build/ithron/CortidQCT/include/CortidQCT/src/Mesh.h
   'template < InputIterator, OutputIterator >
   void CortidQCT::Mesh< T >::cartesianRepresentation(InputIterator begin, InputIterator end, OutputIterator out) const ' at line 211 of file /home/travis/build/ithron/CortidQCT/include/CortidQCT/src/Mesh.h
   std::vector< std::array< T, 3 > > CortidQCT::Mesh< T >::cartesianRepresentation(std::vector< BarycentricPoint< T, Index >> const &points) const ' at line 221 of file /home/travis/build/ithron/CortidQCT/include/CortidQCT/src/Mesh.h
 
-/home/travis/build/ithron/CortidQCT/include/CortidQCT/src/Mesh.h:410: warning: no uniquely matching class member found for 
-  template void CortidQCT::Mesh< T >::cartesianRepresentation(std::vector< CortidQCT::BarycentricPoint< double, std::ptrdiff_t >>::const_iterator begin, std::vector< BarycentricPoint< double, std::ptrdiff_t >>::const_iterator end, double *out) const
+/home/travis/build/ithron/CortidQCT/include/CortidQCT/src/Mesh.h:422: warning: no uniquely matching class member found for 
+  template void CortidQCT::Mesh< T >::cartesianRepresentation(std::vector< CortidQCT::BarycentricPoint< double, std::ptrdiff_t >>::const_iterator, std::vector< BarycentricPoint< double, std::ptrdiff_t >>::const_iterator, double *) const
 Possible candidates:
   std::array< T, 3 > CortidQCT::Mesh< T >::cartesianRepresentation(BarycentricPoint< T, Index > const &point) const ' at line 195 of file /home/travis/build/ithron/CortidQCT/include/CortidQCT/src/Mesh.h
   'template < InputIterator, OutputIterator >
@@ -300,8 +300,8 @@ Possible candidates:
 /home/travis/build/ithron/CortidQCT/lib/DisplacementOptimizer.h:94: warning: documented symbol `template DisplacementOptimizer::DisplacementsWeightsPair CortidQCT::Internal::DisplacementOptimizer::operator' was not declared or defined.
 /home/travis/build/ithron/CortidQCT/lib/DisplacementOptimizer.h:95: warning: documented symbol `template DisplacementOptimizer::DisplacementsWeightsPair CortidQCT::Internal::Eigen::VectorXd' was not declared or defined.
 /home/travis/build/ithron/CortidQCT/lib/DisplacementOptimizer.h:120: warning: documented symbol `template DisplacementOptimizer::DisplacementsWeightsPair CortidQCT::Internal::DisplacementOptimizer::operator' was not declared or defined.
-/home/travis/build/ithron/CortidQCT/lib/Mesh.cpp:592: warning: no uniquely matching class member found for 
-  template void CortidQCT::Mesh< T >::cartesianRepresentation(const CortidQCT::BarycentricPoint< float, std::ptrdiff_t > *begin, BarycentricPoint< float, std::ptrdiff_t > const *end, float *out) const
+/home/travis/build/ithron/CortidQCT/lib/Mesh.cpp:601: warning: no uniquely matching class member found for 
+  template void CortidQCT::Mesh< T >::cartesianRepresentation(const CortidQCT::BarycentricPoint< float, std::ptrdiff_t > *, BarycentricPoint< float, std::ptrdiff_t > const *, float *) const
 Possible candidates:
   std::array< T, 3 > CortidQCT::Mesh< T >::cartesianRepresentation(BarycentricPoint< T, Index > const &point) const ' at line 195 of file /home/travis/build/ithron/CortidQCT/include/CortidQCT/src/Mesh.h
   'template < InputIterator, OutputIterator >
@@ -310,8 +310,8 @@ Possible candidates:
   'template < T >
   std::array< T, 3 > CortidQCT::Mesh< T >::cartesianRepresentation(BarycentricPoint< T, Mesh< T >::Index > const &point) const ' at line 405 of file /home/travis/build/ithron/CortidQCT/lib/Mesh.cpp
 
-/home/travis/build/ithron/CortidQCT/lib/Mesh.cpp:595: warning: no uniquely matching class member found for 
-  template void CortidQCT::Mesh< T >::cartesianRepresentation(const CortidQCT::BarycentricPoint< double, std::ptrdiff_t > *begin, BarycentricPoint< double, std::ptrdiff_t > const *end, double *out) const
+/home/travis/build/ithron/CortidQCT/lib/Mesh.cpp:604: warning: no uniquely matching class member found for 
+  template void CortidQCT::Mesh< T >::cartesianRepresentation(const CortidQCT::BarycentricPoint< double, std::ptrdiff_t > *, BarycentricPoint< double, std::ptrdiff_t > const *, double *) const
 Possible candidates:
   std::array< T, 3 > CortidQCT::Mesh< T >::cartesianRepresentation(BarycentricPoint< T, Index > const &point) const ' at line 195 of file /home/travis/build/ithron/CortidQCT/include/CortidQCT/src/Mesh.h
   'template < InputIterator, OutputIterator >
@@ -320,8 +320,8 @@ Possible candidates:
   'template < T >
   std::array< T, 3 > CortidQCT::Mesh< T >::cartesianRepresentation(BarycentricPoint< T, Mesh< T >::Index > const &point) const ' at line 405 of file /home/travis/build/ithron/CortidQCT/lib/Mesh.cpp
 
-/home/travis/build/ithron/CortidQCT/lib/Mesh.cpp:598: warning: no uniquely matching class member found for 
-  template void CortidQCT::Mesh< T >::cartesianRepresentation(std::vector< CortidQCT::BarycentricPoint< float, std::ptrdiff_t >>::const_iterator begin, std::vector< BarycentricPoint< float, std::ptrdiff_t >>::const_iterator end, float *out) const
+/home/travis/build/ithron/CortidQCT/lib/Mesh.cpp:607: warning: no uniquely matching class member found for 
+  template void CortidQCT::Mesh< T >::cartesianRepresentation(std::vector< CortidQCT::BarycentricPoint< float, std::ptrdiff_t >>::const_iterator, std::vector< BarycentricPoint< float, std::ptrdiff_t >>::const_iterator, float *) const
 Possible candidates:
   std::array< T, 3 > CortidQCT::Mesh< T >::cartesianRepresentation(BarycentricPoint< T, Index > const &point) const ' at line 195 of file /home/travis/build/ithron/CortidQCT/include/CortidQCT/src/Mesh.h
   'template < InputIterator, OutputIterator >
@@ -330,8 +330,8 @@ Possible candidates:
   'template < T >
   std::array< T, 3 > CortidQCT::Mesh< T >::cartesianRepresentation(BarycentricPoint< T, Mesh< T >::Index > const &point) const ' at line 405 of file /home/travis/build/ithron/CortidQCT/lib/Mesh.cpp
 
-/home/travis/build/ithron/CortidQCT/lib/Mesh.cpp:602: warning: no uniquely matching class member found for 
-  template void CortidQCT::Mesh< T >::cartesianRepresentation(std::vector< CortidQCT::BarycentricPoint< double, std::ptrdiff_t >>::const_iterator begin, std::vector< BarycentricPoint< double, std::ptrdiff_t >>::const_iterator end, double *out) const
+/home/travis/build/ithron/CortidQCT/lib/Mesh.cpp:611: warning: no uniquely matching class member found for 
+  template void CortidQCT::Mesh< T >::cartesianRepresentation(std::vector< CortidQCT::BarycentricPoint< double, std::ptrdiff_t >>::const_iterator, std::vector< BarycentricPoint< double, std::ptrdiff_t >>::const_iterator, double *) const
 Possible candidates:
   std::array< T, 3 > CortidQCT::Mesh< T >::cartesianRepresentation(BarycentricPoint< T, Index > const &point) const ' at line 195 of file /home/travis/build/ithron/CortidQCT/include/CortidQCT/src/Mesh.h
   'template < InputIterator, OutputIterator >
@@ -712,7 +712,7 @@ Generating file index...
 Generating file member index...
 Generating example index...
 finalizing index lists...
-lookup cache used 978/65536 hits=7466 misses=1146
+lookup cache used 978/65536 hits=7476 misses=1146
 finished...
 make[3]: Leaving directory `/home/travis/build/ithron/CortidQCT'
 [100%] Built target doc
