@@ -23,7 +23,7 @@ template <class T> class Mesh;
  * @brief BarycentricPoint data type. Represents a points on triangulation in
  * barycentric coordinates
  */
-template <class T, class Index> struct BarycentricPoint {
+template <class T, class Index> struct alignas(8) BarycentricPoint {
 
   static_assert(std::is_floating_point<T>::value,
                 "Scalar must be a floating point type");

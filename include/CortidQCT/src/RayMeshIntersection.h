@@ -12,17 +12,18 @@
 #pragma once
 
 #include "Mesh.h"
+#include "Padding.h"
 
 #include <limits>
 
 namespace CortidQCT {
 
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wpadded"
 template <class T> struct alignas(8) RayMeshIntersection {
-  BarycentricPoint<T, typename Mesh<T>::Index> position;
+  using Position = BarycentricPoint<T, typename Mesh<T>::Index>;
+  Position position;
   T signedDistance = std::numeric_limits<T>::infinity();
+  /// Add explicit padding to ensure copatibility with C
+  CQCT_PADDING(sizeof(Position) + sizeof(T), 8);
 };
-#pragma clang diagnostic pop
 
 } // namespace CortidQCT

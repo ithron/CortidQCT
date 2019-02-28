@@ -19,7 +19,7 @@ namespace CortidQCT {
 /**
  * @brief A basic ray datatype
  */
-template <class T> struct Ray {
+template <class T> struct alignas(8) Ray {
 
   static_assert(std::is_floating_point<T>::value,
                 "Scalar must be a floating point type");
