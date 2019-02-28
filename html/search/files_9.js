@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['weightedarapfitter_2ecpp',['WeightedARAPFitter.cpp',['../WeightedARAPFitter_8cpp.html',1,'']]],
-  ['weightedarapfitter_2eh',['WeightedARAPFitter.h',['../WeightedARAPFitter_8h.html',1,'']]]
+  ['ray_2eh',['Ray.h',['../Ray_8h.html',1,'']]],
+  ['raymeshintersection_2eh',['RayMeshIntersection.h',['../RayMeshIntersection_8h.html',1,'']]]
 ];
