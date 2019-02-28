@@ -230,6 +230,8 @@ public:
     return cartPoints;
   }
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdocumentation"
   /**
    * @brief Interpolates per-vertex values for points inside a triangle.
    *
@@ -264,6 +266,7 @@ public:
   void barycentricInterpolation(PtIter pointsBegin, PtIter pointsEnd,
                                 AttrIter attributesBegin, OutputIterator out,
                                 std::size_t attributeDimension = 1) const;
+#pragma clang diagnostic pop
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdocumentation"
@@ -397,20 +400,29 @@ private:
 extern template class Mesh<float>;
 extern template class Mesh<double>;
 
+extern template void Mesh<float>::barycentricInterpolation(
+    BarycentricPoint<float, std::ptrdiff_t> const *,
+    BarycentricPoint<float, std::ptrdiff_t> const *, float const *, float *,
+    std::size_t) const;
+extern template void Mesh<double>::barycentricInterpolation(
+    BarycentricPoint<double, std::ptrdiff_t> const *,
+    BarycentricPoint<double, std::ptrdiff_t> const *, double const *, double *,
+    std::size_t) const;
+
 extern template void Mesh<float>::cartesianRepresentation(
-    BarycentricPoint<float, std::ptrdiff_t> const *begin,
-    BarycentricPoint<float, std::ptrdiff_t> const *end, float *out) const;
+    BarycentricPoint<float, std::ptrdiff_t> const *,
+    BarycentricPoint<float, std::ptrdiff_t> const *, float *) const;
 extern template void Mesh<double>::cartesianRepresentation(
-    BarycentricPoint<float, std::ptrdiff_t> const *begin,
-    BarycentricPoint<float, std::ptrdiff_t> const *end, double *out) const;
+    BarycentricPoint<float, std::ptrdiff_t> const *,
+    BarycentricPoint<float, std::ptrdiff_t> const *, double *) const;
 extern template void Mesh<float>::cartesianRepresentation(
-    std::vector<BarycentricPoint<float, std::ptrdiff_t>>::const_iterator begin,
-    std::vector<BarycentricPoint<float, std::ptrdiff_t>>::const_iterator end,
-    float *out) const;
+    std::vector<BarycentricPoint<float, std::ptrdiff_t>>::const_iterator,
+    std::vector<BarycentricPoint<float, std::ptrdiff_t>>::const_iterator,
+    float *) const;
 extern template void Mesh<double>::cartesianRepresentation(
-    std::vector<BarycentricPoint<double, std::ptrdiff_t>>::const_iterator begin,
-    std::vector<BarycentricPoint<double, std::ptrdiff_t>>::const_iterator end,
-    double *out) const;
+    std::vector<BarycentricPoint<double, std::ptrdiff_t>>::const_iterator,
+    std::vector<BarycentricPoint<double, std::ptrdiff_t>>::const_iterator,
+    double *) const;
 
 extern template void
 Mesh<float>::rayIntersections(Ray<float> const *, Ray<float> const *,

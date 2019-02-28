@@ -589,20 +589,29 @@ void Mesh<T>::rayIntersections(InputIterator raysBegin, InputIterator raysEnd,
 template class Mesh<float>;
 template class Mesh<double>;
 
+template void Mesh<float>::barycentricInterpolation(
+    BarycentricPoint<float, std::ptrdiff_t> const *,
+    BarycentricPoint<float, std::ptrdiff_t> const *, float const *, float *,
+    std::size_t) const;
+template void Mesh<double>::barycentricInterpolation(
+    BarycentricPoint<double, std::ptrdiff_t> const *,
+    BarycentricPoint<double, std::ptrdiff_t> const *, double const *, double *,
+    std::size_t) const;
+
 template void Mesh<float>::cartesianRepresentation(
-    BarycentricPoint<float, std::ptrdiff_t> const *begin,
-    BarycentricPoint<float, std::ptrdiff_t> const *end, float *out) const;
+    BarycentricPoint<float, std::ptrdiff_t> const *,
+    BarycentricPoint<float, std::ptrdiff_t> const *, float *) const;
 template void Mesh<double>::cartesianRepresentation(
-    BarycentricPoint<double, std::ptrdiff_t> const *begin,
-    BarycentricPoint<double, std::ptrdiff_t> const *end, double *out) const;
+    BarycentricPoint<double, std::ptrdiff_t> const *,
+    BarycentricPoint<double, std::ptrdiff_t> const *, double *) const;
 template void Mesh<float>::cartesianRepresentation(
-    std::vector<BarycentricPoint<float, std::ptrdiff_t>>::const_iterator begin,
-    std::vector<BarycentricPoint<float, std::ptrdiff_t>>::const_iterator end,
-    float *out) const;
+    std::vector<BarycentricPoint<float, std::ptrdiff_t>>::const_iterator,
+    std::vector<BarycentricPoint<float, std::ptrdiff_t>>::const_iterator,
+    float *) const;
 template void Mesh<double>::cartesianRepresentation(
-    std::vector<BarycentricPoint<double, std::ptrdiff_t>>::const_iterator begin,
-    std::vector<BarycentricPoint<double, std::ptrdiff_t>>::const_iterator end,
-    double *out) const;
+    std::vector<BarycentricPoint<double, std::ptrdiff_t>>::const_iterator,
+    std::vector<BarycentricPoint<double, std::ptrdiff_t>>::const_iterator,
+    double *) const;
 
 template void Mesh<float>::rayIntersections(Ray<float> const *,
                                             Ray<float> const *,
