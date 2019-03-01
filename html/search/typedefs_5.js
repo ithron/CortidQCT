@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['scalar',['Scalar',['../classCortidQCT_1_1Mesh.html#a81c02ff8c5040d90b417c8541e2e076b',1,'CortidQCT::Mesh']]],
-  ['size',['Size',['../classCortidQCT_1_1Mesh.html#ac2af31ab3131a4ce0a6ed86b6e29d8f9',1,'CortidQCT::Mesh']]]
+  ['value_5ftype',['value_type',['../structCortidQCT_1_1DiscreteRange.html#aee5b5a6e0b971b248cfdd66a40724840',1,'CortidQCT::DiscreteRange']]],
+  ['valuetype',['ValueType',['../classCortidQCT_1_1VoxelVolume.html#af9e11e71d4fc998cc3c806940b446e58',1,'CortidQCT::VoxelVolume']]]
 ];

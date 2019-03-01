@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['kernelsigma',['kernelSigma',['../classCortidQCT_1_1MeasurementModel.html#a1046012275b147d59b4fd41f22f089bc',1,'CortidQCT::MeasurementModel']]]
+  ['loglikelihood',['logLikelihood',['../structCortidQCT_1_1MeshFitter_1_1Result.html#a38dd74f9400812a7e22bf858df755bd4',1,'CortidQCT::MeshFitter::Result']]]
 ];

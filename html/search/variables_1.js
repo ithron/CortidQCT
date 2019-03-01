@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['anglerange',['angleRange',['../classCortidQCT_1_1MeasurementModel.html#a94da3a09d09b3e87c50a7fc6e40c68a5',1,'CortidQCT::MeasurementModel']]],
-  ['author',['author',['../classCortidQCT_1_1MeasurementModel.html#a4435630ce4fc267201fa8b599d421a1a',1,'CortidQCT::MeasurementModel']]]
+  ['configuration',['configuration',['../classCortidQCT_1_1MeshFitter.html#a82c5dcc4b5f42dc729fe19285959235c',1,'CortidQCT::MeshFitter']]],
+  ['converged',['converged',['../structCortidQCT_1_1MeshFitter_1_1Result.html#abf07a3fec9128001433e5f83a6f30a18',1,'CortidQCT::MeshFitter::Result']]],
+  ['creationdate',['creationDate',['../classCortidQCT_1_1MeasurementModel.html#a8d2c9402c5089e4fb1b3385d5077e7b6',1,'CortidQCT::MeasurementModel']]]
 ];

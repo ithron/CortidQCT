@@ -1,12 +1,8 @@
 var searchData=
 [
-  ['operator_20colortolabelmap_3c_20label_2c_20scalar_20_3e',['operator ColorToLabelMap&lt; Label, Scalar &gt;',['../structCortidQCT_1_1ColorToLabelMaps_1_1CustomMap.html#a51964e673ecef2bc3c1541a37813e303',1,'CortidQCT::ColorToLabelMaps::CustomMap']]],
-  ['operator_28_29',['operator()',['../structCortidQCT_1_1ColorToLabelMaps_1_1CustomMap.html#ad31d4d2b20c38a25e6b225f7e1b4f343',1,'CortidQCT::ColorToLabelMaps::CustomMap::operator()()'],['../classCortidQCT_1_1Internal_1_1DisplacementOptimizer.html#af936f407402beb07f12f7860fae808eb',1,'CortidQCT::Internal::DisplacementOptimizer::operator()()']]],
-  ['operator_3c_3c',['operator&lt;&lt;',['../structCortidQCT_1_1MartrixIOWrapper.html#ab537b3269369b2bf789921d877142e1f',1,'CortidQCT::MartrixIOWrapper']]],
-  ['operator_3e_3e',['operator&gt;&gt;',['../structCortidQCT_1_1MartrixIOWrapper.html#a3f46d4638c467ea750218dbc1e03f163',1,'CortidQCT::MartrixIOWrapper']]],
-  ['operator_5b_5d',['operator[]',['../structCortidQCT_1_1VolumeSize.html#a01f4fd5679e9f180c6b4562c42d6ff5e',1,'CortidQCT::VolumeSize::operator[](std::size_t idx) const noexcept'],['../structCortidQCT_1_1VolumeSize.html#ae61c58e209faabc60ff4ee7e03211cdc',1,'CortidQCT::VolumeSize::operator[](std::size_t idx) noexcept'],['../structCortidQCT_1_1VoxelSize.html#af1e09b69ca1a70508bccbd53ec5eebaf',1,'CortidQCT::VoxelSize::operator[](std::size_t idx) const noexcept'],['../structCortidQCT_1_1VoxelSize.html#ac57798da09aff64b816fdbb4029dd564',1,'CortidQCT::VoxelSize::operator[](std::size_t idx) noexcept']]],
-  ['optimaldeformationstep',['optimalDeformationStep',['../classCortidQCT_1_1MeshFitter.html#a93ff96bfcf88b2ce7c32acfb5c8bf6c6',1,'CortidQCT::MeshFitter']]],
-  ['optimaldisplacementstep',['optimalDisplacementStep',['../classCortidQCT_1_1MeshFitter.html#aa77c017d25be0923c4a2d58e0d2711ba',1,'CortidQCT::MeshFitter']]],
-  ['optional_2eh',['Optional.h',['../Optional_8h.html',1,'']]],
-  ['origin',['origin',['../structCortidQCT_1_1Ray.html#a10e7c7634375127cdba8952340f58529',1,'CortidQCT::Ray']]]
+  ['referencemesh',['referenceMesh',['../structCortidQCT_1_1MeshFitter_1_1Configuration.html#a788dcc5fe204a1d00485d1f3141294ce',1,'CortidQCT::MeshFitter::Configuration::referenceMesh()'],['../structCortidQCT_1_1MeshFitter_1_1Result.html#accb9d1c0101b644fce18482ace5f07f9',1,'CortidQCT::MeshFitter::Result::referenceMesh()']]],
+  ['referencemeshorigin',['referenceMeshOrigin',['../structCortidQCT_1_1MeshFitter_1_1Configuration.html#ad2a27a508efe01cd47da619e9cc415e6',1,'CortidQCT::MeshFitter::Configuration']]],
+  ['referencemeshrotation',['referenceMeshRotation',['../structCortidQCT_1_1MeshFitter_1_1Configuration.html#a22ab5587b35b89cb403a93195c403939',1,'CortidQCT::MeshFitter::Configuration']]],
+  ['referencemeshscale',['referenceMeshScale',['../structCortidQCT_1_1MeshFitter_1_1Configuration.html#a2f8065c9d27d76865f617312b6e8d530',1,'CortidQCT::MeshFitter::Configuration']]],
+  ['result',['Result',['../structCortidQCT_1_1MeshFitter_1_1Result.html',1,'CortidQCT::MeshFitter']]]
 ];

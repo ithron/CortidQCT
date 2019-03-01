@@ -95,14 +95,6 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCQCT__VoxelVolumeVoxelSize.html">CQCT_VoxelVolumeVoxelSize</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">VoxelVolume voxel size.  <a href="structCQCT__VoxelVolumeVoxelSize.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCQCT__BarycentricPoint__t.html">CQCT_BarycentricPoint_t</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Barycentric point type.  <a href="structCQCT__BarycentricPoint__t.html#details">More...</a><br/></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCQCT__Ray__t.html">CQCT_Ray_t</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ray type.  <a href="structCQCT__Ray__t.html#details">More...</a><br/></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCQCT__RayMeshIntersection.html">CQCT_RayMeshIntersection</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="member-group"></a>
 Generic Functions / Object Type</h2></td></tr>
@@ -127,14 +119,10 @@ CQCT_EXTERN void&#160;</td><td class="memItemRight" valign="bottom"><a class="el
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="member-group"></a>
 Error type</h2></td></tr>
-<tr class="memitem:gaf9e4e94e2ddc85f00e18d83c7b978291"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#gaf9e4e94e2ddc85f00e18d83c7b978291">CQCT_ErrorId</a> { <br/>
-&#160;&#160;<b>CQCT_ErrorId_Unknown</b>, 
+<tr class="memitem:gaf9e4e94e2ddc85f00e18d83c7b978291"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#gaf9e4e94e2ddc85f00e18d83c7b978291">CQCT_ErrorId</a> { <b>CQCT_ErrorId_Unknown</b>, 
 <b>CQCT_ErrorId_InvalidArgument</b>, 
-<b>CQCT_ErrorId_OutOfRange</b>, 
 <b>CQCT_ErrorId_Unknown</b>, 
-<br/>
-&#160;&#160;<b>CQCT_ErrorId_InvalidArgument</b>
-<br/>
+<b>CQCT_ErrorId_InvalidArgument</b>
  }</td></tr>
 <tr class="memdesc:gaf9e4e94e2ddc85f00e18d83c7b978291"><td class="mdescLeft">&#160;</td><td class="mdescRight">Error types/Ids. <br/></td></tr>
 <tr class="separator:gaf9e4e94e2ddc85f00e18d83c7b978291"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -197,17 +185,6 @@ Mesh type</h2></td></tr>
 typedef struct <a class="el" href="structCQCT__Mesh__t.html">CQCT_Mesh_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a></td></tr>
 <tr class="memdesc:gab16a5b8d67699346c12ee67d3a5d23e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mesh handle type. <br/></td></tr>
 <tr class="separator:gab16a5b8d67699346c12ee67d3a5d23e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gad83aa06b3f5c24be5208530a4cba2703"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gad83aa06b3f5c24be5208530a4cba2703"></a>
-typedef struct <br class="typebreak"/>
-<a class="el" href="structCQCT__BarycentricPoint__t.html">CQCT_BarycentricPoint_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>CQCT_BarycentricPoint</b></td></tr>
-<tr class="separator:gad83aa06b3f5c24be5208530a4cba2703"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gac791b59cc348411cc91168c6b60e963f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gac791b59cc348411cc91168c6b60e963f"></a>
-typedef struct <a class="el" href="structCQCT__Ray__t.html">CQCT_Ray_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>CQCT_Ray</b></td></tr>
-<tr class="separator:gac791b59cc348411cc91168c6b60e963f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga92d14f7b7812c9b57ac952ca168000b7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga92d14f7b7812c9b57ac952ca168000b7"></a>
-typedef struct <br class="typebreak"/>
-<a class="el" href="structCQCT__RayMeshIntersection.html">CQCT_RayMeshIntersection</a>&#160;</td><td class="memItemRight" valign="bottom"><b>CQCT_RayMeshIntersection</b></td></tr>
-<tr class="separator:ga92d14f7b7812c9b57ac952ca168000b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga2bf50e1ad18d66b220307db3c6d096f1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga2bf50e1ad18d66b220307db3c6d096f1"></a>
 CQCT_EXTERN <a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#ga2bf50e1ad18d66b220307db3c6d096f1">CQCT_createMesh</a> ()</td></tr>
 <tr class="memdesc:ga2bf50e1ad18d66b220307db3c6d096f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an empty mesh. <br/></td></tr>
@@ -266,15 +243,6 @@ CQCT_EXTERN size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="
 <tr class="memitem:gaee4dfd356b36b153215c83ec9bac981e"><td class="memItemLeft" align="right" valign="top">CQCT_EXTERN void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#gaee4dfd356b36b153215c83ec9bac981e">CQCT_meshSetLabels</a> (<a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a> mesh, unsigned int const *buffer)</td></tr>
 <tr class="memdesc:gaee4dfd356b36b153215c83ec9bac981e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies the vertex labels from the given buffer into the mesh data structure.  <a href="#gaee4dfd356b36b153215c83ec9bac981e">More...</a><br/></td></tr>
 <tr class="separator:gaee4dfd356b36b153215c83ec9bac981e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gadf8ea24301aeb926ea2a343d82c52d64"><td class="memItemLeft" align="right" valign="top">CQCT_EXTERN int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#gadf8ea24301aeb926ea2a343d82c52d64">CQCT_meshBarycentricToCartesian</a> (<a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a> mesh, <a class="el" href="structCQCT__BarycentricPoint__t.html">CQCT_BarycentricPoint</a> const *barycentricPtr, size_t nPoints, float **bufferPtr, <a class="el" href="group__C-API.html#ga18408ad6c19d73790930b59068bc0d72">CQCT_Error</a> *error)</td></tr>
-<tr class="memdesc:gadf8ea24301aeb926ea2a343d82c52d64"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts the given list of barycentric points in cartesian coordinates.  <a href="#gadf8ea24301aeb926ea2a343d82c52d64">More...</a><br/></td></tr>
-<tr class="separator:gadf8ea24301aeb926ea2a343d82c52d64"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga65957d4959939eb9ed95afa03ed87538"><td class="memItemLeft" align="right" valign="top">CQCT_EXTERN int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#ga65957d4959939eb9ed95afa03ed87538">CQCT_meshBarycentricInterpolation</a> (<a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a> mesh, <a class="el" href="structCQCT__BarycentricPoint__t.html">CQCT_BarycentricPoint</a> const *barycentricPtr, size_t nPoints, float const *attributePtr, size_t attributeDimensions, float **bufferPtr, <a class="el" href="group__C-API.html#ga18408ad6c19d73790930b59068bc0d72">CQCT_Error</a> *error)</td></tr>
-<tr class="memdesc:ga65957d4959939eb9ed95afa03ed87538"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interpolates attribute values given at mesh vertices at arbitrary points on the surface of the mesh.  <a href="#ga65957d4959939eb9ed95afa03ed87538">More...</a><br/></td></tr>
-<tr class="separator:ga65957d4959939eb9ed95afa03ed87538"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga6f3b598a4d6bf6c8af4a0929ab4016b8"><td class="memItemLeft" align="right" valign="top">CQCT_EXTERN void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#ga6f3b598a4d6bf6c8af4a0929ab4016b8">CQCT_meshRayIntersections</a> (<a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a> mesh, <a class="el" href="structCQCT__Ray__t.html">CQCT_Ray</a> *raysPtr, size_t nRays, <a class="el" href="structCQCT__RayMeshIntersection.html">CQCT_RayMeshIntersection</a> **intersectionsOutPtr)</td></tr>
-<tr class="memdesc:ga6f3b598a4d6bf6c8af4a0929ab4016b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the intersection of a set of rays with the mesh.  <a href="#ga6f3b598a4d6bf6c8af4a0929ab4016b8">More...</a><br/></td></tr>
-<tr class="separator:ga6f3b598a4d6bf6c8af4a0929ab4016b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="member-group"></a>
 ColorToLabelMap object type</h2></td></tr>
@@ -695,142 +663,6 @@ It is very unlikely that this function returns an error. The only reason for fai
 
 </div>
 </div>
-<a class="anchor" id="ga65957d4959939eb9ed95afa03ed87538"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">CQCT_EXTERN int CQCT_meshBarycentricInterpolation </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a>&#160;</td>
-          <td class="paramname"><em>mesh</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="structCQCT__BarycentricPoint__t.html">CQCT_BarycentricPoint</a> const *&#160;</td>
-          <td class="paramname"><em>barycentricPtr</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>nPoints</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float const *&#160;</td>
-          <td class="paramname"><em>attributePtr</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>attributeDimensions</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float **&#160;</td>
-          <td class="paramname"><em>bufferPtr</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="group__C-API.html#ga18408ad6c19d73790930b59068bc0d72">CQCT_Error</a> *&#160;</td>
-          <td class="paramname"><em>error</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Interpolates attribute values given at mesh vertices at arbitrary points on the surface of the mesh. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">mesh</td><td>Mesh object </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">barycentricPtr</td><td>pointer to a list of points in barycentric representation </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">nPoints</td><td>number of points </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">attributePtr</td><td>pointer to attribute buffer. Note that this buffer must hold <code>attributeDimensions * N</code> values, where <code>N</code> is the number of vertices in the mesh. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">attributeDimensions</td><td>number of attribute dimensions </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">bufferPtr</td><td>Pointer where the interpolated values are stored. Must be able to hold <code>nPoints * attributeDimensions</code> values. Alternatively, if <code>*bufferPtr == NULL</code>, the required memory is allocated by the function and the pointer is returned in <code>bufferPtr</code>. The caller is responisble for releasing the memory, in both cases. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">error</td><td>pointer to an error object. If <code>NULL</code> errors are ignored. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>0 on success, a negative value on error. </dd></dl>
-<dl class="section pre"><dt>Precondition</dt><dd><code>barycentricPtr != NULL || nPoint == 0</code> </dd>
-<dd>
-<code>bufferPtr != NULL || nPoints == 0</code> </dd>
-<dd>
-'attributePtr != NULL || nPoints == 0' </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="gadf8ea24301aeb926ea2a343d82c52d64"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">CQCT_EXTERN int CQCT_meshBarycentricToCartesian </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a>&#160;</td>
-          <td class="paramname"><em>mesh</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="structCQCT__BarycentricPoint__t.html">CQCT_BarycentricPoint</a> const *&#160;</td>
-          <td class="paramname"><em>barycentricPtr</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>nPoints</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float **&#160;</td>
-          <td class="paramname"><em>bufferPtr</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="group__C-API.html#ga18408ad6c19d73790930b59068bc0d72">CQCT_Error</a> *&#160;</td>
-          <td class="paramname"><em>error</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Converts the given list of barycentric points in cartesian coordinates. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">mesh</td><td>Mesh object </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">barycentricPtr</td><td>pointer to list of points in barycentric representation </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">nPoints</td><td>number of points to convert </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">bufferPtr</td><td>Pointer to the output buffer. The buffer must be able to hold <code>3 * N</code> floats. Alternatively, <code>bufferPtr</code> can point to a <code>NULL</code> pointer. In this case the required memory is allocated by the function. Note that in both variants the caller is responsible for releasing the memory. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">error</td><td>pointer to error object where an error is stored in case of an error. Or <code>NULL</code> if no error should be returned. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>0 on success, a negative value on error </dd></dl>
-<dl class="section pre"><dt>Precondition</dt><dd><code>barycentricPtr != NULL || nPoints == 0</code> </dd>
-<dd>
-<code>bufferPtr != NULL</code> </dd></dl>
-
-</div>
-</div>
 <a class="anchor" id="ga4e9fa7808b060e9ca453a3e1737fdf0c"></a>
 <div class="memitem">
 <div class="memproto">
@@ -1037,61 +869,6 @@ It is very unlikely that this function returns an error. The only reason for fai
 
 </div>
 </div>
-<a class="anchor" id="ga6f3b598a4d6bf6c8af4a0929ab4016b8"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">CQCT_EXTERN void CQCT_meshRayIntersections </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a>&#160;</td>
-          <td class="paramname"><em>mesh</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="structCQCT__Ray__t.html">CQCT_Ray</a> *&#160;</td>
-          <td class="paramname"><em>raysPtr</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>nRays</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="structCQCT__RayMeshIntersection.html">CQCT_RayMeshIntersection</a> **&#160;</td>
-          <td class="paramname"><em>intersectionsOutPtr</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Computes the intersection of a set of rays with the mesh. </p>
-<p>If for any ray no intersection can be found, its signed distance <code>t</code> is set to infinity.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">mesh</td><td>Mesh object </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">raysPtr</td><td>pointer to array of CQCT_Ray objects </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">nRays</td><td>Number of rays </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">intersectionsOutPtr</td><td>Pointer that contains the memory address where the intersection object should be stored. the underlying memory must be able to hold <code>nRays * sizeof(CQCT_RayMeshIntersection)</code> bytes. Alternatively, the address contained in <code>intersectionsOutPtr</code> can be set to NULL. In this case the memory is allocated by the function. The caller is responsible for relasing the memory, in all cases. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section pre"><dt>Precondition</dt><dd><code>mesh != NULL || nRays == 0</code> </dd>
-<dd>
-<code>raysPtr != NULL || nRays == 0</code> </dd>
-<dd>
-<code>intersectionsOutPtr != NULL || nRays == 0</code> </dd></dl>
-
-</div>
-</div>
 <a class="anchor" id="gaee4dfd356b36b153215c83ec9bac981e"></a>
 <div class="memitem">
 <div class="memproto">
@@ -1219,7 +996,7 @@ It is very unlikely that this function returns an error. The only reason for fai
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Feb 28 2019 17:18:56 for CortidQCT by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Mar 1 2019 10:57:31 for CortidQCT by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

@@ -90,7 +90,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-types">Public Types</a> &#124;
-<a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="classCortidQCT_1_1Mesh-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">CortidQCT::Mesh&lt; T &gt; Class Template Reference</div>  </div>
@@ -120,13 +119,6 @@ using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cla
 using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCortidQCT_1_1Mesh.html#ab29bc2956971579d646fc291c73a28a6">Label</a> = unsigned int</td></tr>
 <tr class="memdesc:ab29bc2956971579d646fc291c73a28a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Label type. <br/></td></tr>
 <tr class="separator:ab29bc2956971579d646fc291c73a28a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
-Public Member Functions</h2></td></tr>
-<tr class="memitem:adc0b8e9574d771ca005005cbcac05a67"><td class="memTemplParams" colspan="2"><a class="anchor" id="adc0b8e9574d771ca005005cbcac05a67"></a>
-template&lt;class T&gt; </td></tr>
-<tr class="memitem:adc0b8e9574d771ca005005cbcac05a67"><td class="memTemplItemLeft" align="right" valign="top">std::array&lt; T, 3 &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>cartesianRepresentation</b> (<a class="el" href="structCortidQCT_1_1BarycentricPoint.html">BarycentricPoint</a>&lt; T, <a class="el" href="classCortidQCT_1_1Mesh.html">Mesh</a>&lt; T &gt;::<a class="el" href="classCortidQCT_1_1Mesh.html#a85ed47c4807bd85372175889555ed77c">Index</a> &gt; const &amp;point) const </td></tr>
-<tr class="separator:adc0b8e9574d771ca005005cbcac05a67"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="member-group"></a>
 Construction</h2></td></tr>
@@ -167,30 +159,6 @@ IO</h2></td></tr>
 <tr class="memitem:aea52ab27d64c744316abc0f565de1abc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCortidQCT_1_1Mesh.html#aea52ab27d64c744316abc0f565de1abc">writeToFile</a> (std::string const &amp;meshFilename, <a class="el" href="namespaceCortidQCT.html#a04ddf5259cabc1e1238ae30285564dfc">LabelToColorMap</a>&lt; double, <a class="el" href="classCortidQCT_1_1Mesh.html#ab29bc2956971579d646fc291c73a28a6">Label</a> &gt; const &amp;labelMap=<a class="el" href="namespaceCortidQCT_1_1LabelToColorMaps.html#a2fa866efe763cce246044753efbce53b">LabelToColorMaps::defaultMap</a>&lt; double, <a class="el" href="classCortidQCT_1_1Mesh.html#ab29bc2956971579d646fc291c73a28a6">Label</a> &gt;) const </td></tr>
 <tr class="memdesc:aea52ab27d64c744316abc0f565de1abc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes mesh to ASCII file using format auto detection and encode labels as colors.  <a href="#aea52ab27d64c744316abc0f565de1abc">More...</a><br/></td></tr>
 <tr class="separator:aea52ab27d64c744316abc0f565de1abc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="member-group"></a>
-Queries</h2></td></tr>
-<tr class="memitem:a72cbf64c5fdcfec7b414df1dc7e57d55"><td class="memItemLeft" align="right" valign="top">std::array&lt; T, 3 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCortidQCT_1_1Mesh.html#a72cbf64c5fdcfec7b414df1dc7e57d55">cartesianRepresentation</a> (<a class="el" href="structCortidQCT_1_1BarycentricPoint.html">BarycentricPoint</a>&lt; T, <a class="el" href="classCortidQCT_1_1Mesh.html#a85ed47c4807bd85372175889555ed77c">Index</a> &gt; const &amp;point) const </td></tr>
-<tr class="memdesc:a72cbf64c5fdcfec7b414df1dc7e57d55"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the cartesian coordinate of a point in barycentric coordinates.  <a href="#a72cbf64c5fdcfec7b414df1dc7e57d55">More...</a><br/></td></tr>
-<tr class="separator:a72cbf64c5fdcfec7b414df1dc7e57d55"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0ddaf19240c4ce4efe34adefe6c8b8c8"><td class="memTemplParams" colspan="2">template&lt;class InputIterator , class OutputIterator &gt; </td></tr>
-<tr class="memitem:a0ddaf19240c4ce4efe34adefe6c8b8c8"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classCortidQCT_1_1Mesh.html#a0ddaf19240c4ce4efe34adefe6c8b8c8">cartesianRepresentation</a> (InputIterator begin, InputIterator end, OutputIterator out) const </td></tr>
-<tr class="memdesc:a0ddaf19240c4ce4efe34adefe6c8b8c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts a sequence of barycentric coordinates into caresian coordinates.  <a href="#a0ddaf19240c4ce4efe34adefe6c8b8c8">More...</a><br/></td></tr>
-<tr class="separator:a0ddaf19240c4ce4efe34adefe6c8b8c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8f056311a26858c6c1355821e810e9dc"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::array&lt; T, 3 &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCortidQCT_1_1Mesh.html#a8f056311a26858c6c1355821e810e9dc">cartesianRepresentation</a> (std::vector&lt; <a class="el" href="structCortidQCT_1_1BarycentricPoint.html">BarycentricPoint</a>&lt; T, <a class="el" href="classCortidQCT_1_1Mesh.html#a85ed47c4807bd85372175889555ed77c">Index</a> &gt;&gt; const &amp;points) const </td></tr>
-<tr class="memdesc:a8f056311a26858c6c1355821e810e9dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts a sequence of barycentric coordinates into caresian coordinates.  <a href="#a8f056311a26858c6c1355821e810e9dc">More...</a><br/></td></tr>
-<tr class="separator:a8f056311a26858c6c1355821e810e9dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2d08d1f06372f31e187d626d273044f5"><td class="memTemplParams" colspan="2">template&lt;class PtIter , class AttrIter , class OutputIterator &gt; </td></tr>
-<tr class="memitem:a2d08d1f06372f31e187d626d273044f5"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classCortidQCT_1_1Mesh.html#a2d08d1f06372f31e187d626d273044f5">barycentricInterpolation</a> (PtIter pointsBegin, PtIter pointsEnd, AttrIter attributesBegin, OutputIterator out, std::size_t attributeDimension=1) const </td></tr>
-<tr class="memdesc:a2d08d1f06372f31e187d626d273044f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interpolates per-vertex values for points inside a triangle.  <a href="#a2d08d1f06372f31e187d626d273044f5">More...</a><br/></td></tr>
-<tr class="separator:a2d08d1f06372f31e187d626d273044f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa5055fa34780c0c454e8456416e10f7c"><td class="memTemplParams" colspan="2">template&lt;class InputIterator , class OutputIterator &gt; </td></tr>
-<tr class="memitem:aa5055fa34780c0c454e8456416e10f7c"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classCortidQCT_1_1Mesh.html#aa5055fa34780c0c454e8456416e10f7c">rayIntersections</a> (InputIterator raysBegin, InputIterator raysEnd, OutputIterator intersectionsOut) const </td></tr>
-<tr class="memdesc:aa5055fa34780c0c454e8456416e10f7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the intersection of a set of rays with the mesh.  <a href="#aa5055fa34780c0c454e8456416e10f7c">More...</a><br/></td></tr>
-<tr class="separator:aa5055fa34780c0c454e8456416e10f7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae398361b2609e87158aa2131136c744b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structCortidQCT_1_1RayMeshIntersection.html">RayMeshIntersection</a>&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCortidQCT_1_1Mesh.html#ae398361b2609e87158aa2131136c744b">rayIntersection</a> (<a class="el" href="structCortidQCT_1_1Ray.html">Ray</a>&lt; T &gt; const &amp;ray) const </td></tr>
-<tr class="memdesc:ae398361b2609e87158aa2131136c744b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes intersection with the given ray and the mesh.  <a href="#ae398361b2609e87158aa2131136c744b">More...</a><br/></td></tr>
-<tr class="separator:ae398361b2609e87158aa2131136c744b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="member-group"></a>
 Raw Data Access</h2></td></tr>
@@ -234,209 +202,6 @@ class CortidQCT::Mesh&lt; T &gt;</h3>
   </dd>
 </dl>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a2d08d1f06372f31e187d626d273044f5"></a>
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class T &gt; </div>
-<div class="memtemplate">
-template&lt;class PtIter , class AttrIter , class OutputIterator &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">template void <a class="el" href="classCortidQCT_1_1Mesh.html">CortidQCT::Mesh</a>&lt; T &gt;::barycentricInterpolation </td>
-          <td>(</td>
-          <td class="paramtype">PtIter&#160;</td>
-          <td class="paramname"><em>pointsBegin</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">PtIter&#160;</td>
-          <td class="paramname"><em>pointsEnd</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">AttrIter&#160;</td>
-          <td class="paramname"><em>attributesBegin</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">OutputIterator&#160;</td>
-          <td class="paramname"><em>out</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::size_t&#160;</td>
-          <td class="paramname"><em>attributeDimension</em> = <code>1</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Interpolates per-vertex values for points inside a triangle. </p>
-<p>This input of this function are some points on the surfac of the mesh in barycentric representation and a vector of per-vertex attributes/values that are to be interpolated. The per-vertex attributes/values do not have to be scalar, vector values attributes can be used by setting the <code>attributeDimension</code> paremter. The attributes must be in row major order, i.e. a full attribute vector is stored in consecutively in the underlying container.</p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">PtIter</td><td>InputIterator of <a class="el" href="structCortidQCT_1_1BarycentricPoint.html" title="BarycentricPoint data type. Represents a points on triangulation in barycentric coordinates. ">BarycentricPoint</a> type </td></tr>
-    <tr><td class="paramname">AttrIter</td><td>RandomAccessIterator of scalar type </td></tr>
-    <tr><td class="paramname">OutputIterator</td><td>output iterator acceptiong scalar of the same type as AttrIter </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">pointsBegin</td><td>input iterator pointing to the first barycentric point </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">pointsEnd</td><td>input iterator pointing one element past the last barycentric point </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">attributesBegin</td><td>random access iterator pointing to the first attribute vector </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">out</td><td>output iterator </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">attributeDimension</td><td>number of attribute dimensions, defaults to 1 </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname">std::out_of_range</td><td>if a trinagle index is out of range In case of an exception <code>out</code> is only untouched if and only if <code>PtIter</code> conforms to <code>ForwardIterator</code>. If <code>PtIter</code> only conforms to <code>IputIterator</code>, all values up to the one where the exception happened will be written to <code>out</code>. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a class="anchor" id="a72cbf64c5fdcfec7b414df1dc7e57d55"></a>
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class T&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">std::array&lt;T, 3&gt; <a class="el" href="classCortidQCT_1_1Mesh.html">CortidQCT::Mesh</a>&lt; T &gt;::cartesianRepresentation </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structCortidQCT_1_1BarycentricPoint.html">BarycentricPoint</a>&lt; T, <a class="el" href="classCortidQCT_1_1Mesh.html#a85ed47c4807bd85372175889555ed77c">Index</a> &gt; const &amp;&#160;</td>
-          <td class="paramname"><em>point</em></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Returns the cartesian coordinate of a point in barycentric coordinates. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">point</td><td>point in barycentric coodinate representation </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>vartesian coordinates of the point </dd></dl>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname">std::out_of_range</td><td>if the triangle index of the point is invalid. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a class="anchor" id="a0ddaf19240c4ce4efe34adefe6c8b8c8"></a>
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class T &gt; </div>
-<div class="memtemplate">
-template&lt;class InputIterator , class OutputIterator &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">void <a class="el" href="classCortidQCT_1_1Mesh.html">CortidQCT::Mesh</a>&lt; T &gt;::cartesianRepresentation </td>
-          <td>(</td>
-          <td class="paramtype">InputIterator&#160;</td>
-          <td class="paramname"><em>begin</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">InputIterator&#160;</td>
-          <td class="paramname"><em>end</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">OutputIterator&#160;</td>
-          <td class="paramname"><em>out</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Converts a sequence of barycentric coordinates into caresian coordinates. </p>
-<p>The implementation uses barycetnricInterpolation. OutputIterator's value_type must be T.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">begin</td><td>iterator that points to the first cartesian point </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">end</td><td>interator that points right after the last point </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">out</td><td>output iterator </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname">std::out_of_range</td><td>if a triangle index is out of range </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classCortidQCT_1_1Mesh.html#a2d08d1f06372f31e187d626d273044f5" title="Interpolates per-vertex values for points inside a triangle. ">barycentricInterpolation</a> </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a8f056311a26858c6c1355821e810e9dc"></a>
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class T&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::vector&lt;std::array&lt;T, 3&gt; &gt; <a class="el" href="classCortidQCT_1_1Mesh.html">CortidQCT::Mesh</a>&lt; T &gt;::cartesianRepresentation </td>
-          <td>(</td>
-          <td class="paramtype">std::vector&lt; <a class="el" href="structCortidQCT_1_1BarycentricPoint.html">BarycentricPoint</a>&lt; T, <a class="el" href="classCortidQCT_1_1Mesh.html#a85ed47c4807bd85372175889555ed77c">Index</a> &gt;&gt; const &amp;&#160;</td>
-          <td class="paramname"><em>points</em></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Converts a sequence of barycentric coordinates into caresian coordinates. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">points</td><td>std::vector of barycentric points </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>a std::vector of cartesian points </dd></dl>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname">std::out_of_range</td><td>if a triangle index is out of range </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
 <a class="anchor" id="abb1637fc84ae7be14d674208085ef34b"></a>
 <div class="memitem">
 <div class="memproto">
@@ -551,88 +316,6 @@ template&lt;class T &gt; </div>
   <table class="exception">
     <tr><td class="paramname">std::invalid_argument</td><td>if the mesh could not be loaded from the given filename </td></tr>
     <tr><td class="paramname">std::invalid_argument</td><td>if the file file format could not be recognized </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a class="anchor" id="ae398361b2609e87158aa2131136c744b"></a>
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class T&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="structCortidQCT_1_1RayMeshIntersection.html">RayMeshIntersection</a>&lt; T &gt; <a class="el" href="classCortidQCT_1_1Mesh.html">CortidQCT::Mesh</a>&lt; T &gt;::rayIntersection </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structCortidQCT_1_1Ray.html">Ray</a>&lt; T &gt; const &amp;&#160;</td>
-          <td class="paramname"><em>ray</em></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Computes intersection with the given ray and the mesh. </p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classCortidQCT_1_1Mesh.html#aa5055fa34780c0c454e8456416e10f7c" title="Computes the intersection of a set of rays with the mesh. ">rayIntersections</a> </dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">ray</td><td>Query ray </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="structCortidQCT_1_1RayMeshIntersection.html">RayMeshIntersection</a> object describing the intersection. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="aa5055fa34780c0c454e8456416e10f7c"></a>
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class T &gt; </div>
-<div class="memtemplate">
-template&lt;class InputIterator , class OutputIterator &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">template void <a class="el" href="classCortidQCT_1_1Mesh.html">CortidQCT::Mesh</a>&lt; T &gt;::rayIntersections </td>
-          <td>(</td>
-          <td class="paramtype">InputIterator&#160;</td>
-          <td class="paramname"><em>raysBegin</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">InputIterator&#160;</td>
-          <td class="paramname"><em>raysEnd</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">OutputIterator&#160;</td>
-          <td class="paramname"><em>intersectionsOut</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Computes the intersection of a set of rays with the mesh. </p>
-<p>If for any ray no intersection can be found, the corresponding <a class="el" href="structCortidQCT_1_1RayMeshIntersection.html">RayMeshIntersection</a> object is left with its default values (its signed distance is infinity).</p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">InputIterator</td><td>Input iterator with value_type of <a class="el" href="structCortidQCT_1_1Ray.html" title="A basic ray datatype. ">Ray</a> </td></tr>
-    <tr><td class="paramname">OutputIterator</td><td>Output iterator with value_type of <a class="el" href="structCortidQCT_1_1RayMeshIntersection.html">RayMeshIntersection</a> </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">raysBegin</td><td>Iterator poiting to the first ray </td></tr>
-    <tr><td class="paramname">raysEnd</td><td>Iterator pointing one element past the last ray </td></tr>
-    <tr><td class="paramname">intersectionsOut</td><td>Output iterator for intersections </td></tr>
   </table>
   </dd>
 </dl>
@@ -864,14 +547,13 @@ template&lt;class T &gt; </div>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>include/CortidQCT/src/<a class="el" href="BarycentricPoint_8h_source.html">BarycentricPoint.h</a></li>
 <li>include/CortidQCT/src/<a class="el" href="Mesh_8h_source.html">Mesh.h</a></li>
 <li>lib/Mesh.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Feb 28 2019 17:18:56 for CortidQCT by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Mar 1 2019 10:57:31 for CortidQCT by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

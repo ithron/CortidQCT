@@ -1,6 +1,9 @@
 var searchData=
 [
-  ['configuration',['configuration',['../classCortidQCT_1_1MeshFitter.html#a82c5dcc4b5f42dc729fe19285959235c',1,'CortidQCT::MeshFitter']]],
-  ['converged',['converged',['../structCortidQCT_1_1MeshFitter_1_1Result.html#abf07a3fec9128001433e5f83a6f30a18',1,'CortidQCT::MeshFitter::Result']]],
-  ['creationdate',['creationDate',['../classCortidQCT_1_1MeasurementModel.html#a8d2c9402c5089e4fb1b3385d5077e7b6',1,'CortidQCT::MeasurementModel']]]
+  ['decay',['decay',['../structCortidQCT_1_1MeshFitter_1_1Configuration.html#a11f0bda5009cbe8ce38b5a9fa77df382',1,'CortidQCT::MeshFitter::Configuration']]],
+  ['deformedmesh',['deformedMesh',['../structCortidQCT_1_1MeshFitter_1_1Result.html#a1836193c4ed54ebe5c8daa59a62fc4b6',1,'CortidQCT::MeshFitter::Result']]],
+  ['densityrange',['densityRange',['../classCortidQCT_1_1MeasurementModel.html#a293be8c328233291f61a7e044b001777',1,'CortidQCT::MeasurementModel']]],
+  ['depth',['depth',['../structCortidQCT_1_1VolumeSize.html#afc0a6762ff9b7fb5f0b601d4bf000782',1,'CortidQCT::VolumeSize::depth()'],['../structCortidQCT_1_1VoxelSize.html#af8ef19661211b19fa1ef2d8e5ea3eda3',1,'CortidQCT::VoxelSize::depth()']]],
+  ['description',['description',['../classCortidQCT_1_1MeasurementModel.html#a0522f6f3ac05dbdcc3bc29f2673d30a8',1,'CortidQCT::MeasurementModel']]],
+  ['displacementvector',['displacementVector',['../structCortidQCT_1_1MeshFitter_1_1Result.html#a0d2fe1218898d3bf910db3082904d55e',1,'CortidQCT::MeshFitter::Result']]]
 ];

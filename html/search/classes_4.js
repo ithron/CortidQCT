@@ -1,10 +1,5 @@
 var searchData=
 [
-  ['genericobjectwrapper',['GenericObjectWrapper',['../structCortidQCT_1_1Internal_1_1C_1_1GenericObjectWrapper.html',1,'CortidQCT::Internal::C']]],
-  ['genericobjectwrapper_3c_20cortidqct_3a_3acolortolabelmaps_3a_3acustommap_20_3e',['GenericObjectWrapper&lt; CortidQCT::ColorToLabelMaps::CustomMap &gt;',['../structCortidQCT_1_1Internal_1_1C_1_1GenericObjectWrapper.html',1,'CortidQCT::Internal::C']]],
-  ['genericobjectwrapper_3c_20cortidqct_3a_3ainternal_3a_3ac_3a_3ameshfitterstate_20_3e',['GenericObjectWrapper&lt; CortidQCT::Internal::C::MeshFitterState &gt;',['../structCortidQCT_1_1Internal_1_1C_1_1GenericObjectWrapper.html',1,'CortidQCT::Internal::C']]],
-  ['genericobjectwrapper_3c_20cortidqct_3a_3amesh_3c_20float_20_3e_20_3e',['GenericObjectWrapper&lt; CortidQCT::Mesh&lt; float &gt; &gt;',['../structCortidQCT_1_1Internal_1_1C_1_1GenericObjectWrapper.html',1,'CortidQCT::Internal::C']]],
-  ['genericobjectwrapper_3c_20cortidqct_3a_3ameshfitter_20_3e',['GenericObjectWrapper&lt; CortidQCT::MeshFitter &gt;',['../structCortidQCT_1_1Internal_1_1C_1_1GenericObjectWrapper.html',1,'CortidQCT::Internal::C']]],
-  ['genericobjectwrapper_3c_20cortidqct_3a_3avoxelvolume_20_3e',['GenericObjectWrapper&lt; CortidQCT::VoxelVolume &gt;',['../structCortidQCT_1_1Internal_1_1C_1_1GenericObjectWrapper.html',1,'CortidQCT::Internal::C']]],
-  ['genericobjectwrapper_3c_20error_20_3e',['GenericObjectWrapper&lt; Error &gt;',['../structCortidQCT_1_1Internal_1_1C_1_1GenericObjectWrapper.html',1,'CortidQCT::Internal::C']]]
+  ['hash_3c_20cortidqct_3a_3acolorrgb_20_3e',['hash&lt; CortidQCT::ColorRGB &gt;',['../structstd_1_1hash_3_01CortidQCT_1_1ColorRGB_01_4.html',1,'std']]],
+  ['hiddenstate',['HiddenState',['../structCortidQCT_1_1MeshFitter_1_1State_1_1HiddenState.html',1,'CortidQCT::MeshFitter::State']]]
 ];
