@@ -81,36 +81,6 @@ matrix:
         - BUILD_TYPE=Release
 
     ##############
-    # Clang 4.0
-
-    # Debug
-    - os: linux
-      env:
-        - COMPILER=clang CLANG_VERSION=4.0.0
-        - BUILD_TYPE=Debug
-
-    # Relase
-    - os: linux
-      env:
-        - COMPILER=clang CLANG_VERSION=4.0.0
-        - BUILD_TYPE=Release
-
-    ##############
-    # Clang 5.0
-
-    # Debug
-    - os: linux
-      env:
-        - COMPILER=clang CLANG_VERSION=5.0.2
-        - BUILD_TYPE=Debug
-
-    # Relase
-    - os: linux
-      env:
-        - COMPILER=clang CLANG_VERSION=5.0.2
-        - BUILD_TYPE=Release
-
-    ##############
     # Clang 6.0
 
     # Debug
@@ -130,25 +100,41 @@ matrix:
         - BUILD_TYPE=Release
         - GENERATE_DOCS=yes
 
+    ##############
+    # Clang 7.0
+
+    # Debug
+    - os: linux
+      env:
+        - COMPILER=clang CLANG_VERSION=7.0.1
+        - BUILD_TYPE=Debug
+
+    # Relase
+    - os: linux
+      addons:
+        apt:
+          packages:
+            - doxygen doxygen-latex graphviz
+      env:
+        - COMPILER=clang CLANG_VERSION=7.0.1
+        - BUILD_TYPE=Release
+        - GENERATE_DOCS=yes
+
     ##########
     # macOS
 
-    # Disabled until macOS 10.14 is available in travis.
-    # Some C++17 features are not supported before 10.14,
-    # independent of the xcode version.
+    ##############
+    # Xcode 10.0
 
-    # ##############
-    # # Xcode 10.0
-    #
-    # # Debug
-    # - os: osx
-    #   osx_image: xcode10
-    #   env: BUILD_TYPE=Debug
-    #
-    # # Debug
-    # - os: osx
-    #   osx_image: xcode10
-    #   env: BUILD_TYPE=Release
+    # Debug
+    - os: osx
+      osx_image: xcode10.2
+      env: BUILD_TYPE=Debug
+
+    # Debug
+    - os: osx
+      osx_image: xcode10.2
+      env: BUILD_TYPE=Release
 
 before_install:
   - |

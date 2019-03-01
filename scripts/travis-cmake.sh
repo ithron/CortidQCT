@@ -4,7 +4,7 @@ set -euvx
 
 if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
 
-  GENERATOR="Xcode"
+  GENERATOR="Unix Makefiles"
 
 else
 

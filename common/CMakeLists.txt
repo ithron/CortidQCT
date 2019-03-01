@@ -53,6 +53,11 @@ if (CortidQCT_WITH_WERROR)
     -Werror
   )
 endif()
+if (APPLE)
+  target_compile_options(Common INTERFACE
+    -Wno-unused-command-line-argument
+  )
+endif()
 
 if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang" OR "${CMAKE_CXX_COMPILER_ID}" STREQUAL "AppleClang")
   target_compile_options(Common INTERFACE
