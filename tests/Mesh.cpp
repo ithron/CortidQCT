@@ -309,7 +309,7 @@ TYPED_TEST(MeshQueriesTest, RayMeshIntersectionSequence) {
 
   std::vector<RayMeshIntersection<T>> intersections;
 
-  this->mesh.rayIntersections(rays.cbegin(), rays.cend(),
+  this->mesh.rayIntersections(rays.data(), rays.data() + 2,
                               std::back_inserter(intersections));
 
   ASSERT_EQ(2, intersections.size());
