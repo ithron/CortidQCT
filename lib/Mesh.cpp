@@ -12,12 +12,14 @@
 #include "Mesh.h"
 #include "CheckExtension.h"
 #include "MatrixIO.h"
+#include "MeshAdaptors.h"
 #include "MeshHelpers.h"
 #include "SIMesh.h"
 
 #include <gsl/gsl>
 #include <igl/orient_outward.h>
 #include <igl/orientable_patches.h>
+#include <igl/ray_mesh_intersect.h>
 #include <igl/readOFF.h>
 #include <igl/read_triangle_mesh.h>
 #include <igl/writeOFF.h>
@@ -26,6 +28,7 @@
 #include <algorithm>
 #include <cctype>
 #include <fstream>
+#include <iterator>
 #include <limits>
 
 namespace CortidQCT {
@@ -398,6 +401,187 @@ void Mesh<T>::writeToFile(
   }
 }
 
+template <class T>
+std::array<T, 3> Mesh<T>::cartesianRepresentation(
+    BarycentricPoint<T, Mesh<T>::Index> const &point) const {
+  using gsl::narrow_cast;
+  using Internal::Adaptor::indexMap;
+  using Internal::Adaptor::vertexMap;
+
+  if ((point.triangleIndex < 0) ||
+      (narrow_cast<std::size_t>(point.triangleIndex) > triangleCount())) {
+    throw std::range_error("Triangle index out of range");
+  }
+
+  auto const idx = point.triangleIndex;
+  auto const idxMap = indexMap(*this);
+  auto const vMap = vertexMap(*this);
+
+  std::array<T, 3> cartPoint;
+  Eigen::Map<Eigen::Matrix<T, 3, 1>> cartMap{cartPoint.data(), 3, 1};
+
+  cartMap = point.uv[0] * vMap.col(idxMap(0, idx)) +
+            point.uv[1] * vMap.col(idxMap(1, idx)) +
+            (1 - point.uv[0] - point.uv[1]) * vMap.col(idxMap(2, idx));
+
+  return cartPoint;
+}
+
+namespace Internal {
+
+template <bool IsForward> struct BarycentricPointValidatorHelper_;
+
+template <> struct BarycentricPointValidatorHelper_<true> {
+
+  template <class T>
+  static void validate(BarycentricPoint<T, typename Mesh<T>::Index> const &,
+                       Mesh<T> const &) {}
+
+  template <class T, class Iter>
+  static void validate(Iter begin, Iter end, Mesh<T> const &mesh) {
+    auto const idxUB = mesh.triangleCount();
+    if (std::any_of(begin, end, [idxUB](auto const &p) {
+          return (p.triangleIndex < 0) ||
+                 (gsl::narrow_cast<std::size_t>(p.triangleIndex) > idxUB);
+        })) {
+      throw std::out_of_range("At least one triangle index is out of range");
+    }
+  }
+};
+
+template <> struct BarycentricPointValidatorHelper_<false> {
+
+  template <class T>
+  static void validate(BarycentricPoint<T, typename Mesh<T>::Index> const &pt,
+                       Mesh<T> const &mesh) {
+    if ((pt.triangleIndex < 0) ||
+        (gsl::narrow_cast<std::size_t>(pt.triangleIndex) >
+         mesh.triangleCount())) {
+      throw std::out_of_range("triangle index is out of range");
+    }
+  }
+
+  template <class T, class Iter>
+  static void validate(Iter, Iter, Mesh<T> const &) {}
+};
+
+template <class Iter>
+using BarycentricPointValidator_ =
+    BarycentricPointValidatorHelper_<std::is_base_of<
+        std::forward_iterator_tag,
+        typename std::iterator_traits<Iter>::iterator_category>::value>;
+
+} // namespace Internal
+
+template <class T>
+template <class InputIterator, class OutputIterator>
+void Mesh<T>::cartesianRepresentation(InputIterator begin, InputIterator end,
+                                      OutputIterator out) const {
+
+  withUnsafeVertexPointer([begin, end, out, this](auto const *vPtr) {
+    this->barycentricInterpolation(begin, end, vPtr, out, 3);
+  });
+}
+
+template <class T>
+template <class PtIter, class AttrIter, class OutputIterator>
+void Mesh<T>::barycentricInterpolation(PtIter pointsBegin, PtIter pointsEnd,
+                                       AttrIter attrBegin, OutputIterator out,
+                                       std::size_t attributeDimensions) const {
+
+  // Type assertions
+  using std::is_base_of;
+  using std::iterator_traits;
+  using PtTraits = iterator_traits<PtIter>;
+  using AttrTraits = iterator_traits<AttrIter>;
+  // using OutTraits = iterator_traits<OutputIterator>;
+  static_assert(is_base_of<std::input_iterator_tag,
+                           typename PtTraits::iterator_category>::value,
+                "PtIter must be an input iterator");
+  static_assert(is_base_of<std::random_access_iterator_tag,
+                           typename AttrTraits::iterator_category>::value,
+                "AttrIterator must be a random access iterator");
+
+  using Validator = Internal::BarycentricPointValidator_<PtIter>;
+
+  using namespace Internal::Adaptor;
+
+  // Validate input. Will only result in code if PtIter conforms to
+  // ForwardIterator
+  Validator::validate(pointsBegin, pointsEnd, *this);
+
+  auto const iMap = indexMap(*this);
+
+  auto const N = gsl::narrow<Index>(attributeDimensions);
+
+  for (auto ptI = pointsBegin; ptI != pointsEnd; ++ptI) {
+    for (auto i = 0; i < N; ++i) {
+      // Validate input. Will only result in code if PtIter does not conform to
+      // ForwardIterator
+      Validator::validate(*ptI, *this);
+
+      std::array<Index, 3> const attrIdx{{N * iMap(0, ptI->triangleIndex) + i,
+                                          N * iMap(1, ptI->triangleIndex) + i,
+                                          N * iMap(2, ptI->triangleIndex) + i}};
+
+      // Interpolate values
+      *out++ = ptI->uv[0] * attrBegin[attrIdx[0]] +
+               ptI->uv[1] * attrBegin[attrIdx[1]] +
+               (1 - ptI->uv[0] - ptI->uv[1]) * attrBegin[attrIdx[2]];
+    }
+  }
+}
+
+template <class T>
+RayMeshIntersection<T> Mesh<T>::rayIntersection(Ray<T> const &ray) const {
+  using std::addressof;
+  RayMeshIntersection<T> intersection;
+
+  rayIntersections(addressof(ray), addressof(ray) + 1, addressof(intersection));
+
+  return intersection;
+}
+
+template <class T>
+template <class InputIterator, class OutputIterator>
+void Mesh<T>::rayIntersections(InputIterator raysBegin, InputIterator raysEnd,
+                               OutputIterator intersectionsOut) const {
+  using namespace Internal::Adaptor;
+  using Eigen::Map;
+  using Eigen::Matrix;
+  using gsl::narrow_cast;
+  using std::transform;
+
+  // Type validation
+  using InputTraits = std::iterator_traits<InputIterator>;
+
+  static_assert(
+      std::is_convertible<typename InputTraits::value_type, Ray<T>>::value,
+      "value_type of InputIterator must be convertible to Ray");
+
+  auto const vMap = vertexMap(*this);
+  auto const iMap = indexMap(*this);
+
+  transform(
+      raysBegin, raysEnd, intersectionsOut, [&vMap, &iMap](auto const &ray) {
+        // map ray elements to eigen vectors
+        Map<Matrix<T, 3, 1> const> const sourceMap{ray.origin.data(), 3, 1};
+        Map<Matrix<T, 3, 1> const> const dirMap{ray.direction.data(), 3, 1};
+        igl::Hit hit;
+        RayMeshIntersection<T> intersection;
+
+        if (igl::ray_mesh_intersect(sourceMap, dirMap, vMap.transpose(),
+                                    iMap.transpose(), hit)) {
+          intersection.position.triangleIndex = hit.id;
+          intersection.position.uv[0] = narrow_cast<T>(hit.u);
+          intersection.position.uv[1] = narrow_cast<T>(hit.v);
+          intersection.signedDistance = narrow_cast<T>(hit.t);
+        }
+
+        return intersection;
+      });
+}
+
 /*************************************
  * Explicit template instanciations
  */
@@ -405,4 +589,42 @@ void Mesh<T>::writeToFile(
 template class Mesh<float>;
 template class Mesh<double>;
 
+template void Mesh<float>::barycentricInterpolation(
+    BarycentricPoint<float, std::ptrdiff_t> const *,
+    BarycentricPoint<float, std::ptrdiff_t> const *, float const *, float *,
+    std::size_t) const;
+template void Mesh<double>::barycentricInterpolation(
+    BarycentricPoint<double, std::ptrdiff_t> const *,
+    BarycentricPoint<double, std::ptrdiff_t> const *, double const *, double *,
+    std::size_t) const;
+
+template void Mesh<float>::cartesianRepresentation(
+    BarycentricPoint<float, std::ptrdiff_t> const *,
+    BarycentricPoint<float, std::ptrdiff_t> const *, float *) const;
+template void Mesh<double>::cartesianRepresentation(
+    BarycentricPoint<double, std::ptrdiff_t> const *,
+    BarycentricPoint<double, std::ptrdiff_t> const *, double *) const;
+template void Mesh<float>::cartesianRepresentation(
+    std::vector<BarycentricPoint<float, std::ptrdiff_t>>::const_iterator,
+    std::vector<BarycentricPoint<float, std::ptrdiff_t>>::const_iterator,
+    float *) const;
+template void Mesh<double>::cartesianRepresentation(
+    std::vector<BarycentricPoint<double, std::ptrdiff_t>>::const_iterator,
+    std::vector<BarycentricPoint<double, std::ptrdiff_t>>::const_iterator,
+    double *) const;
+
+template void Mesh<float>::rayIntersections(Ray<float> const *,
+                                            Ray<float> const *,
+                                            RayMeshIntersection<float> *) const;
+template void Mesh<float>::rayIntersections(
+    Ray<float> const *, Ray<float> const *,
+    std::back_insert_iterator<std::vector<RayMeshIntersection<float>>>) const;
+template void
+Mesh<double>::rayIntersections(Ray<double> const *, Ray<double> const *,
+                               RayMeshIntersection<double> *) const;
+template void Mesh<double>::rayIntersections(
+    Ray<double> const *, Ray<double> const *,
+    std::back_insert_iterator<std::vector<RayMeshIntersection<double>>>) const;
+
+// namespace CortidQCT
 } // namespace CortidQCT

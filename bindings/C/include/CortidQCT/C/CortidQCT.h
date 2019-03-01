@@ -95,7 +95,11 @@ CQCT_EXTERN void CQCT_autoreleasePoolPop();
  */
 
 /// Error types/Ids
-enum CQCT_ErrorId { CQCT_ErrorId_Unknown, CQCT_ErrorId_InvalidArgument };
+enum CQCT_ErrorId {
+  CQCT_ErrorId_Unknown,
+  CQCT_ErrorId_InvalidArgument,
+  CQCT_ErrorId_OutOfRange
+};
 
 struct CQCT_Error_t;
 /// Error type
@@ -174,6 +178,33 @@ typedef struct CQCT_ColorToLabelMap_t *CQCT_ColorToLabelMap;
 struct CQCT_Mesh_t;
 /// Mesh handle type
 typedef struct CQCT_Mesh_t *CQCT_Mesh;
+
+/// Barycentric point type
+struct CQCT_BarycentricPoint_t {
+  float u;                 /// first barycentric coordinate
+  float v;                 /// second barycentric coordinate
+  ptrdiff_t triangleIndex; /// triangle index
+};
+typedef struct CQCT_BarycentricPoint_t CQCT_BarycentricPoint;
+
+/// Ray type
+struct CQCT_Ray_t {
+  /// Ray origin in cartesian coordinates
+  float x0, y0, z0;
+  /// Ray direction in cartesian coordinates
+  float dx, dy, dz;
+};
+typedef struct CQCT_Ray_t CQCT_Ray;
+
+struct CQCT_RayMeshIntersection {
+  /// Position on the mesh in barycentric coordinates
+  CQCT_BarycentricPoint position;
+  /// Signed distance frim the ray origin to the intersection
+  float t;
+  /// Explicit padding
+  unsigned int : 4 * 8;
+};
+typedef struct CQCT_RayMeshIntersection CQCT_RayMeshIntersection;
 
 /// Creates an empty mesh
 CQCT_EXTERN CQCT_Mesh CQCT_createMesh();
@@ -299,7 +330,6 @@ CQCT_EXTERN size_t CQCT_meshCopyVertices(CQCT_Mesh mesh, float **bufferPtr);
  */
 CQCT_EXTERN void CQCT_meshSetVertices(CQCT_Mesh mesh, float const *buffer);
 
-
 /**
  * @brief Copies the mesh's indices into the given buffer
  * @see CQCT_meshCopyVertices()
@@ -333,6 +363,79 @@ CQCT_EXTERN size_t CQCT_meshCopyLabels(CQCT_Mesh mesh,
  * @param[in] buffer buffer to copy the indices from
  */
 CQCT_EXTERN void CQCT_meshSetLabels(CQCT_Mesh mesh, unsigned int const *buffer);
+
+/**
+ * @brief Converts the given list of barycentric points in cartesian
+ * coordinates.
+ *
+ * @param[in] mesh Mesh object
+ * @param[in] barycentricPtr pointer to list of points in barycentric
+ * representation
+ * @param[in] nPoints number of points to convert
+ * @param[out] bufferPtr Pointer to the output buffer. The buffer must be able
+ * to hold `3 * N` floats. Alternatively, `bufferPtr` can point to a `NULL`
+ * pointer. In this case the required memory is allocated by the function. Note
+ * that in both variants the caller is responsible for releasing the memory.
+ * @param[out] error pointer to error object where an error is stored in case
+ * of an error. Or `NULL` if no error should be returned.
+ * @return 0 on success, a negative value on error
+ * @pre `barycentricPtr != NULL || nPoints == 0`
+ * @pre `bufferPtr != NULL`
+ */
+CQCT_EXTERN int CQCT_meshBarycentricToCartesian(
+    CQCT_Mesh mesh, CQCT_BarycentricPoint const *barycentricPtr, size_t nPoints,
+    float **bufferPtr, CQCT_Error *error);
+
+/**
+ * @brief Interpolates attribute values given at mesh vertices at arbitrary
+ * points on the surface of the mesh.
+ *
+ * @param[in] mesh Mesh object
+ * @param[in] barycentricPtr pointer to a list of points in barycentric
+ * representation
+ * @param[in] nPoints number of points
+ * @param[in] attributePtr pointer to attribute buffer. Note that this buffer
+ * must hold `attributeDimensions * N` values, where `N` is the number of
+ * vertices in the mesh.
+ * @param[in] attributeDimensions number of attribute dimensions
+ * @param[out] bufferPtr Pointer where the interpolated values are stored. Must
+ * be able to hold `nPoints * attributeDimensions` values. Alternatively, if
+ * `*bufferPtr == NULL`, the required memory is allocated by the function and
+ * the pointer is returned in `bufferPtr`. The caller is responisble for
+ * releasing the memory, in both cases.
+ * @param[out] error pointer to an error object. If `NULL` errors are ignored.
+ * @return 0 on success, a negative value on error.
+ * @pre `barycentricPtr != NULL || nPoint == 0`
+ * @pre `bufferPtr != NULL || nPoints == 0`
+ * @pre 'attributePtr != NULL || nPoints == 0'
+ */
+CQCT_EXTERN int CQCT_meshBarycentricInterpolation(
+    CQCT_Mesh mesh, CQCT_BarycentricPoint const *barycentricPtr, size_t nPoints,
+    float const *attributePtr, size_t attributeDimensions, float **bufferPtr,
+    CQCT_Error *error);
+
+/**
+ * @brief Computes the intersection of a set of rays with the mesh.
+ *
+ * If for any ray no intersection can be found, its signed distance `t` is set
+ * to infinity.
+ *
+ * @param[in] mesh Mesh object
+ * @param[in] raysPtr pointer to array of CQCT_Ray objects
+ * @param[in] nRays Number of rays
+ * @param[out] intersectionsOutPtr Pointer that contains the memory address
+ * where the intersection object should be stored. the underlying memory must
+ * be able to hold `nRays * sizeof(CQCT_RayMeshIntersection)` bytes.
+ * Alternatively, the address contained in `intersectionsOutPtr` can be set to
+ * NULL. In this case the memory is allocated by the function. The caller is
+ * responsible for relasing the memory, in all cases.
+ * @pre `mesh != NULL || nRays == 0`
+ * @pre `raysPtr != NULL || nRays == 0`
+ * @pre `intersectionsOutPtr != NULL || nRays == 0`
+ */
+CQCT_EXTERN void
+CQCT_meshRayIntersections(CQCT_Mesh mesh, CQCT_Ray *raysPtr, size_t nRays,
+                          CQCT_RayMeshIntersection **intersectionsOutPtr);
 
 /// @}
 

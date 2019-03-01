@@ -8,6 +8,7 @@
 #include <igl/per_vertex_normals.h>
 
 #include <cstdio>
+#include <iterator>
 
 using namespace CortidQCT;
 
@@ -180,3 +181,145 @@ TEST(Mesh, NormalsOrientedOutwards) {
 
   ASSERT_TRUE((dotProducts.array() > -0.25f).all());
 }
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wconversion"
+
+template <class T> class MeshQueriesTest : public ::testing::Test {
+protected:
+  Mesh<T> mesh;
+
+  void SetUp() override {
+    mesh = Mesh<T>{4, 4};
+
+    // Build a regular tetrahedron
+    // set vertices
+    mesh.withUnsafeVertexPointer([](auto *vertices) {
+      vertices[0] = T{0.9428090416}; // sqrt(8/9)
+      vertices[1] = T{0};
+      vertices[2] = T{-0.3333333333}; // -1/3
+
+      vertices[3] = T{-0.4714045208}; // -sqrt(2/9)
+      vertices[4] = T{0.8164965809};  // sqrt(2/3)
+      vertices[5] = T{-0.3333333333}; // -1/3
+
+      vertices[6] = T{-0.4714045208}; // -sqrt(2/9)
+      vertices[7] = T{-0.8164965809}; // -sqrt(2/3)
+      vertices[8] = T{-0.3333333333}; // -1/3
+
+      vertices[9] = T{0};
+      vertices[10] = T{0};
+      vertices[11] = T{1};
+    });
+
+    // set indices
+    mesh.withUnsafeIndexPointer([](auto *indices) {
+      indices[0] = 0;
+      indices[1] = 3;
+      indices[2] = 1;
+
+      indices[3] = 1;
+      indices[4] = 3;
+      indices[5] = 2;
+
+      indices[6] = 0;
+      indices[7] = 2;
+      indices[8] = 3;
+
+      indices[9] = 0;
+      indices[10] = 1;
+      indices[11] = 2;
+    });
+  }
+};
+
+typedef ::testing::Types<float, double> MeshTypes;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wgnu-zero-variadic-macro-arguments"
+TYPED_TEST_CASE(MeshQueriesTest, MeshTypes);
+#pragma clang diagnostic pop
+
+TYPED_TEST(MeshQueriesTest, BarycentricToCartesianSingleCall) {
+  using T = TypeParam;
+  using BC = BarycentricPoint<T, typename Mesh<T>::Index>;
+
+  constexpr T oneThird = 1.0 / 3.0;
+  constexpr std::array<T, 3> refPoint = {T{0.1571348403}, T{0.272165527},
+                                         T{0.1111111111}};
+
+  auto const center = BC{{oneThird, oneThird}, 0};
+
+  auto const testPoint = this->mesh.cartesianRepresentation(center);
+
+  ASSERT_NEAR(refPoint[0], testPoint[0], 1e-6);
+  ASSERT_NEAR(refPoint[1], testPoint[1], 1e-6);
+  ASSERT_NEAR(refPoint[2], testPoint[2], 1e-6);
+}
+
+TYPED_TEST(MeshQueriesTest, BarycentricToCartesianSequenceCall) {
+  using T = TypeParam;
+  using BC = BarycentricPoint<T, typename Mesh<T>::Index>;
+
+  constexpr T oneThird = 1.0 / 3.0;
+
+  std::vector<BC> const query = {
+      BC{{oneThird, oneThird}, 0}, BC{{oneThird, oneThird}, 1},
+      BC{{oneThird, oneThird}, 2}, BC{{oneThird, oneThird}, 3}};
+
+  std::vector<std::array<T, 3>> const refPoints = {
+      {0.1571348403, 0.272165527, 0.1111111111},
+      {-0.3142696805, 0, 0.1111111111},
+      {0.1571348403, -0.272165527, 0.1111111111},
+      {0, 0, -0.3333333333}};
+
+  auto const testPoints = this->mesh.cartesianRepresentation(query);
+
+  ASSERT_EQ(refPoints.size(), testPoints.size());
+  for (auto i = 0u; i < testPoints.size(); ++i) {
+    auto const &rp = refPoints[i];
+    auto const &tp = testPoints[i];
+
+    ASSERT_NEAR(rp[0], tp[0], 1e-6);
+    ASSERT_NEAR(rp[1], tp[1], 1e-6);
+    ASSERT_NEAR(rp[2], tp[2], 1e-6);
+  }
+}
+
+TYPED_TEST(MeshQueriesTest, RayMeshIntersectionSingleCall) {
+  using T = TypeParam;
+  using R = Ray<T>;
+
+  R const ray = {{0, 0, -1}, {0, 0, 1}};
+
+  auto const intersection = this->mesh.rayIntersection(ray);
+
+  ASSERT_TRUE(std::isfinite(intersection.signedDistance));
+  ASSERT_NEAR(0.666666666666, intersection.signedDistance, 1e-6);
+  ASSERT_EQ(3, intersection.position.triangleIndex);
+  ASSERT_NEAR(0.33333333333, intersection.position.uv[0], 1e-6);
+  ASSERT_NEAR(0.33333333333, intersection.position.uv[1], 1e-6);
+}
+
+TYPED_TEST(MeshQueriesTest, RayMeshIntersectionSequence) {
+  using T = TypeParam;
+  using R = Ray<T>;
+
+  std::array<R, 2> const rays = {
+      {{{0, 0, -1}, {0, 0, 1}}, {{4, 0, -1}, {0, 0, 1}}}};
+
+  std::vector<RayMeshIntersection<T>> intersections;
+
+  this->mesh.rayIntersections(rays.data(), rays.data() + 2,
+                              std::back_inserter(intersections));
+
+  ASSERT_EQ(2, intersections.size());
+  ASSERT_TRUE(std::isfinite(intersections[0].signedDistance));
+  ASSERT_FALSE(std::isfinite(intersections[1].signedDistance));
+  ASSERT_NEAR(0.666666666666, intersections[0].signedDistance, 1e-6);
+  ASSERT_EQ(3, intersections[0].position.triangleIndex);
+  ASSERT_NEAR(0.33333333333, intersections[0].position.uv[0], 1e-6);
+  ASSERT_NEAR(0.33333333333, intersections[0].position.uv[1], 1e-6);
+}
+
+#pragma clang diagnostic pop
+

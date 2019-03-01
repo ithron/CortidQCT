@@ -11,8 +11,11 @@
 
 #pragma once
 
+#include "BarycentricPoint.h"
 #include "ColorToLabelMap.h"
 #include "LabelToColorMap.h"
+#include "Ray.h"
+#include "RayMeshIntersection.h"
 
 #include <array>
 #include <stdexcept>
@@ -177,6 +180,127 @@ public:
   /// @}
 
   /**
+   * @name Queries
+   * @{
+   */
+
+  /**
+   * @brief Returns the cartesian coordinate of a point in barycentric
+   * coordinates
+   * @param[in] point point in barycentric coodinate representation
+   * @return vartesian coordinates of the point
+   * @throws std::out_of_range if the triangle index of the point is invalid.
+   */
+  std::array<T, 3>
+  cartesianRepresentation(BarycentricPoint<T, Index> const &point) const;
+
+  /**
+   * @brief Converts a sequence of barycentric coordinates into caresian
+   * coordinates.
+   *
+   * The implementation uses barycetnricInterpolation. OutputIterator's
+   * value_type must be T.
+   *
+   * @param[in] begin iterator that points to the first cartesian point
+   * @param[in] end interator that points right after the last point
+   * @param[out] out output iterator
+   * @throws std::out_of_range if a triangle index is out of range
+   * @see barycentricInterpolation
+   */
+  template <class InputIterator, class OutputIterator>
+  void cartesianRepresentation(InputIterator begin, InputIterator end,
+                               OutputIterator out) const;
+
+  /**
+   * @brief Converts a sequence of barycentric coordinates into caresian
+   * coordinates.
+   * @param[in] points std::vector of barycentric points
+   * @return a std::vector of cartesian points
+   * @throws std::out_of_range if a triangle index is out of range
+   */
+  inline std::vector<std::array<T, 3>> cartesianRepresentation(
+      std::vector<BarycentricPoint<T, Index>> const &points) const {
+
+    using Cartesian = std::array<T, 3>;
+    std::vector<Cartesian> cartPoints(points.size());
+
+    auto const out = reinterpret_cast<T *>(cartPoints.data());
+    cartesianRepresentation(points.cbegin(), points.cend(), out);
+
+    return cartPoints;
+  }
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdocumentation"
+  /**
+   * @brief Interpolates per-vertex values for points inside a triangle.
+   *
+   * This input of this function are some points on the surfac of the mesh in
+   * barycentric representation and a vector of per-vertex attributes/values
+   * that are to be interpolated.
+   * The per-vertex attributes/values do not have to be scalar, vector values
+   * attributes can be used by setting the `attributeDimension` paremter.
+   * The attributes must be in row major order, i.e. a full attribute vector is
+   * stored in consecutively in the underlying container.
+   *
+   * @tparam PtIter InputIterator of BarycentricPoint type
+   * @tparam AttrIter RandomAccessIterator of scalar type
+   * @tparam OutputIterator output iterator acceptiong scalar of the same type
+   * as AttrIter
+   * @param[in] pointsBegin input iterator pointing to the first barycentric
+   * point
+   * @param[in] pointsEnd input iterator pointing one element past the last
+   * barycentric point
+   * @param[in] attributesBegin random access iterator pointing to the first
+   * attribute vector
+   * @param[out] out output iterator
+   * @param[in] attributeDimension number of attribute dimensions, defaults to
+   * 1
+   * @throws std::out_of_range if a trinagle index is out of range
+   *  In case of an exception `out` is only untouched if and only if
+   * `PtIter` conforms to `ForwardIterator`. If `PtIter` only conforms to
+   * `IputIterator`, all values up to the one where the exception happened will
+   * be written to `out`.
+   */
+  template <class PtIter, class AttrIter, class OutputIterator>
+  void barycentricInterpolation(PtIter pointsBegin, PtIter pointsEnd,
+                                AttrIter attributesBegin, OutputIterator out,
+                                std::size_t attributeDimension = 1) const;
+#pragma clang diagnostic pop
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdocumentation"
+  /**
+   * @brief Computes the intersection of a set of rays with the mesh.
+   *
+   * If for any ray no intersection can be found, the corresponding
+   * RayMeshIntersection object is left with its default values (its signed
+   * distance is infinity).
+   *
+   * @tparam InputIterator Input iterator with value_type of Ray
+   * @tparam OutputIterator Output iterator with value_type of
+   * RayMeshIntersection
+   * @param raysBegin Iterator poiting to the first ray
+   * @param raysEnd Iterator pointing one element past the last ray
+   * @param intersectionsOut Output iterator for intersections
+   */
+  template <class InputIterator, class OutputIterator>
+  void rayIntersections(InputIterator raysBegin, InputIterator raysEnd,
+                        OutputIterator intersectionsOut) const;
+#pragma clang diagnostic pop
+
+  /**
+   * @brief Computes intersection with the given ray and the mesh
+   *
+   * @see rayIntersections
+   * @param ray Query ray
+   * @return RayMeshIntersection object describing the intersection.
+   */
+  RayMeshIntersection<T> rayIntersection(Ray<T> const &ray) const;
+
+  /// @}
+
+  /**
    * @name Raw Data Access
    * The methods in this section all call a functional with a pointer to raw
    * data as its argument. The pointer only guaranteed to be valid within the
@@ -275,5 +399,42 @@ private:
 
 extern template class Mesh<float>;
 extern template class Mesh<double>;
+
+extern template void Mesh<float>::barycentricInterpolation(
+    BarycentricPoint<float, std::ptrdiff_t> const *,
+    BarycentricPoint<float, std::ptrdiff_t> const *, float const *, float *,
+    std::size_t) const;
+extern template void Mesh<double>::barycentricInterpolation(
+    BarycentricPoint<double, std::ptrdiff_t> const *,
+    BarycentricPoint<double, std::ptrdiff_t> const *, double const *, double *,
+    std::size_t) const;
+
+extern template void Mesh<float>::cartesianRepresentation(
+    BarycentricPoint<float, std::ptrdiff_t> const *,
+    BarycentricPoint<float, std::ptrdiff_t> const *, float *) const;
+extern template void Mesh<double>::cartesianRepresentation(
+    BarycentricPoint<float, std::ptrdiff_t> const *,
+    BarycentricPoint<float, std::ptrdiff_t> const *, double *) const;
+extern template void Mesh<float>::cartesianRepresentation(
+    std::vector<BarycentricPoint<float, std::ptrdiff_t>>::const_iterator,
+    std::vector<BarycentricPoint<float, std::ptrdiff_t>>::const_iterator,
+    float *) const;
+extern template void Mesh<double>::cartesianRepresentation(
+    std::vector<BarycentricPoint<double, std::ptrdiff_t>>::const_iterator,
+    std::vector<BarycentricPoint<double, std::ptrdiff_t>>::const_iterator,
+    double *) const;
+
+extern template void
+Mesh<float>::rayIntersections(Ray<float> const *, Ray<float> const *,
+                              RayMeshIntersection<float> *) const;
+extern template void Mesh<float>::rayIntersections(
+    Ray<float> const *, Ray<float> const *,
+    std::back_insert_iterator<std::vector<RayMeshIntersection<float>>>) const;
+extern template void
+Mesh<double>::rayIntersections(Ray<double> const *, Ray<double> const *,
+                               RayMeshIntersection<double> *) const;
+extern template void Mesh<double>::rayIntersections(
+    Ray<double> const *, Ray<double> const *,
+    std::back_insert_iterator<std::vector<RayMeshIntersection<double>>>) const;
 
 } // namespace CortidQCT
