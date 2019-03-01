@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['hash_3c_20cortidqct_3a_3acolorrgb_20_3e',['hash&lt; CortidQCT::ColorRGB &gt;',['../structstd_1_1hash_3_01CortidQCT_1_1ColorRGB_01_4.html',1,'std']]],
-  ['height',['height',['../structCortidQCT_1_1VolumeSize.html#a7558c3ad1e18ba8f3d1f490408bdf15a',1,'CortidQCT::VolumeSize::height()'],['../structCortidQCT_1_1VoxelSize.html#ada3d0014ba4585c8351ceb366ab3af93',1,'CortidQCT::VoxelSize::height()']]],
-  ['hiddenstate',['HiddenState',['../structCortidQCT_1_1MeshFitter_1_1State_1_1HiddenState.html',1,'CortidQCT::MeshFitter::State']]]
+  ['filesystem_2eh',['filesystem.h',['../filesystem_8h.html',1,'']]],
+  ['fit',['fit',['../classCortidQCT_1_1MeshFitter.html#a734da3d709635cf1222a919584fbd3ae',1,'CortidQCT::MeshFitter::fit()'],['../classCortidQCT_1_1Internal_1_1WeightedARAPFitter.html#a66ed245193254b10189008f44ba80023',1,'CortidQCT::Internal::WeightedARAPFitter::fit()']]],
+  ['fitoneiteration',['fitOneIteration',['../classCortidQCT_1_1MeshFitter.html#ae6847614e7a0f53e979e11e3fd826e90',1,'CortidQCT::MeshFitter']]],
+  ['fromfile',['fromFile',['../structCortidQCT_1_1ColorToLabelMaps_1_1CustomMap.html#a8229272fa15812867a7beffebd186285',1,'CortidQCT::ColorToLabelMaps::CustomMap::fromFile()'],['../classCortidQCT_1_1MeasurementModel.html#a8686e7f47fad84e491cdefe2ec588557',1,'CortidQCT::MeasurementModel::fromFile()'],['../structCortidQCT_1_1MeshFitter_1_1Configuration.html#a3644ef632c7c514015bb3dc4a6fa1e05',1,'CortidQCT::MeshFitter::Configuration::fromFile()']]]
 ];

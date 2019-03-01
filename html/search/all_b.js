@@ -1,7 +1,15 @@
 var searchData=
 [
-  ['name',['name',['../classCortidQCT_1_1MeasurementModel.html#a4d4b9998422f75d2b01eb11fcce3b5ca',1,'CortidQCT::MeasurementModel']]],
-  ['nondecreasing',['nonDecreasing',['../structCortidQCT_1_1MeshFitter_1_1Result.html#a28a932601a8fba43790b824d70d5532c',1,'CortidQCT::MeshFitter::Result']]],
-  ['nthelement',['nThElement',['../structCortidQCT_1_1DiscreteRange.html#aeedfd36eb29510b6f36e495c00353907',1,'CortidQCT::DiscreteRange']]],
-  ['numelements',['numElements',['../structCortidQCT_1_1DiscreteRange.html#a2aacabe02118cd20bc2a6c420015b1c4',1,'CortidQCT::DiscreteRange']]]
+  ['label',['Label',['../classCortidQCT_1_1MeasurementModel.html#a55ed69c518c6107b3b938e0bce67f9fc',1,'CortidQCT::MeasurementModel::Label()'],['../classCortidQCT_1_1Mesh.html#ab29bc2956971579d646fc291c73a28a6',1,'CortidQCT::Mesh::Label()']]],
+  ['labelcount',['labelCount',['../classCortidQCT_1_1MeasurementModel.html#a3a1d3944fc52b6b29e79475a85d6e7e4',1,'CortidQCT::MeasurementModel']]],
+  ['labels',['labels',['../classCortidQCT_1_1MeasurementModel.html#a76801d1b51e6964a4ac7196c33740088',1,'CortidQCT::MeasurementModel']]],
+  ['labeltocolormap',['LabelToColorMap',['../namespaceCortidQCT.html#a04ddf5259cabc1e1238ae30285564dfc',1,'CortidQCT']]],
+  ['labeltocolormap_2eh',['LabelToColorMap.h',['../LabelToColorMap_8h.html',1,'']]],
+  ['linear',['linear',['../structCortidQCT_1_1VolumeSize.html#ae0932c3fb8eb9a4d41770689615ea51f',1,'CortidQCT::VolumeSize']]],
+  ['loadfrombst',['loadFromBST',['../namespaceCortidQCT_1_1IO.html#a83925fc3f636a997eac0ecb2999186a2',1,'CortidQCT::IO']]],
+  ['loadfrombst_2eh',['LoadFromBST.h',['../LoadFromBST_8h.html',1,'']]],
+  ['loadfromfile',['loadFromFile',['../structCortidQCT_1_1ColorToLabelMaps_1_1CustomMap.html#af5cae4c85f5ab901ebd037ef067e7f3e',1,'CortidQCT::ColorToLabelMaps::CustomMap::loadFromFile()'],['../classCortidQCT_1_1MeasurementModel.html#a92a8c08f18e0c3d287cbc68a72740bcf',1,'CortidQCT::MeasurementModel::loadFromFile()'],['../classCortidQCT_1_1Mesh.html#af30f2e1fad4041986c2b3d680112ffab',1,'CortidQCT::Mesh::loadFromFile(std::string const &amp;meshFilename, std::string const &amp;labelFilename)'],['../classCortidQCT_1_1Mesh.html#a93859cb1f166e04d9695c8e621b1ed25',1,'CortidQCT::Mesh::loadFromFile(std::string const &amp;meshFilename, ColorToLabelMap&lt; Label, double &gt; const &amp;colorMap=ColorToLabelMaps::defaultMap&lt; Label, double &gt;)'],['../structCortidQCT_1_1MeshFitter_1_1Configuration.html#a52daba02c4cfc257b9320b82a7d922b4',1,'CortidQCT::MeshFitter::Configuration::loadFromFile()'],['../classCortidQCT_1_1VoxelVolume.html#a64fb3999a767f0f796b4036bf426f256',1,'CortidQCT::VoxelVolume::loadFromFile()']]],
+  ['loglikelihood',['logLikelihood',['../structCortidQCT_1_1MeshFitter_1_1Result.html#a38dd74f9400812a7e22bf858df755bd4',1,'CortidQCT::MeshFitter::Result::logLikelihood()'],['../classCortidQCT_1_1Internal_1_1DisplacementOptimizer.html#a9857cc2aa5e865812065cbc46bd081fe',1,'CortidQCT::Internal::DisplacementOptimizer::logLikelihood()']]],
+  ['loglikelihoodstep',['logLikelihoodStep',['../classCortidQCT_1_1MeshFitter.html#adaf2ae9328d91b0c829c2f0787998e9d',1,'CortidQCT::MeshFitter']]],
+  ['loglikelihoodvector',['logLikelihoodVector',['../classCortidQCT_1_1Internal_1_1DisplacementOptimizer.html#abba6262eba260e055ac133b4a8196e96',1,'CortidQCT::Internal::DisplacementOptimizer']]]
 ];

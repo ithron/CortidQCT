@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['trianglecount',['triangleCount',['../classCortidQCT_1_1Mesh.html#a0aa13bb1e91743e14be3869f29a6b6d3',1,'CortidQCT::Mesh']]]
+  ['rayintersection',['rayIntersection',['../classCortidQCT_1_1Mesh.html#ae398361b2609e87158aa2131136c744b',1,'CortidQCT::Mesh']]],
+  ['rayintersections',['rayIntersections',['../classCortidQCT_1_1Mesh.html#aa5055fa34780c0c454e8456416e10f7c',1,'CortidQCT::Mesh']]]
 ];

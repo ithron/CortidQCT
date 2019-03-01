@@ -108,6 +108,14 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCQCT__VoxelVolumeVoxelSize.html">CQCT_VoxelVolumeVoxelSize</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">VoxelVolume voxel size.  <a href="structCQCT__VoxelVolumeVoxelSize.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCQCT__BarycentricPoint__t.html">CQCT_BarycentricPoint_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Barycentric point type.  <a href="structCQCT__BarycentricPoint__t.html#details">More...</a><br/></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCQCT__Ray__t.html">CQCT_Ray_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ray type.  <a href="structCQCT__Ray__t.html#details">More...</a><br/></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCQCT__RayMeshIntersection.html">CQCT_RayMeshIntersection</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
@@ -197,10 +205,14 @@ CQCT_EXTERN void&#160;</td><td class="memItemRight" valign="bottom"><a class="el
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="member-group"></a>
 Error type</h2></td></tr>
-<tr class="memitem:gaf9e4e94e2ddc85f00e18d83c7b978291"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#gaf9e4e94e2ddc85f00e18d83c7b978291">CQCT_ErrorId</a> { <b>CQCT_ErrorId_Unknown</b>, 
+<tr class="memitem:gaf9e4e94e2ddc85f00e18d83c7b978291"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#gaf9e4e94e2ddc85f00e18d83c7b978291">CQCT_ErrorId</a> { <br/>
+&#160;&#160;<b>CQCT_ErrorId_Unknown</b>, 
 <b>CQCT_ErrorId_InvalidArgument</b>, 
+<b>CQCT_ErrorId_OutOfRange</b>, 
 <b>CQCT_ErrorId_Unknown</b>, 
-<b>CQCT_ErrorId_InvalidArgument</b>
+<br/>
+&#160;&#160;<b>CQCT_ErrorId_InvalidArgument</b>
+<br/>
  }</td></tr>
 <tr class="memdesc:gaf9e4e94e2ddc85f00e18d83c7b978291"><td class="mdescLeft">&#160;</td><td class="mdescRight">Error types/Ids. <br/></td></tr>
 <tr class="separator:gaf9e4e94e2ddc85f00e18d83c7b978291"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -255,6 +267,17 @@ Mesh type</h2></td></tr>
 typedef struct <a class="el" href="structCQCT__Mesh__t.html">CQCT_Mesh_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a></td></tr>
 <tr class="memdesc:gab16a5b8d67699346c12ee67d3a5d23e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mesh handle type. <br/></td></tr>
 <tr class="separator:gab16a5b8d67699346c12ee67d3a5d23e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad83aa06b3f5c24be5208530a4cba2703"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gad83aa06b3f5c24be5208530a4cba2703"></a>
+typedef struct <br class="typebreak"/>
+<a class="el" href="structCQCT__BarycentricPoint__t.html">CQCT_BarycentricPoint_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>CQCT_BarycentricPoint</b></td></tr>
+<tr class="separator:gad83aa06b3f5c24be5208530a4cba2703"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac791b59cc348411cc91168c6b60e963f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gac791b59cc348411cc91168c6b60e963f"></a>
+typedef struct <a class="el" href="structCQCT__Ray__t.html">CQCT_Ray_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>CQCT_Ray</b></td></tr>
+<tr class="separator:gac791b59cc348411cc91168c6b60e963f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga92d14f7b7812c9b57ac952ca168000b7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga92d14f7b7812c9b57ac952ca168000b7"></a>
+typedef struct <br class="typebreak"/>
+<a class="el" href="structCQCT__RayMeshIntersection.html">CQCT_RayMeshIntersection</a>&#160;</td><td class="memItemRight" valign="bottom"><b>CQCT_RayMeshIntersection</b></td></tr>
+<tr class="separator:ga92d14f7b7812c9b57ac952ca168000b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga2bf50e1ad18d66b220307db3c6d096f1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga2bf50e1ad18d66b220307db3c6d096f1"></a>
 CQCT_EXTERN <a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#ga2bf50e1ad18d66b220307db3c6d096f1">CQCT_createMesh</a> ()</td></tr>
 <tr class="memdesc:ga2bf50e1ad18d66b220307db3c6d096f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an empty mesh. <br/></td></tr>
@@ -313,6 +336,15 @@ CQCT_EXTERN size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="
 <tr class="memitem:gaee4dfd356b36b153215c83ec9bac981e"><td class="memItemLeft" align="right" valign="top">CQCT_EXTERN void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#gaee4dfd356b36b153215c83ec9bac981e">CQCT_meshSetLabels</a> (<a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a> mesh, unsigned int const *buffer)</td></tr>
 <tr class="memdesc:gaee4dfd356b36b153215c83ec9bac981e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies the vertex labels from the given buffer into the mesh data structure.  <a href="group__C-API.html#gaee4dfd356b36b153215c83ec9bac981e">More...</a><br/></td></tr>
 <tr class="separator:gaee4dfd356b36b153215c83ec9bac981e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gadf8ea24301aeb926ea2a343d82c52d64"><td class="memItemLeft" align="right" valign="top">CQCT_EXTERN int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#gadf8ea24301aeb926ea2a343d82c52d64">CQCT_meshBarycentricToCartesian</a> (<a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a> mesh, <a class="el" href="structCQCT__BarycentricPoint__t.html">CQCT_BarycentricPoint</a> const *barycentricPtr, size_t nPoints, float **bufferPtr, <a class="el" href="group__C-API.html#ga18408ad6c19d73790930b59068bc0d72">CQCT_Error</a> *error)</td></tr>
+<tr class="memdesc:gadf8ea24301aeb926ea2a343d82c52d64"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts the given list of barycentric points in cartesian coordinates.  <a href="group__C-API.html#gadf8ea24301aeb926ea2a343d82c52d64">More...</a><br/></td></tr>
+<tr class="separator:gadf8ea24301aeb926ea2a343d82c52d64"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga65957d4959939eb9ed95afa03ed87538"><td class="memItemLeft" align="right" valign="top">CQCT_EXTERN int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#ga65957d4959939eb9ed95afa03ed87538">CQCT_meshBarycentricInterpolation</a> (<a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a> mesh, <a class="el" href="structCQCT__BarycentricPoint__t.html">CQCT_BarycentricPoint</a> const *barycentricPtr, size_t nPoints, float const *attributePtr, size_t attributeDimensions, float **bufferPtr, <a class="el" href="group__C-API.html#ga18408ad6c19d73790930b59068bc0d72">CQCT_Error</a> *error)</td></tr>
+<tr class="memdesc:ga65957d4959939eb9ed95afa03ed87538"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interpolates attribute values given at mesh vertices at arbitrary points on the surface of the mesh.  <a href="group__C-API.html#ga65957d4959939eb9ed95afa03ed87538">More...</a><br/></td></tr>
+<tr class="separator:ga65957d4959939eb9ed95afa03ed87538"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6f3b598a4d6bf6c8af4a0929ab4016b8"><td class="memItemLeft" align="right" valign="top">CQCT_EXTERN void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#ga6f3b598a4d6bf6c8af4a0929ab4016b8">CQCT_meshRayIntersections</a> (<a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a> mesh, <a class="el" href="structCQCT__Ray__t.html">CQCT_Ray</a> *raysPtr, size_t nRays, <a class="el" href="structCQCT__RayMeshIntersection.html">CQCT_RayMeshIntersection</a> **intersectionsOutPtr)</td></tr>
+<tr class="memdesc:ga6f3b598a4d6bf6c8af4a0929ab4016b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the intersection of a set of rays with the mesh.  <a href="group__C-API.html#ga6f3b598a4d6bf6c8af4a0929ab4016b8">More...</a><br/></td></tr>
+<tr class="separator:ga6f3b598a4d6bf6c8af4a0929ab4016b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="member-group"></a>
 MeshFitterState object type</h2></td></tr>
@@ -435,7 +467,7 @@ CQCT_EXTERN size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Mar 1 2019 11:00:54 for CortidQCT by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Mar 1 2019 11:13:58 for CortidQCT by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
