@@ -81,36 +81,6 @@ matrix:
         - BUILD_TYPE=Release
 
     ##############
-    # Clang 4.0
-
-    # Debug
-    - os: linux
-      env:
-        - COMPILER=clang CLANG_VERSION=4.0.0
-        - BUILD_TYPE=Debug
-
-    # Relase
-    - os: linux
-      env:
-        - COMPILER=clang CLANG_VERSION=4.0.0
-        - BUILD_TYPE=Release
-
-    ##############
-    # Clang 5.0
-
-    # Debug
-    - os: linux
-      env:
-        - COMPILER=clang CLANG_VERSION=5.0.2
-        - BUILD_TYPE=Debug
-
-    # Relase
-    - os: linux
-      env:
-        - COMPILER=clang CLANG_VERSION=5.0.2
-        - BUILD_TYPE=Release
-
-    ##############
     # Clang 6.0
 
     # Debug
@@ -127,6 +97,26 @@ matrix:
             - doxygen doxygen-latex graphviz
       env:
         - COMPILER=clang CLANG_VERSION=6.0.1
+        - BUILD_TYPE=Release
+        - GENERATE_DOCS=yes
+
+    ##############
+    # Clang 7.0
+
+    # Debug
+    - os: linux
+      env:
+        - COMPILER=clang CLANG_VERSION=7.0.1
+        - BUILD_TYPE=Debug
+
+    # Relase
+    - os: linux
+      addons:
+        apt:
+          packages:
+            - doxygen doxygen-latex graphviz
+      env:
+        - COMPILER=clang CLANG_VERSION=7.0.1
         - BUILD_TYPE=Release
         - GENERATE_DOCS=yes
 
