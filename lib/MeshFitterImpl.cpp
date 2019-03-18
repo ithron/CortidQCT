@@ -255,7 +255,9 @@ void MeshFitter::Impl::sampleVolume(MeshFitter::State &state) const {
       samplingPoints(V.transpose(), N.transpose(), conf.model).transpose();
 
   // Sample the volume
-  auto const volumeSampler = VolumeSampler{state.hiddenState_->volume};
+  auto const volumeSampler = VolumeSampler{
+      state.hiddenState_->volume,
+      conf.ignoreExteriorSamples ? std::numeric_limits<float>::quiet_NaN() : 0.f};
   volumeSampler(volumeSamplingPositions.transpose(), volumeSamples);
 
   // Reorder samples
