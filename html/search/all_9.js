@@ -1,6 +1,7 @@
 var searchData=
 [
   ['id',['Id',['../group__C-API.html#ga3b68cd9dda6620fb2575e8f511b5de7f',1,'Id():&#160;CortidQCT.h'],['../group__Matlab-API.html#ga3b68cd9dda6620fb2575e8f511b5de7f',1,'Id():&#160;CortidQCT.h']]],
+  ['ignoreexteriorsamples',['ignoreExteriorSamples',['../structCortidQCT_1_1MeshFitter_1_1Configuration.html#aaab47a98c3327a083c2170500cad5d7e',1,'CortidQCT::MeshFitter::Configuration']]],
   ['impl',['Impl',['../classCortidQCT_1_1MeshFitter_1_1Impl.html',1,'CortidQCT::MeshFitter']]],
   ['index',['Index',['../classCortidQCT_1_1Mesh.html#a85ed47c4807bd85372175889555ed77c',1,'CortidQCT::Mesh']]],
   ['init',['init',['../classCortidQCT_1_1MeshFitter.html#af9902f70746c77bc9f7529a9e8baa448',1,'CortidQCT::MeshFitter']]],
