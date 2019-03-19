@@ -7,7 +7,7 @@ include(${CMAKE_CURRENT_LIST_DIR}/../cmake/Init.cmake)
 
 project(
   LibCortidQCT
-  VERSION 1.2.2
+  VERSION ${CortidQCT_VERSION}
   LANGUAGES CXX
 )
 
