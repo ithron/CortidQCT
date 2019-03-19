@@ -1,0 +1,19 @@
+/**
+ * @file      Version.h
+ *
+ * @brief     This file contains version information for the CortidQCT project.
+ *
+ * @author    Stefan Reinhold
+ * @copyright Copyright (C) 2019 Stefan Reinhold  -- All Rights Reserved.
+ *            You may use, distribute and modify this code under the terms of
+ *            the AFL 3.0 license; see LICENSE for full license details.
+ */
+
+#pragma once
+
+#cmakedefine CortidQCT_VERSION "@CortidQCT_VERSION@"
+#cmakedefine CortidQCT_VERSION_MAJOR @CortidQCT_VERSION_MAJOR@
+#cmakedefine CortidQCT_VERSION_MINOR @CortidQCT_VERSION_MINOR@
+#cmakedefine CortidQCT_VERSION_PATCH @CortidQCT_VERSION_PATCH@
+#cmakedefine CortidQCT_VERSION_TWEAK @CortidQCT_VERSION_TWEAK@
+

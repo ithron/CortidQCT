@@ -7,7 +7,7 @@ include(${CMAKE_CURRENT_LIST_DIR}/../cmake/Init.cmake)
 
 project(
   CortidQCT-Common
-  VERSION 1.2.2
+  VERSION ${CortidQCT_VERSION}
   LANGUAGES CXX
 )
 
@@ -40,6 +40,7 @@ endif()
 target_include_directories(Common
   INTERFACE
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/../include>
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
     $<INSTALL_INTERFACE:include>
 )
 
@@ -91,6 +92,20 @@ if (CortidQCT_WITH_OPENMP)
 endif()
 
 add_library(CortidQCT::Common ALIAS Common)
+
+###############################
+# Version Configuration File
+
+
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/../include/CortidQCT/src/Version.h.in src/Version.h)
+
+install(
+  FILES
+    "${CMAKE_CURRENT_BINARY_DIR}/src/Version.h"
+  DESTINATION
+    ${CMAKE_INSTALL_INCLUDEDIR}/CortidQCT/src/
+)
+
 
 ############################
 # Exports

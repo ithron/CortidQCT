@@ -5,7 +5,7 @@ cmake_minimum_required(VERSION 3.8)
 
 project(
   CortidQCT-MATLAB
-  VERSION 1.2.2
+  VERSION ${CortidQCT_VERSION}
   LANGUAGES C
 )
 
@@ -30,6 +30,12 @@ if (BUILD_MEX)
   add_library(CortidQCT::matlab ALIAS matlab)
 endif()
 
+##########################
+# Package configuration
+
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/CortidQCT.prj.in CortidQCT.prj)
+
+
 ############################
 # Exports
 
@@ -48,10 +54,10 @@ install(
   DESTINATION
     "${CortidQCT_Toolbox_ROOT}/toolbox"
 )
+
 install(
   FILES
-    "${CMAKE_CURRENT_SOURCE_DIR}/CortidQCT.prj"
+    "${CMAKE_CURRENT_BINARY_DIR}/CortidQCT.prj"
   DESTINATION
-    "${CortidQCT_Toolbox_ROOT}"
+    ${CortidQCT_Toolbox_ROOT}
 )
-

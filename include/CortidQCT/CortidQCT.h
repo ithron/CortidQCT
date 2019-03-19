@@ -15,6 +15,7 @@
 #include "src/Mesh.h"
 #include "src/MeshFitter.h"
 #include "src/VoxelVolume.h"
+#include "src/Version.h"
 
 /**
  * @brief Name namespace for CortidQCT library

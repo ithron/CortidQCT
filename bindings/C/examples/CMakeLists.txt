@@ -6,7 +6,7 @@ include(${CMAKE_CURRENT_LIST_DIR}/../../../cmake/Init.cmake)
 # Create project
 project(
   CortidQCT-C-Bindings-Examples
-  VERSION 1.0.0
+  VERSION ${CortidQCT_VERSION}
   LANGUAGES C
 )
 

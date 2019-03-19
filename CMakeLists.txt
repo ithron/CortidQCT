@@ -7,9 +7,10 @@ include(GNUInstallDirs)
 # Create project
 project(
   CortidQCT
-  VERSION 1.2.2
+  VERSION 1.2.2.16
   LANGUAGES C CXX
 )
+
 
 find_package(OpenMP)
 if (OpenMP_FOUND)
