@@ -33,7 +33,7 @@ endif()
 ##########################
 # Package configuration
 
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/CortidQCT.prj.in CortidQCT.prj)
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/CortidQCT.prj.in CortidQCT.prj @ONLY)
 
 
 ############################

@@ -1,5 +1,5 @@
 <deployment-project plugin="plugin.toolbox" plugin-version="1.0">
-  <configuration build-checksum="3799093198" file="/data1/sreinhold/src/CortidQCT/matlab/CortidQCT.prj" location="/data1/sreinhold/src/CortidQCT/matlab" name="CortidQCT" target="target.toolbox" target-name="Package Toolbox">
+  <configuration build-checksum="3799093198" file="@CortidQCT_Toolbox_ROOT@/CortidQCT.prj" location="@CortidQCT_Toolbox_ROOT@" name="CortidQCT" target="target.toolbox" target-name="Package Toolbox">
     <param.appname>CortidQCT</param.appname>
     <param.authnamewatermark>Stefan Reinhold</param.authnamewatermark>
     <param.email>sre@informatik.uni-kiel.de</param.email>
@@ -93,7 +93,7 @@ For details visit https://github.com/ithron/CortidQCT</param.description>
     <fileset.depfun.excluded />
     <fileset.package />
     <build-deliverables>
-      <file location="/data1/sreinhold/src/CortidQCT/matlab" name="CortidQCT.mltbx" optional="false">/data1/sreinhold/src/CortidQCT/matlab/CortidQCT.mltbx</file>
+      <file location="@CortidQCT_Toolbox_ROOT@" name="CortidQCT.mltbx" optional="false">@CortidQCT_Toolbox_ROOT@/CortidQCT.mltbx</file>
     </build-deliverables>
     <workflow />
     <matlab>

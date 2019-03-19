@@ -7,7 +7,7 @@ include(GNUInstallDirs)
 # Create project
 project(
   CortidQCT
-  VERSION 1.2.2.16
+  VERSION 1.2.2.17
   LANGUAGES C CXX
 )
 
