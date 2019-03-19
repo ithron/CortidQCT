@@ -57,6 +57,8 @@ public:
     std::size_t minNonDecreasing = 10;
     /// Decay factor
     float decay = 0.9f;
+    /// Ignore samples outisde the volumes?
+    bool ignoreExteriorSamples = false;
 
     /**
      * @brief Reference mesh origin

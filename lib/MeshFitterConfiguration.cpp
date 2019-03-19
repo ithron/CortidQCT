@@ -215,6 +215,10 @@ MeshFitter::Configuration::loadFromFile(std::string const &filename) {
 
     if (auto decayNode = node["decay"]) { decay = decayNode.as<float>(); }
 
+    if (auto ignoreExteriorSamplesNode = node["ignoreExteriorSamples"]) {
+      ignoreExteriorSamples = ignoreExteriorSamplesNode.as<bool>();
+    }
+
     model = std::move(model_);
     referenceMesh = std::move(refMesh);
 
