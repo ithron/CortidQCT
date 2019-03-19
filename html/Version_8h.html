@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>CortidQCT: include/CortidQCT/src/filesystem.h Source File</title>
+<title>CortidQCT: common/src/Version.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -82,31 +82,45 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_7355fbfbfa7f6e435369ec1f11454ea0.html">include</a></li><li class="navelem"><a class="el" href="dir_14570be8796fdece73eb5b36aa65d509.html">CortidQCT</a></li><li class="navelem"><a class="el" href="dir_44c85f056228ee06fe00fc9469a85f08.html">src</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_1ce6b5b534908a7ba38df2fffac6ecb6.html">common</a></li><li class="navelem"><a class="el" href="dir_ce1422f3abd40827984e5779a762de34.html">src</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
+  <div class="summary">
+<a href="#define-members">Macros</a>  </div>
   <div class="headertitle">
-<div class="title">filesystem.h</div>  </div>
+<div class="title">Version.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="filesystem_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#if __has_include(&lt;filesystem&gt;)</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#  include &lt;filesystem&gt;</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#elif __has_include(&lt;experimental/filesystem&gt;)</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#  include &lt;experimental/filesystem&gt;</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">namespace </span>std {</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keyword">namespace </span>filesystem = experimental::filesystem;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;}</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#else</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#  error &quot;CortidQCT requires a standard library with filesystem support&quot;</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#endif</span></div>
-</div><!-- fragment --></div><!-- contents -->
+
+<p>This file contains version information for the <a class="el" href="namespaceCortidQCT.html" title="Name namespace for CortidQCT library. ">CortidQCT</a> project.  
+<a href="#details">More...</a></p>
+
+<p><a href="Version_8h_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a35f903494009184293e3337991305e42"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a35f903494009184293e3337991305e42"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CortidQCT_VERSION</b>&#160;&#160;&#160;&quot;1.2.2.16&quot;</td></tr>
+<tr class="separator:a35f903494009184293e3337991305e42"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa22495b6a01bb2c18f9cef0d40c0a7e3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa22495b6a01bb2c18f9cef0d40c0a7e3"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CortidQCT_VERSION_MAJOR</b>&#160;&#160;&#160;1</td></tr>
+<tr class="separator:aa22495b6a01bb2c18f9cef0d40c0a7e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d5f896a2972242fcff1c596ca722445"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9d5f896a2972242fcff1c596ca722445"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CortidQCT_VERSION_MINOR</b>&#160;&#160;&#160;2</td></tr>
+<tr class="separator:a9d5f896a2972242fcff1c596ca722445"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd3c0bb6efc10919241baceafd5eef7a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afd3c0bb6efc10919241baceafd5eef7a"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CortidQCT_VERSION_PATCH</b>&#160;&#160;&#160;2</td></tr>
+<tr class="separator:afd3c0bb6efc10919241baceafd5eef7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3bf321949149c6b6410689ff7ad17abf"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3bf321949149c6b6410689ff7ad17abf"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CortidQCT_VERSION_TWEAK</b>&#160;&#160;&#160;16</td></tr>
+<tr class="separator:a3bf321949149c6b6410689ff7ad17abf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>This file contains version information for the <a class="el" href="namespaceCortidQCT.html" title="Name namespace for CortidQCT library. ">CortidQCT</a> project. </p>
+<dl class="section author"><dt>Author</dt><dd>Stefan Reinhold </dd></dl>
+<dl class="section copyright"><dt>Copyright</dt><dd>Copyright (C) 2019 Stefan Reinhold &ndash; All Rights Reserved. You may use, distribute and modify this code under the terms of the AFL 3.0 license; see LICENSE for full license details. </dd></dl>
+</div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated on Tue Mar 19 2019 09:46:47 for CortidQCT by &#160;<a href="http://www.doxygen.org/index.html">
