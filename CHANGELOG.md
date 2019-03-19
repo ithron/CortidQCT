@@ -3,6 +3,7 @@
 ## Next release
 
 ### Added
+- Option to ignore samples outside the scan `ignoreExteriorSamples`, see [#52](https://github.com/ithron/CortidQCT/issues/52))
 - CI builds for clang-7 and macOS (xcode 10.2)
 - Ray-mesh intersection computation
 - Interpolation of custom per-vertex attributes
