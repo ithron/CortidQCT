@@ -16,12 +16,14 @@
 #include "MeshHelpers.h"
 #include "SIMesh.h"
 
+#include <Eigen/Sparse>
 #include <gsl/gsl>
 #include <igl/orient_outward.h>
 #include <igl/orientable_patches.h>
 #include <igl/ray_mesh_intersect.h>
 #include <igl/readOFF.h>
 #include <igl/read_triangle_mesh.h>
+#include <igl/upsample.h>
 #include <igl/writeOFF.h>
 #include <igl/write_triangle_mesh.h>
 
@@ -580,6 +582,35 @@ void Mesh<T>::rayIntersections(InputIterator raysBegin, InputIterator raysEnd,
 
         return intersection;
       });
+}
+
+template <class T> Mesh<T> &Mesh<T>::upsample(std::size_t nTimes) {
+
+  using gsl::narrow_cast;
+  using VMat = Eigen::Matrix<T, Eigen::Dynamic, 3>;
+  using FMat = Eigen::Matrix<int, Eigen::Dynamic, 3>;
+
+  if (nTimes == 0) return *this;
+
+  // Copy vertces and indices into matrices so that igl can handle them
+  VMat const V = Adaptor::vertexMap(*this).transpose();
+  FMat const F = Adaptor::indexMap(*this).transpose().template cast<int>();
+
+  VMat Vnew;
+  FMat Fnew;
+
+  igl::upsample(V, F, Vnew, Fnew, gsl::narrow<int>(nTimes));
+
+  vertexData_.resize(3 * narrow_cast<std::size_t>(Vnew.rows()));
+  indexData_.resize(3 * narrow_cast<std::size_t>(Fnew.rows()));
+  labelData_.resize(narrow_cast<std::size_t>(Vnew.rows()), Label{0});
+
+  // Assign copy new vertices and indices
+  Adaptor::vertexMap(*this) = Vnew.transpose();
+  Adaptor::indexMap(*this) = Fnew.transpose().template cast<Index>();
+
+  // Labels are not touched
+  return *this;
 }
 
 /*************************************

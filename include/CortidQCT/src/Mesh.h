@@ -301,6 +301,21 @@ public:
   /// @}
 
   /**
+   * @name Modifyers
+   * @{
+   */
+
+  /**
+   * @brief Upsample the mesh without touching the original vertices
+   *
+   * @param nTimes number of subsample iterations
+   * @return Reference to `*this`
+   */
+  Mesh<T> &upsample(std::size_t nTimes = 1);
+
+  /// @}
+
+  /**
    * @name Raw Data Access
    * The methods in this section all call a functional with a pointer to raw
    * data as its argument. The pointer only guaranteed to be valid within the
