@@ -205,6 +205,13 @@ classdef Mesh < CortidQCT.lib.ObjectBase
       
     end
     
+    function obj = transform(obj, T)
+      % obj = transform(obj, T) - transforms the vertices of the mesh
+      % according to the 4x4 affine transformation matrix T.
+      VT = [obj.Vertices, ones(obj.vertexCount, 1)] * T';
+      obj.Vertices = VT(:, 1:3);
+    end
+    
     %%%%%%%%%%%%%%%%%
     %% Queries
     %
