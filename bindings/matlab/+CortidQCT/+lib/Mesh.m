@@ -211,6 +211,18 @@ classdef Mesh < CortidQCT.lib.ObjectBase
       VT = [obj.Vertices, ones(obj.vertexCount, 1)] * T';
       obj.Vertices = VT(:, 1:3);
     end
+
+    function obj = upsample(obj, nTimes)
+      % UPSAMPLE Upsamples the mesh using loop subdivision but without touching
+      % the orginal vertices.
+      %   obj = upsample(obj, nTimes)
+      % Upsamples the mesh `nTimes`.
+
+      import CortidQCT.lib.ObjectBase;
+
+      ObjectBase.call('meshUpsample', obj.handle, nTimes);
+
+    end
     
     %%%%%%%%%%%%%%%%%
     %% Queries

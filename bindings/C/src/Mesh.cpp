@@ -349,3 +349,12 @@ CQCT_meshRayIntersections(CQCT_Mesh mesh, CQCT_Ray *raysPtr, size_t nRays,
   mesh->impl.objPtr->rayIntersections(raysBegin, raysEnd, intersectionsOut);
 }
 
+CORTIDQCT_C_EXPORT CQCT_EXTERN void CQCT_meshUpsample(CQCT_Mesh mesh,
+                                                      size_t nTimes) {
+  if (nTimes == 0) return;
+
+  assert(mesh != nullptr);
+
+  mesh->impl.objPtr->upsample(nTimes);
+}
+
