@@ -227,6 +227,15 @@ classdef Mesh < CortidQCT.lib.ObjectBase
     %%%%%%%%%%%%%%%%%
     %% Queries
     %
+
+    function meshCopy = copy(obj)
+      % COPY(obj) Returns a copy of the mesh
+
+      import CortidQCT.lib.Mesh
+
+      meshCopy = Mesh(obj.Vertices, obj.Indices, obj.Labels)
+
+    end
     
     function points = barycentricToCartesian(obj, UV, Idx)
       % BARYCENTRICTOCARTESIAN Converts points given in barycentric coordinates
