@@ -287,7 +287,6 @@ public:
   template <class InputIterator, class OutputIterator>
   void rayIntersections(InputIterator raysBegin, InputIterator raysEnd,
                         OutputIterator intersectionsOut) const;
-#pragma clang diagnostic pop
 
   /**
    * @brief Computes intersection with the given ray and the mesh
@@ -297,6 +296,17 @@ public:
    * @return RayMeshIntersection object describing the intersection.
    */
   RayMeshIntersection<T> rayIntersection(Ray<T> const &ray) const;
+
+  /**
+   * @brief Computes per vertex normals
+   *
+   * @tparam OutputIterator output iterator type with value_type of T
+   * @param out Output iterator taking 3 * vertexCount() values of type T
+   */
+  template <class OutputIterator>
+  void perVertexNormals(OutputIterator out) const;
+
+#pragma clang diagnostic pop
 
   /// @}
 
@@ -451,5 +461,12 @@ Mesh<double>::rayIntersections(Ray<double> const *, Ray<double> const *,
 extern template void Mesh<double>::rayIntersections(
     Ray<double> const *, Ray<double> const *,
     std::back_insert_iterator<std::vector<RayMeshIntersection<double>>>) const;
+
+extern template void Mesh<float>::perVertexNormals(float *) const;
+extern template void
+Mesh<float>::perVertexNormals(typename std::vector<float>::iterator) const;
+extern template void Mesh<double>::perVertexNormals(double *) const;
+extern template void
+Mesh<double>::perVertexNormals(typename std::vector<double>::iterator) const;
 
 } // namespace CortidQCT

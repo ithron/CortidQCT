@@ -5,6 +5,7 @@ classdef Mesh < CortidQCT.lib.ObjectBase
     vertexCount
     triangleCount
     Vertices
+    Normals
     Indices
     Labels
   end
@@ -65,6 +66,13 @@ classdef Mesh < CortidQCT.lib.ObjectBase
       result = ObjectBase.call('meshCopyVertices', obj.handle, vBuffer);
       assert(result == 4 * length(vBuffer.Value(:)), "Size mismatch");
       Vertices = vBuffer.Value';
+    end
+
+    function Normals = get.Normals(obj)
+      import CortidQCT.lib.ObjectBase;
+      vBuffer = libpointer('singlePtr', zeros(3, obj.vertexCount, 'single'));
+      ObjectBase.call('meshPerVertexNormals', obj.handle, vBuffer);
+      Normals = vBuffer.Value';
     end
     
     function obj = set.Vertices(obj, V)

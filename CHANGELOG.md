@@ -3,6 +3,7 @@
 ## Next release
 
 ### Added
+- Add perVertexNormals query to Mesh object
 - Matlab Mesh object has now a `transform` method to apply affine
   transformations to the mesh
 - Option to ignore samples outside the scan `ignoreExteriorSamples`, see [#52](https://github.com/ithron/CortidQCT/issues/52))

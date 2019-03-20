@@ -358,3 +358,18 @@ CORTIDQCT_C_EXPORT CQCT_EXTERN void CQCT_meshUpsample(CQCT_Mesh mesh,
   mesh->impl.objPtr->upsample(nTimes);
 }
 
+CORTIDQCT_C_EXPORT CQCT_EXTERN void
+CQCT_meshPerVertexNormals(CQCT_Mesh mesh, float **normalsOutPtr) {
+
+  assert(mesh != nullptr);
+  assert(normalsOutPtr != nullptr);
+
+  auto const N = mesh->impl.objPtr->vertexCount();
+
+  if (*normalsOutPtr == nullptr) {
+    *normalsOutPtr = static_cast<float *>(malloc(3 * N * sizeof(float)));
+  }
+
+  mesh->impl.objPtr->perVertexNormals(*normalsOutPtr);
+}
+

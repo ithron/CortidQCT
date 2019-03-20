@@ -446,6 +446,23 @@ CQCT_meshRayIntersections(CQCT_Mesh mesh, CQCT_Ray *raysPtr, size_t nRays,
  */
 CQCT_EXTERN void CQCT_meshUpsample(CQCT_Mesh mesh, size_t nTimes);
 
+/**
+ * @brief computes per-vertex normals
+ *
+ * Copies per-vertex normals into the given buffer. The buffer must be able to
+ * hold `3 * N` values, where N is the number of vertices.
+ *
+ * @pre `mesh != NULL`
+ * @pre `normalsOutPtr != NULL`
+ * @param[in] mesh Mesh object
+ * @param[out] normalsOutPtr pointer to a memory address where the normals are
+ * copied to. Alternatively `normalsOutPtr` can be set to NULL. In this case the
+ * memory is allocated by the function. The caller is responsible for releasing
+ * the memory, in all cases.
+ */
+CQCT_EXTERN void CQCT_meshPerVertexNormals(CQCT_Mesh mesh,
+                                           float **normalsOutPtr);
+
 /// @}
 
 // MARK: -

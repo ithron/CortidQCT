@@ -613,6 +613,16 @@ template <class T> Mesh<T> &Mesh<T>::upsample(std::size_t nTimes) {
   return *this;
 }
 
+template <class T>
+template <class OutputIterator>
+void Mesh<T>::perVertexNormals(OutputIterator out) const {
+  Eigen::Matrix<T, 3, Eigen::Dynamic> const normalMatrix =
+      Internal::perVertexNormalMatrix(*this).transpose();
+
+  std::copy(normalMatrix.data(), normalMatrix.data() + normalMatrix.size(),
+            out);
+}
+
 /*************************************
  * Explicit template instanciations
  */
@@ -656,6 +666,13 @@ Mesh<double>::rayIntersections(Ray<double> const *, Ray<double> const *,
 template void Mesh<double>::rayIntersections(
     Ray<double> const *, Ray<double> const *,
     std::back_insert_iterator<std::vector<RayMeshIntersection<double>>>) const;
+
+template void Mesh<float>::perVertexNormals(float *) const;
+template void
+Mesh<float>::perVertexNormals(typename std::vector<float>::iterator) const;
+template void Mesh<double>::perVertexNormals(double *) const;
+template void
+Mesh<double>::perVertexNormals(typename std::vector<double>::iterator) const;
 
 // namespace CortidQCT
 } // namespace CortidQCT
