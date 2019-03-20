@@ -405,6 +405,15 @@ CQCT_EXTERN void
 CQCT_meshRayIntersections(CQCT_Mesh mesh, CQCT_Ray *raysPtr, size_t nRays,
                           CQCT_RayMeshIntersection **intersectionsOutPtr);
 
+/**
+ * @brief Upsamples the given mesh `nTimes` without touchting the original
+ * vertices
+ *
+ * @param nTimes number of upsample iterations
+ * @pre `mesh != null || nTimes == 0`
+ */
+CQCT_EXTERN void CQCT_meshUpsample(CQCT_Mesh mesh, size_t nTimes);
+
 /// @}
 
 // MARK: -
