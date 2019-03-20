@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">CortidQCT
-   &#160;<span id="projectnumber">1.2.2.20</span>
+   &#160;<span id="projectnumber">1.2.2.21</span>
    </div>
   </td>
  </tr>
@@ -191,6 +191,10 @@ Queries</h2></td></tr>
 <tr class="memitem:ae398361b2609e87158aa2131136c744b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structCortidQCT_1_1RayMeshIntersection.html">RayMeshIntersection</a>&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCortidQCT_1_1Mesh.html#ae398361b2609e87158aa2131136c744b">rayIntersection</a> (<a class="el" href="structCortidQCT_1_1Ray.html">Ray</a>&lt; T &gt; const &amp;ray) const </td></tr>
 <tr class="memdesc:ae398361b2609e87158aa2131136c744b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes intersection with the given ray and the mesh.  <a href="#ae398361b2609e87158aa2131136c744b">More...</a><br/></td></tr>
 <tr class="separator:ae398361b2609e87158aa2131136c744b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc876f8f481e90b961b47e1c16936524"><td class="memTemplParams" colspan="2">template&lt;class OutputIterator &gt; </td></tr>
+<tr class="memitem:acc876f8f481e90b961b47e1c16936524"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classCortidQCT_1_1Mesh.html#acc876f8f481e90b961b47e1c16936524">perVertexNormals</a> (OutputIterator out) const </td></tr>
+<tr class="memdesc:acc876f8f481e90b961b47e1c16936524"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes per vertex normals.  <a href="#acc876f8f481e90b961b47e1c16936524">More...</a><br/></td></tr>
+<tr class="separator:acc876f8f481e90b961b47e1c16936524"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="member-group"></a>
 Modifyers</h2></td></tr>
@@ -563,6 +567,40 @@ template&lt;class T &gt; </div>
 
 </div>
 </div>
+<a class="anchor" id="acc876f8f481e90b961b47e1c16936524"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+<div class="memtemplate">
+template&lt;class OutputIterator &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">template void <a class="el" href="classCortidQCT_1_1Mesh.html">CortidQCT::Mesh</a>&lt; T &gt;::perVertexNormals </td>
+          <td>(</td>
+          <td class="paramtype">OutputIterator&#160;</td>
+          <td class="paramname"><em>out</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Computes per vertex normals. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">OutputIterator</td><td>output iterator type with value_type of T </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">out</td><td>Output iterator taking 3 * <a class="el" href="classCortidQCT_1_1Mesh.html#a00230e71237643779b241188e7acd84d" title="Number of vertices. ">vertexCount()</a> values of type T </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a class="anchor" id="ae398361b2609e87158aa2131136c744b"></a>
 <div class="memitem">
 <div class="memproto">
@@ -904,7 +942,7 @@ template&lt;class T &gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Mar 20 2019 13:12:16 for CortidQCT by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Mar 20 2019 15:02:19 for CortidQCT by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

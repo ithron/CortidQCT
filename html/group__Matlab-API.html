@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">CortidQCT
-   &#160;<span id="projectnumber">1.2.2.20</span>
+   &#160;<span id="projectnumber">1.2.2.21</span>
    </div>
   </td>
  </tr>
@@ -287,6 +287,9 @@ CQCT_EXTERN size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="
 <tr class="memitem:ga1a95f945113734c47b116289890fe0a8"><td class="memItemLeft" align="right" valign="top">CQCT_EXTERN void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#ga1a95f945113734c47b116289890fe0a8">CQCT_meshUpsample</a> (<a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a> mesh, size_t nTimes)</td></tr>
 <tr class="memdesc:ga1a95f945113734c47b116289890fe0a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Upsamples the given mesh <code>nTimes</code> without touchting the original vertices.  <a href="#ga1a95f945113734c47b116289890fe0a8">More...</a><br/></td></tr>
 <tr class="separator:ga1a95f945113734c47b116289890fe0a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaddd15d7c7acbad1698b4e5b6c30a29c2"><td class="memItemLeft" align="right" valign="top">CQCT_EXTERN void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Matlab-API.html#gaddd15d7c7acbad1698b4e5b6c30a29c2">CQCT_meshPerVertexNormals</a> (<a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a> mesh, float **normalsOutPtr)</td></tr>
+<tr class="memdesc:gaddd15d7c7acbad1698b4e5b6c30a29c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">computes per-vertex normals  <a href="#gaddd15d7c7acbad1698b4e5b6c30a29c2">More...</a><br/></td></tr>
+<tr class="separator:gaddd15d7c7acbad1698b4e5b6c30a29c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="member-group"></a>
 ColorToLabelMap object type</h2></td></tr>
@@ -975,6 +978,45 @@ It is very unlikely that this function returns an error. The only reason for fai
 
 </div>
 </div>
+<a class="anchor" id="gaddd15d7c7acbad1698b4e5b6c30a29c2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CQCT_EXTERN void CQCT_meshPerVertexNormals </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a>&#160;</td>
+          <td class="paramname"><em>mesh</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float **&#160;</td>
+          <td class="paramname"><em>normalsOutPtr</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>computes per-vertex normals </p>
+<p>Copies per-vertex normals into the given buffer. The buffer must be able to hold <code>3 * N</code> values, where N is the number of vertices.</p>
+<dl class="section pre"><dt>Precondition</dt><dd><code>mesh != NULL</code> </dd>
+<dd>
+<code>normalsOutPtr != NULL</code> </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">mesh</td><td>Mesh object </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">normalsOutPtr</td><td>pointer to a memory address where the normals are copied to. Alternatively <code>normalsOutPtr</code> can be set to NULL. In this case the memory is allocated by the function. The caller is responsible for releasing the memory, in all cases. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a class="anchor" id="ga6f3b598a4d6bf6c8af4a0929ab4016b8"></a>
 <div class="memitem">
 <div class="memproto">
@@ -1192,7 +1234,7 @@ It is very unlikely that this function returns an error. The only reason for fai
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Mar 20 2019 13:12:16 for CortidQCT by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Mar 20 2019 15:02:19 for CortidQCT by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
