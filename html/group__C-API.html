@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">CortidQCT
-   &#160;<span id="projectnumber">1.2.2.18</span>
+   &#160;<span id="projectnumber">1.2.2.19</span>
    </div>
   </td>
  </tr>
@@ -275,6 +275,9 @@ CQCT_EXTERN size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="
 <tr class="memitem:ga6f3b598a4d6bf6c8af4a0929ab4016b8"><td class="memItemLeft" align="right" valign="top">CQCT_EXTERN void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#ga6f3b598a4d6bf6c8af4a0929ab4016b8">CQCT_meshRayIntersections</a> (<a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a> mesh, <a class="el" href="structCQCT__Ray__t.html">CQCT_Ray</a> *raysPtr, size_t nRays, <a class="el" href="structCQCT__RayMeshIntersection.html">CQCT_RayMeshIntersection</a> **intersectionsOutPtr)</td></tr>
 <tr class="memdesc:ga6f3b598a4d6bf6c8af4a0929ab4016b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the intersection of a set of rays with the mesh.  <a href="#ga6f3b598a4d6bf6c8af4a0929ab4016b8">More...</a><br/></td></tr>
 <tr class="separator:ga6f3b598a4d6bf6c8af4a0929ab4016b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1a95f945113734c47b116289890fe0a8"><td class="memItemLeft" align="right" valign="top">CQCT_EXTERN void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#ga1a95f945113734c47b116289890fe0a8">CQCT_meshUpsample</a> (<a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a> mesh, size_t nTimes)</td></tr>
+<tr class="memdesc:ga1a95f945113734c47b116289890fe0a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Upsamples the given mesh <code>nTimes</code> without touchting the original vertices.  <a href="#ga1a95f945113734c47b116289890fe0a8">More...</a><br/></td></tr>
+<tr class="separator:ga1a95f945113734c47b116289890fe0a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="member-group"></a>
 ColorToLabelMap object type</h2></td></tr>
@@ -1199,6 +1202,41 @@ It is very unlikely that this function returns an error. The only reason for fai
 
 </div>
 </div>
+<a class="anchor" id="ga1a95f945113734c47b116289890fe0a8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CQCT_EXTERN void CQCT_meshUpsample </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a>&#160;</td>
+          <td class="paramname"><em>mesh</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>nTimes</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Upsamples the given mesh <code>nTimes</code> without touchting the original vertices. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nTimes</td><td>number of upsample iterations </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section pre"><dt>Precondition</dt><dd><code>mesh != null || nTimes == 0</code> </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="gaece70c037de46f4b30cc6f426a470c30"></a>
 <div class="memitem">
 <div class="memproto">
@@ -1219,7 +1257,7 @@ It is very unlikely that this function returns an error. The only reason for fai
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Mar 20 2019 10:27:19 for CortidQCT by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Mar 20 2019 12:16:06 for CortidQCT by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

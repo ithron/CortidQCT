@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">CortidQCT
-   &#160;<span id="projectnumber">1.2.2.18</span>
+   &#160;<span id="projectnumber">1.2.2.19</span>
    </div>
   </td>
  </tr>
@@ -191,6 +191,12 @@ Queries</h2></td></tr>
 <tr class="memitem:ae398361b2609e87158aa2131136c744b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structCortidQCT_1_1RayMeshIntersection.html">RayMeshIntersection</a>&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCortidQCT_1_1Mesh.html#ae398361b2609e87158aa2131136c744b">rayIntersection</a> (<a class="el" href="structCortidQCT_1_1Ray.html">Ray</a>&lt; T &gt; const &amp;ray) const </td></tr>
 <tr class="memdesc:ae398361b2609e87158aa2131136c744b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes intersection with the given ray and the mesh.  <a href="#ae398361b2609e87158aa2131136c744b">More...</a><br/></td></tr>
 <tr class="separator:ae398361b2609e87158aa2131136c744b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="member-group"></a>
+Modifyers</h2></td></tr>
+<tr class="memitem:a8c11db0cf6dbafef494b8fce1307b0cd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCortidQCT_1_1Mesh.html">Mesh</a>&lt; T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCortidQCT_1_1Mesh.html#a8c11db0cf6dbafef494b8fce1307b0cd">upsample</a> (std::size_t nTimes=1)</td></tr>
+<tr class="memdesc:a8c11db0cf6dbafef494b8fce1307b0cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Upsample the mesh without touching the original vertices.  <a href="#a8c11db0cf6dbafef494b8fce1307b0cd">More...</a><br/></td></tr>
+<tr class="separator:a8c11db0cf6dbafef494b8fce1307b0cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="member-group"></a>
 Raw Data Access</h2></td></tr>
@@ -639,6 +645,33 @@ template&lt;class InputIterator , class OutputIterator &gt; </div>
 
 </div>
 </div>
+<a class="anchor" id="a8c11db0cf6dbafef494b8fce1307b0cd"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCortidQCT_1_1Mesh.html">Mesh</a>&lt; T &gt; &amp; <a class="el" href="classCortidQCT_1_1Mesh.html">CortidQCT::Mesh</a>&lt; T &gt;::upsample </td>
+          <td>(</td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>nTimes</em> = <code>1</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Upsample the mesh without touching the original vertices. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nTimes</td><td>number of subsample iterations </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Reference to <code>*this</code> </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="ac6334c55d0c95f19bc6214983ba4dc29"></a>
 <div class="memitem">
 <div class="memproto">
@@ -871,7 +904,7 @@ template&lt;class T &gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Mar 20 2019 10:27:19 for CortidQCT by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Mar 20 2019 12:16:06 for CortidQCT by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
