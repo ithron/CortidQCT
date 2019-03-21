@@ -1,6 +1,9 @@
 #include "CortidQCT.h"
 #include "cortidqct-matlab_export.h"
 
+#include <assert.h>
+#include <stdlib.h>
+
 struct CORTIDQCT_MATLAB_NO_EXPORT Size {
   size_t width, height, depth;
 };
@@ -40,6 +43,55 @@ CQCT_voxelVolumeVoxelHeight(CQCT_VoxelVolume volume) {
 CORTIDQCT_MATLAB_EXPORT CQCT_EXTERN float
 CQCT_voxelVolumeVoxelDepth(CQCT_VoxelVolume volume) {
   return CQCT_voxelVolumeVoxelSize(volume).depth;
+}
+
+struct CQCT_RayMeshIntersection {
+  /// Position on the mesh in barycentric coordinates
+  CQCT_BarycentricPoint position;
+  /// Signed distance frim the ray origin to the intersection
+  float t;
+  /// Explicit padding
+  unsigned int : 4 * 8;
+};
+typedef struct CQCT_RayMeshIntersection CQCT_RayMeshIntersection;
+
+extern size_t
+CQCT_meshRayIntersections(CQCT_Mesh mesh, CQCT_Ray *raysPtr, size_t nRays,
+                          CQCT_RayMeshIntersection **intersectionsOutPtr);
+
+CORTIDQCT_MATLAB_EXPORT CQCT_EXTERN size_t CQCT_meshRayIntersectionsBuffers(
+    CQCT_Mesh mesh, CQCT_Ray *raysPtr, size_t nRays, float **positionsOutPtr,
+    ptrdiff_t **indicesOutPtr, float **distancesOutPtr) {
+
+  CQCT_RayMeshIntersection *buffer = NULL;
+
+  assert(positionsOutPtr != NULL);
+  assert(indicesOutPtr != NULL);
+  assert(distancesOutPtr != NULL);
+
+  CQCT_meshRayIntersections(mesh, raysPtr, nRays, &buffer);
+
+  if (*positionsOutPtr == NULL) {
+    *positionsOutPtr = (float *)malloc(nRays * 2 * sizeof(float));
+  }
+  if (*indicesOutPtr == NULL) {
+    *indicesOutPtr = (ptrdiff_t *)malloc(nRays * sizeof(ptrdiff_t));
+  }
+  if (*distancesOutPtr == NULL) {
+    *distancesOutPtr = (float *)malloc(nRays * sizeof(float));
+  }
+
+  // copy data
+  for (size_t i = 0; i < nRays; ++i) {
+    (*positionsOutPtr)[2 * i + 0] = buffer[i].position.u;
+    (*positionsOutPtr)[2 * i + 1] = buffer[i].position.v;
+    (*indicesOutPtr)[i] = buffer[i].position.triangleIndex;
+    (*distancesOutPtr)[i] = buffer[i].t;
+  }
+
+  free(buffer);
+
+  return nRays * (sizeof(float) * 2 + sizeof(ptrdiff_t) + sizeof(float));
 }
 
 extern void CQCT_autoreleasePoolPush(void);

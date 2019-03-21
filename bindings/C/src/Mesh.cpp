@@ -327,18 +327,19 @@ CORTIDQCT_C_EXPORT CQCT_EXTERN int CQCT_meshBarycentricInterpolation(
   return -1;
 }
 
-CORTIDQCT_C_EXPORT CQCT_EXTERN void
+CORTIDQCT_C_EXPORT CQCT_EXTERN size_t
 CQCT_meshRayIntersections(CQCT_Mesh mesh, CQCT_Ray *raysPtr, size_t nRays,
                           CQCT_RayMeshIntersection **intersectionsOutPtr) {
-  if (nRays == 0) return;
+  if (nRays == 0) return 0;
 
   assert(mesh != nullptr);
   assert(raysPtr != nullptr);
   assert(intersectionsOutPtr != nullptr);
 
+  auto const size = nRays * sizeof(CQCT_RayMeshIntersection);
   if (*intersectionsOutPtr == nullptr) {
-    *intersectionsOutPtr = static_cast<CQCT_RayMeshIntersection *>(
-        malloc(nRays * sizeof(CQCT_RayMeshIntersection)));
+    *intersectionsOutPtr =
+        static_cast<CQCT_RayMeshIntersection *>(malloc(size));
   }
 
   auto const raysBegin = reinterpret_cast<Ray<float> const *>(raysPtr);
@@ -347,6 +348,8 @@ CQCT_meshRayIntersections(CQCT_Mesh mesh, CQCT_Ray *raysPtr, size_t nRays,
       reinterpret_cast<RayMeshIntersection<float> *>(*intersectionsOutPtr);
 
   mesh->impl.objPtr->rayIntersections(raysBegin, raysEnd, intersectionsOut);
+
+  return size;
 }
 
 CORTIDQCT_C_EXPORT CQCT_EXTERN void CQCT_meshUpsample(CQCT_Mesh mesh,

@@ -432,8 +432,9 @@ CQCT_EXTERN int CQCT_meshBarycentricInterpolation(
  * @pre `mesh != NULL || nRays == 0`
  * @pre `raysPtr != NULL || nRays == 0`
  * @pre `intersectionsOutPtr != NULL || nRays == 0`
+ * @return number of bytes copied to `*intersecionsOutPtr`
  */
-CQCT_EXTERN void
+CQCT_EXTERN size_t
 CQCT_meshRayIntersections(CQCT_Mesh mesh, CQCT_Ray *raysPtr, size_t nRays,
                           CQCT_RayMeshIntersection **intersectionsOutPtr);
 

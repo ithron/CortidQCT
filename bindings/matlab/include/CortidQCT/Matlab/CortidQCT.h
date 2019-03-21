@@ -162,18 +162,6 @@ struct CQCT_Ray_t {
 };
 typedef struct CQCT_Ray_t CQCT_Ray;
 
-struct CQCT_RayMeshIntersection_t {
-  /// Inline CQCT_BarycentricPoint since MATLAB cannot handle nested structs
-  float u;
-  float v;
-  ptrdiff_t triangleIndex;
-  /// Signed distance frim the ray origin to the intersection
-  float t;
-  /// Explicit padding
-  unsigned char _a, _b, _c;
-};
-typedef struct CQCT_RayMeshIntersection_t CQCT_RayMeshIntersection;
-
 /// Creates an empty mesh
 CQCT_EXTERN CQCT_Mesh CQCT_createMesh(void);
 
@@ -400,10 +388,11 @@ CQCT_EXTERN int CQCT_meshBarycentricInterpolation(
  * @pre `mesh != NULL || nRays == 0`
  * @pre `raysPtr != NULL || nRays == 0`
  * @pre `intersectionsOutPtr != NULL || nRays == 0`
+ * @return number of bytes copied to `*intersecionsOutPtr`
  */
-CQCT_EXTERN void
-CQCT_meshRayIntersections(CQCT_Mesh mesh, CQCT_Ray *raysPtr, size_t nRays,
-                          CQCT_RayMeshIntersection **intersectionsOutPtr);
+CQCT_EXTERN size_t CQCT_meshRayIntersectionsBuffers(
+    CQCT_Mesh mesh, CQCT_Ray *raysPtr, size_t nRays, float **positionsOutPtr,
+    ptrdiff_t **indicesOutPtr, float **distancesOutPtr);
 
 /**
  * @brief Upsamples the given mesh `nTimes` without touchting the original

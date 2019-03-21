@@ -31,7 +31,7 @@ classdef Mesh < CortidQCT.lib.ObjectBase
         end
         
         err = Error;
-        handle = ObjectBase.call('createMeshAndAllocateMemory', size(V, 1), size(F, 1), err.pointer)
+        handle = ObjectBase.call('createMeshAndAllocateMemory', size(V, 1), size(F, 1), err.pointer);
         if handle == 0
           error('Failed to create mesh: %s', err.message);
         end
@@ -353,34 +353,26 @@ classdef Mesh < CortidQCT.lib.ObjectBase
         Origins(:, 1), Origins(:, 2), Origins(:, 3), ...
         Directions(:, 1), Directions(:, 2), Directions(:, 3));
       
-      structTemplate = struct('u', 0, 'v', 0, 'triangleIndex', 0, ...
-        't', 0);
-      tpl = repmat(structTemplate, N, 1);
-      intersections = libpointer('CQCT_RayMeshIntersection_tPtr', tpl);
+      uvPtr = libpointer('singlePtr', zeros(2 * N, 1, 'single'));
+      idxPtr = libpointer('longPtr', zeros(N, 1, 'int64'));
+      tPtr = libpointer('singlePtr', zeros(N, 1, 'single'));
       
-      ObjectBase.call('meshRayIntersections', ...
+      res = ObjectBase.call('meshRayIntersectionsBuffers', ...
         obj.handle, ...
         rays, N, ...
-        intersections);
+        uvPtr, idxPtr, tPtr);
+
+      assert(res == N * (4 + 4 + 8 + 4), 'Size mismatch');
       
       % Convert output
-      UV = zeros(N, 2, 'single');
-      Idx = zeros(N, 1, 'int64');
-      t = zeros(N, 1, 'single');
-      
-      P = intersections;
-      for ii=1:N
-        UV(ii, 1) = P.Value.u;
-        UV(ii, 2) = P.Value.v;
-        Idx(ii) = P.Value.triangleIndex + 1;
-        t(ii) = P.Value.t;
-        
-        P = P + 1;
-      end
+      UV = reshape(uvPtr.Value, N, 2);
+      Idx = idxPtr.Value;
+      t = tPtr.Value;
       
       if nargout > 3
         varargout{1} = isfinite(t);
       end
+
     end
     
   end % methods
