@@ -84,13 +84,16 @@ struct SequencialTransform {
 struct ParallelTransform {
   template <class I, class O, class F>
   void operator()(I b, I e, O o, F &&f) const {
+    using gsl::narrow_cast;
     using std::distance;
     auto const N = distance(b, e);
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wsign-compare"
 
 #pragma omp parallel for
-    for (std::size_t i = 0; i < N; ++i) { o[i] = f(b[i]); }
+    for (std::size_t i = 0; i < narrow_cast<std::size_t>(N); ++i) {
+      o[i] = f(b[i]);
+    }
   }
 
 #pragma clang diagnostic pop
