@@ -241,7 +241,7 @@ classdef Mesh < CortidQCT.lib.ObjectBase
 
       import CortidQCT.lib.Mesh
 
-      meshCopy = Mesh(obj.Vertices, obj.Indices, obj.Labels)
+      meshCopy = Mesh(obj.Vertices, obj.Indices, obj.Labels);
 
     end
     
