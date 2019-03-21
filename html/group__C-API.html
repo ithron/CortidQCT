@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">CortidQCT
-   &#160;<span id="projectnumber">1.2.2.23</span>
+   &#160;<span id="projectnumber">1.2.2.24</span>
    </div>
   </td>
  </tr>
@@ -272,9 +272,9 @@ CQCT_EXTERN size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="
 <tr class="memitem:ga65957d4959939eb9ed95afa03ed87538"><td class="memItemLeft" align="right" valign="top">CQCT_EXTERN int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#ga65957d4959939eb9ed95afa03ed87538">CQCT_meshBarycentricInterpolation</a> (<a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a> mesh, <a class="el" href="structCQCT__BarycentricPoint__t.html">CQCT_BarycentricPoint</a> const *barycentricPtr, size_t nPoints, float const *attributePtr, size_t attributeDimensions, float **bufferPtr, <a class="el" href="group__C-API.html#ga18408ad6c19d73790930b59068bc0d72">CQCT_Error</a> *error)</td></tr>
 <tr class="memdesc:ga65957d4959939eb9ed95afa03ed87538"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interpolates attribute values given at mesh vertices at arbitrary points on the surface of the mesh.  <a href="#ga65957d4959939eb9ed95afa03ed87538">More...</a><br/></td></tr>
 <tr class="separator:ga65957d4959939eb9ed95afa03ed87538"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga6f3b598a4d6bf6c8af4a0929ab4016b8"><td class="memItemLeft" align="right" valign="top">CQCT_EXTERN void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#ga6f3b598a4d6bf6c8af4a0929ab4016b8">CQCT_meshRayIntersections</a> (<a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a> mesh, <a class="el" href="structCQCT__Ray__t.html">CQCT_Ray</a> *raysPtr, size_t nRays, <a class="el" href="structCQCT__RayMeshIntersection.html">CQCT_RayMeshIntersection</a> **intersectionsOutPtr)</td></tr>
-<tr class="memdesc:ga6f3b598a4d6bf6c8af4a0929ab4016b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the intersection of a set of rays with the mesh.  <a href="#ga6f3b598a4d6bf6c8af4a0929ab4016b8">More...</a><br/></td></tr>
-<tr class="separator:ga6f3b598a4d6bf6c8af4a0929ab4016b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf41b82bee5c918d4f25c4a7abda9d057"><td class="memItemLeft" align="right" valign="top">CQCT_EXTERN size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#gaf41b82bee5c918d4f25c4a7abda9d057">CQCT_meshRayIntersections</a> (<a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a> mesh, <a class="el" href="structCQCT__Ray__t.html">CQCT_Ray</a> *raysPtr, size_t nRays, <a class="el" href="structCQCT__RayMeshIntersection.html">CQCT_RayMeshIntersection</a> **intersectionsOutPtr)</td></tr>
+<tr class="memdesc:gaf41b82bee5c918d4f25c4a7abda9d057"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the intersection of a set of rays with the mesh.  <a href="#gaf41b82bee5c918d4f25c4a7abda9d057">More...</a><br/></td></tr>
+<tr class="separator:gaf41b82bee5c918d4f25c4a7abda9d057"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga1a95f945113734c47b116289890fe0a8"><td class="memItemLeft" align="right" valign="top">CQCT_EXTERN void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#ga1a95f945113734c47b116289890fe0a8">CQCT_meshUpsample</a> (<a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a> mesh, size_t nTimes)</td></tr>
 <tr class="memdesc:ga1a95f945113734c47b116289890fe0a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Upsamples the given mesh <code>nTimes</code> without touchting the original vertices.  <a href="#ga1a95f945113734c47b116289890fe0a8">More...</a><br/></td></tr>
 <tr class="separator:ga1a95f945113734c47b116289890fe0a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1082,12 +1082,12 @@ It is very unlikely that this function returns an error. The only reason for fai
 
 </div>
 </div>
-<a class="anchor" id="ga6f3b598a4d6bf6c8af4a0929ab4016b8"></a>
+<a class="anchor" id="gaf41b82bee5c918d4f25c4a7abda9d057"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">CQCT_EXTERN void CQCT_meshRayIntersections </td>
+          <td class="memname">CQCT_EXTERN size_t CQCT_meshRayIntersections </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a>&#160;</td>
           <td class="paramname"><em>mesh</em>, </td>
@@ -1134,6 +1134,7 @@ It is very unlikely that this function returns an error. The only reason for fai
 <code>raysPtr != NULL || nRays == 0</code> </dd>
 <dd>
 <code>intersectionsOutPtr != NULL || nRays == 0</code> </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>number of bytes copied to <code>*intersecionsOutPtr</code> </dd></dl>
 
 </div>
 </div>
@@ -1299,7 +1300,7 @@ It is very unlikely that this function returns an error. The only reason for fai
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Mar 21 2019 14:19:36 for CortidQCT by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Mar 21 2019 17:52:03 for CortidQCT by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

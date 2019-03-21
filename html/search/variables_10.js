@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['u',['u',['../structCQCT__RayMeshIntersection__t.html#aec27af5eea1c0ba4a17eac71732b5a56',1,'CQCT_RayMeshIntersection_t']]],
-  ['undefinedlabel',['undefinedLabel',['../structCortidQCT_1_1ColorToLabelMaps_1_1CustomMap.html#af2daa6576e4a716aa212b214f8caf96f',1,'CortidQCT::ColorToLabelMaps::CustomMap']]],
-  ['uv',['uv',['../structCortidQCT_1_1BarycentricPoint.html#a4b2b9ae148f73a2d951f8fe767d8afca',1,'CortidQCT::BarycentricPoint']]]
+  ['v',['v',['../structCQCT__BarycentricPoint__t.html#a764b1b7b1e09d8fd4b7cbbbc870d8feb',1,'CQCT_BarycentricPoint_t']]],
+  ['vertexnormals',['vertexNormals',['../structCortidQCT_1_1MeshFitter_1_1Result.html#aa79550b8c62b3654ea279790f03c9a46',1,'CortidQCT::MeshFitter::Result']]],
+  ['volumesamples',['volumeSamples',['../structCortidQCT_1_1MeshFitter_1_1Result.html#a60429e9ce2c07c043972d34c4c758cd7',1,'CortidQCT::MeshFitter::Result']]],
+  ['volumesamplingpositions',['volumeSamplingPositions',['../structCortidQCT_1_1MeshFitter_1_1Result.html#a29629017261cfd2be6e3553f40fe6e5f',1,'CortidQCT::MeshFitter::Result']]]
 ];

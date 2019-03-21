@@ -226,9 +226,9 @@ Building namespace list...
 Building file list...
 Building class list...
 Associating documentation with classes...
-Computing nesting relat/home/travis/build/ithron/CortidQCT/bindings/matlab/include/CortidQCT/Matlab/CortidQCT.h:446: warning: member CQCT_ColorToLabelMap belongs to two different groups. The second one found here will be ignored.
-/home/travis/build/ithron/CortidQCT/bindings/matlab/include/CortidQCT/Matlab/CortidQCT.h:446: warning: member CQCT_ColorToLabelMap belongs to two different groups. The second one found here will be ignored.
-/home/travis/build/ithron/CortidQCT/bindings/matlab/src/matlab-addons.c:8: warning: Compound VoxelSize is not documented.
+Computing nesting relat/home/travis/build/ithron/CortidQCT/bindings/matlab/include/CortidQCT/Matlab/CortidQCT.h:435: warning: member CQCT_ColorToLabelMap belongs to two different groups. The second one found here will be ignored.
+/home/travis/build/ithron/CortidQCT/bindings/matlab/include/CortidQCT/Matlab/CortidQCT.h:435: warning: member CQCT_ColorToLabelMap belongs to two different groups. The second one found here will be ignored.
+/home/travis/build/ithron/CortidQCT/bindings/matlab/src/matlab-addons.c:11: warning: Compound VoxelSize is not documented.
 /home/travis/build/ithron/CortidQCT/bindings/C/src/CortidQCT-Common.h:22: warning: Compound CortidQCT::Internal::C::GenericObjectWrapper is not documented.
 /home/travis/build/ithron/CortidQCT/include/CortidQCT/src/RayMeshIntersection.h:21: warning: Compound CortidQCT::RayMeshIntersection is not documented.
 /home/travis/build/ithron/CortidQCT/bindings/C/src/CortidQCT-Common.h:77: warning: Compound CQCT_Mesh_t is not documented.
@@ -244,7 +244,7 @@ Computing nesting relat/home/travis/build/ithron/CortidQCT/bindings/matlab/inclu
 /home/travis/build/ithron/CortidQCT/lib/Mesh.cpp:462: warning: Compound CortidQCT::Internal::BarycentricPointValidatorHelper_< true > is not documented.
 /home/travis/build/ithron/CortidQCT/include/CortidQCT/src/MeshFitter.h:20: warning: Compound CortidQCT::Coordinate3D is not documented.
 /home/travis/build/ithron/CortidQCT/bindings/C/src/Error.cpp:27: warning: Compound CQCT_Error_t is not documented.
-/home/travis/build/ithron/CortidQCT/bindings/matlab/src/matlab-addons.c:4: warning: Compound Size is not documented.
+/home/travis/build/ithron/CortidQCT/bindings/matlab/src/matlab-addons.c:7: warning: Compound Size is not documented.
 /home/travis/build/ithron/CortidQCT/lib/Mesh.cpp:480: warning: Compound CortidQCT::Internal::BarycentricPointValidatorHelper_< false > is not documented.
 /home/travis/build/ithron/CortidQCT/lib/EigenAdaptors.h:67: warning: Compound CortidQCT::Internal::Adaptor::Detail_::ConstructionHelper< std::array< T, N >, 0 > is not documented.
 /home/travis/build/ithron/CortidQCT/lib/MeshFitterImpl.h:21: warning: Compound CortidQCT::MeshFitter::Impl is not documented.
@@ -252,9 +252,9 @@ Computing nesting relat/home/travis/build/ithron/CortidQCT/bindings/matlab/inclu
 /home/travis/build/ithron/CortidQCT/bindings/C/src/CortidQCT-Common.h:81: warning: Compound CQCT_ColorToLabelMap_t is not documented.
 /home/travis/build/ithron/CortidQCT/bindings/C/src/Error.cpp:14: warning: Compound CortidQCT::Internal::C::Error is not documented.
 /home/travis/build/ithron/CortidQCT/lib/EigenAdaptors.h:58: warning: Compound CortidQCT::Internal::Adaptor::Detail_::ConstructionHelper< T, 0 > is not documented.
+/home/travis/build/ithron/CortidQCT/bindings/matlab/src/matlab-addons.c:48: warning: Compound CQCT_RayMeshIntersection is not documented.
 /home/travis/build/ithron/CortidQCT/bindings/C/include/CortidQCT/C/CortidQCT.h:199: warning: Compound CQCT_RayMeshIntersection is not documented.
 /home/travis/build/ithron/CortidQCT/lib/Sampler.h:133: warning: Compound CortidQCT::ModelSampler is not documented.
-/home/travis/build/ithron/CortidQCT/bindings/matlab/include/CortidQCT/Matlab/CortidQCT.h:165: warning: Compound CQCT_RayMeshIntersection_t is not documented.
 /home/travis/build/ithron/CortidQCT/include/CortidQCT/src/Mesh.h:437: warning: no uniquely matching class member found for 
   template void CortidQCT::Mesh< T >::cartesianRepresentation(const CortidQCT::BarycentricPoint< float, std::ptrdiff_t > *, BarycentricPoint< float, std::ptrdiff_t > const *, float *) const
 Possible candidates:
@@ -337,7 +337,7 @@ Possible candidates:
   'template < T >
   std::array< T, 3 > CortidQCT::Mesh< T >::cartesianRepresentation(BarycentricPoint< T, Mesh< T >::Index > const &point) const ' at line 433 of file /home/travis/build/ithron/CortidQCT/lib/Mesh.cpp
 
-/home/travis/build/ithron/CortidQCT/bindings/matlab/include/CortidQCT/Matlab/CortidQCT.h:446: warning: member CQCT_ColorToLabelMap belongs to two different groups. The second one found here will be ignored.
+/home/travis/build/ithron/CortidQCT/bindings/matlab/include/CortidQCT/Matlab/CortidQCT.h:435: warning: member CQCT_ColorToLabelMap belongs to two different groups. The second one found here will be ignored.
 /home/travis/build/ithron/CortidQCT/bindings/C/examples/cli.c:18: warning: Member main(int argc, char **argv) (function) of file cli.c is not documented.
 /home/travis/build/ithron/CortidQCT/common/src/Version.h:14: warning: Member CortidQCT_VERSION (macro definition) of file Version.h is not documented.
 /home/travis/build/ithron/CortidQCT/common/src/Version.h:15: warning: Member CortidQCT_VERSION_MAJOR (macro definition) of file Version.h is not documented.
@@ -470,10 +470,15 @@ Generating docs for file include/CortidQCT/src/Barycentri/home/travis/build/ithr
 /home/travis/build/ithron/CortidQCT/lib/SIMesh.cpp:245: warning: Member writeToSIMesh< double >(Mesh< double > const &, std::string const &, bool) (function) of namespace CortidQCT::Internal is not documented.
 /home/travis/build/ithron/CortidQCT/lib/SIMesh.cpp:248: warning: Member readFromSIMesh< float >(std::string const &, bool) (function) of namespace CortidQCT::Internal is not documented.
 /home/travis/build/ithron/CortidQCT/lib/SIMesh.cpp:249: warning: Member readFromSIMesh< double >(std::string const &, bool) (function) of namespace CortidQCT::Internal is not documented.
-/home/travis/build/ithron/CortidQCT/bindings/C/include/CortidQCT/C/CortidQCT.h:441: warning: The following parameters of CQCT_meshUpsample(CQCT_Mesh mesh, size_t nTimes) are not documented:
+/home/travis/build/ithron/CortidQCT/bindings/C/include/CortidQCT/C/CortidQCT.h:442: warning: The following parameters of CQCT_meshUpsample(CQCT_Mesh mesh, size_t nTimes) are not documented:
   parameter 'mesh'
 /home/travis/build/ithron/CortidQCT/bindings/C/include/CortidQCT/C/CortidQCT.h:368: warning: argument 'Pointer' of command @param is not found in the argument list of CQCT_meshBarycentricToCartesian(CQCT_Mesh mesh, CQCT_BarycentricPoint const *barycentricPtr, size_t nPoints, float **bufferPtr, CQCT_Error *error)
-/home/travis/build/ithron/CortidQCT/bindings/matlab/include/CortidQCT/Matlab/CortidQCT.h:409: warning: The following parameters of CQCT_meshUpsample(CQCT_Mesh mesh, size_t nTimes) are not documented:
+/home/travis/build/ithron/CortidQCT/bindings/matlab/include/CortidQCT/Matlab/CortidQCT.h:374: warning: argument 'intersectionsOutPtr' of command @param is not found in the argument list of CQCT_meshRayIntersectionsBuffers(CQCT_Mesh mesh, CQCT_Ray *raysPtr, size_t nRays, float **positionsOutPtr, ptrdiff_t **indicesOutPtr, float **distancesOutPtr)
+/home/travis/build/ithron/CortidQCT/bindings/matlab/include/CortidQCT/Matlab/CortidQCT.h:374: warning: The following parameters of CQCT_meshRayIntersectionsBuffers(CQCT_Mesh mesh, CQCT_Ray *raysPtr, size_t nRays, float **positionsOutPtr, ptrdiff_t **indicesOutPtr, float **distancesOutPtr) are not documented:
+  parameter 'positionsOutPtr'
+  parameter 'indicesOutPtr'
+  parameter 'distancesOutPtr'
+/home/travis/build/ithron/CortidQCT/bindings/matlab/include/CortidQCT/Matlab/CortidQCT.h:398: warning: The following parameters of CQCT_meshUpsample(CQCT_Mesh mesh, size_t nTimes) are not documented:
   parameter 'mesh'
 /home/travis/build/ithron/CortidQCT/bindings/C/include/CortidQCT/C/CortidQCT.h:184: warning: Member u (variable) of class CQCT_BarycentricPoint_t is not documented.
 /home/travis/build/ithron/CortidQCT/bindings/C/src/CortidQCT-Common.h:84: warning: Member impl_ (variable) of class CQCT_ColorToLabelMap_t is not documented.
@@ -485,10 +490,6 @@ Generating docs for file include/CortidQCT/src/Barycentri/home/travis/build/ithr
 /home/travis/build/ithron/CortidQCT/bindings/C/include/CortidQCT/C/CortidQCT.h:193: warning: Member z0 (variable) of class CQCT_Ray_t is not documented.
 /home/travis/build/ithron/CortidQCT/bindings/C/include/CortidQCT/C/CortidQCT.h:195: warning: Member dy (variable) of class CQCT_Ray_t is not documented.
 /home/travis/build/ithron/CortidQCT/bindings/C/include/CortidQCT/C/CortidQCT.h:195: warning: Member dz (variable) of class CQCT_Ray_t is not documented.
-/home/travis/build/ithron/CortidQCT/bindings/matlab/include/CortidQCT/Matlab/CortidQCT.h:168: warning: Member v (variable) of class CQCT_RayMeshIntersection_t is not documented.
-/home/travis/build/ithron/CortidQCT/bindings/matlab/include/CortidQCT/Matlab/CortidQCT.h:169: warning: Member triangleIndex (variable) of class CQCT_RayMeshIntersection_t is not documented.
-/home/travis/build/ithron/CortidQCT/bindings/matlab/include/CortidQCT/Matlab/CortidQCT.h:173: warning: Member _b (variable) of class CQCT_RayMeshIntersection_t is not documented.
-/home/travis/build/ithron/CortidQCT/bindings/matlab/include/CortidQCT/Matlab/CortidQCT.h:173: warning: Member _c (variable) of class CQCT_RayMeshIntersection_t is not documented.
 /home/travis/build/ithron/CortidQCT/bindings/C/src/CortidQCT-Common.h:74: warning: Member impl (variable) of class CQCT_VoxelVolume_t is not documented.
 /home/travis/build/ithron/CortidQCT/bindings/C/include/CortidQCT/C/CortidQCT.h:129: warning: Member width (variable) of class CQCT_VoxelVolumeSize is not documented.
 /home/travis/build/ithron/CortidQCT/bindings/C/include/CortidQCT/C/CortidQCT.h:129: warning: Member heigth (variable) of class CQCT_VoxelVolumeSize is not documented.
@@ -496,12 +497,12 @@ Generating docs for file include/CortidQCT/src/Barycentri/home/travis/build/ithr
 /home/travis/build/ithron/CortidQCT/bindings/C/include/CortidQCT/C/CortidQCT.h:134: warning: Member width (variable) of class CQCT_VoxelVolumeVoxelSize is not documented.
 /home/travis/build/ithron/CortidQCT/bindings/C/include/CortidQCT/C/CortidQCT.h:134: warning: Member heigth (variable) of class CQCT_VoxelVolumeVoxelSize is not documented.
 /home/travis/build/ithron/CortidQCT/bindings/C/include/CortidQCT/C/CortidQCT.h:134: warning: Member depth (variable) of class CQCT_VoxelVolumeVoxelSize is not documented.
-/home/travis/build/ithron/CortidQCT/bindings/matlab/src/matlab-addons.c:5: warning: Member width (variable) of class Size is not documented.
-/home/travis/build/ithron/CortidQCT/bindings/matlab/src/matlab-addons.c:5: warning: Member height (variable) of class Size is not documented.
-/home/travis/build/ithron/CortidQCT/bindings/matlab/src/matlab-addons.c:5: warning: Member depth (variable) of class Size is not documented.
-/home/travis/build/ithron/CortidQCT/bindings/matlab/src/matlab-addons.c:9: warning: Member width (variable) of class VoxelSize is not documented.
-/home/travis/build/ithron/CortidQCT/bindings/matlab/src/matlab-addons.c:9: warning: Member height (variable) of class VoxelSize is not documented.
-/home/travis/build/ithron/CortidQCT/bindings/matlab/src/matlab-addons.c:9: warning: Member depth (variable) of class VoxelSize is not documented.
+/home/travis/build/ithron/CortidQCT/bindings/matlab/src/matlab-addons.c:8: warning: Member width (variable) of class Size is not documented.
+/home/travis/build/ithron/CortidQCT/bindings/matlab/src/matlab-addons.c:8: warning: Member height (variable) of class Size is not documented.
+/home/travis/build/ithron/CortidQCT/bindings/matlab/src/matlab-addons.c:8: warning: Member depth (variable) of class Size is not documented.
+/home/travis/build/ithron/CortidQCT/bindings/matlab/src/matlab-addons.c:12: warning: Member width (variable) of class VoxelSize is not documented.
+/home/travis/build/ithron/CortidQCT/bindings/matlab/src/matlab-addons.c:12: warning: Member height (variable) of class VoxelSize is not documented.
+/home/travis/build/ithron/CortidQCT/bindings/matlab/src/matlab-addons.c:12: warning: Member depth (variable) of class VoxelSize is not documented.
 /home/travis/build/ithron/CortidQCT/lib/Mesh.cpp:433: warning: Member cartesianRepresentation(BarycentricPoint< T, Mesh< T >::Index > const &point) const  (function) of class CortidQCT::Mesh is not documented.
 /home/travis/build/ithron/CortidQCT/include/CortidQCT/src/Mesh.h:32: warning: End of list marker found without any preceding list items
 /home/travis/build/ithron/CortidQCT/include/CortidQCT/src/MeasurementModel.h:30: warning: End of list marker found without any preceding list items
@@ -607,7 +608,6 @@ Generating docs for compound CQCT_MeshFitter_t...
 Generating docs for compound CQCT_MeshFitterState_t...
 Generating docs for compound CQCT_Ray_t...
 Generating docs for compound CQCT_RayMeshIntersection...
-Generating docs for compound CQCT_RayMeshIntersection_t...
 Generating docs for compound CQCT_VoxelVolume_t...
 Generating docs for compound CQCT_VoxelVolumeSize...
 Generating docs for compound CQCT_VoxelVolumeVoxelSize...
@@ -635,7 +635,7 @@ Generating docs for compound CortidQCT::MartrixIOWrapper...
 Generating docs for compound CortidQCT::VolumeSampler...
 Generating docs for compound CortidQCT::ModelSampler...
 Generating docs for namespace CortidQCT::ColorToLabelMaps
-Generati/home/travis/build/ithron/CortidQCT/include/CortidQCT/src/ColorToLabelMap.h:100: warning: Member LabelType (typedef) of class CortidQCT::ColorToLabelMaps::CustomMap is not documented.
+Generating docs for compound CortidQCT::ColorToLabelMaps::CustomMap/home/travis/build/ithron/CortidQCT/include/CortidQCT/src/ColorToLabelMap.h:100: warning: Member LabelType (typedef) of class CortidQCT::ColorToLabelMaps::CustomMap is not documented.
 /home/travis/build/ithron/CortidQCT/include/CortidQCT/src/ColorToLabelMap.h:102: warning: Member Table (typedef) of class CortidQCT::ColorToLabelMaps::CustomMap is not documented.
 /home/travis/build/ithron/CortidQCT/lib/DisplacementOptimizer.h:37: warning: Member DisplacementsWeightsPair (typedef) of class CortidQCT::Internal::DisplacementOptimizer is not documented.
 /home/travis/build/ithron/CortidQCT/lib/DisplacementOptimizer.h:39: warning: Member DisplacementOptimizer(MeshFitter::Configuration const &config) (function) of class CortidQCT::Internal::DisplacementOptimizer is not documented.
@@ -690,7 +690,7 @@ Transcript written on _formulas.log.
 /home/travis/build/ithron/CortidQCT/README.md:133: warning: Unsupported xml/html tag <configurationFile> found
 /home/travis/build/ithron/CortidQCT/README.md:133: warning: Unsupported xml/html tag <inputVolume> found
 /home/travis/build/ithron/CortidQCT/README.md:133: warning: Unsupported xml/html tag <outputMesh> found
-ng docs for compound CortidQCT::ColorToLabelMaps::CustomMap...
+...
 Generating docs for compound CortidQCT::Internal::DisplacementOptimizer...
 Generating docs for compound CortidQCT::Internal::BarycentricPointValidatorHelper_...
 Generating docs for compound CortidQCT::Internal::BarycentricPointValidatorHelper_< true >...
@@ -726,7 +726,7 @@ Generating file index...
 Generating file member index...
 Generating example index...
 finalizing index lists...
-lookup cache used 983/65536 hits=7579 misses=1151
+lookup cache used 978/65536 hits=7574 misses=1146
 finished...
 make[3]: Leaving directory `/home/travis/build/ithron/CortidQCT'
 [100%] Built target doc

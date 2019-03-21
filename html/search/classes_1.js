@@ -14,7 +14,6 @@ var searchData=
   ['cqct_5fmeshfitterstate_5ft',['CQCT_MeshFitterState_t',['../structCQCT__MeshFitterState__t.html',1,'']]],
   ['cqct_5fray_5ft',['CQCT_Ray_t',['../structCQCT__Ray__t.html',1,'']]],
   ['cqct_5fraymeshintersection',['CQCT_RayMeshIntersection',['../structCQCT__RayMeshIntersection.html',1,'']]],
-  ['cqct_5fraymeshintersection_5ft',['CQCT_RayMeshIntersection_t',['../structCQCT__RayMeshIntersection__t.html',1,'']]],
   ['cqct_5fvoxelvolume_5ft',['CQCT_VoxelVolume_t',['../structCQCT__VoxelVolume__t.html',1,'']]],
   ['cqct_5fvoxelvolumesize',['CQCT_VoxelVolumeSize',['../structCQCT__VoxelVolumeSize.html',1,'']]],
   ['cqct_5fvoxelvolumevoxelsize',['CQCT_VoxelVolumeVoxelSize',['../structCQCT__VoxelVolumeVoxelSize.html',1,'']]],
