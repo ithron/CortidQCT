@@ -73,6 +73,29 @@ bool isOutwardOriented(Eigen::MatrixBase<DerivedV> const &V,
   return outwardsCount > V.rows() / 2;
 }
 
+struct SequencialTransform {
+  template <class I, class O, class F>
+  void operator()(I b, I e, O o, F &&f) const {
+    using std::transform;
+    transform(b, e, o, std::forward<F>(f));
+  }
+};
+
+struct ParallelTransform {
+  template <class I, class O, class F>
+  void operator()(I b, I e, O o, F &&f) const {
+    using std::distance;
+    auto const N = distance(b, e);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wsign-compare"
+
+#pragma omp parallel for
+    for (std::size_t i = 0; i < N; ++i) { o[i] = f(b[i]); }
+  }
+
+#pragma clang diagnostic pop
+};
+
 } // anonymous namespace
 
 template <class T> void Mesh<T>::ensurePostconditions() const {
@@ -552,7 +575,6 @@ void Mesh<T>::rayIntersections(InputIterator raysBegin, InputIterator raysEnd,
   using Eigen::Map;
   using Eigen::Matrix;
   using gsl::narrow_cast;
-  using std::transform;
 
   // Type validation
   using InputTraits = std::iterator_traits<InputIterator>;
@@ -561,10 +583,25 @@ void Mesh<T>::rayIntersections(InputIterator raysBegin, InputIterator raysEnd,
       std::is_convertible<typename InputTraits::value_type, Ray<T>>::value,
       "value_type of InputIterator must be convertible to Ray");
 
+  // Get iterator categories for input and output iterator and check if both
+  // are random access.
+  using ITag = typename std::iterator_traits<InputIterator>::iterator_category;
+  using OTag = typename std::iterator_traits<OutputIterator>::iterator_category;
+  constexpr bool isRandomAccessI =
+      std::is_base_of<std::random_access_iterator_tag, ITag>::value;
+  constexpr bool isRandomAccessO =
+      std::is_base_of<std::random_access_iterator_tag, OTag>::value;
+  // If both iterator types are random access, parallel execution can be used.
+  // If not use sequential code.
+  using Transform = std::conditional_t<isRandomAccessI && isRandomAccessO,
+                                       ParallelTransform, SequencialTransform>;
+
   auto const vMap = vertexMap(*this);
   auto const iMap = indexMap(*this);
 
-  transform(
+  // Either transverse the data sequencially or parallel, depending on the
+  // iterator types
+  Transform{}(
       raysBegin, raysEnd, intersectionsOut, [&vMap, &iMap](auto const &ray) {
         // map ray elements to eigen vectors
         Map<Matrix<T, 3, 1> const> const sourceMap{ray.origin.data(), 3, 1};
