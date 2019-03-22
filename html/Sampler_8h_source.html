@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">CortidQCT
-   &#160;<span id="projectnumber">1.2.2.26</span>
+   &#160;<span id="projectnumber">1.2.2.27</span>
    </div>
   </td>
  </tr>
@@ -164,7 +164,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;                          pos(2) &lt; gsl::narrow_cast&lt;<span class="keywordtype">int</span>&gt;(size.depth);</div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keyword">auto</span> <span class="keyword">const</span> index =</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        gsl::narrow_cast&lt;std::size_t&gt;(pos(2)) * size.<a class="code" href="structCortidQCT_1_1VolumeSize.html#a7176a12ff140b49ee018c3274eab0b35">width</a> * size.height +</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        gsl::narrow_cast&lt;std::size_t&gt;(pos(2)) * size.width * size.height +</div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        gsl::narrow_cast&lt;std::size_t&gt;(pos(1)) * size.width +</div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        gsl::narrow_cast&lt;std::size_t&gt;(pos(0));</div>
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;</div>
@@ -307,7 +307,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="classCortidQCT_1_1MeasurementModel_html_a76801d1b51e6964a4ac7196c33740088"><div class="ttname"><a href="classCortidQCT_1_1MeasurementModel.html#a76801d1b51e6964a4ac7196c33740088">CortidQCT::MeasurementModel::labels</a></div><div class="ttdeci">auto labels() const </div><div class="ttdoc">Returns all valid labels of the model. </div><div class="ttdef"><b>Definition:</b> MeasurementModel.h:124</div></div>
 <div class="ttc" id="classCortidQCT_1_1MeasurementModel_html_a293be8c328233291f61a7e044b001777"><div class="ttname"><a href="classCortidQCT_1_1MeasurementModel.html#a293be8c328233291f61a7e044b001777">CortidQCT::MeasurementModel::densityRange</a></div><div class="ttdeci">DiscreteRange&lt; float &gt; densityRange</div><div class="ttdoc">range for the density sampling </div><div class="ttdef"><b>Definition:</b> MeasurementModel.h:71</div></div>
 <div class="ttc" id="structCortidQCT_1_1DiscreteRange_html_a33be3e2f7a4dd1b26a8184c79b39e91c"><div class="ttname"><a href="structCortidQCT_1_1DiscreteRange.html#a33be3e2f7a4dd1b26a8184c79b39e91c">CortidQCT::DiscreteRange::stride</a></div><div class="ttdeci">value_type stride</div><div class="ttdoc">stride, i.e. distance between two consecutive elements </div><div class="ttdef"><b>Definition:</b> DiscreteRange.h:35</div></div>
-<div class="ttc" id="structCortidQCT_1_1VolumeSize_html_a7176a12ff140b49ee018c3274eab0b35"><div class="ttname"><a href="structCortidQCT_1_1VolumeSize.html#a7176a12ff140b49ee018c3274eab0b35">CortidQCT::VolumeSize::width</a></div><div class="ttdeci">std::size_t width</div><div class="ttdoc">Size along the x-axis. </div><div class="ttdef"><b>Definition:</b> VolumeSize.h:24</div></div>
 <div class="ttc" id="classCortidQCT_1_1VoxelVolume_html_abaefe2a77728ffa149c0685055c3e8cd"><div class="ttname"><a href="classCortidQCT_1_1VoxelVolume.html#abaefe2a77728ffa149c0685055c3e8cd">CortidQCT::VoxelVolume::voxelSize</a></div><div class="ttdeci">VoxelSize const &amp; voxelSize() const noexcept</div><div class="ttdoc">Returns the voxel size. </div><div class="ttdef"><b>Definition:</b> VoxelVolume.h:79</div></div>
 <div class="ttc" id="classCortidQCT_1_1VoxelVolume_html"><div class="ttname"><a href="classCortidQCT_1_1VoxelVolume.html">CortidQCT::VoxelVolume</a></div><div class="ttdoc">Type representing a voxel volume. </div><div class="ttdef"><b>Definition:</b> VoxelVolume.h:32</div></div>
 <div class="ttc" id="classCortidQCT_1_1MeasurementModel_html_a94da3a09d09b3e87c50a7fc6e40c68a5"><div class="ttname"><a href="classCortidQCT_1_1MeasurementModel.html#a94da3a09d09b3e87c50a7fc6e40c68a5">CortidQCT::MeasurementModel::angleRange</a></div><div class="ttdeci">DiscreteRange&lt; float &gt; angleRange</div><div class="ttdoc">range for the angle sampling </div><div class="ttdef"><b>Definition:</b> MeasurementModel.h:73</div></div>
@@ -328,7 +327,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Mar 22 2019 14:00:52 for CortidQCT by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Mar 22 2019 16:41:58 for CortidQCT by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
