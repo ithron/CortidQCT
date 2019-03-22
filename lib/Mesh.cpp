@@ -626,11 +626,11 @@ void Mesh<T>::rayIntersections(InputIterator raysBegin, InputIterator raysEnd,
         if (igl::ray_mesh_intersect(sourceMap, -dirMap, vMap.transpose(),
                                     iMap.transpose(), hit)) {
           // If we found a closer hit, update intersection
-          if (abs(intersection.signedDistance) < abs(narrow_cast<T>(hit.t))) {
+          if (abs(intersection.signedDistance) > abs(narrow_cast<T>(hit.t))) {
             intersection.position.triangleIndex = hit.id;
             intersection.position.uv[0] = narrow_cast<T>(hit.u);
             intersection.position.uv[1] = narrow_cast<T>(hit.v);
-            intersection.signedDistance = narrow_cast<T>(hit.t);
+            intersection.signedDistance = narrow_cast<T>(-hit.t);
           }
         }
 
