@@ -161,6 +161,7 @@ result.mesh.writeToFile(outputMeshFilename, varargin{:});
 
 % plot results
 volume.plot;
+hold on;
 h = result.mesh.plot;
 axis equal
 colormap gray
