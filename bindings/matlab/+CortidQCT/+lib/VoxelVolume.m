@@ -68,27 +68,22 @@ classdef VoxelVolume < CortidQCT.lib.ObjectBase
       
     end
     
-    function s = plot(obj, varargin)
+    function s = plot(obj)
+
+      import CortidQCT.lib.image3.*;
       
-      if nargin == 1
-        ax = gca;
-      else
-        ax = varargin{1};
-      end
+      vs = obj.voxelSize;
+      T = [0 vs(1) 0 -vs(2); vs(2), 0, 0, -vs(1); 0, 0, vs(3), -vs(3)];
+      centers = floor(obj.size() / 2);
+
+      Vox = obj.Voxels;
       
-      [X, Y, Z] = meshgrid(...
-        (0:obj.size(1)-1) * obj.voxelSize(1), ...
-        (0:obj.size(2)-1) * obj.voxelSize(2), ...
-        (0:obj.size(3)-1) * obj.voxelSize(3));
-      
-      centers = ((obj.size - 1) .* obj.voxelSize) / 2;
-      
-      xslice = centers(1);
-      yslice = centers(2);
-      zslice = centers(3);
-      
-      s = slice(ax, X, Y, Z, obj.Voxels, xslice, yslice, zslice);
-      set(s, 'edgecolor', 'interp');
+      h1 = slice3(Vox, T, 1, centers(1));
+      h2 = slice3(Vox, T, 2, centers(2));
+      h3 = slice3(Vox, T, 3, centers(3));
+      s = [h1, h2, h3];
+      axis equal;
+      view(3);
       
     end
     
