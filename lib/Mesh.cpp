@@ -578,6 +578,7 @@ void Mesh<T>::rayIntersections(InputIterator raysBegin, InputIterator raysEnd,
   using Eigen::Map;
   using Eigen::Matrix;
   using gsl::narrow_cast;
+  using std::abs;
 
   // Type validation
   using InputTraits = std::iterator_traits<InputIterator>;
@@ -610,6 +611,7 @@ void Mesh<T>::rayIntersections(InputIterator raysBegin, InputIterator raysEnd,
         Map<Matrix<T, 3, 1> const> const sourceMap{ray.origin.data(), 3, 1};
         Map<Matrix<T, 3, 1> const> const dirMap{ray.direction.data(), 3, 1};
         igl::Hit hit;
+        // Note: intersection.signedDistance is initialized to infinity
         RayMeshIntersection<T> intersection;
 
         if (igl::ray_mesh_intersect(sourceMap, dirMap, vMap.transpose(),
@@ -618,6 +620,18 @@ void Mesh<T>::rayIntersections(InputIterator raysBegin, InputIterator raysEnd,
           intersection.position.uv[0] = narrow_cast<T>(hit.u);
           intersection.position.uv[1] = narrow_cast<T>(hit.v);
           intersection.signedDistance = narrow_cast<T>(hit.t);
+        }
+
+        // Search in reversed direction
+        if (igl::ray_mesh_intersect(sourceMap, -dirMap, vMap.transpose(),
+                                    iMap.transpose(), hit)) {
+          // If we found a closer hit, update intersection
+          if (abs(intersection.signedDistance) < abs(narrow_cast<T>(hit.t))) {
+            intersection.position.triangleIndex = hit.id;
+            intersection.position.uv[0] = narrow_cast<T>(hit.u);
+            intersection.position.uv[1] = narrow_cast<T>(hit.v);
+            intersection.signedDistance = narrow_cast<T>(hit.t);
+          }
         }
 
         return intersection;
