@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">CortidQCT
-   &#160;<span id="projectnumber">1.2.2.24</span>
+   &#160;<span id="projectnumber">1.2.2.25</span>
    </div>
   </td>
  </tr>
@@ -332,9 +332,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="classCortidQCT_1_1Mesh_html_a00230e71237643779b241188e7acd84d"><div class="ttname"><a href="classCortidQCT_1_1Mesh.html#a00230e71237643779b241188e7acd84d">CortidQCT::Mesh::vertexCount</a></div><div class="ttdeci">Size vertexCount() const noexcept</div><div class="ttdoc">Number of vertices. </div><div class="ttdef"><b>Definition:</b> Mesh.h:83</div></div>
 <div class="ttc" id="RayMeshIntersection_8h_html"><div class="ttname"><a href="RayMeshIntersection_8h.html">RayMeshIntersection.h</a></div><div class="ttdoc">This file contains the definition of the RayMeshIntersection type. </div></div>
 <div class="ttc" id="classCortidQCT_1_1Mesh_html_a8173d354feb4ca374319272687f1f427"><div class="ttname"><a href="classCortidQCT_1_1Mesh.html#a8173d354feb4ca374319272687f1f427">CortidQCT::Mesh::withUnsafeLabelPointer</a></div><div class="ttdeci">auto withUnsafeLabelPointer(F &amp;&amp;f) const noexcept(noexcept(f(LabelData().data())))</div><div class="ttdoc">Calls the given functional with an unsafe pointer to the raw label storage. </div><div class="ttdef"><b>Definition:</b> Mesh.h:397</div></div>
-<div class="ttc" id="classCortidQCT_1_1Mesh_html_acc876f8f481e90b961b47e1c16936524"><div class="ttname"><a href="classCortidQCT_1_1Mesh.html#acc876f8f481e90b961b47e1c16936524">CortidQCT::Mesh::perVertexNormals</a></div><div class="ttdeci">void perVertexNormals(OutputIterator out) const </div><div class="ttdoc">Computes per vertex normals. </div><div class="ttdef"><b>Definition:</b> Mesh.cpp:658</div></div>
+<div class="ttc" id="classCortidQCT_1_1Mesh_html_acc876f8f481e90b961b47e1c16936524"><div class="ttname"><a href="classCortidQCT_1_1Mesh.html#acc876f8f481e90b961b47e1c16936524">CortidQCT::Mesh::perVertexNormals</a></div><div class="ttdeci">void perVertexNormals(OutputIterator out) const </div><div class="ttdoc">Computes per vertex normals. </div><div class="ttdef"><b>Definition:</b> Mesh.cpp:672</div></div>
 <div class="ttc" id="classCortidQCT_1_1Mesh_html_ae398361b2609e87158aa2131136c744b"><div class="ttname"><a href="classCortidQCT_1_1Mesh.html#ae398361b2609e87158aa2131136c744b">CortidQCT::Mesh::rayIntersection</a></div><div class="ttdeci">RayMeshIntersection&lt; T &gt; rayIntersection(Ray&lt; T &gt; const &amp;ray) const </div><div class="ttdoc">Computes intersection with the given ray and the mesh. </div><div class="ttdef"><b>Definition:</b> Mesh.cpp:564</div></div>
-<div class="ttc" id="classCortidQCT_1_1Mesh_html_a8c11db0cf6dbafef494b8fce1307b0cd"><div class="ttname"><a href="classCortidQCT_1_1Mesh.html#a8c11db0cf6dbafef494b8fce1307b0cd">CortidQCT::Mesh::upsample</a></div><div class="ttdeci">Mesh&lt; T &gt; &amp; upsample(std::size_t nTimes=1)</div><div class="ttdoc">Upsample the mesh without touching the original vertices. </div><div class="ttdef"><b>Definition:</b> Mesh.cpp:627</div></div>
+<div class="ttc" id="classCortidQCT_1_1Mesh_html_a8c11db0cf6dbafef494b8fce1307b0cd"><div class="ttname"><a href="classCortidQCT_1_1Mesh.html#a8c11db0cf6dbafef494b8fce1307b0cd">CortidQCT::Mesh::upsample</a></div><div class="ttdeci">Mesh&lt; T &gt; &amp; upsample(std::size_t nTimes=1)</div><div class="ttdoc">Upsample the mesh without touching the original vertices. </div><div class="ttdef"><b>Definition:</b> Mesh.cpp:641</div></div>
 <div class="ttc" id="Ray_8h_html"><div class="ttname"><a href="Ray_8h.html">Ray.h</a></div><div class="ttdoc">Definition of Ray data structure. </div></div>
 <div class="ttc" id="classCortidQCT_1_1Mesh_html_aa528a27520798cb236bb0130e9a97b1f"><div class="ttname"><a href="classCortidQCT_1_1Mesh.html#aa528a27520798cb236bb0130e9a97b1f">CortidQCT::Mesh::Mesh</a></div><div class="ttdeci">Mesh(std::size_t nVertices, std::size_t nTriangles) noexcept(noexcept(VertexData(3 *nVertices, T{0}))&amp;&amp;noexcept(IndexData(3 *nTriangles, Index{0}))&amp;&amp;noexcept(LabelData(nVertices, Label{0})))</div><div class="ttdoc">Constructs an uninitialized mesh with the given vertex and triangle count. </div><div class="ttdef"><b>Definition:</b> Mesh.h:70</div></div>
 <div class="ttc" id="structCortidQCT_1_1BarycentricPoint_html"><div class="ttname"><a href="structCortidQCT_1_1BarycentricPoint.html">CortidQCT::BarycentricPoint</a></div><div class="ttdoc">BarycentricPoint data type. Represents a points on triangulation in barycentric coordinates. </div><div class="ttdef"><b>Definition:</b> BarycentricPoint.h:26</div></div>
@@ -342,7 +342,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Mar 21 2019 17:55:05 for CortidQCT by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Mar 22 2019 09:40:47 for CortidQCT by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

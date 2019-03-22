@@ -297,7 +297,7 @@ Possible candidates:
 /home/travis/build/ithron/CortidQCT/lib/DisplacementOptimizer.h:94: warning: documented symbol `template DisplacementOptimizer::DisplacementsWeightsPair CortidQCT::Internal::DisplacementOptimizer::operator' was not declared or defined.
 /home/travis/build/ithron/CortidQCT/lib/DisplacementOptimizer.h:95: warning: documented symbol `template DisplacementOptimizer::DisplacementsWeightsPair CortidQCT::Internal::Eigen::VectorXd' was not declared or defined.
 /home/travis/build/ithron/CortidQCT/lib/DisplacementOptimizer.h:120: warning: documented symbol `template DisplacementOptimizer::DisplacementsWeightsPair CortidQCT::Internal::DisplacementOptimizer::operator' was not declared or defined.
-/home/travis/build/ithron/CortidQCT/lib/Mesh.cpp:682: warning: no uniquely matching class member found for 
+/home/travis/build/ithron/CortidQCT/lib/Mesh.cpp:696: warning: no uniquely matching class member found for 
   template void CortidQCT::Mesh< T >::cartesianRepresentation(const CortidQCT::BarycentricPoint< float, std::ptrdiff_t > *, BarycentricPoint< float, std::ptrdiff_t > const *, float *) const
 Possible candidates:
   std::array< T, 3 > CortidQCT::Mesh< T >::cartesianRepresentation(BarycentricPoint< T, Index > const &point) const ' at line 195 of file /home/travis/build/ithron/CortidQCT/include/CortidQCT/src/Mesh.h
@@ -307,7 +307,7 @@ Possible candidates:
   'template < T >
   std::array< T, 3 > CortidQCT::Mesh< T >::cartesianRepresentation(BarycentricPoint< T, Mesh< T >::Index > const &point) const ' at line 433 of file /home/travis/build/ithron/CortidQCT/lib/Mesh.cpp
 
-/home/travis/build/ithron/CortidQCT/lib/Mesh.cpp:685: warning: no uniquely matching class member found for 
+/home/travis/build/ithron/CortidQCT/lib/Mesh.cpp:699: warning: no uniquely matching class member found for 
   template void CortidQCT::Mesh< T >::cartesianRepresentation(const CortidQCT::BarycentricPoint< double, std::ptrdiff_t > *, BarycentricPoint< double, std::ptrdiff_t > const *, double *) const
 Possible candidates:
   std::array< T, 3 > CortidQCT::Mesh< T >::cartesianRepresentation(BarycentricPoint< T, Index > const &point) const ' at line 195 of file /home/travis/build/ithron/CortidQCT/include/CortidQCT/src/Mesh.h
@@ -317,7 +317,7 @@ Possible candidates:
   'template < T >
   std::array< T, 3 > CortidQCT::Mesh< T >::cartesianRepresentation(BarycentricPoint< T, Mesh< T >::Index > const &point) const ' at line 433 of file /home/travis/build/ithron/CortidQCT/lib/Mesh.cpp
 
-/home/travis/build/ithron/CortidQCT/lib/Mesh.cpp:688: warning: no uniquely matching class member found for 
+/home/travis/build/ithron/CortidQCT/lib/Mesh.cpp:702: warning: no uniquely matching class member found for 
   template void CortidQCT::Mesh< T >::cartesianRepresentation(std::vector< CortidQCT::BarycentricPoint< float, std::ptrdiff_t >>::const_iterator, std::vector< BarycentricPoint< float, std::ptrdiff_t >>::const_iterator, float *) const
 Possible candidates:
   std::array< T, 3 > CortidQCT::Mesh< T >::cartesianRepresentation(BarycentricPoint< T, Index > const &point) const ' at line 195 of file /home/travis/build/ithron/CortidQCT/include/CortidQCT/src/Mesh.h
@@ -327,7 +327,7 @@ Possible candidates:
   'template < T >
   std::array< T, 3 > CortidQCT::Mesh< T >::cartesianRepresentation(BarycentricPoint< T, Mesh< T >::Index > const &point) const ' at line 433 of file /home/travis/build/ithron/CortidQCT/lib/Mesh.cpp
 
-/home/travis/build/ithron/CortidQCT/lib/Mesh.cpp:692: warning: no uniquely matching class member found for 
+/home/travis/build/ithron/CortidQCT/lib/Mesh.cpp:706: warning: no uniquely matching class member found for 
   template void CortidQCT::Mesh< T >::cartesianRepresentation(std::vector< CortidQCT::BarycentricPoint< double, std::ptrdiff_t >>::const_iterator, std::vector< BarycentricPoint< double, std::ptrdiff_t >>::const_iterator, double *) const
 Possible candidates:
   std::array< T, 3 > CortidQCT::Mesh< T >::cartesianRepresentation(BarycentricPoint< T, Index > const &point) const ' at line 195 of file /home/travis/build/ithron/CortidQCT/include/CortidQCT/src/Mesh.h
