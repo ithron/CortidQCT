@@ -30,6 +30,7 @@
 #include <algorithm>
 #include <cctype>
 #include <fstream>
+#include <functional>
 #include <iterator>
 #include <limits>
 
@@ -649,27 +650,77 @@ template <class T> Mesh<T> &Mesh<T>::upsample(std::size_t nTimes) {
   using gsl::narrow_cast;
   using VMat = Eigen::Matrix<T, Eigen::Dynamic, 3>;
   using FMat = Eigen::Matrix<int, Eigen::Dynamic, 3>;
+  using LMat = Eigen::Matrix<Label, Eigen::Dynamic, 1>;
 
   if (nTimes == 0) return *this;
 
   // Copy vertces and indices into matrices so that igl can handle them
   VMat const V = Adaptor::vertexMap(*this).transpose();
   FMat const F = Adaptor::indexMap(*this).transpose().template cast<int>();
+  VMat const N = Adaptor::vertexNormalMap(*this).transpose();
+  LMat const L = Adaptor::labelMap(*this);
 
-  VMat Vnew;
-  FMat Fnew;
+  VMat Vnew = V;
+  FMat Fnew = F;
+  VMat Nnew = N;
+  LMat Lnew = L;
 
-  igl::upsample(V, F, Vnew, Fnew, gsl::narrow<int>(nTimes));
+  for (auto i = 0u; i < nTimes; ++i) {
+    FMat tmpF = Fnew;
+    Eigen::SparseMatrix<T> S;
+
+    igl::upsample(narrow_cast<int>(Vnew.rows()), tmpF, S, Fnew);
+
+    // find best matching labels
+    LMat tmpL = LMat(S.rows(), 1);
+
+    Eigen::Matrix<Label, Eigen::Dynamic, 3> LL =
+        Eigen::Matrix<Label, Eigen::Dynamic, 3>::Zero(S.rows(), 3);
+    Eigen::Matrix<Eigen::Index, Eigen::Dynamic, 3> Lcnt =
+        Eigen::Matrix<Eigen::Index, Eigen::Dynamic, 3>::Zero(S.rows(), 3);
+
+    for (auto j = 0; j < S.outerSize(); ++j) {
+      for (typename Eigen::SparseMatrix<T>::InnerIterator it(S, j); it; ++it) {
+        auto const lj = Lnew(it.col());
+        auto const row = it.row();
+
+        for (auto k = 0; k < 3; ++k) {
+          if (lj == LL(row, k)) {
+            ++Lcnt(row, k);
+            break;
+          } else if (LL(row, k) == 0) {
+            LL(row, k) = lj;
+            Lcnt(row, k) = 1;
+            break;
+          }
+        }
+      }
+    }
+    // Select label with most votes
+    for (auto j = 0; j < Lcnt.rows(); ++j) {
+      Eigen::Matrix<Index, 3, 1> const row = Lcnt.row(j).transpose();
+      auto const maxEl = std::max_element(row.data(), row.data() + row.size());
+      tmpL(j) = LL(j, std::distance(row.data(), maxEl));
+    }
+
+    Lnew = tmpL;
+    Vnew = (S * Vnew).eval();
+    Nnew = (S * Nnew).eval();
+    // normalize
+    Nnew.array().colwise() /= Nnew.array().square().rowwise().sum().sqrt();
+  }
 
   vertexData_.resize(3 * narrow_cast<std::size_t>(Vnew.rows()));
+  normalData_.resize(3 * narrow_cast<std::size_t>(Vnew.rows()));
   indexData_.resize(3 * narrow_cast<std::size_t>(Fnew.rows()));
   labelData_.resize(narrow_cast<std::size_t>(Vnew.rows()), Label{0});
 
   // Assign copy new vertices and indices
   Adaptor::vertexMap(*this) = Vnew.transpose();
   Adaptor::indexMap(*this) = Fnew.transpose().template cast<Index>();
+  Adaptor::vertexNormalMap(*this) = Nnew.transpose();
+  Adaptor::labelMap(*this) = Lnew;
 
-  // Labels are not touched
   return *this;
 }
 
