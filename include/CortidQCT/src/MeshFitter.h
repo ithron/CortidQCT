@@ -136,8 +136,13 @@ public:
     float minDisNorm = std::numeric_limits<float>::max();
     /// Log likeihood of deformedMesh
     float logLikelihood = -std::numeric_limits<float>::max();
-    /// Per-vertex log likelihood vector
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdocumentation-deprecated-sync"
+    /// @brief Per-vertex log likelihood vector (**deprecated**)
+    /// @deprecated Deprecated since version 1.3. The the vertex normals stored
+    // in `deformedMesh` instead. Will be removed in version 2.0.
     std::vector<float> perVertexLogLikelihood;
+#pragma clang diagnostic pop
     /// Effective sigmaS
     float effectiveSigmaS = .0f;
     /// Iteration count

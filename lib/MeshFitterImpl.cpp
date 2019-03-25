@@ -142,6 +142,12 @@ MeshFitter::State MeshFitter::Impl::init(VoxelVolume const &volume) const {
          Eigen::AngleAxisf(rotInRad[2], Vector3f::UnitZ())) *
         Adaptor::vec(conf.referenceMeshScale).asDiagonal() * V0);
 
+  // Init vertex normals
+  state.referenceMesh.updatePerVertexNormals();
+  // This will be removed in versino 2.0:
+  state.vertexNormals.resize(3 * narrow_cast<std::size_t>(nVertices));
+  Adaptor::map(state.vertexNormals) = Adaptor::vertexNormalMap(state.referenceMesh);
+
   // Init deformed mesh with reference mesh
   state.deformedMesh = state.referenceMesh;
 
@@ -199,7 +205,7 @@ void MeshFitter::Impl::findOptimalDisplacements(
 
   // Get maps to state variables
   auto const labels = Adaptor::labelMap(state.referenceMesh);
-  auto const N = Adaptor::map(state.vertexNormals);
+  auto const N = Adaptor::vertexNormalMap(state.deformedMesh);
   auto const volumeSamples = Adaptor::map(state.volumeSamples);
   auto optimalDisplacements = Adaptor::map(state.displacementVector);
   auto gamma = Adaptor::map(state.weights);
@@ -216,7 +222,7 @@ void MeshFitter::Impl::findOptimalDeformation(MeshFitter::State &state) const {
     throw std::invalid_argument("Invalid state argument, call init() first!");
   }
 
-  auto const N = Adaptor::map(state.vertexNormals);
+  auto const N = Adaptor::vertexNormalMap(state.deformedMesh);
   auto const optimalDisplacements = Adaptor::map(state.displacementVector);
   auto const gamma = Adaptor::map(state.weights);
   auto V = Adaptor::vertexMap(state.deformedMesh);
@@ -228,6 +234,10 @@ void MeshFitter::Impl::findOptimalDeformation(MeshFitter::State &state) const {
 
   // Fit mesh
   V = state.hiddenState_->meshFitter.fit(Y, N.transpose(), gamma).transpose();
+  // Update normals
+  state.deformedMesh.updatePerVertexNormals();
+  // This will be removed in v2.0:
+  Adaptor::map(state.vertexNormals) = Adaptor::vertexNormalMap(state.deformedMesh);
 }
 
 void MeshFitter::Impl::sampleVolume(MeshFitter::State &state) const {
@@ -243,12 +253,9 @@ void MeshFitter::Impl::sampleVolume(MeshFitter::State &state) const {
   auto const &conf = fitter_.configuration;
   auto const V = Adaptor::vertexMap(state.deformedMesh);
   auto const nVertices = V.cols();
-  auto N = Adaptor::map(state.vertexNormals);
+  auto N = Adaptor::vertexNormalMap(state.deformedMesh);
   auto volumeSamplingPositions = Adaptor::map(state.volumeSamplingPositions);
   auto volumeSamples = Adaptor::map(state.volumeSamples);
-
-  // Compute normals
-  N = perVertexNormalMatrix(V.transpose(), state.hiddenState_->F).transpose();
 
   // Copmute new sampling positions
   volumeSamplingPositions =
@@ -256,8 +263,9 @@ void MeshFitter::Impl::sampleVolume(MeshFitter::State &state) const {
 
   // Sample the volume
   auto const volumeSampler = VolumeSampler{
-      state.hiddenState_->volume,
-      conf.ignoreExteriorSamples ? std::numeric_limits<float>::quiet_NaN() : 0.f};
+      state.hiddenState_->volume, conf.ignoreExteriorSamples
+                                      ? std::numeric_limits<float>::quiet_NaN()
+                                      : 0.f};
   volumeSampler(volumeSamplingPositions.transpose(), volumeSamples);
 
   // Reorder samples
@@ -280,7 +288,7 @@ void MeshFitter::Impl::computeLogLikelihood(MeshFitter::State &state) const {
   }
 
   auto const labels = Adaptor::labelMap(state.referenceMesh);
-  auto const N = Adaptor::map(state.vertexNormals);
+  auto const N = Adaptor::vertexNormalMap(state.deformedMesh);
   auto const volumeSamples = Adaptor::map(state.volumeSamples);
 
   auto const llVec =

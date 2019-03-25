@@ -568,8 +568,11 @@ CQCT_EXTERN void CQCT_meshFitterResultSetWeights(CQCT_MeshFitterResult result,
                                                  float const *buffer);
 
 /// Copies the vertex normals
+/// @deprecated Deprecated since version 1.3, will be removed in 2.0. Use the
+/// per-vertex normals property of the defomed mesh instead.
 CQCT_EXTERN size_t CQCT_meshFitterResultCopyVertexNormals(
-    CQCT_MeshFitterResult result, float **buffer);
+    CQCT_MeshFitterResult result, float **buffer)
+    __attribute__((deprecated("Use normals stored in deformedMesh instead.")));
 
 /// Returns the number of volume sampling positions
 CQCT_EXTERN size_t

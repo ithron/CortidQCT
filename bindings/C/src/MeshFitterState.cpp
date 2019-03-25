@@ -150,12 +150,12 @@ CORTIDQCT_C_EXPORT CQCT_EXTERN size_t CQCT_meshFitterResultCopyVertexNormals(
 
   auto const &state = result->impl.objPtr->state;
 
-  auto const size = state.vertexNormals.size() * 3 * sizeof(float);
+  auto const size = state.deformedMesh.vertexCount() * 3 * sizeof(float);
 
   if (*buffer == nullptr) { *buffer = static_cast<float *>(malloc(size)); }
 
-  memcpy(*buffer, reinterpret_cast<float const *>(state.vertexNormals.data()),
-         size);
+  state.deformedMesh.withUnsafeVertexNormalPointer(
+      [size, buffer](float const *ptr) { memcpy(*buffer, ptr, size); });
 
   return size;
 }
