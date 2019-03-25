@@ -21,13 +21,18 @@ classdef Mesh < CortidQCT.lib.ObjectBase
         handle = ObjectBase.call('createMesh');
       elseif nargin == 1
         handle = varargin{1};
-      elseif nargin == 2 || nargin == 3
+      elseif nargin == 2 || nargin == 3 || nargin == 4
         V = varargin{1};
         F = varargin{2};
-        if nargin == 3
+        if nargin >= 3
           L = varargin{3};
         else
           L = zeros(size(V, 1), 1, 'uint32');
+        end
+        if nargin == 4
+          N = varargin{4};
+        else
+          N = [];
         end
         
         err = Error;
@@ -39,10 +44,15 @@ classdef Mesh < CortidQCT.lib.ObjectBase
       
       obj@CortidQCT.lib.ObjectBase(handle);
       
-      if nargin == 2 || nargin == 3
+      if nargin == 2 || nargin == 3 || nargin == 4
         obj.Vertices = V;
         obj.Indices = F;
         obj.Labels = L;
+        if not(isempty(N))
+          obj.Normals = N;
+        else
+          obj.updateNormals();
+        end
       end
     end
     
@@ -268,7 +278,7 @@ classdef Mesh < CortidQCT.lib.ObjectBase
 
       import CortidQCT.lib.Mesh
 
-      meshCopy = Mesh(obj.Vertices, obj.Indices, obj.Labels);
+      meshCopy = Mesh(obj.Vertices, obj.Indices, obj.Labels, obj.Normals);
 
     end
     
