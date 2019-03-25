@@ -346,7 +346,8 @@ CQCT_EXTERN void CQCT_meshSetVertices(CQCT_Mesh mesh, float const *buffer);
  * @note The caller is responsible to release the memory of the buffer, even if
  * the memory was allocated by the function (when `*bufferPtr == NULL`).
  */
-CQCT_EXTERN size_t CQCT_meshCopyVertexNormals(CQCT_Mesh mesh, float **bufferPtr);
+CQCT_EXTERN size_t CQCT_meshCopyVertexNormals(CQCT_Mesh mesh,
+                                              float **bufferPtr);
 
 /**
  * @brief Copies the per-vertex normals from the given buffer into the mesh data
