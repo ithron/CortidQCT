@@ -96,12 +96,15 @@ classdef MeshFitterResult < CortidQCT.lib.ObjectBase
     end
 
     function vertexNormals = get.vertexNormals(obj)
+      % VERTEXNORMALS Returns the vertex normals of the deformed mesh
+      %   vertexNormals = get.vertexNormals(obj)
+      % DEPRECATED: Will be removed in version 2.0. Use `mesh.Normals`
+      % instead.
       import CortidQCT.lib.ObjectBase;
 
-      buffer = libpointer('singlePtr', zeros(3, obj.mesh.vertexCount, 'single'));
-      result = ObjectBase.call('meshFitterResultCopyVertexNormals', obj.handle, buffer);
-      assert(result == 3 * 4 * obj.mesh.vertexCount, "Size mismatch");
-      vertexNormals = buffer.Value';
+      warning('MeshFitterResult.vertexNormals is deprecated and will be removed in version 2.0. Use mesh.Normals instead.');
+
+      vertexNormals = mesh.Normals;
     end
 
     function volumeSamplingPositions = get.volumeSamplingPositions(obj)
