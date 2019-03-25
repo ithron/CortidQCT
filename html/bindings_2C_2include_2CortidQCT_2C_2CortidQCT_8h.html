@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">CortidQCT
-   &#160;<span id="projectnumber">1.2.2.27</span>
+   &#160;<span id="projectnumber">1.2.2.28</span>
    </div>
   </td>
  </tr>
@@ -324,6 +324,12 @@ CQCT_EXTERN size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="
 <tr class="memitem:ga7288d6d06048818bc06d2f26344e3a0b"><td class="memItemLeft" align="right" valign="top">CQCT_EXTERN void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#ga7288d6d06048818bc06d2f26344e3a0b">CQCT_meshSetVertices</a> (<a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a> mesh, float const *buffer)</td></tr>
 <tr class="memdesc:ga7288d6d06048818bc06d2f26344e3a0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies the vertices from the given buffer into the mesh data structure.  <a href="group__C-API.html#ga7288d6d06048818bc06d2f26344e3a0b">More...</a><br/></td></tr>
 <tr class="separator:ga7288d6d06048818bc06d2f26344e3a0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab3b35f27ebefa9514002671d8a3217a2"><td class="memItemLeft" align="right" valign="top">CQCT_EXTERN size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#gab3b35f27ebefa9514002671d8a3217a2">CQCT_meshCopyVertexNormals</a> (<a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a> mesh, float **bufferPtr)</td></tr>
+<tr class="memdesc:gab3b35f27ebefa9514002671d8a3217a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies the mesh's per-vertex normals into the given buffer.  <a href="group__C-API.html#gab3b35f27ebefa9514002671d8a3217a2">More...</a><br/></td></tr>
+<tr class="separator:gab3b35f27ebefa9514002671d8a3217a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1c08db3f9eaa19e2bbee917fb03bfc96"><td class="memItemLeft" align="right" valign="top">CQCT_EXTERN void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#ga1c08db3f9eaa19e2bbee917fb03bfc96">CQCT_meshSetVertexNormals</a> (<a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a> mesh, float const *buffer)</td></tr>
+<tr class="memdesc:ga1c08db3f9eaa19e2bbee917fb03bfc96"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies the per-vertex normals from the given buffer into the mesh data structure.  <a href="group__C-API.html#ga1c08db3f9eaa19e2bbee917fb03bfc96">More...</a><br/></td></tr>
+<tr class="separator:ga1c08db3f9eaa19e2bbee917fb03bfc96"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaa48c1fe736281fb10d4ffce92c60269c"><td class="memItemLeft" align="right" valign="top">CQCT_EXTERN size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#gaa48c1fe736281fb10d4ffce92c60269c">CQCT_meshCopyTriangles</a> (<a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a> mesh, ptrdiff_t **bufferPtr)</td></tr>
 <tr class="memdesc:gaa48c1fe736281fb10d4ffce92c60269c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies the mesh's indices into the given buffer.  <a href="group__C-API.html#gaa48c1fe736281fb10d4ffce92c60269c">More...</a><br/></td></tr>
 <tr class="separator:gaa48c1fe736281fb10d4ffce92c60269c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -348,9 +354,9 @@ CQCT_EXTERN size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="
 <tr class="memitem:ga1a95f945113734c47b116289890fe0a8"><td class="memItemLeft" align="right" valign="top">CQCT_EXTERN void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#ga1a95f945113734c47b116289890fe0a8">CQCT_meshUpsample</a> (<a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a> mesh, size_t nTimes)</td></tr>
 <tr class="memdesc:ga1a95f945113734c47b116289890fe0a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Upsamples the given mesh <code>nTimes</code> without touchting the original vertices.  <a href="group__C-API.html#ga1a95f945113734c47b116289890fe0a8">More...</a><br/></td></tr>
 <tr class="separator:ga1a95f945113734c47b116289890fe0a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaddd15d7c7acbad1698b4e5b6c30a29c2"><td class="memItemLeft" align="right" valign="top">CQCT_EXTERN void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#gaddd15d7c7acbad1698b4e5b6c30a29c2">CQCT_meshPerVertexNormals</a> (<a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a> mesh, float **normalsOutPtr)</td></tr>
-<tr class="memdesc:gaddd15d7c7acbad1698b4e5b6c30a29c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">computes per-vertex normals  <a href="group__C-API.html#gaddd15d7c7acbad1698b4e5b6c30a29c2">More...</a><br/></td></tr>
-<tr class="separator:gaddd15d7c7acbad1698b4e5b6c30a29c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7c28fec21bd7943653e776f30249a39e"><td class="memItemLeft" align="right" valign="top">CQCT_EXTERN void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__C-API.html#ga7c28fec21bd7943653e776f30249a39e">CQCT_meshUpdatePerVertexNormals</a> (<a class="el" href="group__C-API.html#gab16a5b8d67699346c12ee67d3a5d23e4">CQCT_Mesh</a> mesh)</td></tr>
+<tr class="memdesc:ga7c28fec21bd7943653e776f30249a39e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Re-computes per-vertex normals.  <a href="group__C-API.html#ga7c28fec21bd7943653e776f30249a39e">More...</a><br/></td></tr>
+<tr class="separator:ga7c28fec21bd7943653e776f30249a39e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="member-group"></a>
 MeshFitterState object type</h2></td></tr>
@@ -473,7 +479,7 @@ CQCT_EXTERN size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Mar 22 2019 16:42:47 for CortidQCT by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Mar 25 2019 10:15:09 for CortidQCT by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

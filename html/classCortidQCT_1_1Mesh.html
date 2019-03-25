@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">CortidQCT
-   &#160;<span id="projectnumber">1.2.2.27</span>
+   &#160;<span id="projectnumber">1.2.2.28</span>
    </div>
   </td>
  </tr>
@@ -130,14 +130,14 @@ template&lt;class T&gt; </td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="member-group"></a>
 Construction</h2></td></tr>
-<tr class="memitem:abdb35d44b64d63cffaad5ae61b5b547d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abdb35d44b64d63cffaad5ae61b5b547d"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCortidQCT_1_1Mesh.html#abdb35d44b64d63cffaad5ae61b5b547d">Mesh</a> () noexcept(noexcept(VertexData())&amp;&amp;noexcept(IndexData())&amp;&amp;noexcept(LabelData()))</td></tr>
-<tr class="memdesc:abdb35d44b64d63cffaad5ae61b5b547d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an empty mesh. <br/></td></tr>
-<tr class="separator:abdb35d44b64d63cffaad5ae61b5b547d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa528a27520798cb236bb0130e9a97b1f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa528a27520798cb236bb0130e9a97b1f"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCortidQCT_1_1Mesh.html#aa528a27520798cb236bb0130e9a97b1f">Mesh</a> (std::size_t nVertices, std::size_t nTriangles) noexcept(noexcept(VertexData(3 *nVertices, T{0}))&amp;&amp;noexcept(IndexData(3 *nTriangles, <a class="el" href="classCortidQCT_1_1Mesh.html#a85ed47c4807bd85372175889555ed77c">Index</a>{0}))&amp;&amp;noexcept(LabelData(nVertices, <a class="el" href="classCortidQCT_1_1Mesh.html#ab29bc2956971579d646fc291c73a28a6">Label</a>{0})))</td></tr>
-<tr class="memdesc:aa528a27520798cb236bb0130e9a97b1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an uninitialized mesh with the given vertex and triangle count. <br/></td></tr>
-<tr class="separator:aa528a27520798cb236bb0130e9a97b1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6138fd5d8bef5ac2fcb65aba9f428071"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6138fd5d8bef5ac2fcb65aba9f428071"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCortidQCT_1_1Mesh.html#a6138fd5d8bef5ac2fcb65aba9f428071">Mesh</a> () noexcept(noexcept(VertexData())&amp;&amp;noexcept(IndexData())&amp;&amp;noexcept(LabelData())&amp;&amp;noexcept(VertexData()))</td></tr>
+<tr class="memdesc:a6138fd5d8bef5ac2fcb65aba9f428071"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an empty mesh. <br/></td></tr>
+<tr class="separator:a6138fd5d8bef5ac2fcb65aba9f428071"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb2dc6ff80b1fcb5b49e30d75e5f7cb6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acb2dc6ff80b1fcb5b49e30d75e5f7cb6"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCortidQCT_1_1Mesh.html#acb2dc6ff80b1fcb5b49e30d75e5f7cb6">Mesh</a> (std::size_t nVertices, std::size_t nTriangles) noexcept(noexcept(VertexData(3 *nVertices, T{0}))&amp;&amp;noexcept(IndexData(3 *nTriangles, <a class="el" href="classCortidQCT_1_1Mesh.html#a85ed47c4807bd85372175889555ed77c">Index</a>{0}))&amp;&amp;noexcept(LabelData(nVertices, <a class="el" href="classCortidQCT_1_1Mesh.html#ab29bc2956971579d646fc291c73a28a6">Label</a>{0}))&amp;&amp;noexcept(NormalData(3 *nVertices, T{0})))</td></tr>
+<tr class="memdesc:acb2dc6ff80b1fcb5b49e30d75e5f7cb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an uninitialized mesh with the given vertex and triangle count. <br/></td></tr>
+<tr class="separator:acb2dc6ff80b1fcb5b49e30d75e5f7cb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="member-group"></a>
 Accessors</h2></td></tr>
@@ -191,10 +191,10 @@ Queries</h2></td></tr>
 <tr class="memitem:ae398361b2609e87158aa2131136c744b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structCortidQCT_1_1RayMeshIntersection.html">RayMeshIntersection</a>&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCortidQCT_1_1Mesh.html#ae398361b2609e87158aa2131136c744b">rayIntersection</a> (<a class="el" href="structCortidQCT_1_1Ray.html">Ray</a>&lt; T &gt; const &amp;ray) const </td></tr>
 <tr class="memdesc:ae398361b2609e87158aa2131136c744b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes intersection with the given ray and the mesh.  <a href="#ae398361b2609e87158aa2131136c744b">More...</a><br/></td></tr>
 <tr class="separator:ae398361b2609e87158aa2131136c744b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acc876f8f481e90b961b47e1c16936524"><td class="memTemplParams" colspan="2">template&lt;class OutputIterator &gt; </td></tr>
-<tr class="memitem:acc876f8f481e90b961b47e1c16936524"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classCortidQCT_1_1Mesh.html#acc876f8f481e90b961b47e1c16936524">perVertexNormals</a> (OutputIterator out) const </td></tr>
-<tr class="memdesc:acc876f8f481e90b961b47e1c16936524"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes per vertex normals.  <a href="#acc876f8f481e90b961b47e1c16936524">More...</a><br/></td></tr>
-<tr class="separator:acc876f8f481e90b961b47e1c16936524"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6ac2e60cdfe1606794be86f375e5793"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae6ac2e60cdfe1606794be86f375e5793"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCortidQCT_1_1Mesh.html#ae6ac2e60cdfe1606794be86f375e5793">updatePerVertexNormals</a> ()</td></tr>
+<tr class="memdesc:ae6ac2e60cdfe1606794be86f375e5793"><td class="mdescLeft">&#160;</td><td class="mdescRight">Re-computes per-vertex normals. <br/></td></tr>
+<tr class="separator:ae6ac2e60cdfe1606794be86f375e5793"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="member-group"></a>
 Modifyers</h2></td></tr>
@@ -231,6 +231,14 @@ template&lt;class F &gt; </td></tr>
 template&lt;class F &gt; </td></tr>
 <tr class="memitem:a8b21a9d409d54cdeb48bb5e605b48775"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>withUnsafeLabelPointer</b> (F &amp;&amp;f) noexcept(noexcept(f(LabelData().data())))</td></tr>
 <tr class="separator:a8b21a9d409d54cdeb48bb5e605b48775"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad52c7c438cecf75588ca5abb81793288"><td class="memTemplParams" colspan="2">template&lt;class F &gt; </td></tr>
+<tr class="memitem:ad52c7c438cecf75588ca5abb81793288"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classCortidQCT_1_1Mesh.html#ad52c7c438cecf75588ca5abb81793288">withUnsafeVertexNormalPointer</a> (F &amp;&amp;f) const noexcept(noexcept(f(std::declval&lt; const NormalData &gt;().data())))</td></tr>
+<tr class="memdesc:ad52c7c438cecf75588ca5abb81793288"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calls the given functional with an unsafe pointer to the raw per vertex normal storage.  <a href="#ad52c7c438cecf75588ca5abb81793288">More...</a><br/></td></tr>
+<tr class="separator:ad52c7c438cecf75588ca5abb81793288"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60ed4d4fd9ff81ef7f79634f28cdc985"><td class="memTemplParams" colspan="2"><a class="anchor" id="a60ed4d4fd9ff81ef7f79634f28cdc985"></a>
+template&lt;class F &gt; </td></tr>
+<tr class="memitem:a60ed4d4fd9ff81ef7f79634f28cdc985"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>withUnsafeVertexNormalPointer</b> (F &amp;&amp;f) noexcept(noexcept(f(std::declval&lt; NormalData &gt;().data())))</td></tr>
+<tr class="separator:a60ed4d4fd9ff81ef7f79634f28cdc985"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><h3>template&lt;class T&gt;<br/>
@@ -567,40 +575,6 @@ template&lt;class T &gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="acc876f8f481e90b961b47e1c16936524"></a>
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class T &gt; </div>
-<div class="memtemplate">
-template&lt;class OutputIterator &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">template void <a class="el" href="classCortidQCT_1_1Mesh.html">CortidQCT::Mesh</a>&lt; T &gt;::perVertexNormals </td>
-          <td>(</td>
-          <td class="paramtype">OutputIterator&#160;</td>
-          <td class="paramname"><em>out</em></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Computes per vertex normals. </p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">OutputIterator</td><td>output iterator type with value_type of T </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">out</td><td>Output iterator taking 3 * <a class="el" href="classCortidQCT_1_1Mesh.html#a00230e71237643779b241188e7acd84d" title="Number of vertices. ">vertexCount()</a> values of type T </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
 <a class="anchor" id="ae398361b2609e87158aa2131136c744b"></a>
 <div class="memitem">
 <div class="memproto">
@@ -798,6 +772,50 @@ template&lt;class F &gt; </div>
 
 </div>
 </div>
+<a class="anchor" id="ad52c7c438cecf75588ca5abb81793288"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<div class="memtemplate">
+template&lt;class F &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto <a class="el" href="classCortidQCT_1_1Mesh.html">CortidQCT::Mesh</a>&lt; T &gt;::withUnsafeVertexNormalPointer </td>
+          <td>(</td>
+          <td class="paramtype">F &amp;&amp;&#160;</td>
+          <td class="paramname"><em>f</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Calls the given functional with an unsafe pointer to the raw per vertex normal storage. </p>
+<p>Vertex normals are stored contiguously in memory: [dx_0, dy_0, dz_0, dx_1, dy_1, dz_1, ...].</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">F</td><td>Function that accepts a <code>Scalar const *</code> pointer as the only argument. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">noexcept(conditional)</td><td>iff <code>f(Scalar const *)</code> is noexcept. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The return value of the functional </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="a1f08cb96ee61f455b4f4d317764a5235"></a>
 <div class="memitem">
 <div class="memproto">
@@ -942,7 +960,7 @@ template&lt;class T &gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Mar 22 2019 16:42:47 for CortidQCT by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Mar 25 2019 10:15:09 for CortidQCT by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

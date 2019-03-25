@@ -10,6 +10,7 @@ var searchData=
   ['withunsafedatapointer',['withUnsafeDataPointer',['../classCortidQCT_1_1MeasurementModel.html#a097a3f78865990322a7b6b361c2da2cb',1,'CortidQCT::MeasurementModel::withUnsafeDataPointer()'],['../classCortidQCT_1_1VoxelVolume.html#a594820604528ddf41eeb7796046d6e96',1,'CortidQCT::VoxelVolume::withUnsafeDataPointer()']]],
   ['withunsafeindexpointer',['withUnsafeIndexPointer',['../classCortidQCT_1_1Mesh.html#ac6334c55d0c95f19bc6214983ba4dc29',1,'CortidQCT::Mesh']]],
   ['withunsafelabelpointer',['withUnsafeLabelPointer',['../classCortidQCT_1_1Mesh.html#a8173d354feb4ca374319272687f1f427',1,'CortidQCT::Mesh']]],
+  ['withunsafevertexnormalpointer',['withUnsafeVertexNormalPointer',['../classCortidQCT_1_1Mesh.html#ad52c7c438cecf75588ca5abb81793288',1,'CortidQCT::Mesh']]],
   ['withunsafevertexpointer',['withUnsafeVertexPointer',['../classCortidQCT_1_1Mesh.html#a1f08cb96ee61f455b4f4d317764a5235',1,'CortidQCT::Mesh']]],
   ['writetofile',['writeToFile',['../classCortidQCT_1_1Mesh.html#ac19e59dc75cd1c4453e941e33b6681bd',1,'CortidQCT::Mesh::writeToFile(std::string const &amp;meshFilename, std::string const &amp;labelFilename) const '],['../classCortidQCT_1_1Mesh.html#aea52ab27d64c744316abc0f565de1abc',1,'CortidQCT::Mesh::writeToFile(std::string const &amp;meshFilename, LabelToColorMap&lt; double, Label &gt; const &amp;labelMap=LabelToColorMaps::defaultMap&lt; double, Label &gt;) const ']]]
 ];
