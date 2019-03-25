@@ -187,6 +187,36 @@ CORTIDQCT_C_EXPORT CQCT_EXTERN void CQCT_meshSetVertices(CQCT_Mesh mesh,
       [buffer, size](float *dest) { std::copy(buffer, buffer + size, dest); });
 }
 
+CORTIDQCT_C_EXPORT CQCT_EXTERN size_t CQCT_meshCopyVertexNormals(CQCT_Mesh mesh,
+                                                            float **bufferPtr) {
+  assert(mesh != nullptr);
+  assert(bufferPtr != nullptr);
+
+  auto const &meshRef = *(mesh->impl.objPtr);
+  auto const size = 3 * meshRef.vertexCount() * sizeof(float);
+
+  if (*bufferPtr == nullptr) {
+    *bufferPtr = static_cast<float *>(malloc(size));
+  }
+
+  meshRef.withUnsafeVertexNormalPointer(
+      [bufferPtr, size](const float *src) { memcpy(*bufferPtr, src, size); });
+
+  return size;
+}
+
+CORTIDQCT_C_EXPORT CQCT_EXTERN void CQCT_meshSetVertexNormals(CQCT_Mesh mesh,
+                                                         float const *buffer) {
+
+  assert(mesh != nullptr);
+  assert(buffer != nullptr);
+
+  auto &obj = *(mesh->impl.objPtr);
+  auto const size = obj.vertexCount() * 3;
+  obj.withUnsafeVertexNormalPointer(
+      [buffer, size](float *dest) { std::copy(buffer, buffer + size, dest); });
+}
+
 CORTIDQCT_C_EXPORT CQCT_EXTERN size_t
 CQCT_meshCopyTriangles(CQCT_Mesh mesh, ptrdiff_t **bufferPtr) {
   assert(mesh != nullptr);
@@ -362,17 +392,10 @@ CORTIDQCT_C_EXPORT CQCT_EXTERN void CQCT_meshUpsample(CQCT_Mesh mesh,
 }
 
 CORTIDQCT_C_EXPORT CQCT_EXTERN void
-CQCT_meshPerVertexNormals(CQCT_Mesh mesh, float **normalsOutPtr) {
+CQCT_meshUpdatePerVertexNormals(CQCT_Mesh mesh) {
 
   assert(mesh != nullptr);
-  assert(normalsOutPtr != nullptr);
 
-  auto const N = mesh->impl.objPtr->vertexCount();
-
-  if (*normalsOutPtr == nullptr) {
-    *normalsOutPtr = static_cast<float *>(malloc(3 * N * sizeof(float)));
-  }
-
-  mesh->impl.objPtr->perVertexNormals(*normalsOutPtr);
+  mesh->impl.objPtr->updatePerVertexNormals();
 }
 
