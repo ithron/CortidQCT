@@ -39,6 +39,24 @@ vertexMap(Mesh<T> &mesh) {
 }
 
 template <class T>
+inline Eigen::Map<Eigen::Matrix<T, 3, Eigen::Dynamic> const>
+vertexNormalMap(Mesh<T> const &mesh) {
+  return mesh.withUnsafeVertexNormalPointer([&mesh](auto const *ptr) {
+    return Eigen::Map<Eigen::Matrix<T, 3, Eigen::Dynamic> const>{
+        ptr, 3, gsl::narrow_cast<Eigen::Index>(mesh.vertexCount())};
+  });
+}
+
+template <class T>
+inline Eigen::Map<Eigen::Matrix<T, 3, Eigen::Dynamic>>
+vertexNormalMap(Mesh<T> &mesh) {
+  return mesh.withUnsafeVertexNormalPointer([&mesh](auto *ptr) {
+    return Eigen::Map<Eigen::Matrix<T, 3, Eigen::Dynamic>>{
+        ptr, 3, gsl::narrow_cast<Eigen::Index>(mesh.vertexCount())};
+  });
+}
+
+template <class T>
 inline Eigen::Map<
     Eigen::Matrix<typename Mesh<T>::Index, 3, Eigen::Dynamic> const>
 indexMap(Mesh<T> const &mesh) {

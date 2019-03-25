@@ -68,13 +68,6 @@ classdef Mesh < CortidQCT.lib.ObjectBase
       Vertices = vBuffer.Value';
     end
 
-    function Normals = get.Normals(obj)
-      import CortidQCT.lib.ObjectBase;
-      vBuffer = libpointer('singlePtr', zeros(3, obj.vertexCount, 'single'));
-      ObjectBase.call('meshPerVertexNormals', obj.handle, vBuffer);
-      Normals = vBuffer.Value';
-    end
-    
     function obj = set.Vertices(obj, V)
       import CortidQCT.lib.ObjectBase;
       
@@ -87,6 +80,28 @@ classdef Mesh < CortidQCT.lib.ObjectBase
       end
       
       ObjectBase.call('meshSetVertices', obj.handle, V');
+    end
+
+    function Normals = get.Normals(obj)
+      import CortidQCT.lib.ObjectBase;
+      vnBuffer = libpointer('singlePtr', zeros(3, obj.vertexCount, 'single'));
+      result = ObjectBase.call('meshCopyVertexNormals', obj.handle, vnBuffer);
+      assert(result == 4 * length(vnBuffer.Value(:)), "Size mismatch");
+      Normals = vnBuffer.Value';
+    end
+
+    function obj = set.Normals(obj, N)
+      import CortidQCT.lib.ObjectBase;
+      
+      if size(N, 2) ~= 3 || not(isa(N, 'single'))
+        error('N must be a Nx3 single matrix')
+      end
+      
+      if size(N, 1) ~= obj.vertexCount
+        error('Number of rows of N must match vertexCount')
+      end
+      
+      ObjectBase.call('meshSetVertexNormals', obj.handle, N');
     end
     
     function Indices = get.Indices(obj)
@@ -209,6 +224,7 @@ classdef Mesh < CortidQCT.lib.ObjectBase
         'Vertices', obj.Vertices, ...
         'FaceColor', 'interp', ...
         'FaceAlpha', 0.8, ...
+        'VertexNormals', obj.Normals, ...
         'CData', obj.Labels);
       
     end
@@ -229,6 +245,17 @@ classdef Mesh < CortidQCT.lib.ObjectBase
       import CortidQCT.lib.ObjectBase;
 
       ObjectBase.call('meshUpsample', obj.handle, nTimes);
+
+    end
+
+    function obj = updateNormals(obj)
+      % UPDATENORMALS re-compute the per-vertex normals.
+      %
+      %   obj = updateNormals(obj)
+
+      import CortidQCT.lib.ObjectBase;
+
+      ObjectBase.call('meshUpdatePerVertexNormals', obj.handle);
 
     end
     

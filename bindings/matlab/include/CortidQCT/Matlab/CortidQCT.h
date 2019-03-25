@@ -287,6 +287,36 @@ CQCT_EXTERN size_t CQCT_meshCopyVertices(CQCT_Mesh mesh, float **bufferPtr);
 CQCT_EXTERN void CQCT_meshSetVertices(CQCT_Mesh mesh, float const *buffer);
 
 /**
+ * @brief Copies the mesh's per-vertex normals into the given buffer.
+ *
+ * If the pointer pointed to by bufferPtr (i.e. `*bufferPtr`) is NULL,
+ * memory is allocated, otherwise the pointed to memory is used.
+
+ * @param mesh Mesh object to inspect
+ * @param bufferPtr Pointer to a pointer to the start of a memory buffer, that
+ * is large enough to hold `3 * N * sizeof(float)` (N = number of verices)
+ * bytes.* Alternativly, bufferPtr can point to a NULL pointer. In that case the
+ * required memory is allocated by the function.
+ * @return Number of copied bytes. In case `*bufferPtr == NULL` it's the size of
+ * the allocated buffer.
+ * @note The caller is responsible to release the memory of the buffer, even if
+ * the memory was allocated by the function (when `*bufferPtr == NULL`).
+ */
+CQCT_EXTERN size_t CQCT_meshCopyVertexNormals(CQCT_Mesh mesh,
+                                              float **bufferPtr);
+
+/**
+ * @brief Copies the per-vertex normals from the given buffer into the mesh data
+ * structure.
+ *
+ * @note Normals are expected to have the oder [n1x, n1y, n1z, n2x, n2y, n2z,
+ * ...]
+ * @param[in,out] mesh mesh to set the vertex normals for
+ * @param[in] buffer buffer to copy the normals from
+ */
+CQCT_EXTERN void CQCT_meshSetVertexNormals(CQCT_Mesh mesh, float const *buffer);
+
+/**
  * @brief Copies the mesh's indices into the given buffer
  * @see CQCT_meshCopyVertices()
  */
@@ -404,21 +434,12 @@ CQCT_EXTERN size_t CQCT_meshRayIntersectionsBuffers(
 CQCT_EXTERN void CQCT_meshUpsample(CQCT_Mesh mesh, size_t nTimes);
 
 /**
- * @brief computes per-vertex normals
- *
- * Copies per-vertex normals into the given buffer. The buffer must be able to
- * hold `3 * N` values, where N is the number of vertices.
+ * @brief Re-computes per-vertex normals
  *
  * @pre `mesh != NULL`
- * @pre `normalsOutPtr != NULL`
  * @param[in] mesh Mesh object
- * @param[out] normalsOutPtr pointer to a memory address where the normals are
- * copied to. Alternatively `normalsOutPtr` can be set to NULL. In this case the
- * memory is allocated by the function. The caller is responsible for releasing
- * the memory, in all cases.
  */
-CQCT_EXTERN void CQCT_meshPerVertexNormals(CQCT_Mesh mesh,
-                                           float **normalsOutPtr);
+CQCT_EXTERN void CQCT_meshUpdatePerVertexNormals(CQCT_Mesh mesh);
 
 /// @}
 
