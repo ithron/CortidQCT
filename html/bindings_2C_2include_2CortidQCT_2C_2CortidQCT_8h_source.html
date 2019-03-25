@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">CortidQCT
-   &#160;<span id="projectnumber">1.2.2.28</span>
+   &#160;<span id="projectnumber">1.2.2.29</span>
    </div>
   </td>
  </tr>
@@ -38,6 +38,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
@@ -71,7 +72,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Groups</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -320,101 +321,102 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00567"></a><span class="lineno">  567</span>&#160;CQCT_EXTERN <span class="keywordtype">void</span> <a class="code" href="group__C-API.html#ga29fb7c72e8b2ceb3eaa5a66b17e31c96">CQCT_meshFitterResultSetWeights</a>(CQCT_MeshFitterResult result,</div>
 <div class="line"><a name="l00568"></a><span class="lineno">  568</span>&#160;                                                 <span class="keywordtype">float</span> <span class="keyword">const</span> *buffer);</div>
 <div class="line"><a name="l00569"></a><span class="lineno">  569</span>&#160;</div>
-<div class="line"><a name="l00571"></a><span class="lineno">  571</span>&#160;CQCT_EXTERN <span class="keywordtype">size_t</span> <a class="code" href="group__C-API.html#ga0f4a6186ebb386ef351e9e90f322ad89">CQCT_meshFitterResultCopyVertexNormals</a>(</div>
-<div class="line"><a name="l00572"></a><span class="lineno">  572</span>&#160;    CQCT_MeshFitterResult result, <span class="keywordtype">float</span> **buffer);</div>
-<div class="line"><a name="l00573"></a><span class="lineno">  573</span>&#160;</div>
-<div class="line"><a name="l00575"></a><span class="lineno">  575</span>&#160;CQCT_EXTERN <span class="keywordtype">size_t</span></div>
-<div class="line"><a name="l00576"></a><span class="lineno">  576</span>&#160;<a class="code" href="group__C-API.html#ga8accf25991ddf8e809f7d00c795a8173">CQCT_meshFitterResultVolumeSamplingPositionsCount</a>(CQCT_MeshFitterResult result);</div>
-<div class="line"><a name="l00577"></a><span class="lineno">  577</span>&#160;</div>
-<div class="line"><a name="l00579"></a><span class="lineno">  579</span>&#160;CQCT_EXTERN <span class="keywordtype">size_t</span> <a class="code" href="group__C-API.html#ga03b98f4fb4dabae1ebf37942dc226d9d">CQCT_meshFitterResultCopyVolumeSamplingPositions</a>(</div>
-<div class="line"><a name="l00580"></a><span class="lineno">  580</span>&#160;    CQCT_MeshFitterResult result, <span class="keywordtype">float</span> **buffer);</div>
-<div class="line"><a name="l00581"></a><span class="lineno">  581</span>&#160;</div>
-<div class="line"><a name="l00583"></a><span class="lineno">  583</span>&#160;CQCT_EXTERN <span class="keywordtype">size_t</span> <a class="code" href="group__C-API.html#ga939a37a31319d71d57528277af4d1f87">CQCT_meshFitterResultCopyVolumeSamples</a>(</div>
-<div class="line"><a name="l00584"></a><span class="lineno">  584</span>&#160;    CQCT_MeshFitterResult result, <span class="keywordtype">float</span> **buffer);</div>
-<div class="line"><a name="l00585"></a><span class="lineno">  585</span>&#160;</div>
-<div class="line"><a name="l00587"></a><span class="lineno">  587</span>&#160;CQCT_EXTERN <span class="keywordtype">float</span></div>
-<div class="line"><a name="l00588"></a><span class="lineno">  588</span>&#160;<a class="code" href="group__C-API.html#ga4b9fabb5bac7d063e9491865a8406ee6">CQCT_meshFitterResultMinimumDisplacementNorm</a>(CQCT_MeshFitterResult result);</div>
-<div class="line"><a name="l00589"></a><span class="lineno">  589</span>&#160;</div>
-<div class="line"><a name="l00591"></a><span class="lineno">  591</span>&#160;CQCT_EXTERN <span class="keywordtype">float</span></div>
-<div class="line"><a name="l00592"></a><span class="lineno">  592</span>&#160;<a class="code" href="group__C-API.html#gaec4e4e9bb072f0d9203b31e835086e5e">CQCT_meshFitterResultLogLikelihood</a>(CQCT_MeshFitterResult result);</div>
-<div class="line"><a name="l00593"></a><span class="lineno">  593</span>&#160;</div>
-<div class="line"><a name="l00596"></a><span class="lineno">  596</span>&#160;CQCT_EXTERN <span class="keywordtype">float</span></div>
-<div class="line"><a name="l00597"></a><span class="lineno">  597</span>&#160;<a class="code" href="group__C-API.html#ga32c0c3087ba03d8300615d0df60ed530">CQCT_meshFitterResultCopyPerVertexLogLikelihood</a>(CQCT_MeshFitterResult result,</div>
-<div class="line"><a name="l00598"></a><span class="lineno">  598</span>&#160;                                                <span class="keywordtype">float</span> **buffer);</div>
-<div class="line"><a name="l00599"></a><span class="lineno">  599</span>&#160;</div>
-<div class="line"><a name="l00601"></a><span class="lineno">  601</span>&#160;CQCT_EXTERN <span class="keywordtype">void</span></div>
-<div class="line"><a name="l00602"></a><span class="lineno">  602</span>&#160;<a class="code" href="group__C-API.html#ga6c39d0919c8ad22a63aa87d6547b4680">CQCT_meshFitterResultSetLogLikelihood</a>(CQCT_MeshFitterResult result, <span class="keywordtype">float</span> ll);</div>
-<div class="line"><a name="l00603"></a><span class="lineno">  603</span>&#160;</div>
-<div class="line"><a name="l00605"></a><span class="lineno">  605</span>&#160;CQCT_EXTERN <span class="keywordtype">float</span></div>
-<div class="line"><a name="l00606"></a><span class="lineno">  606</span>&#160;<a class="code" href="group__C-API.html#ga785ce299b2dd505405384de5f3ac00db">CQCT_meshFitterResultEffectiveSigmaS</a>(CQCT_MeshFitterResult result);</div>
-<div class="line"><a name="l00607"></a><span class="lineno">  607</span>&#160;</div>
-<div class="line"><a name="l00609"></a><span class="lineno">  609</span>&#160;CQCT_EXTERN <span class="keywordtype">size_t</span></div>
-<div class="line"><a name="l00610"></a><span class="lineno">  610</span>&#160;<a class="code" href="group__C-API.html#ga75722474c959c6ca819785fe5ca4117b">CQCT_meshFitterResultIterationCount</a>(CQCT_MeshFitterResult result);</div>
-<div class="line"><a name="l00611"></a><span class="lineno">  611</span>&#160;</div>
-<div class="line"><a name="l00613"></a><span class="lineno">  613</span>&#160;CQCT_EXTERN <span class="keywordtype">void</span></div>
-<div class="line"><a name="l00614"></a><span class="lineno">  614</span>&#160;<a class="code" href="group__C-API.html#gaca5a3e895356dd6e3875452aeea32aea">CQCT_meshFitterResultSetIterationCount</a>(CQCT_MeshFitterResult result,</div>
-<div class="line"><a name="l00615"></a><span class="lineno">  615</span>&#160;                                       <span class="keywordtype">size_t</span> count);</div>
-<div class="line"><a name="l00616"></a><span class="lineno">  616</span>&#160;</div>
-<div class="line"><a name="l00618"></a><span class="lineno">  618</span>&#160;CQCT_EXTERN <span class="keywordtype">int</span> <a class="code" href="group__C-API.html#ga001833fd8be5a42021ead391c438261e">CQCT_meshFitterResultHasConverged</a>(CQCT_MeshFitterResult result);</div>
+<div class="line"><a name="l00573"></a><span class="lineno">  573</span>&#160;CQCT_EXTERN <span class="keywordtype">size_t</span> <a class="code" href="group__C-API.html#ga2e03d1c5b48ea80f0529c8c9377a0aef">CQCT_meshFitterResultCopyVertexNormals</a>(</div>
+<div class="line"><a name="l00574"></a><span class="lineno">  574</span>&#160;    CQCT_MeshFitterResult result, <span class="keywordtype">float</span> **buffer)</div>
+<div class="line"><a name="l00575"></a><span class="lineno">  575</span>&#160;    __attribute__((deprecated(<span class="stringliteral">&quot;Use normals stored in deformedMesh instead.&quot;</span>)));</div>
+<div class="line"><a name="l00576"></a><span class="lineno">  576</span>&#160;</div>
+<div class="line"><a name="l00578"></a><span class="lineno">  578</span>&#160;CQCT_EXTERN <span class="keywordtype">size_t</span></div>
+<div class="line"><a name="l00579"></a><span class="lineno">  579</span>&#160;<a class="code" href="group__C-API.html#ga8accf25991ddf8e809f7d00c795a8173">CQCT_meshFitterResultVolumeSamplingPositionsCount</a>(CQCT_MeshFitterResult result);</div>
+<div class="line"><a name="l00580"></a><span class="lineno">  580</span>&#160;</div>
+<div class="line"><a name="l00582"></a><span class="lineno">  582</span>&#160;CQCT_EXTERN <span class="keywordtype">size_t</span> <a class="code" href="group__C-API.html#ga03b98f4fb4dabae1ebf37942dc226d9d">CQCT_meshFitterResultCopyVolumeSamplingPositions</a>(</div>
+<div class="line"><a name="l00583"></a><span class="lineno">  583</span>&#160;    CQCT_MeshFitterResult result, <span class="keywordtype">float</span> **buffer);</div>
+<div class="line"><a name="l00584"></a><span class="lineno">  584</span>&#160;</div>
+<div class="line"><a name="l00586"></a><span class="lineno">  586</span>&#160;CQCT_EXTERN <span class="keywordtype">size_t</span> <a class="code" href="group__C-API.html#ga939a37a31319d71d57528277af4d1f87">CQCT_meshFitterResultCopyVolumeSamples</a>(</div>
+<div class="line"><a name="l00587"></a><span class="lineno">  587</span>&#160;    CQCT_MeshFitterResult result, <span class="keywordtype">float</span> **buffer);</div>
+<div class="line"><a name="l00588"></a><span class="lineno">  588</span>&#160;</div>
+<div class="line"><a name="l00590"></a><span class="lineno">  590</span>&#160;CQCT_EXTERN <span class="keywordtype">float</span></div>
+<div class="line"><a name="l00591"></a><span class="lineno">  591</span>&#160;<a class="code" href="group__C-API.html#ga4b9fabb5bac7d063e9491865a8406ee6">CQCT_meshFitterResultMinimumDisplacementNorm</a>(CQCT_MeshFitterResult result);</div>
+<div class="line"><a name="l00592"></a><span class="lineno">  592</span>&#160;</div>
+<div class="line"><a name="l00594"></a><span class="lineno">  594</span>&#160;CQCT_EXTERN <span class="keywordtype">float</span></div>
+<div class="line"><a name="l00595"></a><span class="lineno">  595</span>&#160;<a class="code" href="group__C-API.html#gaec4e4e9bb072f0d9203b31e835086e5e">CQCT_meshFitterResultLogLikelihood</a>(CQCT_MeshFitterResult result);</div>
+<div class="line"><a name="l00596"></a><span class="lineno">  596</span>&#160;</div>
+<div class="line"><a name="l00599"></a><span class="lineno">  599</span>&#160;CQCT_EXTERN <span class="keywordtype">float</span></div>
+<div class="line"><a name="l00600"></a><span class="lineno">  600</span>&#160;<a class="code" href="group__C-API.html#ga32c0c3087ba03d8300615d0df60ed530">CQCT_meshFitterResultCopyPerVertexLogLikelihood</a>(CQCT_MeshFitterResult result,</div>
+<div class="line"><a name="l00601"></a><span class="lineno">  601</span>&#160;                                                <span class="keywordtype">float</span> **buffer);</div>
+<div class="line"><a name="l00602"></a><span class="lineno">  602</span>&#160;</div>
+<div class="line"><a name="l00604"></a><span class="lineno">  604</span>&#160;CQCT_EXTERN <span class="keywordtype">void</span></div>
+<div class="line"><a name="l00605"></a><span class="lineno">  605</span>&#160;<a class="code" href="group__C-API.html#ga6c39d0919c8ad22a63aa87d6547b4680">CQCT_meshFitterResultSetLogLikelihood</a>(CQCT_MeshFitterResult result, <span class="keywordtype">float</span> ll);</div>
+<div class="line"><a name="l00606"></a><span class="lineno">  606</span>&#160;</div>
+<div class="line"><a name="l00608"></a><span class="lineno">  608</span>&#160;CQCT_EXTERN <span class="keywordtype">float</span></div>
+<div class="line"><a name="l00609"></a><span class="lineno">  609</span>&#160;<a class="code" href="group__C-API.html#ga785ce299b2dd505405384de5f3ac00db">CQCT_meshFitterResultEffectiveSigmaS</a>(CQCT_MeshFitterResult result);</div>
+<div class="line"><a name="l00610"></a><span class="lineno">  610</span>&#160;</div>
+<div class="line"><a name="l00612"></a><span class="lineno">  612</span>&#160;CQCT_EXTERN <span class="keywordtype">size_t</span></div>
+<div class="line"><a name="l00613"></a><span class="lineno">  613</span>&#160;<a class="code" href="group__C-API.html#ga75722474c959c6ca819785fe5ca4117b">CQCT_meshFitterResultIterationCount</a>(CQCT_MeshFitterResult result);</div>
+<div class="line"><a name="l00614"></a><span class="lineno">  614</span>&#160;</div>
+<div class="line"><a name="l00616"></a><span class="lineno">  616</span>&#160;CQCT_EXTERN <span class="keywordtype">void</span></div>
+<div class="line"><a name="l00617"></a><span class="lineno">  617</span>&#160;<a class="code" href="group__C-API.html#gaca5a3e895356dd6e3875452aeea32aea">CQCT_meshFitterResultSetIterationCount</a>(CQCT_MeshFitterResult result,</div>
+<div class="line"><a name="l00618"></a><span class="lineno">  618</span>&#160;                                       <span class="keywordtype">size_t</span> count);</div>
 <div class="line"><a name="l00619"></a><span class="lineno">  619</span>&#160;</div>
-<div class="line"><a name="l00621"></a><span class="lineno">  621</span>&#160;CQCT_EXTERN <span class="keywordtype">void</span></div>
-<div class="line"><a name="l00622"></a><span class="lineno">  622</span>&#160;<a class="code" href="group__C-API.html#ga1c05c22403962afda6b98e204fcacc30">CQCT_meshFitterResultSetHasConverged</a>(CQCT_MeshFitterResult result,</div>
-<div class="line"><a name="l00623"></a><span class="lineno">  623</span>&#160;                                     <span class="keywordtype">int</span> converged);</div>
-<div class="line"><a name="l00624"></a><span class="lineno">  624</span>&#160;</div>
-<div class="line"><a name="l00626"></a><span class="lineno">  626</span>&#160;CQCT_EXTERN <span class="keywordtype">int</span> <a class="code" href="group__C-API.html#ga88830dc8a9be73b2c70c07726544bfa1">CQCT_meshFitterResultSuccess</a>(CQCT_MeshFitterResult result);</div>
+<div class="line"><a name="l00621"></a><span class="lineno">  621</span>&#160;CQCT_EXTERN <span class="keywordtype">int</span> <a class="code" href="group__C-API.html#ga001833fd8be5a42021ead391c438261e">CQCT_meshFitterResultHasConverged</a>(CQCT_MeshFitterResult result);</div>
+<div class="line"><a name="l00622"></a><span class="lineno">  622</span>&#160;</div>
+<div class="line"><a name="l00624"></a><span class="lineno">  624</span>&#160;CQCT_EXTERN <span class="keywordtype">void</span></div>
+<div class="line"><a name="l00625"></a><span class="lineno">  625</span>&#160;<a class="code" href="group__C-API.html#ga1c05c22403962afda6b98e204fcacc30">CQCT_meshFitterResultSetHasConverged</a>(CQCT_MeshFitterResult result,</div>
+<div class="line"><a name="l00626"></a><span class="lineno">  626</span>&#160;                                     <span class="keywordtype">int</span> converged);</div>
 <div class="line"><a name="l00627"></a><span class="lineno">  627</span>&#160;</div>
-<div class="line"><a name="l00629"></a><span class="lineno">  629</span>&#160;CQCT_EXTERN <span class="keywordtype">void</span> <a class="code" href="group__C-API.html#gab80821dedffa35b6370f1cc1fe48f538">CQCT_meshFitterResultSetSuccess</a>(CQCT_MeshFitterResult result,</div>
-<div class="line"><a name="l00630"></a><span class="lineno">  630</span>&#160;                                                 <span class="keywordtype">int</span> success);</div>
-<div class="line"><a name="l00631"></a><span class="lineno">  631</span>&#160;</div>
-<div class="line"><a name="l00633"></a><span class="lineno">  633</span>&#160;CQCT_EXTERN <span class="keywordtype">size_t</span></div>
-<div class="line"><a name="l00634"></a><span class="lineno">  634</span>&#160;<a class="code" href="group__C-API.html#ga15bca6ae4dd3aa1d19681f7aaaa2bbaf">CQCT_meshFitterResultNonDecreasingCount</a>(CQCT_MeshFitterResult result);</div>
-<div class="line"><a name="l00635"></a><span class="lineno">  635</span>&#160;</div>
-<div class="line"><a name="l00637"></a><span class="lineno">  637</span>&#160;CQCT_EXTERN <span class="keywordtype">void</span></div>
-<div class="line"><a name="l00638"></a><span class="lineno">  638</span>&#160;<a class="code" href="group__C-API.html#gaa4a287c1a53b418d5114386db0bb2080">CQCT_meshFitterResultSetNonDecreasingCount</a>(CQCT_MeshFitterResult result,</div>
-<div class="line"><a name="l00639"></a><span class="lineno">  639</span>&#160;                                           <span class="keywordtype">size_t</span> count);</div>
-<div class="line"><a name="l00640"></a><span class="lineno">  640</span>&#160;</div>
-<div class="line"><a name="l00642"></a><span class="lineno">  642</span>&#160;CQCT_EXTERN <span class="keywordtype">size_t</span> <a class="code" href="group__C-API.html#gaada88b7b5875047924bb1160cbae69df">CQCT_meshFitterStateCopyModelSamplingPositions</a>(</div>
-<div class="line"><a name="l00643"></a><span class="lineno">  643</span>&#160;    CQCT_MeshFitterState state, <span class="keywordtype">float</span> **buffer);</div>
-<div class="line"><a name="l00644"></a><span class="lineno">  644</span>&#160;</div>
-<div class="line"><a name="l00646"></a><span class="lineno">  646</span>&#160;</div>
-<div class="line"><a name="l00647"></a><span class="lineno">  647</span>&#160;<span class="comment">// MARK: -</span></div>
-<div class="line"><a name="l00648"></a><span class="lineno">  648</span>&#160;<span class="comment">// MARK: MeshFitter Type</span></div>
-<div class="line"><a name="l00654"></a><span class="lineno">  654</span>&#160;<span class="comment"></span>CQCT_EXTERN CQCT_MeshFitter <a class="code" href="group__C-API.html#gadc93d3bbf65d43752337481a502ce4a6">CQCT_createMeshFitter</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *filename,</div>
-<div class="line"><a name="l00656"></a><span class="lineno">  656</span>&#160;                                                  CQCT_Error *error);</div>
-<div class="line"><a name="l00657"></a><span class="lineno">  657</span>&#160;</div>
-<div class="line"><a name="l00659"></a><span class="lineno">  659</span>&#160;CQCT_EXTERN CQCT_MeshFitterResult <a class="code" href="group__C-API.html#gaed43b3031aefb56839eaf0072fcb94bd">CQCT_meshFitterFit</a>(CQCT_MeshFitter meshFitter,</div>
-<div class="line"><a name="l00660"></a><span class="lineno">  660</span>&#160;                                                     CQCT_VoxelVolume volume);</div>
-<div class="line"><a name="l00661"></a><span class="lineno">  661</span>&#160;</div>
-<div class="line"><a name="l00663"></a><span class="lineno">  663</span>&#160;CQCT_EXTERN <span class="keywordtype">int</span> <a class="code" href="group__C-API.html#ga65389fea06ca65ed5a2194f0cf3a5b7d">CQCT_meshFitterFitOneIteration</a>(CQCT_MeshFitter meshFitter,</div>
-<div class="line"><a name="l00664"></a><span class="lineno">  664</span>&#160;                                               CQCT_MeshFitterState state,</div>
-<div class="line"><a name="l00665"></a><span class="lineno">  665</span>&#160;                                               CQCT_Error *error);</div>
-<div class="line"><a name="l00666"></a><span class="lineno">  666</span>&#160;</div>
-<div class="line"><a name="l00668"></a><span class="lineno">  668</span>&#160;CQCT_EXTERN <span class="keywordtype">int</span> <a class="code" href="group__C-API.html#ga8d1f00b2f3c476da1054a47869f2134b">CQCT_meshFitterVolumeSamplingStep</a>(CQCT_MeshFitter meshFitter,</div>
-<div class="line"><a name="l00669"></a><span class="lineno">  669</span>&#160;                                                  CQCT_MeshFitterState state,</div>
-<div class="line"><a name="l00670"></a><span class="lineno">  670</span>&#160;                                                  CQCT_Error *error);</div>
-<div class="line"><a name="l00671"></a><span class="lineno">  671</span>&#160;</div>
-<div class="line"><a name="l00673"></a><span class="lineno">  673</span>&#160;CQCT_EXTERN <span class="keywordtype">int</span> <a class="code" href="group__C-API.html#gae7e58acd79e0be9413dd8264d7723366">CQCT_meshFitterOptimalDisplacementStep</a>(</div>
-<div class="line"><a name="l00674"></a><span class="lineno">  674</span>&#160;    CQCT_MeshFitter meshFitter, CQCT_MeshFitterState state, CQCT_Error *error);</div>
-<div class="line"><a name="l00675"></a><span class="lineno">  675</span>&#160;</div>
-<div class="line"><a name="l00677"></a><span class="lineno">  677</span>&#160;CQCT_EXTERN <span class="keywordtype">int</span> <a class="code" href="group__C-API.html#ga23014262255ba3569a079ec4932f869b">CQCT_meshFitterOptimalDeformationStep</a>(</div>
-<div class="line"><a name="l00678"></a><span class="lineno">  678</span>&#160;    CQCT_MeshFitter meshFitter, CQCT_MeshFitterState state, CQCT_Error *error);</div>
-<div class="line"><a name="l00679"></a><span class="lineno">  679</span>&#160;</div>
-<div class="line"><a name="l00681"></a><span class="lineno">  681</span>&#160;CQCT_EXTERN <span class="keywordtype">int</span> <a class="code" href="group__C-API.html#ga2d715afd284a286a97f1be6e7255a063">CQCT_meshFitterLogLikelihoodStep</a>(CQCT_MeshFitter meshFitter,</div>
-<div class="line"><a name="l00682"></a><span class="lineno">  682</span>&#160;                                                 CQCT_MeshFitterState state,</div>
-<div class="line"><a name="l00683"></a><span class="lineno">  683</span>&#160;                                                 CQCT_Error *error);</div>
-<div class="line"><a name="l00684"></a><span class="lineno">  684</span>&#160;</div>
-<div class="line"><a name="l00686"></a><span class="lineno">  686</span>&#160;CQCT_EXTERN <span class="keywordtype">int</span> <a class="code" href="group__C-API.html#gad6af766e184430e89a6a505b0f57fb74">CQCT_meshFitterConvergenceTestStep</a>(CQCT_MeshFitter meshFitter,</div>
-<div class="line"><a name="l00687"></a><span class="lineno">  687</span>&#160;                                                   CQCT_MeshFitterState state,</div>
-<div class="line"><a name="l00688"></a><span class="lineno">  688</span>&#160;                                                   CQCT_Error *error);</div>
-<div class="line"><a name="l00689"></a><span class="lineno">  689</span>&#160;</div>
-<div class="line"><a name="l00691"></a><span class="lineno">  691</span>&#160;</div>
-<div class="line"><a name="l00692"></a><span class="lineno">  692</span>&#160;<span class="preprocessor">#  ifdef __cplusplus</span></div>
-<div class="line"><a name="l00693"></a><span class="lineno">  693</span>&#160;<span class="preprocessor"></span>}</div>
-<div class="line"><a name="l00694"></a><span class="lineno">  694</span>&#160;<span class="preprocessor">#  endif</span></div>
-<div class="line"><a name="l00695"></a><span class="lineno">  695</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00696"></a><span class="lineno">  696</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00697"></a><span class="lineno">  697</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00699"></a><span class="lineno">  699</span>&#160;</div>
+<div class="line"><a name="l00629"></a><span class="lineno">  629</span>&#160;CQCT_EXTERN <span class="keywordtype">int</span> <a class="code" href="group__C-API.html#ga88830dc8a9be73b2c70c07726544bfa1">CQCT_meshFitterResultSuccess</a>(CQCT_MeshFitterResult result);</div>
+<div class="line"><a name="l00630"></a><span class="lineno">  630</span>&#160;</div>
+<div class="line"><a name="l00632"></a><span class="lineno">  632</span>&#160;CQCT_EXTERN <span class="keywordtype">void</span> <a class="code" href="group__C-API.html#gab80821dedffa35b6370f1cc1fe48f538">CQCT_meshFitterResultSetSuccess</a>(CQCT_MeshFitterResult result,</div>
+<div class="line"><a name="l00633"></a><span class="lineno">  633</span>&#160;                                                 <span class="keywordtype">int</span> success);</div>
+<div class="line"><a name="l00634"></a><span class="lineno">  634</span>&#160;</div>
+<div class="line"><a name="l00636"></a><span class="lineno">  636</span>&#160;CQCT_EXTERN <span class="keywordtype">size_t</span></div>
+<div class="line"><a name="l00637"></a><span class="lineno">  637</span>&#160;<a class="code" href="group__C-API.html#ga15bca6ae4dd3aa1d19681f7aaaa2bbaf">CQCT_meshFitterResultNonDecreasingCount</a>(CQCT_MeshFitterResult result);</div>
+<div class="line"><a name="l00638"></a><span class="lineno">  638</span>&#160;</div>
+<div class="line"><a name="l00640"></a><span class="lineno">  640</span>&#160;CQCT_EXTERN <span class="keywordtype">void</span></div>
+<div class="line"><a name="l00641"></a><span class="lineno">  641</span>&#160;<a class="code" href="group__C-API.html#gaa4a287c1a53b418d5114386db0bb2080">CQCT_meshFitterResultSetNonDecreasingCount</a>(CQCT_MeshFitterResult result,</div>
+<div class="line"><a name="l00642"></a><span class="lineno">  642</span>&#160;                                           <span class="keywordtype">size_t</span> count);</div>
+<div class="line"><a name="l00643"></a><span class="lineno">  643</span>&#160;</div>
+<div class="line"><a name="l00645"></a><span class="lineno">  645</span>&#160;CQCT_EXTERN <span class="keywordtype">size_t</span> <a class="code" href="group__C-API.html#gaada88b7b5875047924bb1160cbae69df">CQCT_meshFitterStateCopyModelSamplingPositions</a>(</div>
+<div class="line"><a name="l00646"></a><span class="lineno">  646</span>&#160;    CQCT_MeshFitterState state, <span class="keywordtype">float</span> **buffer);</div>
+<div class="line"><a name="l00647"></a><span class="lineno">  647</span>&#160;</div>
+<div class="line"><a name="l00649"></a><span class="lineno">  649</span>&#160;</div>
+<div class="line"><a name="l00650"></a><span class="lineno">  650</span>&#160;<span class="comment">// MARK: -</span></div>
+<div class="line"><a name="l00651"></a><span class="lineno">  651</span>&#160;<span class="comment">// MARK: MeshFitter Type</span></div>
+<div class="line"><a name="l00657"></a><span class="lineno">  657</span>&#160;<span class="comment"></span>CQCT_EXTERN CQCT_MeshFitter <a class="code" href="group__C-API.html#gadc93d3bbf65d43752337481a502ce4a6">CQCT_createMeshFitter</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *filename,</div>
+<div class="line"><a name="l00659"></a><span class="lineno">  659</span>&#160;                                                  CQCT_Error *error);</div>
+<div class="line"><a name="l00660"></a><span class="lineno">  660</span>&#160;</div>
+<div class="line"><a name="l00662"></a><span class="lineno">  662</span>&#160;CQCT_EXTERN CQCT_MeshFitterResult <a class="code" href="group__C-API.html#gaed43b3031aefb56839eaf0072fcb94bd">CQCT_meshFitterFit</a>(CQCT_MeshFitter meshFitter,</div>
+<div class="line"><a name="l00663"></a><span class="lineno">  663</span>&#160;                                                     CQCT_VoxelVolume volume);</div>
+<div class="line"><a name="l00664"></a><span class="lineno">  664</span>&#160;</div>
+<div class="line"><a name="l00666"></a><span class="lineno">  666</span>&#160;CQCT_EXTERN <span class="keywordtype">int</span> <a class="code" href="group__C-API.html#ga65389fea06ca65ed5a2194f0cf3a5b7d">CQCT_meshFitterFitOneIteration</a>(CQCT_MeshFitter meshFitter,</div>
+<div class="line"><a name="l00667"></a><span class="lineno">  667</span>&#160;                                               CQCT_MeshFitterState state,</div>
+<div class="line"><a name="l00668"></a><span class="lineno">  668</span>&#160;                                               CQCT_Error *error);</div>
+<div class="line"><a name="l00669"></a><span class="lineno">  669</span>&#160;</div>
+<div class="line"><a name="l00671"></a><span class="lineno">  671</span>&#160;CQCT_EXTERN <span class="keywordtype">int</span> <a class="code" href="group__C-API.html#ga8d1f00b2f3c476da1054a47869f2134b">CQCT_meshFitterVolumeSamplingStep</a>(CQCT_MeshFitter meshFitter,</div>
+<div class="line"><a name="l00672"></a><span class="lineno">  672</span>&#160;                                                  CQCT_MeshFitterState state,</div>
+<div class="line"><a name="l00673"></a><span class="lineno">  673</span>&#160;                                                  CQCT_Error *error);</div>
+<div class="line"><a name="l00674"></a><span class="lineno">  674</span>&#160;</div>
+<div class="line"><a name="l00676"></a><span class="lineno">  676</span>&#160;CQCT_EXTERN <span class="keywordtype">int</span> <a class="code" href="group__C-API.html#gae7e58acd79e0be9413dd8264d7723366">CQCT_meshFitterOptimalDisplacementStep</a>(</div>
+<div class="line"><a name="l00677"></a><span class="lineno">  677</span>&#160;    CQCT_MeshFitter meshFitter, CQCT_MeshFitterState state, CQCT_Error *error);</div>
+<div class="line"><a name="l00678"></a><span class="lineno">  678</span>&#160;</div>
+<div class="line"><a name="l00680"></a><span class="lineno">  680</span>&#160;CQCT_EXTERN <span class="keywordtype">int</span> <a class="code" href="group__C-API.html#ga23014262255ba3569a079ec4932f869b">CQCT_meshFitterOptimalDeformationStep</a>(</div>
+<div class="line"><a name="l00681"></a><span class="lineno">  681</span>&#160;    CQCT_MeshFitter meshFitter, CQCT_MeshFitterState state, CQCT_Error *error);</div>
+<div class="line"><a name="l00682"></a><span class="lineno">  682</span>&#160;</div>
+<div class="line"><a name="l00684"></a><span class="lineno">  684</span>&#160;CQCT_EXTERN <span class="keywordtype">int</span> <a class="code" href="group__C-API.html#ga2d715afd284a286a97f1be6e7255a063">CQCT_meshFitterLogLikelihoodStep</a>(CQCT_MeshFitter meshFitter,</div>
+<div class="line"><a name="l00685"></a><span class="lineno">  685</span>&#160;                                                 CQCT_MeshFitterState state,</div>
+<div class="line"><a name="l00686"></a><span class="lineno">  686</span>&#160;                                                 CQCT_Error *error);</div>
+<div class="line"><a name="l00687"></a><span class="lineno">  687</span>&#160;</div>
+<div class="line"><a name="l00689"></a><span class="lineno">  689</span>&#160;CQCT_EXTERN <span class="keywordtype">int</span> <a class="code" href="group__C-API.html#gad6af766e184430e89a6a505b0f57fb74">CQCT_meshFitterConvergenceTestStep</a>(CQCT_MeshFitter meshFitter,</div>
+<div class="line"><a name="l00690"></a><span class="lineno">  690</span>&#160;                                                   CQCT_MeshFitterState state,</div>
+<div class="line"><a name="l00691"></a><span class="lineno">  691</span>&#160;                                                   CQCT_Error *error);</div>
+<div class="line"><a name="l00692"></a><span class="lineno">  692</span>&#160;</div>
+<div class="line"><a name="l00694"></a><span class="lineno">  694</span>&#160;</div>
+<div class="line"><a name="l00695"></a><span class="lineno">  695</span>&#160;<span class="preprocessor">#  ifdef __cplusplus</span></div>
+<div class="line"><a name="l00696"></a><span class="lineno">  696</span>&#160;<span class="preprocessor"></span>}</div>
+<div class="line"><a name="l00697"></a><span class="lineno">  697</span>&#160;<span class="preprocessor">#  endif</span></div>
+<div class="line"><a name="l00698"></a><span class="lineno">  698</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00699"></a><span class="lineno">  699</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00700"></a><span class="lineno">  700</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00702"></a><span class="lineno">  702</span>&#160;</div>
 <div class="ttc" id="group__C-API_html_gadc93d3bbf65d43752337481a502ce4a6"><div class="ttname"><a href="group__C-API.html#gadc93d3bbf65d43752337481a502ce4a6">CQCT_createMeshFitter</a></div><div class="ttdeci">CQCT_EXTERN CQCT_MeshFitter CQCT_createMeshFitter(const char *filename, CQCT_Error *error)</div><div class="ttdoc">Creates a mesh fitter given the configuration file. </div><div class="ttdef"><b>Definition:</b> MeshFitter.cpp:12</div></div>
 <div class="ttc" id="group__C-API_html_ga88830dc8a9be73b2c70c07726544bfa1"><div class="ttname"><a href="group__C-API.html#ga88830dc8a9be73b2c70c07726544bfa1">CQCT_meshFitterResultSuccess</a></div><div class="ttdeci">CQCT_EXTERN int CQCT_meshFitterResultSuccess(CQCT_MeshFitterResult result)</div><div class="ttdoc">Returns whether the optimization was successfull. </div><div class="ttdef"><b>Definition:</b> MeshFitterState.cpp:297</div></div>
 <div class="ttc" id="group__C-API_html_ga32c0c3087ba03d8300615d0df60ed530"><div class="ttname"><a href="group__C-API.html#ga32c0c3087ba03d8300615d0df60ed530">CQCT_meshFitterResultCopyPerVertexLogLikelihood</a></div><div class="ttdeci">CQCT_EXTERN float CQCT_meshFitterResultCopyPerVertexLogLikelihood(CQCT_MeshFitterResult result, float **buffer)</div><div class="ttdef"><b>Definition:</b> MeshFitterState.cpp:224</div></div>
@@ -445,6 +447,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="structCQCT__ColorToLabelMap__t_html"><div class="ttname"><a href="structCQCT__ColorToLabelMap__t.html">CQCT_ColorToLabelMap_t</a></div><div class="ttdef"><b>Definition:</b> CortidQCT-Common.h:81</div></div>
 <div class="ttc" id="group__C-API_html_ga8d1f00b2f3c476da1054a47869f2134b"><div class="ttname"><a href="group__C-API.html#ga8d1f00b2f3c476da1054a47869f2134b">CQCT_meshFitterVolumeSamplingStep</a></div><div class="ttdeci">CQCT_EXTERN int CQCT_meshFitterVolumeSamplingStep(CQCT_MeshFitter meshFitter, CQCT_MeshFitterState state, CQCT_Error *error)</div><div class="ttdoc">Runs the volume sampling step. </div><div class="ttdef"><b>Definition:</b> MeshFitter.cpp:88</div></div>
 <div class="ttc" id="group__C-API_html_gac84b6d0c342bb66add36810e422053b6"><div class="ttname"><a href="group__C-API.html#gac84b6d0c342bb66add36810e422053b6">CQCT_MeshFitterState</a></div><div class="ttdeci">struct CQCT_MeshFitterState_t * CQCT_MeshFitterState</div><div class="ttdoc">Mesh fitter state handle type. </div><div class="ttdef"><b>Definition:</b> CortidQCT.h:537</div></div>
+<div class="ttc" id="group__C-API_html_ga2e03d1c5b48ea80f0529c8c9377a0aef"><div class="ttname"><a href="group__C-API.html#ga2e03d1c5b48ea80f0529c8c9377a0aef">CQCT_meshFitterResultCopyVertexNormals</a></div><div class="ttdeci">CQCT_EXTERN size_t CQCT_meshFitterResultCopyVertexNormals(CQCT_MeshFitterResult result, float **buffer) __attribute__((deprecated(&quot;Use normals stored in deformedMesh instead.&quot;)))</div><div class="ttdef"><b>Definition:</b> MeshFitterState.cpp:146</div></div>
 <div class="ttc" id="group__C-API_html_ga44255075d52e9e6c3acbb68f01c46e4b"><div class="ttname"><a href="group__C-API.html#ga44255075d52e9e6c3acbb68f01c46e4b">CQCT_loadMeshWithCustomMapping</a></div><div class="ttdeci">CQCT_EXTERN int CQCT_loadMeshWithCustomMapping(CQCT_Mesh mesh, const char *filename, CQCT_ColorToLabelMap map, CQCT_Error *error)</div><div class="ttdoc">Loads a mesh from file using a custom color to label map. </div><div class="ttdef"><b>Definition:</b> Mesh.cpp:56</div></div>
 <div class="ttc" id="group__C-API_html_ga001833fd8be5a42021ead391c438261e"><div class="ttname"><a href="group__C-API.html#ga001833fd8be5a42021ead391c438261e">CQCT_meshFitterResultHasConverged</a></div><div class="ttdeci">CQCT_EXTERN int CQCT_meshFitterResultHasConverged(CQCT_MeshFitterResult result)</div><div class="ttdoc">Returns whether the optimization has converged. </div><div class="ttdef"><b>Definition:</b> MeshFitterState.cpp:278</div></div>
 <div class="ttc" id="group__C-API_html_ga939a37a31319d71d57528277af4d1f87"><div class="ttname"><a href="group__C-API.html#ga939a37a31319d71d57528277af4d1f87">CQCT_meshFitterResultCopyVolumeSamples</a></div><div class="ttdeci">CQCT_EXTERN size_t CQCT_meshFitterResultCopyVolumeSamples(CQCT_MeshFitterResult result, float **buffer)</div><div class="ttdoc">Copies the volume samples. </div><div class="ttdef"><b>Definition:</b> MeshFitterState.cpp:190</div></div>
@@ -504,7 +507,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="group__C-API_html_ga8accf25991ddf8e809f7d00c795a8173"><div class="ttname"><a href="group__C-API.html#ga8accf25991ddf8e809f7d00c795a8173">CQCT_meshFitterResultVolumeSamplingPositionsCount</a></div><div class="ttdeci">CQCT_EXTERN size_t CQCT_meshFitterResultVolumeSamplingPositionsCount(CQCT_MeshFitterResult result)</div><div class="ttdoc">Returns the number of volume sampling positions. </div><div class="ttdef"><b>Definition:</b> MeshFitterState.cpp:164</div></div>
 <div class="ttc" id="group__C-API_html_gaa4a287c1a53b418d5114386db0bb2080"><div class="ttname"><a href="group__C-API.html#gaa4a287c1a53b418d5114386db0bb2080">CQCT_meshFitterResultSetNonDecreasingCount</a></div><div class="ttdeci">CQCT_EXTERN void CQCT_meshFitterResultSetNonDecreasingCount(CQCT_MeshFitterResult result, size_t count)</div><div class="ttdoc">Sets the current non decreasing count. </div><div class="ttdef"><b>Definition:</b> MeshFitterState.cpp:324</div></div>
 <div class="ttc" id="structCQCT__VoxelVolumeVoxelSize_html"><div class="ttname"><a href="structCQCT__VoxelVolumeVoxelSize.html">CQCT_VoxelVolumeVoxelSize</a></div><div class="ttdoc">VoxelVolume voxel size. </div><div class="ttdef"><b>Definition:</b> CortidQCT.h:133</div></div>
-<div class="ttc" id="group__C-API_html_ga0f4a6186ebb386ef351e9e90f322ad89"><div class="ttname"><a href="group__C-API.html#ga0f4a6186ebb386ef351e9e90f322ad89">CQCT_meshFitterResultCopyVertexNormals</a></div><div class="ttdeci">CQCT_EXTERN size_t CQCT_meshFitterResultCopyVertexNormals(CQCT_MeshFitterResult result, float **buffer)</div><div class="ttdoc">Copies the vertex normals. </div><div class="ttdef"><b>Definition:</b> MeshFitterState.cpp:146</div></div>
 <div class="ttc" id="group__C-API_html_ga42fc17fa4c388cc0d4063eb6df8b94a8"><div class="ttname"><a href="group__C-API.html#ga42fc17fa4c388cc0d4063eb6df8b94a8">CQCT_meshFitterResultCopyWeights</a></div><div class="ttdeci">CQCT_EXTERN size_t CQCT_meshFitterResultCopyWeights(CQCT_MeshFitterResult result, float **buffer)</div><div class="ttdoc">Copies the weight vector. </div><div class="ttdef"><b>Definition:</b> MeshFitterState.cpp:118</div></div>
 <div class="ttc" id="group__C-API_html_ga1c05c22403962afda6b98e204fcacc30"><div class="ttname"><a href="group__C-API.html#ga1c05c22403962afda6b98e204fcacc30">CQCT_meshFitterResultSetHasConverged</a></div><div class="ttdeci">CQCT_EXTERN void CQCT_meshFitterResultSetHasConverged(CQCT_MeshFitterResult result, int converged)</div><div class="ttdoc">Sets whether the optimization has converged. </div><div class="ttdef"><b>Definition:</b> MeshFitterState.cpp:287</div></div>
 <div class="ttc" id="structCQCT__VoxelVolume__t_html"><div class="ttname"><a href="structCQCT__VoxelVolume__t.html">CQCT_VoxelVolume_t</a></div><div class="ttdef"><b>Definition:</b> CortidQCT-Common.h:73</div></div>
@@ -519,7 +521,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Mar 25 2019 10:55:36 for CortidQCT by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Mar 25 2019 11:13:15 for CortidQCT by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

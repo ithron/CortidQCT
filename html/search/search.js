@@ -16,7 +16,8 @@ var indexSectionsWithContent =
   6: "cdilrsv",
   7: "c",
   8: "o",
-  9: "cm"
+  9: "cm",
+  10: "d"
 };
 
 var indexSectionNames =
@@ -30,7 +31,8 @@ var indexSectionNames =
   6: "typedefs",
   7: "enums",
   8: "related",
-  9: "groups"
+  9: "groups",
+  10: "pages"
 };
 
 function convertToId(search)
