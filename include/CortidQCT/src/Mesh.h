@@ -55,8 +55,10 @@ private:
   using VertexData = std::vector<Scalar>;
   /// Type of index data storage
   using IndexData = std::vector<Index>;
-  /// Tyep of per vertex label storage
+  /// Type of per vertex label storage
   using LabelData = std::vector<Label>;
+  /// Type of per vertex normal storage
+  using NormalData = VertexData;
 
 public:
   /// @name Construction
@@ -64,15 +66,16 @@ public:
 
   /// Constructs an empty mesh
   inline Mesh() noexcept(noexcept(VertexData()) && noexcept(IndexData()) &&
-                         noexcept(LabelData())) {}
+                         noexcept(LabelData()) && noexcept(VertexData())) {}
 
   /// Constructs an uninitialized mesh with the given vertex and triangle count
   inline Mesh(std::size_t nVertices, std::size_t nTriangles) noexcept(
       noexcept(VertexData(3 * nVertices, T{0})) &&
       noexcept(IndexData(3 * nTriangles, Index{0})) &&
-      noexcept(LabelData(nVertices, Label{0})))
+      noexcept(LabelData(nVertices, Label{0})) &&
+      noexcept(NormalData(3 * nVertices, T{0})))
       : vertexData_(3 * nVertices, T{0}), indexData_(3 * nTriangles, Index{0}),
-        labelData_(nVertices, Label{0}) {}
+        labelData_(nVertices, Label{0}), normalData_(3 * nVertices, T{0}) {}
 
   // @}
 
@@ -220,7 +223,6 @@ public:
    */
   inline std::vector<std::array<T, 3>> cartesianRepresentation(
       std::vector<BarycentricPoint<T, Index>> const &points) const {
-
     using Cartesian = std::array<T, 3>;
     std::vector<Cartesian> cartPoints(points.size());
 
@@ -298,13 +300,9 @@ public:
   RayMeshIntersection<T> rayIntersection(Ray<T> const &ray) const;
 
   /**
-   * @brief Computes per vertex normals
-   *
-   * @tparam OutputIterator output iterator type with value_type of T
-   * @param out Output iterator taking 3 * vertexCount() values of type T
+   * @brief Re-computes per-vertex normals
    */
-  template <class OutputIterator>
-  void perVertexNormals(OutputIterator out) const;
+  void updatePerVertexNormals();
 
 #pragma clang diagnostic pop
 
@@ -405,6 +403,31 @@ public:
     return f(labelData_.data());
   }
 
+  /**
+   * @brief Calls the given functional with an unsafe pointer to the raw
+   * per vertex normal storage.
+   *
+   * Vertex normals are stored contiguously in memory: [dx_0, dy_0, dz_0, dx_1,
+   * dy_1, dz_1,
+   * ...].
+   *
+   * @tparam F Function that accepts a `Scalar const *` pointer as the only
+   * argument.
+   * @throws noexcept(conditional) iff `f(Scalar const *)` is noexcept.
+   * @return The return value of the functional
+   */
+  template <class F>
+  inline auto withUnsafeVertexNormalPointer(F &&f) const
+      noexcept(noexcept(f(std::declval<const NormalData>().data()))) {
+    return f(normalData_.data());
+  }
+
+  template <class F>
+  inline auto withUnsafeVertexNormalPointer(F &&f) noexcept(
+      noexcept(f(std::declval<NormalData>().data()))) {
+    return f(normalData_.data());
+  }
+
   /// @}
 private:
   /// Ensures validility of the mesh
@@ -416,6 +439,8 @@ private:
   IndexData indexData_;
   /// Stores per vertex labels
   LabelData labelData_;
+  /// Stores per vertex normals
+  NormalData normalData_;
 };
 
 /*************************************
@@ -461,12 +486,5 @@ Mesh<double>::rayIntersections(Ray<double> const *, Ray<double> const *,
 extern template void Mesh<double>::rayIntersections(
     Ray<double> const *, Ray<double> const *,
     std::back_insert_iterator<std::vector<RayMeshIntersection<double>>>) const;
-
-extern template void Mesh<float>::perVertexNormals(float *) const;
-extern template void
-Mesh<float>::perVertexNormals(typename std::vector<float>::iterator) const;
-extern template void Mesh<double>::perVertexNormals(double *) const;
-extern template void
-Mesh<double>::perVertexNormals(typename std::vector<double>::iterator) const;
 
 } // namespace CortidQCT

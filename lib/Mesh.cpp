@@ -109,6 +109,8 @@ template <class T> void Mesh<T>::ensurePostconditions() const {
   Ensures(vertexData_.size() % 3 == 0);
   Ensures(indexData_.size() % 3 == 0);
   Ensures(labelData_.size() == vertexData_.size() / 3);
+  Ensures(normalData_.size() % 3 == 0);
+  Ensures(normalData_.size() == vertexData_.size());
 
   VertexMatrix<T> const V = vertexMatrix(*this);
   FacetMatrix const F = facetMatrix(*this);
@@ -224,6 +226,8 @@ Mesh<T> &Mesh<T>::loadFromFile(std::string const &meshFilename,
     indexData_ = std::move(indexData);
   }
 
+  updatePerVertexNormals();
+
   ensurePostconditions();
 
   return *this;
@@ -305,6 +309,8 @@ Mesh<T> &Mesh<T>::loadFromFile(std::string const &meshFilename,
   vertexData_ = std::move(vertexData);
   indexData_ = std::move(indexData);
   labelData_ = std::move(labelData);
+
+  updatePerVertexNormals();
 
   ensurePostconditions();
 
@@ -667,14 +673,13 @@ template <class T> Mesh<T> &Mesh<T>::upsample(std::size_t nTimes) {
   return *this;
 }
 
-template <class T>
-template <class OutputIterator>
-void Mesh<T>::perVertexNormals(OutputIterator out) const {
-  Eigen::Matrix<T, 3, Eigen::Dynamic> const normalMatrix =
-      Internal::perVertexNormalMatrix(*this).transpose();
+template <class T> void Mesh<T>::updatePerVertexNormals() {
+  if (normalData_.size() != vertexData_.size()) {
+    normalData_.resize(vertexData_.size());
+  }
 
-  std::copy(normalMatrix.data(), normalMatrix.data() + normalMatrix.size(),
-            out);
+  Adaptor::vertexNormalMap(*this) =
+      Internal::perVertexNormalMatrix(*this).transpose();
 }
 
 /*************************************
@@ -720,13 +725,6 @@ Mesh<double>::rayIntersections(Ray<double> const *, Ray<double> const *,
 template void Mesh<double>::rayIntersections(
     Ray<double> const *, Ray<double> const *,
     std::back_insert_iterator<std::vector<RayMeshIntersection<double>>>) const;
-
-template void Mesh<float>::perVertexNormals(float *) const;
-template void
-Mesh<float>::perVertexNormals(typename std::vector<float>::iterator) const;
-template void Mesh<double>::perVertexNormals(double *) const;
-template void
-Mesh<double>::perVertexNormals(typename std::vector<double>::iterator) const;
 
 // namespace CortidQCT
 } // namespace CortidQCT
