@@ -411,6 +411,46 @@ classdef Mesh < CortidQCT.lib.ObjectBase
       end
 
     end
+
+    function [vIdx, tIdx] = nRing(obj, seedVertex, n)
+      % NRING returns all vertex and triagnle indices that are within the
+      % n-ring neighbourhood of the seed vertex
+      %
+      %   [vIdx, tIdx] = nRing(obj, seedVertex, n)
+      %     seedVertex - index of the seed vertex (must be a scalar)
+      %     n - scalar ring number >= 0
+      %     vIdx - Nx1 vector of vertex indices that are inside the n-ring
+      %     tIdx = Mx1 vector of triangle indices thar are incident to the
+      %     (n-1)-ring vertex set (empty for n = 0)
+
+      toVisit = seedVertex;
+
+      if n == 0
+        tIdx = [];
+        vIdx = seedVertex;
+        return;
+      end
+
+      F = obj.Indices;
+
+      for ii=1:n
+
+        % Find all facets indicent to vertices in toVisit
+        facets = find(any(F(:, 1) == toVisit, 2));
+        facets = [facets; find(any(F(:, 2) == toVisit, 2));];
+        facets = [facets; find(any(F(:, 3) == toVisit, 2));];
+        facets = unique(facets);
+
+        % All vertices of facets
+        verts = F(facets, :);
+        verts = unique(verts(:));
+
+        vIdx = verts;
+        tIdx = facets;
+        toVisit = vIdx';
+
+      end
+    end
     
   end % methods
   

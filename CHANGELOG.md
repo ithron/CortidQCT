@@ -3,6 +3,7 @@
 ## Next release
 
 ### Added
+- Mesh now has a nRing query function (MATLAB only)
 - Mesh now has an upsampling method that interpolates normals and preserves
   labels (#57, #64)
 - Mesh now has a per-vertex normals property (#62)
