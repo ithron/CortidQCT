@@ -331,7 +331,7 @@ classdef Mesh < CortidQCT.lib.ObjectBase
       Idx = Idx - 1;
       baryPts = arrayfun(@(u, v, i) ...
         struct('u', u, 'v', v, 'triangleIndex', i), UV(:, 1), UV(:, 2), Idx);
-      outBuffer = libpointer('singlePtr', zeros(3, length(Idx), 'single'));
+      outBuffer = libpointer('singlePtr', zeros(length(Idx) * nDims, 1, 'single'));
       
       err = Error;
       
@@ -346,7 +346,7 @@ classdef Mesh < CortidQCT.lib.ObjectBase
         error('Interpolation failed: %s', err.message);
       end
       
-      points = outBuffer.Value';
+      points = reshape(outBuffer.Value, nDims, [])';
     end
     
     function [UV, Idx, t, varargout] = rayIntersections(obj, Origins, Directions)
