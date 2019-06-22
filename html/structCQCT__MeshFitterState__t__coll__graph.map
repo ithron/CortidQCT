@@ -1,0 +1,10 @@
+<map id="CQCT_MeshFitterState_t" name="CQCT_MeshFitterState_t">
+<area shape="rect" id="node2" href="$structCortidQCT_1_1Internal_1_1C_1_1GenericObjectWrapper.html" title="CortidQCT::Internal\l::C::GenericObjectWrapper\l\&lt; CortidQCT::Internal::C\l::MeshFitterState \&gt;" alt="" coords="1116,10,1296,81"/>
+<area shape="rect" id="node3" href="$structCortidQCT_1_1Internal_1_1C_1_1Control.html" title="CortidQCT::Internal\l::C::Control" alt="" coords="25,17,161,58"/>
+<area shape="rect" id="node6" href="$structCortidQCT_1_1Internal_1_1C_1_1GenericObjectWrapper.html" title="CortidQCT::Internal\l::C::GenericObjectWrapper\l\&lt; CortidQCT::Mesh\&lt; float \&gt; \&gt;" alt="" coords="319,57,517,113"/>
+<area shape="rect" id="node4" href="$structCortidQCT_1_1Internal_1_1C_1_1MeshFitterState.html" title="CortidQCT::Internal\l::C::MeshFitterState" alt="" coords="888,65,1029,106"/>
+<area shape="rect" id="node5" href="$structCQCT__Mesh__t.html" title="CQCT_Mesh_t" alt="" coords="617,72,727,99"/>
+<area shape="rect" id="node7" href="$classCortidQCT_1_1Mesh.html" title="CortidQCT::Mesh\&lt; float \&gt;" alt="" coords="5,105,180,132"/>
+<area shape="rect" id="node9" href="$structCortidQCT_1_1MeshFitter_1_1Result.html" title="Result type. " alt="" coords="341,138,495,179"/>
+<area shape="rect" id="node8" href="$structCortidQCT_1_1MeshFitter_1_1State.html" title="Internal State type. " alt="" coords="595,127,749,169"/>
+</map>

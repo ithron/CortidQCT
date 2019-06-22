@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['deprecated_20list',['Deprecated List',['../deprecated.html',1,'']]]
+  ['corid_2dqct_20_5b_21_5bbuild_20status_5d_28https_3a_2f_2ftravis_2dci_2ecom_2fithron_2fcortidqct_2esvg_3ftoken_3dshajhrb8byk3kqcs7use_26branch_3dmaster_29_5d_28https_3a_2f_2ftravis_2dci_2ecom_2fithron_2fcortidqct_29_20_5b_21_5bbuild_20status_5d_28https_3a_2f_2fci_2eappveyor_2ecom_2fapi_2fprojects_2fstatus_2fgkajxg953p5ny1gp_2fbranch_2fmaster_3fsvg_3dtrue_29_5d_28https_3a_2f_2fci_2eappveyor_2ecom_2fproject_2fithron_2fcortidqct_2fbranch_2fmaster_29',['Corid-QCT [![Build Status](https://travis-ci.com/ithron/CortidQCT.svg?token=sHAjhRB8BYK3KqcS7UsE&amp;branch=master)](https://travis-ci.com/ithron/CortidQCT) [![Build status](https://ci.appveyor.com/api/projects/status/gkajxg953p5ny1gp/branch/master?svg=true)](https://ci.appveyor.com/project/ithron/cortidqct/branch/master)',['../index.html',1,'']]]
 ];

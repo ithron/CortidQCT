@@ -1,0 +1,9 @@
+<map id="CQCT_MeshFitter_t" name="CQCT_MeshFitter_t">
+<area shape="rect" id="node2" href="$structCortidQCT_1_1Internal_1_1C_1_1GenericObjectWrapper.html" title="CortidQCT::Internal\l::C::GenericObjectWrapper\l\&lt; CortidQCT::MeshFitter \&gt;" alt="" coords="305,436,485,492"/>
+<area shape="rect" id="node3" href="$classCortidQCT_1_1MeshFitter.html" title="CortidQCT::MeshFitter" alt="" coords="191,339,346,366"/>
+<area shape="rect" id="node4" href="$structCortidQCT_1_1MeshFitter_1_1Configuration.html" title="Configuration type for MeshFitter. " alt="" coords="191,228,346,269"/>
+<area shape="rect" id="node5" href="$classCortidQCT_1_1MeasurementModel.html" title="Type representing the measurement model. " alt="" coords="5,139,212,165"/>
+<area shape="rect" id="node6" href="$structCortidQCT_1_1DiscreteRange.html" title="CortidQCT::DiscreteRange\l\&lt; float \&gt;" alt="" coords="19,5,199,47"/>
+<area shape="rect" id="node7" href="$classCortidQCT_1_1Mesh.html" title="CortidQCT::Mesh\&lt; float \&gt;" alt="" coords="236,139,411,165"/>
+<area shape="rect" id="node8" href="$structCortidQCT_1_1Internal_1_1C_1_1Control.html" title="CortidQCT::Internal\l::C::Control" alt="" coords="370,332,506,373"/>
+</map>

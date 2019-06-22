@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['samplingpoints',['samplingPoints',['../namespaceCortidQCT.html#aa66c76d2b8a7591f856d4e2c71a4f08b',1,'CortidQCT']]],
-  ['size',['size',['../classCortidQCT_1_1VoxelVolume.html#abf15c9499b4b854e4d8c47d34dfb5f04',1,'CortidQCT::VoxelVolume']]]
+  ['pervertexnormalmatrix',['perVertexNormalMatrix',['../MeshHelpers_8h.html#a53ea89e89636c68e13a86fd626cd6966',1,'CortidQCT::Internal::perVertexNormalMatrix(Eigen::MatrixBase&lt; DerivedV &gt; const &amp;V, Eigen::MatrixBase&lt; DerivedF &gt; const &amp;F)'],['../MeshHelpers_8h.html#a6f8e130b6fa62101833831f47e520eca',1,'CortidQCT::Internal::perVertexNormalMatrix(Mesh&lt; T &gt; const &amp;mesh)']]]
 ];

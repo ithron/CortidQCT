@@ -1,0 +1,21 @@
+<map id="lib/MeshFitterHiddenState.h" name="lib/MeshFitterHiddenState.h">
+<area shape="rect" id="node2" href="$DisplacementOptimizer_8h.html" title="This file contains the definition of the DisplacementOptimizer class. " alt="" coords="861,80,1031,107"/>
+<area shape="rect" id="node15" href="$MeshFitter_8h_source.html" title="MeshFitter.h" alt="" coords="677,155,772,181"/>
+<area shape="rect" id="node35" href="$MeshHelpers_8h.html" title="This header contains mesh related helper functions. " alt="" coords="1059,155,1169,181"/>
+<area shape="rect" id="node41" href="$WeightedARAPFitter_8h.html" title="This file contains the definition of the WeightedARAPFitter class. " alt="" coords="1126,80,1281,107"/>
+<area shape="rect" id="node3" href="$MeasurementModel_8h.html" title="This header contains the definition of the MeasurementModel type. " alt="" coords="753,229,899,256"/>
+<area shape="rect" id="node40" href="$Sampler_8h.html" title="This private head contains the definition of the Sampler type. " alt="" coords="901,155,983,181"/>
+<area shape="rect" id="node4" href="$DiscreteRange_8h.html" title="This header contains the definition of the DiscreteRange template. " alt="" coords="554,304,674,331"/>
+<area shape="rect" id="node8" href="$Optional_8h.html" title="This header is a wrapper for including optional depending on the supported C++ standard version..." alt="" coords="5,304,87,331"/>
+<area shape="rect" id="node16" href="$Mesh_8h.html" title="Include file defining the Mesh data type. " alt="" coords="941,229,1007,256"/>
+<area shape="rect" id="node28" href="$VoxelVolume_8h.html" title="This header contains the definition of the VoxelVolume type. " alt="" coords="617,229,728,256"/>
+<area shape="rect" id="node32" href="$propagate__const_8h_source.html" title="propagate_const.h" alt="" coords="284,229,413,256"/>
+<area shape="rect" id="node17" href="$BarycentricPoint_8h.html" title="This header contains the definition of the BarycentricPoint data type. " alt="" coords="1411,304,1540,331"/>
+<area shape="rect" id="node19" href="$ColorToLabelMap_8h.html" title="This finle contains definitions for color to index map types. " alt="" coords="1093,304,1228,331"/>
+<area shape="rect" id="node22" href="$LabelToColorMap_8h.html" title="This finle contains definitions for label to color map types. " alt="" coords="1252,304,1387,331"/>
+<area shape="rect" id="node23" href="$Ray_8h.html" title="Definition of Ray data structure. " alt="" coords="1616,304,1673,331"/>
+<area shape="rect" id="node24" href="$RayMeshIntersection_8h.html" title="This file contains the definition of the RayMeshIntersection type. " alt="" coords="861,304,1018,331"/>
+<area shape="rect" id="node25" href="$Padding_8h.html" title="In this header the Padding helper type is defined. " alt="" coords="993,379,1073,405"/>
+<area shape="rect" id="node29" href="$VolumeSize_8h.html" title="This header contains the definition of the VolumeSize type. " alt="" coords="111,304,213,331"/>
+<area shape="rect" id="node31" href="$VoxelSize_8h.html" title="This header contains the definition of the VoxelSize type. " alt="" coords="237,304,329,331"/>
+</map>

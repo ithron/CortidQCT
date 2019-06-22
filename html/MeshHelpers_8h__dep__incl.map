@@ -1,0 +1,12 @@
+<map id="lib/MeshHelpers.h" name="lib/MeshHelpers.h">
+<area shape="rect" id="node2" href="$DisplacementOptimizer_8h.html" title="This file contains the definition of the DisplacementOptimizer class. " alt="" coords="167,80,353,107"/>
+<area shape="rect" id="node4" href="$MeshFitterImpl_8h.html" title="This private header contains the definition of MeshFitter::Impl. " alt="" coords="298,155,435,181"/>
+<area shape="rect" id="node5" href="$MeshFitterImpl_8cpp.html" title="Implementation file for MeshFitter::Impl. " alt="" coords="291,229,442,256"/>
+<area shape="rect" id="node6" href="$MeshFitterHiddenState_8h.html" title="Definitions for the HiddenState type of MeshFitter. " alt="" coords="721,155,905,181"/>
+<area shape="rect" id="node8" href="$WeightedARAPFitter_8h.html" title="This file contains the definition of the WeightedARAPFitter class. " alt="" coords="429,80,601,107"/>
+<area shape="rect" id="node10" href="$MeshFitterConfiguration_8cpp.html" title="Implementation file for MeshFitter::Configuration. " alt="" coords="676,80,879,107"/>
+<area shape="rect" id="node11" href="$SIMesh_8cpp.html" title="This file contains the implementation of the SIMesh file writer. " alt="" coords="903,80,1012,107"/>
+<area shape="rect" id="node3" href="$DisplacementOptimizer_8cpp.html" title="Implementation file for class DisplacementOptimizer. " alt="" coords="23,155,223,181"/>
+<area shape="rect" id="node7" href="$MeshFitterHiddenState_8cpp.html" title="Implementation of the MeshFitter HiddenState type. " alt="" coords="714,229,913,256"/>
+<area shape="rect" id="node9" href="$WeightedARAPFitter_8cpp.html" title="Implementation file fot WeightedARAPFitter class. " alt="" coords="511,155,697,181"/>
+</map>

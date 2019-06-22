@@ -16,6 +16,7 @@ var searchData=
   ['discreterange_3c_20float_20_3e',['DiscreteRange&lt; float &gt;',['../structCortidQCT_1_1DiscreteRange.html',1,'CortidQCT']]],
   ['discreteranged',['DiscreteRanged',['../namespaceCortidQCT.html#a445947e88e7c82b2467493c67b45a7ad',1,'CortidQCT']]],
   ['discreterangedecorators_2eh',['DiscreteRangeDecorators.h',['../DiscreteRangeDecorators_8h.html',1,'']]],
+  ['discreterangeelementvector',['discreteRangeElementVector',['../DiscreteRangeDecorators_8h.html#aedafe3732ecde51cb2a69fef6966c866',1,'CortidQCT::Internal']]],
   ['discreterangef',['DiscreteRangef',['../namespaceCortidQCT.html#a30c457a2bb35a408f50441c9c9d15049',1,'CortidQCT']]],
   ['displacementoptimizer',['DisplacementOptimizer',['../classCortidQCT_1_1Internal_1_1DisplacementOptimizer.html',1,'CortidQCT::Internal']]],
   ['displacementoptimizer_2ecpp',['DisplacementOptimizer.cpp',['../DisplacementOptimizer_8cpp.html',1,'']]],
