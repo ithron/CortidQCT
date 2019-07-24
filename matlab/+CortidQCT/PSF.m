@@ -18,8 +18,6 @@ function y = PSF(t, theta, sigmaG, sliceThickness)
 %            You may use, distribute and modify this code under the terms of¬
 %            the AFL 3.0 license; see LICENSE for full license details.
 
-% TODO: Optimize code by reducing doubel computations
-
 st = sin(theta);
 ct = cos(theta);
 
@@ -72,10 +70,10 @@ sin_mh = sin(2*pi*b.*(t - h));
 sin_ph2 = sin(2*pi*b.*(t + h/2));
 sin_mh2 = sin(2*pi*b.*(t - h/2));
 
-erfi_ph = erfi((b + 2i * pi * c.^2 .* (t + h)) ./ (sqrt(2) * c));
-erfi_mh = erfi((b + 2i * pi * c.^2 .* (t - h)) ./ (sqrt(2) * c));
-erfi_ph2 = erfi((b + 2i * pi * c.^2 .* (t + h/2)) ./ (sqrt(2) * c));
-erfi_mh2 = erfi((b + 2i * pi * c.^2 .* (t - h/2)) ./ (sqrt(2) * c));
+erfi_ph = CortidQCT.Faddeeva.erfi((b + 2i * pi * c.^2 .* (t + h)) ./ (sqrt(2) * c));
+erfi_mh = CortidQCT.Faddeeva.erfi((b + 2i * pi * c.^2 .* (t - h)) ./ (sqrt(2) * c));
+erfi_ph2 = CortidQCT.Faddeeva.erfi((b + 2i * pi * c.^2 .* (t + h/2)) ./ (sqrt(2) * c));
+erfi_mh2 = CortidQCT.Faddeeva.erfi((b + 2i * pi * c.^2 .* (t - h/2)) ./ (sqrt(2) * c));
   
 Xi_0_ph = exp_bc .* ( 1 + ( erfi_ph - conj(erfi_ph) ) ./ 2i );
 Xi_0_mh = exp_bc .* ( 1 + ( erfi_mh - conj(erfi_mh) ) ./ 2i );
