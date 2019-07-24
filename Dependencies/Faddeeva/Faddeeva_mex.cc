@@ -71,6 +71,7 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[]) {
     if (mxIsComplex(prhs[0])) {
       mxComplexDouble *z = mxGetComplexDoubles(prhs[0]);
       mxComplexDouble *wOut = mxGetComplexDoubles(plhs[0]);
+#pragma omp parallel for
       for (size_t i = 0; i < N; ++i) {
         std::complex<double> w =
             FADDEEVA_FUNC(std::complex<double>(z[i].real, z[i].imag), relerr);
@@ -80,6 +81,7 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[]) {
     } else {
       double *z = mxGetDoubles(prhs[0]);
       double *wOut = mxGetDoubles(plhs[0]);
+#pragma omp parallel for
       for (size_t i = 0; i < N; ++i) {
 #if FADDEEVA_REAL == 1
         wOut[i] = FADDEEVA_FUNC(z[i]);
@@ -95,6 +97,7 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[]) {
     if (mxIsComplex(prhs[0])) {
       mxComplexSingle *z = mxGetComplexSingles(prhs[0]);
       mxComplexSingle *wOut = mxGetComplexSingles(plhs[0]);
+#pragma omp parallel for
       for (size_t i = 0; i < N; ++i) {
         std::complex<double> w =
             FADDEEVA_FUNC(std::complex<double>(z[i].real, z[i].imag), relerr);
@@ -104,6 +107,7 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[]) {
     } else {
       float *z = mxGetSingles(prhs[0]);
       float *wOut = mxGetSingles(plhs[0]);
+#pragma omp parallel for
       for (size_t i = 0; i < N; ++i) {
 #if FADDEEVA_REAL == 1
         wOut[i] = FADDEEVA_FUNC(z[i]);

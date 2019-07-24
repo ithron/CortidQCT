@@ -15,12 +15,21 @@ if (NOT MATLAB_FOUND)
   message(FATAL_ERROR "MATLAB could not be found. Please install MATLAB MCR from https://www.mathworks.com/products/compiler/matlab-runtime.html")
 endif()
 
+find_package(OpenMP)
+if (OpenMP_FOUND)
+  message(STATUS "OpenMP support enabled.")
+  set(FADDEEVA_LINK_LIBRARIES ${OpenMP_CXX_LIBRARIES})
+endif()
+
+
 matlab_add_mex(
   NAME
     faddeeva_erf
   SRC
     Faddeeva.cc
     Faddeeva_erf_mex.cc
+  LINK_TO
+    "${FADDEEVA_LINK_LIBRARIES}"
   OUTPUT_NAME
     erf
 )
@@ -31,9 +40,16 @@ matlab_add_mex(
   SRC
     Faddeeva.cc
     Faddeeva_erfi_mex.cc
+  LINK_TO
+    "${FADDEEVA_LINK_LIBRARIES}"
   OUTPUT_NAME
     erfi
 )
+
+if (OpenMP_FOUND)
+  target_compile_options(faddeeva_erf PRIVATE ${OpenMP_CXX_FLAGS})
+  target_compile_options(faddeeva_erfi PRIVATE ${OpenMP_CXX_FLAGS})
+endif()
 
 set_target_properties(faddeeva_erf PROPERTIES COMPILE_FLAGS "-fvisibility=default")
 set_target_properties(faddeeva_erfi PROPERTIES COMPILE_FLAGS "-fvisibility=default")
