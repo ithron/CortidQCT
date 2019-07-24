@@ -18,10 +18,13 @@ function y = PSF(t, theta, sigmaG, sliceThickness)
 %            You may use, distribute and modify this code under the terms of¬
 %            the AFL 3.0 license; see LICENSE for full license details.
 
-st = sin(theta);
-ct = cos(theta);
-
 h = sliceThickness;
+
+if isrow(theta)
+  theta = permute(theta, [1, 3, 2]);
+elseif iscolumn(theta)
+  theta = permute(theta, [3, 2, 1]);
+end
 
 if numel(sigmaG) == 1
   sigmaG = [1 0 sigmaG];
@@ -46,11 +49,17 @@ a = sigmaG(1:3:3*Ni);
 b = sigmaG(2:3:3*Ni);
 c = sigmaG(3:3:3*Ni);
 
+st = sin(theta);
+ct = cos(theta);
+
 % Apply strechting due to angle with z-axis
 b = b ./ st;
 c = c ./ st;
 
 h = h .* ct;
+
+singularIdx1 = ~isfinite(squeeze(1./sin(theta)));
+singularIdx2 = ~isfinite(squeeze(1./sin(theta-pi/2)));
 % TODO: Handle signular cases
 
 exp_bc = exp(-b.^2 ./ (2 .* c.^2));
@@ -80,6 +89,12 @@ Xi_0_mh = exp_bc .* ( 1 + ( erfi_mh - conj(erfi_mh) ) ./ 2i );
 Xi_0_ph2 = exp_bc .* ( 1 + ( erfi_ph2 - conj(erfi_ph2) ) ./ 2i );
 Xi_0_mh2 = exp_bc .* ( 1 + ( erfi_mh2 - conj(erfi_mh2) ) ./ 2i );
 
+% Handle singular case: lim theta -> 0
+Xi_0_ph(:, :, singularIdx1) =  repmat(heaviside(t+h(:, :, singularIdx1)), 1, Ni);
+Xi_0_mh(:, :, singularIdx1) =  repmat(heaviside(t-h(:, :, singularIdx1)), 1, Ni);
+Xi_0_ph2(:, :, singularIdx1) = repmat(heaviside(t+h(:, :, singularIdx1)/2), 1, Ni);
+Xi_0_mh2(:, :, singularIdx1) = repmat(heaviside(t-h(:, :, singularIdx1)/2), 1, Ni);
+
 Xi_1_ph = -1 ./ (sqrt(2 * pi) * c) .* exp_ph .* cos_ph ./ pi + ...
   b./(2 * c.^2) .* exp(- b.^2 ./ (2 * c.^2)) .* ...
   ( erfi_ph + conj(erfi_ph) ) ./ (2 * pi);
@@ -95,7 +110,7 @@ Xi_1_ph2 = -1 ./ (sqrt(2 * pi) * c) .* exp_ph2 .* cos_ph2 ./ pi + ...
 Xi_1_mh2 = -1 ./ (sqrt(2 * pi) * c) .* exp_mh2 .* cos_mh2 ./ pi + ...
   b./(2 * c.^2) .* exp(- b.^2 ./ (2 * c.^2)) .* ...
   ( erfi_mh2 + conj(erfi_mh2) ) ./ (2 * pi);
-  
+
  
 Xi_2_ph = -(t + h) ./ (sqrt(2*pi) .* c) .* exp_ph .* cos_ph ./ pi + ...
     b ./ (2 * pi * sqrt(2*pi) * c.^3) .* exp_ph .* sin_ph ./ pi - ...
@@ -128,7 +143,19 @@ Upsilon_2_mh = Xi_2_mh - 2*t .*  Xi_1_mh + t.^2 .* Xi_0_mh;
 Upsilon_2_ph2 = Xi_2_ph2 - 2*t .*  Xi_1_ph2 + t.^2 .* Xi_0_ph2;
 Upsilon_2_mh2 = Xi_2_mh2 - 2*t .*  Xi_1_mh2 + t.^2 .* Xi_0_mh2;
 
+% Handle singular case: lim theta -> 0
+Upsilon_1_ph(:, :, singularIdx1)  = repmat(heaviside(t + h(:, :, singularIdx1)) .* t, 1, Ni);
+Upsilon_1_mh(:, :, singularIdx1)  = repmat(heaviside(t - h(:, :, singularIdx1)) .* t, 1, Ni);
+Upsilon_1_ph2(:, :, singularIdx1) = repmat(heaviside(t + h(:, :, singularIdx1)/2) .* t, 1, Ni);
+Upsilon_1_mh2(:, :, singularIdx1) = repmat(heaviside(t - h(:, :, singularIdx1)/2) .* t, 1, Ni);
+
+Upsilon_2_ph(:, :, singularIdx1)  = repmat(heaviside(t + h(:, :, singularIdx1)) .* t.^2, 1, Ni);
+Upsilon_2_mh(:, :, singularIdx1)  = repmat(heaviside(t - h(:, :, singularIdx1)) .* t.^2, 1, Ni);
+Upsilon_2_ph2(:, :, singularIdx1) = repmat(heaviside(t + h(:, :, singularIdx1)/2) .* t.^2, 1, Ni);
+Upsilon_2_mh2(:, :, singularIdx1) = repmat(heaviside(t - h(:, :, singularIdx1)/2) .* t.^2, 1, Ni);
+
 scale = 1 ./ (2 * sum(a .* exp(-b.^2 ./ (2 * c.^2))));
+scale(:, :, singularIdx1) = 1./sum(a);
 
 y = a .* (  1 ./ h    .* (     Xi_0_mh2      -     Xi_0_ph2      - 2 * Xi_0_mh      + 2 * Xi_0_ph ) ...
           + 4 ./ h.^2 .* (    -Upsilon_1_mh2 -     Upsilon_1_ph2 +     Upsilon_1_mh +     Upsilon_1_ph ) ...
