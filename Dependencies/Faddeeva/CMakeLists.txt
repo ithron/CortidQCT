@@ -35,7 +35,8 @@ matlab_add_mex(
     erfi
 )
 
-set_target_properties(matlab PROPERTIES COMPILE_FLAGS "-fvisibility=default")
+set_target_properties(faddeeva_erf PROPERTIES COMPILE_FLAGS "-fvisibility=default")
+set_target_properties(faddeeva_erfi PROPERTIES COMPILE_FLAGS "-fvisibility=default")
 
 add_library(Faddeeva::erf ALIAS faddeeva_erf)
 add_library(Faddeeva::erfi ALIAS faddeeva_erfi)
