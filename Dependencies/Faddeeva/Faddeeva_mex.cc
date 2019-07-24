@@ -67,56 +67,30 @@ void mexFunction(int nlhs, mxArray *plhs[],
   plhs[0] = mxCreateNumericArray(ndim, dims, mxDOUBLE_CLASS, 
 				 (FADDEEVA_REAL && !mxIsComplex(prhs[0]))
 				 ? mxREAL : mxCOMPLEX);
-  double *wr = mxGetPr(plhs[0]);
-  double *wi = mxGetPi(plhs[0]);
+  mxComplexDouble *wo = mxGetComplexDoubles(plhs[0]);
 
   size_t N = 1;
   for (mwSize d = 0; d < ndim; ++d) N *= dims[d];  // get total size of array
 
-  void *vzr = mxGetData(prhs[0]);
-  void *vzi = mxGetImagData(prhs[0]);
+  // void *vzr = mxGetData(prhs[0]);
+  // void *vzi = mxGetImagData(prhs[0]);
   if (mxIsDouble(prhs[0])) {
-    double *zr = (double*) vzr;
-    double *zi = (double*) vzi;
-    if (zi)
+  mxComplexDouble *vz = mxGetComplexDoubles(prhs[0]);
+
       for (size_t i = 0; i < N; ++i) {
 	std::complex<double> w
-	  = FADDEEVA_FUNC(std::complex<double>(zr[i], zi[i]), relerr);
-	wr[i] = real(w);
-	wi[i] = imag(w);
-      }
-    else
-      for (size_t i = 0; i < N; ++i) {
-#if FADDEEVA_REAL == 1
-	wr[i] = FADDEEVA_FUNC(zr[i]);
-#else
-	std::complex<double> w
-	  = FADDEEVA_FUNC(std::complex<double>(zr[i], 0), relerr);
-	wr[i] = real(w);
-	wi[i] = imag(w);
-#endif
+	  = FADDEEVA_FUNC(std::complex<double>(vz[i].real, vz[i].imag), relerr);
+  wo[i].real = real(w);
+  wo[i].imag = imag(w);
       }
   }
   else { // single precision
-    float *zr = (float*) vzr;
-    float *zi = (float*) vzi;
-    if (zi)
+  mxComplexSingle *vz = mxGetComplexSingles(prhs[0]);
       for (size_t i = 0; i < N; ++i) {
 	std::complex<double> w
-	  = FADDEEVA_FUNC(std::complex<double>(zr[i], zi[i]), relerr);
-	wr[i] = real(w);
-	wi[i] = imag(w);
-      }
-    else
-      for (size_t i = 0; i < N; ++i) {
-#if FADDEEVA_REAL == 1
-	wr[i] = FADDEEVA_FUNC(zr[i]);
-#else
-	std::complex<double> w
-	  = FADDEEVA_FUNC(std::complex<double>(zr[i], 0), relerr);
-	wr[i] = real(w);
-	wi[i] = imag(w);
-#endif
+	  = FADDEEVA_FUNC(std::complex<double>(vz[i].real, vz[i].imag), relerr);
+	wo[i].real = real(w);
+	wo[i].imag = imag(w);
       }
   }
 }
