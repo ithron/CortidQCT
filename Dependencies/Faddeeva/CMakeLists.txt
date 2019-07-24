@@ -22,7 +22,7 @@ matlab_add_mex(
     Faddeeva.cc
     Faddeeva_erf_mex.cc
   OUTPUT_NAME
-    Faddeeva_erf
+    erf
 )
 
 matlab_add_mex(
@@ -32,7 +32,7 @@ matlab_add_mex(
     Faddeeva.cc
     Faddeeva_erfi_mex.cc
   OUTPUT_NAME
-    Faddeeva_erfi
+    erfi
 )
 
 set_target_properties(matlab PROPERTIES COMPILE_FLAGS "-fvisibility=default")
@@ -40,4 +40,20 @@ set_target_properties(matlab PROPERTIES COMPILE_FLAGS "-fvisibility=default")
 add_library(Faddeeva::erf ALIAS faddeeva_erf)
 add_library(Faddeeva::erfi ALIAS faddeeva_erfi)
 
+
+include(GNUInstallDirs)
+
+if (BUILD_MEX)
+  install(TARGETS faddeeva_erf faddeeva_erfi EXPORT FaddeevaExport
+    LIBRARY DESTINATION ${Faddeeva_Toolbox_ROOT}/+Faddeeva
+    RUNTIME DESTINATION ${Faddeeva_Toolbox_ROOT}/+Faddeeva
+  )
+endif()
+
+install(
+  DIRECTORY
+    "${CMAKE_CURRENT_SOURCE_DIR}/+Faddeeva"
+  DESTINATION
+    "${Faddeeva_Toolbox_ROOT}/"
+)
 
