@@ -4,10 +4,10 @@ set -e
 
 if [[ "$TRAVIS_OS_NAME" = "linux" ]]
 then
-  MCR_URL="http://ssd.mathworks.com/supportfiles/downloads/R2017b/deployment_files/R2017b/installers/glnxa64/MCR_R2017b_glnxa64_installer.zip"
+  MCR_URL="http://ssd.mathworks.com/supportfiles/downloads/R2019a/Release/4/deployment_files/installer/complete/glnxa64/MATLAB_Runtime_R2019a_Update_4_glnxa64.zip"
 elif [[ "$TRAVIS_OS_NAME" = "osx" ]]
 then
-  MCR_URL="http://ssd.mathworks.com/supportfiles/downloads/R2017b/deployment_files/R2017b/installers/maci64/MCR_R2017b_maci64_installer.dmg.zip"
+  MCR_URL="http://ssd.mathworks.com/supportfiles/downloads/R2019a/Release/4/deployment_files/installer/complete/maci64/MATLAB_Runtime_R2019a_Update_4_maci64.dmg.zip"
 fi
 
 MCR_ROOT=${HOME}/MCR
@@ -30,7 +30,7 @@ then
   then
 
     CUR_DIR=`pwd`
-    hdiutil attach MCR_R2017b_maci64_installer.dmg && cd /Volumes/MCR_R2017b_maci64_installer
+    hdiutil attach MCR_R2019a_maci64_installer.dmg && cd /Volumes/MCR_R2019a_maci64_installer
     InstallForMacOSX.app/Contents/MacOS/InstallForMacOSX -mode silent -agreeToLicense yes -destinationFolder ${MCR_ROOT}
     cd ${CUR_DIR}
 

@@ -17,7 +17,7 @@ ninja --version
 if "%APPVEYOR_REPO_TAG%" == "true" (
   if NOT EXIST C:\projects\deps\MCR (
     echo "Downloading MCR"
-    appveyor DownloadFile http://ssd.mathworks.com/supportfiles/downloads/R2017b/deployment_files/R2017b/installers/win64/MCR_R2017b_win64_installer.exe -FileName MCR.exe
+    appveyor DownloadFile http://ssd.mathworks.com/supportfiles/downloads/R2019a/Release/4/deployment_files/installer/complete/win64/MATLAB_Runtime_R2019a_Update_4_win64.zip -FileName MCR.exe
     7z x MCR.exe -oC:\projects\deps\MCR-install
     echo "Installing MCR"
     cd C:\projects\deps\MCR-install
