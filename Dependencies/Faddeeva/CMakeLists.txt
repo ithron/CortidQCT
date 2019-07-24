@@ -9,7 +9,7 @@ project(
   LANGUAGES CXX
 )
 
-find_package(Matlab COMPONENTS MX_LIBRARY MAT_LIBRARY)
+find_package(Matlab 9.4 COMPONENTS MX_LIBRARY MAT_LIBRARY)
 
 if (NOT MATLAB_FOUND)
   message(FATAL_ERROR "MATLAB could not be found. Please install MATLAB MCR from https://www.mathworks.com/products/compiler/matlab-runtime.html")
