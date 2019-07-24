@@ -18,6 +18,7 @@
   * Mesh constructor that reserves memory for vertices, indices and labels
   * Setters for mesh vertices, indices and labels
 - Support sum of gaussian MTF modelling
+- Support cosine modulated sum of gaussians PSF modelling
 - Maintainable version management ([#56](https://github.com/ithron/CortidQCT/issues/56))
 - Changelog
 

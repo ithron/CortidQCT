@@ -28,6 +28,9 @@ if (BUILD_MEX)
   set_target_properties(matlab PROPERTIES COMPILE_FLAGS "-fvisibility=default")
 
   add_library(CortidQCT::matlab ALIAS matlab)
+
+  set(Faddeeva_Toolbox_ROOT "${CortidQCT_Toolbox_ROOT}/toolbox/+CortidQCT")
+  add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/../Dependencies/Faddeeva" "${CMAKE_CURRENT_BINARY_DIR}/Faddeeva")
 endif()
 
 ##########################
