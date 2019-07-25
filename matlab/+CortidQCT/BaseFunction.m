@@ -68,23 +68,21 @@ classdef BaseFunction
       tp = t + w - s;
       tn = t - w - s;
       
-      [Xpq, Ypq] = meshgrid(tp, theta);
-      [Xnq, Ynq] = meshgrid(tn, theta);
-      
+      theta = repmat(theta, N, 1, 1);
       
       [X, Y] = meshgrid(obj.t, obj.theta);
       
-      Gp = interp2(X, Y, obj.GTable, Xpq(:), Ypq(:));
-      Gn = interp2(X, Y, obj.GTable, Xnq(:), Ynq(:));
+      Gp = interp2(X, Y, obj.GTable, tp(:), theta(:));
+      Gn = interp2(X, Y, obj.GTable, tn(:), theta(:));
       
-      Gp(Xpq(:) < min(obj.t)) = 0;
-      Gp(Xpq(:) > max(obj.t)) = 1;
+      Gp(tp(:) < min(obj.t)) = 0;
+      Gp(tp(:) > max(obj.t)) = 1;
       
-      Gn(Xnq(:) < min(obj.t)) = 0;
-      Gn(Xnq(:) > max(obj.t)) = 1;
+      Gn(tn(:) < min(obj.t)) = 0;
+      Gn(tn(:) > max(obj.t)) = 1;
       
-      Gp = permute(reshape(Gp, [], N), [2, 3, 1]);
-      Gn = permute(reshape(Gn, [], N), [2, 3, 1]);
+      Gp = permute(reshape(Gp, N, []), [1, 3, 2]);
+      Gn = permute(reshape(Gn, N, []), [1, 3, 2]);
       
       Psi = [1 - Gp, Gp - Gn, Gn];
       
