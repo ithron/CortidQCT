@@ -176,11 +176,11 @@ classdef BaseFunction
       %  theta - angle(s) with the z-axis [rad]
       %  Returns a NxNxK matrix, where N = length(t) and K = length(theta)
       
-      N = length(t);
-      
       if isrow(t)
         t = t.';
       end
+      
+      N = size(t, 1);
       
       if isrow(theta)
         theta = theta.';
