@@ -90,10 +90,10 @@ Xi_0_ph2 = exp_bc .* ( 1 + ( erfi_ph2 - conj(erfi_ph2) ) ./ 2i );
 Xi_0_mh2 = exp_bc .* ( 1 + ( erfi_mh2 - conj(erfi_mh2) ) ./ 2i );
 
 % Handle singular case: lim theta -> 0
-Xi_0_ph(:, :, singularIdx1) =  repmat(heaviside(t+h(:, :, singularIdx1)), 1, Ni);
-Xi_0_mh(:, :, singularIdx1) =  repmat(heaviside(t-h(:, :, singularIdx1)), 1, Ni);
-Xi_0_ph2(:, :, singularIdx1) = repmat(heaviside(t+h(:, :, singularIdx1)/2), 1, Ni);
-Xi_0_mh2(:, :, singularIdx1) = repmat(heaviside(t-h(:, :, singularIdx1)/2), 1, Ni);
+Xi_0_ph(:, :, singularIdx1) =  repmat(heaviside(t(:, :, singularIdx1)+h(:, :, singularIdx1)), 1, Ni);
+Xi_0_mh(:, :, singularIdx1) =  repmat(heaviside(t(:, :, singularIdx1)-h(:, :, singularIdx1)), 1, Ni);
+Xi_0_ph2(:, :, singularIdx1) = repmat(heaviside(t(:, :, singularIdx1)+h(:, :, singularIdx1)/2), 1, Ni);
+Xi_0_mh2(:, :, singularIdx1) = repmat(heaviside(t(:, :, singularIdx1)-h(:, :, singularIdx1)/2), 1, Ni);
 
 Xi_1_ph = -1 ./ (sqrt(2 * pi) * c) .* exp_ph .* cos_ph ./ pi + ...
   b./(2 * c.^2) .* exp(- b.^2 ./ (2 * c.^2)) .* ...
@@ -144,15 +144,15 @@ Upsilon_2_ph2 = Xi_2_ph2 - 2*t .*  Xi_1_ph2 + t.^2 .* Xi_0_ph2;
 Upsilon_2_mh2 = Xi_2_mh2 - 2*t .*  Xi_1_mh2 + t.^2 .* Xi_0_mh2;
 
 % Handle singular case: lim theta -> 0
-Upsilon_1_ph(:, :, singularIdx1)  = repmat(heaviside(t + h(:, :, singularIdx1)) .* t, 1, Ni);
-Upsilon_1_mh(:, :, singularIdx1)  = repmat(heaviside(t - h(:, :, singularIdx1)) .* t, 1, Ni);
-Upsilon_1_ph2(:, :, singularIdx1) = repmat(heaviside(t + h(:, :, singularIdx1)/2) .* t, 1, Ni);
-Upsilon_1_mh2(:, :, singularIdx1) = repmat(heaviside(t - h(:, :, singularIdx1)/2) .* t, 1, Ni);
+Upsilon_1_ph(:, :, singularIdx1)  = repmat(heaviside(t(:, :, singularIdx1) + h(:, :, singularIdx1)) .* t(:, :, singularIdx1), 1, Ni);
+Upsilon_1_mh(:, :, singularIdx1)  = repmat(heaviside(t(:, :, singularIdx1) - h(:, :, singularIdx1)) .* t(:, :, singularIdx1), 1, Ni);
+Upsilon_1_ph2(:, :, singularIdx1) = repmat(heaviside(t(:, :, singularIdx1) + h(:, :, singularIdx1)/2) .* t(:, :, singularIdx1), 1, Ni);
+Upsilon_1_mh2(:, :, singularIdx1) = repmat(heaviside(t(:, :, singularIdx1) - h(:, :, singularIdx1)/2) .* t(:, :, singularIdx1), 1, Ni);
 
-Upsilon_2_ph(:, :, singularIdx1)  = repmat(heaviside(t + h(:, :, singularIdx1)) .* t.^2, 1, Ni);
-Upsilon_2_mh(:, :, singularIdx1)  = repmat(heaviside(t - h(:, :, singularIdx1)) .* t.^2, 1, Ni);
-Upsilon_2_ph2(:, :, singularIdx1) = repmat(heaviside(t + h(:, :, singularIdx1)/2) .* t.^2, 1, Ni);
-Upsilon_2_mh2(:, :, singularIdx1) = repmat(heaviside(t - h(:, :, singularIdx1)/2) .* t.^2, 1, Ni);
+Upsilon_2_ph(:, :, singularIdx1)  = repmat(heaviside(t(:, :, singularIdx1) + h(:, :, singularIdx1)) .* t(:, :, singularIdx1).^2, 1, Ni);
+Upsilon_2_mh(:, :, singularIdx1)  = repmat(heaviside(t(:, :, singularIdx1) - h(:, :, singularIdx1)) .* t(:, :, singularIdx1).^2, 1, Ni);
+Upsilon_2_ph2(:, :, singularIdx1) = repmat(heaviside(t(:, :, singularIdx1) + h(:, :, singularIdx1)/2) .* t(:, :, singularIdx1).^2, 1, Ni);
+Upsilon_2_mh2(:, :, singularIdx1) = repmat(heaviside(t(:, :, singularIdx1) - h(:, :, singularIdx1)/2) .* t(:, :, singularIdx1).^2, 1, Ni);
 
 scale = 1 ./ (2 * sum(a .* exp(-b.^2 ./ (2 * c.^2))));
 scale(:, :, singularIdx1) = 1./sum(a);
@@ -162,8 +162,8 @@ y = a .* (  1 ./ h    .* (     Xi_0_mh2      -     Xi_0_ph2      - 2 * Xi_0_mh  
           + 2 ./ h.^3 .* ( 2 * Upsilon_2_mh2 - 2 * Upsilon_2_ph2 -     Upsilon_2_mh +     Upsilon_2_ph ));
         
 y(:, :, singularIdx2) = a .* sqrt(2*pi) .* c(:, :, singularIdx2) .* ...
-  exp(-2*pi^2*c(:, :, singularIdx2).^2.*t.^2) .* ...
-  2 .* cos(2*pi*b(:, :, singularIdx2).*t);
+  exp(-2*pi^2*c(:, :, singularIdx2).^2.*t(:, :, singularIdx1).^2) .* ...
+  2 .* cos(2*pi*b(:, :, singularIdx2).*t(:, :, singularIdx1));
  
 y = sum(y, 2) .* scale;
 

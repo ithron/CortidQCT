@@ -49,17 +49,16 @@ classdef BaseFunction
       % EVAL evaluates the base matrix at the given positions, width,
       % shift and angle.
       %  Psi = eval(obj, t, w, s, theta)
-      %  t - positions at which to evaluate the base matrix [mm]
-      %  w - half cortex width [mm]
-      %  s - shift parameter [mm]
-      %  theta - angle(s) with the z-axis [rad]
+      %  t - positions at which to evaluate the base matrix [mm], 1xNxK
+      %   real array
+      %  w - half cortex width [mm], eiehter a scalar or an 1x1xK array
+      %  s - shift parameter [mm], either a scalar or an 1x1xK array
+      %  theta - angle(s) with the z-axis [rad], 1x1xK array
       % Returns a Nx3xK matrix, where N = length(t) and K = length(theta)
       
-      N = length(t);
+      N = size(t, 2);
       
-      if isrow(t)
-        t = t.';
-      end
+      t = permute(t, [2, 1, 3]);
       
       if isrow(theta)
         theta = theta.';
@@ -98,19 +97,13 @@ classdef BaseFunction
       %  theta - angle(s) with the z-axis [rad]
       %  Returns a Nx3xK matrix, where N = length(t) and K = length(theta)
 
-      if isrow(t)
-        t = t.';
-      end
-      
-      if isrow(theta)
-        theta = theta.';
-      end
+      t = permute(t, [2, 1, 3]);
       
       tp = t + w - s;
       tn = t - w - s;
       
-      gp = CortidQCT.PSF(tp(:), theta, obj.sigmaG, obj.sliceThickness);   
-      gn = CortidQCT.PSF(tn(:), theta, obj.sigmaG, obj.sliceThickness);
+      gp = CortidQCT.PSF(tp, theta, obj.sigmaG, obj.sliceThickness);   
+      gn = CortidQCT.PSF(tn, theta, obj.sigmaG, obj.sliceThickness);
       
       dsPsi = [gp, gn - gp, -gn];
     end
@@ -174,17 +167,9 @@ classdef BaseFunction
       %  theta - angle(s) with the z-axis [rad]
       %  Returns a NxNxK matrix, where N = length(t) and K = length(theta)
       
-      if isrow(t)
-        t = t.';
-      end
+      N = size(t, 2);
       
-      N = size(t, 1);
-      
-      if isrow(theta)
-        theta = theta.';
-      end
-      
-      t = t - t.';
+      t = t - permute(t, [2, 1, 3]);
           
       [X, Y] = meshgrid(obj.t, obj.theta);
       
