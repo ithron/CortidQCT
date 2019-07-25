@@ -173,13 +173,11 @@ classdef BaseFunction
           
       [X, Y] = meshgrid(obj.t, obj.theta);
       
-      [Xq, Yq] = meshgrid(t(:), theta);
+      gg = interp2(X, Y, obj.autoCorrTable, t(:), theta(:));
       
-      gg = interp2(X, Y, obj.autoCorrTable, Xq(:), Yq(:));
+      gg(t(:) < min(obj.t) | t(:) > max(obj.t)) = 0;
       
-      gg(Xq(:) < min(obj.t) | Xq(:) > max(obj.t)) = 0;
-      
-      GG = permute(reshape(gg, [], N, N), [2, 3, 1]);
+      GG = permute(reshape(gg, N, N, []), [2, 3, 1]);
       
     end
 
