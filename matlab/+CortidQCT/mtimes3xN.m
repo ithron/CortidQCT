@@ -1,5 +1,5 @@
 function C = mtimes3xN(A, B)
-% MTIMES3XN Computes the matrix product of the (up to) 4D arrays A and B
+% MTIMES3XN Computes the matrix product of the (up to) 5D arrays A and B
 %  C = mtimes2xN(A, B)
 % A - 3xMx...x... array
 % B - MxNx...x... array
@@ -16,7 +16,7 @@ function C = mtimes3xN(A, B)
 assert(size(A, 1) == 3)
 assert(size(A, 2) == size(B, 1))
 
-dummy = A(:, :, 1, 1) * B(:, :, 1, 1);
+dummy = A(:, :, 1, 1, 1) * B(:, :, 1, 1, 1);
 
 sizeA = size(A);
 sizeB = size(B);
@@ -25,11 +25,11 @@ classC = class(dummy);
 
 C = zeros(sizeC, classC);
 
-A = permute(A, [2, 1, 3, 4]);
+A = permute(A, [2, 1, 3, 4, 5]);
 
-C(1, :, :, :) = sum(A(:, 1, :, :) .* B, 1);
-C(2, :, :, :) = sum(A(:, 2, :, :) .* B, 1);
-C(3, :, :, :) = sum(A(:, 3, :, :) .* B, 1);
+C(1, :, :, :, :) = sum(A(:, 1, :, :, :) .* B, 1);
+C(2, :, :, :, :) = sum(A(:, 2, :, :, :) .* B, 1);
+C(3, :, :, :, :) = sum(A(:, 3, :, :, :) .* B, 1);
 
 end
 
