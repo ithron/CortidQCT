@@ -20,6 +20,10 @@ dummy = A(:, :, 1, 1, 1) * B(:, :, 1, 1, 1);
 
 sizeA = size(A);
 sizeB = size(B);
+
+sizeA = [sizeA, ones(1, max(length(sizeB) - length(sizeA), 0))];
+sizeB = [sizeB, ones(1, max(length(sizeA) - length(sizeB), 0))];
+
 sizeC = [size(dummy), max(sizeA(3:end), sizeB(3:end))];
 classC = class(dummy);
 
