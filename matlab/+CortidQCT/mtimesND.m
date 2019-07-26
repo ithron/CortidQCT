@@ -1,9 +1,9 @@
-function C = mtimes3xN(A, B)
-% MTIMES3XN Computes the matrix product of the (up to) 5D arrays A and B
-%  C = mtimes2xN(A, B)
-% A - 3xMx...x... array
+function C = mtimesND(A, B)
+% MTIMESND Computes the matrix product of the (up to) 5D arrays A and B
+%  C = mtimesND(A, B)
+% A - LxMx...x... array
 % B - MxNx...x... array
-% C - 3xNx...x... array representing the matrix product of A and B using
+% C - LxNx...x... array representing the matrix product of A and B using
 % broadcasting.
 
 % This file is part of the 'CortidQCT' project.
@@ -13,7 +13,7 @@ function C = mtimes3xN(A, B)
 %            the AFL 3.0 license; see LICENSE for full license details.
 
 
-assert(size(A, 1) == 3)
+L = size(A, 1);
 assert(size(A, 2) == size(B, 1))
 
 dummy = A(:, :, 1, 1, 1) * B(:, :, 1, 1, 1);
@@ -27,9 +27,9 @@ C = zeros(sizeC, classC);
 
 A = permute(A, [2, 1, 3, 4, 5]);
 
-C(1, :, :, :, :) = sum(A(:, 1, :, :, :) .* B, 1);
-C(2, :, :, :, :) = sum(A(:, 2, :, :, :) .* B, 1);
-C(3, :, :, :, :) = sum(A(:, 3, :, :, :) .* B, 1);
+for ii = 1 : L
+  C(ii, :, :, :, :) = sum(A(:, ii, :, :, :) .* B, 1);
+end
 
 end
 

@@ -226,15 +226,15 @@ classdef BaseFunction
           
           PPI = permute(PPI, [1, 2, 4, 3]);
           
-          PsiPlusDs = CortidQCT.BaseFunction.mtimes3xN(PPds, PPI);
-          PsiPlusDs = -CortidQCT.BaseFunction.mtimes3xN(PPI, PsiPlusDs);
+          PsiPlusDs = CortidQCT.mtimesND(PPds, PPI);
+          PsiPlusDs = -CortidQCT.mtimesND(PPI, PsiPlusDs);
           
-          PsiPlusDs = CortidQCT.BaseFunction.mtimes3xN(PsiPlusDs, permute(Psi, [2, 1, 4, 3]));
+          PsiPlusDs = CortidQCT.mtimesND(PsiPlusDs, permute(Psi, [2, 1, 4, 3]));
           
           for ii = 1 : N
             PsiPlusDs(:, (ii - 1) * M + 1 : ii * M, ii, :, :) = ...
               PsiPlusDs(:, (ii - 1) * M + 1 : ii * M, ii, :, :) + ...
-              CortidQCT.BaseFunction.mtimes3xN(PPI, permute(PsiDs(:, :, ii, :), [2, 1, 3, 4]));
+              CortidQCT.mtimesND(PPI, permute(PsiDs(:, :, ii, :), [2, 1, 3, 4]));
           end
           
         end
@@ -249,16 +249,19 @@ classdef BaseFunction
       %  theta - angle(s) with the z-axis [rad]
       %  Returns a NxNxK matrix, where N = length(t) and K = length(theta)
       
-      N = size(t, 2);
+      M = size(t, 1);
+      N = size(t, 3);
+      K = size(t, 4);
       
-      t = t - permute(t, [2, 1, 3]);
+      t = t - permute(t, [2, 1, 3, 4]);
+      
+      theta = repmat(theta, M, M, 1, K);
       
       gg = interp2(obj.X, obj.Y, obj.autoCorrTable, t(:), theta(:));
       
       gg(t(:) < min(obj.t) | t(:) > max(obj.t)) = 0;
       
-      GG = permute(reshape(gg, N, N, []), [2, 3, 1]);
-      
+      GG = reshape(gg, M, M, N, K);
     end
     
     function obj = set.useGPU(obj, val)
@@ -317,32 +320,6 @@ classdef BaseFunction
         obj.X = gather(obj.X);
         obj.Y = gather(obj.Y);
       end
-    end
-    
-  end
-  
-  methods(Static, Access=public)
-    
-    function C = mtimes3xN(A, B)
-      
-      assert(size(A, 1) == 3)
-      assert(size(A, 2) == size(B, 1))
-      
-      dummy = A(:, :, 1, 1) * B(:, :, 1, 1);
-      
-      sizeA = size(A);
-      sizeB = size(B);
-      sizeC = [size(dummy), max(sizeA(3:end), sizeB(3:end))];
-      classC = class(dummy);
-      
-      C = zeros(sizeC, classC);
-      
-      A = permute(A, [2, 1, 3, 4]);
-      
-      C(1, :, :, :) = sum(A(:, 1, :, :) .* B, 1);
-      C(2, :, :, :) = sum(A(:, 2, :, :) .* B, 1);
-      C(3, :, :, :) = sum(A(:, 3, :, :) .* B, 1);
-      
     end
     
   end
