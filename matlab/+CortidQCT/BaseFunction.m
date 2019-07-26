@@ -1,7 +1,7 @@
 classdef BaseFunction
   %BASEFUNCTION Implementation of the base function matrix using
   %precomputed lookup tables to speed up computations.
-
+  
   % This file is part of the 'CortidQCT' project.
   % Author: Stefan Reinhold
   % Copyright: Copyright (C) 2019 Stefan Reinhold  -- All Rights Reserved.¬
@@ -17,9 +17,15 @@ classdef BaseFunction
     sliceThickness
   end
   
+  properties
+    useGPU
+  end
+  
   properties (Access = private)
+    gTable
     GTable
     autoCorrTable
+    X, Y
   end
   
   
@@ -40,7 +46,13 @@ classdef BaseFunction
       obj.sigmaG = sigmaG;
       obj.sliceThickness = sliceThickness;
       obj.t = linspace(minT, maxT, (maxT - minT) / obj.dt);
-      obj.theta = linspace(0, pi/2, pi/2 / dtheta); 
+      obj.theta = linspace(0, pi/2, pi/2 / dtheta);
+      
+      try
+        obj.useGPU = parallel.gpu.GPUDevice.isAvailable;
+      catch
+        obj.useGPU = false;
+      end
       
       obj = obj.genTables();
     end
@@ -49,30 +61,31 @@ classdef BaseFunction
       % EVAL evaluates the base matrix at the given positions, width,
       % shift and angle.
       %  Psi = eval(obj, t, w, s, theta)
-      %  t - positions at which to evaluate the base matrix [mm], 1xNxK
+      %  t - positions at which to evaluate the base matrix [mm], Mx1xNxK
       %   real array
-      %  w - half cortex width [mm], eiehter a scalar or an 1x1xK array
-      %  s - shift parameter [mm], either a scalar or an 1x1xK array
-      %  theta - angle(s) with the z-axis [rad], 1x1xK array
-      % Returns a Nx3xK matrix, where N = length(t) and K = length(theta)
+      %  w - half cortex width [mm], eiehter a scalar or an 1x1x1xK array
+      %  s - shift parameter [mm], either a scalar or an 1x1xNxK array
+      %  theta - angle(s) with the z-axis [rad], 1x1xN array
+      % Returns a N*Mx3xK matrix
       
-      N = size(t, 2);
+      M = size(t, 1);
+      N = size(t, 3);
+      K = length(w);
       
-      t = permute(t, [2, 1, 3]);
+      assert(size(w, 4) == K);
+      assert(numel(w) == K);
+      assert(size(s, 3) == N);
+      assert(numel(s) == N);
+      assert(size(theta, 3) == N);
+      assert(numel(theta) == N);
       
-      if isrow(theta)
-        theta = theta.';
-      end
-      
-      tp = t + w - s;
+      tp = t + w - s; % Mx1xNxK
       tn = t - w - s;
       
-      theta = repmat(theta, N, 1, 1);
+      theta = repmat(theta, M, 1, 1, K);
       
-      [X, Y] = meshgrid(obj.t, obj.theta);
-      
-      Gp = interp2(X, Y, obj.GTable, tp(:), theta(:));
-      Gn = interp2(X, Y, obj.GTable, tn(:), theta(:));
+      Gp = interp2(obj.X, obj.Y, obj.GTable, tp(:), theta(:));
+      Gn = interp2(obj.X, obj.Y, obj.GTable, tn(:), theta(:));
       
       Gp(tp(:) < min(obj.t)) = 0;
       Gp(tp(:) > max(obj.t)) = 1;
@@ -80,10 +93,13 @@ classdef BaseFunction
       Gn(tn(:) < min(obj.t)) = 0;
       Gn(tn(:) > max(obj.t)) = 1;
       
-      Gp = permute(reshape(Gp, N, []), [1, 3, 2]);
-      Gn = permute(reshape(Gn, N, []), [1, 3, 2]);
+      Gp = reshape(Gp, M, 1, N, K);
+      Gn = reshape(Gn, M, 1, N, K);
       
       Psi = [1 - Gp, Gp - Gn, Gn];
+      
+      Psi = permute(Psi, [1, 3, 2, 4]);
+      Psi = reshape(Psi, M*N, 3, K);
       
     end
     
@@ -91,40 +107,63 @@ classdef BaseFunction
       % DSPSI Computes the derivatives of the base matrix wrt. the shift
       % parameter s.
       % dsPsi = ds(obj, t, w, s, theta)
-      %  t - positions at which to evaluate the base matrix [mm]
-      %  w - half cortex width [mm]
-      %  s - shift parameter [mm]
-      %  theta - angle(s) with the z-axis [rad]
-      %  Returns a Nx3xK matrix, where N = length(t) and K = length(theta)
-
-      t = permute(t, [2, 1, 3]);
+      %  t - positions at which to evaluate the base matrix [mm], Mx1xNxK
+      %   real array
+      %  w - half cortex width [mm], eiehter a scalar or an 1x1x1xK array
+      %  s - shift parameter [mm], either a scalar or an 1x1xNxK array
+      %  theta - angle(s) with the z-axis [rad], 1x1xN array
+      % Returns a Nx3xNxK matrix containgin the non-zero parital
+      % derivitives of the base function
+      
+      M = size(t, 1);
+      N = size(t, 3);
+      K = length(w);
+      
+      assert(size(w, 4) == K);
+      assert(numel(w) == K);
+      assert(size(s, 3) == N);
+      assert(numel(s) == N);
+      assert(size(theta, 3) == N);
+      assert(numel(theta) == N);
       
       tp = t + w - s;
       tn = t - w - s;
       
-      gp = CortidQCT.PSF(tp, theta, obj.sigmaG, obj.sliceThickness);   
-      gn = CortidQCT.PSF(tn, theta, obj.sigmaG, obj.sliceThickness);
+      theta = repmat(theta, M, 1, 1, K);
+
+      gp = interp2(obj.X, obj.Y, obj.gTable, tp(:), theta(:), 'cubic');
+      gn = interp2(obj.X, obj.Y, obj.gTable, tn(:), theta(:), 'cubic');
+      
+      gp(tp(:) < min(obj.t) | tp(:) > max(obj.t)) = 0;
+      gn(tn(:) < min(obj.t) | tn(:) > max(obj.t)) = 0;
+      
+      gp = reshape(gp, M, 1, N, K);
+      gn = reshape(gn, M, 1, N, K);
       
       dsPsi = [gp, gn - gp, -gn];
     end
     
     function PsiPlus = pinv(obj, t, w, s, theta)
       % PINV Computes the pseudo inverse of the base matrix
-      %  %  t - positions at which to evaluate the base matrix [mm]
-      %  w - half cortex width [mm]
-      %  s - shift parameter [mm]
-      %  theta - angle(s) with the z-axis [rad]
-      %  Returns a 3xNxK matrix, where N = length(t) and K = length(theta)
+      %  t - positions at which to evaluate the base matrix [mm], Mx1xNxK
+      %   real array
+      %  w - half cortex width [mm], eiehter a scalar or an 1x1x1xK array
+      %  s - shift parameter [mm], either a scalar or an 1x1xNxK array
+      %  theta - angle(s) with the z-axis [rad], 1x1xN array
+      %  Returns a 3xN*MxK matrix
       
       Psi = obj.eval(t, w, s, theta);
       
       if ismatrix(Psi)
         PsiPlus = (Psi.' * Psi) \ Psi.';
-      else
+      elseif not(obj.useGPU)
         PsiPlus = zeros(3, size(Psi, 1), size(Psi, 3), class(Psi));
         for ii = 1 : size(Psi, 3)
           PsiPlus(:, :, ii) = (Psi(:, :, ii).' * Psi(:, :, ii)) \ Psi(:, :, ii).';
         end
+      else
+        PsiPlus = pagefun(@mtimes, permute(Psi, [2, 1, 3]), Psi);
+        PsiPlus = pagefun(@mldivide, PsiPlus, permute(Psi, [2, 1, 3]));
       end
       
     end
@@ -138,23 +177,66 @@ classdef BaseFunction
       %  theta - angle(s) with the z-axis [rad]
       %  Returns a 3xNxK matrix, where N = length(t) and K = length(theta)
       
-      Psi = obj.eval(t, w, s, theta);
-      PsiDs = obj.ds(t, w, s, theta);
+      Psi = obj.eval(t, w, s, theta); % Mx3xK
+      PsiDs = obj.ds(t, w, s, theta); % Mx3xNxK
       
-      if ismatrix(Psi)
+      M = size(t, 1);
+      N = length(theta);
+      K = length(w);
+      
+      assert(size(Psi, 1) == N * M);
+      assert(size(Psi, 3) == K);
+      
+      if ismatrix(PsiDs)
         PP = Psi.' * Psi;
         PPds = PsiDs.' * Psi + Psi.' * PsiDs;
         
-        PsiPlusDs = -(PP \ PPds) * (PP \ Psi.') + PP \ PsiDs.';
+        PsiPlusDs = real(-(PP \ PPds) * (PP \ Psi.') + PP \ PsiDs.');
         
       else
         
-        PsiPlusDs = zeros(3, size(Psi, 1), size(Psi, 3), class(Psi));
-        for ii = 1 : size(Psi, 3)
-          PP = Psi(:, :, ii).' * Psi(:, :, ii);
-          PPds = PsiDs(:, :, ii).' * Psi(:, :, ii) + Psi(:, :, ii).' * PsiDs(:, :, ii);
-        
-          PsiPlusDs(:, :, ii) = -(PP \ PPds) * (PP \ Psi(:, :, ii).') + PP \ PsiDs(:, :, ii).';
+        if not(obj.useGPU)
+          PsiPlusDs = zeros(3, M * N, N, K);
+          PsiSep = permute(reshape(Psi, M, N, 3, K), [1, 3, 2, 4]);
+          for ii = 1 : K
+            
+            PPI = real(inv(Psi(:, :, ii).' * Psi(:, :, ii)));
+            
+            for jj = 1 : N
+              PPds = ...
+                PsiDs(:, :, jj, ii).' * PsiSep(:, :, jj, ii);
+              PPds = PPds + PPds.';
+              
+              PsiPlusDs(:, :, jj, ii) = ...
+                -PPI * PPds * PPI * Psi(:, :, ii).';
+              PsiPlusDs(:, (jj - 1) * M + 1 : jj * M, jj, ii) = ...
+                PsiPlusDs(:, (jj - 1) * M + 1 : jj * M, jj, ii) + ...
+                PPI * PsiDs(:, :, jj, ii).';
+              
+            end
+          end
+        else
+          
+          PPI = pagefun(@inv, pagefun(@mtimes, permute(Psi, [2, 1, 3]), Psi));
+          PsiSep = permute(reshape(Psi, M, N, 3, K), [1, 3, 2, 4]);
+          PPds = pagefun(@mtimes, permute(reshape(PsiSep, M, 3, N * K), [2, 1, 3]), ...
+            reshape(PsiDs, M, 3, N*K));
+          PPds = reshape(PPds, 3, 3, N, K);
+          PPds = PPds + permute(PPds, [2, 1, 3, 4]);
+          
+          PPI = permute(PPI, [1, 2, 4, 3]);
+          
+          PsiPlusDs = CortidQCT.BaseFunction.mtimes3xN(PPds, PPI);
+          PsiPlusDs = -CortidQCT.BaseFunction.mtimes3xN(PPI, PsiPlusDs);
+          
+          PsiPlusDs = CortidQCT.BaseFunction.mtimes3xN(PsiPlusDs, permute(Psi, [2, 1, 4, 3]));
+          
+          for ii = 1 : N
+            PsiPlusDs(:, (ii - 1) * M + 1 : ii * M, ii, :, :) = ...
+              PsiPlusDs(:, (ii - 1) * M + 1 : ii * M, ii, :, :) + ...
+              CortidQCT.BaseFunction.mtimes3xN(PPI, permute(PsiDs(:, :, ii, :), [2, 1, 3, 4]));
+          end
+          
         end
         
       end
@@ -170,17 +252,24 @@ classdef BaseFunction
       N = size(t, 2);
       
       t = t - permute(t, [2, 1, 3]);
-          
-      [X, Y] = meshgrid(obj.t, obj.theta);
       
-      gg = interp2(X, Y, obj.autoCorrTable, t(:), theta(:));
+      gg = interp2(obj.X, obj.Y, obj.autoCorrTable, t(:), theta(:));
       
       gg(t(:) < min(obj.t) | t(:) > max(obj.t)) = 0;
       
       GG = permute(reshape(gg, N, N, []), [2, 3, 1]);
       
     end
-
+    
+    function obj = set.useGPU(obj, val)
+      oldVal = obj.useGPU;
+      obj.useGPU = val;
+      
+      if oldVal ~= val
+        obj = obj.switchDevice(val);
+      end
+    end
+    
   end
   
   methods (Access = private)
@@ -191,6 +280,8 @@ classdef BaseFunction
       
       % Evaluate PSF, densely sampled
       g = CortidQCT.PSF(obj.t, obj.theta, obj.sigmaG, obj.sliceThickness);
+      
+      obj.gTable = permute(g, [3, 2, 1]);
       
       % Approximate primitive function by using trapezioid method
       obj.GTable = permute(cumtrapz(obj.t, g, 2), [3, 2, 1]);
@@ -204,8 +295,58 @@ classdef BaseFunction
       
       obj.autoCorrTable = obj.autoCorrTable * obj.dt;
       
+      [obj.X, obj.Y] = meshgrid(obj.t, obj.theta);
+      
+      if obj.useGPU
+        obj = obj.switchDevice(true);
+      end
+      
+    end
+    
+    function obj = switchDevice(obj, toGPU)
+      if toGPU
+        obj.gTable = gpuArray(obj.gTable);
+        obj.GTable = gpuArray(obj.GTable);
+        obj.autoCorrTable = gpuArray(obj.autoCorrTable);
+        obj.X = gpuArray(obj.X);
+        obj.Y = gpuArray(obj.Y);
+      else
+        obj.gTable = gather(obj.gTable);
+        obj.GTable = gather(obj.GTable);
+        obj.autoCorrTable = gather(obj.autoCorrTable);
+        obj.X = gather(obj.X);
+        obj.Y = gather(obj.Y);
+      end
     end
     
   end
+  
+  methods(Static, Access=public)
+    
+    function C = mtimes3xN(A, B)
+      
+      assert(size(A, 1) == 3)
+      assert(size(A, 2) == size(B, 1))
+      
+      dummy = A(:, :, 1, 1) * B(:, :, 1, 1);
+      
+      sizeA = size(A);
+      sizeB = size(B);
+      sizeC = [size(dummy), max(sizeA(3:end), sizeB(3:end))];
+      classC = class(dummy);
+      
+      C = zeros(sizeC, classC);
+      
+      A = permute(A, [2, 1, 3, 4]);
+      
+      C(1, :, :, :) = sum(A(:, 1, :, :) .* B, 1);
+      C(2, :, :, :) = sum(A(:, 2, :, :) .* B, 1);
+      C(3, :, :, :) = sum(A(:, 3, :, :) .* B, 1);
+      
+    end
+    
+  end
+  
+  
 end
 
