@@ -57,20 +57,31 @@ classdef BaseFunction
       obj = obj.genTables();
     end
     
-    function Psi = eval(obj, t, w, s, theta)
+    function Psi = eval(obj, t, w, s, theta, varargin)
       % EVAL evaluates the base matrix at the given positions, width,
       % shift and angle.
       %  Psi = eval(obj, t, w, s, theta)
+      %  Psi = eval(obj, t, w, s, theta, joint)
       %  t - positions at which to evaluate the base matrix [mm], Mx1xNxK
       %   real array
       %  w - half cortex width [mm], eiehter a scalar or an 1x1x1xK array
       %  s - shift parameter [mm], either a scalar or an 1x1xNxK array
       %  theta - angle(s) with the z-axis [rad], 1x1xN array
-      % Returns a N*Mx3xK matrix
+      % independent - boolean indicating if a single joint base matrix
+      %   for all angles should be returned or a independent one for each
+      %   angle. Defaults to `true`.
+      % Returns a N*Mx3xK matrix iff `joint == true` and a Mx3xNxK matrix
+      % otherwise.
       
       M = size(t, 1);
       N = size(t, 3);
       K = length(w);
+      
+      if not(isempty(varargin))
+        joint = varargin{1} == true;
+      else
+        joint = true;
+      end
       
       assert(size(w, 4) == K);
       assert(numel(w) == K);
@@ -98,8 +109,10 @@ classdef BaseFunction
       
       Psi = [1 - Gp, Gp - Gn, Gn];
       
-      Psi = permute(Psi, [1, 3, 2, 4]);
-      Psi = reshape(Psi, M*N, 3, K);
+      if joint
+        Psi = permute(Psi, [1, 3, 2, 4]);
+        Psi = reshape(Psi, M*N, 3, K);
+      end
       
     end
     
