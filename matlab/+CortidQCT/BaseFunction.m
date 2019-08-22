@@ -57,20 +57,31 @@ classdef BaseFunction
       obj = obj.genTables();
     end
     
-    function Psi = eval(obj, t, w, s, theta)
+    function Psi = eval(obj, t, w, s, theta, varargin)
       % EVAL evaluates the base matrix at the given positions, width,
       % shift and angle.
       %  Psi = eval(obj, t, w, s, theta)
+      %  Psi = eval(obj, t, w, s, theta, joint)
       %  t - positions at which to evaluate the base matrix [mm], Mx1xNxK
       %   real array
       %  w - half cortex width [mm], eiehter a scalar or an 1x1x1xK array
       %  s - shift parameter [mm], either a scalar or an 1x1xNxK array
       %  theta - angle(s) with the z-axis [rad], 1x1xN array
-      % Returns a N*Mx3xK matrix
+      %  joint - boolean indicating if a single joint base matrix
+      %   for all angles should be returned or an independent one for each
+      %   angle. Defaults to `true`.
+      % Returns a N*Mx3xK matrix iff `joint == true` and a Mx3xNxK matrix
+      % otherwise.
       
       M = size(t, 1);
       N = size(t, 3);
       K = length(w);
+      
+      if not(isempty(varargin))
+        joint = varargin{1} == true;
+      else
+        joint = true;
+      end
       
       assert(size(w, 4) == K);
       assert(numel(w) == K);
@@ -98,8 +109,10 @@ classdef BaseFunction
       
       Psi = [1 - Gp, Gp - Gn, Gn];
       
-      Psi = permute(Psi, [1, 3, 2, 4]);
-      Psi = reshape(Psi, M*N, 3, K);
+      if joint
+        Psi = permute(Psi, [1, 3, 2, 4]);
+        Psi = reshape(Psi, M*N, 3, K);
+      end
       
     end
     
@@ -112,8 +125,12 @@ classdef BaseFunction
       %  w - half cortex width [mm], eiehter a scalar or an 1x1x1xK array
       %  s - shift parameter [mm], either a scalar or an 1x1xNxK array
       %  theta - angle(s) with the z-axis [rad], 1x1xN array
-      % Returns a Nx3xNxK matrix containgin the non-zero parital
+      % Returns a Mx3xNxK matrix containgin the non-zero parital
       % derivitives of the base function
+      %
+      % Note that the derivatives are the same for both, joint and
+      % indpendent base matrices, since only the non-zero sub matrices are
+      % returned in the joint case.
       
       M = size(t, 1);
       N = size(t, 3);
@@ -143,49 +160,67 @@ classdef BaseFunction
       dsPsi = [gp, gn - gp, -gn];
     end
     
-    function PsiPlus = pinv(obj, t, w, s, theta)
+    function PsiPlus = pinv(obj, t, w, s, theta, varargin)
       % PINV Computes the pseudo inverse of the base matrix
+      %  PsiPlus = pinv(obj, t, w, s, theta)
+      %  PsiPlus = pinv(obj, t, w, s, theta, joint)
       %  t - positions at which to evaluate the base matrix [mm], Mx1xNxK
       %   real array
       %  w - half cortex width [mm], eiehter a scalar or an 1x1x1xK array
       %  s - shift parameter [mm], either a scalar or an 1x1xNxK array
       %  theta - angle(s) with the z-axis [rad], 1x1xN array
-      %  Returns a 3xN*MxK matrix
+      %  joint - the joint parameter for `eval`. See eval.
+      %  Returns a 3xN*MxK matrix iff `joint == true` and a 3xMxNxK
+      %  otherwise.
       
-      Psi = obj.eval(t, w, s, theta);
+      Psi = obj.eval(t, w, s, theta, varargin{:});
+      
+      sz = [3, size(Psi, 1), size(Psi, 3), size(Psi, 4)];
       
       if ismatrix(Psi)
         PsiPlus = (Psi.' * Psi) \ Psi.';
       elseif not(obj.useGPU)
-        PsiPlus = zeros(3, size(Psi, 1), size(Psi, 3), class(Psi));
+        PsiPlus = zeros(sz(1), sz(2), sz(3)*sz(4), class(Psi));
+        Psi = reshape(Psi, sz(2), sz(1), []);
         for ii = 1 : size(Psi, 3)
           PsiPlus(:, :, ii) = (Psi(:, :, ii).' * Psi(:, :, ii)) \ Psi(:, :, ii).';
         end
+        PsiPlus = reshape(PsiPlus, sz);
       else
+        sz = [3, size(Psi, 1), size(Psi, 3), size(Psi, 4)];
+        Psi = reshape(Psi, sz(2), sz(1), sz(3) * sz(4));
         PsiPlus = pagefun(@mtimes, permute(Psi, [2, 1, 3]), Psi);
         PsiPlus = pagefun(@mldivide, PsiPlus, permute(Psi, [2, 1, 3]));
+        PsiPlus = reshape(PsiPlus, sz);
       end
       
     end
     
-    function PsiPlusDs = dsPinv(obj, t, w, s, theta)
+    function PsiPlusDs = dsPinv(obj, t, w, s, theta, varargin)
       % DSPINV Computes the derivative of the pseudo inverse of the base
-      % matrix rt. the shift parameter s.
+      % matrix wrt. the shift parameter s.
+      % PsiPlusDs = dsPinv(obj, t, w, s, theta)
+      % PsiPlusDs = dsPinv(obj, t, w, s, theta, joint)
       %  %  t - positions at which to evaluate the base matrix [mm]
       %  w - half cortex width [mm]
       %  s - shift parameter [mm]
       %  theta - angle(s) with the z-axis [rad]
+      %  joint - the joint parameter for `eval`. See eval.
       %  Returns a 3xNxK matrix, where N = length(t) and K = length(theta)
       
-      Psi = obj.eval(t, w, s, theta); % Mx3xK
+      Psi = obj.eval(t, w, s, theta, varargin{:}); % M*Nx3xK or Mx3xNxK
       PsiDs = obj.ds(t, w, s, theta); % Mx3xNxK
       
       M = size(t, 1);
       N = length(theta);
       K = length(w);
       
-      assert(size(Psi, 1) == N * M);
-      assert(size(Psi, 3) == K);
+      assert(size(Psi, 1) == N * M || (size(Psi, 1) == M && size(Psi, 3) == N && size(Psi, 4) == K));
+      assert(size(Psi, 3) == K || (size(Psi, 3) == N && size(Psi, 4) == K));
+      
+      joint = not(size(Psi, 3) == N && size(Psi, 4) == K);
+      
+      sz = size(Psi);
       
       if ismatrix(PsiDs)
         PP = Psi.' * Psi;
@@ -196,45 +231,87 @@ classdef BaseFunction
       else
         
         if not(obj.useGPU)
-          PsiPlusDs = zeros(3, M * N, N, K);
-          PsiSep = permute(reshape(Psi, M, N, 3, K), [1, 3, 2, 4]);
-          for ii = 1 : K
+          if joint
+            PsiPlusDs = zeros(3, M * N, N, K, class(Psi));
+          
+            PsiSep = permute(reshape(Psi, M, N, 3, K), [1, 3, 2, 4]);
+
+            for ii = 1 : K
+
+              PPI = real(inv(Psi(:, :, ii).' * Psi(:, :, ii)));
+
+              for jj = 1 : N
+                PPds = ...
+                  PsiDs(:, :, jj, ii).' * PsiSep(:, :, jj, ii);
+                PPds = PPds + PPds.';
+
+                PsiPlusDs(:, :, jj, ii) = ...
+                  -PPI * PPds * PPI * Psi(:, :, ii).';
+                PsiPlusDs(:, (jj - 1) * M + 1 : jj * M, jj, ii) = ...
+                  PsiPlusDs(:, (jj - 1) * M + 1 : jj * M, jj, ii) + ...
+                  PPI * PsiDs(:, :, jj, ii).';
+
+              end
+            end
+          else
             
-            PPI = real(inv(Psi(:, :, ii).' * Psi(:, :, ii)));
+            PsiPlusDs = zeros(3, M, N * K, class(Psi));
+            Psi = reshape(Psi, M, 3, []);
+            PsiDs = reshape(PsiDs, M, 3, []);
             
-            for jj = 1 : N
-              PPds = ...
-                PsiDs(:, :, jj, ii).' * PsiSep(:, :, jj, ii);
+            for ii = 1 : size(Psi, 3)
+              
+              PPI = real(inv(Psi(:, :, ii).' * Psi(:, :, ii)));
+              
+              PPds = PsiDs(:, :, ii).' * Psi(:, :, ii);
               PPds = PPds + PPds.';
               
-              PsiPlusDs(:, :, jj, ii) = ...
-                -PPI * PPds * PPI * Psi(:, :, ii).';
-              PsiPlusDs(:, (jj - 1) * M + 1 : jj * M, jj, ii) = ...
-                PsiPlusDs(:, (jj - 1) * M + 1 : jj * M, jj, ii) + ...
-                PPI * PsiDs(:, :, jj, ii).';
+              PsiPlusDs(:, :, ii) = -PPI * PPds * PPI * Psi(:, :, ii).';
+              PsiPlusDs(:, :, ii) = PsiPlusDs(:, :, ii) + PPI * PsiDs(:, :, ii).';
               
             end
+            
+            PsiPlusDs = reshape(PsiPlusDs, 3, M, N, K);
           end
         else
           
+          
+          if not(joint)
+            Psi = reshape(Psi, sz(1), sz(2), []);
+          end
           PPI = pagefun(@inv, pagefun(@mtimes, permute(Psi, [2, 1, 3]), Psi));
-          PsiSep = permute(reshape(Psi, M, N, 3, K), [1, 3, 2, 4]);
+          if joint
+            PsiSep = permute(reshape(Psi, M, N, 3, K), [1, 3, 2, 4]);
+          else
+            PsiSep = reshape(Psi, sz);
+          end
           PPds = pagefun(@mtimes, permute(reshape(PsiSep, M, 3, N * K), [2, 1, 3]), ...
             reshape(PsiDs, M, 3, N*K));
           PPds = reshape(PPds, 3, 3, N, K);
           PPds = PPds + permute(PPds, [2, 1, 3, 4]);
           
-          PPI = permute(PPI, [1, 2, 4, 3]);
+          if joint
+            PPI = permute(PPI, [1, 2, 4, 3]);
+          else
+            PPI = reshape(PPI, 3, 3, N, K);
+            Psi = reshape(Psi, sz);
+          end
           
           PsiPlusDs = CortidQCT.mtimesND(PPds, PPI);
           PsiPlusDs = -CortidQCT.mtimesND(PPI, PsiPlusDs);
           
-          PsiPlusDs = CortidQCT.mtimesND(PsiPlusDs, permute(Psi, [2, 1, 4, 3]));
-          
-          for ii = 1 : N
-            PsiPlusDs(:, (ii - 1) * M + 1 : ii * M, ii, :, :) = ...
+          if joint
+            PsiPlusDs = CortidQCT.mtimesND(PsiPlusDs, permute(Psi, [2, 1, 4, 3]));
+            
+            for ii = 1 : N
+              PsiPlusDs(:, (ii - 1) * M + 1 : ii * M, ii, :, :) = ...
               PsiPlusDs(:, (ii - 1) * M + 1 : ii * M, ii, :, :) + ...
               CortidQCT.mtimesND(PPI, permute(PsiDs(:, :, ii, :), [2, 1, 3, 4]));
+            end
+            
+          else
+            PsiPlusDs = CortidQCT.mtimesND(PsiPlusDs, permute(Psi, [2, 1, 3, 4]));
+            PsiPlusDs = PsiPlusDs + CortidQCT.mtimesND(PPI, permute(PsiDs, [2, 1, 3, 4]));
           end
           
         end
