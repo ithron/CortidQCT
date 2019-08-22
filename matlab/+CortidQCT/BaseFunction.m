@@ -160,27 +160,38 @@ classdef BaseFunction
       dsPsi = [gp, gn - gp, -gn];
     end
     
-    function PsiPlus = pinv(obj, t, w, s, theta)
+    function PsiPlus = pinv(obj, t, w, s, theta, varargin)
       % PINV Computes the pseudo inverse of the base matrix
+      %  PsiPlus = pinv(obj, t, w, s, theta)
+      %  PsiPlus = pinv(obj, t, w, s, theta, joint)
       %  t - positions at which to evaluate the base matrix [mm], Mx1xNxK
       %   real array
       %  w - half cortex width [mm], eiehter a scalar or an 1x1x1xK array
       %  s - shift parameter [mm], either a scalar or an 1x1xNxK array
       %  theta - angle(s) with the z-axis [rad], 1x1xN array
-      %  Returns a 3xN*MxK matrix
+      %  joint - the joint parameter for `eval`. See eval.
+      %  Returns a 3xN*MxK matrix iff `joint == true` and a 3xMxNxK
+      %  otherwise.
       
-      Psi = obj.eval(t, w, s, theta);
+      Psi = obj.eval(t, w, s, theta, varargin{:});
+      
+      sz = [3, size(Psi, 1), size(Psi, 3), size(Psi, 4)];
       
       if ismatrix(Psi)
         PsiPlus = (Psi.' * Psi) \ Psi.';
       elseif not(obj.useGPU)
-        PsiPlus = zeros(3, size(Psi, 1), size(Psi, 3), class(Psi));
+        PsiPlus = zeros(sz(1), sz(2), sz(3)*sz(4), class(Psi));
+        Psi = reshape(Psi, sz(2), sz(1), []);
         for ii = 1 : size(Psi, 3)
           PsiPlus(:, :, ii) = (Psi(:, :, ii).' * Psi(:, :, ii)) \ Psi(:, :, ii).';
         end
+        PsiPlus = reshape(PsiPlus, sz);
       else
+        sz = [3, size(Psi, 1), size(Psi, 3), size(Psi, 4)];
+        Psi = reshape(Psi, sz(2), sz(1), sz(3) * sz(4));
         PsiPlus = pagefun(@mtimes, permute(Psi, [2, 1, 3]), Psi);
         PsiPlus = pagefun(@mldivide, PsiPlus, permute(Psi, [2, 1, 3]));
+        PsiPlus = reshape(PsiPlus, sz);
       end
       
     end
