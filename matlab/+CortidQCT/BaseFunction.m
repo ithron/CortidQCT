@@ -68,7 +68,7 @@ classdef BaseFunction
       %  s - shift parameter [mm], either a scalar or an 1x1xNxK array
       %  theta - angle(s) with the z-axis [rad], 1x1xN array
       % independent - boolean indicating if a single joint base matrix
-      %   for all angles should be returned or a independent one for each
+      %   for all angles should be returned or an independent one for each
       %   angle. Defaults to `true`.
       % Returns a N*Mx3xK matrix iff `joint == true` and a Mx3xNxK matrix
       % otherwise.
