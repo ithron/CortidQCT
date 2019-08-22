@@ -125,8 +125,12 @@ classdef BaseFunction
       %  w - half cortex width [mm], eiehter a scalar or an 1x1x1xK array
       %  s - shift parameter [mm], either a scalar or an 1x1xNxK array
       %  theta - angle(s) with the z-axis [rad], 1x1xN array
-      % Returns a Nx3xNxK matrix containgin the non-zero parital
+      % Returns a Mx3xNxK matrix containgin the non-zero parital
       % derivitives of the base function
+      %
+      % Note that the derivatives are the same for both, joint and
+      % indpendent base matrices, since only the non-zero sub matrices are
+      % returned in the joint case.
       
       M = size(t, 1);
       N = size(t, 3);
