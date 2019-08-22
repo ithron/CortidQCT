@@ -198,7 +198,7 @@ classdef BaseFunction
     
     function PsiPlusDs = dsPinv(obj, t, w, s, theta)
       % DSPINV Computes the derivative of the pseudo inverse of the base
-      % matrix rt. the shift parameter s.
+      % matrix wrt. the shift parameter s.
       %  %  t - positions at which to evaluate the base matrix [mm]
       %  w - half cortex width [mm]
       %  s - shift parameter [mm]
