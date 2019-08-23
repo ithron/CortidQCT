@@ -331,14 +331,22 @@ classdef BaseFunction
       K = size(t, 4);
       
       t = t - permute(t, [2, 1, 3, 4]);
+      t = t(1, :, :, :);
       
-      theta = repmat(theta, M, M, 1, K);
+      theta = repmat(theta, 1, length(t), 1, K);
       
       gg = interp2(obj.X, obj.Y, obj.autoCorrTable, t(:), theta(:));
       
       gg(t(:) < min(obj.t) | t(:) > max(obj.t)) = 0;
       
-      GG = reshape(gg, M, M, N, K);
+      GGtmp = reshape(gg, length(t), 1, N * K);
+      
+      GG = zeros(M, M, N * K, class(GGtmp));
+      for ii = 1 : N * K
+        GG(:, :, ii) = toeplitz(GGtmp(:, 1, ii));
+      end
+      
+      GG = reshape(GG, M, M, N, K);
     end
     
     function obj = set.useGPU(obj, val)
