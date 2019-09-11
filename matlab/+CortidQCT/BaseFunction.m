@@ -74,8 +74,8 @@ classdef BaseFunction
       % otherwise.
       
       M = size(t, 1);
-      N = size(t, 3);
-      K = length(w);
+      N = length(theta);
+      K = size(w, 4);
       
       if not(isempty(varargin))
         joint = varargin{1} == true;
@@ -84,10 +84,6 @@ classdef BaseFunction
       end
       
       assert(size(w, 4) == K);
-      assert(numel(w) == K);
-      assert(size(s, 3) == N);
-      assert(numel(s) == N);
-      assert(size(theta, 3) == N);
       assert(numel(theta) == N);
       
       tp = t + w - s; % Mx1xNxK
@@ -327,7 +323,7 @@ classdef BaseFunction
       %  Returns a NxNxK matrix, where N = length(t) and K = length(theta)
       
       M = size(t, 1);
-      N = size(t, 3);
+      N = length(theta);
       K = size(t, 4);
       
       t = t - permute(t, [2, 1, 3, 4]);
