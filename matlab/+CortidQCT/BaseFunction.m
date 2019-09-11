@@ -40,7 +40,7 @@ classdef BaseFunction
       
       minT = -5;
       maxT =  5;
-      obj.dt = 1e-4;
+      obj.dt = 1e-3;
       dtheta = pi/180;
       obj.dTheta = dtheta;
       obj.sigmaG = sigmaG;
