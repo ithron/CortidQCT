@@ -24,7 +24,6 @@ classdef BaseFunction
   properties (Access = private)
     gTable
     GTable
-    autoCorrTable
     X, Y
   end
   
@@ -326,22 +325,29 @@ classdef BaseFunction
       N = length(theta);
       K = size(t, 4);
       
-      t = t - permute(t, [2, 1, 3, 4]);
-      t = t(1, :, :, :);
+      t = permute(t - t(1, :, :, :), [2, 1, 3, 4]);
       
-      theta = repmat(theta, 1, length(t), 1, K);
+      t = [-t(:, end:-1:2, :, :), t];
       
-      gg = interp2(obj.X, obj.Y, obj.autoCorrTable, t(:), theta(:));
-      
-      gg(t(:) < min(obj.t) | t(:) > max(obj.t)) = 0;
-      
-      GGtmp = reshape(gg, length(t), 1, N * K);
-      
-      GG = zeros(M, M, N * K, class(GGtmp));
-      for ii = 1 : N * K
-        GG(:, :, ii) = toeplitz(GGtmp(:, 1, ii));
+      if size(t, 3) == 1
+        t = repmat(t, 1, 1, N);
       end
       
+      theta = repmat(theta, 1, 2 * M - 1, 1, K);
+      
+      GG = interp2(obj.X, obj.Y, obj.gTable, t(:), theta(:));
+      
+      GG(t(:) < min(obj.t) | t(:) > max(obj.t)) = 0;
+      
+      GG = reshape(GG, 2 * M - 1, 1, N * K);
+      GG = num2cell(GG, [1, 2]);
+      
+      GG = cellfun(@(x) conv(x, x, 'same'), GG, 'UniformOutput', false);
+      GG = cellfun(@(x) x(M : end), GG, 'UniformOutput', false);
+      
+      GG = cellfun(@toeplitz, GG, 'UniformOutput', false);
+      GG = cat(3, GG{:});
+           
       GG = reshape(GG, M, M, N, K);
     end
     
@@ -369,15 +375,6 @@ classdef BaseFunction
       
       % Approximate primitive function by using trapezioid method
       obj.GTable = permute(cumtrapz(obj.t, g, 2), [3, 2, 1]);
-      
-      % Compute autocorrelation function: for each theta convolve the PSF
-      % with itself
-      obj.autoCorrTable = zeros(size(obj.GTable), class(g));
-      for ii = 1 : length(obj.theta)
-        obj.autoCorrTable(ii, :) = conv(g(:, :, ii), g(:, :, ii), 'same');
-      end
-      
-      obj.autoCorrTable = obj.autoCorrTable * obj.dt;
       
       [obj.X, obj.Y] = meshgrid(obj.t, obj.theta);
       
