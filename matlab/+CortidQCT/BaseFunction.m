@@ -402,13 +402,11 @@ classdef BaseFunction
       if toGPU
         obj.gTable = gpuArray(obj.gTable);
         obj.GTable = gpuArray(obj.GTable);
-        obj.autoCorrTable = gpuArray(obj.autoCorrTable);
         obj.X = gpuArray(obj.X);
         obj.Y = gpuArray(obj.Y);
       else
         obj.gTable = gather(obj.gTable);
         obj.GTable = gather(obj.GTable);
-        obj.autoCorrTable = gather(obj.autoCorrTable);
         obj.X = gather(obj.X);
         obj.Y = gather(obj.Y);
       end
