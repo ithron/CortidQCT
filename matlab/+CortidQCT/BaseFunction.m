@@ -315,11 +315,17 @@ classdef BaseFunction
       
     end
     
-    function GG = autoCorrPSF(obj, t, theta)
+    function GG = autoCorrPSF(obj, t, theta, varargin)
       % AUTOCORRPSF Computes the autocorrelation matrix of the PSF
+      %
+      %  GG = autoCorrPSF(obj, t, theta)
+      %  gg = autoCorrPSF(obj, t, theta, false)
+      %
       %  t - positions at which to evaluate the base matrix [mm]
       %  theta - angle(s) with the z-axis [rad]
-      %  Returns a NxNxK matrix, where N = length(t) and K = length(theta)
+      %  Returns a NxNxK matrix, where N = length(t) and K = length(theta).
+      %  The second term returns a Nx1xK vector which can be used con
+      %  construct the toeplitz matrix GG.
       
       M = size(t, 1);
       N = length(theta);
@@ -328,6 +334,8 @@ classdef BaseFunction
       t = permute(t - t(1, :, :, :), [2, 1, 3, 4]);
       
       t = [-t(:, end:-1:2, :, :), t];
+      
+      full = isempty(varargin) || varargin{1};
       
       if size(t, 3) == 1
         t = repmat(t, 1, 1, N);
@@ -345,10 +353,16 @@ classdef BaseFunction
       GG = cellfun(@(x) conv(x, x, 'same'), GG, 'UniformOutput', false);
       GG = cellfun(@(x) x(M : end), GG, 'UniformOutput', false);
       
-      GG = cellfun(@toeplitz, GG, 'UniformOutput', false);
+      if full
+        GG = cellfun(@toeplitz, GG, 'UniformOutput', false);
+      end
       GG = cat(3, GG{:});
-           
-      GG = reshape(GG, M, M, N, K);
+         
+      if full
+        GG = reshape(GG, M, M, N, K);
+      else
+        GG = reshape(GG, M, 1, N, K);
+      end
     end
     
     function obj = set.useGPU(obj, val)
