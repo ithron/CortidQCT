@@ -317,7 +317,7 @@ classdef BaseFunction
     end
     
     function GG = autoCorrPSF(obj, t, theta)
-      % AUTOCORRPSF Computes the autocorrelation matrox of the PSF
+      % AUTOCORRPSF Computes the autocorrelation matrix of the PSF
       %  t - positions at which to evaluate the base matrix [mm]
       %  theta - angle(s) with the z-axis [rad]
       %  Returns a NxNxK matrix, where N = length(t) and K = length(theta)
