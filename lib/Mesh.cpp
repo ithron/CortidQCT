@@ -53,27 +53,6 @@ void orientOutwards(Eigen::MatrixBase<DerivedV> const &V,
   igl::orient_outward(V.derived(), F.derived(), C, F.derived(), I);
 }
 
-template <class DerivedV, class DerivedF>
-bool isOutwardOriented(Eigen::MatrixBase<DerivedV> const &V,
-                       Eigen::MatrixBase<DerivedF> const &F) {
-  using Scalar = typename DerivedV::Scalar;
-  using Eigen::Dynamic;
-  using Eigen::Matrix;
-
-  NormalMatrix<Scalar> const N = perVertexNormalMatrix(V, F);
-  Matrix<Scalar, 3, 1> const centroid = V.colwise().mean().transpose();
-
-  Matrix<Scalar, Dynamic, 3> const Vcentered =
-      V.rowwise() - centroid.transpose();
-
-  auto const outwardsCount =
-      ((Vcentered.array() * N.array()).rowwise().sum() > 0)
-          .template cast<Eigen::Index>()
-          .sum();
-
-  return outwardsCount > V.rows() / 2;
-}
-
 struct SequencialTransform {
   template <class I, class O, class F>
   void operator()(I b, I e, O o, F &&f) const {
@@ -115,8 +94,6 @@ template <class T> void Mesh<T>::ensurePostconditions() const {
 
   VertexMatrix<T> const V = vertexMatrix(*this);
   FacetMatrix const F = facetMatrix(*this);
-
-  Ensures(isOutwardOriented(V, F));
 }
 
 template <class T>
