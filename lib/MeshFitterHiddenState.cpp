@@ -23,7 +23,9 @@ using namespace Internal;
 
 MeshFitter::State::State(State const &rhs)
     : Result(rhs), hiddenState_{
-                       std::make_unique<HiddenState>(*rhs.hiddenState_)} {}
+                       rhs.hiddenState_ != nullptr
+                           ? std::make_unique<HiddenState>(*rhs.hiddenState_)
+                           : nullptr} {}
 
 MeshFitter::State::State(Result const &rhs)
     : Result(rhs), hiddenState_{nullptr} {}
@@ -31,7 +33,7 @@ MeshFitter::State::State(Result const &rhs)
 MeshFitter::State::State(Result &&rhs)
     : Result(std::move(rhs)), hiddenState_{nullptr} {}
 
-MeshFitter::State::~State(){}
+MeshFitter::State::~State() {}
 
 MeshFitter::State &MeshFitter::State::operator=(State const &rhs) {
   static_cast<Result &>(*this) = rhs;
