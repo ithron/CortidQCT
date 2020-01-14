@@ -32,6 +32,8 @@
 - Scaling of out-of-plane MTF
 - Issue [#47](https://github.com/ithron/CortidQCT/issues/47): CortidQCT.saveModel broken in MATLAB 2018b on linux
 - Issue [#60](https://github.com/ithron/CortidQCT/issues/60): (MATLAB) VoxelVolume.plot off by one error
+- Issue [#70](https://github.com/ithron/CortidQCT/issues/70): Crash when using MeshFitter.fit(volume) from MATLAB or C
+- Issue [#71](https://github.com/ithron/CortidQCT/issues/70): CortidQCT\_CLI crashes when build in debug mode
 
 ## Known Issues
 - Xcode generator on macOS not working
