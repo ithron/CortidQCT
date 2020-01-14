@@ -145,7 +145,7 @@ MeshFitter::State MeshFitter::Impl::init(VoxelVolume const &volume) const {
   // Init vertex normals
   state.referenceMesh.updatePerVertexNormals();
   // This will be removed in versino 2.0:
-  state.vertexNormals.resize(3 * narrow_cast<std::size_t>(nVertices));
+  state.vertexNormals.resize(narrow_cast<std::size_t>(nVertices));
   Adaptor::map(state.vertexNormals) = Adaptor::vertexNormalMap(state.referenceMesh);
 
   // Init deformed mesh with reference mesh
