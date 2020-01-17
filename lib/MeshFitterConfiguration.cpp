@@ -55,6 +55,13 @@ MeshFitter::Configuration::loadFromFile(std::string const &filename) {
 
     auto const node = YAML::LoadFile(filename);
 
+    if (auto const &baseFileNode = node["inherit"]) {
+      auto const baseFilePath =
+          composePath(filename, baseFileNode.as<std::string>());
+
+      loadFromFile(baseFilePath);
+    }
+
     auto const &referenceMeshNode = node["referenceMesh"];
     auto const &measurementModelNode = node["measurementModel"];
 
