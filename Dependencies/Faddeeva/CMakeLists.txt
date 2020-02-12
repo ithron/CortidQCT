@@ -51,6 +51,9 @@ if (OpenMP_FOUND)
   target_compile_options(faddeeva_erfi PRIVATE ${OpenMP_CXX_FLAGS})
 endif()
 
+target_compile_definitions(faddeeva_erf PRIVATE MATLAB_DEFAULT_RELEASE=R2018a)
+target_compile_definitions(faddeeva_erfi PRIVATE MATLAB_DEFAULT_RELEASE=R2018a)
+
 set_target_properties(faddeeva_erf PROPERTIES COMPILE_FLAGS "-fvisibility=default")
 set_target_properties(faddeeva_erfi PROPERTIES COMPILE_FLAGS "-fvisibility=default")
 
