@@ -21,6 +21,7 @@
 - Support cosine modulated sum of gaussians PSF modelling
 - Maintainable version management ([#56](https://github.com/ithron/CortidQCT/issues/56))
 - Changelog
+- Inheritance for configuration files (rudimentary)
 
 ## Removed
 - Dropped support for older clang versions ( < 6.0.0 )
@@ -32,6 +33,10 @@
 - Scaling of out-of-plane MTF
 - Issue [#47](https://github.com/ithron/CortidQCT/issues/47): CortidQCT.saveModel broken in MATLAB 2018b on linux
 - Issue [#60](https://github.com/ithron/CortidQCT/issues/60): (MATLAB) VoxelVolume.plot off by one error
+- Issue [#70](https://github.com/ithron/CortidQCT/issues/70): Crash when using MeshFitter.fit(volume) from MATLAB or C
+- Issue [#71](https://github.com/ithron/CortidQCT/issues/70): CortidQCT\_CLI crashes when build in debug mode
+- Indexing issue where the zero planes of a volume were beein ignored by the
+  fitter
 
 ## Known Issues
 - Xcode generator on macOS not working

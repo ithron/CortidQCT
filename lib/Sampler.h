@@ -76,7 +76,7 @@ private:
      gsl::not_null<VoxelVolume::ValueType const *> ptr) const {
     auto const &size = volume_.size();
 
-    auto const isInside = (pos.array() > 0).all() &&
+    auto const isInside = (pos.array() >= 0).all() &&
                           pos(0) < gsl::narrow_cast<int>(size.width) &&
                           pos(1) < gsl::narrow_cast<int>(size.height) &&
                           pos(2) < gsl::narrow_cast<int>(size.depth);
