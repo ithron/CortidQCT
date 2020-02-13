@@ -37,6 +37,7 @@
 - Issue [#71](https://github.com/ithron/CortidQCT/issues/70): CortidQCT\_CLI crashes when build in debug mode
 - Indexing issue where the zero planes of a volume were beein ignored by the
   fitter
+- Labels were not included when saving meshes to SIMesh format
 
 ## Known Issues
 - Xcode generator on macOS not working

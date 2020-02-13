@@ -317,7 +317,9 @@ void Mesh<T>::writeToFile(std::string const &meshFilename,
 
   // check for SIMEsh format
   if (IO::extension(meshFilename, true) == "simesh") {
-    writeToSIMesh(*this, meshFilename);
+    constexpr auto magicLabel = std::numeric_limits<Label>::max();
+    auto const includeLabels = labelVector(*this)[0] != magicLabel;
+    writeToSIMesh(*this, meshFilename, includeLabels);
   } else {
 
     // Convert vertex and index data to a format igl understads
