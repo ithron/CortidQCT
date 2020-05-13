@@ -27,6 +27,7 @@
 - Dropped support for older clang versions ( < 6.0.0 )
 - MeshFitter::State::vertexNormals is now depreacated, use vertex normals
   property of deformed mesh instead ([#63](https://github.com/ithron/CortidQCT/issues/63))
+- OpenCL support
 
 
 ## Fixes
