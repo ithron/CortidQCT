@@ -43,3 +43,5 @@ hunter/
 
 *.m~
 Models
+
+.DS_Store
