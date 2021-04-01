@@ -47,9 +47,13 @@ private:
   using DataStorage = std::unordered_map<Label, VOIData>;
 
 public:
+  struct Version {
+    int major, minor, patch;
+  };
   /// @name Properties
   /// @{
 
+  Version version = {1, 0, 0};
   /// Optional model name
   std::optional<std::string> name;
   /// Optional model description
@@ -61,7 +65,11 @@ public:
   std::optional<std::string> creationDate;
 
   /// in-plane kernel width (sigma of gaussian kernel)
-  float kernelSigma = 1.f;
+  std::optional<float> kernelSigma;
+  /// name of the reconstruction kernel (since version 2.0.0)
+  std::optional<std::string> kernelName;
+  /// scanner name (since version 2..0.0)
+  std::optional<std::string> scannerName;
   /// slice thickness
   float sliceSpacing = 1.f;
 

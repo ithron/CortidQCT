@@ -17,6 +17,8 @@
 #include <sstream>
 #include <string>
 
+#include<iostream>
+
 namespace CortidQCT {
 
 namespace {
@@ -52,12 +54,30 @@ MeasurementModel &MeasurementModel::loadFromFile(std::string const &filename) {
 
     // Parse required tags
 
+    auto const &versionNode = node["version"];
     auto const &kernelNode = node["kernel"];
     auto const &sliceSpacingNode = node["sliceSpacing"];
     auto const &samplingRangeNode = node["samplingRange"];
     auto const &densityRangeNode = node["densityRange"];
     auto const &angleRangeNode = node["angleRange"];
     auto const &densityNode = node["density"];
+
+    Version version_ = {1, 0, 0};
+
+    if (versionNode) {
+      auto versionStr = versionNode.as<std::string>();
+      // parse version string
+      auto dotPos = versionStr.find('.');
+      auto const majorStr = versionStr.substr(0, dotPos);
+      versionStr = versionStr.substr(dotPos + 1);
+      dotPos = versionStr.find('.');
+      auto const minorStr = versionStr.substr(0, dotPos);
+      auto const patchStr = versionStr.substr(dotPos + 1);
+
+      version_.major = std::stoi(majorStr);
+      version_.minor = std::stoi(minorStr);
+      version_.patch = std::stoi(patchStr);
+    }
 
     if (!kernelNode) {
       throw std::invalid_argument("Missing 'kernel' in " + filename);
@@ -77,13 +97,6 @@ MeasurementModel &MeasurementModel::loadFromFile(std::string const &filename) {
     if (!densityNode) {
       throw std::invalid_argument("Missing 'density' in " + filename);
     }
-    auto const &kernelSigmaNode = kernelNode["sigma"];
-
-    if (!kernelSigmaNode) {
-      throw std::invalid_argument("Missing 'kernel.sigma' in " + filename);
-    }
-
-    auto const kernelSigma_ = kernelSigmaNode.as<float>();
     auto const sliceSpacing_ = sliceSpacingNode.as<float>();
 
     auto const samplingRange_ = parseRange<float>(samplingRangeNode);
@@ -146,6 +159,8 @@ MeasurementModel &MeasurementModel::loadFromFile(std::string const &filename) {
 
     std::optional<std::string> name_, description_, author_;
     std::optional<std::string> creationDate_;
+    std::optional<float> kernelSigma_;
+    std::optional<std::string> scannerName_, kernelName_;
 
     if (auto const &nameNode = node["name"]) {
       name_ = nameNode.as<std::string>();
@@ -163,12 +178,32 @@ MeasurementModel &MeasurementModel::loadFromFile(std::string const &filename) {
       creationDate_ = dateNode.as<std::string>();
     }
 
+    if (version_.major < 2) {
+      auto const &kernelSigmaNode = kernelNode["sigma"];
+
+      if (!kernelSigmaNode) {
+        throw std::invalid_argument("Missing 'kernel.sigma' in " + filename);
+      }
+
+      kernelSigma_ = kernelSigmaNode.as<float>();
+    } else {
+      // version 2.0.0 or above
+      kernelName_ = kernelNode.as<std::string>();
+
+      if (auto const scannerNameNode = node["scanner"]) {
+        scannerName_ = scannerNameNode.as<std::string>();
+      }
+    }
+
     // write loaded data to *this
+    version = version_;
     name = name_;
     description = description_;
     author = author_;
     creationDate = creationDate_;
     kernelSigma = kernelSigma_;
+    kernelName = kernelName_;
+    scannerName = scannerName_;
     sliceSpacing = sliceSpacing_;
     samplingRange = samplingRange_;
     densityRange = densityRange_;
