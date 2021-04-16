@@ -40,7 +40,7 @@ then
   fi
   cd ..
 
-  export Matlab_ROOT_DIR=${MCR_ROOT}/v95
+  export Matlab_ROOT_DIR=${MCR_ROOT}/v910
 
   echo "Matlab_ROOT_DIR={$Matlab_ROOT_DIR}"
 fi
