@@ -38,8 +38,14 @@ TEST(MeasurementModel, TestDefaultParameters) {
   ASSERT_TRUE(!emptyModel.description);
   ASSERT_TRUE(!emptyModel.author);
   ASSERT_TRUE(!emptyModel.creationDate);
+  ASSERT_TRUE(!emptyModel.kernelSigma);
+  ASSERT_TRUE(!emptyModel.scannerName);
+  ASSERT_TRUE(!emptyModel.kernelName);
 
-  ASSERT_FLOAT_EQ(1.f, emptyModel.kernelSigma);
+  ASSERT_EQ(1, emptyModel.version.major);
+  ASSERT_EQ(0, emptyModel.version.minor);
+  ASSERT_EQ(0, emptyModel.version.patch);
+
   ASSERT_FLOAT_EQ(1.f, emptyModel.sliceSpacing);
 
   ASSERT_FLOAT_EQ(-2.f, emptyModel.samplingRange.min);
@@ -74,7 +80,8 @@ TEST(MeasurementModel, LoadFromFile) {
   ASSERT_FALSE(!model.creationDate);
   ASSERT_EQ("2018-08-30 15:37:00 +02", *model.creationDate);
 
-  ASSERT_FLOAT_EQ(0.68f, model.kernelSigma);
+  ASSERT_FALSE(!model.kernelSigma);
+  ASSERT_FLOAT_EQ(0.68f, *model.kernelSigma);
   ASSERT_FLOAT_EQ(0.7f, model.sliceSpacing);
 
   ASSERT_FLOAT_EQ(-4.f, model.samplingRange.min);
