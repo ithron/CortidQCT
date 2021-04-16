@@ -1,8 +1,12 @@
 # CortidQCT Changelog
 
-## Next release
+## 1.3.0
 
 ### Added
+- Support for volume calibration
+- Support for measurement model version 2.0.0
+- Docker support
+- Support for modeling complex PSF function (PR [#67](https://github.com/ithron/CortidQCT/pull/67))
 - Mesh now has a nRing query function (MATLAB only) ([#65](https://github.com/ithron/CortidQCT/issues/65))
 - Mesh now has an upsampling method that interpolates normals and preserves
   labels ([#57](https://github.com/ithron/CortidQCT/issues/57), [#64](https://github.com/ithron/CortidQCT/issues/64))
@@ -24,6 +28,7 @@
 - Inheritance for configuration files (rudimentary)
 
 ## Removed
+- OpenCL support
 - Dropped support for older clang versions ( < 6.0.0 )
 - MeshFitter::State::vertexNormals is now depreacated, use vertex normals
   property of deformed mesh instead ([#63](https://github.com/ithron/CortidQCT/issues/63))
@@ -31,6 +36,11 @@
 
 
 ## Fixes
+
+- Labels were not included when saving meshes to SIMesh format
+- Issue [#70](https://github.com/ithron/CortidQCT/issues/70):Crash when using MeshFitter.fit(volume) from MATLAB 2019b
+- Issue [#69](https://github.com/ithron/CortidQCT/issues/68): Failed postcondition when loading highly non-convex meshes 
+- Compatibility with newer MATLAB versions
 - Scaling of out-of-plane MTF
 - Issue [#47](https://github.com/ithron/CortidQCT/issues/47): CortidQCT.saveModel broken in MATLAB 2018b on linux
 - Issue [#60](https://github.com/ithron/CortidQCT/issues/60): (MATLAB) VoxelVolume.plot off by one error
