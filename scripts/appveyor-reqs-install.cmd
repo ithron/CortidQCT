@@ -5,7 +5,7 @@
 ::::###########################################################################
 @set PATH=C:\projects\deps\ninja;%PATH%
 if NOT EXIST ninja (
-  appveyor DownloadFile https://github.com/ninja-build/ninja/releases/download/v1.6.0/ninja-win.zip -FileName ninja.zip
+  appveyor DownloadFile https://github.com/ninja-build/ninja/releases/download/v1.10.2/ninja-win.zip -FileName ninja.zip
   7z x ninja.zip -oC:\projects\deps\ninja > nul
   rm ninja.zip
 )
@@ -17,7 +17,7 @@ ninja --version
 if "%APPVEYOR_REPO_TAG%" == "true" (
   if NOT EXIST C:\projects\deps\MCR (
     echo "Downloading MCR"
-    appveyor DownloadFile https://ssd.mathworks.com/supportfiles/downloads/R2018b/deployment_files/R2018b/installers/win64/MCR_R2018b_win64_installer.exe -FileName MCR.exe
+    appveyor DownloadFile https://ssd.mathworks.com/supportfiles/downloads/R2021a/Release/0/deployment_files/installer/complete/glnxa64/MATLAB_Runtime_R2021a_glnxa64.zip -FileName MCR.exe
     7z x MCR.exe -oC:\projects\deps\MCR-install
     echo "Installing MCR"
     cd C:\projects\deps\MCR-install
