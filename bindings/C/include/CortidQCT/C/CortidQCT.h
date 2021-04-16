@@ -146,6 +146,11 @@ CQCT_EXTERN int CQCT_voxelVolumeLoadFromFile(CQCT_VoxelVolume volume,
                                              const char *filename,
                                              CQCT_Error *error);
 
+/// Calibrates the voxel volume
+CQCT_EXTERN CQCT_VoxelVolume CQCT_voxelVolumeCalibrate(CQCT_VoxelVolume volume,
+                                                       float slope,
+                                                       float intercept);
+
 /// Returns the size of the voxel volume
 CQCT_EXTERN CQCT_VoxelVolumeSize CQCT_voxelVolumeSize(CQCT_VoxelVolume volume);
 
@@ -699,4 +704,3 @@ CQCT_EXTERN int CQCT_meshFitterConvergenceTestStep(CQCT_MeshFitter meshFitter,
 #endif
 
 /// @}
-

@@ -32,6 +32,13 @@ classdef VoxelVolume < CortidQCT.lib.ObjectBase
       
       success = res == 1;
     end
+
+    function obj = calibrate(obj, slop, intercept)
+      
+      import CortidQCT.lib.ObjectBase;
+      
+      ObjectBase.call('voxelVolumeCalibrate', obj.handle, slope, intercept);
+    end
     
     function size = get.size(obj)
       

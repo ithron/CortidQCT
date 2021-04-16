@@ -12,7 +12,8 @@ CORTIDQCT_C_EXPORT CQCT_EXTERN CQCT_VoxelVolume CQCT_createVoxelVolume() {
 }
 
 CORTIDQCT_C_EXPORT CQCT_EXTERN int
-CQCT_voxelVolumeLoadFromFile(CQCT_VoxelVolume volume, const char *filename, CQCT_Error *error) {
+CQCT_voxelVolumeLoadFromFile(CQCT_VoxelVolume volume, const char *filename,
+                             CQCT_Error *error) {
   assert(volume != nullptr);
 
   try {
@@ -40,6 +41,14 @@ CQCT_voxelVolumeLoadFromFile(CQCT_VoxelVolume volume, const char *filename, CQCT
   }
 
   return false;
+}
+
+CORTIDQCT_C_EXPORT CQCT_EXTERN CQCT_VoxelVolume CQCT_voxelVolumeCalibrate(
+    CQCT_VoxelVolume volume, float slope, float intercept) {
+  assert(volume != nullptr);
+  volume->impl.objPtr->calibrate(slope, intercept);
+
+  return volume;
 }
 
 CORTIDQCT_C_EXPORT CQCT_EXTERN CQCT_VoxelVolumeSize

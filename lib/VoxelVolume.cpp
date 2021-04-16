@@ -11,6 +11,7 @@
 
 #include "VoxelVolume.h"
 #include "CheckExtension.h"
+#include "EigenAdaptors.h"
 #include "lib_config.h"
 
 #include <exception>
@@ -83,6 +84,13 @@ VoxelVolume &VoxelVolume::loadFromFile(std::string const &filename) {
                                 e.what());
   }
 
+  return *this;
+}
+
+VoxelVolume &VoxelVolume::calibrate(ValueType slope, ValueType intercept) {
+  using ::CortidQCT::Internal::Adaptor::map;
+  auto data = map(voxelData_);
+  data.array() = data.array() * slope + intercept;
   return *this;
 }
 

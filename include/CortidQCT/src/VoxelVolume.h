@@ -83,6 +83,21 @@ public:
 
   /// @}
 
+  /// @name Claibration
+  /// @{
+
+  /// @brief Calibrates the voxel volume to BMD equivalent using the given 
+  ///   calibration parameters
+  ///
+  /// The calibration is done using the equation BMD = slope * HU + intercept.
+  ///
+  /// @param slope Slope
+  /// @param intercept Intercept
+  /// @return Reference to `*this`.
+  VoxelVolume &calibrate(ValueType slope, ValueType intercept);
+
+  /// @}
+
   /**
    * @name Raw Data Access
    * The methods in this section all call a functional with a pointer to raw
