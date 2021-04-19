@@ -57,6 +57,10 @@ public:
     std::size_t minNonDecreasing = 10;
     /// Decay factor
     float decay = 0.9f;
+    /// Calibration slope
+    float calibrationSlope = 1.0f;
+    /// Calibration intercept
+    float calibrationIntercept = 0.0f;
     /// Ignore samples outisde the volumes?
     bool ignoreExteriorSamples = false;
 

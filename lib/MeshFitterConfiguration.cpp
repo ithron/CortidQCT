@@ -226,6 +226,19 @@ MeshFitter::Configuration::loadFromFile(std::string const &filename) {
       ignoreExteriorSamples = ignoreExteriorSamplesNode.as<bool>();
     }
 
+    if (auto calibrationNode = node["calibration"]) {
+      if (!calibrationNode.IsMap()) {
+        throw std::invalid_argument("calibration node must be a map type in " +
+                                    filename);
+      }
+      if (auto slopeNode = calibrationNode["slope"]) {
+        calibrationSlope = slopeNode.as<float>();
+      }
+      if (auto interceptNode = calibrationNode["intercept"]) {
+        calibrationIntercept = interceptNode.as<float>();
+      }
+    }
+
     model = std::move(model_);
     referenceMesh = std::move(refMesh);
 
