@@ -9,7 +9,7 @@ env:
     - GH_REPO_REF=github.com/ithron/CortidQCT.git
     - GH_REPO_NAME=CortidQCT
     - GENERATE_DOCS=no
-    - Matlab_ROOT_DIR=${HOME}/MCR/v93
+    - Matlab_ROOT_DIR=${HOME}/MCR/v910
     - BUILD_MEX=OFF
     - DEPLOY=false
 
