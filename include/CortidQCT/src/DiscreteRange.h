@@ -52,7 +52,7 @@ template <class T> struct DiscreteRange {
   inline constexpr std::size_t numElements() const noexcept {
     using std::floor;
     auto const length = max - min;
-    return static_cast<std::size_t>(floor(length / stride)) + std::size_t{1};
+    return static_cast<std::size_t>(floor(length / stride + static_cast<value_type>(1e-5))) + std::size_t{1};
   }
 
   /// Returns the n-th element
