@@ -33,7 +33,9 @@ public:
 
   template <class Derived, class DerivedOut>
   inline void operator()(Eigen::MatrixBase<Derived> const &positions,
-                         Eigen::MatrixBase<DerivedOut> &values) const {
+                         Eigen::MatrixBase<DerivedOut> &values,
+                         VoxelVolume::ValueType slope,
+                         VoxelVolume::ValueType intercept) const {
     using Eigen::Vector3f;
 
     Expects(values.rows() == positions.rows());
@@ -43,28 +45,32 @@ public:
                          1.f / volume_.voxelSize().height,
                          1.f / volume_.voxelSize().depth};
 
-    volume_.withUnsafeDataPointer(
-        [this, &positions, &values, scale](auto const *ptr) {
+    volume_.withUnsafeDataPointer([this, &positions, &values, scale, slope,
+                                   intercept](auto const *ptr) {
 
 #pragma omp parallel for
-          for (Eigen::Index i = 0; i < positions.rows(); ++i) {
+      for (Eigen::Index i = 0; i < positions.rows(); ++i) {
 
-            values(i) = this->interpolate(
-                (positions.row(i).array() * scale.array().transpose())
-                    .matrix()
-                    .transpose(),
-                gsl::make_not_null(ptr));
-          }
-        });
+        values(i) = this->interpolate(
+                        (positions.row(i).array() * scale.array().transpose())
+                            .matrix()
+                            .transpose(),
+                        gsl::make_not_null(ptr)) *
+                        slope +
+                    intercept;
+      }
+    });
   }
 
   template <class Derived>
   inline Eigen::Matrix<VoxelVolume::ValueType, Eigen::Dynamic, 1>
-  operator()(Eigen::MatrixBase<Derived> const &positions) const {
+  operator()(Eigen::MatrixBase<Derived> const &positions,
+             VoxelVolume::ValueType slope,
+             VoxelVolume::ValueType intercept) const {
     Eigen::Matrix<VoxelVolume::ValueType, Eigen::Dynamic, 1> values(
         positions.rows());
 
-    operator()(positions, values);
+    operator()(positions, values, slope, intercept);
 
     return values;
   }

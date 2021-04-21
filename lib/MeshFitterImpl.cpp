@@ -146,7 +146,8 @@ MeshFitter::State MeshFitter::Impl::init(VoxelVolume const &volume) const {
   state.referenceMesh.updatePerVertexNormals();
   // This will be removed in versino 2.0:
   state.vertexNormals.resize(narrow_cast<std::size_t>(nVertices));
-  Adaptor::map(state.vertexNormals) = Adaptor::vertexNormalMap(state.referenceMesh);
+  Adaptor::map(state.vertexNormals) =
+      Adaptor::vertexNormalMap(state.referenceMesh);
 
   // Init deformed mesh with reference mesh
   state.deformedMesh = state.referenceMesh;
@@ -237,7 +238,8 @@ void MeshFitter::Impl::findOptimalDeformation(MeshFitter::State &state) const {
   // Update normals
   state.deformedMesh.updatePerVertexNormals();
   // This will be removed in v2.0:
-  Adaptor::map(state.vertexNormals) = Adaptor::vertexNormalMap(state.deformedMesh);
+  Adaptor::map(state.vertexNormals) =
+      Adaptor::vertexNormalMap(state.deformedMesh);
 }
 
 void MeshFitter::Impl::sampleVolume(MeshFitter::State &state) const {
@@ -266,7 +268,9 @@ void MeshFitter::Impl::sampleVolume(MeshFitter::State &state) const {
       state.hiddenState_->volume, conf.ignoreExteriorSamples
                                       ? std::numeric_limits<float>::quiet_NaN()
                                       : 0.f};
-  volumeSampler(volumeSamplingPositions.transpose(), volumeSamples);
+  volumeSampler(volumeSamplingPositions.transpose(), volumeSamples,
+                fitter_.configuration.calibrationSlope,
+                fitter_.configuration.calibrationIntercept);
 
   // Reorder samples
   state.hiddenState_->volumeSamplesMatrix =
