@@ -33,7 +33,7 @@ classdef VoxelVolume < CortidQCT.lib.ObjectBase
       success = res == 1;
     end
 
-    function obj = calibrate(obj, slop, intercept)
+    function obj = calibrate(obj, slope, intercept)
       
       import CortidQCT.lib.ObjectBase;
       
