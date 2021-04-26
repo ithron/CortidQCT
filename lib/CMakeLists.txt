@@ -106,19 +106,6 @@ target_link_libraries(PrivateAPI
 ############################
 # Optional Dependencies
 
-option(WITH_OPENCL "Build with OpenCL support" ON)
-if (WITH_OPENCL)
-  hunter_add_package(OpenCL)
-  find_package(OpenCL CONFIG REQUIRED)
-
-  # Add to targets
-  target_link_libraries(Core
-    PRIVATE
-      OpenCL::OpenCL
-  )
-
-endif()
-
 option(CORTIDQCT_WITH_IMAGESTACK "Build with ImageStack support (.bst images)" ON)
 if (CORTIDQCT_WITH_IMAGESTACK)
   hunter_add_package(ImageStack)

@@ -18,7 +18,7 @@ environment:
   MSVC_SETUP_PATH: C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvarsall.bat
   MSVC_SETUP_ARG: x64
   USE_CLANG: ON
-  CMAKE_OPTIONS: "-DCortidQCT_WITH_WERROR=OFF -DWITH_OPENCL=OFF -DCMAKE_INSTALL_PREFIX=%APPVEYOR_BUILD_FOLDER%\\install"
+  CMAKE_OPTIONS: "-DCortidQCT_WITH_WERROR=OFF -DCMAKE_INSTALL_PREFIX=%APPVEYOR_BUILD_FOLDER%\\install"
   Matlab_ROOT_DIR: C:\Program Files\MATLAB\MATLAB Runtime\v93
   BUILD_MEX: OFF
 

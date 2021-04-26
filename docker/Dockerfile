@@ -82,7 +82,7 @@ RUN git clone https://github.com/ithron/CortidQCT.git /usr/local/src/CortidQCT &
   git submodule update --init
   
 RUN cd /tmp && mkdir CortidQCT-build && cd CortidQCT-build && \
-  cmake -DCMAKE_BUILD_TYPE=Release -DWITH_OPENCL=OFF -DMatlab_ROOT_DIR=/usr/local/MATLAB/MATLAB_Runtime/v95 /usr/local/src/CortidQCT && \
+  cmake -DCMAKE_BUILD_TYPE=Release -DMatlab_ROOT_DIR=/usr/local/MATLAB/MATLAB_Runtime/v95 /usr/local/src/CortidQCT && \
   make -kj16 && \
   make test && \
   make install && \
