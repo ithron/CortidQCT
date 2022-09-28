@@ -139,7 +139,7 @@ operator()(Eigen::MatrixBase<DerivedN> const &N,
   VectorXf const displacementLL =
       -0.5f * displacements.array().square() / sigmaSq;
 
-  // Copmute the nomnator term: conditional LL + prior LL
+  // Copmute the nominator term: conditional LL + prior LL
   MatrixXf posteriorNominator = Lzs;
   posteriorNominator.rowwise() += displacementLL.transpose();
   // Scale `posteriorNominator` so that the maxCoeff is 0 to avoid overflows
@@ -153,7 +153,7 @@ operator()(Eigen::MatrixBase<DerivedN> const &N,
        displacementRange.stride)
           .log()
           .matrix();
-  // // Add `posteriorMaxCoeffs` to denominator term to invert the scaleing
+  // Add `posteriorMaxCoeffs` to denominator term to invert the scaling
   // posteriorDenominator += posteriorMaxCoeffs;
   posteriorDenominator.array() +=
       2 * log(static_cast<float>(displacementLL.size()));
